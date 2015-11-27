@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:minHeight="48dp"
+   	android:weightSum="100"
+    android:orientation="horizontal" >
+
+   
+
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_action_prod" />
+        
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="5"
+            android:text="bla bla bal"
+            android:layout_weight="70"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="#00FF00" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="5"
+            android:gravity="center_vertical"
+            android:text="Number:"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@color/list_highlight_color" />
+
+        <TextView
+            android:id="@+id/jobnumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="5"
+            android:text="123456"
+            android:textAppearance="?android:textAppearanceMedium" />
+
+   
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="5"
+            android:text="Quantity:"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@color/list_highlight_color" />
+
+        <TextView
+            android:id="@+id/quantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="5"
+            android:text="123456"
+            android:textAppearance="?android:textAppearanceMedium" />
+   
+
+</LinearLayout>

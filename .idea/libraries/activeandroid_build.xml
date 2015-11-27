@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="activeandroid-build">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/newAppTest/libs/activeandroid-build.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

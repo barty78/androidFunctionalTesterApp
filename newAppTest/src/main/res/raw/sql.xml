@@ -1,0 +1,136 @@
+	<sql>
+
+<statement>
+CREATE TABLE IF NOT EXISTS [jobs] (
+  [jobNo] TEXT NOT NULL UNIQUE COLLATE NOCASE, 
+  [test_id] NUMERIC NOT NULL,
+  [totalqty] NUMERIC NOT NULL, 
+  [testedqty] NUMERIC NOT NULL DEFAULT 0,
+  [passedqty] NUMERIC NOT NULL DEFAULT 0,
+  [created] TIMESTAMP NOT NULL DEFAULT (datetime('now','localtime')), 
+  [LastUpdated] TIMESTAMP NOT NULL DEFAULT (datetime('now','localtime')),
+  [LastReportedRecord] NUMERIC NOT NULL DEFAULT 0,
+  [ReportNumber] NUMERIC NOT NULL DEFAULT 0,
+  [active] NUMERIC NOT NULL DEFAULT 0
+  );
+</statement>
+
+<statement>  
+CREATE TRIGGER job_lastupdate
+AFTER UPDATE ON jobs FOR EACH ROW
+BEGIN
+UPDATE jobs
+SET LastUpdated = (datetime('now','localtime'))
+WHERE rowid = old.rowid;
+END;
+</statement>
+
+<statement>
+CREATE TABLE IF NOT EXISTS [recipients] (
+  [email] TEXT NOT NULL UNIQUE COLLATE NOCASE 
+  );
+</statement>
+
+<statement>INSERT INTO recipients VALUES('pbartlett@analyticamedical.com');</statement>
+<statement>INSERT INTO recipients VALUES('ccornelius@analyticamedical.com');</statement>
+<statement>INSERT INTO recipients VALUES('supportanalytica@extentor.com.au');</statement>
+<statement>INSERT INTO recipients VALUES('twilson@mouldingservices.com.au');</statement>
+
+<statement>
+CREATE TABLE IF NOT EXISTS [test] (
+  [desc] TEXT NOT NULL COLLATE NOCASE, 
+  [type] INTEGER NOT NULL, 
+  [created] TIMESTAMP NOT NULL DEFAULT (datetime('now','localtime'))
+  );
+</statement>
+
+<statement>INSERT INTO test (desc, type) VALUES('Open Test', 1);</statement>
+<statement>INSERT INTO test (desc, type) VALUES('Closed Test', 2);</statement>
+
+<statement>
+CREATE TABLE IF NOT EXISTS [testlimit] (
+  [desc] TEXT NOT NULL COLLATE NOCASE, 
+  [test_id] INTEGER NOT NULL,
+  [seqNo] INTEGER NOT NULL,
+  [s0lower] NUMERIC NOT NULL, 
+  [s1lower] NUMERIC NOT NULL, 
+  [s2lower] NUMERIC NOT NULL,  
+  [s0upper] NUMERIC NOT NULL, 
+  [s1upper] NUMERIC NOT NULL, 
+  [s2upper] NUMERIC NOT NULL, 
+  [stability] NUMERIC NOT NULL, 
+  [created] TIMESTAMP NOT NULL DEFAULT (datetime('now','localtime')),
+  [modified] TIMESTAMP NOT NULL DEFAULT (datetime('now','localtime'))
+  );
+</statement>
+
+<statement>  
+CREATE TRIGGER testlimit_lastupdate
+AFTER UPDATE ON testlimit FOR EACH ROW
+BEGIN
+UPDATE testlimit
+SET modified = (datetime('now','localtime'))
+WHERE rowid = old.rowid;
+END;
+</statement>
+
+<statement>INSERT INTO testlimit (desc, test_id, seqNo, s0lower, s1lower, s2lower, s0upper, s1upper, s2upper, stability) VALUES('Rest', 1, 1, 0, 0, 0, 25, 25, 25, 50);</statement>
+<statement>INSERT INTO testlimit (desc, test_id, seqNo, s0lower, s1lower, s2lower, s0upper, s1upper, s2upper, stability) VALUES('Load', 1, 2, 900, 900, 900, 1200, 1200, 1200, 100);</statement>
+<statement>INSERT INTO testlimit (desc, test_id, seqNo, s0lower, s1lower, s2lower, s0upper, s1upper, s2upper, stability) VALUES('Load', 1, 3, 4000, 4000, 4000, 4095, 4095, 4095, 100);</statement>
+<statement>INSERT INTO testlimit (desc, test_id, seqNo, s0lower, s1lower, s2lower, s0upper, s1upper, s2upper, stability) VALUES('Load', 1, 4, 4000, 4000, 4000, 4095, 4095, 4095, 100);</statement>
+
+<statement>INSERT INTO testlimit (desc, test_id, seqNo, s0lower, s1lower, s2lower, s0upper, s1upper, s2upper, stability) VALUES('Rest', 2, 1, 0, 0, 0, 4095, 4095, 4095, 4095);</statement>
+<statement>INSERT INTO testlimit (desc, test_id, seqNo, s0lower, s1lower, s2lower, s0upper, s1upper, s2upper, stability) VALUES('50g', 2, 2, 800, 500, 500, 2800, 2500, 2500, 100);</statement>
+
+<statement>
+CREATE TABLE IF NOT EXISTS [deviceRecords] (
+  [devid] TEXT UNIQUE NOT NULL COLLATE NOCASE,
+  [serial] TEXT UNIQUE COLLATE NOCASE,
+  [version] TEXT NOT NULL COLLATE NOCASE,
+  [created] TIMESTAMP NOT NULL DEFAULT (datetime('now','localtime'))
+);       
+</statement>
+
+<statement>
+CREATE TABLE IF NOT EXISTS [testRecords] (
+  [job_id] INT NOT NULL,
+  [dev_id] NUMERIC NOT NULL,
+  [zero0min] NUMERIC NOT NULL,
+  [zero0max] NUMERIC NOT NULL,
+  [zero0avg] NUMERIC NOT NULL,
+  [zero1min] NUMERIC NOT NULL,
+  [zero1max] NUMERIC NOT NULL,
+  [zero1avg] NUMERIC NOT NULL, 
+  [zero2min] NUMERIC NOT NULL,
+  [zero2max] NUMERIC NOT NULL,
+  [zero2avg] NUMERIC NOT NULL, 
+  [weight0min] NUMERIC NOT NULL,
+  [weight0max] NUMERIC NOT NULL,
+  [weight0avg] NUMERIC NOT NULL,
+  [weight1min] NUMERIC NOT NULL,
+  [weight1max] NUMERIC NOT NULL,
+  [weight1avg] NUMERIC NOT NULL, 
+  [weight2min] NUMERIC NOT NULL,
+  [weight2max] NUMERIC NOT NULL,
+  [weight2avg] NUMERIC NOT NULL, 
+  [test_id] INT NOT NULL, 
+  [result] TEXT NOT NULL COLLATE NOCASE, 
+  [operator] TEXT COLLATE NOCASE, 
+  [created] TIMESTAMP NOT NULL DEFAULT (datetime('now','localtime')),
+  [scancode] TEXT
+  );
+</statement>
+
+<statement>
+CREATE TABLE IF NOT EXISTS [devices] (
+  [device] TEXT
+  );
+</statement>
+
+<statement>
+CREATE TABLE IF NOT EXISTS [scancodes] (
+  [scancode] TEXT
+  );
+</statement>
+
+</sql>

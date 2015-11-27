@@ -1,0 +1,138 @@
+[
+    {
+        "merged": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/res/merged/debug/layout/sensorsummaryrowitem.xml",
+        "source": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/src/main/res/layout/sensorsummaryrowitem.xml"
+    },
+    {
+        "merged": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/res/merged/debug/layout/test_row.xml",
+        "source": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/src/main/res/layout/test_row.xml"
+    },
+    {
+        "merged": "/Users/mauriziopietrantuono/Desktop/trash/NewAppTest4/newAppTest/build/intermediates/res/merged/debug/layout/newjobactivity.xml",
+        "source": "/Users/mauriziopietrantuono/Desktop/trash/NewAppTest4/newAppTest/src/main/res/layout/newjobactivity.xml"
+    },
+    {
+        "merged": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/res/merged/debug/layout/scanactivity.xml",
+        "source": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/src/main/res/layout/scanactivity.xml"
+    },
+    {
+        "merged": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/res/merged/debug/layout/add_view.xml",
+        "source": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/src/main/res/layout/add_view.xml"
+    },
+    {
+        "merged": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/res/merged/debug/layout/activity_main.xml",
+        "source": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/src/main/res/layout/activity_main.xml"
+    },
+    {
+        "merged": "/Users/mauriziopietrantuono/Desktop/trash/NewAppTest4/newAppTest/build/intermediates/res/merged/debug/layout/activity_main.xml",
+        "source": "/Users/mauriziopietrantuono/Desktop/trash/NewAppTest4/newAppTest/src/main/res/layout/activity_main.xml"
+    },
+    {
+        "merged": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/res/merged/debug/layout/voltagerowitem.xml",
+        "source": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/src/main/res/layout/voltagerowitem.xml"
+    },
+    {
+        "merged": "/Users/mauriziopietrantuono/Desktop/trash/NewAppTest4/newAppTest/build/intermediates/res/merged/debug/layout/select_ioio_device_list_item.xml",
+        "source": "/Users/mauriziopietrantuono/Desktop/trash/NewAppTest4/newAppTest/src/main/res/layout/select_ioio_device_list_item.xml"
+    },
+    {
+        "merged": "/Users/mauriziopietrantuono/Desktop/trash/NewAppTest4/newAppTest/build/intermediates/res/merged/debug/layout/test_row.xml",
+        "source": "/Users/mauriziopietrantuono/Desktop/trash/NewAppTest4/newAppTest/src/main/res/layout/test_row.xml"
+    },
+    {
+        "merged": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/res/merged/debug/layout/sensorrowitem.xml",
+        "source": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/src/main/res/layout/sensorrowitem.xml"
+    },
+    {
+        "merged": "/Users/mauriziopietrantuono/Desktop/trash/NewAppTest4/newAppTest/build/intermediates/res/merged/debug/layout/job_row.xml",
+        "source": "/Users/mauriziopietrantuono/Desktop/trash/NewAppTest4/newAppTest/src/main/res/layout/job_row.xml"
+    },
+    {
+        "merged": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/res/merged/debug/layout/select_ioio_device_list_item.xml",
+        "source": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/src/main/res/layout/select_ioio_device_list_item.xml"
+    },
+    {
+        "merged": "/Users/mauriziopietrantuono/Desktop/trash/NewAppTest4/newAppTest/build/intermediates/res/merged/debug/layout/add_view.xml",
+        "source": "/Users/mauriziopietrantuono/Desktop/trash/NewAppTest4/newAppTest/src/main/res/layout/add_view.xml"
+    },
+    {
+        "merged": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/res/merged/debug/layout/dinamic_voltage_activity.xml",
+        "source": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/src/main/res/layout/dinamic_voltage_activity.xml"
+    },
+    {
+        "merged": "/Users/mauriziopietrantuono/Desktop/trash/NewAppTest4/newAppTest/build/intermediates/res/merged/debug/layout/voltagerowitem.xml",
+        "source": "/Users/mauriziopietrantuono/Desktop/trash/NewAppTest4/newAppTest/src/main/res/layout/voltagerowitem.xml"
+    },
+    {
+        "merged": "/Users/mauriziopietrantuono/Desktop/trash/NewAppTest4/newAppTest/build/intermediates/res/merged/debug/layout/dinamic_voltage_activity.xml",
+        "source": "/Users/mauriziopietrantuono/Desktop/trash/NewAppTest4/newAppTest/src/main/res/layout/dinamic_voltage_activity.xml"
+    },
+    {
+        "merged": "/Users/mauriziopietrantuono/Desktop/trash/NewAppTest4/newAppTest/build/intermediates/res/merged/debug/layout/nexttestactivity.xml",
+        "source": "/Users/mauriziopietrantuono/Desktop/trash/NewAppTest4/newAppTest/src/main/res/layout/nexttestactivity.xml"
+    },
+    {
+        "merged": "/Users/mauriziopietrantuono/Desktop/trash/NewAppTest4/newAppTest/build/intermediates/res/merged/debug/layout/sensor_test.xml",
+        "source": "/Users/mauriziopietrantuono/Desktop/trash/NewAppTest4/newAppTest/src/main/res/layout/sensor_test.xml"
+    },
+    {
+        "merged": "/Users/mauriziopietrantuono/Desktop/trash/NewAppTest4/newAppTest/build/intermediates/res/merged/debug/layout/selectjobactivity.xml",
+        "source": "/Users/mauriziopietrantuono/Desktop/trash/NewAppTest4/newAppTest/src/main/res/layout/selectjobactivity.xml"
+    },
+    {
+        "merged": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/res/merged/debug/layout/sensors_summary_row_item.xml",
+        "source": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/src/main/res/layout/sensors_summary_row_item.xml"
+    },
+    {
+        "merged": "/Users/mauriziopietrantuono/Desktop/trash/NewAppTest4/newAppTest/build/intermediates/res/merged/debug/layout/select_ioio_device_activity.xml",
+        "source": "/Users/mauriziopietrantuono/Desktop/trash/NewAppTest4/newAppTest/src/main/res/layout/select_ioio_device_activity.xml"
+    },
+    {
+        "merged": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/res/merged/debug/layout/selectjobactivity.xml",
+        "source": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/src/main/res/layout/selectjobactivity.xml"
+    },
+    {
+        "merged": "/Users/mauriziopietrantuono/Desktop/trash/NewAppTest4/newAppTest/build/intermediates/res/merged/debug/layout/scanactivity.xml",
+        "source": "/Users/mauriziopietrantuono/Desktop/trash/NewAppTest4/newAppTest/src/main/res/layout/scanactivity.xml"
+    },
+    {
+        "merged": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/res/merged/debug/layout/job_row.xml",
+        "source": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/src/main/res/layout/job_row.xml"
+    },
+    {
+        "merged": "/Users/mauriziopietrantuono/Desktop/trash/NewAppTest4/newAppTest/build/intermediates/res/merged/debug/layout/trash.xml",
+        "source": "/Users/mauriziopietrantuono/Desktop/trash/NewAppTest4/newAppTest/src/main/res/layout/trash.xml"
+    },
+    {
+        "merged": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/res/merged/debug/layout/sensor_test.xml",
+        "source": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/src/main/res/layout/sensor_test.xml"
+    },
+    {
+        "merged": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/res/merged/debug/layout/newjobactivity.xml",
+        "source": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/src/main/res/layout/newjobactivity.xml"
+    },
+    {
+        "merged": "/Users/mauriziopietrantuono/Desktop/trash/NewAppTest4/newAppTest/build/intermediates/res/merged/debug/layout/sensorsummaryrowitem.xml",
+        "source": "/Users/mauriziopietrantuono/Desktop/trash/NewAppTest4/newAppTest/src/main/res/layout/sensorsummaryrowitem.xml"
+    },
+    {
+        "merged": "/Users/mauriziopietrantuono/Desktop/trash/NewAppTest4/newAppTest/build/intermediates/res/merged/debug/layout/sensors_summary_row_item.xml",
+        "source": "/Users/mauriziopietrantuono/Desktop/trash/NewAppTest4/newAppTest/src/main/res/layout/sensors_summary_row_item.xml"
+    },
+    {
+        "merged": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/res/merged/debug/layout/trash.xml",
+        "source": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/src/main/res/layout/trash.xml"
+    },
+    {
+        "merged": "/Users/mauriziopietrantuono/Desktop/trash/NewAppTest4/newAppTest/build/intermediates/res/merged/debug/layout/sensorrowitem.xml",
+        "source": "/Users/mauriziopietrantuono/Desktop/trash/NewAppTest4/newAppTest/src/main/res/layout/sensorrowitem.xml"
+    },
+    {
+        "merged": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/res/merged/debug/layout/select_ioio_device_activity.xml",
+        "source": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/src/main/res/layout/select_ioio_device_activity.xml"
+    },
+    {
+        "merged": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/res/merged/debug/layout/nexttestactivity.xml",
+        "source": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/src/main/res/layout/nexttestactivity.xml"
+    }
+]

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/libs/android-async-http-1.4.6 (3).jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="a845a88238be0b5be9d238652c1bc0605ef91f52">
+        <dex dex="/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/pre-dexed/debug/android-async-http-1.4.6 (3)_dcc619d027f3fe57747385da040bf317844588ad.jar" />
+    </item>
+    <item
+        jar="/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/exploded-aar/com.crashlytics.sdk.android/beta/1.1.4/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="ad5bb101ced4d3939225c9b57e5a3d81547c1fbb">
+        <dex dex="/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/pre-dexed/debug/com.crashlytics.sdk.android-beta-1.1.4_ea11d88f1d579ef57b27f0e389c2c26dd0c052d9.jar" />
+    </item>
+    <item
+        jar="/Users/mauriziopietrantuono/.gradle/caches/modules-2/files-2.1/com.github.ytai.ioio/IOIOLibCore/5.05/99821d5ab444306c6e39f3de72f85c4b287a6765/IOIOLibCore-5.05.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="99821d5ab444306c6e39f3de72f85c4b287a6765">
+        <dex dex="/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/pre-dexed/debug/IOIOLibCore-5.05_ca3f76220f64261cbf1f32308f8525bf54531729.jar" />
+    </item>
+    <item
+        jar="/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/exploded-aar/com.crashlytics.sdk.android/crashlytics-core/2.3.6/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="a318b9031a1d83f568495b239504a808d56bdbc1">
+        <dex dex="/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/pre-dexed/debug/com.crashlytics.sdk.android-crashlytics-core-2.3.6_c66dbe76c4e9aabc4be1212ed17e25ce982de9be.jar" />
+    </item>
+    <item
+        jar="/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/exploded-aar/com.github.ytai.ioio/IOIOLibAndroidDevice/5.05/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="7eb8cafa44ed70860615af51c83606945c43fe73">
+        <dex dex="/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/pre-dexed/debug/com.github.ytai.ioio-IOIOLibAndroidDevice-5.05_287b99eca755e60100f8882573cd56a71dd99abe.jar" />
+    </item>
+    <item
+        jar="/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/exploded-aar/com.github.ytai.ioio/IOIOLibAndroidBluetooth/5.05/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="f347dcaafe682fdd3d3131c9d6568065a8cd83ab">
+        <dex dex="/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/pre-dexed/debug/com.github.ytai.ioio-IOIOLibAndroidBluetooth-5.05_8cb83cd9eecf187f5b5415ab7d3371f5f92ca810.jar" />
+    </item>
+    <item
+        jar="/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/libs/commons-io-2.4.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="b1b6ea3b7e4aa4f492509a4952029cd8e48019ad">
+        <dex dex="/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/pre-dexed/debug/commons-io-2.4_552be724a703f3efdaff8f0c0e15f8b915052751.jar" />
+    </item>
+    <item
+        jar="/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/exploded-aar/io.fabric.sdk.android/fabric/1.3.8/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="2fc97f9f17a0a0c5372fbfd2eab091601db69249">
+        <dex dex="/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/pre-dexed/debug/io.fabric.sdk.android-fabric-1.3.8_1fc6f078da1d5be5d841a7cab98e02b728fce89e.jar" />
+    </item>
+    <item
+        jar="/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/exploded-aar/com.crashlytics.sdk.android/answers/1.3.4/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="a8fad819414b57d881e5748f4157051ba0481a77">
+        <dex dex="/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/pre-dexed/debug/com.crashlytics.sdk.android-answers-1.3.4_6a0379e01fe44b9b3c8b221fc3ec77a03a8f088f.jar" />
+    </item>
+    <item
+        jar="/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/libs/activeandroid-build.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="d4a711898ceb4299510de8ee6a070734d076f845">
+        <dex dex="/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/pre-dexed/debug/activeandroid-build_bd2212665bee5feefd126803ce6677f852bb93a6.jar" />
+    </item>
+    <item
+        jar="/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
+        <dex dex="/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/pre-dexed/debug/com.android.support-support-v4-23.1.1_6bfc3639ec82d0648c6ab4b2e15a0a4a79c75e8a.jar" />
+    </item>
+    <item
+        jar="/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/libs/MyJarCopy.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="3fc1abcdff2b704d63f780b8b666aaf010c17e02">
+        <dex dex="/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/pre-dexed/debug/MyJarCopy_4882574643d5024b6f359e936a78eb63a1e0073d.jar" />
+    </item>
+    <item
+        jar="/Users/mauriziopietrantuono/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.3.1/ecb6e1f8e4b0e84c4b886c2f14a1500caf309757/gson-2.3.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="ecb6e1f8e4b0e84c4b886c2f14a1500caf309757">
+        <dex dex="/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/pre-dexed/debug/gson-2.3.1_bd2a0ca0abfe9fc30b7d99ef332012a9eb2625ca.jar" />
+    </item>
+    <item
+        jar="/Users/mauriziopietrantuono/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.1/support-annotations-23.1.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
+        <dex dex="/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/pre-dexed/debug/support-annotations-23.1.1_1c37adf2dd996ae69317c80615a6b57cc9e22588.jar" />
+    </item>
+    <item
+        jar="/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/libs/internal_impl-23.1.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
+        <dex dex="/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/pre-dexed/debug/internal_impl-23.1.1_e6b4e65d22d66a95883fac38438a52dd0c5b959d.jar" />
+    </item>
+    <item
+        jar="/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/exploded-aar/com.github.ytai.ioio/IOIOLibAndroidAccessory/5.05/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="fc276dd77600f248e53cc0bbf77a011d87931840">
+        <dex dex="/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/pre-dexed/debug/com.github.ytai.ioio-IOIOLibAndroidAccessory-5.05_123933fc4fa3a523d4a040c32473b390fdab3522.jar" />
+    </item>
+    <item
+        jar="/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/exploded-aar/com.github.ytai.ioio/IOIOLibAndroid/5.05/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="c76a0936c82cef3da0770204f51f4914f32f6e08">
+        <dex dex="/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/pre-dexed/debug/com.github.ytai.ioio-IOIOLibAndroid-5.05_cf3409156835eac75a79376ccc59b22e35a52b7c.jar" />
+    </item>
+    <item
+        jar="/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/exploded-aar/com.crashlytics.sdk.android/crashlytics/2.5.3/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="52b8cd0d00fe37e94344e1f5de0449475f306a69">
+        <dex dex="/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/pre-dexed/debug/com.crashlytics.sdk.android-crashlytics-2.5.3_16776711792ef51b047a0d9321155c2a60ed3811.jar" />
+    </item>
+    <item
+        jar="/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/libs/retrofit-1.9.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="a681c044244d9fc375198588297a39ba78028423">
+        <dex dex="/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/pre-dexed/debug/retrofit-1.9.0_4decd1918d9d5387de69f1e46d374cfc671954da.jar" />
+    </item>
+
+</items>
