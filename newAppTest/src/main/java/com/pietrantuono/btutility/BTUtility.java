@@ -424,7 +424,7 @@ public class BTUtility {
 			public void run() {
 				insertDeviceAndScancode(mDeviceId, scancode);
 				((NewIOIOActivityListener) activityRef.get()).addFailOrPass(
-						false, true, bluetoothConnectTest.getDescription());
+						true, true, bluetoothConnectTest.getDescription());
 				//((NewIOIOActivityListener) activityRef.get()).goAndExecuteNextTest();
 			}
 		});

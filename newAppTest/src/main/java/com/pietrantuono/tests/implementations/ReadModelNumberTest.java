@@ -39,9 +39,7 @@ public class ReadModelNumberTest extends Test{
 			activityListener.addFailOrPass(true, false, "NULL", description);
 		}
 		else {
-			Log.d(TAG, "MODEL - " + modelnumber + " : " + PeriCoachTestApplication.getGetFirmware().getModel());
-
-			if (modelnumber == PeriCoachTestApplication.getGetFirmware().getModel()){
+			if (modelnumber.equals(PeriCoachTestApplication.getGetFirmware().getModel())){
 				Success();
 //				activityListener.addView("Model #: ", "" ,false);
 				activityListener.addFailOrPass(true, true, modelnumber, description);

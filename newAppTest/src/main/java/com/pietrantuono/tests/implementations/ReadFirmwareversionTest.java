@@ -52,8 +52,7 @@ public class ReadFirmwareversionTest extends Test {
 		}
 
 		else {
-			Log.d(TAG, "FW VER - " + firmwarever + " : " + PeriCoachTestApplication.getGetFirmware().getVersion());
-			if (firmwarever == (PeriCoachTestApplication.getGetFirmware().getVersion())) {
+			if (firmwarever.equals(PeriCoachTestApplication.getGetFirmware().getVersion())) {
 				Success();
 //				activityListener.addView("Firmware: ", firmwarever,false);
 				activityListener.addFailOrPass(true, true, firmwarever, description);

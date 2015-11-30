@@ -48,6 +48,7 @@ public class OtherSelectJobActivity extends Activity implements MyCallback {
 	private ListView listview;
 	private ArrayList<server.pojos.Job> jobsFromServer;
 	private ArrayList<server.pojos.Job> jobsFromdb;
+	private server.pojos.Job job;
 	private JobListAdapter adapter;
 	private static DataProvider dataProvider = null;
 	private static REST rest = null;
@@ -87,19 +88,23 @@ public class OtherSelectJobActivity extends Activity implements MyCallback {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				server.pojos.Job job = (server.pojos.Job) (parent
+				job = (server.pojos.Job) (parent
 						.getAdapter().getItem(position));
 				Log.d("Test ID:", String.valueOf(job.getTestId()));
+				Log.d("Firmware ID:", String.valueOf(job.getFirmwareId()));
+				//PeriCoachTestApplication.setFirmwareId(job.getFirmwareId());
+				getFirmwareListFromServer(job.getFirmwareId());
+
 				if (job.getTestId() != 999) {		// Special job type 999 bypasses server defined sequence, uses internal one instead
 					startMainActivity(job);
 				}
-				if (firmwarefilepresent) {
-					downloadSequence(job);
-				} else {
-					Toast.makeText(OtherSelectJobActivity.this,
-							"Firmware file not present", Toast.LENGTH_LONG)
-							.show();
-				}
+//				if (firmwarefilepresent) {
+//					downloadSequence(job);
+//				} else {
+//					Toast.makeText(OtherSelectJobActivity.this,
+//							"Firmware file not present", Toast.LENGTH_LONG)
+//							.show();
+//				}
 			}
 
 		});
@@ -122,7 +127,7 @@ public class OtherSelectJobActivity extends Activity implements MyCallback {
 					jobsFromServer = new ArrayList<server.pojos.Job>();
 					jobsFromServer.addAll(arg0);
 					populateList();
-					getFirmwareListFromServer();
+//					getFirmwareListFromServer();
 					compareJobLists();
 
 				}
@@ -202,19 +207,20 @@ public class OtherSelectJobActivity extends Activity implements MyCallback {
 		OtherSelectJobActivity.rest = rest;
 	}
 
-	private void getFirmwareListFromServer() {
+	private void getFirmwareListFromServer(Long firmwareid) {
 		MyDialogs.showIndeterminateProgress(OtherSelectJobActivity.this,
 				"Downloading firmware list", "Please wait...");
-		getRest().getFirmware(PeriCoachTestApplication.getDeviceid(), new Callback<Firmware>() {
+		getRest().getFirmware(PeriCoachTestApplication.getDeviceid(),
+				String.valueOf(firmwareid), new Callback<Firmware>() {
 			@Override
 			public void success(Firmware arg0, Response arg1) {
 				MyDialogs.dismissProgress();
 				if (arg0 == null ) {
 					MyDialogs.showAlert(OtherSelectJobActivity.this,
-							"Error downloading", "Empty list");
+							"Error Downloading", "Empty list");
 				} else {
 					PeriCoachTestApplication.setGetFirmware(arg0);
-					downlaodFirmware();
+					downloadFirmware();
 				}
 			}
 
@@ -224,13 +230,13 @@ public class OtherSelectJobActivity extends Activity implements MyCallback {
 				String message = arg0.getMessage() == null ? "" : arg0
 						.getMessage();
 				MyDialogs.showAlert(OtherSelectJobActivity.this,
-						"Error downlaoding", message);
+						"Error Downloading", message);
 
 			}
 		});
 	}
 
-	private void downlaodFirmware() {
+	private void downloadFirmware() {
 		String url = PeriCoachTestApplication.getGetFirmware().getUrl();
 		String filename = url.substring(url.lastIndexOf("/") + 1, url.length());
 		task = new DownloadTask(OtherSelectJobActivity.this, url, filename);
@@ -239,12 +245,18 @@ public class OtherSelectJobActivity extends Activity implements MyCallback {
 
 	@Override
 	public void onDownloadFileSuccess() {
-		firmwarefilepresent = true;
+
+//		firmwarefilepresent = true;
+		downloadSequence(job);
+
 	}
 
 	@Override
 	public void onDownloadFileFailure() {
-		firmwarefilepresent = false;
+		Toast.makeText(OtherSelectJobActivity.this,
+				"Firmware file not present", Toast.LENGTH_LONG)
+				.show();
+//		firmwarefilepresent = false;
 	}
 
 	private void downloadSequence(final server.pojos.Job job) {
@@ -257,7 +269,7 @@ public class OtherSelectJobActivity extends Activity implements MyCallback {
 				MyDialogs.dismissProgress();
 				if (arg0 == null || arg0.size() <= 0) {
 					MyDialogs.showAlert(OtherSelectJobActivity.this,
-							"Error downloading", "Empty list");
+							"Error Downloading", "Empty Test Sequence List");
 				} else {
 					Sequence sequence= new Sequence();
 					sequence.setTests(arg0);
@@ -275,7 +287,7 @@ public class OtherSelectJobActivity extends Activity implements MyCallback {
 				String message = arg0.getMessage() == null ? "" : arg0
 						.getMessage();
 				MyDialogs.showAlert(OtherSelectJobActivity.this,
-						"Error downlaoding", message);
+						"Error Downloading", message);
 			}
 		});
 

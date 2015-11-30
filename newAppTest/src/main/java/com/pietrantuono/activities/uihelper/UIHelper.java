@@ -20,6 +20,7 @@ import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.SystemClock;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -334,6 +335,7 @@ public class UIHelper {
 									|| (callback.getResults().get(callback.getIterationNumber()).get(i).isTest()
 											&& !callback.getResults().get(callback.getIterationNumber()).get(i)
 													.isTestsuccessful()))
+								Log.d("RESULT", "TEST # " + i + " FAILED");
 								temp = false;
 					final Boolean success = temp;
 					resultlayout.setVisibility(View.VISIBLE);

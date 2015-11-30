@@ -1,6 +1,7 @@
 package com.pietrantuono.activities;
 
 import com.pietrantuono.btutility.BTUtility;
+import com.pietrantuono.tests.superclass.Test;
 import com.pietrantuono.uploadfirmware.ProgressAndTextView;
 
 public interface NewIOIOActivityListener {

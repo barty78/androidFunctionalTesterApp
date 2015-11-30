@@ -1,6 +1,7 @@
 
 package com.pietrantuono.activities;
 
+import com.pietrantuono.tests.superclass.Test;
 import com.pietrantuono.uploadfirmware.ProgressAndTextView;
 
 import ioio.lib.api.IOIO;
@@ -20,7 +21,7 @@ public interface ActivtyWrapper {
 	
 	@SuppressWarnings("ucd")
 	public ProgressAndTextView addFailOrPass(final Boolean istest, final Boolean success, String reading);
-	
+
 	public void onIOIOLooperSetup(IOIO ioio);
 	
 	public void onIOIOLooperDisconnected();

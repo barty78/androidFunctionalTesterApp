@@ -35,25 +35,18 @@ public class PeriCoachTestApplication extends  com.activeandroid.app.Application
 	private static File dir;
 	private static AssetManager assetManager;
 	private static final String LAST_ID="last_id";
-	
 
 	public static File getFirmwareCheckFile() {
 		return firmwareCheckFile;
 	}
 
-	public static File getFirmware() {
-		return firmware;
-	}
+	public static File getFirmware() { return firmware;	}
 
 	public static void setFirmware(String filename) {
 		PeriCoachTestApplication.firmware = new File(context.getFilesDir(),filename);
 		PeriCoachTestApplication.firmwareCheckFile = new File(context.getFilesDir(),"check"+filename);
 
 	}
-	
-	
-
-
 
 	@Override
 	public void onCreate() {

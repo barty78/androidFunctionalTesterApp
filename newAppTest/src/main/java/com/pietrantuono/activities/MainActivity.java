@@ -26,6 +26,7 @@ import com.pietrantuono.ioioutils.PCBDetectHelper.PCBDetectHelperInterface;
 import com.pietrantuono.ioioutils.Voltage;
 import com.pietrantuono.pericoach.newtestapp.R;
 import com.pietrantuono.sensors.SensorTestCallback;
+import com.pietrantuono.tests.superclass.Test;
 import com.pietrantuono.uploadfirmware.ProgressAndTextView;
 
 import android.app.Activity;
@@ -134,12 +135,12 @@ public class MainActivity extends Activity
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-				if (MainActivity.this.isFinishing())return;
+				if (MainActivity.this.isFinishing()) return;
 				if (newSequence.isSequenceEnded()) {
 					onCurrentSequenceEnd();
 					return;
 				}
-				
+
 				if (newSequence.isSequenceStarted()) {
 					if (newSequence.getCurrentTest().isBlockingTest && !newSequence.getCurrentTest().isSuccess()) {
 						onCurrentSequenceEnd();
@@ -150,26 +151,22 @@ public class MainActivity extends Activity
 				uiHelper.setCurrentAndNextTaskinUI();
 				newSequence.executeCurrentTest();
 				Log.e(TAG, "goAndExecuteNextTest");
-	
+
 			}
 		});
-
 	}
+
 	@Override
 	public synchronized ProgressAndTextView addFailOrPass(final Boolean istest, final Boolean success, String reading) {
 		return uiHelper.addFailOrPass(istest, success, reading, null);
 	}
-	
-	
 
 	@Override
 	@SuppressWarnings("ucd")
 	public IOIOLooper createIOIOLooper(String connectionType, Object extra) {
-		if(looper==null){looper= new MyLooper(MainActivity.this);} 
+		if(looper==null){looper= new MyLooper(MainActivity.this);}
 		return looper;
 	}
-
-	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -211,7 +208,6 @@ public class MainActivity extends Activity
 		});
 		
 	}
-	
 
 	@Override
 	public void onPCBConnectionLostRestartSequence() {
@@ -248,7 +244,6 @@ public class MainActivity extends Activity
 				});
 			}
 		});
-
 	}
 
 	public void closeActivity() {

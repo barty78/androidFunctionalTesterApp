@@ -17,7 +17,7 @@ public class MagnetWakeDeviceTest extends Test{
 	private AlertDialog alertDialog;
 	private Thread t; 
 	public MagnetWakeDeviceTest(Activity activity, IOIO ioio) {
-		super(activity, ioio, "New Wake Device", false, false);
+		super(activity, ioio, "Wake Device", false, true);
 	}
 	@Override
 	public void execute() {
@@ -36,11 +36,11 @@ public class MagnetWakeDeviceTest extends Test{
 			V_3V0_SW = ioio.openAnalogInput(39);
 		} catch (Exception e2) {
 			report(e2);
-			activityListener.addFailOrPass(false, false, description);
+			activityListener.addFailOrPass(true, false, "Fixture Fault");
 			return;
 		}
 		if (V_3V0_SW == null){
-			activityListener.addFailOrPass(false, false, description);
+			activityListener.addFailOrPass(true, false, "Fixture Fault");
 			return;}
 		final int numsamples = 10;
 		final int duration = 1 * 1000; // Duration of wake test
@@ -53,7 +53,7 @@ public class MagnetWakeDeviceTest extends Test{
 					Thread.sleep(waketime);
 				} catch (Exception e1) {
 					report(e1);
-					activityListener.addFailOrPass(false, false, description);
+					activityListener.addFailOrPass(true, false, "App Fault");
 					return;
 				}
 				for (int i = 0; i < numsamples; i++) {
@@ -67,14 +67,14 @@ public class MagnetWakeDeviceTest extends Test{
 						}
 					} catch (Exception e) {
 						report(e);
-						activityListener.addFailOrPass(false, false, description);
+						activityListener.addFailOrPass(true, false, "Reading Fault");
 						return;
 					}
 					try {
 						Thread.sleep(duration / numsamples);
 					} catch (Exception e1) {
 						report(e1);
-						activityListener.addFailOrPass(false, false, description);
+						activityListener.addFailOrPass(true, false, "App Fault");
 						return;
 					}
 				}
@@ -122,8 +122,7 @@ public class MagnetWakeDeviceTest extends Test{
 				} else {
 					V_3V0_SW.close();
 					Success();
-					activityListener.addFailOrPass(false, true, description);
-					//activityListener.goAndExecuteNextTest();
+					activityListener.addFailOrPass(true, true, "",  description);
 				}
 			}
 		});

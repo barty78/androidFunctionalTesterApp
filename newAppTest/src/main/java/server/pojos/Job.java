@@ -19,7 +19,12 @@ public class Job implements Parcelable {
     @SerializedName("test_id")
     @Expose
     private long testId;
-    
+
+    @SerializedName("firmware_id")
+    @Expose
+    private long firmwareId;
+
+
     @Expose
     private String jobno;
     
@@ -107,6 +112,25 @@ public class Job implements Parcelable {
     public void setTestId(long testId) {
         this.testId = testId;
     }
+
+    /**
+     *
+     * @return
+     *     The firmwareId
+     */
+    public long getFirmwareId() {
+        return firmwareId;
+    }
+
+    /**
+     *
+     * @param firmwareId
+     *     The firmware_id
+     */
+    public void setFirmwareId(long firmwareId) {
+        this.firmwareId = firmwareId;
+    }
+
 
     /**
      * 
@@ -247,6 +271,7 @@ public class Job implements Parcelable {
         id = in.readLong();
         testtypeId = in.readLong();
         testId = in.readLong();
+        firmwareId = in.readLong();
         jobno = in.readString();
         quantity = in.readLong();
         barcodeprefix = in.readString();
@@ -267,6 +292,7 @@ public class Job implements Parcelable {
         dest.writeLong(id);
         dest.writeLong(testtypeId);
         dest.writeLong(testId);
+        dest.writeLong(firmwareId);
         dest.writeString(jobno);
         dest.writeLong(quantity);
         dest.writeString(barcodeprefix);

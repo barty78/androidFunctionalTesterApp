@@ -33,7 +33,7 @@ public class RetrofitRestServices {
 		  void getJobListActiveJobs(@Header("DeviceId") String DeviceId, Callback<List<Job>> callback);
 		  
 		  @GET("/firmware")
-		  void getFirmware(@Header("DeviceId") String DeviceId,Callback<Firmware> callback);
+		  void getFirmware(@Header("DeviceId") String DeviceId, @Header("FirmwareId") String FirmwareId, Callback<Firmware> callback);
 		  
 		  @GET("/tests")
 		  void getSequence(@Header("DeviceId") String DeviceId, @Header("JobNo") String JobNo,Callback<List<Test>	> callback);
