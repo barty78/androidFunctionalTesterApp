@@ -10,6 +10,8 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.util.Log;
+
 public class MagnetWakeDeviceTest extends Test{
 	private AnalogInput V_3V0_SW;
 	private AlertDialog alertDialog;
@@ -56,9 +58,13 @@ public class MagnetWakeDeviceTest extends Test{
 				}
 				for (int i = 0; i < numsamples; i++) {
 					try {
-						if (V_3V0_SW.getVoltage() < 1.5) // Every sample must be
-															// < 2.7v.
+						Float tmp = V_3V0_SW.getVoltage();
+						if (tmp < 1.5) {
+//						if (V_3V0_SW.getVoltage() < 1.5) // Every sample must be
+							// < 2.7v.
 							awake = false;
+							Log.d(TAG, "Voltage " + String.valueOf(tmp));
+						}
 					} catch (Exception e) {
 						report(e);
 						activityListener.addFailOrPass(false, false, description);

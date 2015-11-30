@@ -5,7 +5,9 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.os.Handler;
+import android.util.Log;
 
+import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.btutility.BTUtility;
 import com.pietrantuono.tests.superclass.Test;
 
@@ -44,49 +46,58 @@ public class ReadFirmwareversionTest extends Test {
 		} catch (Exception e) {
 		}
 		if (firmwarever == null) {
-			activityListener.addView("Firmware: ", "NOT AVAILABLE",false);
-			activityListener.addFailOrPass(firmwarever, true, false,
+//			activityListener.addView("Firmware: ", "NOT AVAILABLE",false);
+			activityListener.addFailOrPass(true, false, "NULL",
 					description);
 		}
 
 		else {
-			AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-			builder.setTitle("Please check firmware version");
-			builder.setMessage("Firmware version is: " + firmwarever);
-			builder.setPositiveButton("OK", new OnClickListener() {
-
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-					
-					handler.post(new Runnable() {
-						@Override
-						public void run() {
-							Success();
-							activityListener.addView("Firmware: ", firmwarever,false);
-							activityListener.addFailOrPass(firmwarever, true,
-									true, description);
-						}
-					});
-
-				}
-			});
-			builder.setNegativeButton("Not OK", new OnClickListener() {
-
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-					handler.post(new Runnable() {
-						@Override
-						public void run() {
-							getListener().addView("Firmware: ", firmwarever,false);
-							getListener().addFailOrPass(firmwarever, true,
-									false, description);							
-						}
-					});
-
-				}
-			});
-			alertDialog=builder.create();
-			alertDialog.show();
+			Log.d(TAG, "FW VER - " + firmwarever + " : " + PeriCoachTestApplication.getGetFirmware().getVersion());
+			if (firmwarever == (PeriCoachTestApplication.getGetFirmware().getVersion())) {
+				Success();
+//				activityListener.addView("Firmware: ", firmwarever,false);
+				activityListener.addFailOrPass(true, true, firmwarever, description);
+			} else {
+//				getListener().addView("Firmware: ", firmwarever,false);
+				activityListener.addFailOrPass(true, false, firmwarever, description);
+			}
+//			AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+//			builder.setTitle("Please check firmware version");
+//			builder.setMessage("Firmware version is: " + firmwarever);
+//			builder.setPositiveButton("OK", new OnClickListener() {
+//
+//				@Override
+//				public void onClick(DialogInterface dialog, int which) {
+//
+//					handler.post(new Runnable() {
+//						@Override
+//						public void run() {
+//							Success();
+//							activityListener.addView("Firmware: ", firmwarever,false);
+//							activityListener.addFailOrPass(firmwarever, true,
+//									true, description);
+//						}
+//					});
+//
+//				}
+//			});
+//			builder.setNegativeButton("Not OK", new OnClickListener() {
+//
+//				@Override
+//				public void onClick(DialogInterface dialog, int which) {
+//					handler.post(new Runnable() {
+//						@Override
+//						public void run() {
+//							getListener().addView("Firmware: ", firmwarever,false);
+//							getListener().addFailOrPass(firmwarever, true,
+//									false, description);
+//						}
+//					});
+//
+//				}
+//			});
+//			alertDialog=builder.create();
+//			alertDialog.show();
 		}
 	}
 

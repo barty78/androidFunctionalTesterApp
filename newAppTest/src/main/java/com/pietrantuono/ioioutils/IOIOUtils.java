@@ -677,7 +677,11 @@ public class IOIOUtils implements IOIOUtilsInterface  {
 		return sb;
 	}
 	
-	
+	@Override
+	public  void clearUartLog() {
+		Log.d(TAG, "Clearing Uart Log StringBuilder instance");
+		sb = new StringBuilder();
+	}
 	
 	/* (non-Javadoc)
 	 * @see com.pietrantuono.ioioutils.IOIOUtilsInterface#stop()

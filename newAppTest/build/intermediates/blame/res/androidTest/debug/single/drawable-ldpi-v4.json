@@ -1,10 +1,14 @@
 [
     {
-        "merged": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/res/merged/androidTest/debug/drawable-ldpi-v4/ic_launcher.png",
-        "source": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/src/androidTest/res/drawable-ldpi/ic_launcher.png"
+        "merged": "C:\\Users\\Peter\\StudioProjects\\pericoach-test-app-android-studio\\newAppTest\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-ldpi-v4\\ic_launcher.png",
+        "source": "C:\\Users\\Peter\\StudioProjects\\pericoach-test-app-android-studio\\newAppTest\\src\\androidTest\\res\\drawable-ldpi\\ic_launcher.png"
     },
     {
-        "merged": "/Users/mauriziopietrantuono/Desktop/trash/NewAppTest4/newAppTest/build/intermediates/res/merged/androidTest/debug/drawable-ldpi-v4/ic_launcher.png",
-        "source": "/Users/mauriziopietrantuono/Desktop/trash/NewAppTest4/newAppTest/src/androidTest/res/drawable-ldpi/ic_launcher.png"
+        "merged": "C:\\Users\\mauriziopietrantuono\\Documents\\git\\NewAppTest-Android Studio\\newAppTest\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-ldpi-v4\\ic_launcher.png",
+        "source": "C:\\Users\\mauriziopietrantuono\\Documents\\git\\NewAppTest-Android Studio\\newAppTest\\src\\androidTest\\res\\drawable-ldpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\mauriziopietrantuono\\Desktop\\trash\\NewAppTest4\\newAppTest\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-ldpi-v4\\ic_launcher.png",
+        "source": "C:\\Users\\mauriziopietrantuono\\Desktop\\trash\\NewAppTest4\\newAppTest\\src\\androidTest\\res\\drawable-ldpi\\ic_launcher.png"
     }
 ]

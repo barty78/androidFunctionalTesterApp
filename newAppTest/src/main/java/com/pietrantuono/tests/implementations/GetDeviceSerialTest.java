@@ -39,6 +39,9 @@ public class GetDeviceSerialTest extends Test {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+
+		IOIOUtils.getUtils().clearUartLog();	// Clear the UART log buffer
+
 		IOIOUtils.getUtils().resetDevice((Activity) activityListener);
 		try {
 			Thread.sleep(1000);

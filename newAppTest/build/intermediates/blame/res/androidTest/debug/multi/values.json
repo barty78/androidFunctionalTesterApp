@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/res/merged/androidTest/debug/values/values.xml",
+        "outputFile": "C:\\Users\\Peter\\StudioProjects\\pericoach-test-app-android-studio\\newAppTest\\build\\intermediates\\res\\merged\\androidTest\\debug\\values\\values.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +11,31 @@
                     "endOffset": 104
                 },
                 "from": {
-                    "file": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/src/androidTest/res/values/strings.xml",
+                    "file": "C:\\Users\\Peter\\StudioProjects\\pericoach-test-app-android-studio\\newAppTest\\src\\androidTest\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 59,
+                        "endColumn": 53,
+                        "endOffset": 108
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "outputFile": "C:\\Users\\mauriziopietrantuono\\Documents\\git\\NewAppTest-Android Studio\\newAppTest\\build\\intermediates\\res\\merged\\androidTest\\debug\\values\\values.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 53,
+                    "endOffset": 104
+                },
+                "from": {
+                    "file": "C:\\Users\\mauriziopietrantuono\\Documents\\git\\NewAppTest-Android Studio\\newAppTest\\src\\androidTest\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,
@@ -24,7 +48,7 @@
         ]
     },
     {
-        "outputFile": "/Users/mauriziopietrantuono/Desktop/trash/NewAppTest4/newAppTest/build/intermediates/res/merged/androidTest/debug/values/values.xml",
+        "outputFile": "C:\\Users\\mauriziopietrantuono\\Desktop\\trash\\NewAppTest4\\newAppTest\\build\\intermediates\\res\\merged\\androidTest\\debug\\values\\values.xml",
         "map": [
             {
                 "to": {
@@ -35,7 +59,7 @@
                     "endOffset": 104
                 },
                 "from": {
-                    "file": "/Users/mauriziopietrantuono/Desktop/trash/NewAppTest4/newAppTest/src/androidTest/res/values/strings.xml",
+                    "file": "C:\\Users\\mauriziopietrantuono\\Desktop\\trash\\NewAppTest4\\newAppTest\\src\\androidTest\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,
