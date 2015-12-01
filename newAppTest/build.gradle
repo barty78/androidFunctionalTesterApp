@@ -14,7 +14,6 @@ repositories {
     maven { url 'https://maven.fabric.io/public' }
 }
 
-
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
@@ -32,12 +31,18 @@ android {
         testInstrumentationRunner "android.test.InstrumentationTestRunner"
     }
 
+    productFlavors {
+        peter {}
+        maurizio {}
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
+
 }
 
 dependencies {

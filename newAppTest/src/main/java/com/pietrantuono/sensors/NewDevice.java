@@ -1,5 +1,7 @@
 package com.pietrantuono.sensors;
 
+import com.pietrantuono.tests.implementations.BatteryLevelUUTVoltageTest;
+
 import hydrix.pfmat.generic.CalibrationObserver;
 import hydrix.pfmat.generic.DeviceRecvStream;
 import hydrix.pfmat.generic.PFMAT;
@@ -50,7 +52,8 @@ public abstract class NewDevice
 	private volatile boolean mDisconnecting = false;
 	private volatile boolean mSeenDeviceInformation = false;
 	private WeakReference<OnSampleCallback> weakReference=null;
-	
+	private BatteryLevelUUTVoltageTest.Callback callback;
+
 	public class Information
 	{
 		public String mSerialNumber = "";
@@ -154,7 +157,9 @@ public abstract class NewDevice
 
 	// Sending requests/commands to device
 	private final boolean sendGetDeviceDetails() {return sendPacket(new PacketTx_GetDeviceDetails());}
-	public final boolean sendGetBatteryStatus() {return sendPacket(new PacketTx_GetBatteryStatus());}
+	public final boolean sendGetBatteryStatus(BatteryLevelUUTVoltageTest.Callback callback) {
+		this.callback=callback;
+		return sendPacket(new PacketTx_GetBatteryStatus());}
 	final boolean sendGetSensorData(int requestTimestamp) {return sendPacket(new PacketTx_GetSensorData(requestTimestamp));}
 	
 	public final boolean sendRefVoltage(byte sensorIndex, short refVoltage) {return sendPacket(new PacketTx_SetRefVoltage(sensorIndex, refVoltage));}
@@ -280,7 +285,7 @@ public abstract class NewDevice
 			while (!mCancel)
 			{
 				// Send request for battery status
-				sendGetBatteryStatus();
+				sendGetBatteryStatus(callback);
 				
 				// Wait for a period of time before polling again (keeping an eye on stop event)
 				try
@@ -367,6 +372,10 @@ public abstract class NewDevice
 		synchronized(mInfo)
 		{
 			mInfo.mBatteryPercent = batteryPercent;
+			if(callback!=null){
+				callback.onResultReceived(mInfo.mBatteryPercent);
+				callback=null;
+			}
 		}
 	}
 	

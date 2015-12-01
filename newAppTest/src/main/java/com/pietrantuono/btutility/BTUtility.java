@@ -11,6 +11,7 @@ import com.pietrantuono.pericoach.newtestapp.R;
 import com.pietrantuono.pericoachengineering.util.Utils;
 import com.pietrantuono.sensors.NewDevice;
 import com.pietrantuono.sensors.NewPFMATDevice;
+import com.pietrantuono.tests.implementations.BatteryLevelUUTVoltageTest;
 import com.pietrantuono.tests.superclass.Test;
 import com.radiusnetworks.bluetooth.BluetoothCrashResolver;
 
@@ -458,13 +459,14 @@ public class BTUtility {
 	public String getFirmWareVersion() {
 		return mFirmwareVer;
 	}
+
 	public short getBatteryLevel() {
 		if (isstopped)
 			return 0;
 		NewDevice device = NewPFMATDevice.getDevice();
 		NewDevice.Information info = (device == null || !device.isConnected()) ? null
 				: NewPFMATDevice.getDevice().getInformation();
-		device.sendGetBatteryStatus();
+		device.sendGetBatteryStatus(null);
 		if (info != null) {
 			Log.d("BATTERY LEVEL", String.valueOf(info.mBatteryPercent));
 			device = null;
@@ -472,6 +474,37 @@ public class BTUtility {
 		}
 		return -1;
 	}
+	public short requestBatteryLevelAndWait() {
+		if (isstopped)
+			return 0;
+		NewDevice device = NewPFMATDevice.getDevice();
+		device.sendGetBatteryStatus(null);
+		try {
+			Thread.sleep(3*1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		NewDevice.Information info = (device == null || !device.isConnected()) ? null
+				: NewPFMATDevice.getDevice().getInformation();
+		if (info != null) {
+			Log.d("BATTERY LEVEL", String.valueOf(info.mBatteryPercent));
+			device = null;
+			return info.mBatteryPercent;
+		}
+		return -1;
+	}
+
+	public void getBatteryLevel(BatteryLevelUUTVoltageTest.Callback callback) {
+		if (isstopped)
+			return ;
+		NewDevice device = NewPFMATDevice.getDevice();
+		NewDevice.Information info = (device == null || !device.isConnected()) ? null
+				: NewPFMATDevice.getDevice().getInformation();
+		device.sendGetBatteryStatus(callback);
+
+	}
+
+
 	private void stopBTDiscovery() {
 		if (mBTAdapter != null && mBTAdapter.isDiscovering())
 			mBTAdapter.cancelDiscovery();

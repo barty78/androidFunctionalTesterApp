@@ -276,7 +276,7 @@ public class OtherSelectJobActivity extends Activity implements MyCallback {
 					if(job.getIslogging()==0)sequence.setLog(false);
 					else sequence.setLog(true);
 					PeriCoachTestApplication.setSequence(sequence);
-					startMainActivity(job);
+					//startMainActivity(job);
 
 				}
 			}
