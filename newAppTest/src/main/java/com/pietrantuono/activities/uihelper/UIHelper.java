@@ -334,9 +334,9 @@ public class UIHelper {
 											.isTestsuccessful() == null
 									|| (callback.getResults().get(callback.getIterationNumber()).get(i).isTest()
 											&& !callback.getResults().get(callback.getIterationNumber()).get(i)
-													.isTestsuccessful()))
+													.isTestsuccessful())){
 								Log.d("RESULT", "TEST # " + i + " FAILED");
-								temp = false;
+								temp = false;}
 					final Boolean success = temp;
 					resultlayout.setVisibility(View.VISIBLE);
 					if (success) {

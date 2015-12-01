@@ -1,14 +1,18 @@
 [
     {
-        "merged": "C:\\Users\\mauriziopietrantuono\\Desktop\\trash\\NewAppTest4\\newAppTest\\build\\intermediates\\res\\merged\\debug\\menu\\menu.xml",
-        "source": "C:\\Users\\mauriziopietrantuono\\Desktop\\trash\\NewAppTest4\\newAppTest\\src\\main\\res\\menu\\menu.xml"
+        "merged": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/C:\\Users\\mauriziopietrantuono\\Desktop\\trash\\NewAppTest4\\newAppTest\\build\\intermediates\\res\\merged\\debug\\menu\\menu.xml",
+        "source": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/C:\\Users\\mauriziopietrantuono\\Desktop\\trash\\NewAppTest4\\newAppTest\\src\\main\\res\\menu\\menu.xml"
     },
     {
-        "merged": "C:\\Users\\Peter\\StudioProjects\\pericoach-test-app-android-studio\\newAppTest\\build\\intermediates\\res\\merged\\debug\\menu\\menu.xml",
-        "source": "C:\\Users\\Peter\\StudioProjects\\pericoach-test-app-android-studio\\newAppTest\\src\\main\\res\\menu\\menu.xml"
+        "merged": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/C:\\Users\\Peter\\StudioProjects\\pericoach-test-app-android-studio\\newAppTest\\build\\intermediates\\res\\merged\\debug\\menu\\menu.xml",
+        "source": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/C:\\Users\\Peter\\StudioProjects\\pericoach-test-app-android-studio\\newAppTest\\src\\main\\res\\menu\\menu.xml"
     },
     {
-        "merged": "C:\\Users\\mauriziopietrantuono\\Documents\\git\\NewAppTest-Android Studio\\newAppTest\\build\\intermediates\\res\\merged\\debug\\menu\\menu.xml",
-        "source": "C:\\Users\\mauriziopietrantuono\\Documents\\git\\NewAppTest-Android Studio\\newAppTest\\src\\main\\res\\menu\\menu.xml"
+        "merged": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/res/merged/debug/menu/menu.xml",
+        "source": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/src/main/res/menu/menu.xml"
+    },
+    {
+        "merged": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/C:\\Users\\mauriziopietrantuono\\Documents\\git\\NewAppTest-Android Studio\\newAppTest\\build\\intermediates\\res\\merged\\debug\\menu\\menu.xml",
+        "source": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/C:\\Users\\mauriziopietrantuono\\Documents\\git\\NewAppTest-Android Studio\\newAppTest\\src\\main\\res\\menu\\menu.xml"
     }
 ]

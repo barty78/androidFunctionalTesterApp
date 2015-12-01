@@ -1,62 +1,82 @@
 [
     {
-        "merged": "C:\\Users\\mauriziopietrantuono\\Documents\\git\\NewAppTest-Android Studio\\newAppTest\\build\\intermediates\\res\\merged\\debug\\xml\\syncadapter.xml",
-        "source": "C:\\Users\\mauriziopietrantuono\\Documents\\git\\NewAppTest-Android Studio\\newAppTest\\src\\main\\res\\xml\\syncadapter.xml"
+        "merged": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/C:\\Users\\mauriziopietrantuono\\Documents\\git\\NewAppTest-Android Studio\\newAppTest\\build\\intermediates\\res\\merged\\debug\\xml\\accessory_filter.xml",
+        "source": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/C:\\Users\\mauriziopietrantuono\\Documents\\git\\NewAppTest-Android Studio\\newAppTest\\src\\main\\res\\xml\\accessory_filter.xml"
     },
     {
-        "merged": "C:\\Users\\mauriziopietrantuono\\Desktop\\trash\\NewAppTest4\\newAppTest\\build\\intermediates\\res\\merged\\debug\\xml\\syncadapter.xml",
-        "source": "C:\\Users\\mauriziopietrantuono\\Desktop\\trash\\NewAppTest4\\newAppTest\\src\\main\\res\\xml\\syncadapter.xml"
+        "merged": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/C:\\Users\\Peter\\StudioProjects\\pericoach-test-app-android-studio\\newAppTest\\build\\intermediates\\res\\merged\\debug\\xml\\device_filter.xml",
+        "source": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/C:\\Users\\Peter\\StudioProjects\\pericoach-test-app-android-studio\\newAppTest\\src\\main\\res\\xml\\device_filter.xml"
     },
     {
-        "merged": "C:\\Users\\mauriziopietrantuono\\Documents\\git\\NewAppTest-Android Studio\\newAppTest\\build\\intermediates\\res\\merged\\debug\\xml\\accessory_filter.xml",
-        "source": "C:\\Users\\mauriziopietrantuono\\Documents\\git\\NewAppTest-Android Studio\\newAppTest\\src\\main\\res\\xml\\accessory_filter.xml"
+        "merged": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/C:\\Users\\mauriziopietrantuono\\Documents\\git\\NewAppTest-Android Studio\\newAppTest\\build\\intermediates\\res\\merged\\debug\\xml\\syncadapter.xml",
+        "source": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/C:\\Users\\mauriziopietrantuono\\Documents\\git\\NewAppTest-Android Studio\\newAppTest\\src\\main\\res\\xml\\syncadapter.xml"
     },
     {
-        "merged": "C:\\Users\\mauriziopietrantuono\\Desktop\\trash\\NewAppTest4\\newAppTest\\build\\intermediates\\res\\merged\\debug\\xml\\settingsscreen.xml",
-        "source": "C:\\Users\\mauriziopietrantuono\\Desktop\\trash\\NewAppTest4\\newAppTest\\src\\main\\res\\xml\\settingsscreen.xml"
+        "merged": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/C:\\Users\\mauriziopietrantuono\\Desktop\\trash\\NewAppTest4\\newAppTest\\build\\intermediates\\res\\merged\\debug\\xml\\device_filter.xml",
+        "source": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/C:\\Users\\mauriziopietrantuono\\Desktop\\trash\\NewAppTest4\\newAppTest\\src\\main\\res\\xml\\device_filter.xml"
     },
     {
-        "merged": "C:\\Users\\mauriziopietrantuono\\Desktop\\trash\\NewAppTest4\\newAppTest\\build\\intermediates\\res\\merged\\debug\\xml\\device_filter.xml",
-        "source": "C:\\Users\\mauriziopietrantuono\\Desktop\\trash\\NewAppTest4\\newAppTest\\src\\main\\res\\xml\\device_filter.xml"
+        "merged": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/res/merged/debug/xml/device_filter.xml",
+        "source": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/src/main/res/xml/device_filter.xml"
     },
     {
-        "merged": "C:\\Users\\Peter\\StudioProjects\\pericoach-test-app-android-studio\\newAppTest\\build\\intermediates\\res\\merged\\debug\\xml\\device_filter.xml",
-        "source": "C:\\Users\\Peter\\StudioProjects\\pericoach-test-app-android-studio\\newAppTest\\src\\main\\res\\xml\\device_filter.xml"
+        "merged": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/C:\\Users\\mauriziopietrantuono\\Desktop\\trash\\NewAppTest4\\newAppTest\\build\\intermediates\\res\\merged\\debug\\xml\\authenticator.xml",
+        "source": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/C:\\Users\\mauriziopietrantuono\\Desktop\\trash\\NewAppTest4\\newAppTest\\src\\main\\res\\xml\\authenticator.xml"
     },
     {
-        "merged": "C:\\Users\\mauriziopietrantuono\\Documents\\git\\NewAppTest-Android Studio\\newAppTest\\build\\intermediates\\res\\merged\\debug\\xml\\authenticator.xml",
-        "source": "C:\\Users\\mauriziopietrantuono\\Documents\\git\\NewAppTest-Android Studio\\newAppTest\\src\\main\\res\\xml\\authenticator.xml"
+        "merged": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/C:\\Users\\mauriziopietrantuono\\Desktop\\trash\\NewAppTest4\\newAppTest\\build\\intermediates\\res\\merged\\debug\\xml\\syncadapter.xml",
+        "source": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/C:\\Users\\mauriziopietrantuono\\Desktop\\trash\\NewAppTest4\\newAppTest\\src\\main\\res\\xml\\syncadapter.xml"
     },
     {
-        "merged": "C:\\Users\\Peter\\StudioProjects\\pericoach-test-app-android-studio\\newAppTest\\build\\intermediates\\res\\merged\\debug\\xml\\syncadapter.xml",
-        "source": "C:\\Users\\Peter\\StudioProjects\\pericoach-test-app-android-studio\\newAppTest\\src\\main\\res\\xml\\syncadapter.xml"
+        "merged": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/C:\\Users\\Peter\\StudioProjects\\pericoach-test-app-android-studio\\newAppTest\\build\\intermediates\\res\\merged\\debug\\xml\\authenticator.xml",
+        "source": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/C:\\Users\\Peter\\StudioProjects\\pericoach-test-app-android-studio\\newAppTest\\src\\main\\res\\xml\\authenticator.xml"
     },
     {
-        "merged": "C:\\Users\\mauriziopietrantuono\\Documents\\git\\NewAppTest-Android Studio\\newAppTest\\build\\intermediates\\res\\merged\\debug\\xml\\device_filter.xml",
-        "source": "C:\\Users\\mauriziopietrantuono\\Documents\\git\\NewAppTest-Android Studio\\newAppTest\\src\\main\\res\\xml\\device_filter.xml"
+        "merged": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/C:\\Users\\mauriziopietrantuono\\Documents\\git\\NewAppTest-Android Studio\\newAppTest\\build\\intermediates\\res\\merged\\debug\\xml\\authenticator.xml",
+        "source": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/C:\\Users\\mauriziopietrantuono\\Documents\\git\\NewAppTest-Android Studio\\newAppTest\\src\\main\\res\\xml\\authenticator.xml"
     },
     {
-        "merged": "C:\\Users\\Peter\\StudioProjects\\pericoach-test-app-android-studio\\newAppTest\\build\\intermediates\\res\\merged\\debug\\xml\\authenticator.xml",
-        "source": "C:\\Users\\Peter\\StudioProjects\\pericoach-test-app-android-studio\\newAppTest\\src\\main\\res\\xml\\authenticator.xml"
+        "merged": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/res/merged/debug/xml/syncadapter.xml",
+        "source": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/src/main/res/xml/syncadapter.xml"
     },
     {
-        "merged": "C:\\Users\\mauriziopietrantuono\\Documents\\git\\NewAppTest-Android Studio\\newAppTest\\build\\intermediates\\res\\merged\\debug\\xml\\settingsscreen.xml",
-        "source": "C:\\Users\\mauriziopietrantuono\\Documents\\git\\NewAppTest-Android Studio\\newAppTest\\src\\main\\res\\xml\\settingsscreen.xml"
+        "merged": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/C:\\Users\\mauriziopietrantuono\\Desktop\\trash\\NewAppTest4\\newAppTest\\build\\intermediates\\res\\merged\\debug\\xml\\accessory_filter.xml",
+        "source": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/C:\\Users\\mauriziopietrantuono\\Desktop\\trash\\NewAppTest4\\newAppTest\\src\\main\\res\\xml\\accessory_filter.xml"
     },
     {
-        "merged": "C:\\Users\\mauriziopietrantuono\\Desktop\\trash\\NewAppTest4\\newAppTest\\build\\intermediates\\res\\merged\\debug\\xml\\authenticator.xml",
-        "source": "C:\\Users\\mauriziopietrantuono\\Desktop\\trash\\NewAppTest4\\newAppTest\\src\\main\\res\\xml\\authenticator.xml"
+        "merged": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/C:\\Users\\mauriziopietrantuono\\Documents\\git\\NewAppTest-Android Studio\\newAppTest\\build\\intermediates\\res\\merged\\debug\\xml\\settingsscreen.xml",
+        "source": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/C:\\Users\\mauriziopietrantuono\\Documents\\git\\NewAppTest-Android Studio\\newAppTest\\src\\main\\res\\xml\\settingsscreen.xml"
     },
     {
-        "merged": "C:\\Users\\Peter\\StudioProjects\\pericoach-test-app-android-studio\\newAppTest\\build\\intermediates\\res\\merged\\debug\\xml\\settingsscreen.xml",
-        "source": "C:\\Users\\Peter\\StudioProjects\\pericoach-test-app-android-studio\\newAppTest\\src\\main\\res\\xml\\settingsscreen.xml"
+        "merged": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/C:\\Users\\Peter\\StudioProjects\\pericoach-test-app-android-studio\\newAppTest\\build\\intermediates\\res\\merged\\debug\\xml\\accessory_filter.xml",
+        "source": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/C:\\Users\\Peter\\StudioProjects\\pericoach-test-app-android-studio\\newAppTest\\src\\main\\res\\xml\\accessory_filter.xml"
     },
     {
-        "merged": "C:\\Users\\Peter\\StudioProjects\\pericoach-test-app-android-studio\\newAppTest\\build\\intermediates\\res\\merged\\debug\\xml\\accessory_filter.xml",
-        "source": "C:\\Users\\Peter\\StudioProjects\\pericoach-test-app-android-studio\\newAppTest\\src\\main\\res\\xml\\accessory_filter.xml"
+        "merged": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/res/merged/debug/xml/settingsscreen.xml",
+        "source": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/src/main/res/xml/settingsscreen.xml"
     },
     {
-        "merged": "C:\\Users\\mauriziopietrantuono\\Desktop\\trash\\NewAppTest4\\newAppTest\\build\\intermediates\\res\\merged\\debug\\xml\\accessory_filter.xml",
-        "source": "C:\\Users\\mauriziopietrantuono\\Desktop\\trash\\NewAppTest4\\newAppTest\\src\\main\\res\\xml\\accessory_filter.xml"
+        "merged": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/C:\\Users\\Peter\\StudioProjects\\pericoach-test-app-android-studio\\newAppTest\\build\\intermediates\\res\\merged\\debug\\xml\\syncadapter.xml",
+        "source": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/C:\\Users\\Peter\\StudioProjects\\pericoach-test-app-android-studio\\newAppTest\\src\\main\\res\\xml\\syncadapter.xml"
+    },
+    {
+        "merged": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/C:\\Users\\mauriziopietrantuono\\Documents\\git\\NewAppTest-Android Studio\\newAppTest\\build\\intermediates\\res\\merged\\debug\\xml\\device_filter.xml",
+        "source": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/C:\\Users\\mauriziopietrantuono\\Documents\\git\\NewAppTest-Android Studio\\newAppTest\\src\\main\\res\\xml\\device_filter.xml"
+    },
+    {
+        "merged": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/res/merged/debug/xml/accessory_filter.xml",
+        "source": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/src/main/res/xml/accessory_filter.xml"
+    },
+    {
+        "merged": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/C:\\Users\\Peter\\StudioProjects\\pericoach-test-app-android-studio\\newAppTest\\build\\intermediates\\res\\merged\\debug\\xml\\settingsscreen.xml",
+        "source": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/C:\\Users\\Peter\\StudioProjects\\pericoach-test-app-android-studio\\newAppTest\\src\\main\\res\\xml\\settingsscreen.xml"
+    },
+    {
+        "merged": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/build/intermediates/res/merged/debug/xml/authenticator.xml",
+        "source": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/newAppTest/src/main/res/xml/authenticator.xml"
+    },
+    {
+        "merged": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/C:\\Users\\mauriziopietrantuono\\Desktop\\trash\\NewAppTest4\\newAppTest\\build\\intermediates\\res\\merged\\debug\\xml\\settingsscreen.xml",
+        "source": "/Users/mauriziopietrantuono/Documents/git/NewAppTest-Android Studio/C:\\Users\\mauriziopietrantuono\\Desktop\\trash\\NewAppTest4\\newAppTest\\src\\main\\res\\xml\\settingsscreen.xml"
     }
 ]

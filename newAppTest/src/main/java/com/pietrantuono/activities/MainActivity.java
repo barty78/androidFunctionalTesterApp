@@ -128,8 +128,6 @@ public class MainActivity extends Activity
 		
 	}
 
-	
-	
 	@Override
 	public synchronized void goAndExecuteNextTest() {
 		runOnUiThread(new Runnable() {

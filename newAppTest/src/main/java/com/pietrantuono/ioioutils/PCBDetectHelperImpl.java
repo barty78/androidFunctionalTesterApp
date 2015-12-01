@@ -54,7 +54,7 @@ class PCBDetectHelperImpl implements PCBDetectHelperInterface {
 		@Override
 		protected Boolean doInBackground(Void... params) {
 			try {
-				while (!_PCB_Detect.read()  && !isCancelled()) { // TODO put true
+				while (!getRandomBoolean(0.97f)  && !isCancelled()) { // TODO put true
 																//!getRandomBoolean(0.97f)
 																// !_PCB_Detect.read() 
 					Thread.sleep(1000);
@@ -118,7 +118,7 @@ class PCBDetectHelperImpl implements PCBDetectHelperInterface {
 			try {
 				// while ( !isConnectedTest(0.5f) && !isCancelled()) { // TODO
 				// put _PCB_Detect.read() using digitalInput
-				while (digitalInput.read() && !isCancelled()) { // TODO put
+				while (getRandomBoolean(0.5f) && !isCancelled()) { // TODO put
 
 
 																	// using
@@ -156,7 +156,7 @@ class PCBDetectHelperImpl implements PCBDetectHelperInterface {
 			try {
 				// while ( isConnectedTest(0.5f) && !isCancelled()) { // TODO
 				// put !_PCB_Detect.read() using digitalInput
-				while (  !digitalInput.read() && !isCancelled()) { // TODO put
+				while (  getRandomBoolean(0.5f) && !isCancelled()) { // TODO put
 
 																	// !digitalInput.read()
 																	// using

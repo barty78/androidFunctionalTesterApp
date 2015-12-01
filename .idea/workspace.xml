@@ -22,35 +22,301 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ce77540-f948-44a7-9fee-70346dd6a4e3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/BatteryLevelUUTVoltageTest.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/BatteryLevelUUTVoltageTest.class" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/IOIOLibAndroidAccessory_5_05.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/IOIOLibAndroidBluetooth_5_05.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/IOIOLibAndroidDevice_5_05.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/IOIOLibAndroid_5_05.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/IOIOLibCore_5_05.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/MyJarCopy.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/activeandroid_build.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/android_async_http_1_4_6__3_.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/answers_1_3_4.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/beta_1_1_4.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/commons_io_2_4.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/crashlytics_2_5_3.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/crashlytics_core_2_3_6.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/fabric_1_3_8.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/gson_2_3_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/retrofit_1_9_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_annotations_23_1_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_v4_23_1_1.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/AccelerometerSelfTest$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/AccelerometerSelfTest$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/AccelerometerSelfTest.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/AccelerometerSelfTest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/AwakeModeCurrentTest.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/AwakeModeCurrentTest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/BTConnectCurrent.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/BTConnectCurrent.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$10.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$10.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$11.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$11.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$12.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$12.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$13.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$13.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$14.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$14.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$15.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$15.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$16.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$16.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$17.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$17.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$18.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$18.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$2.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$3.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$4.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$5.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$5.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$6.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$6.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$7$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$7$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$7$2.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$7$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$7.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$7.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$8.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$8.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$9.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$9.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$BTBroadcastReceiver.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$BTBroadcastReceiver.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$ConnectReceiver.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$ConnectReceiver.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/parser/BinaryParser.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/parser/BinaryParser.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/BluetoothConnectTest.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/BluetoothConnectTest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/BluetoothConnectTestForTesting.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/BluetoothConnectTestForTesting.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/BluetoothDiscoverableModeTest$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/BluetoothDiscoverableModeTest$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/BluetoothDiscoverableModeTest$DiscoveryAsyncTask.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/BluetoothDiscoverableModeTest$DiscoveryAsyncTask.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/BluetoothDiscoverableModeTest.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/BluetoothDiscoverableModeTest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/BluetoothDiscoverableModeTestForTesting$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/BluetoothDiscoverableModeTestForTesting$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/BluetoothDiscoverableModeTestForTesting$DiscoveryAsyncTask.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/BluetoothDiscoverableModeTestForTesting$DiscoveryAsyncTask.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/BluetoothDiscoverableModeTestForTesting.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/BluetoothDiscoverableModeTestForTesting.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/Charge_termination_test$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/Charge_termination_test$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/Charge_termination_test$2.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/Charge_termination_test$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/Charge_termination_test$3.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/Charge_termination_test$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/Charge_termination_test.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/Charge_termination_test.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/ClosedTest$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/ClosedTest$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/ClosedTest$2.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/ClosedTest$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/ClosedTest$3.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/ClosedTest$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/ClosedTest$4.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/ClosedTest$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/ClosedTest$5$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/ClosedTest$5$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/ClosedTest$5.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/ClosedTest$5.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/ClosedTest$6.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/ClosedTest$6.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/ClosedTest$7$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/ClosedTest$7$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/ClosedTest$7.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/ClosedTest$7.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/ClosedTest$8.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/ClosedTest$8.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/ClosedTest$9.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/ClosedTest$9.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/ClosedTest.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/ClosedTest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/Current$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/Current$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/Current$2.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/Current$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/Current$Result.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/Current$Result.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/Current$Scale.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/Current$Scale.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/Current.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/Current.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/CurrentTest.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/CurrentTest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/DataProvider.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/DataProvider.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/DiscoverBroadcastReceiver$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/DiscoverBroadcastReceiver$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/DiscoverBroadcastReceiver$OuuuuuchSerialNotValidException.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/DiscoverBroadcastReceiver$OuuuuuchSerialNotValidException.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/DiscoverBroadcastReceiver.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/DiscoverBroadcastReceiver.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/service/DownloadDevicesIntentService$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/service/DownloadDevicesIntentService$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/service/DownloadDevicesIntentService.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/service/DownloadDevicesIntentService.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/utils/DownloadTask.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/utils/DownloadTask.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/uploadfirmware/FirmWareUploader$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/uploadfirmware/FirmWareUploader$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/uploadfirmware/FirmWareUploader$WriteTask$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/uploadfirmware/FirmWareUploader$WriteTask$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/uploadfirmware/FirmWareUploader$WriteTask$2.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/uploadfirmware/FirmWareUploader$WriteTask$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/uploadfirmware/FirmWareUploader$WriteTask$3$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/uploadfirmware/FirmWareUploader$WriteTask$3$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/uploadfirmware/FirmWareUploader$WriteTask$3$2.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/uploadfirmware/FirmWareUploader$WriteTask$3$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/uploadfirmware/FirmWareUploader$WriteTask$3.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/uploadfirmware/FirmWareUploader$WriteTask$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/uploadfirmware/FirmWareUploader$WriteTask.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/uploadfirmware/FirmWareUploader$WriteTask.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/uploadfirmware/FirmWareUploader.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/uploadfirmware/FirmWareUploader.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/GetBarcodeTest$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/GetBarcodeTest$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/GetBarcodeTest$2.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/GetBarcodeTest$2.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/GetBarcodeTest$3.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/GetBarcodeTest$3.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/GetBarcodeTest.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/GetBarcodeTest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/GetDeviceSerialTest$1$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/GetDeviceSerialTest$1$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/GetDeviceSerialTest$1$2.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/GetDeviceSerialTest$1$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/GetDeviceSerialTest$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/GetDeviceSerialTest$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/GetDeviceSerialTest.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/GetDeviceSerialTest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/IOIOAndroidApplicationHelperWrapper.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/IOIOAndroidApplicationHelperWrapper.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/IOIOUtils$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/IOIOUtils$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/IOIOUtils$2.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/IOIOUtils$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/IOIOUtils$Uart2Thread$MyCallable.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/IOIOUtils$Uart2Thread$MyCallable.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/IOIOUtils$Uart2Thread.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/IOIOUtils$Uart2Thread.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/IOIOUtils.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/IOIOUtils.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/pojos/Job$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/pojos/Job$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/pojos/Job.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/pojos/Job.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/classes/JobListAdapter.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/classes/JobListAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/LedCheckTest$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/LedCheckTest$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/LedCheckTest$2.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/LedCheckTest$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/LedCheckTest$3.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/LedCheckTest$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/LedCheckTest.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/LedCheckTest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/constants/LimitsProvider.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/constants/LimitsProvider.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/ListenToUart$UartThread$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/ListenToUart$UartThread$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/ListenToUart$UartThread.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/ListenToUart$UartThread.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/cyanogenmod/updater/utils/MD5.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/cyanogenmod/updater/utils/MD5.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/MagnetWakeDeviceTest$1$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/MagnetWakeDeviceTest$1$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/MagnetWakeDeviceTest$1$2.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/MagnetWakeDeviceTest$1$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/MagnetWakeDeviceTest$1$3.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/MagnetWakeDeviceTest$1$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/MagnetWakeDeviceTest$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/MagnetWakeDeviceTest$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/MagnetWakeDeviceTest.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/MagnetWakeDeviceTest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/MainActivity$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/MainActivity$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/MainActivity$10.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/MainActivity$10.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/MainActivity$2.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/MainActivity$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/MainActivity$3$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/MainActivity$3$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/MainActivity$3.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/MainActivity$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/MainActivity$4.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/MainActivity$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/MainActivity$5.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/MainActivity$5.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/MainActivity$6.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/MainActivity$6.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/MainActivity$7$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/MainActivity$7$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/MainActivity$7.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/MainActivity$7.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/MainActivity$8.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/MainActivity$8.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/MainActivity$9.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/MainActivity$9.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/MainActivity.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/MainActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/utils/MyDatabaseUtils.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/utils/MyDatabaseUtils.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/MyDialogs$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/MyDialogs$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/utils/MyDialogs$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/utils/MyDialogs$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/MyDialogs$2.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/MyDialogs$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/MyDialogs.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/MyDialogs.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/utils/MyDialogs.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/utils/MyDialogs.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/MyDoubleTypeAdapter.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/MyDoubleTypeAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/MyIntTypeAdapter.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/MyIntTypeAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/MyLongTypeAdapter.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/MyLongTypeAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/MyOnCancelListener$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/MyOnCancelListener$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/MyOnCancelListener$2.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/MyOnCancelListener$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/MyOnCancelListener.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/MyOnCancelListener.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/pericoach/newtestapp/syncadapter/MySyncAdapter$MyUploader$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/pericoach/newtestapp/syncadapter/MySyncAdapter$MyUploader$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/pericoach/newtestapp/syncadapter/MySyncAdapter$MyUploader.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/pericoach/newtestapp/syncadapter/MySyncAdapter$MyUploader.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/pericoach/newtestapp/syncadapter/MySyncAdapter.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/pericoach/newtestapp/syncadapter/MySyncAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/NewBTDevice.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/NewBTDevice.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/NewDevice$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/NewDevice$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/NewDevice$DeviceMonitorThread.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/NewDevice$DeviceMonitorThread.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/NewDevice$DevicePacketHandler.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/NewDevice$DevicePacketHandler.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/NewDevice$DeviceRecvThread.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/NewDevice$DeviceRecvThread.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/NewDevice$Information.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/NewDevice$Information.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/NewDevice.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/NewDevice.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/NewPFMATDevice$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/NewPFMATDevice$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/NewPFMATDevice$ConnectTask.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/NewPFMATDevice$ConnectTask.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/NewPFMATDevice.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/NewPFMATDevice.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/constants/NewSequence$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/constants/NewSequence$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/constants/NewSequence.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/constants/NewSequence.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/NewSessionPollingThread.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/NewSessionPollingThread.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/OrientationUtils.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/OrientationUtils.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/OtherSelectJobActivity$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/OtherSelectJobActivity$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/OtherSelectJobActivity$2.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/OtherSelectJobActivity$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/OtherSelectJobActivity$3.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/OtherSelectJobActivity$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/OtherSelectJobActivity$4.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/OtherSelectJobActivity$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/OtherSelectJobActivity$5.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/OtherSelectJobActivity$5.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/OtherSelectJobActivity$6.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/OtherSelectJobActivity$6.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/OtherSelectJobActivity$7.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/OtherSelectJobActivity$7.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/OtherSelectJobActivity.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/OtherSelectJobActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/PCBDetectHelperImpl$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/PCBDetectHelperImpl$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/PCBDetectHelperImpl$PCBConnectedDetectAsyncTask.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/PCBDetectHelperImpl$PCBConnectedDetectAsyncTask.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/PCBDetectHelperImpl$PCBDisconnectDetectAsyncTask.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/PCBDetectHelperImpl$PCBDisconnectDetectAsyncTask.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/PCBDetectHelperImpl$PCBWaitDisconnectDetectAsyncTask.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/PCBDetectHelperImpl$PCBWaitDisconnectDetectAsyncTask.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/PCBDetectHelperImpl.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/PCBDetectHelperImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/application/PeriCoachTestApplication.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/application/PeriCoachTestApplication.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/ReadDeviceInfoSerialNumberTest.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/ReadDeviceInfoSerialNumberTest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/ReadFirmwareversionTest.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/ReadFirmwareversionTest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/ReadModelNumberTest.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/ReadModelNumberTest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/RetrofitRestServices.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/RetrofitRestServices.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/SensorTest$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/SensorTest$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/SensorTest$2.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/SensorTest$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/SensorTest$3.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/SensorTest$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/SensorTest$4.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/SensorTest$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/SensorTest.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/SensorTest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/SensorTestWrapper.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/SensorTestWrapper.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/SensorsTestHelper$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/SensorsTestHelper$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/SensorsTestHelper$2.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/SensorsTestHelper$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/SensorsTestHelper$3.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/SensorsTestHelper$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/SensorsTestHelper$4.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/SensorsTestHelper$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/SensorsTestHelper$5.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/SensorsTestHelper$5.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/SensorsTestHelper.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/SensorsTestHelper.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/service/ServiceDBHelper.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/service/ServiceDBHelper.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/SettingsActivity$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/SettingsActivity$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/SettingsActivity.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/SettingsActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/superclass/Test$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/superclass/Test$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/superclass/Test.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/superclass/Test.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/utils/TestFromSequenceCreator$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/utils/TestFromSequenceCreator$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/utils/TestFromSequenceCreator$SensorNumber.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/utils/TestFromSequenceCreator$SensorNumber.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/utils/TestFromSequenceCreator.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/utils/TestFromSequenceCreator.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/pojos/records/TestRecord.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/pojos/records/TestRecord.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/TestsParser$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/TestsParser$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/TestsParser.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/TestsParser.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$10$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$10$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$10$2.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$10$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$10.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$10.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$11$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$11$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$11$2.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$11$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$11.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$11.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$12$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$12$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$12.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$12.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$13$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$13$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$13.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$13.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$14.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$14.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$2.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$3.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$4.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$5$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$5$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$5.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$5.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$6.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$6.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$7$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$7$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$7$2.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$7$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$7.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$7.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$8.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$8.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$9.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$9.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$MyOnChronometerTickListener.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$MyOnChronometerTickListener.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/UUTCurrentTest.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/UUTCurrentTest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/UartLoopbackTest$UartThread$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/UartLoopbackTest$UartThread$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/UartLoopbackTest$UartThread.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/UartLoopbackTest$UartThread.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/UploadFirmwareTest$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/UploadFirmwareTest$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/UploadFirmwareTest$2$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/UploadFirmwareTest$2$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/UploadFirmwareTest$2$2$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/UploadFirmwareTest$2$2$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/UploadFirmwareTest$2$2$2.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/UploadFirmwareTest$2$2$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/UploadFirmwareTest$2$2.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/UploadFirmwareTest$2$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/UploadFirmwareTest$2.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/UploadFirmwareTest$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/UploadFirmwareTest$3.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/UploadFirmwareTest$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/UploadFirmwareTest.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/UploadFirmwareTest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/pericoachengineering/util/Utils$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/pericoachengineering/util/Utils$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/pericoachengineering/util/Utils.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/pericoachengineering/util/Utils.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/Voltage$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/Voltage$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/Voltage$Result.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/Voltage$Result.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/Voltage.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/Voltage.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/VoltageTest.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/VoltageTest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/WakeDeviceTest$1$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/WakeDeviceTest$1$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/WakeDeviceTest$1$2.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/WakeDeviceTest$1$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/WakeDeviceTest$1.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/WakeDeviceTest$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/WakeDeviceTest.class" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/WakeDeviceTest.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileSnapshots.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/transforms/mergeJavaRes/debug/jars/2/1f/main.jar" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/transforms/mergeJavaRes/debug/jars/2/1f/main.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/outputs/apk/newAppTest-debug-unaligned.apk" afterPath="$PROJECT_DIR$/newAppTest/build/outputs/apk/newAppTest-debug-unaligned.apk" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/outputs/apk/newAppTest-debug.apk" afterPath="$PROJECT_DIR$/newAppTest/build/outputs/apk/newAppTest-debug.apk" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/outputFileStates.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/resources-debug-androidTest.ap_" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/res/resources-debug-androidTest.ap_" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/resources-debug.ap_" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/res/resources-debug.ap_" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/AccelerometerSelfTest.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/AccelerometerSelfTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/BatteryLevelUUTVoltageTest.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/BatteryLevelUUTVoltageTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/Current.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/Current.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/CurrentTest.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/CurrentTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/GetBarcodeTest.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/GetBarcodeTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/manifests/full/debug/AndroidManifest.xml" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/manifests/full/debug/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/newAppTest/src/main/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/MainActivity.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/MainActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/constants/NewSequence.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/constants/NewSequence.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/VoltageTest.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/VoltageTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/PCBDetectHelperImpl.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/PCBDetectHelperImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/uihelper/UIHelper.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/uihelper/UIHelper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/blame/res/debug/single/anim.json" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/blame/res/debug/single/anim.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/values/com_crashlytics_build_id.xml" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/values/com_crashlytics_build_id.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/assets/debug/crashlytics-build.properties" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/assets/debug/crashlytics-build.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/blame/res/androidTest/debug/single/drawable-hdpi-v4.json" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/blame/res/androidTest/debug/single/drawable-hdpi-v4.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/blame/res/debug/single/drawable-hdpi-v4.json" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/blame/res/debug/single/drawable-hdpi-v4.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/blame/res/androidTest/debug/single/drawable-ldpi-v4.json" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/blame/res/androidTest/debug/single/drawable-ldpi-v4.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/blame/res/androidTest/debug/single/drawable-mdpi-v4.json" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/blame/res/androidTest/debug/single/drawable-mdpi-v4.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/blame/res/androidTest/debug/single/drawable-xhdpi-v4.json" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/blame/res/androidTest/debug/single/drawable-xhdpi-v4.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/blame/res/debug/single/drawable.json" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/blame/res/debug/single/drawable.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gradle.xml" afterPath="$PROJECT_DIR$/.idea/gradle.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/blame/res/debug/single/layout.json" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/blame/res/debug/single/layout.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/local.properties" afterPath="$PROJECT_DIR$/local.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/outputs/logs/manifest-merger-debug-report.txt" afterPath="$PROJECT_DIR$/newAppTest/build/outputs/logs/manifest-merger-debug-report.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/blame/res/debug/single/menu.json" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/blame/res/debug/single/menu.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/incremental/mergeDebugAndroidTestAssets/merger.xml" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/incremental/mergeDebugAndroidTestAssets/merger.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/incremental/mergeDebugAndroidTestResources/merger.xml" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/incremental/mergeDebugAndroidTestResources/merger.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/incremental/mergeDebugAssets/merger.xml" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/incremental/mergeDebugAssets/merger.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/incremental/mergeDebugResources/merger.xml" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/incremental/mergeDebugResources/merger.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/newAppTest.iml" afterPath="$PROJECT_DIR$/newAppTest/newAppTest.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/blame/res/debug/single/raw.json" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/blame/res/debug/single/raw.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/blame/res/androidTest/debug/multi/values.json" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/blame/res/androidTest/debug/multi/values.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/blame/res/debug/multi/values.json" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/blame/res/debug/multi/values.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/blame/res/debug/single/xml.json" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/blame/res/debug/single/xml.json" />
     </list>
     <ignored path="NewAppTest-Android Studio.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -80,100 +346,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="NewSequence.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/constants/NewSequence.java">
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.703704">
-              <caret line="303" column="39" selection-start-line="303" selection-start-column="39" selection-end-line="303" selection-end-column="39" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="273" column="33" selection-start-line="273" selection-start-column="25" selection-end-line="273" selection-end-column="45" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#4442#4641#0" expanded="true" />
-                <element signature="e#4640#4641#0" expanded="true" />
+                <element signature="e#8667#10212#0" expanded="true" />
+                <element signature="e#10211#10212#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BatteryLevelUUTVoltageTest.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/BatteryLevelUUTVoltageTest.java">
+      <file leaf-file-name="UIHelper.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/uihelper/UIHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.03986711">
-              <caret line="43" column="35" selection-start-line="43" selection-start-column="35" selection-end-line="43" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CurrentTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/CurrentTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.592592">
-              <caret line="62" column="30" selection-start-line="62" selection-start-column="30" selection-end-line="62" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Current.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/Current.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="129" column="4" selection-start-line="129" selection-start-column="4" selection-end-line="129" selection-end-column="4" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IOIOUtils.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/IOIOUtils.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="426" column="44" selection-start-line="426" selection-start-column="44" selection-end-line="426" selection-end-column="44" />
+            <state vertical-scroll-proportion="0.5337995">
+              <caret line="336" column="74" selection-start-line="336" selection-start-column="74" selection-end-line="336" selection-end-column="74" />
               <folding>
-                <element signature="e#9593#9594#0" expanded="true" />
-                <element signature="e#14836#14837#0" expanded="true" />
-                <element signature="e#14860#14861#0" expanded="true" />
+                <element signature="e#9643#11148#0" expanded="true" />
+                <element signature="e#11147#11148#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BTUtility.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/btutility/BTUtility.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="453" column="5" selection-start-line="453" selection-start-column="5" selection-end-line="453" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VoltageTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/VoltageTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.2592592">
-              <caret line="70" column="9" selection-start-line="70" selection-start-column="9" selection-end-line="70" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Voltage.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/Voltage.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="90" column="4" selection-start-line="90" selection-start-column="4" selection-end-line="90" selection-end-column="4" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MagnetWakeDeviceTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/MagnetWakeDeviceTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="43" column="20" selection-start-line="43" selection-start-column="20" selection-end-line="43" selection-end-column="20" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -194,19 +389,19 @@
         <entry>
           <key>
             <ExternalProjectPojo>
-              <option name="name" value="pericoach-test-app-android-studio" />
+              <option name="name" value="NewAppTest-Android Studio" />
               <option name="path" value="$PROJECT_DIR$" />
             </ExternalProjectPojo>
           </key>
           <value>
             <list>
               <ExternalProjectPojo>
-                <option name="name" value="pericoach-test-app-android-studio" />
-                <option name="path" value="$PROJECT_DIR$" />
-              </ExternalProjectPojo>
-              <ExternalProjectPojo>
                 <option name="name" value=":newAppTest" />
                 <option name="path" value="$PROJECT_DIR$/newAppTest" />
+              </ExternalProjectPojo>
+              <ExternalProjectPojo>
+                <option name="name" value="NewAppTest-Android Studio" />
+                <option name="path" value="$PROJECT_DIR$" />
               </ExternalProjectPojo>
             </list>
           </value>
@@ -219,17 +414,17 @@
           <value>
             <list>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the components produced by root project 'pericoach-test-app-android-studio'. [incubating]" />
+                <option name="description" value="Displays the components produced by root project 'NewAppTest-Android Studio'. [incubating]" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="components" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays all dependencies declared in root project 'pericoach-test-app-android-studio'." />
+                <option name="description" value="Displays all dependencies declared in root project 'NewAppTest-Android Studio'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="dependencies" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the insight into a specific dependency in root project 'pericoach-test-app-android-studio'." />
+                <option name="description" value="Displays the insight into a specific dependency in root project 'NewAppTest-Android Studio'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="dependencyInsight" />
               </ExternalTaskPojo>
@@ -244,22 +439,22 @@
                 <option name="name" value="init" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the configuration model of root project 'pericoach-test-app-android-studio'. [incubating]" />
+                <option name="description" value="Displays the configuration model of root project 'NewAppTest-Android Studio'. [incubating]" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="model" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the sub-projects of root project 'pericoach-test-app-android-studio'." />
+                <option name="description" value="Displays the sub-projects of root project 'NewAppTest-Android Studio'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="projects" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the properties of root project 'pericoach-test-app-android-studio'." />
+                <option name="description" value="Displays the properties of root project 'NewAppTest-Android Studio'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="properties" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the tasks runnable from root project 'pericoach-test-app-android-studio' (some of the displayed tasks may belong to subprojects)." />
+                <option name="description" value="Displays the tasks runnable from root project 'NewAppTest-Android Studio' (some of the displayed tasks may belong to subprojects)." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="tasks" />
               </ExternalTaskPojo>
@@ -1695,14 +1890,14 @@
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/commons-codec/commons-codec/1.4/commons-codec-1.4.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/intellij/annotations/12.0/annotations-12.0-sources.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/intellij/annotations/12.0/annotations-12.0.jar" />
-                            <option value="F:/Android/android-sdk/extras/android/m2repository/com/android/support/support-v4/23.1.1/support-v4-23.1.1.aar" />
+                            <option value="$USER_HOME$/Library/Android/sdk/extras/android/m2repository/com/android/support/support-v4/23.1.1/support-v4-23.1.1.aar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.3.1/ecb6e1f8e4b0e84c4b886c2f14a1500caf309757/gson-2.3.1.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.ytai.ioio/IOIOLibAndroid/5.05/fbed2d6264cceb1447dd4400456bc9c36d9ab37c/IOIOLibAndroid-5.05.aar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.ytai.ioio/IOIOLibAndroidBluetooth/5.05/1267e2506393e348e534437fa73c9a6c4aceb3ca/IOIOLibAndroidBluetooth-5.05.aar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.ytai.ioio/IOIOLibAndroidAccessory/5.05/545b8f03f8f443be2307f95511a622ab99e16daa/IOIOLibAndroidAccessory-5.05.aar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.ytai.ioio/IOIOLibAndroidDevice/5.05/7df0ce91ece58b020a31289a7dd8cc7853711eaf/IOIOLibAndroidDevice-5.05.aar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.crashlytics.sdk.android/crashlytics/2.5.3/fbaca338964811209419bbd0f6eb7c9893e10268/crashlytics-2.5.3.aar" />
-                            <option value="F:/Android/android-sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.1/support-annotations-23.1.1.jar" />
+                            <option value="$USER_HOME$/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.1/support-annotations-23.1.1.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.ytai.ioio/IOIOLibCore/5.05/99821d5ab444306c6e39f3de72f85c4b287a6765/IOIOLibCore-5.05.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.crashlytics.sdk.android/beta/1.1.4/fa742a9b181b172fea820723307030da927d4e5/beta-1.1.4.aar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.crashlytics.sdk.android/answers/1.3.4/361b35c5992b07239aacdc4c0262eda6dd176430/answers-1.3.4.aar" />
@@ -1722,7 +1917,7 @@
                   </entry>
                 </map>
               </option>
-              <option name="name" value="pericoach-test-app-android-studio" />
+              <option name="name" value="newAppTest" />
               <option name="projectBuildClasspath">
                 <list>
                   <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.8/src/announce" />
@@ -1855,7 +2050,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/newAppTest/src/androidTest/java/com/pietrantuono/pericoach/newtestapp/test/barcodetests/mockito/BarcodeCheckJob.java" />
-        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/PCBDetectHelperImpl.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/IOIOUtilsInterface.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/GetDeviceSerialTest.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/ReadFirmwareversionTest.java" />
@@ -1864,22 +2058,24 @@
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/server/RetrofitRestServices.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/OtherSelectJobActivity.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/application/PeriCoachTestApplication.java" />
-        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/uihelper/UIHelper.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/MagnetWakeDeviceTest.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/BluetoothConnectTestForTesting.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/btutility/BTUtility.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/superclass/Test.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/ActivtyWrapper.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/NewIOIOActivityListener.java" />
-        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/MainActivity.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/GetBarcodeTest.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/IOIOUtils.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/VoltageTest.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/CurrentTest.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/Current.java" />
-        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/constants/NewSequence.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/BatteryLevelUUTVoltageTest.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/AccelerometerSelfTest.java" />
+        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/constants/NewSequence.java" />
+        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/PCBDetectHelperImpl.java" />
+        <option value="$PROJECT_DIR$/newAppTest/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/MainActivity.java" />
+        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/uihelper/UIHelper.java" />
       </list>
     </option>
   </component>
@@ -1897,10 +2093,9 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1358" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1096" />
+    <option name="y" value="23" />
+    <option name="width" value="1440" />
+    <option name="height" value="797" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -2115,7 +2310,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -2130,7 +2324,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="pericoach-test-app-android-studio" />
+              <option name="myItemId" value="NewAppTest-Android Studio" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2140,7 +2334,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="pericoach-test-app-android-studio" />
+              <option name="myItemId" value="NewAppTest-Android Studio" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -2154,29 +2348,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="pericoach-test-app-android-studio" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="newAppTest" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
               <option name="myItemId" value="NewAppTest-Android Studio" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pericoach-test-app-android-studio" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -2191,10 +2363,6 @@
               <option name="myItemId" value="main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -2202,7 +2370,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="pericoach-test-app-android-studio" />
+              <option name="myItemId" value="NewAppTest-Android Studio" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -2221,10 +2389,6 @@
               <option name="myItemId" value="java" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -2232,7 +2396,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="pericoach-test-app-android-studio" />
+              <option name="myItemId" value="NewAppTest-Android Studio" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -2266,7 +2430,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="pericoach-test-app-android-studio" />
+              <option name="myItemId" value="NewAppTest-Android Studio" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -2304,7 +2468,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="pericoach-test-app-android-studio" />
+              <option name="myItemId" value="NewAppTest-Android Studio" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -2346,7 +2510,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="pericoach-test-app-android-studio" />
+              <option name="myItemId" value="NewAppTest-Android Studio" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -2374,7 +2538,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="application" />
+              <option name="myItemId" value="ioioutils" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2384,7 +2548,83 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="pericoach-test-app-android-studio" />
+              <option name="myItemId" value="NewAppTest-Android Studio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="newAppTest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pietrantuono" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="constants" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NewAppTest-Android Studio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NewAppTest-Android Studio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="newAppTest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pietrantuono" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="btutility" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NewAppTest-Android Studio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NewAppTest-Android Studio" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -2422,7 +2662,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="pericoach-test-app-android-studio" />
+              <option name="myItemId" value="NewAppTest-Android Studio" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -2452,7 +2692,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="pericoach-test-app-android-studio" />
+              <option name="myItemId" value="NewAppTest-Android Studio" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -2463,18 +2703,24 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="androidTest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="com.jpower8.idea.plugin.statictic.StatisticProjectComponent" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
-    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="07b3e759" />
+    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="015d483b8c541c09" />
     <property name="FullScreen" value="false" />
     <property name="SearchEverywhereHistoryKey" value="TestsP&#9;PSI&#9;JAVA://server.TestsParser" />
+    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="3_7_WVGA_Nexus_One_API_22" />
   </component>
   <component name="RunManager" selected="Android Application.newAppTest">
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
@@ -2683,39 +2929,39 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1358" y="-8" width="1936" height="1096" extended-state="6" />
+    <frame x="0" y="23" width="1440" height="797" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32978722" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32765958" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Fabric" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32928678" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.32978722" sideWeight="0.4939302" order="7" side_tool="false" content_ui="tabs" x="458" y="1" width="902" height="725" />
-      <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.32978722" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" x="0" y="4" width="541" height="724" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32978722" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38404256" sideWeight="0.5060698" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19148937" sideWeight="0.4969651" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32942432" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32993197" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22390318" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19148937" sideWeight="0.4969651" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.32978722" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" x="680" y="401" width="80" height="40" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20095949" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" x="989" y="1" width="377" height="940" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32978722" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32892805" sideWeight="0.4939302" order="7" side_tool="false" content_ui="tabs" x="0" y="23" width="1292" height="479" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32978722" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32892805" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32765958" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38404256" sideWeight="0.5060698" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31402004" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" x="989" y="1" width="377" height="940" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.47723934" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32942432" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3025751" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Fabric" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32928678" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4434655" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32978722" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -2739,36 +2985,55 @@
     <option name="LAST_COMMIT_MESSAGE" value="Implement download of firmware &quot;OnItemClick&quot;, job object now contains a firmware_id item which is used to retrieve firmware specific to job.  Working on Test Pass/Fail for MagnetWake &amp; BluetoothConnect tests." />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/MainActivity.java</url>
+          <line>262</line>
+          <properties />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/uihelper/UIHelper.java</url>
+          <line>320</line>
+          <properties />
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/MainActivity.java</url>
+          <line>266</line>
+          <properties />
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/uihelper/UIHelper.java</url>
+          <line>315</line>
+          <properties />
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/uihelper/UIHelper.java</url>
+          <line>342</line>
+          <properties />
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/uihelper/UIHelper.java</url>
+          <line>347</line>
+          <properties />
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/uihelper/UIHelper.java</url>
+          <line>328</line>
+          <properties />
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="8" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/MagnetWakeDeviceTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="123" column="24" selection-start-line="123" selection-start-column="24" selection-end-line="123" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/superclass/Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="102" column="5" selection-start-line="102" selection-start-column="5" selection-end-line="102" selection-end-column="5" />
-          <folding>
-            <element signature="e#3044#3045#0" expanded="true" />
-            <element signature="e#3070#3071#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/settings.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/newAppTest/src/androidTest/java/com/pietrantuono/pericoach/newtestapp/test/barcodetests/mockito/BarcodeCheckJob.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2841,7 +3106,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4473684">
           <caret line="24" column="27" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2856,14 +3120,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/PCBDetectHelperImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="162" column="60" selection-start-line="162" selection-start-column="60" selection-end-line="162" selection-end-column="60" />
           <folding />
         </state>
       </provider>
@@ -2895,7 +3151,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.47847682">
           <caret line="18" column="11" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2953,14 +3208,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/BluetoothConnectTestForTesting.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="27" column="24" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/ReadModelNumberTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2973,14 +3220,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.04644809">
           <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/uihelper/UIHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="306" column="44" selection-start-line="306" selection-start-column="44" selection-end-line="306" selection-end-column="44" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2997,8 +3236,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="102" column="5" selection-start-line="102" selection-start-column="5" selection-end-line="102" selection-end-column="5" />
           <folding>
-            <element signature="e#3044#3045#0" expanded="true" />
-            <element signature="e#3070#3071#0" expanded="true" />
+            <element signature="e#3044#3045#0" expanded="false" />
+            <element signature="e#3070#3071#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3007,7 +3246,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3032,8 +3270,8 @@
         <state vertical-scroll-proportion="0.7909836">
           <caret line="56" column="16" selection-start-line="56" selection-start-column="16" selection-end-line="56" selection-end-column="16" />
           <folding>
-            <element signature="e#875#876#0" expanded="true" />
-            <element signature="e#909#910#0" expanded="true" />
+            <element signature="e#875#876#0" expanded="false" />
+            <element signature="e#909#910#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3042,25 +3280,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-13.851851">
           <caret line="65" column="56" selection-start-line="65" selection-start-column="56" selection-end-line="65" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/OtherSelectJobActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="252" column="0" selection-start-line="252" selection-start-column="0" selection-end-line="252" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="120" column="5" selection-start-line="120" selection-start-column="5" selection-end-line="120" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3069,78 +3288,6 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="34" column="65" selection-start-line="34" selection-start-column="65" selection-end-line="34" selection-end-column="65" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/IOIOUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="426" column="44" selection-start-line="426" selection-start-column="44" selection-end-line="426" selection-end-column="44" />
-          <folding>
-            <element signature="e#9593#9594#0" expanded="true" />
-            <element signature="e#14836#14837#0" expanded="true" />
-            <element signature="e#14860#14861#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/Voltage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="90" column="4" selection-start-line="90" selection-start-column="4" selection-end-line="90" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/MagnetWakeDeviceTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="43" column="20" selection-start-line="43" selection-start-column="20" selection-end-line="43" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/VoltageTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.2592592">
-          <caret line="70" column="9" selection-start-line="70" selection-start-column="9" selection-end-line="70" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/CurrentTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.592592">
-          <caret line="62" column="30" selection-start-line="62" selection-start-column="30" selection-end-line="62" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/Current.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="129" column="4" selection-start-line="129" selection-start-column="4" selection-end-line="129" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/btutility/BTUtility.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="453" column="5" selection-start-line="453" selection-start-column="5" selection-end-line="453" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/constants/NewSequence.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.703704">
-          <caret line="303" column="39" selection-start-line="303" selection-start-column="39" selection-end-line="303" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#4442#4641#0" expanded="true" />
-            <element signature="e#4640#4641#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3154,9 +3301,146 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/BatteryLevelUUTVoltageTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.03986711">
+        <state vertical-scroll-proportion="0.29709035">
           <caret line="43" column="35" selection-start-line="43" selection-start-column="35" selection-end-line="43" selection-end-column="35" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/CurrentTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.12710567">
+          <caret line="62" column="30" selection-start-line="62" selection-start-column="30" selection-end-line="62" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/Current.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="129" column="4" selection-start-line="129" selection-start-column="4" selection-end-line="129" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/IOIOUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="426" column="44" selection-start-line="426" selection-start-column="44" selection-end-line="426" selection-end-column="44" />
+          <folding>
+            <element signature="e#9593#9594#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/VoltageTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="70" column="9" selection-start-line="70" selection-start-column="9" selection-end-line="70" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/Voltage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.15007657">
+          <caret line="90" column="4" selection-start-line="90" selection-start-column="4" selection-end-line="90" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/MagnetWakeDeviceTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="43" column="20" selection-start-line="43" selection-start-column="20" selection-end-line="43" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/OtherSelectJobActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33231708">
+          <caret line="297" column="16" selection-start-line="297" selection-start-column="16" selection-end-line="297" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8628049">
+          <caret line="39" column="43" selection-start-line="39" selection-start-column="43" selection-end-line="39" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/constants/NewSequence.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.41958043">
+          <caret line="290" column="31" selection-start-line="290" selection-start-column="31" selection-end-line="290" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/BluetoothConnectTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6993007">
+          <caret line="22" column="31" selection-start-line="22" selection-start-column="31" selection-end-line="22" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/btutility/BTUtility.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.0792542">
+          <caret line="423" column="31" selection-start-line="423" selection-start-column="31" selection-end-line="423" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/BluetoothConnectTestForTesting.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5244755">
+          <caret line="17" column="16" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/BluetoothDiscoverableModeTestForTesting.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/PCBDetectHelperImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="3.952756">
+          <caret line="150" column="60" selection-start-line="150" selection-start-column="60" selection-end-line="150" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="273" column="33" selection-start-line="273" selection-start-column="25" selection-end-line="273" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#8667#10212#0" expanded="true" />
+            <element signature="e#10211#10212#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/uihelper/UIHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5337995">
+          <caret line="336" column="74" selection-start-line="336" selection-start-column="74" selection-end-line="336" selection-end-column="74" />
+          <folding>
+            <element signature="e#9643#11148#0" expanded="true" />
+            <element signature="e#11147#11148#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
