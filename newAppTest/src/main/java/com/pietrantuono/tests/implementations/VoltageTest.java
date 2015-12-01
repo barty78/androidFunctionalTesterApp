@@ -65,13 +65,8 @@ public 	class VoltageTest extends Test {
 				IOIOUtils.getUtils().get_5V_DC().write(whatToWriteToDC5);
 			} catch (Exception e) {
 				report(e);
-				activityListener.addFailOrPass(true,false, description);
+				activityListener.addFailOrPass(true,false, "Fixture Fault");
 				return;
-			}
-			try {
-				Thread.sleep(1 * 1000);
-			} catch (Exception e) {
-				report(e);
 			}
 		}
 		if (writeToreset) {
@@ -79,18 +74,19 @@ public 	class VoltageTest extends Test {
 				IOIOUtils.getUtils().getReset().write(whatToWriteToreset);
 			} catch (Exception e) {
 				report(e);
-				activityListener.addFailOrPass(true,false, description);
+				activityListener.addFailOrPass(true,false, "Fixture Fault");
 				return;
-			}
-			try {
-				Thread.sleep(1 * 1000);
-			} catch (Exception e) {
-				activityListener.addFailOrPass(true,false, description);
-				report(e);
 			}
 		}
 		
 		Voltage.Result result = null;
+
+		try {
+			Thread.sleep(1 * 1000);
+		} catch (Exception e) {
+			activityListener.addFailOrPass(true,false, description);
+			report(e);
+		}
 
 		try {
 			result = Voltage
@@ -102,7 +98,7 @@ public 	class VoltageTest extends Test {
 				|| ((Activity) activityListener).isFinishing())
 			return;
 		if (result == null) {
-			activityListener.addFailOrPass(true, false, "ERROR",description);
+			activityListener.addFailOrPass(true, false, "ERROR", description);
 			//activityListener.goAndExecuteNextTest();
 			return;
 		}

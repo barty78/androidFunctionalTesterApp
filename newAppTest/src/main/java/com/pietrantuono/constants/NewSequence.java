@@ -10,6 +10,7 @@ import android.app.Activity;
 import com.pietrantuono.activities.MainActivity;
 import com.pietrantuono.ioioutils.Current.Scale;
 import com.pietrantuono.tests.implementations.AccelerometerSelfTest;
+import com.pietrantuono.tests.implementations.BatteryLevelUUTVoltageTest;
 import com.pietrantuono.tests.implementations.BluetoothConnectTestForTesting;
 import com.pietrantuono.tests.implementations.CurrentTest;
 import com.pietrantuono.tests.implementations.DummyTest;
@@ -272,25 +273,36 @@ public class NewSequence implements NewSequenceInterface {
 		
 		
 		// NEW TESTS
-		sequence.add(new GetBarcodeTest(activity,ioio,job));
+		//sequence.add(new GetBarcodeTest(activity,ioio,job));
 		sequence.add(new CurrentTest(activity, ioio, 42, 50, 1002, Scale.uA, true, (float)100, (float)0, "Current Measurement - UUT Unprogrammed"));
 		sequence.add(new VoltageTest(activity, ioio, 44, 3.1f, 0.2f, "Voltage Measurement - V_3V1"));
 		sequence.add(new VoltageTest(activity, ioio, 40, 1.8f, 0.2f, "Voltage Measurement - V_1V8"));
-		
+		sequence.add(new VoltageTest(activity, ioio, 38, 0f, 0.1f, "Voltage Measurement - DC_PRES (5V_DC Off)"));
+		sequence.add(new VoltageTest(activity, ioio, 38, 1.6f, 0.1f, true, false, false, false, "Voltage Measurement - DC_PRES (5V_DC On)"));
 //		sequence.add(new UploadFirmwareTest(activity, ioio));
 //		sequence.add(new UartLoopbackTest(activity, ioio));
 		sequence.add(new GetDeviceSerialTest(activity, ioio));
 		sequence.add(new AccelerometerSelfTest(activity, ioio));
 		sequence.add(new MagnetWakeDeviceTest(activity, ioio));
+		sequence.add(new CurrentTest(activity, ioio, 42, 50, 2, Scale.mA, false, (float)28, (float)0.1, "Current Measurement - Awake"));
 
+		sequence.add(new VoltageTest(activity, ioio, 44, 3.1f, 0.1f,
+				"Voltage Measurement - Awake Mode (V_3V1)"));
+		sequence.add(new VoltageTest(activity, ioio, 39, 1.8f, 0.1f,
+				"Voltage Measurement - Awake Mode (V_1V8_SW)"));
+		sequence.add(new VoltageTest(activity, ioio, 33, 3.3f, 0.1f,
+				"Voltage Measurement - Awake Mode (V_BT)"));
+//		sequence.add(new VoltageTest(activity, ioio, 32, 1.5f, 0.2f,
+//				"Voltage Measurement - Awake Mode (V_REF_AN)"));
+		sequence.add(new LedCheckTest(activity, "Green", "Green LED Check"));
 		sequence.add(new BluetoothConnectTestForTesting(activity));
-//		sequence.add(new BTConnectCurrent(activity, ioio));
-//		sequence.add(new LedCheckTest(activity, "Blue", "Blue LED Check"));
+		sequence.add(new CurrentTest(activity, ioio, 42, 50, 2, Scale.mA, false, (float)33, (float)0.1, "Current Measurement - BT Connected"));
+		sequence.add(new LedCheckTest(activity, "Blue", "Blue LED Check"));
 		sequence.add(new ReadDeviceInfoSerialNumberTest(activity));
 		sequence.add(new ReadModelNumberTest(activity));
 		sequence.add(new ReadFirmwareversionTest(activity));
-//		sequence.add(new BatteryLevelUUTVoltageTest(activity, "Battery Level - UUT voltage @ 3.5V", 170));
-//		sequence.add(new BatteryLevelUUTVoltageTest(activity, "Battery Level - UUT voltage @ 4.1V", 30));
+		sequence.add(new BatteryLevelUUTVoltageTest(activity, "Battery Level - UUT voltage @ 3.5V", 170));
+		sequence.add(new BatteryLevelUUTVoltageTest(activity, "Battery Level - UUT voltage @ 4.1V", 30));
 //		sequence.add(new SensorTestWrapper(false, activity, ioio, "Sensor Input Test, NO LOAD, GAIN @ 127", 0, false,
 //				(short) 127));
 //		sequence.add(new SensorTestWrapper(true, activity, ioio, "Sensor Input Test, LOADED, GAIN @ 127", 1, true,

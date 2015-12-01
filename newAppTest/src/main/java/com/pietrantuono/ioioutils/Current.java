@@ -122,7 +122,7 @@ public class Current {
 			Boolean success=((average > limitParam2) && (average < limitParam1))?true:false;									// Use Param1 as Upper, Param2 as Lower
 			return new Result(success, average, scale);
 		} else {
-			Boolean success=((average > limitParam1 - limitParam2) && (average < limitParam1 + limitParam2))?true:false;		// Use Param1 as limit, Param2 as Precision
+			Boolean success=((average > limitParam1 - (limitParam1 * limitParam2)) && (average < limitParam1 + (limitParam1 * limitParam2)))?true:false;		// Use Param1 as limit, Param2 as Precision
 			return new Result(success, average, scale);
 		}
 		

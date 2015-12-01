@@ -32,7 +32,7 @@ public class AccelerometerSelfTest extends Test {
 			if (retries >= 3){
 				Log.d(TAG, TAG+" "+IOIOUtils.getUtils().getUartLog().toString());
 				setSuccess(false);
-				activityListener.addFailOrPass(true, false, description);
+				activityListener.addFailOrPass(true, false, "");
 				return;
 			}
 			onAttemptFailed();

@@ -36,15 +36,15 @@ public class BatteryLevelUUTVoltageTest extends Test{
 						readbyte, readbyte.length);
 			} catch (Exception e1) {
 				report(e1);
-				getListener().addFailOrPass(true, false, e1.toString());
+				getListener().addFailOrPass(true, false, "Fixture Fault");
 				return;
 			}
 		if(isinterrupted)return;
 		try {
-			Thread.sleep(1 * 1000);
+			Thread.sleep(3 * 1000);
 		} catch (Exception e1) {
 			report(e1);
-			getListener().addFailOrPass(true, false, e1.toString());
+			getListener().addFailOrPass(true, false, "App Fault");
 			return;
 		}
 		if(isinterrupted)return;
@@ -54,7 +54,7 @@ public class BatteryLevelUUTVoltageTest extends Test{
 		try {
 			battlevel = getListener().getBtutility().getBatteryLevel();
 		} catch (Exception e) {
-			getListener().addFailOrPass(true, false, "ERROR",e.toString());
+			getListener().addFailOrPass(true, false, "ERROR", "UUT Comms Fault");
 			return;
 		}
 		short precisionfactor = 5;

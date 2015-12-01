@@ -22,6 +22,7 @@ public class CurrentTest extends Test {
 	 * @param pinNumber			- IOIO Pin Number
 	 * @param gain				- Current sense Gain
 	 * @param Rshunt			- Current sense Shunt Resistor Value
+	 * @param scale				- Measurement Scale (nA, uA or mA)
 	 * @param isUpperLower		- Applied Limits Type (Bounds / Nominal,Precision)
 	 * @param limitParam1		- Limit Parameter 1 (Upper / Nominal)
 	 * @param limitParam2		- Limit Parameter 2 (Lower / Precision)
@@ -32,6 +33,7 @@ public class CurrentTest extends Test {
 		this.pinNumber = pinNumber;
 		this.gain = gain;
 		this.Rshunt = Rshunt;
+		this.scale = scale;
 		this.isUpperLower = isUpperLower;
 		this.limitParam1 = limitParam1;
 		this.limitParam2 = limitParam2;
@@ -68,7 +70,6 @@ public class CurrentTest extends Test {
 			return;
 		if (result == null) {
 			activityListener.addFailOrPass(true, false, "ERROR",description);
-			//activityListener.goAndExecuteNextTest();
 			return;
 		}
 		if (result.isSuccess()) {
