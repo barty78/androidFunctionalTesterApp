@@ -91,7 +91,9 @@ public class TestsParser {
 			test = new ReadFirmwareversionTest(activity);
 			break;
 		case 16:
-			test = new BatteryLevelUUTVoltageTest(activity,
+			tolerance = (float) testToBeParsed.getTolerance().floatValue();
+			nominal = (float) testToBeParsed.getNominal().floatValue();
+			test = new BatteryLevelUUTVoltageTest(activity, nominal, tolerance,
 					getDescription(testToBeParsed),
 					(int) testToBeParsed.getNominal().doubleValue());// TODO check voltage
 			break;

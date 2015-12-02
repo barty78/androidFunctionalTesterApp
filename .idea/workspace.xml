@@ -22,463 +22,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ce77540-f948-44a7-9fee-70346dd6a4e3" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/IOIOLibAndroidAccessory_5_05.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/IOIOLibAndroidBluetooth_5_05.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/IOIOLibAndroidDevice_5_05.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/IOIOLibAndroid_5_05.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/IOIOLibCore_5_05.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/MyJarCopy.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/activeandroid_build.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/android_async_http_1_4_6__3_.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/answers_1_3_4.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/beta_1_1_4.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/commons_io_2_4.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/crashlytics_2_5_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/crashlytics_core_2_3_6.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/fabric_1_3_8.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/gson_2_3_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/retrofit_1_9_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_annotations_23_1_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_v4_23_1_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/generated/source/buildConfig/androidTest/debug/com/pietrantuono/pericoach/newtestapp/test/BuildConfig.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/generated/source/buildConfig/debug/com/pietrantuono/pericoach/newtestapp/BuildConfig.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/generated/source/r/androidTest/debug/com/pietrantuono/pericoach/newtestapp/test/R.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/generated/source/r/debug/com/pietrantuono/pericoach/newtestapp/R.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/generated/source/r/debug/ioio/lib/accessory/R.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/generated/source/r/debug/ioio/lib/android/device/R.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/assets/debug/PeriCoach-0188-2.0.0.0.bin" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/assets/debug/PeriCoach-0198-3.0.0.0.bin" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/assets/debug/crashlytics-build.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/blame/res/androidTest/debug/multi/values.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/blame/res/androidTest/debug/single/drawable-hdpi-v4.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/blame/res/androidTest/debug/single/drawable-ldpi-v4.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/blame/res/androidTest/debug/single/drawable-mdpi-v4.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/blame/res/androidTest/debug/single/drawable-xhdpi-v4.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/blame/res/debug/multi/values.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/blame/res/debug/single/anim.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/blame/res/debug/single/drawable-hdpi-v4.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/blame/res/debug/single/drawable.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/blame/res/debug/single/layout.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/blame/res/debug/single/menu.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/blame/res/debug/single/raw.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/blame/res/debug/single/xml.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/cyanogenmod/updater/utils/MD5.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/parser/BinaryParser.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/parser/Parser.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/ActivtyWrapper.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/DataProvider.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/IOIOAndroidApplicationHelperWrapper.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/MainActivity$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/MainActivity$10.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/MainActivity$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/MainActivity$3$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/MainActivity$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/MainActivity$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/MainActivity$5.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/MainActivity$6.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/MainActivity$7$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/MainActivity$7.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/MainActivity$8.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/MainActivity$9.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/MainActivity.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/MyLooper.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/MyOnCancelListener$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/MyOnCancelListener$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/MyOnCancelListener$Callback.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/MyOnCancelListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/NewIOIOActivityListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/OrientationUtils.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/OtherSelectJobActivity$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/OtherSelectJobActivity$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/OtherSelectJobActivity$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/OtherSelectJobActivity$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/OtherSelectJobActivity$5.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/OtherSelectJobActivity$6.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/OtherSelectJobActivity$7.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/OtherSelectJobActivity.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/SettingsActivity$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/SettingsActivity.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/classes/JobListAdapter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/ActivityCallback.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/MyDialogInterface.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/MyDialogs$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/MyDialogs$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/MyDialogs.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$10$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$10$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$10.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$11$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$11$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$11.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$12$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$12.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$13$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$13.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$14.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$5$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$5.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$6.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$7$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$7$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$7.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$8.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$9.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$ActivityUIHelperCallback.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper$MyOnChronometerTickListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/activities/uihelper/UIHelper.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/application/PeriCoachTestApplication.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$10.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$11.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$12.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$13.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$14.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$15.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$16.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$17.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$18.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$5.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$6.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$7$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$7$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$7.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$8.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$9.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$BTBroadcastReceiver.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility$ConnectReceiver.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/BTUtility.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/DiscoverBroadcastReceiver$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/DiscoverBroadcastReceiver$OuuuuuchSerialNotValidException.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/btutility/DiscoverBroadcastReceiver.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/constants/LimitsProvider.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/constants/NewMResult.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/constants/NewMSensorResult.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/constants/NewSequence$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/constants/NewSequence.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/constants/NewSequenceInterface.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/Current$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/Current$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/Current$Result.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/Current$Scale.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/Current.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/IOIOUtils$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/IOIOUtils$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/IOIOUtils$Uart2Thread$MyCallable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/IOIOUtils$Uart2Thread.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/IOIOUtils.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/IOIOUtilsInterface.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/PCBConnectedCallback.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/PCBDetectHelper$PCBDetectHelperInterface.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/PCBDetectHelper.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/PCBDetectHelperImpl$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/PCBDetectHelperImpl$PCBConnectedDetectAsyncTask.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/PCBDetectHelperImpl$PCBDisconnectDetectAsyncTask.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/PCBDetectHelperImpl$PCBWaitDisconnectDetectAsyncTask.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/PCBDetectHelperImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/Voltage$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/Voltage$Result.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/ioioutils/Voltage.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/pericoach/newtestapp/BuildConfig.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/pericoach/newtestapp/R$anim.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/pericoach/newtestapp/R$array.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/pericoach/newtestapp/R$attr.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/pericoach/newtestapp/R$bool.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/pericoach/newtestapp/R$color.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/pericoach/newtestapp/R$dimen.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/pericoach/newtestapp/R$drawable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/pericoach/newtestapp/R$id.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/pericoach/newtestapp/R$integer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/pericoach/newtestapp/R$layout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/pericoach/newtestapp/R$menu.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/pericoach/newtestapp/R$raw.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/pericoach/newtestapp/R$string.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/pericoach/newtestapp/R$style.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/pericoach/newtestapp/R$styleable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/pericoach/newtestapp/R$xml.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/pericoach/newtestapp/R.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/pericoach/newtestapp/syncadapter/MyAuthenticator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/pericoach/newtestapp/syncadapter/MyAuthenticatorService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/pericoach/newtestapp/syncadapter/MyStubProvider.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/pericoach/newtestapp/syncadapter/MySyncAdapter$MyUploader$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/pericoach/newtestapp/syncadapter/MySyncAdapter$MyUploader.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/pericoach/newtestapp/syncadapter/MySyncAdapter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/pericoach/newtestapp/syncadapter/MySyncService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/pericoachengineering/util/Utils$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/pericoachengineering/util/Utils.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/ClosedTest$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/ClosedTest$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/ClosedTest$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/ClosedTest$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/ClosedTest$5$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/ClosedTest$5.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/ClosedTest$6.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/ClosedTest$7$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/ClosedTest$7.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/ClosedTest$8.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/ClosedTest$9.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/ClosedTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/NewBTDevice.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/NewDevice$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/NewDevice$DeviceMonitorThread.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/NewDevice$DevicePacketHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/NewDevice$DeviceRecvThread.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/NewDevice$Information.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/NewDevice.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/NewPFMATDevice$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/NewPFMATDevice$ConnectTask.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/NewPFMATDevice.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/NewSessionPollingThread.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/OnSampleCallback.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/SensorTest$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/SensorTest$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/SensorTest$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/SensorTest$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/SensorTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/SensorTestCallback.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/SensorsTestHelper$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/SensorsTestHelper$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/SensorsTestHelper$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/SensorsTestHelper$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/SensorsTestHelper$5.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/sensors/SensorsTestHelper.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/AccelerometerSelfTest$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/AccelerometerSelfTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/AwakeModeCurrentTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/BTConnectCurrent.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/BatteryLevelUUTVoltageTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/BluetoothConnectTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/BluetoothConnectTestForTesting.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/BluetoothDiscoverableModeTest$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/BluetoothDiscoverableModeTest$DiscoveryAsyncTask.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/BluetoothDiscoverableModeTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/BluetoothDiscoverableModeTestForTesting$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/BluetoothDiscoverableModeTestForTesting$DiscoveryAsyncTask.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/BluetoothDiscoverableModeTestForTesting.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/Charge_termination_test$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/Charge_termination_test$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/Charge_termination_test$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/Charge_termination_test.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/CurrentTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/DummyTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/GetBarcodeTest$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/GetBarcodeTest$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/GetBarcodeTest$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/GetBarcodeTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/GetDeviceSerialTest$1$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/GetDeviceSerialTest$1$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/GetDeviceSerialTest$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/GetDeviceSerialTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/LedCheckTest$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/LedCheckTest$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/LedCheckTest$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/LedCheckTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/ListenToUart$UartThread$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/ListenToUart$UartThread.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/ListenToUart.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/MagnetWakeDeviceTest$1$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/MagnetWakeDeviceTest$1$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/MagnetWakeDeviceTest$1$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/MagnetWakeDeviceTest$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/MagnetWakeDeviceTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/ReadDeviceInfoSerialNumberTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/ReadFirmwareversionTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/ReadModelNumberTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/SensorTestWrapper.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/UUTCurrentTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/UartLoopbackTest$UartThread$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/UartLoopbackTest$UartThread.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/UartLoopbackTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/UploadFirmwareTest$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/UploadFirmwareTest$2$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/UploadFirmwareTest$2$2$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/UploadFirmwareTest$2$2$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/UploadFirmwareTest$2$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/UploadFirmwareTest$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/UploadFirmwareTest$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/UploadFirmwareTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/VoltageTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/WakeDeviceTest$1$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/WakeDeviceTest$1$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/WakeDeviceTest$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/implementations/WakeDeviceTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/superclass/Test$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/tests/superclass/Test.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/uploadfirmware/FirmWareUploader$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/uploadfirmware/FirmWareUploader$UploaderListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/uploadfirmware/FirmWareUploader$WriteTask$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/uploadfirmware/FirmWareUploader$WriteTask$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/uploadfirmware/FirmWareUploader$WriteTask$3$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/uploadfirmware/FirmWareUploader$WriteTask$3$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/uploadfirmware/FirmWareUploader$WriteTask$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/uploadfirmware/FirmWareUploader$WriteTask.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/uploadfirmware/FirmWareUploader.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/com/pietrantuono/uploadfirmware/ProgressAndTextView.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/ioio/lib/accessory/R$xml.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/ioio/lib/accessory/R.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/ioio/lib/android/device/R$xml.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/ioio/lib/android/device/R.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/MyDoubleTypeAdapter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/MyIntTypeAdapter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/MyLongTypeAdapter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/RetrofitRestServices$REST.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/RetrofitRestServices.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/TestsParser$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/TestsParser.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/pojos/Device.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/pojos/ErrorFromServer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/pojos/Firmware.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/pojos/Job$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/pojos/Job.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/pojos/Sequence.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/pojos/Test.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/pojos/records/MyModel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/pojos/records/Readings.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/pojos/records/S0.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/pojos/records/S1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/pojos/records/S2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/pojos/records/Sensors.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/pojos/records/SingleS0.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/pojos/records/SingleS1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/pojos/records/SingleS2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/pojos/records/SingleTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/pojos/records/Test.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/pojos/records/TestRecord.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/pojos/records/response/Response.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/service/DownloadDevicesIntentService$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/service/DownloadDevicesIntentService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/service/ServiceDBHelper.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/utils/MyDatabaseUtils.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/utils/TestFromSequenceCreator$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/utils/TestFromSequenceCreator$SensorNumber.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/server/utils/TestFromSequenceCreator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/utils/DownloadTask$MyCallback.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/utils/DownloadTask.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/utils/MyDialogs$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/classes/debug/utils/MyDialogs.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/incremental/compileDebugAidl/dependency.store" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/incremental/compileDebugAndroidTestAidl/dependency.store" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/incremental/mergeDebugAndroidTestAssets/merger.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/incremental/mergeDebugAndroidTestResources/merger.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/incremental/mergeDebugAssets/merger.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/incremental/mergeDebugResources/merger.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/manifest/androidTest/debug/AndroidManifest.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/manifests/full/debug/AndroidManifest.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/pre-dexed/debug/IOIOLibCore-5.05_ca3f76220f64261cbf1f32308f8525bf54531729.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/pre-dexed/debug/MyJarCopy_4882574643d5024b6f359e936a78eb63a1e0073d.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/pre-dexed/debug/activeandroid-build_bd2212665bee5feefd126803ce6677f852bb93a6.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/pre-dexed/debug/android-async-http-1.4.6 (3)_dcc619d027f3fe57747385da040bf317844588ad.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/pre-dexed/debug/com.android.support-support-v4-23.1.1_6bfc3639ec82d0648c6ab4b2e15a0a4a79c75e8a.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/pre-dexed/debug/com.crashlytics.sdk.android-answers-1.3.4_6a0379e01fe44b9b3c8b221fc3ec77a03a8f088f.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/pre-dexed/debug/com.crashlytics.sdk.android-beta-1.1.4_ea11d88f1d579ef57b27f0e389c2c26dd0c052d9.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/pre-dexed/debug/com.crashlytics.sdk.android-crashlytics-2.5.3_16776711792ef51b047a0d9321155c2a60ed3811.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/pre-dexed/debug/com.crashlytics.sdk.android-crashlytics-core-2.3.6_c66dbe76c4e9aabc4be1212ed17e25ce982de9be.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/pre-dexed/debug/com.github.ytai.ioio-IOIOLibAndroid-5.05_cf3409156835eac75a79376ccc59b22e35a52b7c.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/pre-dexed/debug/com.github.ytai.ioio-IOIOLibAndroidAccessory-5.05_123933fc4fa3a523d4a040c32473b390fdab3522.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/pre-dexed/debug/com.github.ytai.ioio-IOIOLibAndroidBluetooth-5.05_8cb83cd9eecf187f5b5415ab7d3371f5f92ca810.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/pre-dexed/debug/com.github.ytai.ioio-IOIOLibAndroidDevice-5.05_287b99eca755e60100f8882573cd56a71dd99abe.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/pre-dexed/debug/commons-io-2.4_552be724a703f3efdaff8f0c0e15f8b915052751.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/pre-dexed/debug/debug_6a71ab67c153d2747ca48793f97c2ad96a6f7f17.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/pre-dexed/debug/gson-2.3.1_bd2a0ca0abfe9fc30b7d99ef332012a9eb2625ca.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/pre-dexed/debug/internal_impl-23.1.1_e6b4e65d22d66a95883fac38438a52dd0c5b959d.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/pre-dexed/debug/io.fabric.sdk.android-fabric-1.3.8_1fc6f078da1d5be5d841a7cab98e02b728fce89e.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/pre-dexed/debug/retrofit-1.9.0_4decd1918d9d5387de69f1e46d374cfc671954da.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/pre-dexed/debug/support-annotations-23.1.1_1c37adf2dd996ae69317c80615a6b57cc9e22588.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/ic_launcher.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/androidTest/debug/drawable-ldpi-v4/ic_launcher.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/androidTest/debug/drawable-mdpi-v4/ic_launcher.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/ic_launcher.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/androidTest/debug/values/values.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/anim/pressme.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/drawable-hdpi-v4/cross_icon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/drawable-hdpi-v4/device.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/drawable-hdpi-v4/gradient_bg.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/drawable-hdpi-v4/gradient_bg_hover.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/drawable-hdpi-v4/ic_action_device_signal_wifi_4_bar.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/drawable-hdpi-v4/ic_action_device_signal_wifi_off.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/drawable-hdpi-v4/ic_action_next.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/drawable-hdpi-v4/ic_action_play.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/drawable-hdpi-v4/ic_action_prod.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/drawable-hdpi-v4/ic_action_refresh.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/drawable-hdpi-v4/ic_action_settings.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/drawable-hdpi-v4/ic_action_test.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/drawable-hdpi-v4/ic_connect.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/drawable-hdpi-v4/ic_disconnect.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/drawable-hdpi-v4/ic_mode_edit_white_24dp.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/drawable-hdpi-v4/ic_save_white_24dp.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/drawable-hdpi-v4/icon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/drawable-hdpi-v4/list_selector.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/drawable-hdpi-v4/tick_icon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/drawable/attention.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/drawable/blueprogress.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/drawable/dotted.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/drawable/greenprogress.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/drawable/list_grey_gradient.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/drawable/ok_icon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/drawable/orangeprogress.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/drawable/redprogress.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/drawable/testgreenprogress.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/drawable/usb.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/layout/activity_main.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/layout/add_view.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/layout/dinamic_voltage_activity.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/layout/job_row.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/layout/newjobactivity.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/layout/nexttestactivity.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/layout/scanactivity.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/layout/select_ioio_device_activity.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/layout/select_ioio_device_list_item.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/layout/selectjobactivity.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/layout/sensor_test.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/layout/sensorrowitem.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/layout/sensors_summary_row_item.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/layout/sensorsummaryrowitem.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/layout/test_row.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/layout/trash.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/layout/voltagerowitem.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/menu/menu.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/raw/sql.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/values/com_crashlytics_build_id.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/values/values.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/xml/accessory_filter.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/xml/authenticator.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/xml/device_filter.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/xml/settingsscreen.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/merged/debug/xml/syncadapter.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/resources-debug-androidTest.ap_" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/res/resources-debug.ap_" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/sourceFolderJavaResources/debug/com/pietrantuono/ioioutils/IOIOUtils.java.orig" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/symbols/debug/R.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/transforms/mergeJavaRes/debug/folders/2/1f/main/com/pietrantuono/ioioutils/IOIOUtils.java.orig" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/transforms/mergeJavaRes/debug/jars/2/1f/main.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/outputs/apk/newAppTest-debug-unaligned.apk" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/outputs/apk/newAppTest-debug.apk" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/build/outputs/logs/manifest-merger-debug-report.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/PCBDetectHelper.java" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/PCBDetectHelperImpl.java" afterPath="$PROJECT_DIR$/newAppTest/src/maurizio/java/foo/PCBDetectHelperImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/cache.properties.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/outputFileStates.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/newAppTest/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/btutility/BTUtility.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/btutility/BTUtility.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/BatteryLevelUUTVoltageTest.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/BatteryLevelUUTVoltageTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/CurrentTest.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/CurrentTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/LedCheckTest.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/LedCheckTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/sensors/NewDevice.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/sensors/NewDevice.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/constants/NewSequence.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/constants/NewSequence.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/OtherSelectJobActivity.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/OtherSelectJobActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build.gradle" afterPath="$PROJECT_DIR$/newAppTest/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
+      <change type="DELETED" beforePath="C:\Users\Peter\StudioProjects\Again\pericoach-test-app-android-studio\.idea\libraries\IOIOLibAndroidAccessory_5_05.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Peter\StudioProjects\Again\pericoach-test-app-android-studio\.idea\libraries\IOIOLibAndroidBluetooth_5_05.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Peter\StudioProjects\Again\pericoach-test-app-android-studio\.idea\libraries\IOIOLibAndroidDevice_5_05.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Peter\StudioProjects\Again\pericoach-test-app-android-studio\.idea\libraries\IOIOLibAndroid_5_05.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Peter\StudioProjects\Again\pericoach-test-app-android-studio\.idea\libraries\IOIOLibCore_5_05.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Peter\StudioProjects\Again\pericoach-test-app-android-studio\.idea\libraries\MyJarCopy.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Peter\StudioProjects\Again\pericoach-test-app-android-studio\.idea\libraries\activeandroid_build.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Peter\StudioProjects\Again\pericoach-test-app-android-studio\.idea\libraries\android_async_http_1_4_6__3_.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Peter\StudioProjects\Again\pericoach-test-app-android-studio\.idea\libraries\answers_1_3_4.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Peter\StudioProjects\Again\pericoach-test-app-android-studio\.idea\libraries\beta_1_1_4.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Peter\StudioProjects\Again\pericoach-test-app-android-studio\.idea\libraries\commons_io_2_4.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Peter\StudioProjects\Again\pericoach-test-app-android-studio\.idea\libraries\crashlytics_2_5_3.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Peter\StudioProjects\Again\pericoach-test-app-android-studio\.idea\libraries\crashlytics_core_2_3_6.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Peter\StudioProjects\Again\pericoach-test-app-android-studio\.idea\libraries\fabric_1_3_8.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Peter\StudioProjects\Again\pericoach-test-app-android-studio\.idea\libraries\gson_2_3_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Peter\StudioProjects\Again\pericoach-test-app-android-studio\.idea\libraries\retrofit_1_9_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Peter\StudioProjects\Again\pericoach-test-app-android-studio\.idea\libraries\support_annotations_23_1_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Peter\StudioProjects\Again\pericoach-test-app-android-studio\.idea\libraries\support_v4_23_1_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Peter\StudioProjects\Again\pericoach-test-app-android-studio\NewAppTest-Android Studio.iml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gradle.xml" afterPath="$PROJECT_DIR$/.idea/gradle.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/local.properties" afterPath="$PROJECT_DIR$/local.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/newAppTest.iml" afterPath="$PROJECT_DIR$/newAppTest/newAppTest.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -509,7 +75,114 @@
     <favorites_list name="NewAppTest-Android Studio" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="BatteryLevelUUTVoltageTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/BatteryLevelUUTVoltageTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="56" column="26" selection-start-line="56" selection-start-column="26" selection-end-line="56" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Test.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/superclass/Test.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="113" column="16" selection-start-line="113" selection-start-column="16" selection-end-line="113" selection-end-column="16" />
+              <folding>
+                <element signature="e#3264#3265#0" expanded="true" />
+                <element signature="e#3289#3290#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="VoltageTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/VoltageTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="60" column="18" selection-start-line="60" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BTUtility.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/btutility/BTUtility.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.17322835">
+              <caret line="471" column="26" selection-start-line="471" selection-start-column="26" selection-end-line="471" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UIHelper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/uihelper/UIHelper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="341" column="34" selection-start-line="341" selection-start-column="34" selection-end-line="341" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OtherSelectJobActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/OtherSelectJobActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="5.037037">
+              <caret line="93" column="66" selection-start-line="93" selection-start-column="66" selection-end-line="94" selection-end-column="66" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NewSequence.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/constants/NewSequence.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-3.4814816">
+              <caret line="297" column="0" selection-start-line="297" selection-start-column="0" selection-end-line="297" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IOIOUtils.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/IOIOUtils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-4.551724">
+              <caret line="436" column="5" selection-start-line="436" selection-start-column="5" selection-end-line="436" selection-end-column="5" />
+              <folding>
+                <element signature="e#9568#9569#0" expanded="true" />
+                <element signature="e#9593#9594#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CurrentTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/CurrentTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="62" column="30" selection-start-line="62" selection-start-column="30" selection-end-line="62" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TestsParser.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/server/TestsParser.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-1.7777778">
+              <caret line="84" column="64" selection-start-line="84" selection-start-column="64" selection-end-line="84" selection-end-column="64" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
@@ -525,19 +198,19 @@
         <entry>
           <key>
             <ExternalProjectPojo>
-              <option name="name" value="NewAppTest-Android Studio" />
+              <option name="name" value="pericoach-test-app-android-studio" />
               <option name="path" value="$PROJECT_DIR$" />
             </ExternalProjectPojo>
           </key>
           <value>
             <list>
               <ExternalProjectPojo>
-                <option name="name" value=":newAppTest" />
-                <option name="path" value="$PROJECT_DIR$/newAppTest" />
+                <option name="name" value="pericoach-test-app-android-studio" />
+                <option name="path" value="$PROJECT_DIR$" />
               </ExternalProjectPojo>
               <ExternalProjectPojo>
-                <option name="name" value="NewAppTest-Android Studio" />
-                <option name="path" value="$PROJECT_DIR$" />
+                <option name="name" value=":newAppTest" />
+                <option name="path" value="$PROJECT_DIR$/newAppTest" />
               </ExternalProjectPojo>
             </list>
           </value>
@@ -550,17 +223,17 @@
           <value>
             <list>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the components produced by root project 'NewAppTest-Android Studio'. [incubating]" />
+                <option name="description" value="Displays the components produced by root project 'pericoach-test-app-android-studio'. [incubating]" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="components" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays all dependencies declared in root project 'NewAppTest-Android Studio'." />
+                <option name="description" value="Displays all dependencies declared in root project 'pericoach-test-app-android-studio'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="dependencies" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the insight into a specific dependency in root project 'NewAppTest-Android Studio'." />
+                <option name="description" value="Displays the insight into a specific dependency in root project 'pericoach-test-app-android-studio'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="dependencyInsight" />
               </ExternalTaskPojo>
@@ -575,22 +248,22 @@
                 <option name="name" value="init" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the configuration model of root project 'NewAppTest-Android Studio'. [incubating]" />
+                <option name="description" value="Displays the configuration model of root project 'pericoach-test-app-android-studio'. [incubating]" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="model" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the sub-projects of root project 'NewAppTest-Android Studio'." />
+                <option name="description" value="Displays the sub-projects of root project 'pericoach-test-app-android-studio'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="projects" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the properties of root project 'NewAppTest-Android Studio'." />
+                <option name="description" value="Displays the properties of root project 'pericoach-test-app-android-studio'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="properties" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the tasks runnable from root project 'NewAppTest-Android Studio' (some of the displayed tasks may belong to subprojects)." />
+                <option name="description" value="Displays the tasks runnable from root project 'pericoach-test-app-android-studio' (some of the displayed tasks may belong to subprojects)." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="tasks" />
               </ExternalTaskPojo>
@@ -2696,7 +2369,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="4346178512000" />
+        <entry key="C:\Users\Peter\StudioProjects\Again\pericoach-test-app-android-studio" value="4347082512167" />
         <entry key="C:\Users\Peter\StudioProjects\pericoach-test-app-android-studio" value="4346258026499" />
       </map>
     </option>
@@ -2913,14 +2586,14 @@
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/commons-codec/commons-codec/1.4/commons-codec-1.4.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/intellij/annotations/12.0/annotations-12.0-sources.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/intellij/annotations/12.0/annotations-12.0.jar" />
-                            <option value="$USER_HOME$/Library/Android/sdk/extras/android/m2repository/com/android/support/support-v4/23.1.1/support-v4-23.1.1.aar" />
+                            <option value="F:/Android/android-sdk/extras/android/m2repository/com/android/support/support-v4/23.1.1/support-v4-23.1.1.aar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.3.1/ecb6e1f8e4b0e84c4b886c2f14a1500caf309757/gson-2.3.1.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.ytai.ioio/IOIOLibAndroid/5.05/fbed2d6264cceb1447dd4400456bc9c36d9ab37c/IOIOLibAndroid-5.05.aar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.ytai.ioio/IOIOLibAndroidBluetooth/5.05/1267e2506393e348e534437fa73c9a6c4aceb3ca/IOIOLibAndroidBluetooth-5.05.aar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.ytai.ioio/IOIOLibAndroidAccessory/5.05/545b8f03f8f443be2307f95511a622ab99e16daa/IOIOLibAndroidAccessory-5.05.aar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.ytai.ioio/IOIOLibAndroidDevice/5.05/7df0ce91ece58b020a31289a7dd8cc7853711eaf/IOIOLibAndroidDevice-5.05.aar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.crashlytics.sdk.android/crashlytics/2.5.3/fbaca338964811209419bbd0f6eb7c9893e10268/crashlytics-2.5.3.aar" />
-                            <option value="$USER_HOME$/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.1/support-annotations-23.1.1.jar" />
+                            <option value="F:/Android/android-sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.1/support-annotations-23.1.1.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.ytai.ioio/IOIOLibCore/5.05/99821d5ab444306c6e39f3de72f85c4b287a6765/IOIOLibCore-5.05.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.crashlytics.sdk.android/beta/1.1.4/fa742a9b181b172fea820723307030da927d4e5/beta-1.1.4.aar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.crashlytics.sdk.android/answers/1.3.4/361b35c5992b07239aacdc4c0262eda6dd176430/answers-1.3.4.aar" />
@@ -2940,7 +2613,7 @@
                   </entry>
                 </map>
               </option>
-              <option name="name" value="newAppTest" />
+              <option name="name" value="pericoach-test-app-android-studio" />
               <option name="projectBuildClasspath">
                 <list>
                   <option value="$APPLICATION_HOME_DIR$/gradle/gradle-2.8/src/announce" />
@@ -3095,16 +2768,17 @@
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/MainActivity.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/uihelper/UIHelper.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/sensors/NewDevice.java" />
-        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/constants/NewSequence.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/OtherSelectJobActivity.java" />
-        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/BatteryLevelUUTVoltageTest.java" />
-        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/btutility/BTUtility.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/peter/PCBDetectHelperImpl.java" />
         <option value="$PROJECT_DIR$/newAppTest/build.gradle" />
         <option value="$PROJECT_DIR$/newAppTest/src/maurizio/java/PCBDetectHelperImpl.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/peter/java/PCBDetectHelperImpl.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/PCBDetectHelper.java" />
+        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/OtherSelectJobActivity.java" />
+        <option value="$PROJECT_DIR$/newAppTest/src/main/java/server/TestsParser.java" />
+        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/constants/NewSequence.java" />
+        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/BatteryLevelUUTVoltageTest.java" />
+        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/btutility/BTUtility.java" />
       </list>
     </option>
   </component>
@@ -3122,9 +2796,10 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
-    <option name="width" value="1440" />
-    <option name="height" value="797" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -3149,6 +2824,92 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Problems">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="newAppTest">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="newAppTest">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="PackagesPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NewAppTest-Android Studio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="newAppTest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NewAppTest-Android Studio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="newAppTest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pietrantuono" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NewAppTest-Android Studio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="newAppTest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pietrantuono" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="activities" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NewAppTest-Android Studio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="newAppTest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="Scratches" />
       <pane id="AndroidView">
         <subPane>
@@ -3254,74 +3015,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="NewAppTest-Android Studio" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="newAppTest" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="NewAppTest-Android Studio" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="newAppTest" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pietrantuono" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="NewAppTest-Android Studio" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="newAppTest" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pietrantuono" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="activities" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="NewAppTest-Android Studio" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="newAppTest" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -3336,7 +3029,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="NewAppTest-Android Studio" />
+              <option name="myItemId" value="pericoach-test-app-android-studio" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -3346,7 +3039,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="NewAppTest-Android Studio" />
+              <option name="myItemId" value="pericoach-test-app-android-studio" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -3360,7 +3053,25 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="pericoach-test-app-android-studio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="newAppTest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
               <option name="myItemId" value="NewAppTest-Android Studio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pericoach-test-app-android-studio" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -3372,7 +3083,55 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="peter" />
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NewAppTest-Android Studio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pericoach-test-app-android-studio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="newAppTest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NewAppTest-Android Studio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pericoach-test-app-android-studio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="newAppTest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -3380,7 +3139,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="foo" />
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pietrantuono" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -3390,7 +3153,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="NewAppTest-Android Studio" />
+              <option name="myItemId" value="pericoach-test-app-android-studio" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -3402,7 +3165,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="maurizio" />
+              <option name="myItemId" value="main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -3410,7 +3173,15 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="foo" />
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pietrantuono" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tests" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -3420,7 +3191,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="NewAppTest-Android Studio" />
+              <option name="myItemId" value="pericoach-test-app-android-studio" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -3431,6 +3202,30 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pietrantuono" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="implementations" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -3438,7 +3233,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="NewAppTest-Android Studio" />
+              <option name="myItemId" value="pericoach-test-app-android-studio" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -3446,26 +3241,176 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="build" />
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pietrantuono" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ioioutils" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-        </subPane>
-      </pane>
-      <pane id="Scope">
-        <subPane subId="Problems">
           <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NewAppTest-Android Studio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="newAppTest">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pericoach-test-app-android-studio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="newAppTest">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
+            <PATH_ELEMENT>
+              <option name="myItemId" value="newAppTest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pietrantuono" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="constants" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NewAppTest-Android Studio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pericoach-test-app-android-studio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="newAppTest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pietrantuono" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="activities" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NewAppTest-Android Studio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pericoach-test-app-android-studio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="newAppTest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pietrantuono" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="activities" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uihelper" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NewAppTest-Android Studio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pericoach-test-app-android-studio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="newAppTest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -3476,10 +3421,9 @@
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
-    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="015d483b8c541c09" />
+    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="07b3e759" />
     <property name="FullScreen" value="false" />
     <property name="SearchEverywhereHistoryKey" value="TestsP&#9;PSI&#9;JAVA://server.TestsParser" />
-    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="3_7_WVGA_Nexus_One_API_22" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="OverrideImplement.overriding.sorted" value="false" />
   </component>
@@ -3701,40 +3645,40 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="797" extended-state="0" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32993197" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19089574" sideWeight="0.46566522" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3040057" sideWeight="0.6707317" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22173275" sideWeight="0.49427754" order="7" side_tool="false" content_ui="tabs" x="680" y="401" width="80" height="40" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32892805" sideWeight="0.48569384" order="7" side_tool="false" content_ui="tabs" x="0" y="23" width="1292" height="479" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32978722" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32892805" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.87958884" sideWeight="0.49713877" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.87958884" sideWeight="0.5028612" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3040057" sideWeight="0.3292683" order="0" side_tool="false" content_ui="combo" x="989" y="1" width="377" height="940" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32942432" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3025751" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Fabric" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32928678" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32978722" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.40212765" sideWeight="0.49520257" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Fabric" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32928678" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.23829788" sideWeight="0.48347548" order="7" side_tool="false" content_ui="tabs" x="-44" y="240" width="1140" height="703" />
+      <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4434655" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.2212766" sideWeight="0.49200428" order="7" side_tool="false" content_ui="tabs" x="453" y="420" width="981" height="724" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32978722" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15319149" sideWeight="0.5079957" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4311649" sideWeight="0.27139366" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30442178" sideWeight="0.46566522" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32942432" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32993197" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3025751" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4311649" sideWeight="0.72860634" order="0" side_tool="false" content_ui="combo" x="989" y="1" width="377" height="940" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32892805" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32978722" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2555066" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -3975,13 +3919,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/server/TestsParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="41" column="60" selection-start-line="41" selection-start-column="60" selection-end-line="41" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/server/pojos/Sequence.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7909836">
@@ -4000,7 +3937,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="34" column="65" selection-start-line="34" selection-start-column="65" selection-end-line="34" selection-end-column="65" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4011,34 +3947,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/CurrentTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.12710567">
-          <caret line="62" column="30" selection-start-line="62" selection-start-column="30" selection-end-line="62" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/Current.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="129" column="4" selection-start-line="129" selection-start-column="4" selection-end-line="129" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/IOIOUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="426" column="44" selection-start-line="426" selection-start-column="44" selection-end-line="426" selection-end-column="44" />
-          <folding>
-            <element signature="e#9593#9594#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/VoltageTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="70" column="9" selection-start-line="70" selection-start-column="9" selection-end-line="70" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -4079,42 +3991,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/uihelper/UIHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.24475524">
-          <caret line="336" column="74" selection-start-line="336" selection-start-column="74" selection-end-line="336" selection-end-column="74" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/superclass/Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.66433567">
-          <caret line="45" column="63" selection-start-line="45" selection-start-column="55" selection-end-line="45" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/constants/NewSequence.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6873449">
-          <caret line="306" column="61" selection-start-line="306" selection-start-column="61" selection-end-line="306" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/newAppTest/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.24475524">
           <caret line="47" column="76" selection-start-line="47" selection-start-column="54" selection-end-line="47" selection-end-column="76" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/OtherSelectJobActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8305648">
-          <caret line="278" column="22" selection-start-line="278" selection-start-column="22" selection-end-line="278" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -4141,31 +4022,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/BatteryLevelUUTVoltageTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.22562142">
-          <caret line="56" column="62" selection-start-line="56" selection-start-column="62" selection-end-line="56" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/btutility/BTUtility.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.0898662">
-          <caret line="476" column="17" selection-start-line="476" selection-start-column="17" selection-end-line="476" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/PCBDetectHelper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.28680688">
           <caret line="10" column="31" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#239#240#0" expanded="true" />
-            <element signature="e#278#279#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -4173,9 +4033,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.34416825">
           <caret line="14" column="7" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -4191,6 +4048,91 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.6013987">
           <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/uihelper/UIHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="341" column="34" selection-start-line="341" selection-start-column="34" selection-end-line="341" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/OtherSelectJobActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="5.037037">
+          <caret line="93" column="66" selection-start-line="93" selection-start-column="66" selection-end-line="94" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/superclass/Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="113" column="16" selection-start-line="113" selection-start-column="16" selection-end-line="113" selection-end-column="16" />
+          <folding>
+            <element signature="e#3264#3265#0" expanded="true" />
+            <element signature="e#3289#3290#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/server/TestsParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.7777778">
+          <caret line="84" column="64" selection-start-line="84" selection-start-column="64" selection-end-line="84" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/VoltageTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="60" column="18" selection-start-line="60" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/IOIOUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.551724">
+          <caret line="436" column="5" selection-start-line="436" selection-start-column="5" selection-end-line="436" selection-end-column="5" />
+          <folding>
+            <element signature="e#9568#9569#0" expanded="true" />
+            <element signature="e#9593#9594#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/CurrentTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="62" column="30" selection-start-line="62" selection-start-column="30" selection-end-line="62" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/constants/NewSequence.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.4814816">
+          <caret line="297" column="0" selection-start-line="297" selection-start-column="0" selection-end-line="297" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/BatteryLevelUUTVoltageTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="56" column="26" selection-start-line="56" selection-start-column="26" selection-end-line="56" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/btutility/BTUtility.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.17322835">
+          <caret line="471" column="26" selection-start-line="471" selection-start-column="26" selection-end-line="471" selection-end-column="26" />
           <folding />
         </state>
       </provider>

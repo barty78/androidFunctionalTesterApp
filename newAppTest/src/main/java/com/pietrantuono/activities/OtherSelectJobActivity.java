@@ -95,9 +95,9 @@ public class OtherSelectJobActivity extends Activity implements MyCallback {
 				//PeriCoachTestApplication.setFirmwareId(job.getFirmwareId());
 				getFirmwareListFromServer(job.getFirmwareId());
 
-				if (job.getTestId() != 999) {		// Special job type 999 bypasses server defined sequence, uses internal one instead
-					startMainActivity(job);
-				}
+//				if (job.getTestId() != 999) {		// Special job type 999 bypasses server defined sequence, uses internal one instead
+//					startMainActivity(job);
+//				}
 //				if (firmwarefilepresent) {
 //					downloadSequence(job);
 //				} else {
@@ -247,6 +247,9 @@ public class OtherSelectJobActivity extends Activity implements MyCallback {
 	public void onDownloadFileSuccess() {
 
 //		firmwarefilepresent = true;
+		if (job.getTestId() == 999) {		// Special job type 999 bypasses server defined sequence, uses internal one instead
+			startMainActivity(job);
+		}
 		downloadSequence(job);
 
 	}
