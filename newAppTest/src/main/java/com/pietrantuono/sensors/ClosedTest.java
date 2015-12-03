@@ -325,6 +325,7 @@ public class ClosedTest extends SensorTest {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		sensorsTestHelper.stop();
 		return mSensorResult;
 	}
 

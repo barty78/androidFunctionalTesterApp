@@ -1,4 +1,4 @@
-package foo;
+package customclasses;
 
 import java.lang.ref.WeakReference;
 import java.util.Random;
@@ -57,7 +57,7 @@ public class PCBDetectHelperImpl implements PCBDetectHelperInterface {
 		@Override
 		protected Boolean doInBackground(Void... params) {
 			try {
-				while (!getRandomBoolean(0.97f)  && !isCancelled()) { // TODO put true
+				while (true  && !isCancelled()) { // TODO put true
 																//!getRandomBoolean(0.97f)
 																// !_PCB_Detect.read() 
 					Thread.sleep(1000);

@@ -1,13 +1,9 @@
 package com.pietrantuono.activities;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
-import com.activeandroid.query.Select;
 import com.crashlytics.android.Crashlytics;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.pietrantuono.activities.uihelper.ActivityCallback;
 import com.pietrantuono.activities.uihelper.MyDialogInterface;
 import com.pietrantuono.activities.uihelper.MyDialogs;
@@ -17,7 +13,7 @@ import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.btutility.BTUtility;
 import com.pietrantuono.constants.NewMResult;
 import com.pietrantuono.constants.NewMSensorResult;
-import com.pietrantuono.constants.NewSequence;
+import customclasses.NewSequence;
 import com.pietrantuono.constants.NewSequenceInterface;
 import com.pietrantuono.ioioutils.IOIOUtils;
 import com.pietrantuono.ioioutils.PCBConnectedCallback;
@@ -26,13 +22,10 @@ import com.pietrantuono.ioioutils.PCBDetectHelper.PCBDetectHelperInterface;
 import com.pietrantuono.ioioutils.Voltage;
 import com.pietrantuono.pericoach.newtestapp.R;
 import com.pietrantuono.sensors.SensorTestCallback;
-import com.pietrantuono.tests.superclass.Test;
 import com.pietrantuono.uploadfirmware.ProgressAndTextView;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -48,19 +41,13 @@ import ioio.lib.api.exception.ConnectionLostException;
 import ioio.lib.util.BaseIOIOLooper;
 import ioio.lib.util.IOIOLooper;
 import ioio.lib.util.IOIOLooperProvider;
-import ioio.lib.util.android.IOIOAndroidApplicationHelper;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
-import server.MyDoubleTypeAdapter;
-import server.MyIntTypeAdapter;
-import server.MyLongTypeAdapter;
 import server.RetrofitRestServices;
 import server.pojos.Device;
 import server.pojos.Job;
-import server.pojos.records.TestRecord;
 import server.service.ServiceDBHelper;
-import server.utils.MyDatabaseUtils;
 import server.utils.TestFromSequenceCreator;
 
 @SuppressWarnings("unused")

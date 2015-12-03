@@ -54,7 +54,7 @@ public class BarcodeCheckJob extends ActivityInstrumentationTestCase2<MainActivi
 	@Test
 	public void testFoo() {
 		job = new Job();
-		String barcoderead="foo";
+		String barcoderead= "customclasses";
 		InputStream stubInputStream =  IOUtils.toInputStream(barcoderead);
 		when(uartMock.getInputStream()).thenReturn(stubInputStream);
 		GetBarcodeTest barcodeTest = new GetBarcodeTest(mainActivityMock, ioioMock, job);
@@ -65,7 +65,7 @@ public class BarcodeCheckJob extends ActivityInstrumentationTestCase2<MainActivi
 	@Test
 	public void testJobNull() {
 		job = null;
-		String barcoderead="foo";
+		String barcoderead= "customclasses";
 		InputStream stubInputStream =  IOUtils.toInputStream(barcoderead);
 		when(uartMock.getInputStream()).thenReturn(stubInputStream);
 		GetBarcodeTest barcodeTest = new GetBarcodeTest(mainActivityMock, ioioMock, job);

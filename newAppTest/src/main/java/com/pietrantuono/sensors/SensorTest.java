@@ -149,7 +149,7 @@ public class SensorTest {
 			}
 		this.sensorsTestHelper.sendVoltage(voltage);
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(1*1000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -206,6 +206,9 @@ public class SensorTest {
 				? this.sensorsTestHelper.samplesref.mSamples.size() : this.sensorsTestHelper.INITIAL_FREEMODE_SAMPLE_CAPACITY;
 		for (int i = 0; i < numberOfSamplesTocopy; i++) {
 			tempSamples.add(this.sensorsTestHelper.samplesref.mSamples.get(i).mTimeOffsetMS, this.sensorsTestHelper.samplesref.mSamples.get(i).mForce);
+			int offset = this.sensorsTestHelper.samplesref.mSamples.get(i).mTimeOffsetMS;
+			Force force = this.sensorsTestHelper.samplesref.mSamples.get(i).mForce;
+			Log.d("DATA","\t"+offset+"\t"+force.mSensor0+"\t" +force.mSensor1+"\t" +force.mSensor2);
 		}
 		float sensor0 = 0.0f;
 		float sensor1 = 0.0f;
@@ -289,6 +292,7 @@ public class SensorTest {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		sensorsTestHelper.stop();
 		return mSensorResult;
 	}
 

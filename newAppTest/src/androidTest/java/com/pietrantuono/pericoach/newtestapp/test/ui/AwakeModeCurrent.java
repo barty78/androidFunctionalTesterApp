@@ -89,7 +89,7 @@ public class AwakeModeCurrent extends ActivityInstrumentationTestCase2<MainActiv
 		NewSequenceInterface newSequence = new GenericSequence();
 		
 		com.pietrantuono.tests.superclass.Test test;
-		test= new AwakeModeCurrentTest(mainActivity, ioioMock, "foo");
+		test= new AwakeModeCurrentTest(mainActivity, ioioMock, "customclasses");
 		newSequence.addTest(test);
 		
 		mainActivity.setNewSequence(newSequence);
