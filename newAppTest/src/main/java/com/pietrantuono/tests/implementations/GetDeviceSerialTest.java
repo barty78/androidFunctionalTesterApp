@@ -20,7 +20,7 @@ import server.service.ServiceDBHelper;
 
 public class GetDeviceSerialTest extends Test {
 	private static ExecutorService executor = Executors.newFixedThreadPool(1);
-	public int counter2 = 0;
+	public int retries = 0;
 	private AlertDialog alertDialog;
 	private String serial = "";
 
@@ -55,68 +55,85 @@ public class GetDeviceSerialTest extends Test {
 				activityListener.setSerial("");
 				String strFileContents = "";
 
-				
-				if (IOIOUtils.getUtils().getUartLog().indexOf("itoa16: ") != -1) {
-					strFileContents = IOIOUtils.getUtils().getUartLog()
-							.substring(IOIOUtils.getUtils().getUartLog().indexOf("itoa16: ") + 8,
-									IOIOUtils.getUtils().getUartLog().indexOf("itoa16: ") + 32)
-							.toString();
-					counter2 = 0;
+				if (IOIOUtils.getUtils().getUartLog().length() != 0) {		// Did we receive anything at all
 
-					Pattern pattern = Pattern.compile("^[\\p{Alnum}]+$");
-					Matcher matcher = pattern.matcher(strFileContents);
-					if (matcher.matches()) {
-						Log.d("SERIAL: ", "MATCH!.");
-						serial = strFileContents;
-						if(!ServiceDBHelper.isSerialAlreadySeen(serial)){
-						Success();
-						activityListener.addView("Serial (HW reading):", strFileContents, false);
-						activityListener.setSerial(strFileContents);
-						activityListener.addFailOrPass(true, true, "");
-						return;
-						}
-						else {
-							try {
-								Toast.makeText((Activity) activityListener, "Barcode already tested! Aborting test", Toast.LENGTH_LONG).show();
-								} catch (Exception e){}
+					if (IOIOUtils.getUtils().getUartLog().indexOf("itoa16: ") != -1) {
+						strFileContents = IOIOUtils.getUtils().getUartLog()
+								.substring(IOIOUtils.getUtils().getUartLog().indexOf("itoa16: ") + 8,
+										IOIOUtils.getUtils().getUartLog().indexOf("itoa16: ") + 32)
+								.toString();
+						retries = 0;
+
+						Pattern pattern = Pattern.compile("^[\\p{Alnum}]+$");
+						Matcher matcher = pattern.matcher(strFileContents);
+						if (matcher.matches()) {
+							Log.d("SERIAL: ", "MATCH!.");
+							serial = strFileContents;
+							if (!ServiceDBHelper.isSerialAlreadySeen(serial)) {
+								Success();
+								activityListener.addView("Serial (HW reading):", strFileContents, false);
+								activityListener.setSerial(strFileContents);
+								activityListener.addFailOrPass(true, true, "");
+								return;
+							} else {
+								try {
+									Toast.makeText((Activity) activityListener, "Serial number already tested! Aborting test", Toast.LENGTH_LONG).show();
+								} catch (Exception e) {
+								}
+								activityListener.addFailOrPass(true, false, "");
+
 								activityListener.onCurrentSequenceEnd();
 								return;
+							}
 						}
-					}
-				}
+					} else {
+						if (retries > 2) {
+							activityListener.addView("Serial (HW reading):", "ERROR", Color.RED, true);
+							activityListener.addFailOrPass(true, false, "Retries Exceeded");
 
-				if (counter2 > 2) {
-					
-					activityListener.addView("Serial (HW reading):", "ERROR", Color.RED, true);
-					Toast.makeText((Activity) activityListener, "Unable to read serial number", Toast.LENGTH_LONG)
-					.show();
-				} else {
-					counter2++;
-					final AlertDialog.Builder builder = new AlertDialog.Builder((Activity) activityListener);
-					builder.setTitle("Unable to read serial number");
-					builder.setMessage("Click OK to retry");
-					builder.setCancelable(true);
-					builder.setOnCancelListener(new MyOnCancelListener((Activity) activityListener));
-					builder.setPositiveButton("OK", new OnClickListener() {
-						@Override
-						public void onClick(DialogInterface dialog, int which) {
-							dialog.dismiss();
-							// uart1.close();
+						} else {
+							retries++;
 							execute();
 						}
-					});
-					builder.setNegativeButton("CLOSE TEST", new OnClickListener() {
-						@Override
-						public void onClick(DialogInterface dialog, int which) {
-							dialog.dismiss();
-							((Activity) activityListener).onBackPressed();
-						}
-					});
-
-					alertDialog = builder.create();
-					alertDialog.show();
+					}
+				} else {
+					activityListener.addView("Serial (HW reading):", "ERROR", Color.RED, true);
+					activityListener.addFailOrPass(true, false, "No Comms");
 
 				}
+
+//				if (retries > 2) {
+//
+//					activityListener.addView("Serial (HW reading):", "ERROR", Color.RED, true);
+//					Toast.makeText((Activity) activityListener, "Unable to read serial number", Toast.LENGTH_LONG)
+//					.show();
+//				} else {
+//					retries++;
+//					final AlertDialog.Builder builder = new AlertDialog.Builder((Activity) activityListener);
+//					builder.setTitle("Unable to read serial number");
+//					builder.setMessage("Click OK to retry");
+//					builder.setCancelable(true);
+//					builder.setOnCancelListener(new MyOnCancelListener((Activity) activityListener));
+//					builder.setPositiveButton("OK", new OnClickListener() {
+//						@Override
+//						public void onClick(DialogInterface dialog, int which) {
+//							dialog.dismiss();
+//							// uart1.close();
+//							execute();
+//						}
+//					});
+//					builder.setNegativeButton("CLOSE TEST", new OnClickListener() {
+//						@Override
+//						public void onClick(DialogInterface dialog, int which) {
+//							dialog.dismiss();
+//							((Activity) activityListener).onBackPressed();
+//						}
+//					});
+//
+//					alertDialog = builder.create();
+//					alertDialog.show();
+//
+//				}
 
 				return;
 			}

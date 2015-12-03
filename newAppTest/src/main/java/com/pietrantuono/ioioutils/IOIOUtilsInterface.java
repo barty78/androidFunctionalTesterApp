@@ -6,6 +6,8 @@ import java.io.OutputStream;
 import com.pietrantuono.activities.NewIOIOActivityListener;
 
 import android.app.Activity;
+
+import ioio.lib.api.DigitalInput;
 import ioio.lib.api.DigitalOutput;
 import ioio.lib.api.IOIO;
 import ioio.lib.api.TwiMaster;
@@ -24,6 +26,8 @@ public interface IOIOUtilsInterface {
 	DigitalOutput getSensor_High();
 
 	DigitalOutput get_5V_DC();
+
+	DigitalInput getCHGPin();
 
 	TwiMaster getMaster();
 

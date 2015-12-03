@@ -134,8 +134,8 @@ public class FirmWareUploader {
 				}
 
 				//int npages = 0xFF;
-				if (!erase((byte) 0xFF))			// Erase all memory
-					return null;
+//				if (!erase((byte) 0xFF))			// Erase all memory
+//					return null;
 				
 
 				int addr = fl_start;

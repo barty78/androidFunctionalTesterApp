@@ -52,6 +52,9 @@ public class IOIOUtils implements IOIOUtilsInterface  {
 	private static DigitalOutput Sensor_High;
 	private static DigitalOutput HallInt;
 	private static DigitalOutput EMag;
+
+	private static DigitalInput CHGPin;
+
 	private static TwiMaster master = null;
 	private static Boolean isinterrupted=false;
 	private static Boolean stopthread=false;
@@ -240,7 +243,12 @@ public class IOIOUtils implements IOIOUtilsInterface  {
 			EMag.close();
 			}
 			catch (Exception e){e.printStackTrace();}
-		
+
+		try {
+			CHGPin.close();
+		}
+		catch (Exception e){e.printStackTrace();}
+
 		try {
 			trigger.close();
 			}
@@ -355,6 +363,13 @@ public class IOIOUtils implements IOIOUtilsInterface  {
 			report(e, ac);
 			return;
 		}
+
+		try {
+//			CHGPin = ioio_.openDigitalInput(27, DigitalInput.Spec.Mode.PULL_UP);
+		} catch (Exception e) {
+			report(e, ac);
+			return;
+		}
 		
 		try {
 			uart1 = ioio_.openUart(6, 7, 115200, Uart.Parity.NONE, Uart.StopBits.ONE);
@@ -413,9 +428,14 @@ public class IOIOUtils implements IOIOUtilsInterface  {
 		return barcodeOK;
 	}
 
-	public  DigitalOutput getTrigger() {
-		return trigger;
-	}
+	/* (non-Javadoc)
+    * @see com.pietrantuono.ioioutils.IOIOUtilsInterface#getCHGPin()
+    */
+	@Override
+	public DigitalInput getCHGPin() {return CHGPin; }
+
+	public  DigitalOutput getTrigger() {return trigger;	}
+
 	public  DigitalOutput getSensor_Low() {
 		return Sensor_Low;
 	}

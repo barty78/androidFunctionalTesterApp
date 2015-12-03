@@ -10,10 +10,12 @@ public 	class VoltageTest extends Test {
 	private int pinNumber;
 	private float limit;
 	private float precision;
+	private Boolean scaled = false;
+	private float scaling;
 	private Boolean writetoDC5 = false;
 	private Boolean whatToWriteToDC5 = null;
-	private Boolean writeToreset =false;
-	private Boolean whatToWriteToreset =null;
+	private Boolean writeToreset = false;
+	private Boolean whatToWriteToreset = null;
 
 	/**
 	 * @param activity			- Activity Instance
@@ -27,6 +29,27 @@ public 	class VoltageTest extends Test {
 	public VoltageTest(Activity activity,IOIO ioio, int pinNumber, float limit, float precision, String description) {
 		super(activity,ioio,description, false, true);
 		this.pinNumber = pinNumber;
+		this.limit = limit;
+		this.precision = precision;
+		this.description=description;
+	}
+
+	/**
+	 * @param activity			- Activity Instance
+	 * @param ioio				- IOIO Instance
+	 * @param pinNumber			- IOIO Pin Number
+	 * @param scaled			- Enable scaling
+	 * @param scaling			- Scaling factor
+	 * @param limit				- Nominal Voltage
+	 * @param precision			- Voltage Precision
+	 * @param description		- Test Description
+	 */
+
+	public VoltageTest(Activity activity,IOIO ioio, int pinNumber, Boolean scaled, float scaling, float limit, float precision, String description) {
+		super(activity,ioio,description, false, true);
+		this.pinNumber = pinNumber;
+		this.scaled = scaled;
+		this.scaling = scaling;
 		this.limit = limit;
 		this.precision = precision;
 		this.description=description;
@@ -90,7 +113,7 @@ public 	class VoltageTest extends Test {
 
 		try {
 			result = Voltage
-					.checkVoltage(ioio, pinNumber, limit, precision);
+					.checkVoltage(ioio, pinNumber, scaled, scaling, limit, precision);
 		} catch (Exception e) {
 			report(e);
 		}
