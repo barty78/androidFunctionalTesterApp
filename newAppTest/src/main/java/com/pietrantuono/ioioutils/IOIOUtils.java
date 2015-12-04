@@ -365,7 +365,7 @@ public class IOIOUtils implements IOIOUtilsInterface  {
 		}
 
 		try {
-//			CHGPin = ioio_.openDigitalInput(27, DigitalInput.Spec.Mode.PULL_UP);
+			CHGPin = ioio_.openDigitalInput(27, DigitalInput.Spec.Mode.FLOATING);
 		} catch (Exception e) {
 			report(e, ac);
 			return;

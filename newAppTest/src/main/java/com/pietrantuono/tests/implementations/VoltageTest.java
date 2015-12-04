@@ -1,5 +1,7 @@
 package com.pietrantuono.tests.implementations;
 import ioio.lib.api.IOIO;
+import ioio.lib.api.exception.ConnectionLostException;
+
 import android.app.Activity;
 import android.util.Log;
 
@@ -117,6 +119,15 @@ public 	class VoltageTest extends Test {
 		} catch (Exception e) {
 			report(e);
 		}
+
+		try {
+			IOIOUtils.getUtils().get_5V_DC().write(true);
+		} catch (Exception e) {
+			report(e);
+		}
+
+		IOIOUtils.getUtils().toggleTrigger((Activity) activityListener);
+
 		if (activityListener == null
 				|| ((Activity) activityListener).isFinishing())
 			return;
@@ -127,12 +138,10 @@ public 	class VoltageTest extends Test {
 		}
 		if (result.isSuccess()) {
 			Success();
-			activityListener.addFailOrPass(true, true, result.getReading(),description);
+			activityListener.addFailOrPass(true, true, result.getReading(), description);
 		} else {
-			activityListener
-					.addFailOrPass(true, false, result.getReading(),description);
+			activityListener.addFailOrPass(true, false, result.getReading(), description);
 		}
-		IOIOUtils.getUtils().toggleTrigger((Activity)activityListener);
 	}
 	@Override
 	public void interrupt() {

@@ -11,7 +11,8 @@ import com.pietrantuono.tests.implementations.BTConnectCurrent;
 import com.pietrantuono.tests.implementations.BatteryLevelUUTVoltageTest;
 import com.pietrantuono.tests.implementations.BluetoothConnectTestForTesting;
 import com.pietrantuono.tests.implementations.BluetoothDiscoverableModeTestForTesting;
-import com.pietrantuono.tests.implementations.Charge_termination_test;
+import com.pietrantuono.tests.implementations.ChargingTest;
+import com.pietrantuono.tests.implementations.ChargingTerminationTest;
 import com.pietrantuono.tests.implementations.DummyTest;
 import com.pietrantuono.tests.implementations.GetBarcodeTest;
 import com.pietrantuono.tests.implementations.GetDeviceSerialTest;
@@ -56,7 +57,7 @@ public class TestsParser {
 					getDescription(testToBeParsed));
 			break;
 		case 5:
-			test = new Charge_termination_test(activity, ioio,
+			test = new ChargingTerminationTest(activity, ioio,
 					getDescription(testToBeParsed));
 			break;
 		case 6:
@@ -104,6 +105,10 @@ public class TestsParser {
 		case 18:
 			test = new DummyTest(activity, getDescription(testToBeParsed) + " " + dummycounter + 1,  false, true);
 			dummycounter++;
+			break;
+		case 19:
+			test = new ChargingTest(activity, ioio,
+					getDescription(testToBeParsed));
 			break;
 
 		}

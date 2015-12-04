@@ -1,22 +1,26 @@
 package com.pietrantuono.tests.implementations;
-import com.pietrantuono.activities.MyOnCancelListener;
-import com.pietrantuono.ioioutils.IOIOUtils;
-import com.pietrantuono.tests.superclass.Test;
-import ioio.lib.api.IOIO;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
-public class Charge_termination_test extends Test {
+import android.util.Log;
+
+import com.pietrantuono.activities.MyOnCancelListener;
+import com.pietrantuono.ioioutils.IOIOUtils;
+import com.pietrantuono.tests.superclass.Test;
+
+import ioio.lib.api.IOIO;
+import ioio.lib.api.exception.ConnectionLostException;
+
+public class ChargingTest extends Test {
 	private AlertDialog alertDialog;
-	private Boolean isCharging;
 	private Boolean CHGPin;
 	private Boolean success = false;
 
-	public Charge_termination_test(Activity activity, IOIO ioio,
-			String description) {
+	public ChargingTest(Activity activity, IOIO ioio,
+						String description) {
 		super(activity, ioio, description, false, false);
-		this.isCharging = isCharging;
 	}
 	@Override
 	public void execute() {
@@ -24,23 +28,21 @@ public class Charge_termination_test extends Test {
 		byte[] writebyte;
 		byte[] readbyte;
 		Activity ac= (Activity)activityListener;
-		if (!isCharging) {
-			writebyte = new byte[]{0x00, (byte) 0};		// Set voltage to high (~4.1v)
-			readbyte = new byte[]{};
-		} else {
-			writebyte = new byte[]{0x00, (byte) 100};		// Set voltage to normal (~3.5v)
-			readbyte = new byte[]{};
 
-		}
+		writebyte = new byte[]{0x00, (byte) 170};		// Set voltage to normal (~3.5v)
+		readbyte = new byte[]{};
+
 		if (IOIOUtils.getUtils().getMaster() != null)
 			try {
-				IOIOUtils.getUtils().getMaster().writeRead(0x60, false, writebyte, writebyte.length,
-						readbyte, readbyte.length);
+//				IOIOUtils.getUtils().getMaster().writeRead(0x60, false, writebyte, writebyte.length,
+//						readbyte, readbyte.length);
 			} catch (Exception e1) {
 				report(e1);
 				activityListener.addFailOrPass(true, false, "IOIO Fault");
 				return;
 			}
+
+		switch5vDC(true);
 
 		try {
 			CHGPin = IOIOUtils.getUtils().getCHGPin().read();
@@ -49,47 +51,70 @@ public class Charge_termination_test extends Test {
 			activityListener.addFailOrPass(true, false, "IOIO Read Fault");
 		}
 
-		if (isCharging) {
-			if (!CHGPin) {
-				showAlert(ac, true);
-			}
+		Log.d(TAG, "CHG Pin is " + String.valueOf(CHGPin));
+
+		if (!CHGPin) {
+			showAlert(ac, true);
 		} else {
-			if (CHGPin) {
-				showAlert(ac, true);
-			}
+			setSuccess(false);
+			switch5vDC(false);
+			activityListener.addFailOrPass(true, false, "");
 		}
-		setSuccess(true);
-		activityListener.addFailOrPass(false, false, description);
 
 	}
 
+	private void switch5vDC(Boolean state) {
+		Boolean value;
+		if (state) {
+			value = false;
+		} else {
+			value = true;
+		}
+
+		Log.d(TAG, "Setting 5VDC to " + String.valueOf(value));
+
+		try {
+			IOIOUtils.getUtils().get_5V_DC().write(value);
+		} catch (Exception e) {
+			report(e);
+			activityListener.addFailOrPass(true, false, "IOIO Fault");
+		}
+	}
+
 	private void showAlert(Activity ac, final Boolean value) {
+		if(isinterrupted)return;
 
 		final AlertDialog.Builder builder = new AlertDialog.Builder(ac);
-		builder.setTitle("Pink LED check");
-		builder.setMessage("Please check pink LED it's OFF");
-		builder.setPositiveButton("Yes, it's OFF", new OnClickListener() {
+		builder.setTitle("Check Pink LED");
+		builder.setMessage("Is It On?");
+		builder.setPositiveButton("Yes, it's ON", new OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				dialog.dismiss();
+				if(isinterrupted)return;
 				if (value) {
 					setSuccess(true);
+					switch5vDC(false);
 					activityListener.addFailOrPass(false, true, description);
 				} else {
 					setSuccess(false);
+					switch5vDC(false);
 					activityListener.addFailOrPass(false, false, description);
 				}
 			}
 		});
-		builder.setNegativeButton("No, it's ON", new OnClickListener() {
+		builder.setNegativeButton("No, it's OFF", new OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				dialog.dismiss();
+				if(isinterrupted)return;
 				if (value) {
 					setSuccess(false);
+					switch5vDC(false);
 					activityListener.addFailOrPass(false, false, description);
 				} else {
 					setSuccess(false);
+					switch5vDC(false);
 					activityListener.addFailOrPass(false, true, description);
 				}
 			}
@@ -97,9 +122,10 @@ public class Charge_termination_test extends Test {
 		builder.setCancelable(true);
 		builder.setOnCancelListener(new MyOnCancelListener(ac));
 		alertDialog=builder.create();
-		ac.runOnUiThread(new Runnable() {
+		((Activity)activityListener).runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
+				if (isinterrupted) return;
 				alertDialog.show();
 			}
 		});
