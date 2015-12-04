@@ -7,8 +7,6 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Random;
 
 import org.apache.commons.io.IOUtils;
 import org.junit.Test;
@@ -16,22 +14,11 @@ import org.mockito.Mockito;
 import org.mockito.internal.verification.Times;
 
 import com.pietrantuono.activities.MainActivity;
-import com.pietrantuono.constants.LimitsProvider;
-import com.pietrantuono.constants.NewMSensorResult;
-import com.pietrantuono.sensors.ClosedTest;
-import com.pietrantuono.sensors.NewPFMATDevice;
-import com.pietrantuono.sensors.SensorTest;
-import com.pietrantuono.sensors.SensorsTestHelper;
 import com.pietrantuono.tests.implementations.GetBarcodeTest;
 import com.robotium.solo.Solo;
 
-import android.app.Activity;
-import android.bluetooth.BluetoothDevice;
 import android.test.ActivityInstrumentationTestCase2;
-import android.test.InstrumentationTestCase;
-import hydrix.pfmat.generic.Force;
-import hydrix.pfmat.generic.SessionSamples;
-import hydrix.pfmat.generic.TestLimits;
+
 import ioio.lib.api.DigitalInput;
 import ioio.lib.api.DigitalOutput;
 import ioio.lib.api.IOIO;
@@ -73,7 +60,7 @@ public class IsBarcodeAlreadySeen extends ActivityInstrumentationTestCase2<MainA
 	@Test
 	public void testFoo() {
 		job = new Job();
-		String barcoderead="foo";
+		String barcoderead= "customclasses";
 		InputStream stubInputStream =  IOUtils.toInputStream(barcoderead);
 		when(uartMock.getInputStream()).thenReturn(stubInputStream);
 		GetBarcodeTest barcodeTest = new GetBarcodeTest(mainActivityMock, ioioMock, job);

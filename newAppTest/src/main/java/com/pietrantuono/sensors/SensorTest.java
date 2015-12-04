@@ -1,5 +1,6 @@
 package com.pietrantuono.sensors;
 
+import java.io.IOException;
 import java.lang.ref.WeakReference;
 
 import com.pietrantuono.activities.MainActivity;
@@ -20,7 +21,8 @@ import hydrix.pfmat.generic.SessionSamples;
 import hydrix.pfmat.generic.TestLimits;
 
 public class SensorTest {
-	
+
+	private static final int DELAY = 1 * 1000;
 	protected SensorsTestHelper sensorsTestHelper;
 	protected TestLimits testLimits = null;
 	protected WeakReference<Activity> activity = null;
@@ -148,23 +150,37 @@ public class SensorTest {
 				e.printStackTrace();
 			}
 		this.sensorsTestHelper.sendVoltage(voltage);
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		this.sensorsTestHelper.samplesref.clear();
+
 		Handler h = new Handler(Looper.getMainLooper());
 		h.postDelayed(new Runnable() {
 			@Override
 			public void run() {
-				endTest();
+
+				try {
+					NewPFMATDevice.getDevice().getOutputStream().flush();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				sensorsTestHelper.accetpData(true);
+				SensorTest.this.sensorsTestHelper.samplesref.clear();
+				Log.d("execute", "executin first runnable");
 			}
-		}, SensorsTestHelper.CALIBRATION_TIME_MS * 1);
+		}, DELAY);
+		h.postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				Log.d("execute","executin first runnable");
+				endTest();
+
+			}
+		}, (SensorsTestHelper.CALIBRATION_TIME_MS * 1) + DELAY);
+
 	}
 
 	public NewMSensorResult endTest() {
 		if (stopped)return mSensorResult;
+		sensorsTestHelper.accetpData(false);
+		sensorsTestHelper.stop();
 		final LinearLayout layout = (LinearLayout) this.sensorsTestHelper.activityref.get().findViewById(R.id.sensorsreading);
 		this.sensorsTestHelper.activityref.get().runOnUiThread(new Runnable() {
 			@Override
@@ -206,6 +222,9 @@ public class SensorTest {
 				? this.sensorsTestHelper.samplesref.mSamples.size() : this.sensorsTestHelper.INITIAL_FREEMODE_SAMPLE_CAPACITY;
 		for (int i = 0; i < numberOfSamplesTocopy; i++) {
 			tempSamples.add(this.sensorsTestHelper.samplesref.mSamples.get(i).mTimeOffsetMS, this.sensorsTestHelper.samplesref.mSamples.get(i).mForce);
+			int offset = this.sensorsTestHelper.samplesref.mSamples.get(i).mTimeOffsetMS;
+			Force force = this.sensorsTestHelper.samplesref.mSamples.get(i).mForce;
+			Log.d("DATA","\t"+offset+"\t"+force.mSensor0+"\t" +force.mSensor1+"\t" +force.mSensor2);
 		}
 		float sensor0 = 0.0f;
 		float sensor1 = 0.0f;
@@ -289,6 +308,7 @@ public class SensorTest {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+
 		return mSensorResult;
 	}
 

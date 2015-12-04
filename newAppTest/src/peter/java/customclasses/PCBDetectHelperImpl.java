@@ -1,4 +1,4 @@
-package foo;
+package customclasses;
 import java.lang.ref.WeakReference;
 import java.util.Random;
 import com.pietrantuono.activities.ActivtyWrapper;

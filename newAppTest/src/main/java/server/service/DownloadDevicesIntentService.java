@@ -15,7 +15,7 @@ import server.pojos.Device;
 
 public class DownloadDevicesIntentService extends IntentService{
 	public DownloadDevicesIntentService() {
-		super("foo");
+		super("customclasses");
 	}
 
 	@Override

@@ -101,7 +101,7 @@ public class Voltage extends ActivityInstrumentationTestCase2<MainActivity> {
 		AnalogInput analogInput=Mockito.mock(AnalogInput.class);
 		when(ioioMock.openAnalogInput(anyInt())).thenReturn(analogInput);
 		NewSequenceInterface newSequence = new GenericSequence();
-		newSequence.addTest(new VoltageTest(mainActivity, ioioMock, 1, 0, 0, true, true, null, null, "foo"));
+		newSequence.addTest(new VoltageTest(mainActivity, ioioMock, 1, 0, 0, true, true, null, null, "customclasses"));
 		mainActivity.setNewSequence(newSequence);
 		
 		

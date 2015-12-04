@@ -2,7 +2,7 @@ package com.pietrantuono.ioioutils;
 
 import com.pietrantuono.activities.ActivtyWrapper;
 
-import foo.PCBDetectHelperImpl;
+import customclasses.PCBDetectHelperImpl;
 import ioio.lib.api.DigitalInput;
 
 

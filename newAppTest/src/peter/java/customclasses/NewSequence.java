@@ -1,4 +1,4 @@
-package com.pietrantuono.constants;
+package customclasses;
 
 
 import java.text.SimpleDateFormat;
@@ -8,6 +8,9 @@ import java.util.List;
 import android.app.Activity;
 
 import com.pietrantuono.activities.MainActivity;
+import com.pietrantuono.constants.NewMResult;
+import com.pietrantuono.constants.NewMSensorResult;
+import com.pietrantuono.constants.NewSequenceInterface;
 import com.pietrantuono.ioioutils.Current.Scale;
 import com.pietrantuono.tests.implementations.AccelerometerSelfTest;
 import com.pietrantuono.tests.implementations.BatteryLevelUUTVoltageTest;

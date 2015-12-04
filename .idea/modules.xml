@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/newAppTest/newAppTest.iml" filepath="$PROJECT_DIR$/newAppTest/newAppTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/pericoach-test-app-android-studio.iml" filepath="$PROJECT_DIR$/pericoach-test-app-android-studio.iml" />
     </modules>
   </component>
 </project>

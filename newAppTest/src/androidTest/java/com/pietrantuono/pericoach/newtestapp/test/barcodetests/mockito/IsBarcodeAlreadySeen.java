@@ -54,7 +54,7 @@ public class IsBarcodeAlreadySeen extends ActivityInstrumentationTestCase2<MainA
 	@Test
 	public void testFoo() throws InterruptedException {
 		job = new Job();
-		String barcoderead="foo";
+		String barcoderead= "customclasses";
 		InputStream stubInputStream =  IOUtils.toInputStream(barcoderead);
 		when(uartMock.getInputStream()).thenReturn(stubInputStream);
 		Thread.sleep(1000);

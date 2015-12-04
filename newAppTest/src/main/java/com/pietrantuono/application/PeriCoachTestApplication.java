@@ -18,6 +18,8 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Settings.Secure;
 import android.util.Log;
+
+import customclasses.AndroidID;
 import server.pojos.Firmware;
 import server.pojos.Sequence;
 
@@ -54,7 +56,7 @@ public class PeriCoachTestApplication extends  com.activeandroid.app.Application
 		context=getApplicationContext();
 		mAccount = CreateSyncAccount(context);
 		setUpSyncApapter();
-		android_id = Secure.getString(getContentResolver(),Secure.ANDROID_ID);
+		android_id = AndroidID.getID(PeriCoachTestApplication.this);
 		if(android_id==null)android_id="";
 		//forceSync();
 	    assetManager = getAssets();
