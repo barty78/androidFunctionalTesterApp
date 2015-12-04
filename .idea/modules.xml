@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/NewAppTest-Android Studio.iml" filepath="$PROJECT_DIR$/NewAppTest-Android Studio.iml" />
       <module fileurl="file://$PROJECT_DIR$/newAppTest/newAppTest.iml" filepath="$PROJECT_DIR$/newAppTest/newAppTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/pericoach-test-app-android-studio.iml" filepath="$PROJECT_DIR$/pericoach-test-app-android-studio.iml" />
     </modules>
   </component>
 </project>

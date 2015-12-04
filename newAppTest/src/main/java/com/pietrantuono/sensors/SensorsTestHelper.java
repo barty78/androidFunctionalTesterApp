@@ -18,8 +18,6 @@ public class SensorsTestHelper implements OnSampleCallback {
 	WeakReference<Activity> activityref = null;
 	TextView sensor0ref = null;
 	TextView sensor1ref = null;
-	
-
 	TextView sensor2ref = null;
 	private NewSessionPollingThread newSessionPollingThreadref = null;
 	SessionSamples samplesref = null;
@@ -38,6 +36,7 @@ public class SensorsTestHelper implements OnSampleCallback {
 	boolean samplingSensor0=true;
 	boolean samplingSensor1=true;
 	boolean samplingSensor2=true;
+	private boolean acceptdata;
 
 	public SensorsTestHelper(Activity activity, BTUtility btUtil, IOIO ioio) {
 		Log.d(TAG, "Constructor");
@@ -67,7 +66,11 @@ public class SensorsTestHelper implements OnSampleCallback {
 	}
 
 	@Override
-	public void onSample(int requestTimestampMS, final short sensor0, final short sensor1, final short sensor2) {
+	public synchronized void  onSample(int requestTimestampMS, final short sensor0, final short sensor1, final short sensor2) {
+		if(!acceptdata) {
+			Log.d(TAG,"NOT accetping data offset = "+requestTimestampMS+" "+sensor0+" "+sensor1+" "+ " "+sensor2);
+			return;}
+		Log.d(TAG,"YES accepting datta offset = "+requestTimestampMS+" "+sensor0+" "+sensor1+" "+ " "+sensor2);
 		Activity activity = activityref.get();
 		SessionSamples samples = samplesref;
 		final TextView sensor0tv = sensor0ref;
@@ -157,6 +160,9 @@ public class SensorsTestHelper implements OnSampleCallback {
 	public void setActivityref(Activity activity) {
 		this.activityref = new WeakReference<Activity>(activity);
 	}
-	
+
+	public void accetpData(boolean accept){
+		this.acceptdata=accept;
+	}
 
 }

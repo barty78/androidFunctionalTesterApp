@@ -1,6 +1,8 @@
 package com.pietrantuono.sensors;
 
 
+import android.util.Log;
+
 class NewSessionPollingThread extends Thread
 {
 	// Members
@@ -38,7 +40,7 @@ class NewSessionPollingThread extends Thread
 			// Send a request for a sample to the device
 			if (!mDevice.sendGetSensorData(offsetMS))
 				break;
-
+			Log.d("NewSessionPollingThread","Requesting data to probe, offset="+offsetMS);
 			// Wait for a period of time before polling again (keeping an eye on stop event)
 			try
 			{
