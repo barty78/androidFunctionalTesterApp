@@ -37,6 +37,7 @@ public class PeriCoachTestApplication extends  com.activeandroid.app.Application
 	private static File dir;
 	private static AssetManager assetManager;
 	private static final String LAST_ID="last_id";
+	private static Sequence sequence;
 
 	public static File getFirmwareCheckFile() {
 		return firmwareCheckFile;
@@ -48,6 +49,10 @@ public class PeriCoachTestApplication extends  com.activeandroid.app.Application
 		PeriCoachTestApplication.firmware = new File(context.getFilesDir(),filename);
 		PeriCoachTestApplication.firmwareCheckFile = new File(context.getFilesDir(),"check"+filename);
 
+	}
+
+	public static Sequence getSequence() {
+		return sequence;
 	}
 
 	@Override
@@ -78,6 +83,7 @@ public class PeriCoachTestApplication extends  com.activeandroid.app.Application
 	
 
 	public static void setSequence(Sequence sequence) {
+		PeriCoachTestApplication.sequence=sequence;
 	}
 	
 

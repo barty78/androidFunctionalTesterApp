@@ -110,7 +110,6 @@ public class TestsParser {
 			test = new ChargingTest(activity, ioio,
 					getDescription(testToBeParsed));
 			break;
-
 		}
 			
 

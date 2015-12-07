@@ -34,6 +34,7 @@ import retrofit.client.Response;
 //import server.Job;
 import server.RetrofitRestServices;
 import server.RetrofitRestServices.REST;
+import server.TestsParser;
 import server.pojos.ErrorFromServer;
 import server.pojos.Firmware;
 import server.pojos.Job;

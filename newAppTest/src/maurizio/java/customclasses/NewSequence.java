@@ -15,7 +15,8 @@ import com.pietrantuono.ioioutils.Current.Scale;
 import com.pietrantuono.tests.implementations.AccelerometerSelfTest;
 import com.pietrantuono.tests.implementations.BatteryLevelUUTVoltageTest;
 import com.pietrantuono.tests.implementations.BluetoothConnectTestForTesting;
-import com.pietrantuono.tests.implementations.Charge_termination_test;
+import com.pietrantuono.tests.implementations.ChargingTerminationTest;
+import com.pietrantuono.tests.implementations.ChargingTest;
 import com.pietrantuono.tests.implementations.CurrentTest;
 import com.pietrantuono.tests.implementations.DummyTest;
 import com.pietrantuono.tests.implementations.GetBarcodeTest;
@@ -32,8 +33,10 @@ import com.pietrantuono.tests.implementations.UploadFirmwareTest;
 import com.pietrantuono.tests.implementations.VoltageTest;
 import com.pietrantuono.tests.superclass.Test;
 
+import server.TestsParser;
 import server.pojos.Job;
 import ioio.lib.api.IOIO;
+import server.pojos.Sequence;
 
 public class NewSequence implements NewSequenceInterface {
 	private List<Test> sequence = null;
@@ -221,12 +224,23 @@ public class NewSequence implements NewSequenceInterface {
 		return overallresult;
 	}
 
-	/**
-	 * ATTENTION!!! CREATES RANDOM SEQUENCE, FOR TEST ONLY!
-	 * 
-	 * @param activity
-	 * @param ioio
-	 */
+	public NewSequence(Activity activity, IOIO ioio, Job job,Sequence sequence) {
+		setLog(false);
+		this.job = job;
+
+		this.sequence = new ArrayList<Test>();
+		for(server.pojos.Test test:sequence.getTests()){
+			Test result = TestsParser.parseTest(test, activity, ioio, job);
+			if(result!=null)this.sequence.add(result);
+		}
+	}
+
+		/**
+         * ATTENTION!!! CREATES RANDOM SEQUENCE, FOR TEST ONLY!
+         *
+         * @param activity
+         * @param ioio
+         */
 	public NewSequence(Activity activity, IOIO ioio, Job job) {
 		setLog(false);
 		this.job = job;
@@ -326,7 +340,7 @@ public class NewSequence implements NewSequenceInterface {
 //				"Voltage Measurement - Awake Mode (-6V_RAIL)"));
 
 //		sequence.add(new LedCheckTest(activity, "Green", "Green LED Check"));
-		sequence.add(new BluetoothConnectTestForTesting(activity));
+// 		sequence.add(new BluetoothConnectTestForTesting(activity));
 
 //		sequence.add(new CurrentTest(activity, ioio, 42, 50, 2, Scale.mA, false, (float)33, (float)0.1,
 //				"Current Measurement - BT Connected"));
@@ -341,22 +355,23 @@ public class NewSequence implements NewSequenceInterface {
 //				"Battery Level - UUT voltage @ 3.5V", 100));
 //		sequence.add(new BatteryLevelUUTVoltageTest(activity, 85, 0.1f,
 //				"Battery Level - UUT voltage @ 4.1V", 15));
-
-		sequence.add(new SensorTestWrapper(false, activity, ioio,
-				"Sensor Input Test, NO LOAD, GAIN @ 127", 0, false, (short) 127));
-		sequence.add(new SensorTestWrapper(false, activity, ioio,
-				"Sensor Input Test, LOADED, GAIN @ 127", 1, true, (short) 127));
-		sequence.add(new SensorTestWrapper(false, activity, ioio,
-				"Sensor Input Test, LOADED, GAIN @ 25", 1, true, (short) 25));
-		sequence.add(new SensorTestWrapper(false, activity, ioio,
-				"Sensor Input Test, LOADED, GAIN @ 230", 1, true, (short) 230));
+//
+//		sequence.add(new SensorTestWrapper(false, activity, ioio,
+//				"Sensor Input Test, NO LOAD, GAIN @ 127", 0, false, (short) 127));
+//		sequence.add(new SensorTestWrapper(false, activity, ioio,
+//				"Sensor Input Test, LOADED, GAIN @ 127", 1, true, (short) 127));
+//		sequence.add(new SensorTestWrapper(false, activity, ioio,
+//				"Sensor Input Test, LOADED, GAIN @ 25", 1, true, (short) 25));
+//		sequence.add(new SensorTestWrapper(false, activity, ioio,
+//				"Sensor Input Test, LOADED, GAIN @ 230", 1, true, (short) 230));
 
 //		sequence.add(new SensorTestWrapper(false, activity, ioio, "Sensor Input Test, LOADED, GAIN @ 127", 2, true,
 //				(short) 127));
 //		sequence.add(new SensorTestWrapper(false, activity, ioio, "Sensor Input Test, LOADED, GAIN @ 127", 3, true,
 //				(short) 127));
-
+		//sequence.add(new ChargingTest());
 	}
+
 	@Override
 	public boolean isLog() {
 		return log;
@@ -370,7 +385,6 @@ public class NewSequence implements NewSequenceInterface {
 	@Override
 	public void addTest(Test test) {
 		// TODO Auto-generated method stub
-		
 	}
 	
 }

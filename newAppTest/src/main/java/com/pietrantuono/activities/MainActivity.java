@@ -45,6 +45,7 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 import server.RetrofitRestServices;
+import server.TestsParser;
 import server.pojos.Device;
 import server.pojos.Job;
 import server.service.ServiceDBHelper;
