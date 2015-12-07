@@ -340,7 +340,7 @@ public class NewSequence implements NewSequenceInterface {
 //				"Voltage Measurement - Awake Mode (-6V_RAIL)"));
 
 //		sequence.add(new LedCheckTest(activity, "Green", "Green LED Check"));
-// 		sequence.add(new BluetoothConnectTestForTesting(activity));
+ 		sequence.add(new BluetoothConnectTestForTesting(activity));
 
 //		sequence.add(new CurrentTest(activity, ioio, 42, 50, 2, Scale.mA, false, (float)33, (float)0.1,
 //				"Current Measurement - BT Connected"));
@@ -356,8 +356,8 @@ public class NewSequence implements NewSequenceInterface {
 //		sequence.add(new BatteryLevelUUTVoltageTest(activity, 85, 0.1f,
 //				"Battery Level - UUT voltage @ 4.1V", 15));
 //
-//		sequence.add(new SensorTestWrapper(false, activity, ioio,
-//				"Sensor Input Test, NO LOAD, GAIN @ 127", 0, false, (short) 127));
+		sequence.add(new SensorTestWrapper(false, activity, ioio,
+				"Sensor Input Test, NO LOAD, GAIN @ 127", 0, false, (short) 127));
 //		sequence.add(new SensorTestWrapper(false, activity, ioio,
 //				"Sensor Input Test, LOADED, GAIN @ 127", 1, true, (short) 127));
 //		sequence.add(new SensorTestWrapper(false, activity, ioio,
