@@ -133,7 +133,7 @@ public abstract class Device
 	public final boolean sendGetDeviceDetails() {return sendPacket(new PacketTx_GetDeviceDetails());}
 	public final boolean sendGetBatteryStatus() {return sendPacket(new PacketTx_GetBatteryStatus());}
 	public final boolean sendGetSensorData(int requestTimestamp) {return sendPacket(new PacketTx_GetSensorData(requestTimestamp));}
-	public final boolean sendCalibrateSensor(byte sensorIndex, byte readOnly, short currentLoad) {return sendPacket(new PacketTx_CalibrateSensor(sensorIndex, readOnly, currentLoad));}
+	//public final boolean sendCalibrateSensor(byte sensorIndex, byte readOnly, short currentLoad) {return sendPacket(new PacketTx_CalibrateSensor(sensorIndex, readOnly, currentLoad));}
 	public final boolean sendRefVoltage(byte sensorIndex, short refVoltage) {return sendPacket(new PacketTx_SetRefVoltage(sensorIndex, refVoltage));}
 	public final boolean sendSleep(short waitTime) {return sendPacket(new PacketTx_Sleep(waitTime));}
 	
@@ -310,12 +310,12 @@ public abstract class Device
 					onDeviceDetails(data.getSerialNumber(), data.getModel(), data.getFirmwareVersion());
 					break;
 				}
-				case PFMAT.RX_CALIBRATED_SENSOR:
-				{
-					PacketRx_CalibratedSensor data = (PacketRx_CalibratedSensor)packet;
-					onCalibratedSensor(data.getSensorIndex(), !data.calibrationFailed(), data.getCalibratedOffset());
-					break;
-				}
+//				case PFMAT.RX_CALIBRATED_SENSOR:
+//				{
+//					PacketRx_CalibratedSensor data = (PacketRx_CalibratedSensor)packet;
+//					onCalibratedSensor(data.getSensorIndex(), !data.calibrationFailed(), data.getCalibratedOffset());
+//					break;
+//				}
 				case PFMAT.RX_REF_VOLTAGE:
 				{
 					PacketRx_SetRefVoltage data = (PacketRx_SetRefVoltage)packet;

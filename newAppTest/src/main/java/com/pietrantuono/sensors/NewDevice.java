@@ -8,7 +8,6 @@ import hydrix.pfmat.generic.PFMAT;
 import hydrix.pfmat.generic.Packet;
 import hydrix.pfmat.generic.PacketHandler;
 import hydrix.pfmat.generic.PacketRx_BatteryStatus;
-import hydrix.pfmat.generic.PacketRx_CalibratedSensor;
 import hydrix.pfmat.generic.PacketRx_DeviceDetails;
 import hydrix.pfmat.generic.PacketRx_SensorData;
 import hydrix.pfmat.generic.PacketRx_SetRefVoltage;
@@ -340,12 +339,12 @@ public abstract class NewDevice
 					onDeviceDetails(data.getSerialNumber(), data.getModel(), data.getFirmwareVersion());
 					break;
 				}
-				case PFMAT.RX_CALIBRATED_SENSOR:
-				{
-					PacketRx_CalibratedSensor data = (PacketRx_CalibratedSensor)packet;
-					onCalibratedSensor(data.getSensorIndex(), !data.calibrationFailed(), data.getCalibratedOffset());
-					break;
-				}
+//				case PFMAT.RX_CALIBRATED_SENSOR:
+//				{
+//					PacketRx_CalibratedSensor data = (PacketRx_CalibratedSensor)packet;
+//					onCalibratedSensor(data.getSensorIndex(), !data.calibrationFailed(), data.getCalibratedOffset());
+//					break;
+//				}
 				case PFMAT.RX_REF_VOLTAGE:
 				{
 					PacketRx_SetRefVoltage data = (PacketRx_SetRefVoltage)packet;

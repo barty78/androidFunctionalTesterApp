@@ -12,7 +12,7 @@ public class PacketRx_SetRefVoltage extends Packet
 	// Construction
 	public PacketRx_SetRefVoltage()
 	{
-		super(PFMAT.RX_CALIBRATED_SENSOR);
+		super(PFMAT.RX_REF_VOLTAGE);
 	}
 	
 	// Accessors
