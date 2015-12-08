@@ -302,58 +302,61 @@ public class NewSequence implements NewSequenceInterface {
 
 //		sequence.add(new UploadFirmwareTest(activity, ioio));
 
-//		sequence.add(new GetDeviceSerialTest(activity, ioio));
-//		sequence.add(new AccelerometerSelfTest(activity, ioio));
+		sequence.add(new GetDeviceSerialTest(activity, ioio));
+		sequence.add(new AccelerometerSelfTest(activity, ioio));
 
 //		sequence.add(new VoltageTest(activity, ioio, 39, 0f, 0.1f,
 //				"Voltage Measurement - Sleep Mode (V_1V8_SW)"));
 //		sequence.add(new VoltageTest(activity, ioio, 33, 0f, 0.1f,
 //				"Voltage Measurement - Sleep Mode (V_BT)"));
 
-//		sequence.add(new MagnetWakeDeviceTest(activity, ioio));
+		sequence.add(new MagnetWakeDeviceTest(activity, ioio));
 
-//		sequence.add(new CurrentTest(activity, ioio, 42, 50, 2, Scale.mA, false, (float)28, (float)0.1,
-//				"Current Measurement - Awake"));
-//		sequence.add(new VoltageTest(activity, ioio, 44, 3.1f, 0.1f,
-//				"Voltage Measurement - Awake Mode (V_3V1)"));
-//		sequence.add(new VoltageTest(activity, ioio, 39, 1.8f, 0.1f,
-//				"Voltage Measurement - Awake Mode (V_1V8_SW)"));
-//		sequence.add(new VoltageTest(activity, ioio, 33, 3.3f, 0.1f,
-//				"Voltage Measurement - Awake Mode (V_BT)"));
-//		sequence.add(new VoltageTest(activity, ioio, 32, true, -1f, -1.4f, 0.1f,
-//				"Voltage Measurement - Awake Mode (V_REF_AN)"));
+		sequence.add(new CurrentTest(activity, ioio, 42, 50, 2, Scale.mA, false, (float)28, (float)0.1,
+				"Current Measurement - Awake"));
+		sequence.add(new VoltageTest(activity, ioio, 44, 3.1f, 0.1f,
+				"Voltage Measurement - Awake Mode (V_3V1)"));
+		sequence.add(new VoltageTest(activity, ioio, 39, 1.8f, 0.1f,
+				"Voltage Measurement - Awake Mode (V_1V8_SW)"));
+		sequence.add(new VoltageTest(activity, ioio, 33, 3.3f, 0.1f,
+				"Voltage Measurement - Awake Mode (V_BT)"));
+		sequence.add(new VoltageTest(activity, ioio, 32, true, -1f, -1.4f, 0.1f,
+				"Voltage Measurement - Awake Mode (V_REF_AN)"));
 //		sequence.add(new VoltageTest(activity, ioio, 41, true, -1f, -0f, 0.2f,
 //				"Voltage Measurement - Awake Mode (V_ZERO_AN)"));
 
 //		sequence.add(new VoltageTest(activity, ioio, 31, -6.0f, 0.2f,
 //				"Voltage Measurement - Awake Mode (-6V_RAIL)"));
 
-//		sequence.add(new LedCheckTest(activity, "Green", "Green LED Check"));
-//		sequence.add(new BluetoothConnectTestForTesting(activity));
+		sequence.add(new LedCheckTest(activity, "Green", "Green LED Check"));
+		sequence.add(new BluetoothConnectTestForTesting(activity));
 
-//		sequence.add(new CurrentTest(activity, ioio, 42, 50, 2, Scale.mA, false, (float)33, (float)0.1,
-//				"Current Measurement - BT Connected"));
-//		sequence.add(new VoltageTest(activity, ioio, 32, true, -1f, -1.4f, 0.1f,
-//				"Voltage Measurement - BT Connected Mode (V_REF_AN)"));
-//		sequence.add(new LedCheckTest(activity, "Blue", "Blue LED Check"));
-//		sequence.add(new ReadDeviceInfoSerialNumberTest(activity));
-//		sequence.add(new ReadModelNumberTest(activity));
-//		sequence.add(new ReadFirmwareversionTest(activity));
-//
-//		sequence.add(new BatteryLevelUUTVoltageTest(activity, 15, 0.1f,
-//				"Battery Level - UUT voltage @ 3.5V", 100));
-//		sequence.add(new BatteryLevelUUTVoltageTest(activity, 85, 0.1f,
-//				"Battery Level - UUT voltage @ 4.1V", 15));
+		sequence.add(new CurrentTest(activity, ioio, 42, 50, 2, Scale.mA, false, (float)33, (float)0.1,
+				"Current Measurement - BT Connected"));
+		sequence.add(new VoltageTest(activity, ioio, 32, true, -1f, -1.4f, 0.1f,
+				"Voltage Measurement - BT Connected Mode (V_REF_AN)"));
+		sequence.add(new LedCheckTest(activity, "Blue", "Blue LED Check"));
+		sequence.add(new ReadDeviceInfoSerialNumberTest(activity));
+		sequence.add(new ReadModelNumberTest(activity));
+		sequence.add(new ReadFirmwareversionTest(activity));
 
-//		sequence.add(new SensorTestWrapper(false, activity, ioio,
-//				"Sensor Input Test, NO LOAD, GAIN @ 127", 0, false, (short) 127));
-//		sequence.add(new SensorTestWrapper(false, activity, ioio,
-//				"Sensor Input Test, LOADED, GAIN @ 127", 1, true, (short) 127));
-//		sequence.add(new SensorTestWrapper(false, activity, ioio,
-//				"Sensor Input Test, LOADED, GAIN @ 25", 1, true, (short) 25));
-//		sequence.add(new SensorTestWrapper(false, activity, ioio,
-//				"Sensor Input Test, LOADED, GAIN @ 230", 1, true, (short) 230));
+		sequence.add(new BatteryLevelUUTVoltageTest(activity, 15, 0.1f,
+				"Battery Level - UUT voltage @ 3.5V", 100));
+		sequence.add(new BatteryLevelUUTVoltageTest(activity, 85, 0.1f,
+				"Battery Level - UUT voltage @ 4.1V", 15));
 
+		sequence.add(new SensorTestWrapper(false, activity, ioio,
+				"Sensor Input Test, NO LOAD, GAIN @ 127", 0, false, (short) 127));
+		sequence.add(new SensorTestWrapper(false, activity, ioio,
+				"Sensor Input Test, LOADED, GAIN @ 127", 1, true, (short) 127));
+		sequence.add(new SensorTestWrapper(false, activity, ioio,
+				"Sensor Input Test, LOADED, GAIN @ 25", 1, true, (short) 25));
+		sequence.add(new VoltageTest(activity, ioio, 32, true, -1f, -0.3f, 0.1f,
+				"Voltage Measurement(V_REF_AN)"));
+		sequence.add(new SensorTestWrapper(false, activity, ioio,
+				"Sensor Input Test, LOADED, GAIN @ 230", 1, true, (short) 230));
+		sequence.add(new VoltageTest(activity, ioio, 32, true, -1f, -2.7f, 0.1f,
+				"Voltage Measurement(V_REF_AN)"));
 //		sequence.add(new SensorTestWrapper(false, activity, ioio, "Sensor Input Test, LOADED, GAIN @ 127", 2, true,
 //				(short) 127));
 //		sequence.add(new SensorTestWrapper(false, activity, ioio, "Sensor Input Test, LOADED, GAIN @ 127", 3, true,

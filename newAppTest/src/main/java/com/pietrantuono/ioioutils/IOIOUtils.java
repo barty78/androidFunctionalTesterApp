@@ -124,7 +124,7 @@ public class IOIOUtils implements IOIOUtilsInterface  {
 			Crashlytics.logException(e1);
 		}
 
-		if (readPulseWithTimeout() == 1) {
+		if (readPulseWithTimeout(barcodeOK) == 1) {
 
 			Log.d("BARCODE: ", "Valid Read");
 
@@ -146,7 +146,7 @@ public class IOIOUtils implements IOIOUtilsInterface  {
 		return tmp;
 	}
 
-	private  int readPulseWithTimeout() {
+	private  int readPulseWithTimeout(final DigitalInput input) {
 		if(isinterrupted)return -1;
 		// Read barcodeOK pulse with timeout
 
@@ -155,7 +155,7 @@ public class IOIOUtils implements IOIOUtilsInterface  {
 		Callable<Integer> readPulse = new Callable<Integer>() {
 			@Override
 			public Integer call() throws Exception {
-				barcodeOK.waitForValue(false);
+				input.waitForValue(false);
 				return 1;
 			}
 		};

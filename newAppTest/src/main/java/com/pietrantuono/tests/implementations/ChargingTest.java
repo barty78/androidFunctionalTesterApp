@@ -24,6 +24,7 @@ public class ChargingTest extends Test {
 	}
 	@Override
 	public void execute() {
+		int value;
 		if(isinterrupted)return;
 		byte[] writebyte;
 		byte[] readbyte;
@@ -44,17 +45,13 @@ public class ChargingTest extends Test {
 
 		switch5vDC(true);
 
-		try {
-			CHGPin = IOIOUtils.getUtils().getCHGPin().read();
-		} catch (Exception e2) {
-			report(e2);
-			activityListener.addFailOrPass(true, false, "IOIO Read Fault");
-		}
+		value = IOIOUtils.getUtils().readPulseWithTimeout(IOIOUtils.getUtils().getCHGPin());
 
-		Log.d(TAG, "CHG Pin is " + String.valueOf(CHGPin));
-
-		if (!CHGPin) {
-			showAlert(ac, true);
+		if (value == 1) {
+			Success();
+			//showAlert(ac, true);
+			switch5vDC(false);
+			activityListener.addFailOrPass(true, true, "");
 		} else {
 			setSuccess(false);
 			switch5vDC(false);

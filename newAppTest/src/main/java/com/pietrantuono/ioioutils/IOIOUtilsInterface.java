@@ -44,6 +44,8 @@ public interface IOIOUtilsInterface {
 
 	void toggle5VDC(Activity activity);
 
+	int readPulseWithTimeout(DigitalInput input);
+
 	@SuppressWarnings("ucd")
 	void toggleTrigger(Activity activity);
 	
