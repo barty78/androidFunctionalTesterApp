@@ -369,8 +369,8 @@ public class NewSequence implements NewSequenceInterface {
 //				"Voltage Measurement(V_REF_AN)"));
 //		sequence.add(new PauseStep(activity, "Pause Step"));
 //
-//		sequence.add(new SensorTestWrapper(false, activity, ioio,
-//				"Sensor Input Test, NO LOAD, GAIN @ 127", 0, false, (short) 127));
+		sequence.add(new SensorTestWrapper(false, activity, ioio,
+				"Sensor Input Test, NO LOAD, GAIN @ 127", 0, false, (short) 127));
 //		sequence.add(new SensorTestWrapper(false, activity, ioio,
 //				"Sensor Input Test, LOADED, GAIN @ 127", 1, true, (short) 127));
 //		sequence.add(new SensorTestWrapper(false, activity, ioio,

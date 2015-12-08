@@ -20,9 +20,11 @@ import com.pietrantuono.tests.implementations.LedCheckTest;
 import com.pietrantuono.tests.implementations.ReadDeviceInfoSerialNumberTest;
 import com.pietrantuono.tests.implementations.ReadFirmwareversionTest;
 import com.pietrantuono.tests.implementations.ReadModelNumberTest;
+import com.pietrantuono.tests.implementations.SensorTestWrapper;
 import com.pietrantuono.tests.implementations.UUTCurrentTest;
 import com.pietrantuono.tests.implementations.UploadFirmwareTest;
 import com.pietrantuono.tests.implementations.VoltageTest;
+import com.pietrantuono.tests.implementations.WakeDeviceTest;
 import com.pietrantuono.tests.superclass.Test;
 
 public class TestsParser {
@@ -67,7 +69,7 @@ public class TestsParser {
 			test = new GetDeviceSerialTest(activity, ioio);
 			break;
 		case 8:
-			//test = new WakeDeviceTest(activity, ioio);
+			test = new WakeDeviceTest(activity, ioio);
 			break;
 		case 9:
 			test = new AwakeModeCurrentTest(activity, ioio,
@@ -99,8 +101,7 @@ public class TestsParser {
 					(int) testToBeParsed.getNominal().doubleValue());// TODO check voltage
 			break;
 		case 17:
-			//test=new SensorTestWrapper(activity, ioio, getDescription(testToBeParsed),
-			//TestLimitIndex, isload, voltage); //TODO missing data
+			//test= new SensorTestWrapper.SensorTestWrapperBuilder().Builder()
 			break;
 		case 18:
 			test = new DummyTest(activity, getDescription(testToBeParsed) + " " + dummycounter + 1,  false, true);
