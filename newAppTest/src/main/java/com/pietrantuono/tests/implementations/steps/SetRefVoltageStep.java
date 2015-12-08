@@ -42,10 +42,21 @@ public class SetRefVoltageStep extends Test {
         } catch (Exception e) {
             getListener().addFailOrPass(true, false, "ERROR", "UUT Comms Fault");
             return;
+
         }
 
         if(isinterrupted)return;
         Handler handler = new Handler();
+
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                getListener().getBtutility().pollSensor();
+            }
+        }, 1000);
+
+
+        if(isinterrupted)return;
 
         handler.postDelayed(new Runnable() {
             @Override

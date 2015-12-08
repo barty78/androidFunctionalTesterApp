@@ -1,0 +1,317 @@
+package hydrix.pfmat.generic;
+
+import java.io.FileWriter;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.io.File;
+
+import android.util.Log;
+import hydrix.pfmat.generic.Force;
+
+public class DeviceFile
+{
+	// Constants
+	final char DELIMITER = ',';
+	
+	
+	// Members
+	protected BufferedWriter mFile = null;
+	
+	public Long getSize(String directory, String jobNo) {
+		
+		String filename = jobNo + ".csv";
+		
+		File file = new File(directory, filename);
+		
+		Log.d("LENGTH:", String.valueOf(file.length()));
+		return file.length();
+	}
+	
+	public final boolean create(String directory, String jobNo)
+	{
+		// Make sure we close any previous file if this object is being reused
+		close();
+		
+		// Params must all be supplied and non-null
+		if (directory == null || jobNo == null)
+			return false;
+		
+		// Generate filename in the format <jobNo>.csv
+		
+		String filename = jobNo + ".csv";
+		
+		// Form full path
+		//String fullPath = directory + '/' + filename;
+		try 
+		{
+			// Create new file
+			File file = new File(directory, filename);
+			if(!file.exists())
+			{
+				if (!file.createNewFile()) {
+					return false;
+				} //else if (!writeStaticHeader()){
+					//return false;
+	
+				//}
+										
+			}
+			
+			// Create a buffered write stream for it
+			FileWriter writer = new FileWriter(file, true);
+			if (writer != null)
+				mFile = new BufferedWriter(writer);
+		}
+		catch (IOException e)
+		{
+	    	e.printStackTrace();
+		}
+		if (mFile == null)
+			return false;
+		
+		// Open and ready to write data records
+		return true;
+	}
+	
+	public final void close()
+	{
+		if (mFile != null)
+		{
+			try
+			{
+				// Flush any remaining write then close the file
+				mFile.flush();
+				mFile.close();
+			}
+			catch (IOException e)
+			{
+				e.printStackTrace();
+			}
+			mFile = null;
+		}
+	}
+	
+	/*
+	public final boolean writeStaticHeader()
+	{
+		String line = "Time/Date" + DELIMITER +
+					  "Device ID" + DELIMITER +
+					  "Firmware Ver" + DELIMITER +
+					  "Sensor ID" + DELIMITER +
+					  "S0 Cal" + DELIMITER +
+					  "S1 Cal" + DELIMITER +
+					  "S2 Cal" + DELIMITER;
+		for (int i = 0 ; i < testForces.size() ; i++) {
+			line = line + DELIMITER + Integer.toString(testForces.get(i).getLiteralSensor0()) + DELIMITER + Integer.toString(testForces.get(i).getLiteralSensor1()) + DELIMITER + Integer.toString(testForces.get(i).getLiteralSensor2());
+
+		
+		
+		if (!writeLine(line))
+			return false;
+		
+		return true;
+	}*/
+	
+	public final boolean writeClosedHeader()
+	{
+		
+		// Write the header field names
+		String line = "DATE/TIME" + DELIMITER +
+				  "DeviceId" + DELIMITER +
+				  "FW Version" + DELIMITER +
+				  "Sensor #" + DELIMITER +
+				  "S0Coeff" + DELIMITER +
+				  "S1Coeff" + DELIMITER +
+				  "S2Coeff" + DELIMITER +
+				  "S0Min" + DELIMITER +
+				  "S0Max" + DELIMITER +
+				  "S0Avg" + DELIMITER +
+				  "S1Min" + DELIMITER +
+				  "S1Max" + DELIMITER +
+				  "S1Avg" + DELIMITER +
+				  "S2Min" + DELIMITER +
+				  "S2Max" + DELIMITER +
+				  "S2Avg" + DELIMITER +
+				  "RESULT";
+
+		if (!writeLine(line))
+			return false;
+		
+		return true;
+	}
+	
+	public final boolean writeOpenHeader()
+	{
+		
+		// Write the header field names
+		String line = "DATE/TIME" + DELIMITER +
+					  "BARCODE" + DELIMITER +
+					  "DeviceId" + DELIMITER +
+					  "FW Version" + DELIMITER +
+					  "S0Coeff" + DELIMITER +
+					  "S1Coeff" + DELIMITER +
+					  "S2Coeff" + DELIMITER +
+					  "S0Min - LOW" + DELIMITER +
+					  "S0Max - LOW" + DELIMITER +
+					  "S0Avg - LOW" + DELIMITER +
+					  "S1Min - LOW" + DELIMITER +
+					  "S1Max - LOW" + DELIMITER +
+					  "S1Avg - LOW" + DELIMITER +
+					  "S2Min - LOW" + DELIMITER +
+					  "S2Max - LOW" + DELIMITER +
+					  "S2Avg - LOW" + DELIMITER +
+					  "S0Min - HIGH" + DELIMITER +
+					  "S0Max - HIGH" + DELIMITER +
+					  "S0Avg - HIGH" + DELIMITER +
+					  "S1Min - HIGH" + DELIMITER +
+					  "S1Max - HIGH" + DELIMITER +
+					  "S1Avg - HIGH" + DELIMITER +
+					  "S2Min - HIGH" + DELIMITER +
+					  "S2Max - HIGH" + DELIMITER +
+					  "S2Avg - HIGH" + DELIMITER +
+					  "S0Min - OPEN" + DELIMITER +
+					  "S0Max - OPEN" + DELIMITER +
+					  "S0Avg - OPEN" + DELIMITER +
+					  "S1Min - OPEN" + DELIMITER +
+					  "S1Max - OPEN" + DELIMITER +
+					  "S1Avg - OPEN" + DELIMITER +
+					  "S2Min - OPEN" + DELIMITER +
+					  "S2Max - OPEN" + DELIMITER +
+					  "S2Avg - OPEN" + DELIMITER +
+					  "RESULT";
+
+		if (!writeLine(line))
+			return false;
+		
+		return true;
+	}
+	
+	public final boolean writeDeviceClosedTest(String date, String deviceID, String firmwareVer, String sensorVal, String sensCo0, String sensCo1, String sensCo2, TestSamples mTestSamples, String mResult)
+	{
+		
+		String line = date + DELIMITER +
+					  deviceID + DELIMITER +
+					  firmwareVer + DELIMITER +
+					  sensorVal + DELIMITER +
+					  sensCo0 + DELIMITER +
+					  sensCo1 + DELIMITER +
+					  sensCo2;
+		
+		for (int i = 0; i < 3; i++) {
+		
+				line = line + DELIMITER + mTestSamples.getMinSamples().get(i).mForce.getLiteralSensor(i) +
+							  DELIMITER + mTestSamples.getMaxSamples().get(i).mForce.getLiteralSensor(i) +
+							  DELIMITER + mTestSamples.getAvgSamples().get(i).mForce.getLiteralSensor(i);
+				
+			//line = line + DELIMITER + Integer.toString(minTestForces.getSamples().get(i)) + DELIMITER + maxTestForces.getSamples().get(i) + DELIMITER + avgTestForces.getSamples().get(i);
+					
+			//line = line + DELIMITER + Integer.toString(testForces.get(i).getLiteralSensor1()) + DELIMITER + Integer.toString(testForces.get(i).getLiteralSensor1()) + DELIMITER + Integer.toString(testForces.get(i).getLiteralSensor2());
+		}
+		
+		line = line + DELIMITER + mResult;
+		
+		return writeLine(line);
+	}
+	
+	public final boolean writeDeviceOpenTest(String date, String barCode, String deviceID, String firmwareVer, String sensCo0, String sensCo1, String sensCo2, TestSamples mTestSamples, String mResult)
+	{
+		
+		String line = date + DELIMITER +
+					  barCode + DELIMITER +
+					  deviceID + DELIMITER +
+					  firmwareVer + DELIMITER +
+					  sensCo0 + DELIMITER +
+					  sensCo1 + DELIMITER +
+					  sensCo2;
+		
+		for (int i = 0 ; i < mTestSamples.getMinSamples().size() ; i++) {
+			line = line + DELIMITER + mTestSamples.getMinSamples().get(i).mForce.getLiteralSensor0() +
+						  DELIMITER + mTestSamples.getMaxSamples().get(i).mForce.getLiteralSensor0() +
+						  DELIMITER + mTestSamples.getAvgSamples().get(i).mForce.getLiteralSensor0() +
+						  DELIMITER + mTestSamples.getMinSamples().get(i).mForce.getLiteralSensor1() +
+						  DELIMITER + mTestSamples.getMaxSamples().get(i).mForce.getLiteralSensor1() +
+						  DELIMITER + mTestSamples.getAvgSamples().get(i).mForce.getLiteralSensor1() +
+						  DELIMITER + mTestSamples.getMinSamples().get(i).mForce.getLiteralSensor2() +
+						  DELIMITER + mTestSamples.getMaxSamples().get(i).mForce.getLiteralSensor2() +
+						  DELIMITER + mTestSamples.getAvgSamples().get(i).mForce.getLiteralSensor2();
+						  
+			/*
+					minTestForces.getSamples().get(i).mForce.getLiteralSensor0() + 
+					DELIMITER + maxTestForces.getSamples().get(i).mForce.getLiteralSensor0() + 
+					DELIMITER + avgTestForces.getSamples().get(i).mForce.getLiteralSensor0() + 
+					DELIMITER + minTestForces.getSamples().get(i).mForce.getLiteralSensor1() + 
+					DELIMITER + maxTestForces.getSamples().get(i).mForce.getLiteralSensor1() + 
+					DELIMITER + avgTestForces.getSamples().get(i).mForce.getLiteralSensor1() + 
+					DELIMITER + minTestForces.getSamples().get(i).mForce.getLiteralSensor2() + 
+					DELIMITER + maxTestForces.getSamples().get(i).mForce.getLiteralSensor2() + 
+					DELIMITER + avgTestForces.getSamples().get(i).mForce.getLiteralSensor2();
+					
+					*/
+		}
+		
+		line = line + DELIMITER + mResult;
+		
+		return writeLine(line);
+	}
+	
+	public final boolean writeForce(String sensor)
+	{
+		
+		String line = sensor + DELIMITER;
+		return writeLine(line);
+	}
+	
+	
+	public final boolean writeForces(String sensor0, String sensor1, String sensor2)
+	{
+		
+		String line = sensor0 + DELIMITER +
+					  sensor1 + DELIMITER +
+					  sensor2 + DELIMITER;
+		return writeLine(line);
+	}
+	
+	public final boolean writeNewLine()
+	{
+		
+		return writeLineEnd();
+	}
+	
+	protected final boolean writeLine(String line)
+	{
+		if (mFile == null)
+			return false;
+		try
+		{
+			mFile.append(line);
+			mFile.newLine();
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	
+	protected final boolean writeLineEnd()
+	{
+		if (mFile == null)
+			return false;
+		try
+		{
+			mFile.newLine();
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+
+}
+

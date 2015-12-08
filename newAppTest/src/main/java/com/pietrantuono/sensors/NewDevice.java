@@ -157,7 +157,7 @@ public abstract class NewDevice
 	public final boolean sendGetBatteryStatus(BatteryLevelUUTVoltageTest.Callback callback) {
 		this.callback=callback;
 		return sendPacket(new PacketTx_GetBatteryStatus());}
-	final boolean sendGetSensorData(int requestTimestamp) {return sendPacket(new PacketTx_GetSensorData(requestTimestamp));}
+	public final boolean sendGetSensorData(int requestTimestamp) {return sendPacket(new PacketTx_GetSensorData(requestTimestamp));}
 	
 	public final boolean sendRefVoltage(byte sensorIndex, short refVoltage) {return sendPacket(new PacketTx_SetRefVoltage(sensorIndex, refVoltage));}
 //	public final boolean sendZeroVoltage(byte sensorIndex, short zeroVoltage) {return sendPacket(new PacketTx_SetZeroVoltage(sensorIndex, ZeroVoltage));}
