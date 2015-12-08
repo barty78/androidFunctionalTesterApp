@@ -73,6 +73,7 @@ public class MainActivity extends Activity
 	static final String JOB = "job";
 	private Job job = null;
 	private  BaseIOIOLooper looper;
+	private boolean sequenceStarted;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -90,7 +91,6 @@ public class MainActivity extends Activity
 		if (mJobNo != null)
 			uiHelper.setJobId(mJobNo, true);
 		uiHelper.setupChronometer(MainActivity.this);
-		//BTUtility.listenToGetIOIOAddress(MainActivity.this);
 	}
 
 	@Override
@@ -118,6 +118,7 @@ public class MainActivity extends Activity
 
 	@Override
 	public synchronized void goAndExecuteNextTest() {
+		if(!sequenceStarted)return;
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
@@ -126,7 +127,6 @@ public class MainActivity extends Activity
 					onCurrentSequenceEnd();
 					return;
 				}
-
 				if (newSequence.isSequenceStarted()) {
 					if (newSequence.getCurrentTest().isBlockingTest && !newSequence.getCurrentTest().isSuccess()) {
 						onCurrentSequenceEnd();
@@ -137,7 +137,6 @@ public class MainActivity extends Activity
 				uiHelper.setCurrentAndNextTaskinUI();
 				newSequence.executeCurrentTest();
 				Log.e(TAG, "goAndExecuteNextTest");
-
 			}
 		});
 	}
@@ -178,7 +177,6 @@ public class MainActivity extends Activity
 		if (serial != null && !serial.isEmpty()) {
 			uiHelper.addView("Serial (BT reading): ", serial, false);
 		}
-
 	}
 
 	@Override
@@ -192,11 +190,11 @@ public class MainActivity extends Activity
 			@Override
 			public void no() {}
 		});
-		
 	}
 
 	@Override
 	public void onPCBConnectionLostRestartSequence() {
+		sequenceStarted=false;
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
@@ -248,6 +246,7 @@ public class MainActivity extends Activity
 	}
 
 	public void onCurrentSequenceEnd() {
+		sequenceStarted=false;
 		newSequence.setEndtime(System.currentTimeMillis());
 		runOnUiThread(new Runnable() {
 			@Override
@@ -297,6 +296,7 @@ public class MainActivity extends Activity
 	}
 
 	private void waitForPCBConnected() {
+		sequenceStarted=false;
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
@@ -306,10 +306,10 @@ public class MainActivity extends Activity
 				}
 			}
 		});
-
 	}
 
 	private void waitForPCBDisconnected() {
+		sequenceStarted=false;
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
@@ -323,13 +323,13 @@ public class MainActivity extends Activity
 
 	@Override
 	public void onPCBConnectedStartNewSequence() {
+		sequenceStarted=false;
 		if(isFinishing())return;
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
 				MyDialogs.showProgress(MainActivity.this);
 				RetrofitRestServices.getRest(MainActivity.this).getLastDevices(PeriCoachTestApplication.getDeviceid(),PeriCoachTestApplication.getLastId(), new Callback<List<Device>>() {
-					
 					@Override
 					public void success(List<Device> arg0, Response arg1) {
 						if(isFinishing())return;
@@ -352,6 +352,7 @@ public class MainActivity extends Activity
 	}
 	
 	private void start(){
+		sequenceStarted=true;
 		newSequence=null;
 		newSequence = getNewSequence();
 		newSequence.setStarttime(System.currentTimeMillis());
@@ -374,6 +375,7 @@ public class MainActivity extends Activity
 
 	@Override
 	public void onPCBDisconnected() {
+		sequenceStarted=false;
 		uiHelper.cleanUI(MainActivity.this);
 		IOIOUtils.getUtils().closeall(MainActivity.this, MainActivity.this);
 		waitForPCBConnected();
@@ -447,8 +449,6 @@ public class MainActivity extends Activity
 	public ProgressAndTextView addFailOrPass(Boolean istest, Boolean success, String reading, String description) {
 		return uiHelper.addFailOrPass(istest, success, reading, null, description);
 	}
-
-	
 
 	@Override
 	public void manuallyRedoCurrentTest() {

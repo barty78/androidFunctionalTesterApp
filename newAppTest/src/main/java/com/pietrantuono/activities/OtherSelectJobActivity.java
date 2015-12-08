@@ -250,6 +250,7 @@ public class OtherSelectJobActivity extends Activity implements MyCallback {
 //		firmwarefilepresent = true;
 		if (job.getTestId() == 999) {		// Special job type 999 bypasses server defined sequence, uses internal one instead
 			startMainActivity(job);
+			return;
 		}
 		downloadSequence(job);
 
