@@ -117,6 +117,10 @@ public class SensorsTestHelper implements OnSampleCallback {
 		}
 	}
 
+	void sendSensorData() {
+		NewPFMATDevice.getDevice().sendGetSensorData(0);
+	}
+
 	
 
 	@SuppressWarnings("ucd")

@@ -348,21 +348,21 @@ public class NewSequence implements NewSequenceInterface {
 //				"Battery Level - UUT voltage @ 4.1V", 15));
 
 		sequence.add(new SetRefVoltageStep(activity, (short)25, "Set Sensor Voltage level to 25"));
-		sequence.add(new VoltageTest(activity, ioio, 32, false, true, -1f, -0.3f, 1f,
+		sequence.add(new VoltageTest(activity, ioio, 32, false, true, -1f, -0.3f, 0.1f,
 				"Voltage Measurement(V_REF_AN)"));
-		sequence.add(new PauseStep(activity, "Pause Step"));
+//		sequence.add(new PauseStep(activity, "Pause Step"));
 		sequence.add(new SetRefVoltageStep(activity, (short)230, "Set Sensor Voltage level to 230"));
-		sequence.add(new VoltageTest(activity, ioio, 32, false, true, -1f, -2.7f, 1f,
+		sequence.add(new VoltageTest(activity, ioio, 32, false, true, -1f, -2.7f, 0.1f,
 				"Voltage Measurement(V_REF_AN)"));
 
-		sequence.add(new SensorTestWrapper(false, activity, ioio,
-				"Sensor Input Test, NO LOAD, GAIN @ 127", 0, false, (short) 127));
-		sequence.add(new SensorTestWrapper(false, activity, ioio,
-				"Sensor Input Test, LOADED, GAIN @ 127", 1, true, (short) 127));
-		sequence.add(new SensorTestWrapper(false, activity, ioio,
-				"Sensor Input Test, LOADED, GAIN @ 25", 1, true, (short) 25));
-		sequence.add(new SensorTestWrapper(false, activity, ioio,
-				"Sensor Input Test, LOADED, GAIN @ 230", 1, true, (short) 230));
+//		sequence.add(new SensorTestWrapper(false, activity, ioio,
+//				"Sensor Input Test, NO LOAD, GAIN @ 127", 0, false, (short) 127));
+//		sequence.add(new SensorTestWrapper(false, activity, ioio,
+//				"Sensor Input Test, LOADED, GAIN @ 127", 1, true, (short) 127));
+//		sequence.add(new SensorTestWrapper(false, activity, ioio,
+//				"Sensor Input Test, LOADED, GAIN @ 25", 1, true, (short) 25));
+//		sequence.add(new SensorTestWrapper(false, activity, ioio,
+//				"Sensor Input Test, LOADED, GAIN @ 230", 1, true, (short) 230));
 //		sequence.add(new SensorTestWrapper(false, activity, ioio, "Sensor Input Test, LOADED, GAIN @ 127", 2, true,
 //				(short) 127));
 //		sequence.add(new SensorTestWrapper(false, activity, ioio, "Sensor Input Test, LOADED, GAIN @ 127", 3, true,

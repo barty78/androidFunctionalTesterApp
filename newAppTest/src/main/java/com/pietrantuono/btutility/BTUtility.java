@@ -521,6 +521,10 @@ public class BTUtility {
 		}
 	}
 
+	public void pollSensor() {
+		NewPFMATDevice.getDevice().sendGetSensorData(0);
+	}
+
 	public void setZeroVoltage(final Short voltage) {
 		Handler handler = new Handler();
 		Byte sensor = (byte) (0 & 0xFF);
