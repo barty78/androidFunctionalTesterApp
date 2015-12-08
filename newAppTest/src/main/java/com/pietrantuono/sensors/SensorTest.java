@@ -27,6 +27,7 @@ public class SensorTest {
 	protected TestLimits testLimits = null;
 	protected WeakReference<Activity> activity = null;
 	protected short voltage = -1;
+	protected short zeroVoltage = -1;
 	protected Boolean load = null;
 	protected NewMSensorResult mSensorResult = null;
 	protected Boolean stopped = false;
@@ -63,6 +64,11 @@ public class SensorTest {
 			});
 		} catch (Exception e) {
 		}
+	}
+
+	public SensorTest setZeroVoltage(short voltage) {
+		this.zeroVoltage = voltage;
+		return this;
 	}
 
 	public SensorTest setVoltage(short voltage) {

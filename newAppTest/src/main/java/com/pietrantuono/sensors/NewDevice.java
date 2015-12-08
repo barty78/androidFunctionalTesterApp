@@ -25,9 +25,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.ref.WeakReference;
 
-
-
-
 // TODO: Change mDisconnecting to a reference count instead of flag, so there's no race condition between disconnect() and the recv thread checking the flag on the way out
 // Not critical because the implementation of onConnectionLost happens to do nothing, but this needs to be fixed post-trial in conjunction with implementing the user notification
 
@@ -163,6 +160,7 @@ public abstract class NewDevice
 	final boolean sendGetSensorData(int requestTimestamp) {return sendPacket(new PacketTx_GetSensorData(requestTimestamp));}
 	
 	public final boolean sendRefVoltage(byte sensorIndex, short refVoltage) {return sendPacket(new PacketTx_SetRefVoltage(sensorIndex, refVoltage));}
+//	public final boolean sendZeroVoltage(byte sensorIndex, short zeroVoltage) {return sendPacket(new PacketTx_SetZeroVoltage(sensorIndex, ZeroVoltage));}
 	@SuppressWarnings("ucd")
 	public
 	final boolean sendSleep(short waitTime) {return sendPacket(new PacketTx_Sleep(waitTime));}
