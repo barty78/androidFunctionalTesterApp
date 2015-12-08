@@ -146,7 +146,7 @@ public class IOIOUtils implements IOIOUtilsInterface  {
 		return tmp;
 	}
 
-	private  int readPulseWithTimeout(final DigitalInput input) {
+	public  int readPulseWithTimeout(final DigitalInput input) {
 		if(isinterrupted)return -1;
 		// Read barcodeOK pulse with timeout
 
