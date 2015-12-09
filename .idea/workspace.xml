@@ -25,12 +25,9 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileSnapshots.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/outputFileStates.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/MainActivity.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/maurizio/java/customclasses/NewSequence.java" afterPath="$PROJECT_DIR$/newAppTest/src/maurizio/java/customclasses/NewSequence.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/OtherSelectJobActivity.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/OtherSelectJobActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="NewAppTest-Android Studio.iws" />
@@ -68,14 +65,33 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/MainActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="535" column="45" selection-start-line="535" selection-start-column="45" selection-end-line="535" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="OtherSelectJobActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/OtherSelectJobActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.33216783">
-              <caret line="304" column="14" selection-start-line="304" selection-start-column="8" selection-end-line="304" selection-end-column="14" />
+            <state vertical-scroll-proportion="0.39473686">
+              <caret line="278" column="28" selection-start-line="278" selection-start-column="20" selection-end-line="278" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NewSequence.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/newAppTest/src/maurizio/java/customclasses/NewSequence.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="228" column="18" selection-start-line="228" selection-start-column="18" selection-end-line="228" selection-end-column="18" />
               <folding>
-                <element signature="e#10411#10528#0" expanded="true" />
-                <element signature="e#10527#10528#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -87,6 +103,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -2652,7 +2669,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/NewIOIOActivityListener.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/GetBarcodeTest.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/CurrentTest.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/Current.java" />
@@ -2680,7 +2696,6 @@
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/sensors/TestSessionSamples.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/sensors/SensorsTestHelper.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/sensors/SensorTest.java" />
-        <option value="$PROJECT_DIR$/newAppTest/src/main/java/server/TestsParser.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/application/PeriCoachTestApplication.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/hydrix/pfmat/generic/PacketRx_AccelData.java" />
@@ -2700,9 +2715,11 @@
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/sensors/NewDevice.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/hydrix/pfmat/generic/PacketRx_SetRefVoltage.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/hydrix/pfmat/generic/Device.java" />
-        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/MainActivity.java" />
-        <option value="$PROJECT_DIR$/newAppTest/src/maurizio/java/customclasses/NewSequence.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/OtherSelectJobActivity.java" />
+        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/SensorTestWrapper.java" />
+        <option value="$PROJECT_DIR$/newAppTest/src/main/java/server/TestsParser.java" />
+        <option value="$PROJECT_DIR$/newAppTest/src/maurizio/java/customclasses/NewSequence.java" />
+        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/MainActivity.java" />
       </list>
     </option>
   </component>
@@ -2747,6 +2764,74 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NewAppTest-Android Studio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="newAppTest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NewAppTest-Android Studio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="newAppTest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pietrantuono" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NewAppTest-Android Studio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="newAppTest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pietrantuono" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="activities" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NewAppTest-Android Studio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="newAppTest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -3310,74 +3395,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="NewAppTest-Android Studio" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="newAppTest" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="NewAppTest-Android Studio" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="newAppTest" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pietrantuono" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="NewAppTest-Android Studio" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="newAppTest" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pietrantuono" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="activities" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="NewAppTest-Android Studio" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="newAppTest" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="Scope">
         <subPane subId="Problems">
           <PATH>
@@ -3412,17 +3429,23 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/newAppTest/src/peter/java/customclasses" />
       <recent name="$PROJECT_DIR$/newAppTest/src/main/java/com/radiusnetworks/bluetooth" />
       <recent name="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/pericoachengineering/classes" />
       <recent name="$PROJECT_DIR$/newAppTest/src/main/java/hydrix/pfmat/generic" />
       <recent name="$PROJECT_DIR$/newAppTest/src/main/java/analytica/pericoach/android" />
-      <recent name="$PROJECT_DIR$/newAppTest/src/peter/java/customclasses" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/newAppTest/src/peter/java" />
       <recent name="$PROJECT_DIR$/newAppTest/src/maurizio/java" />
       <recent name="$PROJECT_DIR$/newAppTest/src/maurizio" />
       <recent name="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils" />
+    </key>
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="com.pietrantuono.tests.implementations" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.pietrantuono.tests.implementations" />
     </key>
   </component>
   <component name="RunManager" selected="Android Application.newAppTest">
@@ -3599,6 +3622,7 @@
   </component>
   <component name="StructureViewFactory">
     <option name="AUTOSCROLL_MODE" value="false" />
+    <option name="ACTIVE_ACTIONS" value=",ALPHA_COMPARATOR" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -3640,22 +3664,22 @@
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32993197" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37004405" sideWeight="0.36337626" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30829757" sideWeight="0.32107842" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34263232" sideWeight="0.21300448" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22026432" sideWeight="0.49200428" order="7" side_tool="false" content_ui="tabs" x="383" y="55" width="981" height="724" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5359765" sideWeight="0.472103" order="9" side_tool="false" content_ui="tabs" x="680" y="401" width="454" height="284" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37738618" sideWeight="0.472103" order="9" side_tool="false" content_ui="tabs" x="680" y="401" width="454" height="284" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32892805" sideWeight="0.49427754" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4787078" sideWeight="0.49714693" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4537445" sideWeight="0.49213162" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5829662" sideWeight="0.49213162" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32452276" sideWeight="0.50858366" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24964234" sideWeight="0.6789216" order="0" side_tool="false" content_ui="combo" x="989" y="1" width="377" height="940" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.43171805" sideWeight="0.4914163" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34263232" sideWeight="0.78699553" order="0" side_tool="false" content_ui="combo" x="989" y="1" width="377" height="940" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34508076" sideWeight="0.4914163" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32881597" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2067239" sideWeight="0.48775893" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Fabric" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32928678" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -3734,13 +3758,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/peter/java/customclasses/PCBDetectHelperImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.79617834">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/newAppTest/src/main/res/layout/sensors_summary_row_item.xml">
       <provider selected="true" editor-type-id="android-designer">
         <state />
@@ -3758,13 +3775,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/maurizio/java/customclasses/PCBDetectHelperImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0361842">
-          <caret line="60" column="90" selection-start-line="60" selection-start-column="90" selection-end-line="60" selection-end-column="90" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-23/java/lang/Thread.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="36.65441">
@@ -3776,13 +3786,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.09803922">
           <caret line="327" column="28" selection-start-line="327" selection-start-column="28" selection-end-line="327" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/SensorTestWrapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="40" column="13" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -3842,13 +3845,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/server/TestsParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.4867256">
-          <caret line="33" column="17" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/application/PeriCoachTestApplication.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.05263158">
@@ -3860,7 +3856,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.29126215">
           <caret line="40" column="51" selection-start-line="40" selection-start-column="51" selection-end-line="40" selection-end-column="51" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3876,14 +3871,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6733167">
           <caret line="18" column="79" selection-start-line="18" selection-start-column="79" selection-end-line="18" selection-end-column="79" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -3898,13 +3885,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4522613">
-          <caret line="18" column="25" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -4003,7 +3983,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33665836">
           <caret line="135" column="6" selection-start-line="135" selection-start-column="6" selection-end-line="135" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4011,9 +3990,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="4.511222">
           <caret line="401" column="23" selection-start-line="401" selection-start-column="23" selection-end-line="401" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -4035,7 +4011,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4043,15 +4018,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.30393997">
           <caret line="40" column="44" selection-start-line="40" selection-start-column="44" selection-end-line="40" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/peter/java/customclasses/NewSequence.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.478424">
-          <caret line="350" column="30" selection-start-line="350" selection-start-column="30" selection-end-line="350" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4059,7 +4025,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33208254">
           <caret line="548" column="16" selection-start-line="548" selection-start-column="16" selection-end-line="548" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4067,7 +4032,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.2439024">
           <caret line="49" column="11" selection-start-line="49" selection-start-column="11" selection-end-line="49" selection-end-column="11" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4075,14 +4039,71 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.21802326">
           <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-22/android/app/Activity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33139536">
+          <caret line="3982" column="46" selection-start-line="3982" selection-start-column="46" selection-end-line="3982" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/maurizio/java/customclasses/PCBDetectHelperImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9127907">
+          <caret line="60" column="90" selection-start-line="60" selection-start-column="90" selection-end-line="60" selection-end-column="90" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/server/TestsParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.8145162">
+          <caret line="104" column="12" selection-start-line="104" selection-start-column="12" selection-end-line="104" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/SensorTestWrapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.119403">
+          <caret line="45" column="23" selection-start-line="45" selection-start-column="23" selection-end-line="45" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/peter/java/customclasses/PCBDetectHelperImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.2399193">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/peter/java/customclasses/NewSequence.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.5685484">
+          <caret line="42" column="13" selection-start-line="42" selection-start-column="13" selection-end-line="42" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.90909094">
+          <caret line="18" column="25" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/newAppTest/src/maurizio/java/customclasses/NewSequence.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5726744">
-          <caret line="258" column="8" selection-start-line="258" selection-start-column="8" selection-end-line="258" selection-end-column="8" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="228" column="18" selection-start-line="228" selection-start-column="18" selection-end-line="228" selection-end-column="18" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -4091,33 +4112,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.6119874">
-          <caret line="277" column="43" selection-start-line="277" selection-start-column="36" selection-end-line="277" selection-end-column="43" />
-          <folding>
-            <element signature="e#10477#11397#0" expanded="true" />
-            <element signature="e#11396#11397#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-22/android/app/Activity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33139536">
-          <caret line="3982" column="46" selection-start-line="3982" selection-start-column="46" selection-end-line="3982" selection-end-column="46" />
-          <folding>
-            <element signature="e#169414#169415#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.0">
+          <caret line="535" column="45" selection-start-line="535" selection-start-column="45" selection-end-line="535" selection-end-column="45" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/OtherSelectJobActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33216783">
-          <caret line="304" column="14" selection-start-line="304" selection-start-column="8" selection-end-line="304" selection-end-column="14" />
-          <folding>
-            <element signature="e#10411#10528#0" expanded="true" />
-            <element signature="e#10527#10528#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.39473686">
+          <caret line="278" column="28" selection-start-line="278" selection-start-column="20" selection-end-line="278" selection-end-column="28" />
+          <folding />
         </state>
       </provider>
     </entry>
