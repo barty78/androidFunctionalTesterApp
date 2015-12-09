@@ -32,7 +32,7 @@ import com.pietrantuono.tests.implementations.UartLoopbackTest;
 import com.pietrantuono.tests.implementations.UploadFirmwareTest;
 import com.pietrantuono.tests.implementations.VoltageTest;
 import com.pietrantuono.tests.implementations.steps.PauseStep;
-import com.pietrantuono.tests.implementations.steps.SetRefVoltageStep;
+import com.pietrantuono.tests.implementations.steps.SetSensorVoltagesStep;
 import com.pietrantuono.tests.superclass.Test;
 
 import server.TestsParser;

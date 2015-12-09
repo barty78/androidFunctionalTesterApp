@@ -11,28 +11,7 @@ import com.pietrantuono.activities.MainActivity;
 import com.pietrantuono.constants.NewMResult;
 import com.pietrantuono.constants.NewMSensorResult;
 import com.pietrantuono.constants.NewSequenceInterface;
-import com.pietrantuono.ioioutils.Current.Scale;
-import com.pietrantuono.tests.implementations.AccelerometerSelfTest;
-import com.pietrantuono.tests.implementations.BatteryLevelUUTVoltageTest;
-import com.pietrantuono.tests.implementations.BluetoothConnectTestForTesting;
-import com.pietrantuono.tests.implementations.ChargingTerminationTest;
-import com.pietrantuono.tests.implementations.ChargingTest;
-import com.pietrantuono.tests.implementations.CurrentTest;
-import com.pietrantuono.tests.implementations.DummyTest;
-import com.pietrantuono.tests.implementations.GetBarcodeTest;
-import com.pietrantuono.tests.implementations.GetDeviceSerialTest;
-import com.pietrantuono.tests.implementations.LedCheckTest;
-import com.pietrantuono.tests.implementations.MagnetWakeDeviceTest;
-import com.pietrantuono.tests.implementations.ReadDeviceInfoSerialNumberTest;
-import com.pietrantuono.tests.implementations.ReadFirmwareversionTest;
-import com.pietrantuono.tests.implementations.ReadModelNumberTest;
-import com.pietrantuono.tests.implementations.SensorTestWrapper;
-import com.pietrantuono.tests.implementations.UUTCurrentTest;
-import com.pietrantuono.tests.implementations.UartLoopbackTest;
-import com.pietrantuono.tests.implementations.UploadFirmwareTest;
 import com.pietrantuono.tests.implementations.VoltageTest;
-import com.pietrantuono.tests.implementations.steps.PauseStep;
-import com.pietrantuono.tests.implementations.steps.SetRefVoltageStep;
 import com.pietrantuono.tests.superclass.Test;
 
 import server.TestsParser;
@@ -361,10 +340,10 @@ public class NewSequence implements NewSequenceInterface {
 //		sequence.add(new BatteryLevelUUTVoltageTest(activity, 85, 0.1f,
 //				"Battery Level - UUT voltage @ 4.1V", 15));
 
-//		sequence.add(new SetRefVoltageStep(activity, (short)25, "Set Sensor Voltage level to 25"));
+//		sequence.add(new SetSensorVoltagesStep(activity, (short)25, "Set Sensor Voltage level to 25"));
 //		sequence.add(new VoltageTest(activity, ioio, 32, false, true, -1f, -0.3f, 1f,
 //				"Voltage Measurement(V_REF_AN)"));
-//		sequence.add(new SetRefVoltageStep(activity, (short)230, "Set Sensor Voltage level to 230"));
+//		sequence.add(new SetSensorVoltagesStep(activity, (short)230, "Set Sensor Voltage level to 230"));
 //		sequence.add(new VoltageTest(activity, ioio, 32, false, true, -1f, -2.7f, 1f,
 //				"Voltage Measurement(V_REF_AN)"));
 //		sequence.add(new PauseStep(activity, "Pause Step"));

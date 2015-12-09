@@ -100,6 +100,16 @@ public class UploadFirmwareTest extends Test {
 					@Override
 					public void onUploadCompleted(boolean success) {
 						setSuccess(success);
+						try {
+							RX.close();
+						} catch (Exception e) {
+							Crashlytics.logException(e);
+						}
+						try {
+							TX.close();
+						} catch (Exception e) {
+							Crashlytics.logException(e);
+						}
 						if(!success){
 							((Activity)activityListener).runOnUiThread(new Runnable() {
 								@Override
@@ -119,21 +129,8 @@ public class UploadFirmwareTest extends Test {
 								activityListener.goAndExecuteNextTest();
 							}
 						});
-						try {
-							//uart.close();
-						} catch (Exception e) {
-							Crashlytics.logException(e);
-						}
-						try {
-							RX.close();
-						} catch (Exception e) {
-							Crashlytics.logException(e);
-						}
-						try {
-							TX.close();
-						} catch (Exception e) {
-							Crashlytics.logException(e);
-						}
+
+
 					}
 				});
 			}

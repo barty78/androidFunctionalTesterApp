@@ -11,21 +11,25 @@ import com.pietrantuono.tests.superclass.Test;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
-public class SetRefVoltageStep extends Test {
-    private short voltage;
+public class SetSensorVoltagesStep extends Test {
+    private short refVoltage;
+    private short zeroVoltage;
 
     /**
      * IMPORTANT: Bluetooth must be open using
      * {@link BluetoothConnectTest}
      * Do not execute this step before opening Bluetooth
      *
-     * @param voltage
+     * @param refVoltage        , sensor gain voltage (0 to 255, -1 if not setting)
+     * @param zeroVoltage       , sensor zero offset voltage (0 to 255, -1 if not setting)
      * @param activity
      * @param description
      */
-    public SetRefVoltageStep(Activity activity, short voltage, String description) {
+    public SetSensorVoltagesStep(Activity activity, short refVoltage, short zeroVoltage, String description) {
         super(activity, null, description, false, false);
-        this.voltage = voltage;
+        this.istest = false;
+        this.refVoltage = refVoltage;
+        this.zeroVoltage = zeroVoltage;
     }
 
     @Override
@@ -37,16 +41,35 @@ public class SetRefVoltageStep extends Test {
             getListener().addFailOrPass(false, false, "BT ERROR");
             return;}
 
-        try {
-           getListener().getBtutility().setVoltage(voltage);
-        } catch (Exception e) {
-            getListener().addFailOrPass(true, false, "ERROR", "UUT Comms Fault");
-            return;
+        if (refVoltage != -1) {
+            try {
+                getListener().getBtutility().setVoltage(refVoltage);
+            } catch (Exception e) {
+                getListener().addFailOrPass(true, false, "ERROR", "UUT Comms Fault");
+                return;
 
+            }
+        }
+        if(isinterrupted)return;
+        Handler handler = new Handler();
+
+        if (zeroVoltage != -1) {
+            try {
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        getListener().getBtutility().setZeroVoltage(zeroVoltage);
+                    }
+                }, 100);
+            } catch (Exception e) {
+                getListener().addFailOrPass(true, false, "ERROR", "UUT Comms Fault");
+                return;
+
+            }
         }
 
         if(isinterrupted)return;
-        Handler handler = new Handler();
+
 
         handler.postDelayed(new Runnable() {
             @Override

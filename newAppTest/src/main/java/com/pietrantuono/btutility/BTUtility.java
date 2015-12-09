@@ -425,7 +425,7 @@ public class BTUtility {
 			public void run() {
 				insertDeviceAndScancode(mDeviceId, scancode);
 				((NewIOIOActivityListener) activityRef.get()).addFailOrPass(
-						true, true, bluetoothConnectTest.getDescription());
+						true, true, "Connected");
 				//((NewIOIOActivityListener) activityRef.get()).goAndExecuteNextTest();
 			}
 		});
@@ -528,19 +528,19 @@ public class BTUtility {
 	public void setZeroVoltage(final Short voltage) {
 		Handler handler = new Handler();
 		Byte sensor = (byte) (0 & 0xFF);
-//		NewPFMATDevice.getDevice().sendZeroVoltage(sensor, voltage);
+		NewPFMATDevice.getDevice().sendZeroVoltage(sensor, voltage);
 		handler.postDelayed(new Runnable() {
 			@Override
 			public void run() {
 				Byte sensor = (byte) (1 & 0xFF);
-//				NewPFMATDevice.getDevice().sendZeroVoltage(sensor, voltage);
+				NewPFMATDevice.getDevice().sendZeroVoltage(sensor, voltage);
 			}
 		}, 20);
 		handler.postDelayed(new Runnable() {
 			@Override
 			public void run() {
 				Byte sensor = (byte) (2 & 0xFF);
-//				NewPFMATDevice.getDevice().sendZeroVoltage(sensor, voltage);
+				NewPFMATDevice.getDevice().sendZeroVoltage(sensor, voltage);
 			}
 		}, 40);
 	}

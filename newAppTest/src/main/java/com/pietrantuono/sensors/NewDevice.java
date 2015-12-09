@@ -16,6 +16,7 @@ import hydrix.pfmat.generic.PacketTx_GetBatteryStatus;
 import hydrix.pfmat.generic.PacketTx_GetDeviceDetails;
 import hydrix.pfmat.generic.PacketTx_GetSensorData;
 import hydrix.pfmat.generic.PacketTx_SetRefVoltage;
+import hydrix.pfmat.generic.PacketTx_SetZeroVoltage;
 import hydrix.pfmat.generic.PacketTx_Sleep;
 import hydrix.pfmat.generic.RefVoltageObserver;
 
@@ -159,7 +160,7 @@ public abstract class NewDevice
 	public final boolean sendGetSensorData(int requestTimestamp) {return sendPacket(new PacketTx_GetSensorData(requestTimestamp));}
 	
 	public final boolean sendRefVoltage(byte sensorIndex, short refVoltage) {return sendPacket(new PacketTx_SetRefVoltage(sensorIndex, refVoltage));}
-//	public final boolean sendZeroVoltage(byte sensorIndex, short zeroVoltage) {return sendPacket(new PacketTx_SetZeroVoltage(sensorIndex, ZeroVoltage));}
+	public final boolean sendZeroVoltage(byte sensorIndex, short zeroVoltage) {return sendPacket(new PacketTx_SetZeroVoltage(sensorIndex, zeroVoltage));}
 	@SuppressWarnings("ucd")
 	public
 	final boolean sendSleep(short waitTime) {return sendPacket(new PacketTx_Sleep(waitTime));}

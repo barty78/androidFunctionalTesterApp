@@ -186,81 +186,76 @@ public class IOIOUtils implements IOIOUtilsInterface  {
 		stopUartThread();
 		
 		try {
-			POWER.close();
+			if (POWER != null)POWER.close();
 			}
 			catch (Exception e){e.printStackTrace();}
 		try {
-			reset.close();
-			}
-			catch (Exception e){e.printStackTrace();}
-		
-		try {
-			boot0.close();
+			if (reset != null)reset.close();
 			}
 			catch (Exception e){e.printStackTrace();}
 		
 		try {
-			boot1.close();
+			if (boot0 != null)boot0.close();
 			}
 			catch (Exception e){e.printStackTrace();}
 		
 		try {
-			_5V_DC.close();
+			if (boot1 != null)boot1.close();
 			}
 			catch (Exception e){e.printStackTrace();}
 		
 		try {
-			Irange.close();
+			if (_5V_DC != null)_5V_DC.close();
 			}
 			catch (Exception e){e.printStackTrace();}
 		
 		try {
-			Sensor_Low.close();
+			if (Irange != null)Irange.close();
 			}
 			catch (Exception e){e.printStackTrace();}
 		
 		try {
-			Sensor_High.close();
+			if (Sensor_Low != null)Sensor_Low.close();
 			}
 			catch (Exception e){e.printStackTrace();}
 		
 		try {
-			master.close();
+			if (Sensor_High != null)Sensor_High.close();
 			}
 			catch (Exception e){e.printStackTrace();}
 		
 		try {
-			uart2.close();
+			if (master != null)master.close();
 			}
 			catch (Exception e){e.printStackTrace();}
 		
 		try {
-			HallInt.close();
+			if (HallInt != null)HallInt.close();
 			}
 			catch (Exception e){e.printStackTrace();}
 		
 		try {
-			EMag.close();
+			if (EMag != null)EMag.close();
 			}
 			catch (Exception e){e.printStackTrace();}
 
 		try {
-			CHGPin.close();
+			if (CHGPin != null)CHGPin.close();
 		}
-		catch (Exception e){e.printStackTrace();}
+			catch (Exception e){e.printStackTrace();}
 
 		try {
-			trigger.close();
+			if (trigger != null)trigger.close();
 			}
 			catch (Exception e){e.printStackTrace();}
 		
 		try {
-			uart1.close();
+			if (uart1 != null)uart1.close();
 			}
 			catch (Exception e){e.printStackTrace();}
 		
 		try {
-			uart2.close();
+			if (uart2 != null)uart2.close();
 			}
 			catch (Exception e){e.printStackTrace();}
 	}
@@ -380,9 +375,9 @@ public class IOIOUtils implements IOIOUtilsInterface  {
 		iS = uart1.getInputStream();
 		//oS = uart1.getOutputStream();
 		
-		InputStreamReader in1 = new InputStreamReader(iS);
+//		InputStreamReader in1 = new InputStreamReader(iS);
 
-		RD1 = new BufferedReader(in1);
+//		RD1 = new BufferedReader(in1);
 		
 		try {
 			barcodeOK = ioio_.openDigitalInput(15,
@@ -740,13 +735,13 @@ public class IOIOUtils implements IOIOUtilsInterface  {
 
 		@Override
 		public void run() {
-						
+
 			InputStream is = getIOIOUart().getInputStream();
 			r = new BufferedReader(new InputStreamReader(is));
 
 			
 			while (!stopthread) {
-				if(counter % 25 == 0){
+				if(counter % 200 == 0){
 					Log.d(TAG, "UART Task is running: ");
 				}
 				line = null;

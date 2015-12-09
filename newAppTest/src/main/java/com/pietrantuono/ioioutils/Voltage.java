@@ -84,8 +84,17 @@ public class Voltage {
 	@SuppressWarnings("ucd")
 	public static Result checkVoltage(IOIO ioio, int pinNumber, Boolean scaled, float scaling, float limit, float precision) throws Exception{
 		float average=getVoltage(ioio, pinNumber);
-		if (scaled) average = average*scaling;
-		Boolean success=((average > limit - precision)&& (average < limit + precision))?true:false;
+		if (scaled) {average = average * scaling;}
+		Boolean success;
+		if (limit != 0) {
+			if (limit < 0) {
+				success = ((average > (limit + (limit * precision))) && (average < (limit - (limit * precision)))) ? true : false;
+			} else {
+				success = ((average > (limit - (limit * precision))) && (average < (limit + (limit * precision)))) ? true : false;
+			}
+		} else {
+			success = (average == 0) ? true : false;
+		}
 		return new Result(success, average);
 		
 	};

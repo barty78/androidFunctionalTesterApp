@@ -25,8 +25,8 @@ public class PFMAT
 	public static final byte TX_SLEEP = 0x07;
 	public static final byte RX_SLEEP = 0x70;
 	
-	public static final byte TX_SET_ZERO_VOLTAGE = 0x08;
-	public static final byte RX_ZERO_VOLTAGE = (byte) 0x80;
+	public static final byte TX_SET_ZERO_VOLTAGE = 0x09;
+	public static final byte RX_ZERO_VOLTAGE = (byte) 0x90;
 	
 	
 	public static final short MIN_SENSOR_VALUE = 0;
