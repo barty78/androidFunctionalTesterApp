@@ -533,7 +533,7 @@ public class MainActivity extends Activity
 	
 	public NewSequenceInterface getNewSequence() {
 
-		if(sequenceForTests==null)return new NewSequence(MainActivity.this, myIOIO, job,PeriCoachTestApplication.getSequence());
+		if(sequenceForTests==null)return new NewSequence(MainActivity.this, myIOIO, job);
 		else return sequenceForTests;
 	}
 
