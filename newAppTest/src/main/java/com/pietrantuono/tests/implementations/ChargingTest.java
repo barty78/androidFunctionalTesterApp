@@ -45,7 +45,7 @@ public class ChargingTest extends Test {
 
 		switch5vDC(true);
 
-		value = IOIOUtils.getUtils().readPulseWithTimeout(IOIOUtils.getUtils().getCHGPin());
+		value = IOIOUtils.getUtils().readPulseWithTimeout(IOIOUtils.getUtils().getCHGPinIn());
 
 		if (value == 1) {
 			Success();
@@ -91,11 +91,11 @@ public class ChargingTest extends Test {
 				if(isinterrupted)return;
 				if (value) {
 					setSuccess(true);
-					switch5vDC(false);
+//					switch5vDC(false);
 					activityListener.addFailOrPass(false, true, description);
 				} else {
 					setSuccess(false);
-					switch5vDC(false);
+//					switch5vDC(false);
 					activityListener.addFailOrPass(false, false, description);
 				}
 			}
@@ -107,11 +107,11 @@ public class ChargingTest extends Test {
 				if(isinterrupted)return;
 				if (value) {
 					setSuccess(false);
-					switch5vDC(false);
+//					switch5vDC(false);
 					activityListener.addFailOrPass(false, false, description);
 				} else {
 					setSuccess(false);
-					switch5vDC(false);
+//					switch5vDC(false);
 					activityListener.addFailOrPass(false, true, description);
 				}
 			}

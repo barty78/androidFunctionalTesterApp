@@ -33,12 +33,16 @@ public class GetDeviceSerialTest extends Test {
 		if (isinterrupted)
 			return;
 		Log.d(TAG, "Get Device Serial Test Starting");
-		IOIOUtils.getUtils().modeApplication((Activity) activityListener);
+//		if (IOIOUtils.getUtils().getUutMode(getActivity()) == IOIOUtils.Mode.bootloader) {
+			IOIOUtils.getUtils().modeApplication((Activity) activityListener);
+//		}
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+
+//		IOIOUtils.getUtils().resetUart2(ioio, (Activity)activityListener) ;
 
 		IOIOUtils.getUtils().clearUartLog();	// Clear the UART log buffer
 

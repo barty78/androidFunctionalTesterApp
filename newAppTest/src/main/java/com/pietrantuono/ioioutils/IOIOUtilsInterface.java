@@ -21,13 +21,19 @@ public interface IOIOUtilsInterface {
 
 	void initialize(NewIOIOActivityListener listner, IOIO ioio_, Activity ac);
 
+	void resetUart2(IOIO ioio_, Activity ac);
+
 	DigitalOutput getSensor_Low();
 
 	DigitalOutput getSensor_High();
 
 	DigitalOutput get_5V_DC();
 
-	DigitalInput getCHGPin();
+	DigitalInput getCHGPinIn();
+
+	DigitalOutput getCHGPinOut();
+
+	void driveChargeLed(IOIO ioio_, Activity ac);
 
 	TwiMaster getMaster();
 
@@ -56,6 +62,8 @@ public interface IOIOUtilsInterface {
 	
 	void modeApplication(Activity activity);
 
+//	IOIOUtils.Mode getUutMode(Activity activity);
+
 	DigitalOutput getIrange();
 	
 	@SuppressWarnings("ucd")
@@ -68,9 +76,6 @@ public interface IOIOUtilsInterface {
 	void clearUartLog();
 
 	String readBarcode(Activity activity);
-
-	@SuppressWarnings("ucd")
-	void stop();
 
 	@SuppressWarnings("ucd")
 	InputStream getUartInStream();
