@@ -8,6 +8,7 @@ import ioio.lib.api.Uart;
 import ioio.lib.api.exception.ConnectionLostException;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -32,15 +33,12 @@ import com.pietrantuono.activities.NewIOIOActivityListener;
 public class IOIOUtils implements IOIOUtilsInterface  {
 	private  Uart uart1;
 	private  Uart uart2;
-	
-	private static InputStream RX1;
+
 	private static BufferedReader RD1;
 	private static DigitalInput barcodeOK;
 	private static DigitalOutput barcodeTRGR;
 	private static final String TAG = "IOIOUtils";
 	private static ExecutorService executor = Executors.newFixedThreadPool(1);
-	private static IOIO myioio;
-	private static int counter = 0;
 	private static DigitalOutput boot0;
 	private static DigitalOutput boot1;
 	private static DigitalOutput POWER;
@@ -53,7 +51,8 @@ public class IOIOUtils implements IOIOUtilsInterface  {
 	private static DigitalOutput HallInt;
 	private static DigitalOutput EMag;
 
-	private static DigitalInput CHGPin;
+	private static DigitalInput CHGPinIn;
+	private static DigitalOutput CHGPinOut;
 
 	private static TwiMaster master = null;
 	private static Boolean isinterrupted=false;
@@ -61,19 +60,36 @@ public class IOIOUtils implements IOIOUtilsInterface  {
 	private static Boolean triggervalue=true;
 	
 	private static InputStream iS;
-	private static OutputStream oS;
 	private static InputStream inputStream;
 	private static OutputStream outputStream;
 	private static BufferedReader r;
 	private static StringBuilder sb;
 	private static Uart2Thread thread;
 	private static IOIOUtilsInterface instance;
+
+	public static Mode uutMode;
 	
 	public static IOIOUtilsInterface getUtils(){
 		if(instance==null){
 			instance= new IOIOUtils();
 		}
 		return instance;
+	}
+
+	public enum Mode {
+
+		bootloader	((int)0),
+		application ((int)1);
+
+		public Integer mode;
+
+		public Integer getMode() {
+			return mode;
+		}
+
+		Mode(int mode) {
+			this.mode = mode;
+		}
 	}
 	
 	public static void setIOIOUtilsInterface(IOIOUtilsInterface mockobject){
@@ -240,9 +256,14 @@ public class IOIOUtils implements IOIOUtilsInterface  {
 			catch (Exception e){e.printStackTrace();}
 
 		try {
-			if (CHGPin != null)CHGPin.close();
+			if (CHGPinIn != null)CHGPinIn.close();
 		}
 			catch (Exception e){e.printStackTrace();}
+
+		try {
+			if (CHGPinOut != null)CHGPinOut.close();
+		}
+		catch (Exception e){e.printStackTrace();}
 
 		try {
 			if (trigger != null)trigger.close();
@@ -267,6 +288,9 @@ public class IOIOUtils implements IOIOUtilsInterface  {
 	public  void initialize(final NewIOIOActivityListener listner,
 			final IOIO ioio_, final Activity ac) {
 		isinterrupted=false;
+
+		uutMode = Mode.bootloader;
+
 		try {
 			POWER = ioio_.openDigitalOutput(19,
 					DigitalOutput.Spec.Mode.OPEN_DRAIN, false);
@@ -360,7 +384,7 @@ public class IOIOUtils implements IOIOUtilsInterface  {
 		}
 
 		try {
-			CHGPin = ioio_.openDigitalInput(27, DigitalInput.Spec.Mode.FLOATING);
+			CHGPinIn = ioio_.openDigitalInput(27, DigitalInput.Spec.Mode.FLOATING);
 		} catch (Exception e) {
 			report(e, ac);
 			return;
@@ -373,12 +397,11 @@ public class IOIOUtils implements IOIOUtilsInterface  {
 		}
 		
 		iS = uart1.getInputStream();
-		//oS = uart1.getOutputStream();
-		
-//		InputStreamReader in1 = new InputStreamReader(iS);
 
-//		RD1 = new BufferedReader(in1);
-		
+		InputStreamReader in1 = new InputStreamReader(iS);
+
+		RD1 = new BufferedReader(in1);
+
 		try {
 			barcodeOK = ioio_.openDigitalInput(15,
 					DigitalInput.Spec.Mode.PULL_UP);
@@ -414,6 +437,52 @@ public class IOIOUtils implements IOIOUtilsInterface  {
 		toggle5VDC(ac);
 
 	}
+//	@Override
+//	public Mode getUutMode() {return uutMode;}
+
+	@Override
+	public void driveChargeLed(final IOIO ioio_, final Activity ac) {
+		if (CHGPinIn != null) {CHGPinIn.close();}
+
+		try {
+			CHGPinOut = ioio_.openDigitalOutput(27, DigitalOutput.Spec.Mode.NORMAL, false);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+
+	@Override
+	public void resetUart2(final IOIO ioio_, final Activity ac) {
+		try {
+			inputStream.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		try {
+			outputStream.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		uart2.close();
+
+		try {
+			uart2 = ioio_.openUart(13, 14, 115200, Uart.Parity.EVEN, // STM32
+					// Bootloader
+					// requires
+					// EVEN
+					// Parity..
+					Uart.StopBits.ONE);
+		} catch (ConnectionLostException e) {
+			Log.e(TAG, e.toString());
+		}
+
+		inputStream = uart2.getInputStream();
+		outputStream = uart2.getOutputStream();
+
+		sb = new StringBuilder();
+
+	}
 	
 	public DigitalOutput getBarcodeTrgr() {
 		return barcodeTRGR;
@@ -427,7 +496,13 @@ public class IOIOUtils implements IOIOUtilsInterface  {
     * @see com.pietrantuono.ioioutils.IOIOUtilsInterface#getCHGPin()
     */
 	@Override
-	public DigitalInput getCHGPin() {return CHGPin; }
+	public DigitalInput getCHGPinIn() {return CHGPinIn; }
+
+	/* (non-Javadoc)
+    * @see com.pietrantuono.ioioutils.IOIOUtilsInterface#getCHGPin()
+    */
+	@Override
+	public DigitalOutput getCHGPinOut() {return CHGPinOut; }
 
 	public  DigitalOutput getTrigger() {return trigger;	}
 
@@ -602,19 +677,24 @@ public class IOIOUtils implements IOIOUtilsInterface  {
 			return;
 		}
 	}
-	
-	
-	
-	
+
 	/* (non-Javadoc)
 	 * @see com.pietrantuono.ioioutils.IOIOUtilsInterface#modeApplication(android.app.Activity)
 	 */
 	@Override
 	public  void modeApplication(Activity activity) {
-		thread= new Uart2Thread();
-		Log.d(TAG, "Starting UART Thread");
-		thread.start();
+
 		if(isinterrupted)return;
+
+		// When entering Application mode, start the Uart Thread so that console is captured.  We will search console log for signs of life, etc...
+		if(thread == null || stopthread) {
+			thread = new Uart2Thread();
+			Log.d(TAG, "Starting UART Thread");
+			thread.start();
+		}
+		if(isinterrupted)return;
+
+
 		Log.d(TAG, "Switching to Application Boot Mode");
 		try {
 			boot0.write(false);
@@ -622,21 +702,21 @@ public class IOIOUtils implements IOIOUtilsInterface  {
 			report(e, activity);
 			return;
 		}
+		if(isinterrupted)return;
+
 		try {
 			boot1.write(true);
 		} catch (Exception e) {
 			report(e, activity);
 			return;
 		}
-				
-		toggle5VDC(activity);
-		
-		// When entering Application mode, start the Uart Thread so that console is captured.  We will search console log for signs of life, etc...
-		thread= new Uart2Thread();
-		Log.d(TAG, "Starting UART Thread");
-		thread.start();
+		if(isinterrupted)return;
 
-	}
+		toggle5VDC(activity);
+
+		uutMode = Mode.application;
+		if(isinterrupted)return;
+		}
 	
 	/* (non-Javadoc)
 	 * @see com.pietrantuono.ioioutils.IOIOUtilsInterface#getIrange()
@@ -697,15 +777,7 @@ public class IOIOUtils implements IOIOUtilsInterface  {
 		Log.d(TAG, "Clearing Uart Log StringBuilder instance");
 		sb = new StringBuilder();
 	}
-	
-	/* (non-Javadoc)
-	 * @see com.pietrantuono.ioioutils.IOIOUtilsInterface#stop()
-	 */
-	@Override
-	public  void stop() {
-		stopthread = true;
-	}
-	
+
 	/* (non-Javadoc)
 	 * @see com.pietrantuono.ioioutils.IOIOUtilsInterface#getUartInStream()
 	 */
@@ -741,9 +813,9 @@ public class IOIOUtils implements IOIOUtilsInterface  {
 
 			
 			while (!stopthread) {
-				if(counter % 200 == 0){
-					Log.d(TAG, "UART Task is running: ");
-				}
+//				if(counter % 200 == 0){
+//					Log.d(TAG, "UART Task is running: ");
+//				}
 				line = null;
 				MyCallable myCallable= new MyCallable();
 				Future<String> future = executor.submit(myCallable);

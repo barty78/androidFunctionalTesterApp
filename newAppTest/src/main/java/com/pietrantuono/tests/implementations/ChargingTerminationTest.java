@@ -38,7 +38,7 @@ public class ChargingTerminationTest extends Test {
 		switch5vDC(true);
 
 		try {
-			CHGPin = IOIOUtils.getUtils().getCHGPin().read();
+			CHGPin = IOIOUtils.getUtils().getCHGPinIn().read();
 		} catch (Exception e2) {
 			report(e2);
 			activityListener.addFailOrPass(true, false, "IOIO Read Fault");

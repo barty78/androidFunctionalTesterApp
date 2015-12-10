@@ -4,14 +4,20 @@ import android.app.Activity;
 import android.util.Log;
 
 import com.pietrantuono.ioioutils.Current;
+import com.pietrantuono.ioioutils.Current.Scale;
 import com.pietrantuono.ioioutils.IOIOUtils;
 import com.pietrantuono.tests.superclass.Test;
+
+import static com.pietrantuono.ioioutils.Current.*;
+import static com.pietrantuono.ioioutils.Current.Scale.*;
+
 public class CurrentTest extends Test {
 	private int pinNumber;
 	private Boolean isUpperLower;
 	private float limitParam1, limitParam2;
-	private int gain, Rshunt;
-	private Current.Scale scale;
+	private int gain = 50;
+	private int Rshunt;
+	private Scale scale;
 	public void Scale() {
 	}
 	/**
@@ -20,19 +26,17 @@ public class CurrentTest extends Test {
 	 * @param activity			- Activity Instance
 	 * @param ioio				- IOIO Instance
 	 * @param pinNumber			- IOIO Pin Number
-	 * @param gain				- Current sense Gain
-	 * @param Rshunt			- Current sense Shunt Resistor Value
 	 * @param scale				- Measurement Scale (nA, uA or mA)
 	 * @param isUpperLower		- Applied Limits Type (Bounds / Nominal,Precision)
 	 * @param limitParam1		- Limit Parameter 1 (Upper / Nominal)
 	 * @param limitParam2		- Limit Parameter 2 (Lower / Precision)
 	 * @param description		- Test Description
 	 */
-	public CurrentTest(Activity activity, IOIO ioio, int pinNumber, int gain, int Rshunt, Current.Scale scale, Boolean isUpperLower, float limitParam1, float limitParam2, String description) {
+	public CurrentTest(Activity activity, IOIO ioio, int pinNumber, Scale scale, Boolean isUpperLower, float limitParam1, float limitParam2, String description) {
 		super(activity, ioio, description, false, true);
 		this.pinNumber = pinNumber;
-		this.gain = gain;
-		this.Rshunt = Rshunt;
+//		this.gain = gain;
+//		this.Rshunt = Rshunt;
 		this.scale = scale;
 		this.isUpperLower = isUpperLower;
 		this.limitParam1 = limitParam1;
@@ -45,7 +49,6 @@ public class CurrentTest extends Test {
 		if(isinterrupted)return;
 		Log.d(TAG, "Test Starting: " + description);
 		byte[] writebyte = new byte[] { 0x00, (byte) 100 }; // Value of 210 =
-															// 3.3v
 		byte[] readbyte = new byte[] {};
 		if (IOIOUtils.getUtils().getMaster() != null)
 			try {
@@ -56,11 +59,20 @@ public class CurrentTest extends Test {
 				activityListener.addFailOrPass(true, false, "ERROR", "Fixture Fault");
 				return;
 			}
-		Current.Result result = null;
+		Result result = null;
+
+		switch(scale){
+			case mA:
+				Rshunt = 2;
+				break;
+			case uA:
+				Rshunt = 1002;
+				break;
+		}
 
 		try {
-			result = Current
-					.checkCurrent(ioio, pinNumber, gain, Rshunt, scale, isUpperLower, limitParam1, limitParam2);
+			result =
+					checkCurrent(ioio, pinNumber, gain, Rshunt, scale, isUpperLower, limitParam1, limitParam2);
 		} catch (Exception e) {
 			report(e);
 		}

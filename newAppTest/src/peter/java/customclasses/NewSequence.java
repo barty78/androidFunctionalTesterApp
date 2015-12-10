@@ -15,6 +15,7 @@ import com.pietrantuono.ioioutils.Current.Scale;
 import com.pietrantuono.tests.implementations.AccelerometerSelfTest;
 import com.pietrantuono.tests.implementations.BatteryLevelUUTVoltageTest;
 import com.pietrantuono.tests.implementations.BluetoothConnectTestForTesting;
+import com.pietrantuono.tests.implementations.ChargeLedCheckTest;
 import com.pietrantuono.tests.implementations.ChargingTest;
 import com.pietrantuono.tests.implementations.CurrentTest;
 import com.pietrantuono.tests.implementations.GetDeviceSerialTest;
@@ -278,7 +279,7 @@ public class NewSequence implements NewSequenceInterface {
 		// NEW TESTS
 //		sequence.add(new GetBarcodeTest(activity,ioio,job));
 
-		sequence.add(new CurrentTest(activity, ioio, 42, 50, 1002, Scale.uA, true, (float)100, (float)0,
+		sequence.add(new CurrentTest(activity, ioio, 42, Scale.uA, true, (float)100, (float)0,
 				"Current Measurement - UUT Unprogrammed"));
 
 		sequence.add(new VoltageTest(activity, ioio, 44, 3.1f, 0.2f,
@@ -293,7 +294,9 @@ public class NewSequence implements NewSequenceInterface {
 		sequence.add(new ChargingTest(activity, ioio,
 				"Battery Charging Test"));
 
-		sequence.add(new UploadFirmwareTest(activity, ioio));
+		sequence.add(new ChargeLedCheckTest(activity, ioio, "Pink", "Pink LED Check"));
+
+//		sequence.add(new UploadFirmwareTest(activity, ioio));
 
 		sequence.add(new GetDeviceSerialTest(activity, ioio));
 		sequence.add(new AccelerometerSelfTest(activity, ioio));
@@ -303,9 +306,9 @@ public class NewSequence implements NewSequenceInterface {
 //		sequence.add(new VoltageTest(activity, ioio, 33, 0f, 0.1f,
 //				"Voltage Measurement - Sleep Mode (V_BT)"));
 
-		sequence.add(new MagnetWakeDeviceTest(activity, ioio));
+//		sequence.add(new MagnetWakeDeviceTest(activity, ioio));
 
-		sequence.add(new CurrentTest(activity, ioio, 42, 50, 2, Scale.mA, false, (float)28, (float)0.1,
+		sequence.add(new CurrentTest(activity, ioio, 42, Scale.mA, false, (float)28, (float)0.1,
 				"Current Measurement - Awake"));
 //		sequence.add(new VoltageTest(activity, ioio, 44, 3.1f, 0.1f,
 //				"Voltage Measurement - Awake Mode (V_3V1)"));
@@ -325,7 +328,7 @@ public class NewSequence implements NewSequenceInterface {
 		sequence.add(new BluetoothConnectTestForTesting(activity));
 		sequence.add(new LedCheckTest(activity, "Green", "Green LED Check"));
 		sequence.add(new LedCheckTest(activity, "Blue", "Blue LED Check"));
-		sequence.add(new CurrentTest(activity, ioio, 42, 50, 2, Scale.mA, false, (float)33, (float)0.1,
+		sequence.add(new CurrentTest(activity, ioio, 42, Scale.mA, false, (float)33, (float)0.1,
 				"Current Measurement - BT Connected"));
 //		sequence.add(new VoltageTest(activity, ioio, 32, true, -1f, -1.4f, 0.1f,
 //				"Voltage Measurement - BT Connected Mode (V_REF_AN)"));

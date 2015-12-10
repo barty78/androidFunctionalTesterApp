@@ -22,78 +22,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ce77540-f948-44a7-9fee-70346dd6a4e3" name="Default" comment="working on tests..  fixed voltage test pass/fail check for -ve voltages.  Combine SetRef/ZeroVoltageSteps into one SetSensorVoltagesStep..">
-      <change type="DELETED" beforePath="C:\Users\Peter\StudioProjects\pericoach-test-app-android-studio\.idea\libraries\IOIOLibAndroidAccessory_5_05.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Peter\StudioProjects\pericoach-test-app-android-studio\.idea\libraries\IOIOLibAndroidBluetooth_5_05.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Peter\StudioProjects\pericoach-test-app-android-studio\.idea\libraries\IOIOLibAndroidDevice_5_05.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Peter\StudioProjects\pericoach-test-app-android-studio\.idea\libraries\IOIOLibAndroid_5_05.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Peter\StudioProjects\pericoach-test-app-android-studio\.idea\libraries\IOIOLibCore_5_05.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Peter\StudioProjects\pericoach-test-app-android-studio\.idea\libraries\MyJarCopy.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Peter\StudioProjects\pericoach-test-app-android-studio\.idea\libraries\activeandroid_build.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Peter\StudioProjects\pericoach-test-app-android-studio\.idea\libraries\android_async_http_1_4_6__3_.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Peter\StudioProjects\pericoach-test-app-android-studio\.idea\libraries\answers_1_3_4.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Peter\StudioProjects\pericoach-test-app-android-studio\.idea\libraries\beta_1_1_4.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Peter\StudioProjects\pericoach-test-app-android-studio\.idea\libraries\commons_io_2_4.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Peter\StudioProjects\pericoach-test-app-android-studio\.idea\libraries\crashlytics_2_5_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Peter\StudioProjects\pericoach-test-app-android-studio\.idea\libraries\crashlytics_core_2_3_6.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Peter\StudioProjects\pericoach-test-app-android-studio\.idea\libraries\fabric_1_3_8.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Peter\StudioProjects\pericoach-test-app-android-studio\.idea\libraries\gson_2_3_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Peter\StudioProjects\pericoach-test-app-android-studio\.idea\libraries\retrofit_1_9_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Peter\StudioProjects\pericoach-test-app-android-studio\.idea\libraries\support_annotations_23_1_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Peter\StudioProjects\pericoach-test-app-android-studio\.idea\libraries\support_v4_23_1_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Peter\StudioProjects\pericoach-test-app-android-studio\NewAppTest-Android Studio.iml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Peter\StudioProjects\pericoach-test-app-android-studio\newAppTest\src\main\java\com\pietrantuono\tests\implementations\steps\SetZeroVoltageStep.java" afterPath="" />
-      <change type="MOVED" beforePath="C:\Users\Peter\StudioProjects\pericoach-test-app-android-studio\newAppTest\src\main\java\com\pietrantuono\tests\implementations\steps\SetRefVoltageStep.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/steps/SetSensorVoltagesStep.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/outputFileStates.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/AndroidManifest.xml" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/aapt/AndroidManifest.xml" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/aapt/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.crashlytics.sdk.android/answers/1.3.4/AndroidManifest.xml" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.crashlytics.sdk.android/answers/1.3.4/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.crashlytics.sdk.android/answers/1.3.4/aapt/AndroidManifest.xml" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.crashlytics.sdk.android/answers/1.3.4/aapt/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.crashlytics.sdk.android/beta/1.1.4/AndroidManifest.xml" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.crashlytics.sdk.android/beta/1.1.4/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.crashlytics.sdk.android/beta/1.1.4/aapt/AndroidManifest.xml" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.crashlytics.sdk.android/beta/1.1.4/aapt/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.crashlytics.sdk.android/crashlytics-core/2.3.6/AndroidManifest.xml" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.crashlytics.sdk.android/crashlytics-core/2.3.6/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.crashlytics.sdk.android/crashlytics-core/2.3.6/aapt/AndroidManifest.xml" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.crashlytics.sdk.android/crashlytics-core/2.3.6/aapt/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.crashlytics.sdk.android/crashlytics/2.5.3/AndroidManifest.xml" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.crashlytics.sdk.android/crashlytics/2.5.3/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.crashlytics.sdk.android/crashlytics/2.5.3/aapt/AndroidManifest.xml" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.crashlytics.sdk.android/crashlytics/2.5.3/aapt/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.github.ytai.ioio/IOIOLibAndroidAccessory/5.05/AndroidManifest.xml" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.github.ytai.ioio/IOIOLibAndroidAccessory/5.05/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.github.ytai.ioio/IOIOLibAndroidAccessory/5.05/aapt/AndroidManifest.xml" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.github.ytai.ioio/IOIOLibAndroidAccessory/5.05/aapt/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.github.ytai.ioio/IOIOLibAndroidBluetooth/5.05/AndroidManifest.xml" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.github.ytai.ioio/IOIOLibAndroidBluetooth/5.05/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.github.ytai.ioio/IOIOLibAndroidBluetooth/5.05/aapt/AndroidManifest.xml" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.github.ytai.ioio/IOIOLibAndroidBluetooth/5.05/aapt/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.github.ytai.ioio/IOIOLibAndroidDevice/5.05/AndroidManifest.xml" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.github.ytai.ioio/IOIOLibAndroidDevice/5.05/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.github.ytai.ioio/IOIOLibAndroidDevice/5.05/aapt/AndroidManifest.xml" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.github.ytai.ioio/IOIOLibAndroidDevice/5.05/aapt/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.github.ytai.ioio/IOIOLibAndroid/5.05/AndroidManifest.xml" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.github.ytai.ioio/IOIOLibAndroid/5.05/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.github.ytai.ioio/IOIOLibAndroid/5.05/aapt/AndroidManifest.xml" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.github.ytai.ioio/IOIOLibAndroid/5.05/aapt/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/io.fabric.sdk.android/fabric/1.3.8/AndroidManifest.xml" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/io.fabric.sdk.android/fabric/1.3.8/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/io.fabric.sdk.android/fabric/1.3.8/aapt/AndroidManifest.xml" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/io.fabric.sdk.android/fabric/1.3.8/aapt/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/btutility/BTUtility.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/btutility/BTUtility.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/ChargingTerminationTest.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/ChargingTerminationTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/ChargingTest.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/ChargingTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/CurrentTest.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/CurrentTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/GetDeviceSerialTest.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/GetDeviceSerialTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/IOIOUtils.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/IOIOUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/aidl/android/support/v4/media/MediaMetadataCompat.aidl" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/aidl/android/support/v4/media/MediaMetadataCompat.aidl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/aidl/android/support/v4/media/session/MediaSessionCompat.aidl" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/aidl/android/support/v4/media/session/MediaSessionCompat.aidl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/sensors/NewDevice.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/sensors/NewDevice.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/maurizio/java/customclasses/NewSequence.java.orig" afterPath="$PROJECT_DIR$/newAppTest/src/maurizio/java/customclasses/NewSequence.java.orig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/maurizio/java/customclasses/NewSequence.java" afterPath="$PROJECT_DIR$/newAppTest/src/maurizio/java/customclasses/NewSequence.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/IOIOUtilsInterface.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/IOIOUtilsInterface.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/peter/java/customclasses/NewSequence.java" afterPath="$PROJECT_DIR$/newAppTest/src/peter/java/customclasses/NewSequence.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/hydrix/pfmat/generic/PFMAT.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/hydrix/pfmat/generic/PFMAT.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/aidl/android/support/v4/media/session/ParcelableVolumeInfo.aidl" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/aidl/android/support/v4/media/session/ParcelableVolumeInfo.aidl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/aidl/android/support/v4/media/session/PlaybackStateCompat.aidl" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/aidl/android/support/v4/media/session/PlaybackStateCompat.aidl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.github.ytai.ioio/IOIOLibAndroidAccessory/5.05/R.txt" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.github.ytai.ioio/IOIOLibAndroidAccessory/5.05/R.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.github.ytai.ioio/IOIOLibAndroidDevice/5.05/R.txt" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.github.ytai.ioio/IOIOLibAndroidDevice/5.05/R.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/aidl/android/support/v4/media/RatingCompat.aidl" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/aidl/android/support/v4/media/RatingCompat.aidl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/aidl/android/support/v4/os/ResultReceiver.aidl" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/aidl/android/support/v4/os/ResultReceiver.aidl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/UploadFirmwareTest.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/UploadFirmwareTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/Voltage.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/Voltage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.github.ytai.ioio/IOIOLibAndroidAccessory/5.05/res/xml/accessory_filter.xml" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.github.ytai.ioio/IOIOLibAndroidAccessory/5.05/res/xml/accessory_filter.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.github.ytai.ioio/IOIOLibAndroidDevice/5.05/res/xml/device_filter.xml" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/com.github.ytai.ioio/IOIOLibAndroidDevice/5.05/res/xml/device_filter.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gradle.xml" afterPath="$PROJECT_DIR$/.idea/gradle.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/local.properties" afterPath="$PROJECT_DIR$/local.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/newAppTest.iml" afterPath="$PROJECT_DIR$/newAppTest/newAppTest.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/io.fabric.sdk.android/fabric/1.3.8/proguard.txt" afterPath="$PROJECT_DIR$/newAppTest/build/intermediates/exploded-aar/io.fabric.sdk.android/fabric/1.3.8/proguard.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="NewAppTest-Android Studio.iws" />
@@ -131,39 +71,44 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="SetSensorVoltagesStep.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/steps/SetSensorVoltagesStep.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="68" column="9" selection-start-line="53" selection-start-column="8" selection-end-line="68" selection-end-column="9" />
-              <folding>
-                <element signature="e#1903#2111#0" expanded="true" />
-                <element signature="e#2110#2111#0" expanded="true" />
-                <element signature="e#2354#2507#0" expanded="true" />
-                <element signature="e#2506#2507#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="NewSequence.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/newAppTest/src/peter/java/customclasses/NewSequence.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-18.296297">
-              <caret line="316" column="64" selection-start-line="316" selection-start-column="64" selection-end-line="316" selection-end-column="64" />
+            <state vertical-scroll-proportion="-6.296296">
+              <caret line="293" column="53" selection-start-line="293" selection-start-column="53" selection-end-line="293" selection-end-column="53" />
               <folding>
-                <element signature="e#4473#4672#0" expanded="true" />
-                <element signature="e#4671#4672#0" expanded="true" />
+                <element signature="e#4539#4738#0" expanded="true" />
+                <element signature="e#4737#4738#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TestsParser.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/server/TestsParser.java">
+      <file leaf-file-name="ChargingTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/ChargingTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5638474">
-              <caret line="81" column="16" selection-start-line="81" selection-start-column="16" selection-end-line="81" selection-end-column="16" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="42" column="23" selection-start-line="42" selection-start-column="23" selection-end-line="42" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ChargingTerminationTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/ChargingTerminationTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="39" column="13" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="VoltageTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/VoltageTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="126" column="12" selection-start-line="126" selection-start-column="12" selection-end-line="126" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -172,41 +117,51 @@
       <file leaf-file-name="GetDeviceSerialTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/GetDeviceSerialTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="35" column="37" selection-start-line="35" selection-start-column="37" selection-end-line="35" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IOIOUtils.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/IOIOUtils.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.666667">
-              <caret line="378" column="0" selection-start-line="378" selection-start-column="0" selection-end-line="378" selection-end-column="0" />
+            <state vertical-scroll-proportion="-9.777778">
+              <caret line="40" column="42" selection-start-line="40" selection-start-column="42" selection-end-line="40" selection-end-column="42" />
               <folding>
-                <element signature="e#16025#16026#0" expanded="true" />
-                <element signature="e#16050#16051#0" expanded="true" />
+                <element signature="e#1723#4717#0" expanded="true" />
+                <element signature="e#4716#4717#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BatteryLevelUUTVoltageTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/BatteryLevelUUTVoltageTest.java">
+      <file leaf-file-name="MagnetWakeDeviceTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/MagnetWakeDeviceTest.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="55" column="13" selection-start-line="55" selection-start-column="13" selection-end-line="55" selection-end-column="13" />
+              <caret line="27" column="70" selection-start-line="27" selection-start-column="44" selection-end-line="27" selection-end-column="70" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UploadFirmwareTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/UploadFirmwareTest.java">
+      <file leaf-file-name="LedCheckTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/LedCheckTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.481482">
-              <caret line="82" column="38" selection-start-line="82" selection-start-column="38" selection-end-line="82" selection-end-column="38" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ChargeLedCheckTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/ChargeLedCheckTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-9.444445">
+              <caret line="24" column="12" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IOIOUtils.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/IOIOUtils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.76547843">
+              <caret line="452" column="0" selection-start-line="452" selection-start-column="0" selection-end-line="452" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -216,17 +171,7 @@
         <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/IOIOUtilsInterface.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="56" column="9" selection-start-line="56" selection-start-column="9" selection-end-line="56" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BTUtility.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/btutility/BTUtility.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.5925927">
-              <caret line="476" column="47" selection-start-line="476" selection-start-column="47" selection-end-line="476" selection-end-column="47" />
+              <caret line="21" column="53" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="53" />
               <folding />
             </state>
           </provider>
@@ -2804,18 +2749,12 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/AccelerometerSelfTest.java" />
-        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/PCBDetectHelperImpl.java" />
-        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/uihelper/UIHelper.java" />
-        <option value="$PROJECT_DIR$/newAppTest/src/peter/PCBDetectHelperImpl.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/maurizio/java/PCBDetectHelperImpl.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/peter/java/PCBDetectHelperImpl.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/PCBDetectHelper.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/VoltageTest.java" />
-        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/IOIOUtilsInterface.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/Charge_termination_test.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/uploadfirmware/FirmWareUploader.java" />
-        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/GetDeviceSerialTest.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/constants/NewSequence.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/maurizio/java/customclasses/PCBDetectHelperImpl.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/sensors/ClosedTest.java" />
@@ -2853,8 +2792,14 @@
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/btutility/BTUtility.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/BatteryLevelUUTVoltageTest.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/UploadFirmwareTest.java" />
-        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/IOIOUtils.java" />
+        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/CurrentTest.java" />
+        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/IOIOUtilsInterface.java" />
+        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/GetDeviceSerialTest.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/peter/java/customclasses/NewSequence.java" />
+        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/ChargingTerminationTest.java" />
+        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/ChargingTest.java" />
+        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/ChargeLedCheckTest.java" />
+        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/IOIOUtils.java" />
       </list>
     </option>
   </component>
@@ -2872,10 +2817,10 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1358" />
+    <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1096" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -3431,6 +3376,44 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="pericoachengineering" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NewAppTest-Android Studio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pericoach-test-app-android-studio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="newAppTest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pietrantuono" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="ioioutils" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -3565,6 +3548,9 @@
     <property name="last_opened_file_path" value="$USER_HOME$/Desktop" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.pietrantuono.tests.implementations" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/newAppTest/src/main/java/com/radiusnetworks/bluetooth" />
       <recent name="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/pericoachengineering/classes" />
@@ -3789,7 +3775,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1358" y="-8" width="1936" height="1096" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -3800,13 +3786,13 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Fabric" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32928678" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.43085107" sideWeight="0.4914163" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.40425533" sideWeight="0.472103" order="9" side_tool="false" content_ui="tabs" x="1" y="3" width="1133" height="682" />
+      <window_info id="Android Monitor" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.40425533" sideWeight="0.472103" order="9" side_tool="false" content_ui="tabs" x="34" y="374" width="1133" height="682" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.40969163" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22021277" sideWeight="0.49200428" order="7" side_tool="false" content_ui="tabs" x="383" y="55" width="981" height="724" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3287234" sideWeight="0.49427754" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.52446806" sideWeight="0.49427754" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32452276" sideWeight="0.50858366" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20628998" sideWeight="0.5159575" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36808512" sideWeight="0.36337626" order="10" side_tool="false" content_ui="tabs" />
@@ -3815,8 +3801,8 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20628998" sideWeight="0.48404256" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32995737" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24093817" sideWeight="0.6734043" order="0" side_tool="false" content_ui="combo" x="989" y="1" width="377" height="940" />
+      <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32995737" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3419062" sideWeight="0.6734043" order="0" side_tool="false" content_ui="combo" x="989" y="1" width="377" height="940" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.47765958" sideWeight="0.49714693" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -3960,20 +3946,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/ChargingTerminationTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.031446543">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/ChargingTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.062893085">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/constants/NewSequenceInterface.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.1388889">
@@ -4098,22 +4070,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/CurrentTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="62" column="27" selection-start-line="62" selection-start-column="27" selection-end-line="62" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/Current.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="118" column="25" selection-start-line="118" selection-start-column="25" selection-end-line="118" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/Voltage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.1851852">
@@ -4138,26 +4094,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/VoltageTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="36" column="5" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="245" column="5" selection-start-line="245" selection-start-column="5" selection-end-line="245" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/superclass/Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="40" column="48" selection-start-line="40" selection-start-column="48" selection-end-line="40" selection-end-column="48" />
           <folding />
         </state>
       </provider>
@@ -4194,6 +4134,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/BatteryLevelUUTVoltageTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="55" column="13" selection-start-line="55" selection-start-column="13" selection-end-line="55" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.ytai.ioio/IOIOLibCore/5.05/e2179ff3c838ab800b1966f7566ee53acb005ef/IOIOLibCore-5.05-sources.jar!/ioio/lib/api/Uart.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.2675439">
+          <caret line="98" column="23" selection-start-line="98" selection-start-column="23" selection-end-line="98" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/steps/SetSensorVoltagesStep.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -4207,18 +4163,139 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/BatteryLevelUUTVoltageTest.java">
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/superclass/Test.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="55" column="13" selection-start-line="55" selection-start-column="13" selection-end-line="55" selection-end-column="13" />
+          <caret line="23" column="25" selection-start-line="23" selection-start-column="25" selection-end-line="23" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/server/TestsParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="81" column="16" selection-start-line="81" selection-start-column="16" selection-end-line="81" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/Current.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="43" column="18" selection-start-line="43" selection-start-column="18" selection-end-line="43" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://F:/Android/android-sdk/sources/android-22/java/io/BufferedReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#3475#3476#0" expanded="true" />
+            <element signature="e#3505#3506#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://F:/Android/android-sdk/sources/android-22/java/io/InputStream.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.31688598">
+          <caret line="60" column="19" selection-start-line="60" selection-start-column="19" selection-end-line="60" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/CurrentTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-18.25926">
+          <caret line="39" column="27" selection-start-line="39" selection-start-column="27" selection-end-line="39" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/UploadFirmwareTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-62.962963">
+          <caret line="135" column="13" selection-start-line="135" selection-start-column="13" selection-end-line="135" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/MagnetWakeDeviceTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="27" column="70" selection-start-line="27" selection-start-column="44" selection-end-line="27" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/LedCheckTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/GetDeviceSerialTest.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.777778">
+          <caret line="40" column="42" selection-start-line="40" selection-start-column="42" selection-end-line="40" selection-end-column="42" />
+          <folding>
+            <element signature="e#1723#4717#0" expanded="true" />
+            <element signature="e#4716#4717#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/VoltageTest.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="35" column="37" selection-start-line="35" selection-start-column="37" selection-end-line="35" selection-end-column="37" />
+          <caret line="126" column="12" selection-start-line="126" selection-start-column="12" selection-end-line="126" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/peter/java/customclasses/NewSequence.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.296296">
+          <caret line="293" column="53" selection-start-line="293" selection-start-column="53" selection-end-line="293" selection-end-column="53" />
+          <folding>
+            <element signature="e#4539#4738#0" expanded="true" />
+            <element signature="e#4737#4738#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/ChargingTerminationTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="39" column="13" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/ChargingTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="42" column="23" selection-start-line="42" selection-start-column="23" selection-end-line="42" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/ChargeLedCheckTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.444445">
+          <caret line="24" column="12" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/NewIOIOActivityListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0745614">
+          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
           <folding />
         </state>
       </provider>
@@ -4226,61 +4303,15 @@
     <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/IOIOUtilsInterface.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="56" column="9" selection-start-line="56" selection-start-column="9" selection-end-line="56" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.ytai.ioio/IOIOLibCore/5.05/e2179ff3c838ab800b1966f7566ee53acb005ef/IOIOLibCore-5.05-sources.jar!/ioio/lib/api/Uart.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.2675439">
-          <caret line="98" column="23" selection-start-line="98" selection-start-column="23" selection-end-line="98" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://F:/Android/android-sdk/sources/android-22/java/io/InputStream.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="111" column="16" selection-start-line="111" selection-start-column="16" selection-end-line="111" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/UploadFirmwareTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.481482">
-          <caret line="82" column="38" selection-start-line="82" selection-start-column="38" selection-end-line="82" selection-end-column="38" />
+          <caret line="21" column="53" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="53" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/IOIOUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.666667">
-          <caret line="378" column="0" selection-start-line="378" selection-start-column="0" selection-end-line="378" selection-end-column="0" />
-          <folding>
-            <element signature="e#16025#16026#0" expanded="true" />
-            <element signature="e#16050#16051#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/peter/java/customclasses/NewSequence.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.296297">
-          <caret line="316" column="64" selection-start-line="316" selection-start-column="64" selection-end-line="316" selection-end-column="64" />
-          <folding>
-            <element signature="e#4473#4672#0" expanded="true" />
-            <element signature="e#4671#4672#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/server/TestsParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5638474">
-          <caret line="81" column="16" selection-start-line="81" selection-start-column="16" selection-end-line="81" selection-end-column="16" />
+        <state vertical-scroll-proportion="0.76547843">
+          <caret line="452" column="0" selection-start-line="452" selection-start-column="0" selection-end-line="452" selection-end-column="0" />
           <folding />
         </state>
       </provider>
