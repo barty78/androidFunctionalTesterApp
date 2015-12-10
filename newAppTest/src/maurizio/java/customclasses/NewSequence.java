@@ -11,6 +11,8 @@ import com.pietrantuono.activities.MainActivity;
 import com.pietrantuono.constants.NewMResult;
 import com.pietrantuono.constants.NewMSensorResult;
 import com.pietrantuono.constants.NewSequenceInterface;
+import com.pietrantuono.tests.implementations.BluetoothConnectTestForTesting;
+import com.pietrantuono.tests.implementations.SensorTestWrapper;
 import com.pietrantuono.tests.implementations.VoltageTest;
 import com.pietrantuono.tests.superclass.Test;
 
@@ -235,7 +237,7 @@ public class NewSequence implements NewSequenceInterface {
 
 
 		// OLD TESTS
-		sequence.add(new VoltageTest(activity, ioio, 40, 3.0f, 0.1f, "Voltage Measurement - V_3V0"));
+		//sequence.add(new VoltageTest(activity, ioio, 40, 3.0f, 0.1f, "Voltage Measurement - V_3V0"));
 		// sequence.add(new VoltageTest(activity, ioio, 38, 0f, 0.01f, "Voltage
 		// Measurement - DC_PRES (5V_DC Off)"));
 		// sequence.add(new VoltageTest(activity, ioio, 38, 3f, 0.3f, true,
@@ -348,6 +350,7 @@ public class NewSequence implements NewSequenceInterface {
 //				"Voltage Measurement(V_REF_AN)"));
 //		sequence.add(new PauseStep(activity, "Pause Step"));
 //
+		sequence.add(new BluetoothConnectTestForTesting(activity));
 		sequence.add(new SensorTestWrapper(false, activity, ioio,
 				"Sensor Input Test, NO LOAD, GAIN @ 127", 0, false, (short) 127));
 //		sequence.add(new SensorTestWrapper(false, activity, ioio,
