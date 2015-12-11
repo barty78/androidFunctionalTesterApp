@@ -50,11 +50,11 @@ public class ChargingTest extends Test {
 		if (value == 1) {
 			Success();
 			//showAlert(ac, true);
-			switch5vDC(false);
+//			switch5vDC(false);
 			activityListener.addFailOrPass(true, true, "");
 		} else {
 			setSuccess(false);
-			switch5vDC(false);
+//			switch5vDC(false);
 			activityListener.addFailOrPass(true, false, "");
 		}
 

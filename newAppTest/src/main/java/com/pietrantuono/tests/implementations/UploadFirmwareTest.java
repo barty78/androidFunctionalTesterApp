@@ -100,6 +100,7 @@ public class UploadFirmwareTest extends Test {
 					@Override
 					public void onUploadCompleted(final boolean success) {
 						setSuccess(success);
+						Log.d(TAG, "FW Upload Result is " + success);
 						try {
 							RX.close();
 						} catch (Exception e) {

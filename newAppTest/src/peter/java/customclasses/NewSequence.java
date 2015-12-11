@@ -291,12 +291,12 @@ public class NewSequence implements NewSequenceInterface {
 		sequence.add(new VoltageTest(activity, ioio, 38, 1.6f, 0.1f, true, false, false, false,
 				"Voltage Measurement - DC_PRES (5V_DC On)"));
 
-		sequence.add(new ChargingTest(activity, ioio,
-				"Battery Charging Test"));
+//		sequence.add(new ChargingTest(activity, ioio,
+//				"Battery Charging Test"));
 
-		sequence.add(new ChargeLedCheckTest(activity, ioio, "Pink", "Pink LED Check"));
+//		sequence.add(new ChargeLedCheckTest(activity, ioio, "Pink", "Pink LED Check"));
 
-//		sequence.add(new UploadFirmwareTest(activity, ioio));
+		sequence.add(new UploadFirmwareTest(activity, ioio));
 
 		sequence.add(new GetDeviceSerialTest(activity, ioio));
 		sequence.add(new AccelerometerSelfTest(activity, ioio));
@@ -306,7 +306,7 @@ public class NewSequence implements NewSequenceInterface {
 //		sequence.add(new VoltageTest(activity, ioio, 33, 0f, 0.1f,
 //				"Voltage Measurement - Sleep Mode (V_BT)"));
 
-//		sequence.add(new MagnetWakeDeviceTest(activity, ioio));
+		sequence.add(new MagnetWakeDeviceTest(activity, ioio));
 
 		sequence.add(new CurrentTest(activity, ioio, 42, Scale.mA, false, (float)28, (float)0.1,
 				"Current Measurement - Awake"));
@@ -337,7 +337,7 @@ public class NewSequence implements NewSequenceInterface {
 		sequence.add(new ReadModelNumberTest(activity));
 		sequence.add(new ReadFirmwareversionTest(activity));
 
-		sequence.add(new BatteryLevelUUTVoltageTest(activity, 10, 0.5f,
+		sequence.add(new BatteryLevelUUTVoltageTest(activity, 15, 0.5f,
 				"Battery Level - UUT voltage @ 3.5V", 100));
 		sequence.add(new BatteryLevelUUTVoltageTest(activity, 85, 0.15f,
 				"Battery Level - UUT voltage @ 4.1V", 15));

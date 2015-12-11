@@ -249,42 +249,58 @@ public class FirmWareUploader {
 						Toast.makeText(c, "WRITE COMPLETED",
 								Toast.LENGTH_LONG).show();
 
-						Handler h = new Handler();
-						h.postDelayed(new Runnable() {
+						if (progress != null) {
+							progress.setProgress(100);
+							Resources res = c.getResources();
+							Drawable background = res
+									.getDrawable(R.drawable.greenprogress);
+							progress.setProgressDrawable(background);
+						}
+						if (percent != null)
+							percent.setText("PASS");
 
-							@Override
-							public void run() {
-								if (progress != null) {
-									progress.setProgress(100);
-									Resources res = c.getResources();
-									Drawable background = res
-											.getDrawable(R.drawable.greenprogress);
-									progress.setProgressDrawable(background);
-								}
-								if (percent != null)
-									percent.setText("PASS");
-
-							}
-						}, 0);
+//						Handler h = new Handler();
+//						h.postDelayed(new Runnable() {
+//
+//							@Override
+//							public void run() {
+//								if (progress != null) {
+//									progress.setProgress(100);
+//									Resources res = c.getResources();
+//									Drawable background = res
+//											.getDrawable(R.drawable.greenprogress);
+//									progress.setProgressDrawable(background);
+//								}
+//								if (percent != null)
+//									percent.setText("PASS");
+//
+//							}
+//						}, 2000);
 					} else {
 
 						if(listener!=null)listener.onUploadCompleted(false);
 
 						Toast.makeText(c, "WRITE FAILED!",
 								Toast.LENGTH_LONG).show();
-						
-						Handler h = new Handler();
-						h.postDelayed(new Runnable() {
 
-							@Override
-							public void run() {
-								if (progress != null)
-									progress.setProgress(0);
-								if (percent != null)
-									percent.setText("");
+						if (progress != null)
+							progress.setProgress(0);
+						if (percent != null)
+							percent.setText("");
 
-							}
-						}, 0);
+
+//						Handler h = new Handler();
+//						h.postDelayed(new Runnable() {
+//
+//							@Override
+//							public void run() {
+//								if (progress != null)
+//									progress.setProgress(0);
+//								if (percent != null)
+//									percent.setText("");
+//
+//							}
+//						}, 2000);
 					}
 
 				}
