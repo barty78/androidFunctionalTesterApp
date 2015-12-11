@@ -41,7 +41,6 @@ public class TestFromSequenceCreator {
 		Readings readings = createReadings(sequence);
 		record.setReadings(readings);// TODO implement
 		MyDatabaseUtils.ProcessAndSaveRecords(record);
-
 	}
 
 	private static Readings createReadings(NewSequenceInterface sequence) {

@@ -75,10 +75,19 @@ public class UIHelper {
 			}
 		});
 	}
-	
-	
-	
-	
+
+	public void setResult(boolean success) {
+		ActivityUIHelperCallback callback = (ActivityUIHelperCallback) activity;
+		try {
+				callback.getResults().get(callback.getIterationNumber()).get(sequence.getCurrentTestNumber())
+						.setTestsuccessful(success);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+	}
+
+
 	public interface ActivityUIHelperCallback {
 		ArrayList<ArrayList<NewMResult>> getResults();
 

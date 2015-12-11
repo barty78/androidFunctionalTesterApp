@@ -265,7 +265,7 @@ public class FirmWareUploader {
 									percent.setText("PASS");
 
 							}
-						}, 2000);
+						}, 0);
 					} else {
 
 						if(listener!=null)listener.onUploadCompleted(false);
@@ -284,7 +284,7 @@ public class FirmWareUploader {
 									percent.setText("");
 
 							}
-						}, 2000);
+						}, 0);
 					}
 
 				}

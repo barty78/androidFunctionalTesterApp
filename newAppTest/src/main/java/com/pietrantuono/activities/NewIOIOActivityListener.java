@@ -24,4 +24,6 @@ public interface NewIOIOActivityListener {
 	@SuppressWarnings("ucd")
 	ProgressAndTextView createUploadProgress(boolean b, boolean c, String description);
 	public void onCurrentSequenceEnd();
+
+	void setResult(boolean success);
 }

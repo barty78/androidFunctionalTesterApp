@@ -286,13 +286,18 @@ public class MainActivity extends Activity
 //					int i=0;
 //					i++;
 //					}
-				// //TODO - Disabled for sequence dev (Peter)
+				//TODO - Disabled for sequence dev (Peter)
 				PeriCoachTestApplication.forceSync(); // TODO - Disabled for
 				// sequencce dev (Peter)
 				waitForPCBDisconnected();			
 			}
 		});
 
+	}
+
+	@Override
+	public void setResult(boolean success) {
+		uiHelper.setResult(success);
 	}
 
 	private void waitForPCBConnected() {

@@ -11,6 +11,7 @@ import com.pietrantuono.activities.MainActivity;
 import com.pietrantuono.constants.NewMResult;
 import com.pietrantuono.constants.NewMSensorResult;
 import com.pietrantuono.constants.NewSequenceInterface;
+import com.pietrantuono.tests.implementations.BluetoothConnectTestForTesting;
 import com.pietrantuono.tests.implementations.ChargeLedCheckTest;
 import com.pietrantuono.tests.implementations.SensorTestWrapper;
 import com.pietrantuono.tests.implementations.VoltageTest;
@@ -350,7 +351,7 @@ public class NewSequence implements NewSequenceInterface {
 //				"Voltage Measurement(V_REF_AN)"));
 //		sequence.add(new PauseStep(activity, "Pause Step"));
 //
-		sequence.add(new ChargeLedCheckTest(activity, ioio, "Pink", "Pink LED Check"));
+//		sequence.add(new ChargeLedCheckTest(activity, ioio, "Pink", "Pink LED Check"));
 //		sequence.add(new SensorTestWrapper(false, activity, ioio,
 //				"Sensor Input Test, NO LOAD, GAIN @ 127", 0, false, (short) 127));
 //		sequence.add(new SensorTestWrapper(false, activity, ioio,
@@ -363,7 +364,9 @@ public class NewSequence implements NewSequenceInterface {
 //				(short) 127));
 //		sequence.add(new SensorTestWrapper(false, activity, ioio, "Sensor Input Test, LOADED, GAIN @ 127", 3, true,
 //				(short) 127));
-
+		sequence.add(new BluetoothConnectTestForTesting(activity));
+		sequence.add(new SensorTestWrapper(false, activity, ioio, "Sensor Input Test, LOADED, GAIN @ 127", 3, true,
+		(short) 127));
 	}
 
 	@Override

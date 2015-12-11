@@ -98,7 +98,7 @@ public class UploadFirmwareTest extends Test {
 				firmWareUploader.getInfo();
 				firmWareUploader.upload(new UploaderListener() {
 					@Override
-					public void onUploadCompleted(boolean success) {
+					public void onUploadCompleted(final boolean success) {
 						setSuccess(success);
 						try {
 							RX.close();
@@ -126,6 +126,7 @@ public class UploadFirmwareTest extends Test {
 						((Activity)activityListener).runOnUiThread(new Runnable() {
 							@Override
 							public void run() {
+								activityListener.setResult(success);
 								activityListener.goAndExecuteNextTest();
 							}
 						});
