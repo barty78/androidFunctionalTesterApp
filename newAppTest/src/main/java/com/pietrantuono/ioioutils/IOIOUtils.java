@@ -817,6 +817,15 @@ public class IOIOUtils implements IOIOUtilsInterface  {
 //					Log.d(TAG, "UART Task is running: ");
 //				}
 				line = null;
+//				Log.d(TAG, "Current Thread = " + Thread.currentThread().getId());
+
+				try {
+					Thread.sleep(400);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+
+
 				MyCallable myCallable= new MyCallable();
 				Future<String> future = executor.submit(myCallable);
 				try {
@@ -837,10 +846,13 @@ public class IOIOUtils implements IOIOUtilsInterface  {
 
 			@Override
 			public String call() throws Exception {
-				String tmp = r.readLine();
-				sb.append(tmp);
-				Log.d(TAG + " - CALL", tmp);
-				return tmp;
+				if (r.ready()) {
+					String tmp = r.readLine();
+					sb.append(tmp);
+					Log.d(TAG + " - CALL", tmp);
+					return tmp;
+				}
+				return null;
 			}
 
 		}

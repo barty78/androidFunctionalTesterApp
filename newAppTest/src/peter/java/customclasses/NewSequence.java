@@ -296,7 +296,7 @@ public class NewSequence implements NewSequenceInterface {
 
 		sequence.add(new ChargeLedCheckTest(activity, ioio, "Pink", "Pink LED Check"));
 
-//		sequence.add(new UploadFirmwareTest(activity, ioio));
+		sequence.add(new UploadFirmwareTest(activity, ioio));
 
 		sequence.add(new GetDeviceSerialTest(activity, ioio));
 		sequence.add(new AccelerometerSelfTest(activity, ioio));
@@ -306,7 +306,7 @@ public class NewSequence implements NewSequenceInterface {
 //		sequence.add(new VoltageTest(activity, ioio, 33, 0f, 0.1f,
 //				"Voltage Measurement - Sleep Mode (V_BT)"));
 
-//		sequence.add(new MagnetWakeDeviceTest(activity, ioio));
+		sequence.add(new MagnetWakeDeviceTest(activity, ioio));
 
 		sequence.add(new CurrentTest(activity, ioio, 42, Scale.mA, false, (float)28, (float)0.1,
 				"Current Measurement - Awake"));

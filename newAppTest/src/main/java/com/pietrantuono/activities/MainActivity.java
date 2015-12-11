@@ -33,6 +33,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 import io.fabric.sdk.android.Fabric;
 import ioio.lib.api.DigitalInput;
@@ -78,6 +80,7 @@ public class MainActivity extends Activity
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		if(!Fabric.isInitialized())Fabric.with(this, new Crashlytics());
 		detectHelper = PCBDetectHelper.getHelper();
 		setContentView(R.layout.activity_main);

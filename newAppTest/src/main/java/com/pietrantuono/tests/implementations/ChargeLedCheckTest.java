@@ -15,7 +15,7 @@ public class ChargeLedCheckTest extends Test {
 	private String nameOfLed;
 	private AlertDialog alertDialog;
 	public ChargeLedCheckTest(Activity activity, IOIO ioio, String nameOfLed, String description) {
-		super(activity, null, description, false, false);
+		super(activity, ioio, description, false, false);
 		this.nameOfLed=nameOfLed;
 	}
 	@Override
