@@ -29,9 +29,17 @@ public class MagnetWakeDeviceTest extends Test{
 			IOIOUtils.getUtils().toggleEMag((Activity)activityListener);
 		}
 		if(isinterrupted)return;
+		try {
+			Thread.sleep(1 * 1000);
+		} catch (Exception e) {
+			getListener().addFailOrPass(true, false, "ERROR", "App Fault");
+
+		}
+		if(isinterrupted)return;
 
 		try {
-			Voltage.Result result = Voltage.checkVoltage(ioio, 38, 1f, true, 1.5f, 0.1f );
+			Voltage.Result result = Voltage.checkVoltage(ioio, 39, 1f, true, 1.8f, 0.1f );
+			Log.d(TAG, "Result isSuccess = " + result.isSuccess());
             if (result.isSuccess()){
 				Success();
 				activityListener.addFailOrPass(true, true, "",  description);

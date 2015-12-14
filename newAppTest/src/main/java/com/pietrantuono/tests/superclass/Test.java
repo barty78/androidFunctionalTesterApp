@@ -7,6 +7,8 @@ import android.widget.Toast;
 import com.crashlytics.android.Crashlytics;
 import com.pietrantuono.activities.NewIOIOActivityListener;
 
+import java.util.ArrayList;
+
 import ioio.lib.api.IOIO;
 
 public abstract class Test {
@@ -22,6 +24,10 @@ public abstract class Test {
 	public boolean success=false;
 	private long IdTest=0;
 	private double value;
+
+	//Limits variables
+	public boolean isNominal;
+	public float limitParam1, limitParam2;
 	
 	
 	public abstract void execute();
@@ -29,10 +35,15 @@ public abstract class Test {
 	public void setDescription(String description){this.description=description;}
 	public Boolean isSensorTest(){return isSensorTest;}
 	public Boolean isTest() {return istest;}
+	public void setIsTest(boolean isTest) {this.istest = isTest;}
 	public Boolean isBlockingTest() {return isBlockingTest;}
 	public boolean isActive() {	return active;}
 	public void setActive(boolean active) {this.active = active;}
 	public void setBlockingTest(boolean isBlockingTest) {this.isBlockingTest = isBlockingTest;}
+
+	public boolean isNominal() {return isNominal;}
+	public void setNominal(boolean isNominal) {this.isNominal = isNominal;}
+
 	/**
 	 * @param description
 	 * @param isSensorTest

@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.pietrantuono.ioioutils.Current;
 import com.pietrantuono.ioioutils.Voltage;
 import com.pietrantuono.tests.implementations.AwakeModeCurrentTest;
 import com.pietrantuono.tests.implementations.BTConnectCurrent;
@@ -14,6 +15,7 @@ import com.pietrantuono.tests.implementations.BluetoothConnectTestForTesting;
 import com.pietrantuono.tests.implementations.BluetoothDiscoverableModeTestForTesting;
 import com.pietrantuono.tests.implementations.ChargingTest;
 import com.pietrantuono.tests.implementations.ChargingTerminationTest;
+import com.pietrantuono.tests.implementations.CurrentTest;
 import com.pietrantuono.tests.implementations.DummyTest;
 import com.pietrantuono.tests.implementations.GetBarcodeTest;
 import com.pietrantuono.tests.implementations.GetDeviceSerialTest;
@@ -46,7 +48,7 @@ public class TestsParser {
 			float limitParam1 = (float) testToBeParsed.getLimitParam1().doubleValue();
 			float limitParam2 = (float) testToBeParsed.getLimitParam2().doubleValue();
 			int pinnumber = (int) testToBeParsed.getIoiopinnum();
-			test = new UUTCurrentTest(activity, ioio,
+			test = new CurrentTest(activity, ioio, pinnumber, Current.Units.mA, isNominal, limitParam1, limitParam2,
 					getDescription(testToBeParsed));
 			break;
 		case 3:
@@ -139,6 +141,10 @@ public class TestsParser {
 				e.printStackTrace();
 			}
 			return test;
+		}
+
+		if (testToBeParsed.getIstest() != 1) {
+			test.setIsTest(false);// Default is Test (true)
 		}
 
 		if (testToBeParsed.getActive() != 1) {
