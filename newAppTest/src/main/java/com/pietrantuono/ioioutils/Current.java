@@ -129,10 +129,11 @@ public class Current {
 	};
 	
 	public static class Result{
-		
+		private float reading;
 		private String readingString;
 		private Boolean success;
 		private Result(Boolean success, float reading, Units units) {
+			this.reading=reading;
 			df.setRoundingMode(RoundingMode.DOWN);
 			this.success = success;
 			switch (units) {
@@ -159,7 +160,9 @@ public class Current {
 		public String getReading() {
 			return readingString;
 		}
-		
+		public float getReadingValue() {
+			return reading;
+		}
 		
 	}
 	

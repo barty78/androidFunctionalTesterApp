@@ -1,9 +1,13 @@
 package com.pietrantuono.activities;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
+import com.activeandroid.query.Select;
 import com.crashlytics.android.Crashlytics;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.pietrantuono.activities.uihelper.ActivityCallback;
 import com.pietrantuono.activities.uihelper.MyDialogInterface;
 import com.pietrantuono.activities.uihelper.MyDialogs;
@@ -46,11 +50,16 @@ import ioio.lib.util.IOIOLooperProvider;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
+import server.MyDoubleTypeAdapter;
+import server.MyIntTypeAdapter;
+import server.MyLongTypeAdapter;
 import server.RetrofitRestServices;
 import server.TestsParser;
 import server.pojos.Device;
 import server.pojos.Job;
+import server.pojos.records.TestRecord;
 import server.service.ServiceDBHelper;
+import server.utils.MyDatabaseUtils;
 import server.utils.TestFromSequenceCreator;
 
 @SuppressWarnings("unused")
@@ -205,18 +214,20 @@ public class MainActivity extends Activity
 				newSequence.reset();
 				try {
 					Voltage.interrupt();
-				} catch (Exception e) {	}
+				} catch (Exception e) {
+				}
 				IOIOUtils.getUtils().closeall(MainActivity.this, MainActivity.this);
 				if (btutility != null) {
 					try {
 						btutility.abort();
-					} catch (Exception e) {	}
+					} catch (Exception e) {
+					}
 				}
 				detectHelper.stopCheckingIfConnectionDrops();
 				uiHelper.playSound(MainActivity.this);
 				setStatusMSG("FIXTURE CONNECTION LOST", false);
 				uiHelper.stopChronometer(MainActivity.this);
-				MyDialogs.createAlertDialog(MainActivity.this, "Fixture connection lost", "Connection lost with fixture, please check and restart test", "OK", null,new MyOnCancelListener(MainActivity.this), new MyDialogInterface() {
+				MyDialogs.createAlertDialog(MainActivity.this, "Fixture connection lost", "Connection lost with fixture, please check and restart test", "OK", null, new MyOnCancelListener(MainActivity.this), new MyDialogInterface() {
 					@Override
 					public void yes() {
 						if (getIterationNumber() > 1)
@@ -226,8 +237,10 @@ public class MainActivity extends Activity
 						uiHelper.cleanUI(MainActivity.this);
 						waitForPCBConnected();
 					}
+
 					@Override
-					public void no() {}
+					public void no() {
+					}
 				});
 			}
 		});
@@ -262,37 +275,19 @@ public class MainActivity extends Activity
 				setStatusMSG("TEST FINISHED", true);// OK
 				detectHelper.stopCheckingIfConnectionDrops();// OK
 				uiHelper.setOverallFailOrPass(true);// NA
-				TestFromSequenceCreator.createRecordFromSequence(newSequence);
-//				List<TestRecord> records = null;
-//				try {
-//					records = new Select().from(TestRecord.class).execute();
-//				} catch (Exception e) {
-//				}
-//				if (records == null || records.size() <= 0) {
-//					return;
-//				}
-//				Iterator<TestRecord> iterator = records.iterator();
-//				while (iterator.hasNext()) {
-//					final TestRecord record = iterator.next();
-//					MyDatabaseUtils.RecontructRecord(record);
-//					if (!record.isLog()) {
-//						continue;
-//					}
-//					Log.d(TAG, "postResults");
-//					Gson gson = new GsonBuilder()
-//					        .excludeFieldsWithoutExposeAnnotation()
-//					        .registerTypeAdapter(Long.class, new MyLongTypeAdapter())
-//					        .registerTypeAdapter(Double.class, new MyDoubleTypeAdapter())
-//					        .registerTypeAdapter(Integer.class, new MyIntTypeAdapter())
-//					        .create();
-//					String recordstring=gson.toJson(record, TestRecord.class);
-//					int i=0;
-//					i++;
-//					}
-				//TODO - Disabled for sequence dev (Peter)
-				PeriCoachTestApplication.forceSync(); // TODO - Disabled for
-				// sequencce dev (Peter)
-				waitForPCBDisconnected();			
+				TestRecord record = TestFromSequenceCreator.createRecordFromSequence(newSequence);
+
+				Gson gson = new GsonBuilder()
+						.excludeFieldsWithoutExposeAnnotation()
+						.registerTypeAdapter(Long.class, new MyLongTypeAdapter())
+						.registerTypeAdapter(Double.class, new MyDoubleTypeAdapter())
+						.registerTypeAdapter(Integer.class, new MyIntTypeAdapter())
+						.create();
+				String recordstring = gson.toJson(record, TestRecord.class);
+				Log.d(TAG,"Created record: "+recordstring);
+
+				PeriCoachTestApplication.forceSync();
+				waitForPCBDisconnected();
 			}
 		});
 

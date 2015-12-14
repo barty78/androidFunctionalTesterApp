@@ -78,6 +78,7 @@ public class UUTCurrentTest extends Test {
 		}
 		float average = total / numsamples;
 		I_UUT.close();
+		setValue(average);
 		String reading = "";
 		if (average != 0)
 			reading = df.format(average) + "uA";

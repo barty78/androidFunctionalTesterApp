@@ -20,12 +20,12 @@ import com.pietrantuono.tests.implementations.SensorTestWrapper;
 
 public class TestFromSequenceCreator {
 
-	public static void createRecordFromSequence(NewSequenceInterface sequence) {
+	public static TestRecord createRecordFromSequence(NewSequenceInterface sequence) {
 		if (sequence == null)
-			return;
+			return null;
 		if (sequence.getSequence() == null
 				|| sequence.getSequence().size() <= 0)
-			return;
+			return null;
 		TestRecord record = new TestRecord();
 		record.setBarcode(getBarcode(sequence));
 		record.setDuration("" + sequence.getDuration());
@@ -41,6 +41,7 @@ public class TestFromSequenceCreator {
 		Readings readings = createReadings(sequence);
 		record.setReadings(readings);// TODO implement
 		MyDatabaseUtils.ProcessAndSaveRecords(record);
+		return record;
 	}
 
 	private static Readings createReadings(NewSequenceInterface sequence) {

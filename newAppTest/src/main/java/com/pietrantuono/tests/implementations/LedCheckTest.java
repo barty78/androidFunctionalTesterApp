@@ -8,6 +8,7 @@ import com.pietrantuono.tests.superclass.Test;
 public class LedCheckTest extends Test {
 	private String nameOfLed;
 	private AlertDialog alertDialog;
+
 	public LedCheckTest(Activity activity,String nameOfLed ,String description) {
 		super(activity, null, description, false, false, 0, 0, 0);
 		this.nameOfLed=nameOfLed;

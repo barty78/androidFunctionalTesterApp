@@ -140,10 +140,11 @@ public class Voltage {
 	};
 	
 	public static class Result{
-		
+		private float reading;
 		private String readingString;
 		
 		private Result(Boolean success, float reading) {
+			this.reading=reading;
 			df.setRoundingMode(RoundingMode.DOWN);
 			this.success = success;
 			if (reading==0) readingString="0V";
@@ -155,6 +156,9 @@ public class Voltage {
 		}
 		public String getReading() {
 			return readingString;
+		}
+		public float getReadingValue() {
+			return reading;
 		}
 		private Boolean success;
 		

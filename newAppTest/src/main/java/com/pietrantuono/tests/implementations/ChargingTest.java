@@ -45,6 +45,7 @@ public class ChargingTest extends Test {
 		switch5vDC(true);
 
 		value = IOIOUtils.getUtils().readPulseWithTimeout(IOIOUtils.getUtils().getCHGPinIn());
+		setValue(value);
 
 		if (value == 1) {
 			Success();

@@ -37,6 +37,7 @@ public class MagnetWakeDeviceTest extends Test{
 
 		try {
 			Voltage.Result result = Voltage.checkVoltage(ioio, 39, 1f, true, 1.8f, 0.1f );
+			setValue(result.getReadingValue());
 			Log.d(TAG, "Result isSuccess = " + result.isSuccess());
             if (result.isSuccess()){
 				Success();

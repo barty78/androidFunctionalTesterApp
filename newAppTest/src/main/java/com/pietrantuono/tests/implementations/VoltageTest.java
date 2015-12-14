@@ -63,7 +63,6 @@ public 	class VoltageTest extends Test {
 		Log.d(TAG, "Test Starting: " + description);
 		
 		Voltage.Result result = null;
-
 		try {
 			Thread.sleep(1 * 1000);
 		} catch (Exception e) {
@@ -77,7 +76,7 @@ public 	class VoltageTest extends Test {
 		} catch (Exception e) {
 			report(e);
 		}
-
+		setValue(result.getReadingValue());
 		if (activityListener == null
 				|| ((Activity) activityListener).isFinishing())
 			return;

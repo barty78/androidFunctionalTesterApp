@@ -199,7 +199,7 @@ public class NewSequence implements NewSequenceInterface {
 	public long getOverallResult() {
 		long overallresult = 1;
 		for (int i = 0; i < sequence.size(); i++) {
-			if (sequence.get(i).isSuccess())
+			if (!sequence.get(i).isSuccess())
 				overallresult = 0;
 		}
 

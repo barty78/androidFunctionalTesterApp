@@ -69,7 +69,7 @@ public class CurrentTest extends Test {
 		} catch (Exception e) {
 			report(e);
 		}
-		
+		setValue(result.getReadingValue());
 		if (activityListener == null
 				|| ((Activity) activityListener).isFinishing())
 			return;

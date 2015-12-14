@@ -37,7 +37,7 @@ public class GetBarcodeTest extends Test {
 	public GetBarcodeTest(Activity activity, IOIO ioio, Job job) {
 		super(activity, ioio, "Read PCB Barcode Label", false, true, 0, 0, 0);
 		this.job = job;
-		
+
 	}
 
 	@Override

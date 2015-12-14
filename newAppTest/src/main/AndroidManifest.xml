@@ -90,6 +90,7 @@
         <service
             android:name="com.pietrantuono.pericoach.newtestapp.syncadapter.MySyncService"
             android:exported="true"
+            android:process=":sync"
             >
             <intent-filter>
                 <action android:name="android.content.SyncAdapter" />

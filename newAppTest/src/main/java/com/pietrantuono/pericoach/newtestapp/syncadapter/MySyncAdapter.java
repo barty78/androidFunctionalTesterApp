@@ -101,7 +101,7 @@ public class MySyncAdapter extends AbstractThreadedSyncAdapter {
 				if (!record.isLog()) {
 					continue;
 				}
-				Log.d(TAG, "postResults");
+				Log.d(TAG, "Posting record: "+recordstring);
 				RetrofitRestServices.getRest(context).postResults(PeriCoachTestApplication.getDeviceid(),
 						Long.toString(record.getJobNo()), record, new Callback<Response>() {
 
