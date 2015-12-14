@@ -5,6 +5,9 @@ import java.text.DecimalFormat;
 
 import android.os.Handler;
 import android.os.Looper;
+
+import com.pietrantuono.application.PeriCoachTestApplication;
+
 import ioio.lib.api.AnalogInput;
 import ioio.lib.api.IOIO;
 
@@ -13,6 +16,24 @@ public class Voltage {
 	private static DecimalFormat df = new DecimalFormat("##.##");
 	private static Boolean isinterrupted=false;;
 	private static int currentsleeptime=0;
+
+	public enum Units {
+
+		V	((double)1),
+		mV	((double)1E3);
+
+		public Double value;
+
+		public Double getValue() {
+			return value;
+		}
+
+		Units(double value) {
+			this.value = value;
+		}
+	}
+
+
 	/**
 	 * Gets voltages doing 10 readings and waiting 0 ms between readings
 	 * 
@@ -80,20 +101,39 @@ public class Voltage {
 	public static float getVoltage(IOIO ioio, int pinNumber,  int numberofreadings) throws Exception {
 		return getVoltage(ioio, pinNumber, numberofreadings, 0);
 	}
-	
+
+	/**
+	 * Performs a Voltage Measurement by doing numberofreadings readings and waiting 0 ms between readings,
+	 * measurement is then checked against limitParam1 & limitParam2
+	 *
+	 * This method does NOT sleep between readings
+	 *
+	 * @param ioio			- IOIO Instance
+	 * @param pinNumber		- IOIO Pin Number
+	 * @param scaling		- Scaling factor for input conditioning circuit
+	 * @param isNominal 	- False (Upper/Lower), True (Nominal/Precision)
+	 * @param limitParam1 	- Upper / Nominal
+	 * @param limitParam2 	- Lower / Precision
+	 * @return
+	 * @throws Exception
+	 */
 	@SuppressWarnings("ucd")
-	public static Result checkVoltage(IOIO ioio, int pinNumber, float scaling, float limit, float precision) throws Exception{
+	public static Result checkVoltage(IOIO ioio, int pinNumber, float scaling, Boolean isNominal, float limitParam1, float limitParam2) throws Exception{
 		float average=getVoltage(ioio, pinNumber);
 		average = average * scaling;
 		Boolean success;
-		if (limit != 0) {
-			if (limit < 0) {
-				success = ((average > (limit + (limit * precision))) && (average < (limit - (limit * precision)))) ? true : false;
+		if (isNominal) {
+			if (limitParam1 != 0) {
+				if (limitParam1 < 0) {
+					success = ((average > (limitParam1 + (limitParam1 * limitParam2))) && (average < (limitParam1 - (limitParam1 * limitParam2)))) ? true : false;
+				} else {
+					success = ((average > (limitParam1 - (limitParam1 * limitParam2))) && (average < (limitParam1 + (limitParam1 * limitParam2)))) ? true : false;
+				}
 			} else {
-				success = ((average > (limit - (limit * precision))) && (average < (limit + (limit * precision)))) ? true : false;
+				success = (average == 0) ? true : false;
 			}
 		} else {
-			success = (average == 0) ? true : false;
+			success = ((average > limitParam2) && (average < limitParam1)) ? true : false;
 		}
 		return new Result(success, average);
 		

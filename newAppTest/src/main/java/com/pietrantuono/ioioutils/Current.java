@@ -15,7 +15,7 @@ public class Current {
 	private static Boolean isinterrupted=false;;
 	private static int currentsleeptime=0;
 	
-	public enum Scale {
+	public enum Units {
 		
 		mA	((double)1E3),
 		uA	((double)1E6),
@@ -27,7 +27,7 @@ public class Current {
 			return value;
 		}
 		
-		Scale(double value) {
+		Units(double value) {
 			this.value = value;
 		}
 	}
@@ -39,15 +39,15 @@ public class Current {
 	 * 
 	 * This method does NOT sleep between readings
 	 * 
-	 * @param ioio
-	 * @param pinNumber
-	 * @param gain
-	 * @param Rshunt
-	 * @param scale
+	 * @param ioio			- IOIO Instance
+	 * @param pinNumber		- IOIO Pin Number
+	 * @param gain			- Current sense circuit gain
+	 * @param Rshunt		- Current sense shunt resistor value
+	 * @param units			- Reading units (mA, uA, nA)
 	 * @throws Exception
 	 */
-	private static float getCurrent(IOIO ioio, int pinNumber, int gain, int Rshunt, Scale scale) throws Exception {
-		return getCurrent(ioio, pinNumber, gain, Rshunt, scale, 10, 0);
+	private static float getCurrent(IOIO ioio, int pinNumber, int gain, int Rshunt, Units units) throws Exception {
+		return getCurrent(ioio, pinNumber, gain, Rshunt, units, 10, 0);
 	}
 		
 	
@@ -55,18 +55,18 @@ public class Current {
 	 * Gets current doing numberofreadings readings and waiting sleeptime ms between readings
 	 * 
 	 * This method does DOES SLEEP between readings
-	 * 
-	 * @param ioio
-	 * @param pinNumber
-	 * @param gain
-	 * @param Rshunt
-	 * @param scale
+	 *
+	 * @param ioio			- IOIO Instance
+	 * @param pinNumber		- IOIO Pin Number
+	 * @param gain			- Current sense circuit gain
+	 * @param Rshunt		- Current sense shunt resistor value
+	 * @param units			- Reading units (mA, uA, nA)
 	 * @param sleeptime
 	 * @param numberofreadings
 	 * @return average reading
 	 * @throws Exception
 	 */
-	private static float getCurrent(IOIO ioio, int pinNumber, int gain, int Rshunt, Scale scale, int numberofreadings, int sleeptime) throws Exception {
+	private static float getCurrent(IOIO ioio, int pinNumber, int gain, int Rshunt, Units units, int numberofreadings, int sleeptime) throws Exception {
 		if(isinterrupted)return 0f;
 		currentsleeptime=sleeptime;
 		if (ioio == null)
@@ -86,10 +86,10 @@ public class Current {
 			Thread.sleep(sleeptime);
 		}
 		analogInput.close();
-		float average = (float) (((total / numsamples) / (gain * Rshunt)) * scale.getValue());
+		float average = (float) (((total / numsamples) / (gain * Rshunt)) * units.getValue());
 		Log.d("GAIN", String.valueOf(gain));
 		Log.d("SHUNT", String.valueOf(Rshunt));
-		Log.d("SCALE", String.valueOf(scale.getValue()));
+		Log.d("UNITS", String.valueOf(units.getValue()));
 		Log.d("VOLTAGE", String.valueOf(total/numsamples));
 		Log.d("CURRENT", String.valueOf(average));
 		return average;
@@ -104,26 +104,26 @@ public class Current {
 	 * 
 	 * This method does NOT sleep between readings
 	 * 
-	 * @param ioio
+	 * @param ioio			- IOIO Instance
 	 * @param pinNumber		- IOIO Pin Number
-	 * @param gain
-	 * @param Rshunt
-	 * @param scale			- mA, uA, nA
-	 * @param isUpperLower - True (Upper/Lower), False (Nominal/Precision)
-	 * @param limitParam1 - Upper / Nominal
-	 * @param limitParam2 - Lower / Precision
+	 * @param gain			- Current sense circuit gain
+	 * @param Rshunt		- Current sense shunt resistor value
+	 * @param units			- Reading units (mA, uA, nA)
+	 * @param isNominal 	- False (Upper/Lower), True (Nominal/Precision)
+	 * @param limitParam1 	- Upper / Nominal
+	 * @param limitParam2 	- Lower / Precision
 	 * @return
 	 * @throws Exception
 	 */
 	@SuppressWarnings("ucd")
-	public static Result checkCurrent(IOIO ioio, int pinNumber, int gain, int Rshunt, Scale scale, Boolean isUpperLower, float limitParam1, float limitParam2) throws Exception{
-		float average=getCurrent(ioio, pinNumber, gain, Rshunt, scale);
-		if (isUpperLower) {
+	public static Result checkCurrent(IOIO ioio, int pinNumber, int gain, int Rshunt, Units units, Boolean isNominal, float limitParam1, float limitParam2) throws Exception{
+		float average=getCurrent(ioio, pinNumber, gain, Rshunt, units);
+		if (!isNominal) {
 			Boolean success=((average > limitParam2) && (average < limitParam1))?true:false;									// Use Param1 as Upper, Param2 as Lower
-			return new Result(success, average, scale);
+			return new Result(success, average, units);
 		} else {
 			Boolean success=((average > limitParam1 - (limitParam1 * limitParam2)) && (average < limitParam1 + (limitParam1 * limitParam2)))?true:false;		// Use Param1 as limit, Param2 as Precision
-			return new Result(success, average, scale);
+			return new Result(success, average, units);
 		}
 		
 	};
@@ -132,10 +132,10 @@ public class Current {
 		
 		private String readingString;
 		private Boolean success;
-		private Result(Boolean success, float reading, Scale scale) {
+		private Result(Boolean success, float reading, Units units) {
 			df.setRoundingMode(RoundingMode.DOWN);
 			this.success = success;
-			switch (scale) {
+			switch (units) {
 			case mA:
 				if (reading==0) readingString="0mA";
 				else readingString=df.format(reading) + "mA";

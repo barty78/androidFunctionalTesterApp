@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.pietrantuono.ioioutils.Voltage;
 import com.pietrantuono.tests.implementations.AwakeModeCurrentTest;
 import com.pietrantuono.tests.implementations.BTConnectCurrent;
 import com.pietrantuono.tests.implementations.BatteryLevelUUTVoltageTest;
@@ -41,18 +42,20 @@ public class TestsParser {
 			test = new GetBarcodeTest(activity, ioio, job);
 			break;
 		case 2:
-			float tolerance = (float) testToBeParsed.getTolerance().doubleValue();
-			float nominal = (float) testToBeParsed.getNominal().doubleValue();
+			boolean isNominal = (boolean) testToBeParsed.getIsNominal();
+			float limitParam1 = (float) testToBeParsed.getLimitParam1().doubleValue();
+			float limitParam2 = (float) testToBeParsed.getLimitParam2().doubleValue();
 			int pinnumber = (int) testToBeParsed.getIoiopinnum();
 			test = new UUTCurrentTest(activity, ioio,
 					getDescription(testToBeParsed));
 			break;
 		case 3:
-			tolerance = (float) testToBeParsed.getTolerance().floatValue();
-			nominal = (float) testToBeParsed.getNominal().floatValue();
+			isNominal = (boolean) testToBeParsed.getIsNominal();
+			limitParam1 = (float) testToBeParsed.getLimitParam1().doubleValue();
+			limitParam2 = (float) testToBeParsed.getLimitParam2().doubleValue();
 			pinnumber = (int) testToBeParsed.getIoiopinnum();
-			test = new VoltageTest(activity, ioio, pinnumber, nominal,
-					tolerance, "Voltage Measurement - DC_PRES (5V_DC Off)");
+			test = new VoltageTest(activity, ioio, pinnumber, Voltage.Units.V, isNominal, limitParam1, limitParam2,
+					"Voltage Measurement - DC_PRES (5V_DC Off)");
 			break;
 		case 4:
 			test = new LedCheckTest(activity, getDescription(testToBeParsed),
@@ -94,8 +97,8 @@ public class TestsParser {
 			test = new ReadFirmwareversionTest(activity);
 			break;
 		case 16:
-			tolerance = (float) testToBeParsed.getTolerance().floatValue();
-			nominal = (float) testToBeParsed.getNominal().floatValue();
+			float tolerance = (float) testToBeParsed.getTolerance().floatValue();
+			float nominal = (float) testToBeParsed.getNominal().floatValue();
 			test = new BatteryLevelUUTVoltageTest(activity, nominal, tolerance,
 					getDescription(testToBeParsed),
 					(int) testToBeParsed.getNominal().doubleValue());// TODO check voltage

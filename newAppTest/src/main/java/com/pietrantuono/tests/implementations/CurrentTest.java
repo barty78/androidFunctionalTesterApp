@@ -4,21 +4,20 @@ import android.app.Activity;
 import android.util.Log;
 
 import com.pietrantuono.ioioutils.Current;
-import com.pietrantuono.ioioutils.Current.Scale;
+import com.pietrantuono.ioioutils.Current.Units;
 import com.pietrantuono.ioioutils.IOIOUtils;
 import com.pietrantuono.tests.superclass.Test;
 
 import static com.pietrantuono.ioioutils.Current.*;
-import static com.pietrantuono.ioioutils.Current.Scale.*;
 
 public class CurrentTest extends Test {
 	private int pinNumber;
-	private Boolean isUpperLower;
+	private Boolean isNominal;
 	private float limitParam1, limitParam2;
 	private int gain = 50;
 	private int Rshunt;
-	private Scale scale;
-	public void Scale() {
+	private Current.Units units;
+	public void Units() {
 	}
 	/**
 	 * * Current Measurement Test Implementation
@@ -26,22 +25,19 @@ public class CurrentTest extends Test {
 	 * @param activity			- Activity Instance
 	 * @param ioio				- IOIO Instance
 	 * @param pinNumber			- IOIO Pin Number
-	 * @param scale				- Measurement Scale (nA, uA or mA)
-	 * @param isUpperLower		- Applied Limits Type (Bounds / Nominal,Precision)
+	 * @param units				- Measurement Scale (nA, uA or mA)
+	 * @param isNominal			- Applied Limits Type (Bounds / Nominal,Precision)
 	 * @param limitParam1		- Limit Parameter 1 (Upper / Nominal)
 	 * @param limitParam2		- Limit Parameter 2 (Lower / Precision)
 	 * @param description		- Test Description
 	 */
-	public CurrentTest(Activity activity, IOIO ioio, int pinNumber, Scale scale, Boolean isUpperLower, float limitParam1, float limitParam2, String description) {
+	public CurrentTest(Activity activity, IOIO ioio, int pinNumber, Units units, Boolean isNominal, float limitParam1, float limitParam2, String description) {
 		super(activity, ioio, description, false, true);
 		this.pinNumber = pinNumber;
-//		this.gain = gain;
-//		this.Rshunt = Rshunt;
-		this.scale = scale;
-		this.isUpperLower = isUpperLower;
+		this.units = units;
+		this.isNominal = isNominal;
 		this.limitParam1 = limitParam1;
 		this.limitParam2 = limitParam2;
-		this.scale = scale;
 		this.description=description;
 	}
 	@Override
@@ -61,7 +57,7 @@ public class CurrentTest extends Test {
 			}
 		Result result = null;
 
-		switch(scale){
+		switch(units){
 			case mA:
 				Rshunt = 2;
 				break;
@@ -72,7 +68,7 @@ public class CurrentTest extends Test {
 
 		try {
 			result =
-					checkCurrent(ioio, pinNumber, gain, Rshunt, scale, isUpperLower, limitParam1, limitParam2);
+					checkCurrent(ioio, pinNumber, gain, Rshunt, units, isNominal, limitParam1, limitParam2);
 		} catch (Exception e) {
 			report(e);
 		}
@@ -93,7 +89,7 @@ public class CurrentTest extends Test {
 		}
 		
 		// If we are reading uA (Sleep) current, change back to mA range ready for next test step.
-		if (scale == scale.uA) {
+		if (units == units.uA) {
 			IOIOUtils.getUtils().setIrange((Activity)activityListener, false);
 		}
 		IOIOUtils.getUtils().toggleTrigger((Activity)activityListener);

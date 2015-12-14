@@ -7,28 +7,36 @@ import android.util.Log;
 
 import com.pietrantuono.ioioutils.IOIOUtils;
 import com.pietrantuono.ioioutils.Voltage;
+import com.pietrantuono.ioioutils.Voltage.Units;
 import com.pietrantuono.tests.superclass.Test;
 public 	class VoltageTest extends Test {
 	private int pinNumber;
-	private float limit;
-	private float precision;
+	private boolean isNominal = true;
+	private float limitParam1, limitParam2;
 	private float scaling;
+	private Voltage.Units units;
+	public void Units() {
+	}
 
 	/**
 	 * @param activity			- Activity Instance
 	 * @param ioio				- IOIO Instance
 	 * @param pinNumber			- IOIO Pin Number
-	 * @param limit				- Nominal Voltage
-	 * @param precision			- Voltage Precision
+   	 * @param units				- Measurement Scale (V or mV)
+	 * @param isNominal			- Applied Limits Type (Bounds / Nominal,Precision)
+	 * @param limitParam1		- Limit Parameter 1 (Upper / Nominal)
+	 * @param limitParam2		- Limit Parameter 2 (Lower / Precision)
 	 * @param description		- Test Description
 	 */
 
-	public VoltageTest(Activity activity,IOIO ioio, int pinNumber, float limit, float precision, String description) {
+	public VoltageTest(Activity activity,IOIO ioio, int pinNumber, Units units, boolean isNominal, float limitParam1, float limitParam2, String description) {
 		super(activity,ioio,description, false, true);
 		this.pinNumber = pinNumber;
+		this.units = units;
 		this.scaling = 1f;
-		this.limit = limit;
-		this.precision = precision;
+		this.isNominal = isNominal;
+		this.limitParam1 = limitParam1;
+		this.limitParam2 = limitParam2;
 		this.description=description;
 	}
 
@@ -37,18 +45,21 @@ public 	class VoltageTest extends Test {
 	 * @param ioio				- IOIO Instance
 	 * @param pinNumber			- IOIO Pin Number
 	 * @param scaling			- Scaling factor
-	 * @param limit				- Nominal Voltage
-	 * @param precision			- Voltage Precision
+	 * @param isNominal			- Applied Limits Type (Bounds / Nominal,Precision)
+	 * @param limitParam1		- Limit Parameter 1 (Upper / Nominal)
+	 * @param limitParam2		- Limit Parameter 2 (Lower / Precision)
 	 * @param description		- Test Description
 	 */
 
-	public VoltageTest(Activity activity,IOIO ioio, int pinNumber, Boolean isBlocking, float scaling, float limit, float precision, String description) {
+	public VoltageTest(Activity activity,IOIO ioio, int pinNumber, Units units, Boolean isBlocking, float scaling, boolean isNominal, float limitParam1, float limitParam2, String description) {
 		super(activity,ioio,description, false, true);
 		this.isBlockingTest = isBlocking;
 		this.pinNumber = pinNumber;
+		this.units = units;
 		this.scaling = scaling;
-		this.limit = limit;
-		this.precision = precision;
+		this.isNominal = isNominal;
+		this.limitParam1 = limitParam1;
+		this.limitParam2 = limitParam2;
 		this.description=description;
 	}
 
@@ -68,7 +79,7 @@ public 	class VoltageTest extends Test {
 
 		try {
 			result = Voltage
-					.checkVoltage(ioio, pinNumber, scaling, limit, precision);
+					.checkVoltage(ioio, pinNumber, scaling, isNominal, limitParam1, limitParam2);
 		} catch (Exception e) {
 			report(e);
 		}

@@ -31,6 +31,12 @@ public class Test {
     @Expose
     private Long active;
     @Expose
+    private Boolean isNominal;
+    @Expose
+    private Double limitParam1;
+    @Expose
+    private Double limitParam2;
+    @Expose
     private Long Upper;
     @Expose
     private Long Lower;
@@ -218,6 +224,24 @@ public class Test {
     public void setActive(Long active) {
         this.active = active;
     }
+
+    public Boolean getIsNominal() {
+        return isNominal;
+    }
+
+    public void setIsNominal(Boolean isNominal) {this.isNominal = isNominal;}
+
+    public Double getLimitParam1() {
+        return limitParam1;
+    }
+
+    public void setLimitParam1(Double limitParam1) {this.limitParam1 = limitParam1;}
+
+    public Double getLimitParam2() {
+        return limitParam2;
+    }
+
+    public void setLimitParam2(Double limitParam2) {this.limitParam2 = limitParam2;}
 
     /**
      * 
