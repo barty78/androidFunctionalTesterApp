@@ -23,8 +23,10 @@ import hydrix.pfmat.generic.TestLimits;
 public class SensorTest {
 
 	private static final int DELAY = 1 * 1000;
+	public final float lowerLimit;
+	public final float upperLimit;
+	public final float varLimit;
 	protected SensorsTestHelper sensorsTestHelper;
-	protected TestLimits testLimits = null;
 	protected WeakReference<Activity> activity = null;
 	protected short voltage = -1;
 	protected short zeroVoltage = -1;
@@ -37,18 +39,15 @@ public class SensorTest {
 		this.sensorsTestHelper = sensorsTestHelper;
 	}
 
-	
-
-	public SensorTest(Activity activity, SensorTestWrapper wrapper) {
+	public SensorTest(Activity activity, SensorTestWrapper wrapper, float lowerLimit, float upperLimit, float varLimit) {
 		Log.d("SensorTest", "constucor");
 		this.activity = new WeakReference<Activity>(activity);
 		this.mSensorResult=new NewMSensorResult(wrapper);
-	
+		this.lowerLimit=lowerLimit;
+		this.upperLimit=upperLimit;
+		this.varLimit=varLimit;
 	}
 
-	
-	
-	
 	public void stop() {
 		stopped = true;
 		try {
@@ -81,10 +80,6 @@ public class SensorTest {
 		return this;
 	}
 
-	public SensorTest setTestLimits(TestLimits testLimits) {
-		this.testLimits = testLimits;
-		return this;
-	}
 
 	public void execute() {
 		if (stopped)return;
@@ -103,11 +98,6 @@ public class SensorTest {
 			}
 		});
 		Log.d("SensorTest", "execute");
-		if (this.testLimits == null) {
-			Log.e(SensorsTestHelper.TAG, "You must set the test limits");
-			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test");
-			return;
-		}
 		if (this.activity == null || activity == null) {
 			Log.e(SensorsTestHelper.TAG, "You must set the activity");
 			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test");
@@ -254,14 +244,14 @@ public class SensorTest {
 		mSensorResult.setSensor0avg(avrg);
 		mSensorResult.setSensor0max(max);
 		mSensorResult.setSensor0min(min);
-		if (avrg <= testLimits.getUpperLimits().getLiteralSensor(0)
-				&& avrg >= testLimits.getLowerLimits().getLiteralSensor(0)) {
+		if (avrg <= upperLimit
+				&& avrg >= lowerLimit) {
 			mSensorResult.setSensor0AvgPass(true);
 		} else {
 			mSensorResult.setSensor0AvgPass(false);
 			mSensorResult.setTestsuccessful(false);
 		}
-		if (Math.abs(max - min) < testLimits.getStability()) {
+		if (Math.abs(max - min) < varLimit) {
 			mSensorResult.setSensor0stabilitypass(true);
 		} else {
 			mSensorResult.setSensor0stabilitypass(false);
@@ -273,14 +263,14 @@ public class SensorTest {
 		mSensorResult.setSensor1avg(avrg);
 		mSensorResult.setSensor1max(max);
 		mSensorResult.setSensor1min(min);
-		if (avrg <= testLimits.getUpperLimits().getLiteralSensor(1)
-				&& avrg >= testLimits.getLowerLimits().getLiteralSensor(1)) {
+		if (avrg <= upperLimit
+				&& avrg >= lowerLimit) {
 			mSensorResult.setSensor1AvgPass(true);
 		} else {
 			mSensorResult.setSensor1AvgPass(false);
 			mSensorResult.setTestsuccessful(false);
 		}
-		if (Math.abs(max - min) < testLimits.getStability()) {
+		if (Math.abs(max - min) < varLimit) {
 			mSensorResult.setSensor1stabilitypass(true);
 		} else {
 			mSensorResult.setSensor1stabilitypass(false);
@@ -292,14 +282,14 @@ public class SensorTest {
 		mSensorResult.setSensor2avg(avrg);
 		mSensorResult.setSensor2max(max);
 		mSensorResult.setSensor2min(min);
-		if (avrg <= testLimits.getUpperLimits().getLiteralSensor(2)
-				&& avrg >= testLimits.getLowerLimits().getLiteralSensor(2)) {
+		if (avrg <= upperLimit
+				&& avrg >= lowerLimit) {
 			mSensorResult.setSensor2AvgPass(true);
 		} else {
 			mSensorResult.setSensor2AvgPass(false);
 			mSensorResult.setTestsuccessful(false);
 		}
-		if (Math.abs(max - min) < testLimits.getStability()) {
+		if (Math.abs(max - min) < varLimit) {
 			mSensorResult.setSensor2stabilitypass(true);
 		} else {
 			mSensorResult.setSensor2stabilitypass(false);

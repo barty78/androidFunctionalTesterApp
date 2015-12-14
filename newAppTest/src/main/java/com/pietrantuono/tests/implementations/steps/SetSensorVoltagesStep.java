@@ -4,12 +4,8 @@ import android.app.Activity;
 import android.os.Handler;
 import android.util.Log;
 
-import com.pietrantuono.ioioutils.IOIOUtils;
 import com.pietrantuono.tests.implementations.BluetoothConnectTest;
 import com.pietrantuono.tests.superclass.Test;
-
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
 
 public class SetSensorVoltagesStep extends Test {
     private short refVoltage;
@@ -26,7 +22,7 @@ public class SetSensorVoltagesStep extends Test {
      * @param description
      */
     public SetSensorVoltagesStep(Activity activity, short refVoltage, short zeroVoltage, String description) {
-        super(activity, null, description, false, false);
+        super(activity, null, description, false, false, 0, 0, 0);
         this.istest = false;
         this.refVoltage = refVoltage;
         this.zeroVoltage = zeroVoltage;

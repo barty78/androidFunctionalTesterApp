@@ -1,12 +1,8 @@
 package com.pietrantuono.tests.implementations;
 
-import java.util.ArrayList;
-
-import hydrix.pfmat.generic.TestLimits;
 import ioio.lib.api.IOIO;
 import android.app.Activity;
 
-import com.pietrantuono.constants.LimitsProvider;
 import com.pietrantuono.sensors.ClosedTest;
 import com.pietrantuono.sensors.SensorTest;
 import com.pietrantuono.sensors.SensorsTestHelper;
@@ -18,39 +14,32 @@ public class SensorTestWrapper extends Test {
 	private short voltage;
 	private SensorTest sensorTest;
 	private SensorsTestHelper helper;
-	private ArrayList<TestLimits> limits;
 	/**
 	 * Creates a sensor test.
 	 * IMPORTANT: Bluetooth must be open using
 	 * {@link com.pietrantuono.tests.implementations.BluetoothConnectTest} 
 	 * Do not execute this test before opening Bluetooth
-	 * 
-	 * @param TestLimitIndex: index of the test limit to be used in the test 
+	 *  @param TestLimitIndex : index of the test limit to be used in the test
+	 * @param lowerLimit
+	 * @param upperLimit
+	 * @param varLimit
 	 */
-	public SensorTestWrapper(boolean isClosedTest,Activity activity, IOIO ioio, String description, int TestLimitIndex, Boolean isload, short voltage) {
-		super(activity, ioio, description, true, false);
+	public SensorTestWrapper(boolean isClosedTest, Activity activity, IOIO ioio, String description, int TestLimitIndex, Boolean isload, short voltage, float lowerLimit, float upperLimit, float varLimit) {
+		super(activity, ioio, description, true, false, lowerLimit, upperLimit, varLimit);
 		this.TestLimitIndex=TestLimitIndex;
 		this.isLoad=isload;
 		this.voltage=voltage;
-		limits=LimitsProvider.getTestLimits();
-		if(isClosedTest){sensorTest=new ClosedTest(activity,SensorTestWrapper.this);}
-		else {sensorTest=new SensorTest(activity,SensorTestWrapper.this);}
+		if(isClosedTest){sensorTest=new ClosedTest(activity,SensorTestWrapper.this, lowerLimit, upperLimit, varLimit);}
+		else {sensorTest=new SensorTest(activity,SensorTestWrapper.this, lowerLimit, upperLimit, varLimit);}
 	}
-
 
 	@Override
 	public void execute() {
 		if(isinterrupted)return;
 		helper = new SensorsTestHelper((Activity)activityListener,activityListener.getBtutility(),ioio);
 		sensorTest.setSensorsTestHelper(helper);
-		sensorTest.setLoad(this.isLoad).setTestLimits(limits.get(TestLimitIndex)).setVoltage(this.voltage);
 		sensorTest.execute();
-
-		
 	}
-
-
-	
 
 
 	public SensorTest getSensorTest() {

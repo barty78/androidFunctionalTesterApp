@@ -3,7 +3,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import server.pojos.Firmware;
 import ioio.lib.api.IOIO;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -33,7 +32,7 @@ public class UploadFirmwareTest extends Test {
 	boolean fileMD5Passed=false;
 	private int retries;
 	public UploadFirmwareTest(Activity activity, IOIO ioio) {
-		super(activity, ioio, "Upload Firmware", false, true);			// Blocking Test, if fails - STOP
+		super(activity, ioio, "Upload Firmware", false, true, 0, 0, 0);			// Blocking Test, if fails - STOP
 	}
 	@Override
 	public void execute() {

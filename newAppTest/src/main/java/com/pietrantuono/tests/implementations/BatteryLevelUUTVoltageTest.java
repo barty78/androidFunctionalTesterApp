@@ -27,7 +27,7 @@ public class BatteryLevelUUTVoltageTest extends Test {
      * @param description
      */
     public BatteryLevelUUTVoltageTest(Activity activity, float limit, float precision, String description, int voltage) {
-        super(activity, null, description, false, false);
+        super(activity, null, description, false, false, 0, 0, 0);
         this.voltage = voltage;
         this.limit = limit;
         this.precision = precision;

@@ -17,8 +17,6 @@ import com.pietrantuono.ioioutils.Voltage;
 import com.pietrantuono.tests.implementations.AccelerometerSelfTest;
 import com.pietrantuono.tests.implementations.BatteryLevelUUTVoltageTest;
 import com.pietrantuono.tests.implementations.BluetoothConnectTestForTesting;
-import com.pietrantuono.tests.implementations.ChargeLedCheckTest;
-import com.pietrantuono.tests.implementations.ChargingTest;
 import com.pietrantuono.tests.implementations.CurrentTest;
 import com.pietrantuono.tests.implementations.GetDeviceSerialTest;
 import com.pietrantuono.tests.implementations.LedCheckTest;
@@ -368,13 +366,13 @@ public class NewSequence implements NewSequenceInterface {
 		sequence.add(new SetSensorVoltagesStep(activity, (short)127, (short)0, "Set GAIN -> 127, ZERO -> 0"));
 
 		sequence.add(new SensorTestWrapper(false, activity, ioio,
-				"Sensor Input Test, NO LOAD, GAIN @ 127", 0, false, (short) 127));
+				"Sensor Input Test, NO LOAD, GAIN @ 127", 0, false, (short) 127, 0, 0, 0));
 		sequence.add(new SensorTestWrapper(false, activity, ioio,
-				"Sensor Input Test, LOADED, GAIN @ 127", 1, true, (short) 127));
+				"Sensor Input Test, LOADED, GAIN @ 127", 1, true, (short) 127, 0, 0, 0));
 		sequence.add(new SensorTestWrapper(false, activity, ioio,
-				"Sensor Input Test, LOADED, GAIN @ 25", 1, true, (short) 25));
+				"Sensor Input Test, LOADED, GAIN @ 25", 1, true, (short) 25, 0, 0, 0));
 		sequence.add(new SensorTestWrapper(false, activity, ioio,
-				"Sensor Input Test, LOADED, GAIN @ 230", 1, true, (short) 230));
+				"Sensor Input Test, LOADED, GAIN @ 230", 1, true, (short) 230, 0, 0, 0));
 //		sequence.add(new SensorTestWrapper(false, activity, ioio, "Sensor Input Test, LOADED, GAIN @ 127", 2, true,
 //				(short) 127));
 //		sequence.add(new SensorTestWrapper(false, activity, ioio, "Sensor Input Test, LOADED, GAIN @ 127", 3, true,

@@ -1,11 +1,9 @@
 package com.pietrantuono.tests.implementations.steps;
 
 import android.app.Activity;
-import android.os.Handler;
 import android.util.Log;
 
 import com.pietrantuono.ioioutils.IOIOUtils;
-import com.pietrantuono.tests.implementations.BluetoothConnectTest;
 import com.pietrantuono.tests.superclass.Test;
 
 import ioio.lib.api.exception.ConnectionLostException;
@@ -21,7 +19,7 @@ public class SetDigitalOutputStep extends Test {
      * @param description
      */
     public SetDigitalOutputStep(Activity activity, int pinNumber, boolean value, String description) {
-        super(activity, null, description, false, false);
+        super(activity, null, description, false, false, 0, 0, 0);
         this.istest = false;
         this.pinNumber = pinNumber;
         this.value = value;

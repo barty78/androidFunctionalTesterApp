@@ -17,7 +17,7 @@ public class AccelerometerSelfTest extends Test {
 	private AlertDialog alertDialog;
 	private String TAG=getClass().getSimpleName();
 	public AccelerometerSelfTest(Activity activity, IOIO ioio) {
-		super(activity, ioio, "Accelerometer Self-Test", false, false);
+		super(activity, ioio, "Accelerometer Self-Test", false, false, 0, 0, 0);
 	}
 	@Override
 	public void execute() {

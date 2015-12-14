@@ -11,7 +11,7 @@ public class UUTCurrentTest extends Test {
 	private AnalogInput I_UUT = null;
 	private AnalogInput V_TRGT = null;
 	public UUTCurrentTest(Activity activity, IOIO ioio, String description) {
-		super(activity,ioio, description, false, false);
+		super(activity,ioio, description, false, false, 0, 0, 0);
 	}
 	private final String TAG=getClass().getSimpleName();
 	@Override

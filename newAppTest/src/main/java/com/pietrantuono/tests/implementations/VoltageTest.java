@@ -1,18 +1,15 @@
 package com.pietrantuono.tests.implementations;
 import ioio.lib.api.IOIO;
-import ioio.lib.api.exception.ConnectionLostException;
 
 import android.app.Activity;
 import android.util.Log;
 
-import com.pietrantuono.ioioutils.IOIOUtils;
 import com.pietrantuono.ioioutils.Voltage;
 import com.pietrantuono.ioioutils.Voltage.Units;
 import com.pietrantuono.tests.superclass.Test;
 public 	class VoltageTest extends Test {
 	private int pinNumber;
 	private boolean isNominal = true;
-	private float limitParam1, limitParam2;
 	private float scaling;
 	private Voltage.Units units;
 	public void Units() {
@@ -30,13 +27,11 @@ public 	class VoltageTest extends Test {
 	 */
 
 	public VoltageTest(Activity activity,IOIO ioio, int pinNumber, Units units, boolean isNominal, float limitParam1, float limitParam2, String description) {
-		super(activity,ioio,description, false, true);
+		super(activity,ioio,description, false, true, limitParam1, limitParam2, 0);
 		this.pinNumber = pinNumber;
 		this.units = units;
 		this.scaling = 1f;
 		this.isNominal = isNominal;
-		this.limitParam1 = limitParam1;
-		this.limitParam2 = limitParam2;
 		this.description=description;
 	}
 
@@ -52,7 +47,7 @@ public 	class VoltageTest extends Test {
 	 */
 
 	public VoltageTest(Activity activity,IOIO ioio, int pinNumber, Units units, float scaling, boolean isNominal, float limitParam1, float limitParam2, String description) {
-		super(activity,ioio,description, false, true);
+		super(activity,ioio,description, false, true, 0, 0, 0);
 		this.pinNumber = pinNumber;
 		this.units = units;
 		this.scaling = scaling;

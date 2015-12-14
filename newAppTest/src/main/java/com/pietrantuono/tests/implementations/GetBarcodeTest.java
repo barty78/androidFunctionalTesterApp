@@ -2,15 +2,9 @@ package com.pietrantuono.tests.implementations;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
 
-import analytica.pericoach.android.DBManager;
 import ioio.lib.api.DigitalInput;
 import ioio.lib.api.DigitalOutput;
 import ioio.lib.api.IOIO;
@@ -21,11 +15,8 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
-import android.graphics.Color;
-import android.util.Log;
 import android.widget.Toast;
 
-import com.crashlytics.android.Crashlytics;
 import com.pietrantuono.activities.MyOnCancelListener;
 import com.pietrantuono.ioioutils.IOIOUtils;
 import com.pietrantuono.tests.superclass.Test;
@@ -44,7 +35,7 @@ public class GetBarcodeTest extends Test {
 	private Job job;
 
 	public GetBarcodeTest(Activity activity, IOIO ioio, Job job) {
-		super(activity, ioio, "Read PCB Barcode Label", false, true);
+		super(activity, ioio, "Read PCB Barcode Label", false, true, 0, 0, 0);
 		this.job = job;
 		
 	}

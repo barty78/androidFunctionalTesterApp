@@ -11,7 +11,7 @@ public class ListenToUart extends Test {
 	private final String TAG = getClass().getSimpleName();
 
 	public ListenToUart(Activity activity, IOIO ioio) {
-		super(activity, ioio, "Listen to uart", false, false);
+		super(activity, ioio, "Listen to uart", false, false, 0, 0, 0);
 	}
 
 	@Override

@@ -5,13 +5,10 @@ import java.util.concurrent.Executors;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.pietrantuono.activities.MyOnCancelListener;
 import com.pietrantuono.ioioutils.IOIOUtils;
 import com.pietrantuono.tests.superclass.Test;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
 import android.graphics.Color;
 import android.util.Log;
 import android.widget.Toast;
@@ -25,7 +22,7 @@ public class GetDeviceSerialTest extends Test {
 	private String serial = "";
 
 	public GetDeviceSerialTest(Activity activity, IOIO ioio) {
-		super(activity, ioio, "Read UUT Serial Number", false, true);
+		super(activity, ioio, "Read UUT Serial Number", false, true, 0, 0, 0);
 	}
 
 	@Override

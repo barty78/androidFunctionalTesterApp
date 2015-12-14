@@ -15,7 +15,7 @@ public class WakeDeviceTest extends Test{
 	private AlertDialog alertDialog;
 	private Thread t; 
 	public WakeDeviceTest(Activity activity, IOIO ioio) {
-		super(activity, ioio, "Wake Device", false, false);
+		super(activity, ioio, "Wake Device", false, false, 0, 0, 0);
 	}
 	@Override
 	public void execute() {

@@ -1,15 +1,10 @@
 package com.pietrantuono.tests.implementations;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
-import android.util.Log;
 
 import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.btutility.BTUtility;
 import com.pietrantuono.tests.superclass.Test;
-
-import server.pojos.Firmware;
 
 public class ReadModelNumberTest extends Test{
 	private String modelnumber;
@@ -23,7 +18,7 @@ public class ReadModelNumberTest extends Test{
 	 * Do not execute this test before opening Bluetooth
 	 */
 	public ReadModelNumberTest(Activity activity) {
-		super(activity, null, "Model Number Check", false, false);
+		super(activity, null, "Model Number Check", false, false, 0, 0, 0);
 	}
 	@Override
 	public void execute() {

@@ -27,7 +27,7 @@ public abstract class Test {
 
 	//Limits variables
 	public boolean isNominal;
-	public float limitParam1, limitParam2;
+	public float limitParam1, limitParam2,limitParam3;
 	
 	
 	public abstract void execute();
@@ -48,27 +48,22 @@ public abstract class Test {
 	 * @param description
 	 * @param isSensorTest
 	 * @param isBlockingTest
+	 * @param limitParam1
+	 * @param limitParam2
+	 * @param limitParam3
 	 */
-	public Test(Activity activity,IOIO ioio, String description, Boolean isSensorTest,
-			Boolean isBlockingTest ) {
+	public Test(Activity activity, IOIO ioio, String description, Boolean isSensorTest,
+				Boolean isBlockingTest, float limitParam1, float limitParam2, float limitParam3) {
 		this.description = description;
 		this.isSensorTest = isSensorTest;
 		this.isBlockingTest = isBlockingTest;
 		this.activityListener=(NewIOIOActivityListener)activity;
 		this.ioio=ioio;
-
+		this.limitParam1=limitParam1;
+		this.limitParam2=limitParam2;
+		this.limitParam3=limitParam3;
 	}
-	
-	public Test(Activity activity,IOIO ioio, String description, int number, Boolean isSensorTest,
-			Boolean isBlockingTest ) {
-		this.description = description;
-		this.isSensorTest = isSensorTest;
-		this.isBlockingTest = isBlockingTest;
-		this.activityListener=(NewIOIOActivityListener)activity;
-		this.ioio=ioio;
 
-	}
-	
 	
 	public void interrupt(){
 		isinterrupted=true;

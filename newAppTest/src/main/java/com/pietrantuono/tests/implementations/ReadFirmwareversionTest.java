@@ -2,10 +2,7 @@ package com.pietrantuono.tests.implementations;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
 import android.os.Handler;
-import android.util.Log;
 
 import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.btutility.BTUtility;
@@ -22,7 +19,7 @@ public class ReadFirmwareversionTest extends Test {
 	 * not execute this test before opening Bluetooth
 	 */
 	public ReadFirmwareversionTest(Activity activity) {
-		super(activity, null, "Firmware Version Check", false, false);
+		super(activity, null, "Firmware Version Check", false, false, 0, 0, 0);
 	}
 
 	@Override

@@ -48,7 +48,7 @@ public class AwakeModeCurrentTest extends Test {
 		//activityListener.goAndExecuteNextTest();
 	}
 	public AwakeModeCurrentTest(Activity activity, IOIO ioio, String description) {
-		super(activity, ioio, description, false, false);
+		super(activity, ioio, description, false, false, 0, 0, 0);
 	}
 	@Override
 	public void interrupt() {

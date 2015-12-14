@@ -5,7 +5,7 @@ import com.pietrantuono.tests.superclass.Test;
 public class BluetoothConnectTest extends Test {
 	private BTUtility btUtility;
 	public BluetoothConnectTest(Activity activity) {
-		super(activity, null, "Bluetooth Connect", false, false);
+		super(activity, null, "Bluetooth Connect", false, false, 0, 0, 0);
 	}
 	@Override
 	public void execute() {

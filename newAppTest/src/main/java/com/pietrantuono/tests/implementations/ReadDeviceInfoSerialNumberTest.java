@@ -12,7 +12,7 @@ public class ReadDeviceInfoSerialNumberTest extends Test {
 	 * Do not execute this test before opening Bluetooth
 	 */
 	public ReadDeviceInfoSerialNumberTest(Activity activity) {
-		super(activity, null, "Serial Number Check", false, false);
+		super(activity, null, "Serial Number Check", false, false, 0, 0, 0);
 	}
 	@Override
 	public void execute() {

@@ -13,7 +13,6 @@ import static com.pietrantuono.ioioutils.Current.*;
 public class CurrentTest extends Test {
 	private int pinNumber;
 	private Boolean isNominal;
-	private float limitParam1, limitParam2;
 	private int gain = 50;
 	private int Rshunt;
 	private Current.Units units;
@@ -32,12 +31,10 @@ public class CurrentTest extends Test {
 	 * @param description		- Test Description
 	 */
 	public CurrentTest(Activity activity, IOIO ioio, int pinNumber, Units units, Boolean isNominal, float limitParam1, float limitParam2, String description) {
-		super(activity, ioio, description, false, true);
+		super(activity, ioio, description, false, true, limitParam1, limitParam2, 0);
 		this.pinNumber = pinNumber;
 		this.units = units;
 		this.isNominal = isNominal;
-		this.limitParam1 = limitParam1;
-		this.limitParam2 = limitParam2;
 		this.description=description;
 	}
 	@Override

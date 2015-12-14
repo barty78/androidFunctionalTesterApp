@@ -11,7 +11,6 @@ import com.pietrantuono.ioioutils.IOIOUtils;
 import com.pietrantuono.tests.superclass.Test;
 
 import ioio.lib.api.IOIO;
-import ioio.lib.api.exception.ConnectionLostException;
 
 public class ChargingTest extends Test {
 	private AlertDialog alertDialog;
@@ -20,7 +19,7 @@ public class ChargingTest extends Test {
 
 	public ChargingTest(Activity activity, IOIO ioio,
 						String description) {
-		super(activity, ioio, description, false, false);
+		super(activity, ioio, description, false, false, 0, 0, 0);
 	}
 	@Override
 	public void execute() {

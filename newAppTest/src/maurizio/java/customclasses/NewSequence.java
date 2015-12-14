@@ -12,9 +12,7 @@ import com.pietrantuono.constants.NewMResult;
 import com.pietrantuono.constants.NewMSensorResult;
 import com.pietrantuono.constants.NewSequenceInterface;
 import com.pietrantuono.tests.implementations.BluetoothConnectTestForTesting;
-import com.pietrantuono.tests.implementations.ChargeLedCheckTest;
 import com.pietrantuono.tests.implementations.SensorTestWrapper;
-import com.pietrantuono.tests.implementations.VoltageTest;
 import com.pietrantuono.tests.superclass.Test;
 
 import server.TestsParser;
@@ -366,7 +364,7 @@ public class NewSequence implements NewSequenceInterface {
 //				(short) 127));
 		sequence.add(new BluetoothConnectTestForTesting(activity));
 		sequence.add(new SensorTestWrapper(false, activity, ioio, "Sensor Input Test, LOADED, GAIN @ 127", 3, true,
-		(short) 127));
+		(short) 127, 0, 0, 0));
 	}
 
 	@Override

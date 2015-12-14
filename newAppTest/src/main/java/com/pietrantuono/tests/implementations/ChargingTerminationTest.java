@@ -14,7 +14,7 @@ public class ChargingTerminationTest extends Test {
 
 	public ChargingTerminationTest(Activity activity, IOIO ioio,
 								   String description) {
-		super(activity, ioio, description, false, false);
+		super(activity, ioio, description, false, false, 0, 0, 0);
 	}
 	@Override
 	public void execute() {
