@@ -23,6 +23,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.graphics.Color;
+import android.os.PowerManager;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -91,7 +92,30 @@ public class IOIOUtils implements IOIOUtilsInterface  {
 			this.mode = mode;
 		}
 	}
-	
+
+	public enum Outputs {
+
+		boot0		((int)24),
+		boot1		((int)23),
+		POWER		((int)19),
+		reset		((int)20),
+		Irange		((int)9),
+		_5V_DC		((int)18),
+		Sensor_Low	((int)2),
+		Sensor_High	((int)1),
+		HallInt		((int)21);
+
+		public int value;
+
+		public int getValue() {
+			return value;
+		}
+
+		Outputs(int value) {
+			this.value = value;
+		}
+	}
+
 	public static void setIOIOUtilsInterface(IOIOUtilsInterface mockobject){
 		instance=mockobject;
 	} 
@@ -437,6 +461,48 @@ public class IOIOUtils implements IOIOUtilsInterface  {
 		toggle5VDC(ac);
 
 	}
+
+	@Override
+	public DigitalOutput getDigitalOutput(int pinNumber) {
+		switch (pinNumber) {
+			case (1):
+				return Sensor_High;
+//			break;
+			case 2:
+				return Sensor_Low;
+//			break;
+			case 3:
+				return EMag;
+//			break;
+			case 9:
+				return Irange;
+//			break;
+			case 17:
+				return barcodeTRGR;
+//			break;
+			case 18:
+				return _5V_DC;
+//			break;
+			case 19:
+				return POWER;
+//			break;
+			case 20:
+				return reset;
+//			break;
+			case 21:
+				return HallInt;
+//			break;
+			case 23:
+				return boot1;
+//			break;
+			case 24:
+				return boot0;
+//			break;
+		}
+		return null;
+	}
+
+
 //	@Override
 //	public Mode getUutMode() {return uutMode;}
 

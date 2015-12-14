@@ -12,6 +12,7 @@ import com.pietrantuono.constants.NewMResult;
 import com.pietrantuono.constants.NewMSensorResult;
 import com.pietrantuono.constants.NewSequenceInterface;
 import com.pietrantuono.ioioutils.Current.Scale;
+import com.pietrantuono.ioioutils.IOIOUtils;
 import com.pietrantuono.tests.implementations.AccelerometerSelfTest;
 import com.pietrantuono.tests.implementations.BatteryLevelUUTVoltageTest;
 import com.pietrantuono.tests.implementations.BluetoothConnectTestForTesting;
@@ -27,6 +28,7 @@ import com.pietrantuono.tests.implementations.ReadModelNumberTest;
 import com.pietrantuono.tests.implementations.SensorTestWrapper;
 import com.pietrantuono.tests.implementations.UploadFirmwareTest;
 import com.pietrantuono.tests.implementations.VoltageTest;
+import com.pietrantuono.tests.implementations.steps.SetDigitalOutputStep;
 import com.pietrantuono.tests.implementations.steps.SetSensorVoltagesStep;
 import com.pietrantuono.tests.superclass.Test;
 
@@ -288,9 +290,12 @@ public class NewSequence implements NewSequenceInterface {
 				"Voltage Measurement - V_1V8"));
 		sequence.add(new VoltageTest(activity, ioio, 38, 0f, 0.1f,
 				"Voltage Measurement - DC_PRES (5V_DC Off)"));
-		sequence.add(new VoltageTest(activity, ioio, 38, 1.6f, 0.1f, true, false, false, false,
+		sequence.add(new SetDigitalOutputStep(activity, IOIOUtils.Outputs._5V_DC.getValue(), false,
+				"Set 5VDC to On"));
+		sequence.add(new VoltageTest(activity, ioio, 38, 1.6f, 0.1f,
 				"Voltage Measurement - DC_PRES (5V_DC On)"));
-
+		sequence.add(new SetDigitalOutputStep(activity, IOIOUtils.Outputs._5V_DC.getValue(), true,
+				"Set 5VDC to Off"));
 //		sequence.add(new ChargingTest(activity, ioio,
 //				"Battery Charging Test"));
 
@@ -352,7 +357,7 @@ public class NewSequence implements NewSequenceInterface {
 //		sequence.add(new VoltageTest(activity, ioio, 32, false, true, -2f, -0.3f, 0.1f,
 //				"Voltage Measurement(V_REF_AN)"));
 //		sequence.add(new SetSensorVoltagesStep(activity, (short)255, (short)0, "Set GAIN -> 255, ZERO -> 0"));
-//		sequence.add(new VoltageTest(activity, ioio, 32, false, true, -2f, -3f, 0.1f,
+//		sequence.add(new VoltageTest(activity, ioio, 32, false, -2f, -3f, 0.1f,
 //				"Voltage Measurement(V_REF_AN)"));
 //		sequence.add(new SetSensorVoltagesStep(activity, (short)0, (short)255, "Set GAIN -> 0, ZERO -> 255"));
 //		sequence.add(new VoltageTest(activity, ioio, 32, false, true, -2f, -3f, 0.1f,

@@ -35,7 +35,7 @@ public class SetSensorVoltagesStep extends Test {
     @Override
     public void execute() {
         if(isinterrupted)return;
-        Log.d(TAG, "Test Starting: " + description);
+        Log.d(TAG, "Step Executing: " + description);
         if(getListener().getBtutility()==null){
             report("BU utility is null");
             getListener().addFailOrPass(false, false, "BT ERROR");
