@@ -6,6 +6,7 @@ public class BluetoothConnectTest extends Test {
 	private BTUtility btUtility;
 	public BluetoothConnectTest(Activity activity) {
 		super(activity, null, "Bluetooth Connect", false, false, 0, 0, 0);
+		setIdTest(11);
 	}
 	@Override
 	public void execute() {

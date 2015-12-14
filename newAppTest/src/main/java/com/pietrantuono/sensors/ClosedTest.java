@@ -115,11 +115,6 @@ public class ClosedTest extends SensorTest {
 				e.printStackTrace();
 			}
 		this.sensorsTestHelper.sendVoltage(voltage);
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
 		this.sensorsTestHelper.samplesref.clear();
 		if (this.sensorsTestHelper.activityref == null || this.sensorsTestHelper.activityref.get() == null)
 			return;
@@ -129,6 +124,7 @@ public class ClosedTest extends SensorTest {
 		builder.setPositiveButton("OK", new OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
+				sensorsTestHelper.accetpData(true);
 				executeSensor0();
 			}
 		});
@@ -142,6 +138,7 @@ public class ClosedTest extends SensorTest {
 	public NewMSensorResult endTest() {
 		if (stopped)
 			return mSensorResult;
+		sensorsTestHelper.accetpData(false);
 		sensorsTestHelper.samplingSensor0 = false;
 		sensorsTestHelper.samplingSensor1 = false;
 		sensorsTestHelper.samplingSensor2 = false;
@@ -323,6 +320,7 @@ public class ClosedTest extends SensorTest {
 	}
 
 	public void executeSensor0() {
+		sensorsTestHelper.accetpData(true);
 		sensorsTestHelper.samplingSensor0 = true;
 		sensorsTestHelper.samplingSensor1 = false;
 		sensorsTestHelper.samplingSensor2 = false;
@@ -365,6 +363,7 @@ public class ClosedTest extends SensorTest {
 		h.postDelayed(new Runnable() {
 			@Override
 			public void run() {
+				sensorsTestHelper.accetpData(false);
 				sensorsTestHelper.samplingSensor0 = false;
 				sensorsTestHelper.samplingSensor1 = false;
 				sensorsTestHelper.samplingSensor2 = false;
@@ -374,7 +373,6 @@ public class ClosedTest extends SensorTest {
 				builder.setPositiveButton("OK", new OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
-
 						executeSensor1();
 					}
 				});
@@ -386,6 +384,7 @@ public class ClosedTest extends SensorTest {
 	}
 
 	protected void executeSensor1() {
+		sensorsTestHelper.accetpData(true);
 		sensorsTestHelper.samplingSensor0 = false;
 		sensorsTestHelper.samplingSensor1 = true;
 		sensorsTestHelper.samplingSensor2 = false;
@@ -428,6 +427,7 @@ public class ClosedTest extends SensorTest {
 		h.postDelayed(new Runnable() {
 			@Override
 			public void run() {
+				sensorsTestHelper.accetpData(false);
 				sensorsTestHelper.samplingSensor0 = false;
 				sensorsTestHelper.samplingSensor1 = false;
 				sensorsTestHelper.samplingSensor2 = false;
@@ -437,7 +437,6 @@ public class ClosedTest extends SensorTest {
 				builder.setPositiveButton("OK", new OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
-
 						executeSensor2();
 					}
 				});
@@ -449,6 +448,7 @@ public class ClosedTest extends SensorTest {
 	}
 
 	protected void executeSensor2() {
+		sensorsTestHelper.accetpData(true);
 		sensorsTestHelper.samplingSensor0 = false;
 		sensorsTestHelper.samplingSensor1 = false;
 		sensorsTestHelper.samplingSensor2 = true;
@@ -491,6 +491,7 @@ public class ClosedTest extends SensorTest {
 		h.postDelayed(new Runnable() {
 			@Override
 			public void run() {
+				sensorsTestHelper.accetpData(false);
 				sensorsTestHelper.samplingSensor0 = false;
 				sensorsTestHelper.samplingSensor1 = false;
 				sensorsTestHelper.samplingSensor2 = false;

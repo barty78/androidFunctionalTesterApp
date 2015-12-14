@@ -27,6 +27,7 @@ public class SensorTestWrapper extends Test {
 	 */
 	public SensorTestWrapper(boolean isClosedTest, Activity activity, IOIO ioio, String description, int TestLimitIndex, Boolean isload, short voltage, float lowerLimit, float upperLimit, float varLimit) {
 		super(activity, ioio, description, true, false, lowerLimit, upperLimit, varLimit);
+		setIdTest(17);
 		this.TestLimitIndex=TestLimitIndex;
 		this.load=isload;
 		this.voltage=voltage;

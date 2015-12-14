@@ -31,6 +31,7 @@ public class BatteryLevelUUTVoltageTest extends Test {
         this.voltage = voltage;
         this.limit = limit;
         this.precision = precision;
+        setIdTest(16);
     }
 
     @Override

@@ -264,6 +264,17 @@ public class MainActivity extends Activity
 	public void onCurrentSequenceEnd() {
 		sequenceStarted=false;
 		newSequence.setEndtime(System.currentTimeMillis());
+		TestRecord record = TestFromSequenceCreator.createRecordFromSequence(newSequence);
+
+		Gson gson = new GsonBuilder()
+				.excludeFieldsWithoutExposeAnnotation()
+				.registerTypeAdapter(Long.class, new MyLongTypeAdapter())
+				.registerTypeAdapter(Double.class, new MyDoubleTypeAdapter())
+				.registerTypeAdapter(Integer.class, new MyIntTypeAdapter())
+				.create();
+		String recordstring = gson.toJson(record, TestRecord.class);
+		Log.d(TAG, "Created record: " + recordstring);
+
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
@@ -275,17 +286,6 @@ public class MainActivity extends Activity
 				setStatusMSG("TEST FINISHED", true);// OK
 				detectHelper.stopCheckingIfConnectionDrops();// OK
 				uiHelper.setOverallFailOrPass(true);// NA
-				TestRecord record = TestFromSequenceCreator.createRecordFromSequence(newSequence);
-
-				Gson gson = new GsonBuilder()
-						.excludeFieldsWithoutExposeAnnotation()
-						.registerTypeAdapter(Long.class, new MyLongTypeAdapter())
-						.registerTypeAdapter(Double.class, new MyDoubleTypeAdapter())
-						.registerTypeAdapter(Integer.class, new MyIntTypeAdapter())
-						.create();
-				String recordstring = gson.toJson(record, TestRecord.class);
-				Log.d(TAG,"Created record: "+recordstring);
-
 				PeriCoachTestApplication.forceSync();
 				waitForPCBDisconnected();
 			}

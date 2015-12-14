@@ -55,6 +55,7 @@ public 	class VoltageTest extends Test {
 		this.limitParam1 = limitParam1;
 		this.limitParam2 = limitParam2;
 		this.description=description;
+		setIdTest(3);
 	}
 
 	@Override

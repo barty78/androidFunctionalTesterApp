@@ -10,6 +10,7 @@ public class BTConnectCurrent extends Test {
 	private float average = 0;
 	public BTConnectCurrent(Activity activity, IOIO ioio) {
 		super(activity, ioio, "Current Measurement - Bluetooth Connected", false, false, 0, 0, 0);
+		setIdTest(12);
 	}
 	@Override
 	public void execute() {

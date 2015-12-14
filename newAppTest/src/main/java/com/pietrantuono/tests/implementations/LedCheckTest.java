@@ -12,6 +12,7 @@ public class LedCheckTest extends Test {
 	public LedCheckTest(Activity activity,String nameOfLed ,String description) {
 		super(activity, null, description, false, false, 0, 0, 0);
 		this.nameOfLed=nameOfLed;
+		setIdTest(4);
 	}
 	@Override
 	public void execute() {

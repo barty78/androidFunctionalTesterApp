@@ -19,6 +19,7 @@ public class BluetoothDiscoverableModeTestForTesting extends Test {
 	private DiscoveryAsyncTask asyncTask;
 	public BluetoothDiscoverableModeTestForTesting(Activity activity) {
 		super(activity, null, "Check Bluetooth discover", false, false, 0, 0, 0);
+		setIdTest(10);
 	}
 	@Override
 	public void execute() {
