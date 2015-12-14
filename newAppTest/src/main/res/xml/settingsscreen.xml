@@ -32,5 +32,9 @@
 	    android:key="custom_url" 
         android:summary="Custom url" 
         android:title="Custom url" />
+    <widgets.Unprocessd
+        android:key="foo"
+        android:summary="Unprocedssed"
+        android:title="Unprocessed" />
 	
 </PreferenceScreen>
