@@ -10,10 +10,11 @@ import com.pietrantuono.tests.superclass.Test;
 
 public class SensorTestWrapper extends Test {
 	private int TestLimitIndex=0;
-	private Boolean isLoad;
 	private short voltage;
 	private SensorTest sensorTest;
 	private SensorsTestHelper helper;
+	private Boolean load;
+
 	/**
 	 * Creates a sensor test.
 	 * IMPORTANT: Bluetooth must be open using
@@ -27,7 +28,7 @@ public class SensorTestWrapper extends Test {
 	public SensorTestWrapper(boolean isClosedTest, Activity activity, IOIO ioio, String description, int TestLimitIndex, Boolean isload, short voltage, float lowerLimit, float upperLimit, float varLimit) {
 		super(activity, ioio, description, true, false, lowerLimit, upperLimit, varLimit);
 		this.TestLimitIndex=TestLimitIndex;
-		this.isLoad=isload;
+		this.load=isload;
 		this.voltage=voltage;
 		if(isClosedTest){sensorTest=new ClosedTest(activity,SensorTestWrapper.this, lowerLimit, upperLimit, varLimit);}
 		else {sensorTest=new SensorTest(activity,SensorTestWrapper.this, lowerLimit, upperLimit, varLimit);}
@@ -59,6 +60,13 @@ public class SensorTestWrapper extends Test {
 	public boolean isSuccess() {
 		return sensorTest.getOverallResult();
 	}
-	
-	
+
+
+	public short getVoltage() {
+		return voltage;
+	}
+
+	public Boolean getLoad() {
+		return load;
+	}
 }

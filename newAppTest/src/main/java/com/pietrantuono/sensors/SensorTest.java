@@ -46,6 +46,8 @@ public class SensorTest {
 		this.lowerLimit=lowerLimit;
 		this.upperLimit=upperLimit;
 		this.varLimit=varLimit;
+		this.voltage=wrapper.getVoltage();
+		this.load=wrapper.getLoad();
 	}
 
 	public void stop() {

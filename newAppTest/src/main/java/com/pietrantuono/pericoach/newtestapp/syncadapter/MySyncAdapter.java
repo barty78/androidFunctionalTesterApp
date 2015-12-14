@@ -30,7 +30,7 @@ public class MySyncAdapter extends AbstractThreadedSyncAdapter {
 	private Context context;
 	public static final int SLEEP_TIME_IN_SECS = 5;
 	int mNotificationId = 001;
-	private String TAG=getClass().getSimpleName();
+	private String TAG="MySyncAdapter";
 
 	public MySyncAdapter(Context context, boolean autoInitialize) {
 		super(context, autoInitialize);
@@ -98,7 +98,7 @@ public class MySyncAdapter extends AbstractThreadedSyncAdapter {
 								Log.d(TAG, "success: "+arg0.getMessage());
 								issuePositiveNotification(record);
 								MyDatabaseUtils.deteteRecod(record);
-								//record.delete();
+								record.delete();
 							}
 
 							@Override

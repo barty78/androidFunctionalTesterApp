@@ -224,7 +224,7 @@ public class NewSequence implements NewSequenceInterface {
          * @param ioio
          */
 	public NewSequence(Activity activity, IOIO ioio, Job job) {
-		setLog(false);
+		setLog(true);
 		this.job = job;
 
 		sequence = new ArrayList<Test>();
