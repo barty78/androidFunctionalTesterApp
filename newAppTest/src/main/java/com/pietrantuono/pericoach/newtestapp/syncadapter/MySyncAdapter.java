@@ -5,12 +5,17 @@ import java.util.List;
 
 import retrofit.Callback;
 import retrofit.RetrofitError;
+import server.MyDoubleTypeAdapter;
+import server.MyIntTypeAdapter;
+import server.MyLongTypeAdapter;
 import server.RetrofitRestServices;
 import server.pojos.records.TestRecord;
 import server.pojos.records.response.Response;
 import server.utils.MyDatabaseUtils;
 
 import com.activeandroid.query.Select;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.pericoach.newtestapp.R;
 
@@ -86,6 +91,13 @@ public class MySyncAdapter extends AbstractThreadedSyncAdapter {
 			while (iterator.hasNext()) {
 				final TestRecord record = iterator.next();
 				MyDatabaseUtils.RecontructRecord(record);
+				Gson gson = new GsonBuilder()
+					        .excludeFieldsWithoutExposeAnnotation()
+					        .registerTypeAdapter(Long.class, new MyLongTypeAdapter())
+					        .registerTypeAdapter(Double.class, new MyDoubleTypeAdapter())
+					        .registerTypeAdapter(Integer.class, new MyIntTypeAdapter())
+					        .create();
+					String recordstring=gson.toJson(record, TestRecord.class);
 				if (!record.isLog()) {
 					continue;
 				}

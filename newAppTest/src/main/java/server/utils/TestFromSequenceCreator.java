@@ -316,11 +316,7 @@ public class TestFromSequenceCreator {
 	private static List<Double> getValueOfTests(NewSequenceInterface sequence) {
 		List<Double> result = new ArrayList<Double>();
 		for (int i = 0; i < sequence.getSequence().size(); i++) {
-			if (!(sequence.getSequence().get(i) instanceof SensorTestWrapper)) {
 				result.add(sequence.getSequence().get(i).getValue());
-
-			}
-
 		}
 		return result;
 	}
@@ -328,14 +324,10 @@ public class TestFromSequenceCreator {
 	private static List<Long> getResultOfTests(NewSequenceInterface sequence) {
 		List<Long> result = new ArrayList<Long>();
 		for (int i = 0; i < sequence.getSequence().size(); i++) {
-			if (!(sequence.getSequence().get(i) instanceof SensorTestWrapper)) {
 				if (sequence.getSequence().get(i).isSuccess())
 					result.add(1l);
 				else
 					result.add(0l);
-
-			}
-
 		}
 		return result;
 	}
@@ -343,11 +335,7 @@ public class TestFromSequenceCreator {
 	private static List<Long> getTestIdsOfTests(NewSequenceInterface sequence) {
 		List<Long> result = new ArrayList<Long>();
 		for (int i = 0; i < sequence.getSequence().size(); i++) {
-			if (!(sequence.getSequence().get(i) instanceof SensorTestWrapper)) {
 				result.add(sequence.getSequence().get(i).getIdTest());
-
-			}
-
 		}
 		return result;
 	}
