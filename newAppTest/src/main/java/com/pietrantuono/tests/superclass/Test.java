@@ -44,6 +44,39 @@ public abstract class Test {
 	public boolean isNominal() {return isNominal;}
 	public void setNominal(boolean isNominal) {this.isNominal = isNominal;}
 
+	public enum Tests {
+
+		GetBarcodeTest					(1),
+		CurrentTest						(2),
+		VoltageTest						(3),
+		LedCheckTest					(4),
+		ChargingTerminationTest			(5),
+		UploadFirmwareTest				(6),
+		GetDeviceSerialTest				(7),
+		WakeDeviceTest					(8),
+		AwakeModeCurrentTest			(9),
+		BluetoothDiscoverableModeTest	(10),
+		BluetoothConnectTest			(11),
+		BTConnectCurrent				(12),
+		ReadDeviceInfoSerialNumberTest	(13),
+		ReadModelNumberTest				(14),
+		ReadFirmwareversionTest			(15),
+		BatteryLevelUUTVoltageTest		(16),
+		SensorTestWrapper				(17),
+		DummyTest						(18),
+		ChargingTest					(19);
+
+		public Integer value;
+
+		public Integer getValue() {
+			return value;
+		}
+
+		Tests(int value) {
+			this.value = value;
+		}
+	}
+
 	/**
 	 * @param description
 	 * @param isSensorTest

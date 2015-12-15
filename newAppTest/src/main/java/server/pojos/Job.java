@@ -46,6 +46,9 @@ public class Job implements Parcelable {
     
     @Expose
     private long islogging;
+
+    @Expose
+    private long isretestallowed;
     
     @Expose
     private long active;
@@ -223,6 +226,17 @@ public class Job implements Parcelable {
     }
 
     /**
+     * @param isretestallowed
+     */
+    public void setIsretestallowed(long isretestallowed) { this.isretestallowed = isretestallowed;}
+
+    /**
+     * @return
+     * The isretestallowed
+     */
+    public long getIsretestallowed() {return isretestallowed;}
+
+    /**
      * 
      * @return
      *     The active
@@ -278,6 +292,7 @@ public class Job implements Parcelable {
         createdAt = in.readString();
         updatedAt = in.readString();
         islogging = in.readLong();
+        isretestallowed = in.readLong();
         active = in.readLong();
         description = in.readString();
     }
@@ -299,6 +314,7 @@ public class Job implements Parcelable {
         dest.writeString(createdAt);
         dest.writeString(updatedAt);
         dest.writeLong(islogging);
+        dest.writeLong(isretestallowed);
         dest.writeLong(active);
         dest.writeString(description);
     }

@@ -94,6 +94,12 @@ public class OtherSelectJobActivity extends Activity implements MyCallback {
 				Log.d("Test ID:", String.valueOf(job.getTestId()));
 				Log.d("Firmware ID:", String.valueOf(job.getFirmwareId()));
 				//PeriCoachTestApplication.setFirmwareId(job.getFirmwareId());
+				if(job.getIsretestallowed() == 0) {
+					PeriCoachTestApplication.setIsRetestAllowed(false);
+				} else if (job.getIsretestallowed() == 1) {
+					PeriCoachTestApplication.setIsRetestAllowed(true);
+				}
+
 				getFirmwareListFromServer(job.getFirmwareId());
 
 //				if (job.getTestId() != 999) {		// Special job type 999 bypasses server defined sequence, uses internal one instead

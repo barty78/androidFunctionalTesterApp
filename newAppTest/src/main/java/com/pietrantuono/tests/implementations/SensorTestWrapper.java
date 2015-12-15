@@ -2,6 +2,7 @@ package com.pietrantuono.tests.implementations;
 
 import ioio.lib.api.IOIO;
 import android.app.Activity;
+import android.util.Log;
 
 import com.pietrantuono.sensors.ClosedTest;
 import com.pietrantuono.sensors.SensorTest;
@@ -20,17 +21,30 @@ public class SensorTestWrapper extends Test {
 	 * IMPORTANT: Bluetooth must be open using
 	 * {@link com.pietrantuono.tests.implementations.BluetoothConnectTest} 
 	 * Do not execute this test before opening Bluetooth
+	 *  @param description  : Description of test, sensor test must contain words (NO LOAD or LOADED), and (GAIN @ x), where x is voltage from 0 to 255. Used as parameters for test.
 	 *  @param TestLimitIndex : index of the test limit to be used in the test
 	 * @param lowerLimit
 	 * @param upperLimit
 	 * @param varLimit
 	 */
-	public SensorTestWrapper(boolean isClosedTest, Activity activity, IOIO ioio, String description, int TestLimitIndex, Boolean isload, short voltage, float lowerLimit, float upperLimit, float varLimit) {
+	public SensorTestWrapper(boolean isClosedTest, Activity activity, IOIO ioio, int TestLimitIndex, float lowerLimit, float upperLimit, float varLimit, String description) {
 		super(activity, ioio, description, true, false, lowerLimit, upperLimit, varLimit);
-		setIdTest(17);
+		setIdTest(Tests.SensorTestWrapper.getValue());
 		this.TestLimitIndex=TestLimitIndex;
-		this.load=isload;
-		this.voltage=voltage;
+		this.load = null;
+		if(description.contains("LOADED")){
+			this.load = true;
+		} else if (description.contains("NO LOAD")) {
+			this.load = false;
+		}
+		Log.d(TAG, "Sensor Load is " + this.load);
+
+		this.voltage = -1;
+		if (description != null && description.contains("GAIN @")){
+			this.voltage = Short.valueOf(description.substring(description.indexOf("@") + 2, description.indexOf("@") + 5));
+		}
+		Log.d(TAG, "Sensor Voltage is " + this.voltage);
+
 		if(isClosedTest){sensorTest=new ClosedTest(activity,SensorTestWrapper.this, lowerLimit, upperLimit, varLimit);}
 		else {sensorTest=new SensorTest(activity,SensorTestWrapper.this, lowerLimit, upperLimit, varLimit);}
 	}

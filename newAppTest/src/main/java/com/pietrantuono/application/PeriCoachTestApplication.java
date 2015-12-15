@@ -39,6 +39,14 @@ public class PeriCoachTestApplication extends  com.activeandroid.app.Application
 	private static final String LAST_ID="last_id";
 	private static Sequence sequence;
 
+	private static boolean isretestallowed;
+
+	public static boolean getIsRetestAllowed() { return isretestallowed;}
+
+	public static void setIsRetestAllowed(boolean isretestallowed) {
+		PeriCoachTestApplication.isretestallowed = isretestallowed;
+	}
+
 	public static File getFirmwareCheckFile() {
 		return firmwareCheckFile;
 	}

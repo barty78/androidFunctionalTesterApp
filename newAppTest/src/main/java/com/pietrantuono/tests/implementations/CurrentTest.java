@@ -36,7 +36,7 @@ public class CurrentTest extends Test {
 		this.units = units;
 		this.isNominal = isNominal;
 		this.description=description;
-		setIdTest(2);
+		setIdTest(Tests.CurrentTest.getValue());
 	}
 	@Override
 	public void execute() {

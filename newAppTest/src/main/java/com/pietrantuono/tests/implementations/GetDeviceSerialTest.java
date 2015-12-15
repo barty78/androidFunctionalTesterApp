@@ -5,6 +5,7 @@ import java.util.concurrent.Executors;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.ioioutils.IOIOUtils;
 import com.pietrantuono.tests.superclass.Test;
 import android.app.Activity;
@@ -71,22 +72,33 @@ public class GetDeviceSerialTest extends Test {
 						if (matcher.matches()) {
 							Log.d("SERIAL: ", "MATCH!.");
 							serial = strFileContents;
-							if (!ServiceDBHelper.isSerialAlreadySeen(serial)) {
+
+							if (!PeriCoachTestApplication.getIsRetestAllowed()) {
+								Log.d(TAG, "Retest is " + PeriCoachTestApplication.getIsRetestAllowed());
+								if (!ServiceDBHelper.isSerialAlreadySeen(serial)) {
+									Success();
+									activityListener.addView("Serial (HW reading):", strFileContents, false);
+									activityListener.setSerial(strFileContents);
+									activityListener.addFailOrPass(true, true, "");
+									return;
+								} else {
+									try {
+										Toast.makeText((Activity) activityListener, "Serial number already tested! Aborting test", Toast.LENGTH_LONG).show();
+									} catch (Exception e) {
+									}
+									activityListener.addFailOrPass(true, false, "");
+
+									activityListener.onCurrentSequenceEnd();
+									return;
+								}
+							} else {
 								Success();
 								activityListener.addView("Serial (HW reading):", strFileContents, false);
 								activityListener.setSerial(strFileContents);
 								activityListener.addFailOrPass(true, true, "");
 								return;
-							} else {
-								try {
-									Toast.makeText((Activity) activityListener, "Serial number already tested! Aborting test", Toast.LENGTH_LONG).show();
-								} catch (Exception e) {
-								}
-								activityListener.addFailOrPass(true, false, "");
-
-								activityListener.onCurrentSequenceEnd();
-								return;
 							}
+
 						}
 					} else {
 						if (retries > 2) {
