@@ -41,7 +41,7 @@ public class SensorTestWrapper extends Test {
 
 		this.voltage = -1;
 		if (description != null && description.contains("GAIN @")){
-			this.voltage = Short.valueOf(description.substring(description.indexOf("@") + 2, description.indexOf("@") + 5));
+			this.voltage = Short.valueOf(description.substring(description.indexOf("@") + 2, description.length()));
 		}
 		Log.d(TAG, "Sensor Voltage is " + this.voltage);
 

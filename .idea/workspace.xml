@@ -6,7 +6,7 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c4711762-258a-4bdf-a9b1-5519183c32b9" name="Default" comment="" />
@@ -39,8 +39,8 @@
       <file leaf-file-name="NewSequence.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/newAppTest/src/peter/java/customclasses/NewSequence.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-28.37037">
-              <caret line="378" column="40" selection-start-line="378" selection-start-column="40" selection-end-line="378" selection-end-column="40" />
+            <state vertical-scroll-proportion="-23.333334">
+              <caret line="394" column="13" selection-start-line="394" selection-start-column="13" selection-end-line="394" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -66,11 +66,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GetDeviceSerialTest.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GetDeviceSerialTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/GetDeviceSerialTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.6666665">
-              <caret line="73" column="53" selection-start-line="73" selection-start-column="53" selection-end-line="73" selection-end-column="53" />
+            <state vertical-scroll-proportion="0.30734465">
+              <caret line="80" column="73" selection-start-line="80" selection-start-column="73" selection-end-line="80" selection-end-column="73" />
               <folding>
                 <element signature="e#1660#5065#0" expanded="true" />
                 <element signature="e#5064#5065#0" expanded="true" />
@@ -117,11 +117,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SensorTestWrapper.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SensorTestWrapper.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/SensorTestWrapper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5378531">
-              <caret line="35" column="29" selection-start-line="35" selection-start-column="29" selection-end-line="35" selection-end-column="29" />
+            <state vertical-scroll-proportion="-22.666666">
+              <caret line="66" column="29" selection-start-line="66" selection-start-column="29" selection-end-line="66" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -2716,12 +2716,12 @@
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/UploadFirmwareTest.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/VoltageTest.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/CurrentTest.java" />
-        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/SensorTestWrapper.java" />
-        <option value="$PROJECT_DIR$/newAppTest/src/peter/java/customclasses/NewSequence.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/server/pojos/Job.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/application/PeriCoachTestApplication.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/GetDeviceSerialTest.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/OtherSelectJobActivity.java" />
+        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/SensorTestWrapper.java" />
+        <option value="$PROJECT_DIR$/newAppTest/src/peter/java/customclasses/NewSequence.java" />
       </list>
     </option>
   </component>
@@ -3032,12 +3032,12 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-8" width="1936" height="1096" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Fabric" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.32978722" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" x="102" y="6" width="1036" height="690" />
+      <window_info id="Android Monitor" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.32978722" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" x="102" y="6" width="1036" height="690" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.50851065" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -3290,17 +3290,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/GetDeviceSerialTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.6666665">
-          <caret line="73" column="53" selection-start-line="73" selection-start-column="53" selection-end-line="73" selection-end-column="53" />
-          <folding>
-            <element signature="e#1660#5065#0" expanded="true" />
-            <element signature="e#5064#5065#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/OtherSelectJobActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-12.592592">
@@ -3309,14 +3298,6 @@
             <element signature="e#2925#3963#0" expanded="true" />
             <element signature="e#3962#3963#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/peter/java/customclasses/NewSequence.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-28.37037">
-          <caret line="378" column="40" selection-start-line="378" selection-start-column="40" selection-end-line="378" selection-end-column="40" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3338,9 +3319,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/SensorTestWrapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5378531">
-          <caret line="35" column="29" selection-start-line="35" selection-start-column="29" selection-end-line="35" selection-end-column="29" />
+        <state vertical-scroll-proportion="-22.666666">
+          <caret line="66" column="29" selection-start-line="66" selection-start-column="29" selection-end-line="66" selection-end-column="29" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/peter/java/customclasses/NewSequence.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-23.333334">
+          <caret line="394" column="13" selection-start-line="394" selection-start-column="13" selection-end-line="394" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/GetDeviceSerialTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.30734465">
+          <caret line="80" column="73" selection-start-line="80" selection-start-column="73" selection-end-line="80" selection-end-column="73" />
+          <folding>
+            <element signature="e#1660#5065#0" expanded="true" />
+            <element signature="e#5064#5065#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
