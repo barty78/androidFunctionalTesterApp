@@ -8,7 +8,7 @@ import com.pietrantuono.tests.superclass.Test;
 
 import ioio.lib.api.exception.ConnectionLostException;
 
-public class SetDigitalOutputStep extends Test {
+public class SetDigitalOutputStep extends Test implements Step{
     private int pinNumber;
     private boolean value;
 

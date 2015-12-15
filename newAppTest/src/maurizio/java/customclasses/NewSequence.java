@@ -13,6 +13,7 @@ import com.pietrantuono.constants.NewMSensorResult;
 import com.pietrantuono.constants.NewSequenceInterface;
 import com.pietrantuono.tests.implementations.BluetoothConnectTestForTesting;
 import com.pietrantuono.tests.implementations.SensorTestWrapper;
+import com.pietrantuono.tests.implementations.steps.Step;
 import com.pietrantuono.tests.superclass.Test;
 
 import server.TestsParser;
@@ -199,11 +200,20 @@ public class NewSequence implements NewSequenceInterface {
 	public long getOverallResult() {
 		long overallresult = 1;
 		for (int i = 0; i < sequence.size(); i++) {
+			if(sequence.get(i) instanceof Step)continue;
 			if (!sequence.get(i).isSuccess())
 				overallresult = 0;
 		}
 
 		return overallresult;
+	}
+	@Override
+	public boolean getOverallResultBool() {
+		for (int i = 0; i < sequence.size(); i++) {
+			if(sequence.get(i) instanceof Step)continue;
+			if (!sequence.get(i).isSuccess())return false;
+		}
+		return true;
 	}
 
 	public NewSequence(Activity activity, IOIO ioio, Job job,Sequence sequence) {

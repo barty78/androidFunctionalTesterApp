@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import com.activeandroid.Model;
 import com.activeandroid.query.Select;
 import com.crashlytics.android.Crashlytics;
 import com.google.gson.Gson;
@@ -194,13 +195,15 @@ public class MainActivity extends Activity
 	@Override
 	public void onBackPressed() {
 		MyDialogs.
-		createAlertDialog(MainActivity.this, "Close Test", "Are you sure you want to close this test?", "YES, let's close", "NO, let's continue", new MyOnCancelListener(MainActivity.this),new MyDialogInterface() {
+		createAlertDialog(MainActivity.this, "Close Test", "Are you sure you want to close this test?", "YES, let's close", "NO, let's continue", new MyOnCancelListener(MainActivity.this), new MyDialogInterface() {
 			@Override
 			public void yes() {
-				closeActivity();		
+				closeActivity();
 			}
+
 			@Override
-			public void no() {}
+			public void no() {
+			}
 		});
 	}
 
@@ -265,7 +268,7 @@ public class MainActivity extends Activity
 		sequenceStarted=false;
 		newSequence.setEndtime(System.currentTimeMillis());
 		TestRecord record = TestFromSequenceCreator.createRecordFromSequence(newSequence);
-
+		final boolean overallresult = newSequence.getOverallResultBool();
 		Gson gson = new GsonBuilder()
 				.excludeFieldsWithoutExposeAnnotation()
 				.registerTypeAdapter(Long.class, new MyLongTypeAdapter())
@@ -285,7 +288,7 @@ public class MainActivity extends Activity
 				uiHelper.stopChronometer(MainActivity.this);
 				setStatusMSG("TEST FINISHED", true);// OK
 				detectHelper.stopCheckingIfConnectionDrops();// OK
-				uiHelper.setOverallFailOrPass(true);// NA
+				uiHelper.setOverallFailOrPass(overallresult);// NA
 				PeriCoachTestApplication.forceSync();
 				waitForPCBDisconnected();
 			}

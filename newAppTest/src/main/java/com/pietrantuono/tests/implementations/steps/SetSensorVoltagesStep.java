@@ -7,7 +7,7 @@ import android.util.Log;
 import com.pietrantuono.tests.implementations.BluetoothConnectTest;
 import com.pietrantuono.tests.superclass.Test;
 
-public class SetSensorVoltagesStep extends Test {
+public class SetSensorVoltagesStep extends Test implements Step{
     private short refVoltage;
     private short zeroVoltage;
 

@@ -5,7 +5,7 @@ import android.app.Activity;
 import com.pietrantuono.tests.implementations.BluetoothConnectTest;
 import com.pietrantuono.tests.superclass.Test;
 
-public class PauseStep extends Test {
+public class PauseStep extends Test implements Step{
 
     /**
      * IMPORTANT: Bluetooth must be open using

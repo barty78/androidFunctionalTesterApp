@@ -55,6 +55,8 @@ public interface NewSequenceInterface {
 
 	long getOverallResult();
 
+	boolean getOverallResultBool();
+
 	boolean isLog();
 
 	void setLog(boolean log);
