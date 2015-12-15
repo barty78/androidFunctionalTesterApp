@@ -13,6 +13,7 @@ import server.pojos.records.TestRecord;
 import server.pojos.records.response.Response;
 import server.utils.MyDatabaseUtils;
 
+import com.activeandroid.Model;
 import com.activeandroid.query.Select;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -20,10 +21,13 @@ import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.pericoach.newtestapp.R;
 
 import android.accounts.Account;
+import android.app.Notification;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.AbstractThreadedSyncAdapter;
 import android.content.ContentProviderClient;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SyncResult;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -34,7 +38,8 @@ public class MySyncAdapter extends AbstractThreadedSyncAdapter {
 	private MyUploader myuploader;
 	private Context context;
 	public static final int SLEEP_TIME_IN_SECS = 5;
-	int mNotificationId = 001;
+	int mPositiveNotificationId = 001;
+	int mNegativeNotificationId = 002;
 	private String TAG="MySyncAdapter";
 
 	public MySyncAdapter(Context context, boolean autoInitialize) {
@@ -55,7 +60,7 @@ public class MySyncAdapter extends AbstractThreadedSyncAdapter {
 		NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context).setSmallIcon(R.drawable.icon)
 				.setContentTitle("Uploader service is running").setContentText("Uploader service is running");
 		NotificationManager mNotifyMgr = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-		mNotifyMgr.notify(mNotificationId, mBuilder.build());
+		mNotifyMgr.notify(mPositiveNotificationId, mBuilder.build());
 		myuploader = new MyUploader();
 		myuploader.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 		Log.d(TAG, "onPerformSync");
@@ -67,11 +72,11 @@ public class MySyncAdapter extends AbstractThreadedSyncAdapter {
 
 		@Override
 		protected void onPostExecute(Void result) {
-			NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context).setSmallIcon(R.drawable.icon)
-					.setContentTitle("Uploader service is stopped").setContentText("Uploader service is stopped");
-			NotificationManager mNotifyMgr = (NotificationManager) context
-					.getSystemService(Context.NOTIFICATION_SERVICE);
-			mNotifyMgr.notify(mNotificationId, mBuilder.build());
+//			NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context).setSmallIcon(R.drawable.icon)
+//					.setContentTitle("Uploader service is stopped").setContentText("Uploader service is stopped");
+//			NotificationManager mNotifyMgr = (NotificationManager) context
+//					.getSystemService(Context.NOTIFICATION_SERVICE);
+//			mNotifyMgr.notify(mPositiveNotificationId, mBuilder.build());
 			Log.d(TAG, "onPostExecute");
 
 		}
@@ -129,10 +134,14 @@ public class MySyncAdapter extends AbstractThreadedSyncAdapter {
 
 	private void issueNegativeNotification(TestRecord record, RetrofitError error) {
 		NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(PeriCoachTestApplication.getContext())
-				.setSmallIcon(R.drawable.attention).setContentTitle("Failed to uplaod " + record.getId())
-				.setContentText(error.getMessage() == null ? "No cause description" : error.getMessage());
+				.setSmallIcon(R.drawable.attention).setContentText("Failed to uplaod " + error.getMessage() == null ? "No cause description" : error.getMessage())
+				.setContentTitle(getUnprocessedRecords() + " unprocessed records");
+
+		Intent intent=new Intent(context,StartSyncAdapterService.class);
+		PendingIntent pIntent=PendingIntent.getService(context, (int) System.currentTimeMillis(), intent, 0);
+		mBuilder.addAction(R.drawable.icon, "Retry sync", pIntent).build();
 		NotificationManager mNotifyMgr = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-		mNotifyMgr.notify((int) (long) record.getId(), mBuilder.build());
+		mNotifyMgr.notify(mPositiveNotificationId, mBuilder.build());
 	}
 
 	private void issuePositiveNotification(TestRecord record) {
@@ -140,6 +149,11 @@ public class MySyncAdapter extends AbstractThreadedSyncAdapter {
 				.setSmallIcon(R.drawable.attention).setContentTitle("Record " + record.getId() + " uplaoded")
 				.setContentText("Record " + record.getId() + " uplaoded");
 		NotificationManager mNotifyMgr = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-		mNotifyMgr.notify((int) (long) record.getId(), mBuilder.build());
+		mNotifyMgr.notify(mNegativeNotificationId, mBuilder.build());
+	}
+
+	private int getUnprocessedRecords(){
+		List<Model> records = new Select().from(TestRecord.class).execute();
+		return records.size();
 	}
 }

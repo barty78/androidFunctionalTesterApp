@@ -104,7 +104,9 @@
             android:name="server.service.DownloadDevicesIntentService"
             android:exported="false" >
         </service>
-
+        <service
+            android:name="com.pietrantuono.pericoach.newtestapp.syncadapter.StartSyncAdapterService"
+            android:exported="false"/>
         <meta-data
             android:name="com.crashlytics.ApiKey"
             android:value="bf3ad85cb9b2ebad9587500ee764119e1d5f4fa1" />
