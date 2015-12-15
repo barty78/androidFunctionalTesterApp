@@ -19,7 +19,6 @@ public class ReadModelNumberTest extends Test{
 	 */
 	public ReadModelNumberTest(Activity activity) {
 		super(activity, null, "Model Number Check", false, false, 0, 0, 0);
-		setIdTest(14);
 	}
 	@Override
 	public void execute() {

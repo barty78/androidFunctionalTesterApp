@@ -57,6 +57,8 @@ public class BTUtility {
 	private AlertDialog alertDialog2;
 	private AlertDialog alertDialog3;
 	private Test bluetoothConnectTest;
+	private int retries = 0;
+
 	private static Activity activity;
 	private class ConnectReceiver extends BroadcastReceiver {
 		public void onReceive(Context context, Intent intent) {
@@ -112,6 +114,11 @@ public class BTUtility {
 		});
 	}
 	private void onConnectFailed() {
+		retries++;
+		if (retries < 3) {
+			startDiscovery();
+			return;
+		}
 		((NewIOIOActivityListener) activityRef.get()).addFailOrPass(
 				false, false, bluetoothConnectTest.getDescription());
 	}
@@ -246,7 +253,8 @@ public class BTUtility {
 				.length() == 0) ? DISCONNECTED : info.mSerialNumber;
 		model = (info == null || info.mModel == null || info.mModel.length() == 0) ? null
 				: info.mModel;
-		checkDeviceID(mDeviceId);
+//		checkDeviceID(mDeviceId);
+		start();
 	}
 	private void checkDeviceID(String device) {
 		if (isstopped)

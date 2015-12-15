@@ -9,7 +9,6 @@ public class DummyTest extends Test {
 	public DummyTest(Activity activity, String description, Boolean isBlockingTest, Boolean issuccess) {
 		super(activity, null, description, false, isBlockingTest, 0, 0, 0);
 		this.success = issuccess;
-		setIdTest(18);
 	}
 	
 	

@@ -29,7 +29,6 @@ public class SensorTestWrapper extends Test {
 	 */
 	public SensorTestWrapper(boolean isClosedTest, Activity activity, IOIO ioio, int TestLimitIndex, float lowerLimit, float upperLimit, float varLimit, String description) {
 		super(activity, ioio, description, true, false, lowerLimit, upperLimit, varLimit);
-		setIdTest(Tests.SensorTestWrapper.getValue());
 		this.TestLimitIndex=TestLimitIndex;
 		this.load = null;
 		if(description.contains("LOADED")){
@@ -41,7 +40,7 @@ public class SensorTestWrapper extends Test {
 
 		this.voltage = -1;
 		if (description != null && description.contains("GAIN @")){
-			this.voltage = Short.valueOf(description.substring(description.indexOf("@") + 2, description.indexOf("@") + 5));
+			this.voltage = Short.valueOf(description.substring(description.indexOf("@") + 2, description.length()));
 		}
 		Log.d(TAG, "Sensor Voltage is " + this.voltage);
 

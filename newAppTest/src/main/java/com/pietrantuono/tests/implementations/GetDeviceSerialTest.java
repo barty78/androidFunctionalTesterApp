@@ -24,7 +24,6 @@ public class GetDeviceSerialTest extends Test {
 
 	public GetDeviceSerialTest(Activity activity, IOIO ioio) {
 		super(activity, ioio, "Read UUT Serial Number", false, true, 0, 0, 0);
-		setIdTest(13);
 	}
 
 	@Override

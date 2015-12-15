@@ -33,7 +33,6 @@ public 	class VoltageTest extends Test {
 		this.scaling = 1f;
 		this.isNominal = isNominal;
 		this.description=description;
-		setIdTest(Tests.VoltageTest.getValue());
 	}
 
 	/**
@@ -56,7 +55,6 @@ public 	class VoltageTest extends Test {
 		this.limitParam1 = limitParam1;
 		this.limitParam2 = limitParam2;
 		this.description=description;
-		setIdTest(Tests.VoltageTest.getValue());
 	}
 
 	@Override

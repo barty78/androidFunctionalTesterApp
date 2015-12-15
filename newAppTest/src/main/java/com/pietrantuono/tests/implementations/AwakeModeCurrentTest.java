@@ -49,7 +49,6 @@ public class AwakeModeCurrentTest extends Test {
 	}
 	public AwakeModeCurrentTest(Activity activity, IOIO ioio, String description) {
 		super(activity, ioio, description, false, false, 0, 0, 0);
-		setIdTest(9);
 	}
 	@Override
 	public void interrupt() {

@@ -3,7 +3,9 @@ package customclasses;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import android.app.Activity;
 
@@ -15,6 +17,11 @@ import com.pietrantuono.tests.implementations.BluetoothConnectTestForTesting;
 import com.pietrantuono.tests.implementations.SensorTestWrapper;
 import com.pietrantuono.tests.implementations.steps.Step;
 import com.pietrantuono.tests.superclass.Test;
+
+import org.joda.time.DateTime;
+import org.joda.time.Duration;
+import org.joda.time.format.PeriodFormatter;
+import org.joda.time.format.PeriodFormatterBuilder;
 
 import server.TestsParser;
 import server.pojos.Job;
@@ -167,8 +174,14 @@ public class NewSequence implements NewSequenceInterface {
 
 	@Override
 	public String getDuration() {
-		long elapsed=endtime - starttime;
-
+		DateTime start = new DateTime(starttime);
+		DateTime end = new DateTime(endtime);
+		Duration duration=new Duration(start,end);
+		PeriodFormatterBuilder builder = new PeriodFormatterBuilder();
+		builder.minimumPrintedDigits(2);
+		builder.printZeroAlways().appendHours().appendSeparator(":").appendMinutes().appendSeparator(":").appendSeconds();
+		PeriodFormatter formatter = builder.toFormatter();
+		return formatter.print(duration.toPeriod());
 	}
 
 	@Override

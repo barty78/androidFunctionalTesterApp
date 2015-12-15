@@ -20,7 +20,6 @@ public class ReadFirmwareversionTest extends Test {
 	 */
 	public ReadFirmwareversionTest(Activity activity) {
 		super(activity, null, "Firmware Version Check", false, false, 0, 0, 0);
-		setIdTest(15);
 	}
 
 	@Override

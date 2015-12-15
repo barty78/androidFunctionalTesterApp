@@ -33,7 +33,6 @@ public class UploadFirmwareTest extends Test {
 	private int retries;
 	public UploadFirmwareTest(Activity activity, IOIO ioio) {
 		super(activity, ioio, "Upload Firmware", false, true, 0, 0, 0);			// Blocking Test, if fails - STOP
-		setIdTest(Tests.UploadFirmwareTest.getValue());
 	}
 	@Override
 	public void execute() {
