@@ -123,6 +123,8 @@
 
     <string name="reverse_orientation">reverse_orientation</string>
     <string name="unprocessed">unporcessed</string>
+    <string name="download_all">download_all</string>
+    <string name="download_unprocessed">download_unprocessed</string>
 
     <string-array name="action_list">
         <item>Manual</item>

@@ -3,6 +3,23 @@
     <Preference
         android:key="@string/unprocessed"
         android:title="" />
+    <Preference
+        android:key="@string/download_all"
+        android:title="Download all records"
+        android:summary="Processed and unprocessed records"
+        android:icon="@drawable/ic_action_file_file_download"
+        android:visible="true"
+        android:showAsAction="always">
+    </Preference>
+    <Preference
+        android:key="@string/download_unprocessed"
+        android:title="Download unprocessed"
+        android:summary="Unprocessed records"
+        android:icon="@drawable/ic_action_file_file_download"
+        android:visible="true"
+        android:showAsAction="always">
+    </Preference>
+
     <Preference android:title="Select IOIO" >
         <intent android:action="MY_ACTION" />
     </Preference>

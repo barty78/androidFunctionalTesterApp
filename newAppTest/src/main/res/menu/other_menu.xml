@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@+id/settings" 
+        android:title="Settings" 
+        android:icon="@drawable/ic_action_settings" 
+        android:visible="true" 
+        android:showAsAction="always">
+    </item>
+    <item android:id="@+id/download_all"
+        android:title="Download all records"
+        android:summary="Uploaded and not uploaded records"
+        android:icon="@drawable/ic_action_file_file_download"
+        android:visible="true"
+        android:showAsAction="always">
+    </item>
+    <item android:id="@+id/download_unprocessed"
+        android:title="Download not uploaded"
+        android:summary="Not ulpoaded records"
+        android:icon="@drawable/ic_action_file_file_download"
+        android:visible="true"
+        android:showAsAction="always">
+    </item>
+
+</menu>
