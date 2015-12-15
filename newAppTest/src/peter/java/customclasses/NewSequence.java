@@ -288,7 +288,7 @@ public class NewSequence implements NewSequenceInterface {
 		// NEW TESTS
 //		sequence.add(new GetBarcodeTest(activity,ioio,job));
 
-		sequence.add(new CurrentTest(activity, ioio, 42, Current.Units.uA, false, (float)100, (float)0,
+		sequence.add(new CurrentTest(activity, ioio, 42, Current.Units.uA, false, 100f, 0f,
 				"Current Measurement - UUT Unprogrammed"));
 
 		sequence.add(new VoltageTest(activity, ioio, 44, Voltage.Units.V, true, 3.1f, 0.2f,
@@ -302,7 +302,7 @@ public class NewSequence implements NewSequenceInterface {
 				"Voltage Measurement - DC_PRES (5V_DC Off)"));
 		sequence.add(new SetDigitalOutputStep(activity, IOIOUtils.Outputs._5V_DC.getValue(), false,
 				"Set 5VDC to On"));
-		sequence.add(new VoltageTest(activity, ioio, 38, Voltage.Units.V, true, 1.6f, 0.1f,
+		sequence.add(new VoltageTest(activity, ioio, 38, Voltage.Units.V, true, 1.8f, 0.1f,
 				"Voltage Measurement - DC_PRES (5V_DC On)"));
 		sequence.add(new SetDigitalOutputStep(activity, IOIOUtils.Outputs._5V_DC.getValue(), true,
 				"Set 5VDC to Off"));
