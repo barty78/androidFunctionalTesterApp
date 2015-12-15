@@ -48,8 +48,8 @@ public class Unprocessd extends Preference {
         View v= li.inflate(R.layout.unprocessed, parent, false);
         TextView tv=(TextView)v.findViewById(R.id.text);
         List<Model> records = new Select().from(TestRecord.class).execute();
-        if(records.size()<=0){tv.setText("0 unprocessed");}
-        else {tv.setText(""+records.size()+" unprocessed");}
+        if(records.size()<=0){tv.setText("0 records unprocessed");}
+        else {tv.setText(""+records.size()+" record unprocessed");}
         return v;
     }
 }

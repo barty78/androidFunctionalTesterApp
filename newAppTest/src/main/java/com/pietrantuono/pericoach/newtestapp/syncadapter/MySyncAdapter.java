@@ -38,8 +38,7 @@ public class MySyncAdapter extends AbstractThreadedSyncAdapter {
 	private MyUploader myuploader;
 	private Context context;
 	public static final int SLEEP_TIME_IN_SECS = 5;
-	int mPositiveNotificationId = 001;
-	int mNegativeNotificationId = 002;
+	int notificationId = 001;
 	private String TAG="MySyncAdapter";
 
 	public MySyncAdapter(Context context, boolean autoInitialize) {
@@ -57,10 +56,6 @@ public class MySyncAdapter extends AbstractThreadedSyncAdapter {
 	@Override
 	public void onPerformSync(Account account, Bundle extras, String authority, ContentProviderClient provider,
 			SyncResult syncResult) {
-		NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context).setSmallIcon(R.drawable.icon)
-				.setContentTitle("Uploader service is running").setContentText("Uploader service is running");
-		NotificationManager mNotifyMgr = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-		mNotifyMgr.notify(mPositiveNotificationId, mBuilder.build());
 		myuploader = new MyUploader();
 		myuploader.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 		Log.d(TAG, "onPerformSync");
@@ -83,6 +78,7 @@ public class MySyncAdapter extends AbstractThreadedSyncAdapter {
 
 		@Override
 		protected Void doInBackground(Void... params) {
+
 			Log.d(TAG, "doInBackground");
 			List<TestRecord> records = null;
 			try {
@@ -106,7 +102,7 @@ public class MySyncAdapter extends AbstractThreadedSyncAdapter {
 				if (!record.isLog()) {
 					continue;
 				}
-				Log.d(TAG, "Posting record: "+recordstring);
+				Log.d(TAG, "Posting record: " + recordstring);
 				RetrofitRestServices.getRest(context).postResults(PeriCoachTestApplication.getDeviceid(),
 						Long.toString(record.getJobNo()), record, new Callback<Response>() {
 
@@ -135,21 +131,23 @@ public class MySyncAdapter extends AbstractThreadedSyncAdapter {
 	private void issueNegativeNotification(TestRecord record, RetrofitError error) {
 		NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(PeriCoachTestApplication.getContext())
 				.setSmallIcon(R.drawable.attention).setContentText("Failed to uplaod " + error.getMessage() == null ? "No cause description" : error.getMessage())
-				.setContentTitle(getUnprocessedRecords() + " unprocessed records");
+				.setContentTitle("PeriCoach: "+getUnprocessedRecords() + " unprocessed records");
 
 		Intent intent=new Intent(context,StartSyncAdapterService.class);
 		PendingIntent pIntent=PendingIntent.getService(context, (int) System.currentTimeMillis(), intent, 0);
-		mBuilder.addAction(R.drawable.icon, "Retry sync", pIntent).build();
+		mBuilder.addAction(R.drawable.ic_av_replay, "Retry sync", pIntent);
+		mBuilder.setContentIntent(pIntent);
+		mBuilder.setPriority(Notification.PRIORITY_MAX);
 		NotificationManager mNotifyMgr = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-		mNotifyMgr.notify(mPositiveNotificationId, mBuilder.build());
+		mNotifyMgr.notify(notificationId, mBuilder.build());
 	}
 
 	private void issuePositiveNotification(TestRecord record) {
 		NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(PeriCoachTestApplication.getContext())
-				.setSmallIcon(R.drawable.attention).setContentTitle("Record " + record.getId() + " uplaoded")
+				.setSmallIcon(R.drawable.ok_icon).setContentTitle("PeriCoach, record uploaded")
 				.setContentText("Record " + record.getId() + " uplaoded");
 		NotificationManager mNotifyMgr = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-		mNotifyMgr.notify(mNegativeNotificationId, mBuilder.build());
+		mNotifyMgr.notify(notificationId, mBuilder.build());
 	}
 
 	private int getUnprocessedRecords(){

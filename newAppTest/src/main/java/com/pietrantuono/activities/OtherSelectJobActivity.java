@@ -22,6 +22,9 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -69,6 +72,24 @@ public class OtherSelectJobActivity extends Activity implements MyCallback {
 		
 	}
 
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.menu, menu);
+		return true;
+	}
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle item selection
+		switch (item.getItemId()) {
+			case R.id.settings:
+				Intent in = new Intent(OtherSelectJobActivity.this, SettingsActivity.class);
+				startActivity(in);
+				return true;
+			default:
+				return super.onOptionsItemSelected(item);
+		}
+	}
 	@Override
 	protected void onResume() {
 		super.onResume();

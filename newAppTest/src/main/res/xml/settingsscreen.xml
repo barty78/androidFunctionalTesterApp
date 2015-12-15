@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
-
+    <Preference
+        android:key="@string/unprocessed"
+        android:title="" />
     <Preference android:title="Select IOIO" >
         <intent android:action="MY_ACTION" />
     </Preference>
@@ -32,9 +34,7 @@
 	    android:key="custom_url" 
         android:summary="Custom url" 
         android:title="Custom url" />
-    <widgets.Unprocessd
-        android:key="foo"
-        android:summary="Unprocedssed"
-        android:title="Unprocessed" />
+
+
 	
 </PreferenceScreen>

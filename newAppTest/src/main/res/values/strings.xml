@@ -122,6 +122,7 @@
     <string name="default_url">http://peritest.hopto.org/periprod/v1</string>
 
     <string name="reverse_orientation">reverse_orientation</string>
+    <string name="unprocessed">unporcessed</string>
 
     <string-array name="action_list">
         <item>Manual</item>
