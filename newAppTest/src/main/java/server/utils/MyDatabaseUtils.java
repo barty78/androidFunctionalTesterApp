@@ -219,4 +219,50 @@ public class MyDatabaseUtils {
 		record.delete();
 	}
 
+
+	public static void updateRecordRecod(TestRecord record) {
+		Readings readingss = new Select().from(Readings.class).where("TestRecord = ?", record.getId()).executeSingle();
+
+		Test test = new Select().from(Test.class).where("Readings = ?", readingss.getId()).executeSingle();
+
+		Sensors sensors = new Select().from(Sensors.class).where("Readings = ?", readingss.getId()).executeSingle();
+
+		S0 s0 = new Select().from(S0.class).where("Sensors = ?", readingss.getId()).executeSingle();
+
+		S1 s1 = new Select().from(S1.class).where("Sensors = ?", readingss.getId()).executeSingle();
+
+		S2 s2 = new Select().from(S2.class).where("Sensors = ?", readingss.getId()).executeSingle();
+
+		List<SingleTest> singleTests = new Select().from(SingleTest.class).where("Test = ?", test.getId()).execute();
+
+
+		List<SingleS0> singleS0s = new Select().from(SingleS0.class).where("S0 = ?", s0.getId()).execute();
+
+
+		List<SingleS1> singleS1s = new Select().from(SingleS1.class).where("S1 = ?", s1.getId()).execute();
+
+		List<SingleS2> singleS2s = new Select().from(SingleS2.class).where("S2 = ?", s2.getId()).execute();
+		for(SingleS2 ss2:singleS2s)ss2.delete();
+
+		for(SingleS1 ss1:singleS1s)ss1.delete();
+
+		for(SingleS0 ss0:singleS0s)ss0.delete();
+
+		for(SingleTest st:singleTests)st.delete();
+
+		s1.delete();
+
+		s2.delete();
+
+		s0.delete();
+
+		sensors.delete();
+
+		test.delete();
+
+		readingss.delete();
+
+		record.delete();
+	}
+
 }

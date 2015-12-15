@@ -12,6 +12,12 @@ public class TestRecord extends MyModel{
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
+    @Column(name = "uploaded")
+    //@Expose NB: not needed anymore
+    private boolean uploaded=false;
+
+
     @Column(name = "JobNo")
 	//@Expose NB: not needed anymore
     private long JobNo;
@@ -314,4 +320,11 @@ public class TestRecord extends MyModel{
 		return true;
 	}
 
+    public boolean isUploaded() {
+        return uploaded;
+    }
+
+    public void setUploaded(boolean uploaded) {
+        this.uploaded = uploaded;
+    }
 }

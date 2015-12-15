@@ -82,7 +82,7 @@ public class MySyncAdapter extends AbstractThreadedSyncAdapter {
 			Log.d(TAG, "doInBackground");
 			List<TestRecord> records = null;
 			try {
-				records = new Select().from(TestRecord.class).execute();
+				records = new Select().from(TestRecord.class).where("uploaded = ?",false).execute();
 			} catch (Exception e) {
 			}
 			if (records == null || records.size() <= 0) {
@@ -110,8 +110,9 @@ public class MySyncAdapter extends AbstractThreadedSyncAdapter {
 							public void success(Response arg0, retrofit.client.Response arg1) {
 								Log.d(TAG, "success: "+arg0.getMessage());
 								issuePositiveNotification(record);
-								MyDatabaseUtils.deteteRecod(record);
-								record.delete();
+								record.setUploaded(true);
+								//MyDatabaseUtils.deteteRecod(record);
+								record.save();
 							}
 
 							@Override
@@ -151,7 +152,7 @@ public class MySyncAdapter extends AbstractThreadedSyncAdapter {
 	}
 
 	private int getUnprocessedRecords(){
-		List<Model> records = new Select().from(TestRecord.class).execute();
+		List<Model> records = new Select().from(TestRecord.class).where("uploaded = ?", false).execute();
 		return records.size();
 	}
 }

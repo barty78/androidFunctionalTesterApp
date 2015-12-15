@@ -41,7 +41,7 @@ public class SettingsActivity  extends PreferenceActivity {
             }
         });
         Preference etp = (Preference) findPreference(getResources().getString(R.string.unprocessed));
-        List<Model> records = new Select().from(TestRecord.class).execute();
+        List<Model> records = new Select().from(TestRecord.class).where("uploaded = ?", false).execute();
         if(records.size()<=0){
             etp.setTitle("0 records unprocessed");
             etp.setSummary("");
