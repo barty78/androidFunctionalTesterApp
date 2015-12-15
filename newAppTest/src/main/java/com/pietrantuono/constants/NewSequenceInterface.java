@@ -41,7 +41,7 @@ public interface NewSequenceInterface {
 
 	List<Test> getSequence();
 
-	long getDuration();
+	String getDuration();
 
 	void setStarttime(long starttime);
 

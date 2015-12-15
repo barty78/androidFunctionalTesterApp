@@ -166,8 +166,9 @@ public class NewSequence implements NewSequenceInterface {
 	}
 
 	@Override
-	public long getDuration() {
-		return endtime - starttime;
+	public String getDuration() {
+		long elapsed=endtime - starttime;
+
 	}
 
 	@Override
