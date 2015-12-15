@@ -22,6 +22,7 @@ import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.preference.SwitchPreference;
+import android.provider.Settings;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
@@ -34,6 +35,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.lang.ref.PhantomReference;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import server.MyDoubleTypeAdapter;
@@ -44,8 +47,8 @@ import server.utils.MyDatabaseUtils;
 
 @SuppressWarnings("ucd")
 public class SettingsActivity  extends PreferenceActivity {
-    private final static String FILE_ALL_RECORDS="allrecords.txt";
-    private final static String FILE_UNPROCESSED_RECORDS="unprocessedrecords.txt";
+    private final static String FILE_ALL_RECORDS="allrecords";
+    private final static String FILE_UNPROCESSED_RECORDS="unprocessedrecords";
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,7 +71,7 @@ public class SettingsActivity  extends PreferenceActivity {
         Preference dowloadunprocessed = (Preference) findPreference(getResources().getString(R.string.download_unprocessed));
         List<Model> records = new Select().from(TestRecord.class).where("uploaded = ?", false).execute();
         if(records.size()<=0){
-            Spannable title = new SpannableString("OK 0 records unprocessed");
+            Spannable title = new SpannableString("OK no records unprocessed");
             title.setSpan(new ForegroundColorSpan(Color.GREEN), 0, title.length(), 0);
             unprocessed.setTitle(title);
             unprocessed.setSummary("");
@@ -109,9 +112,71 @@ public class SettingsActivity  extends PreferenceActivity {
     }
 
     private void downloadUnprocessed() {
+        List<TestRecord> records = new Select().from(TestRecord.class).where("uploaded = ?", false).execute();
+        if(records==null || records.size()<=0){
+            Toast.makeText(SettingsActivity.this,"No records found...",Toast.LENGTH_LONG).show();
+            return;
+        }
+        String root = Environment.getExternalStorageDirectory().toString();
+        File dir = new File(root + "/records");
+        dir.mkdirs();
+        long time=System.currentTimeMillis();
+        String suffix=""+time+".txt";
+        File file = new File (dir, FILE_UNPROCESSED_RECORDS.concat(""+suffix));
+        OutputStreamWriter outputStreamWriter = null;
+        FileOutputStream fileOutputStream=null;
+        try {
+            fileOutputStream= new FileOutputStream(file);
+            outputStreamWriter= new OutputStreamWriter(fileOutputStream);
+        } catch (Exception e) {
+            Toast.makeText(SettingsActivity.this,"Unable to create file",Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        for(int i=0;i<records.size();i++){
+            TestRecord record=records.get(i);
+            MyDatabaseUtils.RecontructRecord(record);
+            Gson gson = new GsonBuilder()
+                    .excludeFieldsWithoutExposeAnnotation()
+                    .registerTypeAdapter(Long.class, new MyLongTypeAdapter())
+                    .registerTypeAdapter(Double.class, new MyDoubleTypeAdapter())
+                    .registerTypeAdapter(Integer.class, new MyIntTypeAdapter())
+                    .create();
+            String recordstring=gson.toJson(record, TestRecord.class);
+            try {
+                outputStreamWriter.write(recordstring+"\n");
+            }
+            catch (IOException e) {
+                Toast.makeText(SettingsActivity.this,e.toString(),Toast.LENGTH_LONG).show();
+                Log.e("Exception", "File write failed: " + e.toString());
+                Crashlytics.logException(e);
+            }
 
 
+        }
+        try {
+            outputStreamWriter.close();
+            fileOutputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(SettingsActivity.this,e.toString(),Toast.LENGTH_LONG).show();
+            Log.e("Exception", "File close failed: " + e.toString());
+            Crashlytics.logException(e);
+        }
+        File outFile = new File (dir, FILE_UNPROCESSED_RECORDS.concat(""+suffix));
+        Uri uri = Uri.fromFile(outFile);
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        emailIntent .setType("vnd.android.cursor.dir/email");
+        String to[] = {"pbartlett@analyticamedical.com","maurizio.pietrantuono@gmail.com"};
+        emailIntent .putExtra(Intent.EXTRA_EMAIL, to);
+        emailIntent .putExtra(Intent.EXTRA_STREAM, uri);
+        SimpleDateFormat sdf=new SimpleDateFormat("HH:mm dd MMMM yyyy");
+        Date date= new Date(time);
+        emailIntent .putExtra(Intent.EXTRA_SUBJECT, "Unprocessed records "+sdf.format(date));
+        startActivity(Intent.createChooser(emailIntent , "Send data..."));
     }
+
+
 
     private void dowloadAll() {
         List<TestRecord> records = new Select().from(TestRecord.class).execute();
@@ -122,7 +187,8 @@ public class SettingsActivity  extends PreferenceActivity {
         String root = Environment.getExternalStorageDirectory().toString();
         File dir = new File(root + "/records");
         dir.mkdirs();
-        String suffix=""+System.currentTimeMillis();
+        long time=System.currentTimeMillis();
+        String suffix=""+time+".txt";
         File file = new File (dir, FILE_ALL_RECORDS.concat(""+suffix));
         OutputStreamWriter outputStreamWriter = null;
         FileOutputStream fileOutputStream=null;
@@ -145,13 +211,14 @@ public class SettingsActivity  extends PreferenceActivity {
                     .create();
             String recordstring=gson.toJson(record, TestRecord.class);
             try {
-                outputStreamWriter.write(recordstring);
+                outputStreamWriter.write(recordstring+"\n");
             }
             catch (IOException e) {
                 Toast.makeText(SettingsActivity.this,e.toString(),Toast.LENGTH_LONG).show();
                 Log.e("Exception", "File write failed: " + e.toString());
                 Crashlytics.logException(e);
             }
+
 
         }
         try {
@@ -167,11 +234,12 @@ public class SettingsActivity  extends PreferenceActivity {
         Uri uri = Uri.fromFile(outFile);
         Intent emailIntent = new Intent(Intent.ACTION_SEND);
         emailIntent .setType("vnd.android.cursor.dir/email");
-        String to[] = {"maurizio.pietrantuono@gmail.com"};
+        String to[] = {"pbartlett@analyticamedical.com","maurizio.pietrantuono@gmail.com"};
         emailIntent .putExtra(Intent.EXTRA_EMAIL, to);
         emailIntent .putExtra(Intent.EXTRA_STREAM, uri);
-
-        emailIntent .putExtra(Intent.EXTRA_SUBJECT, "Subject");
-        startActivity(Intent.createChooser(emailIntent , "Send email..."));
+        SimpleDateFormat sdf=new SimpleDateFormat("HH:mm dd MMMM yyyy");
+        Date date= new Date(time);
+        emailIntent .putExtra(Intent.EXTRA_SUBJECT, "All records "+sdf.format(date));
+        startActivity(Intent.createChooser(emailIntent , "Send data..."));
     }
 }
