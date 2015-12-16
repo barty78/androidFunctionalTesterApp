@@ -21,6 +21,8 @@ public interface IOIOUtilsInterface {
 
 	void initialize(NewIOIOActivityListener listner, IOIO ioio_, Activity ac);
 
+	void ioioSync(IOIO ioio_);
+
 	DigitalOutput getDigitalOutput(int pinNumber);
 
 	void resetUart2(IOIO ioio_, Activity ac);

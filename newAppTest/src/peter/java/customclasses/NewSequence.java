@@ -298,7 +298,7 @@ public class NewSequence implements NewSequenceInterface {
 //		sequence.add(new ChargingTest(activity, ioio,
 //				"Battery Charging Test"));
 
-//		sequence.add(new UploadFirmwareTest(activity, ioio));
+		sequence.add(new UploadFirmwareTest(activity, ioio));
 
 		sequence.add(new GetDeviceSerialTest(activity, ioio));
 		sequence.add(new AccelerometerSelfTest(activity, ioio));

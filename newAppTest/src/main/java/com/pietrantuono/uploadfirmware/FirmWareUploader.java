@@ -1,5 +1,6 @@
 package com.pietrantuono.uploadfirmware;
 
+import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -27,13 +28,17 @@ import android.widget.Toast;
 import com.parser.BinaryParser;
 import com.pietrantuono.activities.NewIOIOActivityListener;
 import com.pietrantuono.application.PeriCoachTestApplication;
+import com.pietrantuono.ioioutils.IOIOUtils;
 import com.pietrantuono.pericoach.newtestapp.R;
+
+import ioio.lib.api.IOIO;
 
 @SuppressWarnings("ucd")
 public class FirmWareUploader {
 	private static final String TAG = "FirmWareUploader";
 	private OutputStream TX;
 	private InputStream RX;
+	private BufferedInputStream BRX;
 	private static final byte STM32_CMD_INIT = 0x7F;
 	private static final byte STM32_CMD_GET = 0x00;
 	private static final byte XOR_BYTE = (byte) 0xFF;
@@ -68,6 +73,7 @@ public class FirmWareUploader {
 	private Boolean isstopped = false;
 	private WriteTask task = null;
 	private UploaderListener listener;
+	private IOIO ioio_;
 
 	private int stm32_gen_cs(int v) {
 		return ((v & 0xFF000000) >> 24) ^ ((v & 0x00FF0000) >> 16)
@@ -76,10 +82,11 @@ public class FirmWareUploader {
 
 	public FirmWareUploader(OutputStream TX, InputStream RX, Activity c,
 			ProgressBar progress, TextView percent,
-			NewIOIOActivityListener listner) {
+			NewIOIOActivityListener listner, IOIO ioio_) {
 		this.TX = TX;
 		this.c = c;
 		this.RX = RX;
+		this.ioio_ = ioio_;
 		this.progress = progress;
 		this.percent = percent;
 		isstopped = false;
@@ -149,6 +156,12 @@ public class FirmWareUploader {
 
 				while (addr < fl_end && offset < size && !isCancelled()) {
 
+//					try {
+//						Thread.sleep(100);
+//					} catch (InterruptedException e) {
+//						e.printStackTrace();
+//					}
+
 					int left = fl_end - addr;
 					len = buffer.length > left ? left : buffer.length;
 					len = len > (size - offset) ? size - offset : len;
@@ -157,6 +170,7 @@ public class FirmWareUploader {
 					if (isCancelled())
 						return null;
 					if (!writeMemory(addr, buffer, len)) {
+						showToast("Failed to write memory at address " + addr);
 						System.err.printf(
 								"Failed to write memory at address 0x%08x\n",
 								addr);
@@ -462,6 +476,24 @@ public class FirmWareUploader {
 		}
 	}
 
+	private int readLoopWithTimeout(int timeout) {
+		long now = System.currentTimeMillis();
+		while (System.currentTimeMillis() < now + timeout) {
+
+			try {
+				if (RX.available() >= 1) {
+					Integer tmp = RX.read();
+					System.out.printf("Call returned : %2x\n", tmp);
+					return tmp;
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return -1;
+	}
+
+
 	private int readWithTimeout(int timeout) {
 		// Read data with timeout
 		if (isstopped)
@@ -479,6 +511,7 @@ public class FirmWareUploader {
 		try {
 			readByte = future.get(timeout, TimeUnit.MILLISECONDS);
 		} catch (Exception e) {
+			showToast("Read Timeout!");
 			Log.e(TAG, e.toString());
 			return -1;
 		}
@@ -536,6 +569,22 @@ public class FirmWareUploader {
 		return false;
 	}
 
+	private void showToast(final String s) {
+		c.runOnUiThread( new Runnable() {
+
+			@Override
+			public void run() {
+				Toast.makeText(c, s,
+						Toast.LENGTH_LONG).show();
+			}
+		});
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
 	public boolean writeMemory(int address, byte[] data, int len) {
 
 		byte cs;
@@ -543,6 +592,7 @@ public class FirmWareUploader {
 		int c, extra;
 		Log.e(TAG, "len > 0 && len < 257 " + (len > 0 && len < 257));
 		if (!(len > 0 && len < 257)) {
+			showToast("Data length invalid");
 			throw new IllegalArgumentException("Data length invalid");
 		}
 		
@@ -551,6 +601,7 @@ public class FirmWareUploader {
 		/* must be 32bit aligned */
 		Log.e(TAG, "address% 4 == 0 " + (address % 4 == 0));
 		if (!(address % 4 == 0)) {
+			showToast("Address not 32bit aligned");
 			throw new IllegalArgumentException("Address not 32bit aligned");
 		}
 
@@ -558,6 +609,7 @@ public class FirmWareUploader {
 
 		/* send the address and checksum */
 		if (!sendCommand(_CMDList.get("wm").byteValue())) {
+			showToast("Unable to send write command");
 			System.err.println("Unable to send write command \n");
 			return false;
 		}
@@ -570,6 +622,7 @@ public class FirmWareUploader {
 		write(addrbytes, 5);
 		
 		if (readWithTimeout(1000) != STM32_ACK) {
+			showToast("Unable to write addressing");
 			System.err.println("Unable to write adressing \n");
 			return false;
 		}
@@ -601,9 +654,12 @@ public class FirmWareUploader {
 		
 		byte[] bytes = bb.array();
 		write(bytes, bytes.length);
-		
+
+		IOIOUtils.getUtils().ioioSync(ioio_);
+
 		System.out.printf("Checksum : %2x\n", ((int) cs) & 0xFF);
-		byte aRes = (byte) readWithTimeout(1000);
+		//byte aRes = (byte) readWithTimeout(2 * 1000);
+		byte aRes = (byte) readLoopWithTimeout(2 * 1000);
 		System.out.printf("Result write : %2x\n", ((int) aRes) & 0xFF);
 		return aRes == STM32_ACK;
 	}
@@ -620,7 +676,7 @@ public class FirmWareUploader {
 		for (int i = 0; i < length; i++) {
 			System.out.printf("Sending Byte: %2x\n", iData[i]);	
 		}
-		
+
 		try {
 			TX.write(iData, 0, length);
 		} catch (IOException e) {

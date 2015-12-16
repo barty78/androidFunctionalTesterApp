@@ -1,4 +1,5 @@
 package com.pietrantuono.tests.implementations;
+import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -23,6 +24,7 @@ public class UploadFirmwareTest extends Test {
 	private ProgressAndTextView pet;
 	private InputStream RX;
 	private OutputStream TX;
+	private BufferedInputStream BRX;
 	private FirmWareUploader firmWareUploader;
 	private Boolean initialised = false;
 	private Boolean looping = true;
@@ -51,10 +53,11 @@ public class UploadFirmwareTest extends Test {
 		});
 		if (IOIOUtils.getUtils().getIOIOUart() != null) {
 			RX = IOIOUtils.getUtils().getIOIOUart().getInputStream();// Pin 14
+			BRX = new BufferedInputStream(RX);
 			TX = IOIOUtils.getUtils().getIOIOUart().getOutputStream();// Pin 13
 		}
 		firmWareUploader = new FirmWareUploader(TX, RX, (Activity)activityListener,
-				pet.getProgress(), pet.getTextView(), activityListener);
+				pet.getProgress(), pet.getTextView(), activityListener, ioio);
 		
 
 		Log.e(TAG, "Initialization loop");
@@ -95,6 +98,8 @@ public class UploadFirmwareTest extends Test {
 					return;
 				}
 				firmWareUploader.getInfo();
+
+
 				firmWareUploader.upload(new UploaderListener() {
 					@Override
 					public void onUploadCompleted(final boolean success) {

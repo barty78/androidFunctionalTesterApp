@@ -463,6 +463,18 @@ public class IOIOUtils implements IOIOUtilsInterface  {
 	}
 
 	@Override
+	public void ioioSync(final IOIO ioio_) {
+		try {
+			ioio_.sync();
+			Log.d(TAG, "IOIO Syncing");
+		} catch (ConnectionLostException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
 	public DigitalOutput getDigitalOutput(int pinNumber) {
 		switch (pinNumber) {
 			case (1):
