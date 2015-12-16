@@ -160,7 +160,8 @@ public class FirmWareUploader {
 						System.err.printf(
 								"Failed to write memory at address 0x%08x\n",
 								addr);
-						break;
+//						break;
+						return null;
 					} else {
 						fileOutputStream.write(buffer, 0, len);
 					}
@@ -189,6 +190,7 @@ public class FirmWareUploader {
 		protected void onProgressUpdate(Void... v) {
 			if (isCancelled())
 				return;
+			Log.d(TAG, "Upload progress update");
 			c.runOnUiThread(new Runnable() {
 
 				@Override
@@ -210,6 +212,7 @@ public class FirmWareUploader {
 		protected void onPreExecute() {
 			if (isCancelled())
 				return;
+			Log.d(TAG, "Upload pre execute");
 			try {
 				fileOutputStream = new FileOutputStream(PeriCoachTestApplication.getFirmwareCheckFile());
 			} catch (FileNotFoundException e) {
@@ -239,7 +242,7 @@ public class FirmWareUploader {
 		protected void onPostExecute(Void v) {
 
 			if(isCancelled())return;
-			
+			Log.d(TAG, "Upload post execute");
 			c.runOnUiThread( new Runnable() {
 				
 				@Override

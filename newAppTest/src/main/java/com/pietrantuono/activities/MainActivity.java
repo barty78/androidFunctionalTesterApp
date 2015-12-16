@@ -267,17 +267,24 @@ public class MainActivity extends Activity
 	public void onCurrentSequenceEnd() {
 		sequenceStarted=false;
 		newSequence.setEndtime(System.currentTimeMillis());
-		TestRecord record = TestFromSequenceCreator.createRecordFromSequence(newSequence);
 		final boolean overallresult = newSequence.getOverallResultBool();
-		Gson gson = new GsonBuilder()
-				.excludeFieldsWithoutExposeAnnotation()
-				.registerTypeAdapter(Long.class, new MyLongTypeAdapter())
-				.registerTypeAdapter(Double.class, new MyDoubleTypeAdapter())
-				.registerTypeAdapter(Integer.class, new MyIntTypeAdapter())
-				.create();
-		String recordstring = gson.toJson(record, TestRecord.class);
-		Log.d(TAG, "Created record: " + recordstring);
 
+		if (newSequence.isLog()){							// Create a record if sequence is set as logging,
+			if (newSequence.getCurrentTestNumber() != 0) {    //  Don't create a record if the first test failed,
+				// usually Barcode Test.
+				// 	TODO - Maybe check if barcode is actually set instead,
+				// if no barcode then no record
+				TestRecord record = TestFromSequenceCreator.createRecordFromSequence(newSequence);
+				Gson gson = new GsonBuilder()
+						.excludeFieldsWithoutExposeAnnotation()
+						.registerTypeAdapter(Long.class, new MyLongTypeAdapter())
+						.registerTypeAdapter(Double.class, new MyDoubleTypeAdapter())
+						.registerTypeAdapter(Integer.class, new MyIntTypeAdapter())
+						.create();
+				String recordstring = gson.toJson(record, TestRecord.class);
+				Log.d(TAG, "Created record: " + recordstring);
+			}
+		}
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
@@ -361,6 +368,7 @@ public class MainActivity extends Activity
 		sequenceStarted=true;
 		newSequence=null;
 		newSequence = getNewSequence();
+		Log.d(TAG, "Logging is " + newSequence.isLog());
 		newSequence.setStarttime(System.currentTimeMillis());
 		try {newSequence.setJobNo(Long.parseLong(mJobNo));} 
 		catch (Exception e) {	}

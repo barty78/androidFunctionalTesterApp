@@ -131,7 +131,7 @@ public class MySyncAdapter extends AbstractThreadedSyncAdapter {
 
 	private void issueNegativeNotification(TestRecord record, RetrofitError error) {
 		NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(PeriCoachTestApplication.getContext())
-				.setSmallIcon(R.drawable.attention).setContentText("Failed to uplaod " + error.getMessage() == null ? "No cause description" : error.getMessage())
+				.setSmallIcon(R.drawable.attention).setContentText("Failed to upload " + error.getMessage() == null ? "No cause description" : error.getMessage())
 				.setContentTitle("PeriCoach: "+getUnprocessedRecords() + " unprocessed records");
 
 		Intent intent=new Intent(context,StartSyncAdapterService.class);
@@ -146,7 +146,7 @@ public class MySyncAdapter extends AbstractThreadedSyncAdapter {
 	private void issuePositiveNotification(TestRecord record) {
 		NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(PeriCoachTestApplication.getContext())
 				.setSmallIcon(R.drawable.ok_icon).setContentTitle("PeriCoach, record uploaded")
-				.setContentText("Record " + record.getId() + " uplaoded");
+				.setContentText("Record " + record.getId() + " uploaded");
 		NotificationManager mNotifyMgr = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 		mNotifyMgr.notify(notificationId, mBuilder.build());
 	}

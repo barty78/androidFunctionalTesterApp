@@ -47,7 +47,7 @@ public class JobListAdapter extends BaseAdapter {
 		if(list.get(position).getDescription()!=null)description.setText(list.get(position).getDescription());
 		else description.setText("");
 		ImageView imageView=(ImageView)v.findViewById(R.id.image);
-		if(list.get(position).getIslogging()==0)imageView.setImageResource(R.drawable.ic_save_white_24dp);//(R.drawable.ic_action_test);
+		if(list.get(position).getIslogging()==1)imageView.setImageResource(R.drawable.ic_save_white_24dp);//(R.drawable.ic_action_test);
 		else imageView.setVisibility(View.INVISIBLE);//setImageResource(R.drawable.ic_action_prod);
 		list.get(position).getId();
 		String jobno=list.get(position).getJobno();

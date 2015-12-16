@@ -15,9 +15,11 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.pietrantuono.activities.MyOnCancelListener;
+import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.ioioutils.IOIOUtils;
 import com.pietrantuono.tests.superclass.Test;
 
@@ -29,13 +31,21 @@ public class GetBarcodeTest extends Test {
 	private DigitalOutput BarcodeTrgr;
 	private DigitalOutput barcodeTRGR;
 	public int counter = 0;
+	private int retries;
 	private static ExecutorService executor = Executors.newFixedThreadPool(1);
 	private AlertDialog alertDialog;
 	private String barcode = "";
 	private Job job;
 
-	public GetBarcodeTest(Activity activity, IOIO ioio, Job job) {
-		super(activity, ioio, "Read PCB Barcode Label", false, true, 0, 0, 0);
+
+	/**
+	 * @param activity			- Activity Instance
+	 * @param ioio				- IOIO Instance
+	 * @param limitParam1		- Number of barcode read retries.
+	 */
+	public GetBarcodeTest(Activity activity, IOIO ioio, Job job, float limitParam1) {
+		super(activity, ioio, "Read PCB Barcode Label", false, true, limitParam1, 0, 0);
+		this.retries = (int) limitParam1;
 		this.job = job;
 
 	}
@@ -56,55 +66,62 @@ public class GetBarcodeTest extends Test {
 				} catch (Exception e){}
 				activityListener.onCurrentSequenceEnd();
 				return;
-			};			
-			if(ServiceDBHelper.isBarcodeAlreadySeen(barcode)) {
-				try {
-					Toast.makeText((Activity) activityListener, "Barcode already tested! Aborting test", Toast.LENGTH_LONG).show();
-					} catch (Exception e){}
+			};
+			if (!PeriCoachTestApplication.getIsRetestAllowed()) {
+				Log.d(TAG, "Retest is " + PeriCoachTestApplication.getIsRetestAllowed());
+				if (ServiceDBHelper.isBarcodeAlreadySeen(barcode)) {
+					try {
+						Toast.makeText((Activity) activityListener, "Barcode already tested! Aborting test", Toast.LENGTH_LONG).show();
+					} catch (Exception e) {
+					}
 					activityListener.onCurrentSequenceEnd();
 					return;
-			}
-			
-			else {
+				} else {
+					setSuccess(true);
+					activityListener.addFailOrPass(true, true, barcode);
+					return;
+
+				}
+			} else {
 				setSuccess(true);
 				activityListener.addFailOrPass(true, true, barcode);
 				return;
-				
 			}
 		} else {
-			if (counter >= 2 ){
+			if (counter >= limitParam1 ){
 				counter = 0;
 				Toast.makeText((Activity) activityListener, "Unable to read barcode", Toast.LENGTH_LONG).show();
-				activityListener.addFailOrPass(true, false, description);
+				activityListener.addFailOrPass(true, false, "Read Fail", description);
 				return;
 			} else {
 				counter++;
-				final AlertDialog.Builder builder = new AlertDialog.Builder((Activity) activityListener);
-				builder.setTitle("Unable to read barcode");
-				builder.setMessage("Please check barcode reader and press OK to retry");
-				builder.setPositiveButton("OK", new OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						dialog.dismiss();
-						execute();
-					}
-				});
-				builder.setNegativeButton("CLOSE TEST", new OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						dialog.dismiss();
-						((Activity) activityListener).onBackPressed();
-					}
-				});
-				builder.setCancelable(true);
-				builder.setOnCancelListener(new MyOnCancelListener((Activity) activityListener));
-				alertDialog = builder.create();
-				((Activity) activityListener).runOnUiThread(new Runnable() {
-					@Override
-					public void run() {
-						alertDialog.show();
-					}
-				});
+				execute();
+//				final AlertDialog.Builder builder = new AlertDialog.Builder((Activity) activityListener);
+//				builder.setTitle("Unable to read barcode");
+//				builder.setMessage("Please check barcode reader and press OK to retry");
+//				builder.setPositiveButton("OK", new OnClickListener() {
+//					@Override
+//					public void onClick(DialogInterface dialog, int which) {
+//						dialog.dismiss();
+//						execute();
+//					}
+//				});
+//				builder.setNegativeButton("CLOSE TEST", new OnClickListener() {
+//					@Override
+//					public void onClick(DialogInterface dialog, int which) {
+//						dialog.dismiss();
+//						((Activity) activityListener).onBackPressed();
+//					}
+//				});
+//				builder.setCancelable(true);
+//				builder.setOnCancelListener(new MyOnCancelListener((Activity) activityListener));
+//				alertDialog = builder.create();
+//				((Activity) activityListener).runOnUiThread(new Runnable() {
+//					@Override
+//					public void run() {
+//						alertDialog.show();
+//					}
+//				});
 			}
 		}
 	}
@@ -135,14 +152,17 @@ public class GetBarcodeTest extends Test {
 		if (job == null 
 				|| job.getBarcodeprefix() == null 
 				|| job.getBarcodeprefix().length()<=0 
-				|| job.getQuantity() <= 0 
-				|| job.getTestId() == 999)				// Special test sequence, ignore barcode contents 
+				|| job.getQuantity() <= 0)
+//				|| job.getTestId() == 999)				// Special test sequence, ignore barcode contents
 		{
 			return true;
 		}
 		String barcodeprefix = null;
 		try {
-			barcodeprefix = code.substring(0, 4);
+			barcodeprefix = code.substring(0, job.getBarcodeprefix().length());
+
+			Log.d(TAG, "Expected Prefix is " + job.getBarcodeprefix() + " | " +
+					"Actual Prefix is "+ code.substring(0, job.getBarcodeprefix().length()));
 		} catch (Exception e) {
 			return false;
 		}
@@ -154,7 +174,9 @@ public class GetBarcodeTest extends Test {
 		}
 		String quantityString = null;
 		try {
-			quantityString = code.substring(4, code.length());
+			quantityString = code.substring(job.getBarcodeprefix().length(), code.length());
+			Log.d(TAG, "Expected Number is " + job.getQuantity() + " | " +
+					"Actual Number is "+ code.substring(job.getBarcodeprefix().length(), code.length()));
 		} catch (Exception e) {
 			return false;
 		}

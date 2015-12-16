@@ -41,11 +41,13 @@ public class TestsParser {
 
 		switch ((int) testToBeParsed.getTestclassId().intValue()) {
 		case 1:
-			test = new GetBarcodeTest(activity, ioio, job);
+			float limitParam1 = (float) testToBeParsed.getLimitParam1().doubleValue();
+
+			test = new GetBarcodeTest(activity, ioio, job, limitParam1);
 			break;
 		case 2:
 			boolean isNominal = (boolean) testToBeParsed.getIsNominal();
-			float limitParam1 = (float) testToBeParsed.getLimitParam1().doubleValue();
+			limitParam1 = (float) testToBeParsed.getLimitParam1().doubleValue();
 			float limitParam2 = (float) testToBeParsed.getLimitParam2().doubleValue();
 			int pinnumber = (int) testToBeParsed.getIoiopinnum();
 			test = new CurrentTest(activity, ioio, pinnumber, Current.Units.mA, isNominal, limitParam1, limitParam2,

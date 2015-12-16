@@ -17,13 +17,20 @@ import com.pietrantuono.ioioutils.Voltage;
 import com.pietrantuono.tests.implementations.AccelerometerSelfTest;
 import com.pietrantuono.tests.implementations.BluetoothConnectTestForTesting;
 import com.pietrantuono.tests.implementations.CurrentTest;
+import com.pietrantuono.tests.implementations.GetBarcodeTest;
 import com.pietrantuono.tests.implementations.GetDeviceSerialTest;
 import com.pietrantuono.tests.implementations.MagnetWakeDeviceTest;
 import com.pietrantuono.tests.implementations.SensorTestWrapper;
 import com.pietrantuono.tests.implementations.UploadFirmwareTest;
 import com.pietrantuono.tests.implementations.VoltageTest;
 import com.pietrantuono.tests.implementations.steps.SetDigitalOutputStep;
+import com.pietrantuono.tests.implementations.steps.Step;
 import com.pietrantuono.tests.superclass.Test;
+
+import org.joda.time.DateTime;
+import org.joda.time.Duration;
+import org.joda.time.format.PeriodFormatter;
+import org.joda.time.format.PeriodFormatterBuilder;
 
 import server.TestsParser;
 import server.pojos.Job;
@@ -175,10 +182,16 @@ public class NewSequence implements NewSequenceInterface {
 	}
 
 	@Override
-	public long getDuration() {
-		return endtime - starttime;
+	public String getDuration() {
+		DateTime start = new DateTime(starttime);
+		DateTime end = new DateTime(endtime);
+		Duration duration=new Duration(start,end);
+		PeriodFormatterBuilder builder = new PeriodFormatterBuilder();
+		builder.minimumPrintedDigits(2);
+		builder.printZeroAlways().appendHours().appendSeparator(":").appendMinutes().appendSeparator(":").appendSeconds();
+		PeriodFormatter formatter = builder.toFormatter();
+		return formatter.print(duration.toPeriod());
 	}
-
 	@Override
 	public void setStarttime(long starttime) {
 		this.starttime = starttime;
@@ -209,11 +222,20 @@ public class NewSequence implements NewSequenceInterface {
 	public long getOverallResult() {
 		long overallresult = 1;
 		for (int i = 0; i < sequence.size(); i++) {
+			if(sequence.get(i) instanceof Step)continue;
 			if (!sequence.get(i).isSuccess())
 				overallresult = 0;
 		}
 
 		return overallresult;
+	}
+	@Override
+	public boolean getOverallResultBool() {
+		for (int i = 0; i < sequence.size(); i++) {
+			if(sequence.get(i) instanceof Step)continue;
+			if (!sequence.get(i).isSuccess())return false;
+		}
+		return true;
 	}
 
 	public NewSequence(Activity activity, IOIO ioio, Job job,Sequence sequence) {
@@ -245,52 +267,18 @@ public class NewSequence implements NewSequenceInterface {
 		}
 
 
-		// OLD TESTS
-//		sequence.add(new VoltageTest(activity, ioio, 40, 3.0f, 0.1f, "Voltage Measurement - V_3V0"));
-		// sequence.add(new VoltageTest(activity, ioio, 38, 0f, 0.01f, "Voltage
-		// Measurement - DC_PRES (5V_DC Off)"));
-		// sequence.add(new VoltageTest(activity, ioio, 38, 3f, 0.3f, true,
-		// false, false, false, "Voltage Measurement - DC_PRES (5V_DC On)"));
-		// sequence.add(new LedCheckTest(activity, "Pink", "Pink LED Check"));
-//		 sequence.add(new Charge_termination_test(activity, ioio, "Battery
-//		 Charge Termination Test"));
-		// sequence.add(new VoltageTest(activity, ioio, 37, 2f, 0.2f, true,
-		// true, false, null, "Voltage Measurement - Sleep Mode (BAT_MON)"));
-		// //sequence.add(new UploadFirmwareTest(activity, ioio));
-		// sequence.add(new VoltageTest(activity, ioio, 40, 3.0f, 0.1f, false,
-		// null, true, false, "Voltage Measurement - Sleep Mode (V_3V0) "));
-		// sequence.add(new VoltageTest(activity, ioio, 39, 0f, 0.1f, "Voltage
-		// Measurement - Sleep Mode (V_3V0_SW)"));
-		// sequence.add(new VoltageTest(activity, ioio, 44, 0f, 0.1f, "Voltage
-		// Measurement - Sleep Mode (V_1V8)"));
-		// sequence.add(new VoltageTest(activity, ioio, 32, 0f, 0.1f, "Voltage
-		// Measurement - Sleep Mode (V_REF_AN)"));
-		// //sequence.add(new GetDeviceSerialTest(activity, ioio));
-		// //sequence.add(new WakeDeviceTest(activity, ioio));
-		// sequence.add(new LedCheckTest(activity, "Green", "Green LED Check"));
-		// sequence.add(new AwakeModeCurrentTest(activity, ioio, "Current
-		// Measurement - Awake Mode"));
-		// sequence.add(new VoltageTest(activity, ioio, 40, 3f, 0.01f, "Voltage
-		// Measurement - Awake Mode (V_3V0)"));
-		// sequence.add(new VoltageTest(activity, ioio, 39, 3f, 0.1f, "Voltage
-		// Measurement - Awake Mode (V_3V0_SW)"));
-		// sequence.add(new VoltageTest(activity, ioio, 44, 1.8f, 0.1f, "Voltage
-		// Measurement - Awake Mode (V_1V8)"));
-		// sequence.add(new VoltageTest(activity, ioio, 33, 3f, 0.01f, "Voltage
-		// Measurement - Awake Mode (V_BT)"));
-		// sequence.add(new VoltageTest(activity, ioio, 32, 1.5f, 0.2f, "Voltage
-		// Measurement - Awake Mode (V_REF_AN)"));
-		// sequence.add(new BluetoothDiscoverableModeTestForTesting(activity));
-
 		// DIAG TESTS
 //		sequence.add(new UartLoopbackTest(activity, ioio));
 
 		// NEW TESTS
-//		sequence.add(new GetBarcodeTest(activity,ioio,job));
+
+		sequence.add(new GetBarcodeTest(activity, ioio, job, 5f));
 
 		sequence.add(new CurrentTest(activity, ioio, 42, Current.Units.uA, false, 100f, 0f,
 				"Current Measurement - UUT Unprogrammed"));
 
+//		sequence.add(new VoltageTest(activity, ioio, 37, Voltage.Units.V, 3f, true, 3.5f, 0.1f,
+//				"Voltage Measurement - V_BATT"));
 		sequence.add(new VoltageTest(activity, ioio, 44, Voltage.Units.V, true, 3.1f, 0.2f,
 				"Voltage Measurement - V_3V1"));
 		sequence.add(new VoltageTest(activity, ioio, 40, Voltage.Units.V, true, 1.8f, 0.2f,
@@ -332,7 +320,7 @@ public class NewSequence implements NewSequenceInterface {
 				"Voltage Measurement - Awake Mode (V_BT)"));
 		sequence.add(new VoltageTest(activity, ioio, 32, Voltage.Units.V, -1.95f, true,  -1.4f, 0.1f,
 				"Voltage Measurement - Awake Mode (V_REF_AN)"));
-		sequence.add(new VoltageTest(activity, ioio, 41, Voltage.Units.V, -1.95f, true, -0f, 0.2f,
+		sequence.add(new VoltageTest(activity, ioio, 41, Voltage.Units.V, -1.95f, false, 0.1f, -0.1f,
 				"Voltage Measurement - Awake Mode (V_ZERO_AN)"));
 
 //		sequence.add(new VoltageTest(activity, ioio, 31, -6.0f, 0.2f,
@@ -364,18 +352,7 @@ public class NewSequence implements NewSequenceInterface {
 //		sequence.add(new PauseStep(activity, "Pause Step"));
 //
 //		sequence.add(new ChargeLedCheckTest(activity, ioio, "Pink", "Pink LED Check"));
-//		sequence.add(new SensorTestWrapper(false, activity, ioio,
-//				"Sensor Input Test, NO LOAD, GAIN @ 127", 0, false, (short) 127));
-//		sequence.add(new SensorTestWrapper(false, activity, ioio,
-//				"Sensor Input Test, LOADED, GAIN @ 127", 1, true, (short) 127));
-//		sequence.add(new SensorTestWrapper(false, activity, ioio,
-//				"Sensor Input Test, LOADED, GAIN @ 25", 1, true, (short) 25));
-//		sequence.add(new SensorTestWrapper(false, activity, ioio,
-//				"Sensor Input Test, LOADED, GAIN @ 230", 1, true, (short) 230));
-//		sequence.add(new SensorTestWrapper(false, activity, ioio, "Sensor Input Test, LOADED, GAIN @ 127", 2, true,
-//				(short) 127));
-//		sequence.add(new SensorTestWrapper(false, activity, ioio, "Sensor Input Test, LOADED, GAIN @ 127", 3, true,
-//				(short) 127));
+
 		sequence.add(new BluetoothConnectTestForTesting(activity));
 		sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 0, 10, 50,
 				"Sensor Input Test, NO LOAD, GAIN @ 127"));

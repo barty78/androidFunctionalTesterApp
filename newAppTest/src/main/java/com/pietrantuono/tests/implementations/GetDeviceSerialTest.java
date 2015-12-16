@@ -101,6 +101,7 @@ public class GetDeviceSerialTest extends Test {
 						}
 					} else {
 						if (retries > 2) {
+							setSuccess(false);
 							activityListener.addView("Serial (HW reading):", "ERROR", Color.RED, true);
 							activityListener.addFailOrPass(true, false, "Retries Exceeded");
 
@@ -110,8 +111,16 @@ public class GetDeviceSerialTest extends Test {
 						}
 					}
 				} else {
-					activityListener.addView("Serial (HW reading):", "ERROR", Color.RED, true);
-					activityListener.addFailOrPass(true, false, "No Comms");
+					if (retries > 2) {
+						setSuccess(false);
+						activityListener.addView("Serial (HW reading):", "ERROR", Color.RED, true);
+						activityListener.addFailOrPass(true, false, "No Comms");
+
+					} else {
+						retries++;
+						execute();
+					}
+
 
 				}
 

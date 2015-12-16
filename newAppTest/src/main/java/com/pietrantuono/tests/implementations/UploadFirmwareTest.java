@@ -122,6 +122,11 @@ public class UploadFirmwareTest extends Test {
 									pet.getTextView().setText("FAIL");
 								}
 							});
+							try {
+								Thread.sleep(2 * 1000 + 500);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
 						}
 						((Activity)activityListener).runOnUiThread(new Runnable() {
 							@Override
