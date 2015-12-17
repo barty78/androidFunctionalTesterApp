@@ -41,6 +41,8 @@ public class UIHelper {
 	private Activity activity;
 	private View v = null;
 	private NewSequenceInterface sequence;
+	private static final String TAG = "UIHelper";
+
 
 	public UIHelper(Activity activity, NewSequenceInterface sequence) {
 		this.activity = activity;
@@ -64,6 +66,7 @@ public class UIHelper {
 				cronometer.start();
 			}
 		});
+		Log.d(TAG, "Chronometer started");
 	}
 	
 	public void stopChronometer(final Activity activity) {
@@ -74,6 +77,8 @@ public class UIHelper {
 				cronometer.stop();
 			}
 		});
+		Log.d(TAG, "Chronometer stopped");
+
 	}
 
 	public void setResult(boolean success) {

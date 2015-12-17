@@ -107,6 +107,7 @@ public class FirmWareUploader {
 		try {
 			TX.write(c);
 		} catch (Exception e) {
+			showToast(String.valueOf(e));
 			Log.e(TAG, e.toString());
 		}
 	}
@@ -139,7 +140,7 @@ public class FirmWareUploader {
 			try {
 
 				BinaryParser aParser = new BinaryParser(c);
-				showToast(aParser.toString());
+//				showToast(aParser.toString());
 
 				int offset = 0;
 				int size = aParser.getData().length;
@@ -147,7 +148,7 @@ public class FirmWareUploader {
 				System.out.printf("Filesize : %x.\n", size);
 
 				if (size > fl_end - fl_start) {
-					showToast("fl_end - fl_start");
+//					showToast("fl_end - fl_start");
 
 					System.err
 							.println("File provided larger then available flash space.\n");
@@ -184,7 +185,7 @@ public class FirmWareUploader {
 					if (isCancelled())
 						return null;
 					if (!writeMemory(addr, buffer, len)) {
-						showToast("Failed to write memory at address " + addr);
+//						showToast("Failed to write memory at address " + addr);
 						System.err.printf(
 								"Failed to write memory at address 0x%08x\n",
 								addr);
@@ -270,7 +271,7 @@ public class FirmWareUploader {
 		protected void onPostExecute(Void v) {
 
 			if(isCancelled())return;
-			showToast("onPostExecute");
+//			showToast("onPostExecute");
 			c.runOnUiThread( new Runnable() {
 				
 				@Override
@@ -308,7 +309,7 @@ public class FirmWareUploader {
 //							}
 //						}, 2000);
 					} else {
-						showToast("onPostExecute, prog < 100");
+//						showToast("onPostExecute, prog < 100");
 
 						if(listener!=null)listener.onUploadCompleted(false);
 
@@ -665,13 +666,14 @@ public class FirmWareUploader {
 		
 		bb = ByteBuffer.allocate(len + 2 + extra);
 		bb.put(cs);							// Put the length into buffer
-		
+		write(cs);
 		/* write the data and build the checksum */
 		for (i = 0; i < len; ++i)
 			cs ^= data[i];
 		Log.d("DATA: ", String.valueOf(cs));
 
 		bb.put(data, 0, len);
+		write(data, len);
 		//bb.put(data);
 		
 		/* write the alignment padding */
@@ -685,8 +687,8 @@ public class FirmWareUploader {
 		
 		byte[] bytes = bb.array();
 //		showToast("before, write(bytes, bytes.length);");
-
-		write(bytes, bytes.length);
+		write(cs);
+//		write(bytes, bytes.length);
 //		showToast("Write Thread is " + String.valueOf(Thread.currentThread().getId()));
 
 //		showToast(String.valueOf(bytes.length) + " | " + String.valueOf(bytes[0]));
@@ -713,12 +715,13 @@ public class FirmWareUploader {
 
 	private void write(byte[] iData, int length) {
 		for (int i = 0; i < length; i++) {
-			System.out.printf("Sending Byte: %2x\n", iData[i]);	
+			System.out.printf("Sending Byte: %2x\n", iData[i]);
 		}
 
 		try {
 			TX.write(iData, 0, length);
 		} catch (IOException e) {
+			showToast(String.valueOf(e));
 			System.err.println("Unable to send char buffer to the device.");
 		}
 	}

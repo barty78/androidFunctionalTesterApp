@@ -137,11 +137,13 @@ public class MainActivity extends Activity
 			public void run() {
 				if (MainActivity.this.isFinishing()) return;
 				if (newSequence.isSequenceEnded()) {
+					Log.d(TAG, "Sequence Ended");
 					onCurrentSequenceEnd();
 					return;
 				}
 				if (newSequence.isSequenceStarted()) {
 					if (newSequence.getCurrentTest().isBlockingTest && !newSequence.getCurrentTest().isSuccess()) {
+						Log.d(TAG, "Blocking Test Failed - Sequence Ended");
 						onCurrentSequenceEnd();
 						return;
 					}
@@ -268,6 +270,8 @@ public class MainActivity extends Activity
 		sequenceStarted=false;
 		newSequence.setEndtime(System.currentTimeMillis());
 		final boolean overallresult = newSequence.getOverallResultBool();
+		Log.d(TAG, "Overall Sequence Result is " + overallresult);
+
 
 		if (newSequence.isLog()){							// Create a record if sequence is set as logging,
 			if (newSequence.getCurrentTestNumber() != 0) {    //  Don't create a record if the first test failed,
@@ -295,7 +299,8 @@ public class MainActivity extends Activity
 				uiHelper.stopChronometer(MainActivity.this);
 				setStatusMSG("TEST FINISHED", true);// OK
 				detectHelper.stopCheckingIfConnectionDrops();// OK
-				uiHelper.setOverallFailOrPass(overallresult);// NA
+//				uiHelper.setOverallFailOrPass(overallresult);// NA
+				uiHelper.setOverallFailOrPass(true);// NA
 				PeriCoachTestApplication.forceSync();
 				waitForPCBDisconnected();
 			}
@@ -310,6 +315,7 @@ public class MainActivity extends Activity
 
 	private void waitForPCBConnected() {
 		sequenceStarted=false;
+		Log.d(TAG, "Wait for PCB to connect");
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
@@ -323,6 +329,7 @@ public class MainActivity extends Activity
 
 	private void waitForPCBDisconnected() {
 		sequenceStarted=false;
+		Log.d(TAG, "Wait for PCB to disconnect");
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
