@@ -1,6 +1,20 @@
 package com.pietrantuono.uploadfirmware;
 
-import java.io.BufferedInputStream;
+import android.app.Activity;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
+import android.util.Log;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.parser.BinaryParser;
+import com.pietrantuono.activities.NewIOIOActivityListener;
+import com.pietrantuono.application.PeriCoachTestApplication;
+import com.pietrantuono.ioioutils.IOIOUtils;
+import com.pietrantuono.pericoach.newtestapp.R;
+
 import java.io.ByteArrayInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -15,27 +29,11 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
-import android.app.Activity;
-import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
-import android.os.Handler;
-import android.util.Log;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.parser.BinaryParser;
-import com.pietrantuono.activities.NewIOIOActivityListener;
-import com.pietrantuono.application.PeriCoachTestApplication;
-import com.pietrantuono.ioioutils.IOIOUtils;
-import com.pietrantuono.pericoach.newtestapp.R;
-
 import ioio.lib.api.IOIO;
 
 @SuppressWarnings("ucd")
-public class FirmWareUploader {
-	private static final String TAG = "FirmWareUploader";
+public class DummyFirmWareUploader {
+	private static final String TAG = "DummyFirmWareUploader";
 	private OutputStream TX;
 	private InputStream RX;
 	private static final byte STM32_CMD_INIT = 0x7F;
@@ -83,9 +81,9 @@ public class FirmWareUploader {
 				^ ((v & 0x0000FF00) >> 8) ^ ((v & 0x000000FF) >> 0);
 	}
 
-	public FirmWareUploader(OutputStream TX, InputStream RX, Activity c,
-			ProgressBar progress, TextView percent,
-			NewIOIOActivityListener listner, IOIO ioio_) {
+	public DummyFirmWareUploader(OutputStream TX, InputStream RX, Activity c,
+								 ProgressBar progress, TextView percent,
+								 NewIOIOActivityListener listner, IOIO ioio_) {
 		this.TX = TX;
 		this.c = c;
 		this.RX = RX;
@@ -353,98 +351,100 @@ public class FirmWareUploader {
 		if (isstopped)
 			return false;
 		thread.emptyInputStream();
-		if (!sendCommand(STM32_CMD_GET)) {
-			System.out
-					.println("Failed to send command to the device: reset your device.");
-			return false;
-		}
-		if (isstopped)
-			return false;
-		int len = readWithTimeout(1000) + 1;
-		System.out.printf("Have to read %d bytes.\n", len);
-		if (isstopped)
-			return false;
-		readWithTimeout(1000);
-		--len;
-		// updateUiText("Bootloader Version - " + bl_version + ".\n");//TODO
-		_CMDList.put("get", readWithTimeout(1000));
-		--len;
-		_CMDList.put("gvr", readWithTimeout(1000));
-		--len;
-		_CMDList.put("gid", readWithTimeout(1000));
-		--len;
-		_CMDList.put("rm", readWithTimeout(1000));
-		--len;
-		_CMDList.put("go", readWithTimeout(1000));
-		--len;
-		_CMDList.put("wm", readWithTimeout(1000));
-		--len;
-		_CMDList.put("er", readWithTimeout(1000));
-		--len;
-		_CMDList.put("wp", readWithTimeout(1000));
-		--len;
-		_CMDList.put("uw", readWithTimeout(1000));
-		--len;
-		_CMDList.put("rp", readWithTimeout(1000));
-		--len;
-		_CMDList.put("ur", readWithTimeout(1000));
-		--len;
-		if (len > 0) {
-			System.out
-					.println("Seems this bootloader returns more then we understand in the GET command, we will skip the unknown bytes\n");
-			System.out.println("Please reset your device. Stopping.");
-			return false;
-		}
-		if (readWithTimeout(1000) != STM32_ACK) {
-			System.out.println("No ACK received from the device");
-			System.out.printf("Next data: %d\n", readWithTimeout(1000));
-			return false;
-		}
-
-		/* get the version and read protection status */
-		if (!sendCommand(_CMDList.get("gvr").byteValue())) {
-			System.out.println("No ACK received from the device");
-			return false;
-		}
-		if (isstopped)
-			return false;
-		readWithTimeout(1000);
-		if (isstopped)
-			return false;
-		readWithTimeout(1000);
-		if (isstopped)
-			return false;
-		readWithTimeout(1000);
-		if (isstopped)
-			return false;
-		if (readWithTimeout(1000) != STM32_ACK) {
-			System.out.println("No ACK received from the device");
-			return false;
-		}
-		if (isstopped)
-			return false;
-		/* get the device ID */
-		if (!sendCommand(_CMDList.get("gid").byteValue())) {
-			System.out.println("No ACK received from the device");
-			return false;
-		}
-		if (isstopped)
-			return false;
-		len = readWithTimeout(1000) + 1;
-		if (len != 2) {
-			System.err
-					.println("More then two bytes sent in the PID, unknown/unsupported device\n");
-			return false;
-		}
-		if (isstopped)
-			return false;
-		pid = (readWithTimeout(1000) << 8) | readWithTimeout(1000);
-		if (readWithTimeout(1000) != STM32_ACK) {
-			System.err
-					.println("More then two bytes sent in the PID, unknown/unsupported device\n");
-			return false;
-		}
+		_CMDList.put("wm", 0x31);
+//		if (!sendCommand(STM32_CMD_GET)) {
+//			System.out
+//					.println("Failed to send command to the device: reset your device.");
+//			return false;
+//		}
+//		if (isstopped)
+//			return false;
+//		int len = readWithTimeout(1000) + 1;
+//		System.out.printf("Have to read %d bytes.\n", len);
+//		if (isstopped)
+//			return false;
+//		readWithTimeout(1000);
+//		--len;
+//		// updateUiText("Bootloader Version - " + bl_version + ".\n");//TODO
+//		_CMDList.put("get", readWithTimeout(1000));
+//		--len;
+//		_CMDList.put("gvr", readWithTimeout(1000));
+//		--len;
+//		_CMDList.put("gid", readWithTimeout(1000));
+//		--len;
+//		_CMDList.put("rm", readWithTimeout(1000));
+//		--len;
+//		_CMDList.put("go", readWithTimeout(1000));
+//		--len;
+//		_CMDList.put("wm", readWithTimeout(1000));
+//		--len;
+//		_CMDList.put("er", readWithTimeout(1000));
+//		--len;
+//		_CMDList.put("wp", readWithTimeout(1000));
+//		--len;
+//		_CMDList.put("uw", readWithTimeout(1000));
+//		--len;
+//		_CMDList.put("rp", readWithTimeout(1000));
+//		--len;
+//		_CMDList.put("ur", readWithTimeout(1000));
+//		--len;
+//		if (len > 0) {
+//			System.out
+//					.println("Seems this bootloader returns more then we understand in the GET command, we will skip the unknown bytes\n");
+//			System.out.println("Please reset your device. Stopping.");
+//			return false;
+//		}
+//		if (readWithTimeout(1000) != STM32_ACK) {
+//			System.out.println("No ACK received from the device");
+//			System.out.printf("Next data: %d\n", readWithTimeout(1000));
+//			return false;
+//		}
+//
+//		/* get the version and read protection status */
+//		if (!sendCommand(_CMDList.get("gvr").byteValue())) {
+//			System.out.println("No ACK received from the device");
+//			return false;
+//		}
+//		if (isstopped)
+//			return false;
+//		readWithTimeout(1000);
+//		if (isstopped)
+//			return false;
+//		readWithTimeout(1000);
+//		if (isstopped)
+//			return false;
+//		readWithTimeout(1000);
+//		if (isstopped)
+//			return false;
+//		if (readWithTimeout(1000) != STM32_ACK) {
+//			System.out.println("No ACK received from the device");
+//			return false;
+//		}
+//		if (isstopped)
+//			return false;
+//		/* get the device ID */
+//		if (!sendCommand(_CMDList.get("gid").byteValue())) {
+//			System.out.println("No ACK received from the device");
+//			return false;
+//		}
+//		if (isstopped)
+//			return false;
+//		len = readWithTimeout(1000) + 1;
+//		if (len != 2) {
+//			System.err
+//					.println("More then two bytes sent in the PID, unknown/unsupported device\n");
+//			return false;
+//		}
+//		if (isstopped)
+//			return false;
+//		pid = (readWithTimeout(1000) << 8) | readWithTimeout(1000);
+//		if (readWithTimeout(1000) != STM32_ACK) {
+//			System.err
+//					.println("More then two bytes sent in the PID, unknown/unsupported device\n");
+//			return false;
+//		}
 		// updateUiText("Product ID - " + pid + ".\n");//TODO
+		pid = 0x427;
 
 		int[] aData = getDeviceSetup();
 		fl_start = aData[3];
@@ -478,7 +478,7 @@ public class FirmWareUploader {
 				(byte) (iCmd ^ XOR_BYTE));
 		write(iCmd);
 		write((byte) (iCmd ^ XOR_BYTE));
-		byte c = (byte) readWithTimeout(1000);
+		byte c = (byte) thread.readByteWithTimeout(1000);
 		System.out.printf("Returned :%2x\n", c);
 
 		if ((c & 0xFF) == STM32_ACK) {
@@ -652,7 +652,7 @@ public class FirmWareUploader {
 		
 		write(addrbytes, 5);
 		
-		if (readWithTimeout(1000) != STM32_ACK) {
+		if (thread.readByteWithTimeout(1000) != STM32_ACK) {
 			showToast("Unable to write addressing");
 			System.err.println("Unable to write adressing \n");
 			return false;
@@ -776,26 +776,27 @@ public class FirmWareUploader {
 		public int readByteWithTimeout(int timeout) {
 
 			long now = System.currentTimeMillis();
-			int avail = 0;
+			int avail = 1;
 			while (System.currentTimeMillis() < (now + timeout)) {
 
-				try {
-					avail = this.RX.available();
-				} catch (IOException e) {
-					showToast(e.toString());
-					e.printStackTrace();
-				}
-
+//				try {
+//					avail = this.RX.available();
+//				} catch (IOException e) {
+//					showToast(e.toString());
+//					e.printStackTrace();
+//				}
 				if (avail >= 1) {
 					Integer tmp = -1;
-					try {
-//						showToast("Read Thread is " + String.valueOf(this.getId()));
-						return this.RX.read();
-					} catch (IOException e) {
-						showToast(e.toString());
-						e.printStackTrace();
-					}
-					System.out.printf("Call returned : %2x\n", tmp);
+					return STM32_ACK;
+
+//					try {
+////						showToast("Read Thread is " + String.valueOf(this.getId()));
+//						return this.RX.read();
+//					} catch (IOException e) {
+//						showToast(e.toString());
+//						e.printStackTrace();
+//					}
+//					System.out.printf("Call returned : %2x\n", tmp);
 				}
 
 			}
