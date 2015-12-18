@@ -714,9 +714,9 @@ public class FirmWareUploader {
 	}
 
 	private void write(byte[] iData, int length) {
-		for (int i = 0; i < length; i++) {
-			System.out.printf("Sending Byte: %2x\n", iData[i]);
-		}
+//		for (int i = 0; i < length; i++) {
+//			System.out.printf("Sending Byte: %2x\n", iData[i]);
+//		}
 
 		try {
 			TX.write(iData, 0, length);
