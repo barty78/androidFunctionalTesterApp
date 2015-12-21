@@ -54,6 +54,7 @@ public class TestFromSequenceCreator {
 	}
 
 	private static Sensors createSensors(NewSequenceInterface sequence) {
+		if(!containsSensorsTests(sequence))return null;
 		Sensors sensors = new Sensors();
 		sensors.setS0(createS0(sequence));
 		sensors.setS1(createS1(sequence));
@@ -299,7 +300,6 @@ public class TestFromSequenceCreator {
 				SensorTestWrapper sensorTestWrapper = (SensorTestWrapper) sequence
 						.getSequence().get(i);
 				result.add(sensorTestWrapper.getIdTest());
-
 			}
 
 		}
@@ -337,6 +337,14 @@ public class TestFromSequenceCreator {
 		List<Long> result = new ArrayList<Long>();
 		for (int i = 0; i < sequence.getSequence().size(); i++) {
 				result.add(sequence.getSequence().get(i).getIdTest());
+		}
+		return result;
+	}
+
+	private static boolean containsSensorsTests(NewSequenceInterface sequence){
+		boolean result =false;
+		for (int i = 0; i < sequence.getSequence().size(); i++) {
+			if(sequence.getSequence().get(i) instanceof SensorTestWrapper )return true;
 		}
 		return result;
 	}

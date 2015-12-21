@@ -65,4 +65,5 @@ public interface NewSequenceInterface {
 
 	ArrayList<NewMResult> getEmptyResultsList();
 
+	void deleteUnusedTests();
 }

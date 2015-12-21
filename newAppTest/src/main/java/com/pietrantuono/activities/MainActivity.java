@@ -1,11 +1,8 @@
 package com.pietrantuono.activities;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
-import com.activeandroid.Model;
-import com.activeandroid.query.Select;
 import com.crashlytics.android.Crashlytics;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -38,7 +35,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 import io.fabric.sdk.android.Fabric;
@@ -55,7 +51,6 @@ import server.MyDoubleTypeAdapter;
 import server.MyIntTypeAdapter;
 import server.MyLongTypeAdapter;
 import server.RetrofitRestServices;
-import server.TestsParser;
 import server.pojos.Device;
 import server.pojos.Job;
 import server.pojos.records.TestRecord;
@@ -271,14 +266,14 @@ public class MainActivity extends Activity
 		newSequence.setEndtime(System.currentTimeMillis());
 		final boolean overallresult = newSequence.getOverallResultBool();
 		Log.d(TAG, "Overall Sequence Result is " + overallresult);
-
-
-		if (newSequence.isLog()){							// Create a record if sequence is set as logging,
+		if (newSequence.isLog()){// Create a record if sequence is set as logging,
+			newSequence.deleteUnusedTests();
 			if (newSequence.getCurrentTestNumber() != 0) {    //  Don't create a record if the first test failed,
 				// usually Barcode Test.
 				// 	TODO - Maybe check if barcode is actually set instead,
 				// if no barcode then no record
 				TestRecord record = TestFromSequenceCreator.createRecordFromSequence(newSequence);
+				MyDatabaseUtils.RecontructRecord(record);
 				Gson gson = new GsonBuilder()
 						.excludeFieldsWithoutExposeAnnotation()
 						.registerTypeAdapter(Long.class, new MyLongTypeAdapter())
