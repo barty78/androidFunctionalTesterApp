@@ -31,7 +31,7 @@ public class Test {
     @Expose
     private Long active;
     @Expose
-    private Boolean isNominal;
+    private int isNominal;
     @Expose
     private Double limitParam1;
     @Expose
@@ -225,11 +225,11 @@ public class Test {
         this.active = active;
     }
 
-    public Boolean getIsNominal() {
+    public int getIsNominal() {
         return isNominal;
     }
 
-    public void setIsNominal(Boolean isNominal) {this.isNominal = isNominal;}
+    public void setIsNominal(int isNominal) {this.isNominal = isNominal;}
 
     public Double getLimitParam1() {
         return limitParam1;
