@@ -15,6 +15,7 @@ import server.pojos.records.SingleTest;
 import server.pojos.records.Test;
 import server.pojos.records.TestRecord;
 
+import com.activeandroid.Model;
 import com.activeandroid.query.Select;
 
 public class MyDatabaseUtils {
@@ -108,6 +109,7 @@ public class MyDatabaseUtils {
         Sensors sensors = new Select().from(Sensors.class).where("Readings = ?", readingss.getId()).executeSingle();
         if (sensors != null) {
             S0 s0 = new Select().from(S0.class).where("Sensors = ?", readingss.getId()).executeSingle();
+            List<Model> foo = new Select().from(S0.class).execute();
             sensors.setS0(s0);
 
             S1 s1 = new Select().from(S1.class).where("Sensors = ?", readingss.getId()).executeSingle();

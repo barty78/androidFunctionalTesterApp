@@ -5,6 +5,7 @@ import java.util.Set;
 
 import com.pietrantuono.activities.MyOnCancelListener;
 import com.pietrantuono.activities.NewIOIOActivityListener;
+import com.pietrantuono.activities.SettingsActivity;
 import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.ioioutils.IOIOUtils;
 import com.pietrantuono.pericoach.newtestapp.R;
@@ -29,12 +30,15 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.text.InputType;
 import android.util.Log;
 import android.widget.EditText;
 import hydrix.pfmat.generic.Device;
 public class BTUtility {
+	private String macaddress = null;
 	private WeakReference<Activity> activityRef;
 	private BluetoothAdapter mBTAdapter = BluetoothAdapter.getDefaultAdapter();
 	private ArrayList<ConnectDeviceItem> mListItems = null;
@@ -94,11 +98,12 @@ public class BTUtility {
 		}
 	}
 	public BTUtility(Activity activity1, String scancode,
-			NewIOIOActivityListener IOIOActivityListener) {
+			NewIOIOActivityListener IOIOActivityListener, String macaddress) {
 		if (isstopped)
 			return;
 		this.activityRef = new WeakReference<Activity>(activity1);
 		this.scancode = scancode;
+		this.macaddress=macaddress;
 		final Activity activity = activityRef.get();
 		if (activity == null)
 			return;
@@ -115,17 +120,29 @@ public class BTUtility {
 	}
 	private void onConnectFailed() {
 		retries++;
-		if (retries < 3) {
+		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(activityRef.get());
+		boolean usemac = sharedPref.getBoolean(activityRef.get().getResources().getString(R.string.use_mac), false);
+		if (!usemac && retries < 3) {
 			startDiscovery();
+			return;
+		}
+		if (usemac && retries < 3) {
+			connectUsingMac();
 			return;
 		}
 		((NewIOIOActivityListener) activityRef.get()).addFailOrPass(
 				false, false, bluetoothConnectTest.getDescription());
 	}
+
+	private void discoveryAndConnect(){}
+
 	public void connectProbeViaBT(Test bluetoothConnectTest) {
 		if (isstopped)
 			return;
 		this.bluetoothConnectTest=bluetoothConnectTest;
+		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(activityRef.get());
+		boolean usemac = sharedPref.getBoolean(activityRef.get().getResources().getString(R.string.use_mac), false);
+		if(usemac){connectUsingMac();return;}
 		mListItems = new ArrayList<ConnectDeviceItem>();
 		// Register for BT device discovery broadcast events
 		IntentFilter eventFilter = new IntentFilter();
@@ -221,6 +238,35 @@ public class BTUtility {
 			}
 		}
 	}
+
+	public void connectUsingMac(){
+		if (isstopped)
+			return;
+		mListItems = new ArrayList<ConnectDeviceItem>();
+
+		Set<BluetoothDevice> pairedDevices = mBTAdapter.getBondedDevices();
+		if (pairedDevices.size() > 0)
+			for (BluetoothDevice device : pairedDevices)
+				if (device.getName() != null
+						&& (device.getName().contains("PeriCoach"))) {
+					mListItems.add(new ConnectDeviceItem(Type.DEVICE, device
+							.getName(), device, R.drawable.device));
+				}
+		removeDevicesFromList(true, true);
+		IntentFilter connectFilter = new IntentFilter();
+		connectFilter.addAction(INTENT_CONNECT_FAILED);
+		connectFilter.addAction(INTENT_CONNECT_SUCCEEDED);
+		// connectFilter.addAction(INTENT_REFRESH);
+		activityRef.get().registerReceiver(mConnectReceiver, connectFilter);
+		BluetoothDevice device = mBTAdapter.getRemoteDevice(macaddress);
+		NewPFMATDevice.specifyDevice(device, activityRef.get());
+		NewPFMATDevice.connect(activityRef.get(), INTENT_CONNECT_SUCCEEDED,
+				INTENT_CONNECT_FAILED);
+
+	}
+
+
+
 	private void onConnectSucceeded() {
 		if (isstopped)
 			return;

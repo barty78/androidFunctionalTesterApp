@@ -27,4 +27,6 @@ public interface NewIOIOActivityListener {
 	public void onCurrentSequenceEnd();
 
 	void setResult(boolean success);
+
+	String getMac();
 }

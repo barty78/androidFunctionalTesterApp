@@ -4,7 +4,7 @@ import com.pietrantuono.btutility.BTUtility;
 import com.pietrantuono.tests.superclass.Test;
 public class BluetoothConnectTestForTesting extends Test {
 	private BTUtility btUtility;
-	private Boolean testing = false;
+	private Boolean testing = true;
 	public BluetoothConnectTestForTesting(Activity activity) {
 		super(activity, null, "Bluetooth Connect", false, true, 0, 0, 0);
 	}
@@ -21,9 +21,9 @@ public class BluetoothConnectTestForTesting extends Test {
 					// ""
 					// for
 					// testing
-					activityListener);
+					activityListener,"00:17:E9:C0:82:EE");
 		else
-			btUtility = new BTUtility((Activity)activityListener, activityListener.getSerial(), activityListener);
+			btUtility = new BTUtility((Activity)activityListener, activityListener.getSerial(), activityListener,activityListener.getMac());
 		activityListener.setBtutility(btUtility);
 		btUtility.connectProbeViaBT(BluetoothConnectTestForTesting.this);
 	}

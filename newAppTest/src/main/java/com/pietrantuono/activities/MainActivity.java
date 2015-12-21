@@ -309,6 +309,11 @@ public class MainActivity extends Activity
 		uiHelper.setResult(success);
 	}
 
+	@Override
+	public String getMac() {
+		return newSequence.getBT_Addr();
+	}
+
 	private void waitForPCBConnected() {
 		sequenceStarted=false;
 		Log.d(TAG, "Wait for PCB to connect");
