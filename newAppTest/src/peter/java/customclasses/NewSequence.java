@@ -20,6 +20,7 @@ import com.pietrantuono.tests.implementations.CurrentTest;
 import com.pietrantuono.tests.implementations.DummyUploadFirmwareTest;
 import com.pietrantuono.tests.implementations.GetBarcodeTest;
 import com.pietrantuono.tests.implementations.GetDeviceSerialTest;
+import com.pietrantuono.tests.implementations.GetMacAddressTest;
 import com.pietrantuono.tests.implementations.MagnetWakeDeviceTest;
 import com.pietrantuono.tests.implementations.SensorTestWrapper;
 import com.pietrantuono.tests.implementations.UploadFirmwareTest;
@@ -314,6 +315,7 @@ public class NewSequence implements NewSequenceInterface {
 ////				"Voltage Measurement - Sleep Mode (V_BT)"));
 //
 //		sequence.add(new MagnetWakeDeviceTest(activity, ioio));
+//		sequence.add(new GetMacAddressTest(activity, ioio));
 //
 //		sequence.add(new CurrentTest(activity, ioio, 42, Current.Units.mA, true, 30f, 0.2f,
 //				"Current Measurement - Awake"));

@@ -16,6 +16,7 @@ public interface NewIOIOActivityListener {
 	public ProgressAndTextView addFailOrPass(String otherreadig,final Boolean istest, final Boolean success, String description); 
 	public ProgressAndTextView addFailOrPass(final Boolean istest, final Boolean success,String rading, String description);
 	public void setSerial(String serial);
+	public void setMacAddress(String address);
 	public String getSerial();
 	public BTUtility getBtutility();
 	public void setBtutility(BTUtility btutility);

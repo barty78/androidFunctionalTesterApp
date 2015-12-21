@@ -15,6 +15,7 @@ import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.constants.NewSequenceInterface;
 import com.pietrantuono.tests.implementations.GetBarcodeTest;
 import com.pietrantuono.tests.implementations.GetDeviceSerialTest;
+import com.pietrantuono.tests.implementations.GetMacAddressTest;
 import com.pietrantuono.tests.implementations.ReadModelNumberTest;
 import com.pietrantuono.tests.implementations.SensorTestWrapper;
 
@@ -138,6 +139,21 @@ public class TestFromSequenceCreator {
 			return serial;
 		serial = deviceSerialTest.getSerial();
 		return serial;
+
+	}
+
+	private static String getMacAddr(NewSequenceInterface sequence) {
+		String mac = "";
+		GetMacAddressTest macAddressTest = null;
+		for (int i = 0; i < sequence.getSequence().size(); i++) {
+			if (sequence.getSequence().get(i) instanceof GetMacAddressTest)
+				macAddressTest = (GetMacAddressTest) sequence.getSequence()
+						.get(i);
+		}
+		if (macAddressTest == null)
+			return mac;
+		mac = macAddressTest.getMacAddr();
+		return mac;
 
 	}
 

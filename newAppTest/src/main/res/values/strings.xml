@@ -125,6 +125,7 @@
     <string name="unprocessed">unporcessed</string>
     <string name="download_all">download_all</string>
     <string name="download_unprocessed">download_unprocessed</string>
+    <string name="mac">BT MAC ADDR: </string>
 
     <string-array name="action_list">
         <item>Manual</item>

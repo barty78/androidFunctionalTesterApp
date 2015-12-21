@@ -541,6 +541,7 @@ public class FirmWareUploader {
 		try {
 			readByte = future.get(timeout, TimeUnit.MILLISECONDS);
 		} catch (Exception e) {
+			future.cancel(true);
 			showToast("Read Timeout!");
 			Log.e(TAG, e.toString());
 			return -1;
