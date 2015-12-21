@@ -17,7 +17,6 @@ public class TestRecord extends MyModel{
     //@Expose NB: not needed anymore
     private boolean uploaded=false;
 
-
     @Column(name = "JobNo")
 	//@Expose NB: not needed anymore
     private long JobNo;
@@ -61,6 +60,10 @@ public class TestRecord extends MyModel{
     @Column(name = "log")
     private boolean log=true;
 
+    @Column(name = "BT_Addr")
+    @Expose
+    private String BT_Addr;
+
     public boolean isLog() {
 		return log;
 	}
@@ -69,187 +72,95 @@ public class TestRecord extends MyModel{
 		this.log = log;
 	}
 
-	/**
-     * 
-     * @return
-     *     The JobNo
-     */
     public long getJobNo() {
         return JobNo;
     }
 
-    /**
-     * 
-     * @param JobNo
-     *     The JobNo
-     */
     public void setJobNo(long JobNo) {
         this.JobNo = JobNo;
     }
 
-    /**
-     * 
-     * @return
-     *     The FixtureNo
-     */
     public String getFixtureNo() {
         return FixtureNo;
     }
 
-    /**
-     * 
-     * @param FixtureNo
-     *     The FixtureNo
-     */
     public void setFixtureNo(String FixtureNo) {
         this.FixtureNo = FixtureNo;
     }
 
-    /**
-     * 
-     * @return
-     *     The Barcode
-     */
     public long getBarcode() {
         return Barcode;
     }
 
-    /**
-     * 
-     * @param Barcode
-     *     The Barcode
-     */
     public void setBarcode(long Barcode) {
         this.Barcode = Barcode;
     }
 
-    /**
-     * 
-     * @return
-     *     The Serial
-     */
     public String getSerial() {
         return Serial;
     }
 
-    /**
-     * 
-     * @param Serial
-     *     The Serial
-     */
     public void setSerial(String Serial) {
         this.Serial = Serial;
     }
 
-    /**
-     * 
-     * @return
-     *     The Model
-     */
     public long getModel() {
         return Model;
     }
 
-    /**
-     * 
-     * @param Model
-     *     The Model
-     */
     public void setModel(long Model) {
         this.Model = Model;
     }
 
-    /**
-     * 
-     * @return
-     *     The FWVer
-     */
     public String getFWVer() {
         return FWVer;
     }
 
-    /**
-     * 
-     * @param FWVer
-     *     The FWVer
-     */
     public void setFWVer(String FWVer) {
         this.FWVer = FWVer;
     }
 
-    /**
-     * 
-     * @return
-     *     The StartedAt
-     */
     public String getStartedAt() {
         return StartedAt;
     }
 
-    /**
-     * 
-     * @param StartedAt
-     *     The StartedAt
-     */
     public void setStartedAt(String StartedAt) {
         this.StartedAt = StartedAt;
     }
 
-    /**
-     * 
-     * @return
-     *     The Duration
-     */
     public String getDuration() {
         return Duration;
     }
 
-    /**
-     * 
-     * @param Duration
-     *     The Duration
-     */
     public void setDuration(String Duration) {
         this.Duration = Duration;
     }
 
-    /**
-     * 
-     * @return
-     *     The Readings
-     */
     public Readings getReadings() {
         return Readings;
     }
 
-    /**
-     * 
-     * @param Readings
-     *     The Readings
-     */
     public void setReadings(Readings Readings) {
         this.Readings = Readings;
     }
 
-    /**
-     * 
-     * @return
-     *     The Result
-     */
     public long getResult() {
         return Result;
     }
 
-    /**
-     * 
-     * @param Result
-     *     The Result
-     */
     public void setResult(long Result) {
         this.Result = Result;
     }
 
-	@Override
+    public String getBT_Addr() {
+        return BT_Addr;
+    }
+
+    public void setBT_Addr(String BT_Addr) {
+        this.BT_Addr = BT_Addr;
+    }
+
+    @Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;

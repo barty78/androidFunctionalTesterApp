@@ -3,9 +3,7 @@ package customclasses;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import android.app.Activity;
 
@@ -14,6 +12,7 @@ import com.pietrantuono.constants.NewMResult;
 import com.pietrantuono.constants.NewMSensorResult;
 import com.pietrantuono.constants.NewSequenceInterface;
 import com.pietrantuono.tests.implementations.BluetoothConnectTestForTesting;
+import com.pietrantuono.tests.implementations.GetMacAddressTest;
 import com.pietrantuono.tests.implementations.SensorTestWrapper;
 import com.pietrantuono.tests.implementations.steps.Step;
 import com.pietrantuono.tests.superclass.Test;
@@ -140,6 +139,14 @@ public class NewSequence implements NewSequenceInterface {
 	public void deleteUnusedTests() {
 		int currentTestNumber = getCurrentTestNumber();
 		sequence.subList(currentTestNumber + 1, sequence.size()).clear();
+	}
+
+	@Override
+	public String getBT_Addr() {
+		String mac="";
+		for(Test test:sequence)
+		{if(test instanceof GetMacAddressTest)mac=((GetMacAddressTest)test).getBT_Addr();}
+		return mac;
 	}
 
 	@Override
@@ -408,6 +415,7 @@ public class NewSequence implements NewSequenceInterface {
 				"Sensor Input Test, LOADED, GAIN @ 127"));
 		test = new MyDummyTest.Builder().setActivity(activity).setDescription("fourth").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
 		sequence.add(test);
+
 	}
 
 	@Override

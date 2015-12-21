@@ -1,0 +1,1 @@
+ALTER TABLE TestRecord ADD COLUMN BT_Addr TEXT;

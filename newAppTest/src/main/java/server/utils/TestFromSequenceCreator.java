@@ -39,6 +39,7 @@ public class TestFromSequenceCreator {
 		record.setSerial(getSerial(sequence));
 		record.setStartedAt(sequence.getStartTime());
 		record.setLog(sequence.isLog());
+		record.setBT_Addr(sequence.getBT_Addr());
 		Readings readings = createReadings(sequence);
 		record.setReadings(readings);// TODO implement
 		MyDatabaseUtils.ProcessAndSaveRecords(record);
@@ -153,7 +154,7 @@ public class TestFromSequenceCreator {
 		}
 		if (macAddressTest == null)
 			return mac;
-		mac = macAddressTest.getMacAddr();
+		mac = macAddressTest.getBT_Addr();
 		return mac;
 
 	}

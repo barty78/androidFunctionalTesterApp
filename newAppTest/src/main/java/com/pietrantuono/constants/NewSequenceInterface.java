@@ -66,4 +66,6 @@ public interface NewSequenceInterface {
 	ArrayList<NewMResult> getEmptyResultsList();
 
 	void deleteUnusedTests();
+
+	String getBT_Addr();
 }

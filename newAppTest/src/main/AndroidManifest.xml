@@ -115,7 +115,7 @@
             android:value="com.pietrantuono.pericoach.newtestapp.fuf.db" />
         <meta-data
             android:name="AA_DB_VERSION"
-            android:value="3" />
+            android:value="5" />
     </application>
 
 </manifest>

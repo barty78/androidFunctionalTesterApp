@@ -68,7 +68,7 @@ public class GetMacAddressTest extends Test {
         }
     }
 
-    public String getMacAddr() {
+    public String getBT_Addr() {
         return mac;
     }
 

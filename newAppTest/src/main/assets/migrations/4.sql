@@ -1,0 +1,3 @@
+ALTER TABLE TestRecord ADD COLUMN mac TEXT;
+
+
