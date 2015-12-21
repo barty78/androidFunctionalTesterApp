@@ -46,7 +46,7 @@ public class TestsParser {
 			test = new GetBarcodeTest(activity, ioio, job, limitParam1);
 			break;
 		case 2:
-			boolean isNominal = (boolean) testToBeParsed.getIsNominal();
+			boolean isNominal = testToBeParsed.getIsNominal()==1;
 			limitParam1 = (float) testToBeParsed.getLimitParam1().doubleValue();
 			float limitParam2 = (float) testToBeParsed.getLimitParam2().doubleValue();
 			int pinnumber = (int) testToBeParsed.getIoiopinnum();
@@ -54,7 +54,7 @@ public class TestsParser {
 					getDescription(testToBeParsed));
 			break;
 		case 3:
-			isNominal = (boolean) testToBeParsed.getIsNominal();
+			isNominal = testToBeParsed.getIsNominal()==1;
 			limitParam1 = (float) testToBeParsed.getLimitParam1().doubleValue();
 			limitParam2 = (float) testToBeParsed.getLimitParam2().doubleValue();
 			pinnumber = (int) testToBeParsed.getIoiopinnum();

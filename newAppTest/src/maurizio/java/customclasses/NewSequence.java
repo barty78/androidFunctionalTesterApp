@@ -406,7 +406,7 @@ public class NewSequence implements NewSequenceInterface {
 		test = new MyDummyTest.Builder().setActivity(activity).setDescription("second").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
 		test.setIdTest(2);test.setValue(2);
 		sequence.add(test);
-		test = new MyDummyTest.Builder().setActivity(activity).setDescription("third").setIoio(ioio).setIsBlockingTest(true).createMyDummyTest();
+		test = new MyDummyTest.Builder().setActivity(activity).setDescription("third").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
 		test.setSuccess(false);test.setIdTest(3);test.setValue(3);
 		sequence.add(test);
 		sequence.add(new BluetoothConnectTestForTesting(activity));
