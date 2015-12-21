@@ -195,6 +195,7 @@ public class BTUtility {
 		if (isstopped)
 			return;
 		if (device.getName() != null) {
+			Log.d("BT ADDR:", device.getAddress());
 			Log.d("BT NAME:", device.getName());
 			if (device.getName() != ""
 					&& (device.getName().contains("PeriCoach-" + scancode))) {

@@ -72,6 +72,7 @@ public class DummyFirmWareUploader {
 	private UploaderListener listener;
 	private IOIO ioio_;
 	private static Boolean stopthread=false;
+	private Boolean loopback;
 
 	private static ReadThread thread;
 
@@ -83,11 +84,12 @@ public class DummyFirmWareUploader {
 
 	public DummyFirmWareUploader(OutputStream TX, InputStream RX, Activity c,
 								 ProgressBar progress, TextView percent,
-								 NewIOIOActivityListener listner, IOIO ioio_) {
+								 NewIOIOActivityListener listner, IOIO ioio_, Boolean loopback) {
 		this.TX = TX;
 		this.c = c;
 		this.RX = RX;
 		this.ioio_ = ioio_;
+		this.loopback = loopback;
 		this.progress = progress;
 		this.percent = percent;
 		isstopped = false;
@@ -694,10 +696,17 @@ public class DummyFirmWareUploader {
 		IOIOUtils.getUtils().ioioSync(ioio_);
 //		showToast("after, ioioSync");
 
+		byte aRes;
+		if (loopback) {
+			// Read to ensure receive expected number of bytes
+			aRes = (byte) thread.readBytesWithTimeout(1000);
+		} else {
+			aRes = (byte) thread.readByteWithTimeout(1000);
+		}
+
 		System.out.printf("Checksum : %2x\n", ((int) cs) & 0xFF);
 		//byte aRes = (byte) readWithTimeout(2 * 1000);
 //		byte aRes = (byte) readLoopWithTimeout(2 * 1000);
-		byte aRes = (byte) thread.readByteWithTimeout(1000);
 
 		System.out.printf("Result write : %2x\n", ((int) aRes) & 0xFF);
 		return aRes == STM32_ACK;
@@ -713,7 +722,7 @@ public class DummyFirmWareUploader {
 
 	private void write(byte[] iData, int length) {
 		for (int i = 0; i < length; i++) {
-			System.out.printf("Sending Byte: %2x\n", iData[i]);	
+			System.out.printf("Sending Byte: %2x\n", iData[i]);
 		}
 
 		try {
@@ -804,6 +813,50 @@ public class DummyFirmWareUploader {
 			return -1;
 
 		}
+
+		public int readBytesWithTimeout(int timeout) {
+
+			long now = System.currentTimeMillis();
+			int avail = 1;
+			int numbytes = 0;
+			int res = -1;
+			byte[] bytes = new byte[256];
+			while (System.currentTimeMillis() < (now + timeout)) {
+
+				try {
+					avail = this.RX.available();
+				} catch (IOException e) {
+					showToast(e.toString());
+					e.printStackTrace();
+				}
+				if (avail >= 1) {
+					try {
+						numbytes = RX.read();
+						Log.d(TAG, "Number of bytes expected is " + numbytes);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+
+					try {
+						res = RX.read(bytes,0,numbytes);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					Log.d(TAG, "Number of bytes actual is " + res);
+
+					if (res == numbytes) {
+						return STM32_ACK;
+					}
+//					Integer tmp = -1;
+					return STM32_ACK;
+				}
+
+			}
+			showToast("Read Timeout!");
+			return -1;
+
+		}
+
 
 		private void emptyInputStream() {
 			try {

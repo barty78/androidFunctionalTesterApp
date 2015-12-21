@@ -69,6 +69,7 @@ public class MainActivity extends Activity
 	private final IOIOAndroidApplicationHelperWrapper ioioAndroidApplicationHelperWrapper = new IOIOAndroidApplicationHelperWrapper(this);
 	private DigitalInput _PCB_Detect;
 	private String serial = "";
+	private String mac = "";
 	private Boolean destroying = false;
 	private PCBDetectHelperInterface detectHelper = null;
 	private ArrayList<ArrayList<NewMResult>> results = new ArrayList<ArrayList<NewMResult>>();
@@ -475,6 +476,11 @@ public class MainActivity extends Activity
 	@Override
 	public void setSerial(String serial) {
 		this.serial = serial;
+	}
+
+	@Override
+	public void setMacAddress(String mac) {
+		this.mac = mac;
 	}
 
 	public BTUtility getBtutility() {

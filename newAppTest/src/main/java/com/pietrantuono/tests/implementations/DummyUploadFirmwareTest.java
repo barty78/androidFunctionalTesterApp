@@ -35,8 +35,11 @@ public class DummyUploadFirmwareTest extends Test {
 	boolean fileComparisonPassed=false;
 	boolean fileMD5Passed=false;
 	private int retries;
-	public DummyUploadFirmwareTest(Activity activity, IOIO ioio) {
+	private Boolean loopback;
+
+	public DummyUploadFirmwareTest(Activity activity, IOIO ioio, Boolean loopback) {
 		super(activity, ioio, "Dummy Upload Firmware", false, true, 0, 0, 0);			// Blocking Test, if fails - STOP
+		this.loopback = loopback;
 	}
 	@Override
 	public void execute() {
@@ -59,7 +62,7 @@ public class DummyUploadFirmwareTest extends Test {
 		}
 
 		dummyFirmWareUploader = new DummyFirmWareUploader(TX, RX, (Activity)activityListener,
-				pet.getProgress(), pet.getTextView(), activityListener, ioio);
+				pet.getProgress(), pet.getTextView(), activityListener, ioio, loopback);
 
 
 		Log.e(TAG, "Initialization loop");

@@ -56,7 +56,6 @@ public class GetDeviceSerialTest extends Test {
 			public void run() {
 				activityListener.setSerial("");
 				String strFileContents = "";
-
 				if (IOIOUtils.getUtils().getUartLog().length() != 0) {		// Did we receive anything at all
 
 					if (IOIOUtils.getUtils().getUartLog().indexOf("itoa16: ") != -1) {

@@ -541,6 +541,7 @@ public class FirmWareUploader {
 		try {
 			readByte = future.get(timeout, TimeUnit.MILLISECONDS);
 		} catch (Exception e) {
+			future.cancel(true);
 			showToast("Read Timeout!");
 			Log.e(TAG, e.toString());
 			return -1;
@@ -714,9 +715,9 @@ public class FirmWareUploader {
 	}
 
 	private void write(byte[] iData, int length) {
-		for (int i = 0; i < length; i++) {
-			System.out.printf("Sending Byte: %2x\n", iData[i]);
-		}
+//		for (int i = 0; i < length; i++) {
+//			System.out.printf("Sending Byte: %2x\n", iData[i]);
+//		}
 
 		try {
 			TX.write(iData, 0, length);
