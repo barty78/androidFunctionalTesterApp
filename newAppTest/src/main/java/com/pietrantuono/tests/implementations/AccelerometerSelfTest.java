@@ -21,7 +21,9 @@ public class AccelerometerSelfTest extends Test {
 	}
 	@Override
 	public void execute() {
-		IOIOUtils.getUtils().modeApplication((Activity)activityListener);
+		if (IOIOUtils.getUtils().getUutMode(getActivity()) == IOIOUtils.Mode.bootloader) {
+			IOIOUtils.getUtils().modeApplication((Activity) activityListener);
+		}
 		if(isinterrupted)return;
 		Log.d(TAG, TAG+" "+IOIOUtils.getUtils().getUartLog().toString());
 		if (IOIOUtils.getUtils().getUartLog().indexOf("MPU6500 Self-Test Passed!") != -1) {

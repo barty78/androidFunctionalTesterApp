@@ -34,11 +34,12 @@ public class GetMacAddressTest extends Test {
 
     @Override
     public void execute() {
-        IOIOUtils.getUtils().modeApplication((Activity) activityListener);
+        if (IOIOUtils.getUtils().getUutMode(getActivity()) == IOIOUtils.Mode.bootloader) {
+            IOIOUtils.getUtils().modeApplication((Activity) activityListener);
+        }
         if (isinterrupted) return;
         String strFileContents = "";
 
-        Log.d(TAG, TAG + " " + IOIOUtils.getUtils().getUartLog().toString());
         if (IOIOUtils.getUtils().getUartLog().length() != 0) {
             if (IOIOUtils.getUtils().getUartLog().indexOf(key) != -1) {
                 strFileContents = IOIOUtils.getUtils().getUartLog()
@@ -47,7 +48,9 @@ public class GetMacAddressTest extends Test {
                         .toString();
             }
 
-            Pattern pattern = Pattern.compile("^([[:xdigit:]]{2}[:.-]?){5}[[:xdigit:]]{2}$");
+            Log.d(TAG, "BT ADDR " + strFileContents);
+
+            Pattern pattern = Pattern.compile("^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$");
             Matcher matcher = pattern.matcher(strFileContents);
             if (matcher.matches()) {
                 Log.d("MAC: ", "MAC VALID.");

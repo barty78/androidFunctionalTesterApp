@@ -9,6 +9,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.util.HashMap;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -73,10 +75,6 @@ public class FirmWareUploader {
 	private WriteTask task = null;
 	private UploaderListener listener;
 	private IOIO ioio_;
-	private static Boolean stopthread=false;
-
-	private static ReadThread thread;
-
 
 	private int stm32_gen_cs(int v) {
 		return ((v & 0xFF000000) >> 24) ^ ((v & 0x00FF0000) >> 16)
@@ -94,11 +92,6 @@ public class FirmWareUploader {
 		this.percent = percent;
 		isstopped = false;
 
-		if(thread == null) {
-			thread = new ReadThread(RX);
-			Log.d(TAG, "Starting Reading Thread");
-			thread.start();
-		}
 	}
 
 	public void write(int c) {
@@ -121,7 +114,7 @@ public class FirmWareUploader {
 
 		write(STM32_CMD_INIT);
 
-		int tmp = (readWithTimeout(2000) & 0xFF);
+		int tmp = (readWithTimerTimeout(2000) & 0xFF);
 		if (tmp == STM32_ACK) {
 			return true;
 		}
@@ -133,14 +126,12 @@ public class FirmWareUploader {
 		private int prog = 0;
 
 		protected Void doInBackground(Void... v) {
-			showToast("doInBackground");
 
 			if (isCancelled())
 				return null;
 			try {
 
 				BinaryParser aParser = new BinaryParser(c);
-//				showToast(aParser.toString());
 
 				int offset = 0;
 				int size = aParser.getData().length;
@@ -148,7 +139,6 @@ public class FirmWareUploader {
 				System.out.printf("Filesize : %x.\n", size);
 
 				if (size > fl_end - fl_start) {
-//					showToast("fl_end - fl_start");
 
 					System.err
 							.println("File provided larger then available flash space.\n");
@@ -158,11 +148,11 @@ public class FirmWareUploader {
 				//int npages = 0xFF;
 //				if (!erase((byte) 0xFF))			// Erase all memory
 //					return null;
-				
+//
 
 				int addr = fl_start;
 				int len = 0;
-				byte[] buffer = new byte[256];
+				byte[] buffer = new byte[252];
 
 				ByteArrayInputStream aInput = new ByteArrayInputStream(
 						aParser.getData());
@@ -170,12 +160,6 @@ public class FirmWareUploader {
 				System.out.println();
 
 				while (addr < fl_end && offset < size && !isCancelled()) {
-
-//					try {
-//						Thread.sleep(100);
-//					} catch (InterruptedException e) {
-//						e.printStackTrace();
-//					}
 
 					int left = fl_end - addr;
 					len = buffer.length > left ? left : buffer.length;
@@ -185,11 +169,9 @@ public class FirmWareUploader {
 					if (isCancelled())
 						return null;
 					if (!writeMemory(addr, buffer, len)) {
-//						showToast("Failed to write memory at address " + addr);
 						System.err.printf(
 								"Failed to write memory at address 0x%08x\n",
 								addr);
-//						break;
 						return null;
 					} else {
 						fileOutputStream.write(buffer, 0, len);
@@ -271,7 +253,6 @@ public class FirmWareUploader {
 		protected void onPostExecute(Void v) {
 
 			if(isCancelled())return;
-//			showToast("onPostExecute");
 			c.runOnUiThread( new Runnable() {
 				
 				@Override
@@ -309,10 +290,8 @@ public class FirmWareUploader {
 //							}
 //						}, 2000);
 					} else {
-//						showToast("onPostExecute, prog < 100");
 
 						if(listener!=null)listener.onUploadCompleted(false);
-
 
 //						Toast.makeText(c, "WRITE FAILED!",
 //								Toast.LENGTH_LONG).show();
@@ -321,20 +300,6 @@ public class FirmWareUploader {
 							progress.setProgress(0);
 						if (percent != null)
 							percent.setText("");
-
-
-//						Handler h = new Handler();
-//						h.postDelayed(new Runnable() {
-//
-//							@Override
-//							public void run() {
-//								if (progress != null)
-//									progress.setProgress(0);
-//								if (percent != null)
-//									percent.setText("");
-//
-//							}
-//						}, 2000);
 					}
 
 				}
@@ -353,7 +318,7 @@ public class FirmWareUploader {
 	public boolean getInfo() {
 		if (isstopped)
 			return false;
-		thread.emptyInputStream();
+		emptyInputStream();
 		if (!sendCommand(STM32_CMD_GET)) {
 			System.out
 					.println("Failed to send command to the device: reset your device.");
@@ -361,34 +326,35 @@ public class FirmWareUploader {
 		}
 		if (isstopped)
 			return false;
-		int len = readWithTimeout(1000) + 1;
+		int len = readWithTimerTimeout(1000) + 1;
 		System.out.printf("Have to read %d bytes.\n", len);
 		if (isstopped)
 			return false;
-		readWithTimeout(1000);
+		readWithTimerTimeout(1000);
 		--len;
 		// updateUiText("Bootloader Version - " + bl_version + ".\n");//TODO
-		_CMDList.put("get", readWithTimeout(1000));
+		_CMDList.put("get", readWithTimerTimeout(1000));
 		--len;
-		_CMDList.put("gvr", readWithTimeout(1000));
+		_CMDList.put("gvr", readWithTimerTimeout(1000));
 		--len;
-		_CMDList.put("gid", readWithTimeout(1000));
+		_CMDList.put("gid", readWithTimerTimeout(1000));
 		--len;
-		_CMDList.put("rm", readWithTimeout(1000));
+		_CMDList.put("rm", readWithTimerTimeout(1000));
 		--len;
-		_CMDList.put("go", readWithTimeout(1000));
+		_CMDList.put("go", readWithTimerTimeout(1000));
 		--len;
-		_CMDList.put("wm", readWithTimeout(1000));
+		_CMDList.put("wm", readWithTimerTimeout(1000));
 		--len;
-		_CMDList.put("er", readWithTimeout(1000));
+		_CMDList.put("er", readWithTimerTimeout(1000));
+		System.out.printf("Erase Command is %2x\n", _CMDList.get("er"));
 		--len;
-		_CMDList.put("wp", readWithTimeout(1000));
+		_CMDList.put("wp", readWithTimerTimeout(1000));
 		--len;
-		_CMDList.put("uw", readWithTimeout(1000));
+		_CMDList.put("uw", readWithTimerTimeout(1000));
 		--len;
-		_CMDList.put("rp", readWithTimeout(1000));
+		_CMDList.put("rp", readWithTimerTimeout(1000));
 		--len;
-		_CMDList.put("ur", readWithTimeout(1000));
+		_CMDList.put("ur", readWithTimerTimeout(1000));
 		--len;
 		if (len > 0) {
 			System.out
@@ -396,9 +362,9 @@ public class FirmWareUploader {
 			System.out.println("Please reset your device. Stopping.");
 			return false;
 		}
-		if (readWithTimeout(1000) != STM32_ACK) {
+		if (readWithTimerTimeout(1000) != STM32_ACK) {
 			System.out.println("No ACK received from the device");
-			System.out.printf("Next data: %d\n", readWithTimeout(1000));
+			System.out.printf("Next data: %d\n", readWithTimerTimeout(1000));
 			return false;
 		}
 
@@ -409,16 +375,16 @@ public class FirmWareUploader {
 		}
 		if (isstopped)
 			return false;
-		readWithTimeout(1000);
+		readWithTimerTimeout(1000);
 		if (isstopped)
 			return false;
-		readWithTimeout(1000);
+		readWithTimerTimeout(1000);
 		if (isstopped)
 			return false;
-		readWithTimeout(1000);
+		readWithTimerTimeout(1000);
 		if (isstopped)
 			return false;
-		if (readWithTimeout(1000) != STM32_ACK) {
+		if (readWithTimerTimeout(1000) != STM32_ACK) {
 			System.out.println("No ACK received from the device");
 			return false;
 		}
@@ -431,7 +397,7 @@ public class FirmWareUploader {
 		}
 		if (isstopped)
 			return false;
-		len = readWithTimeout(1000) + 1;
+		len = readWithTimerTimeout(1000) + 1;
 		if (len != 2) {
 			System.err
 					.println("More then two bytes sent in the PID, unknown/unsupported device\n");
@@ -439,8 +405,8 @@ public class FirmWareUploader {
 		}
 		if (isstopped)
 			return false;
-		pid = (readWithTimeout(1000) << 8) | readWithTimeout(1000);
-		if (readWithTimeout(1000) != STM32_ACK) {
+		pid = (readWithTimerTimeout(1000) << 8) | readWithTimerTimeout(1000);
+		if (readWithTimerTimeout(1000) != STM32_ACK) {
 			System.err
 					.println("More then two bytes sent in the PID, unknown/unsupported device\n");
 			return false;
@@ -461,16 +427,16 @@ public class FirmWareUploader {
 
 	}
 
-//	private void emptyInputStream() {
-//		try {
-//			while (RX.available() > 0) {
-//				RX.read();
-//			}
-//		} catch (Exception e) {
-//			Log.e(TAG, e.toString());
-//			e.printStackTrace();
-//		}
-//	}
+	private void emptyInputStream() {
+		try {
+			while (RX.available() > 0) {
+				RX.read();
+			}
+		} catch (Exception e) {
+			Log.e(TAG, e.toString());
+			e.printStackTrace();
+		}
+	}
 
 	private boolean sendCommand(byte iCmd) {
 		if (isstopped)
@@ -479,7 +445,7 @@ public class FirmWareUploader {
 				(byte) (iCmd ^ XOR_BYTE));
 		write(iCmd);
 		write((byte) (iCmd ^ XOR_BYTE));
-		byte c = (byte) readWithTimeout(1000);
+		byte c = (byte) readWithTimerTimeout(1000);
 		System.out.printf("Returned :%2x\n", c);
 
 		if ((c & 0xFF) == STM32_ACK) {
@@ -493,63 +459,36 @@ public class FirmWareUploader {
 		}
 	}
 
-	private int readLoopWithTimeout(int timeout) {
-		long now = System.currentTimeMillis();
-		int avail = 0;
-		while (System.currentTimeMillis() < (now + timeout)) {
-
-			try {
-				avail = RX.available();
-			} catch (IOException e) {
-				showToast(e.toString());
-				e.printStackTrace();
-			}
-
-			if (avail >= 1) {
-				Integer tmp = -1;
-				try {
-//					tmp = RX.read();
-					return RX.read();
-				} catch (IOException e) {
-					showToast(e.toString());
-					e.printStackTrace();
-				}
-				System.out.printf("Call returned : %2x\n", tmp);
-					return tmp;
-				}
-
-		}
-		showToast("Read Timeout!");
-		return -1;
-	}
-
-
-	private int readWithTimeout(int timeout) {
-		// Read data with timeout
+	private int readWithTimerTimeout(int timeout) {
 		if (isstopped)
 			return -1;
-		int readByte = -1;
-		Callable<Integer> readTask = new Callable<Integer>() {
+
+		final Thread readThread = Thread.currentThread();
+		Timer t = new Timer();
+		TimerTask readTask = new TimerTask() {
 			@Override
-			public Integer call() throws Exception {
-				Integer tmp = RX.read();
-				System.out.printf("Call returned : %2x\n", tmp);
-				return tmp;
+			public void run() {
+				readThread.interrupt();
+				System.out.printf("Timer expired, interrupt");
 			}
 		};
-		Future<Integer> future = executor.submit(readTask);
-		try {
-			readByte = future.get(timeout, TimeUnit.MILLISECONDS);
-		} catch (Exception e) {
-			future.cancel(true);
-			showToast("Read Timeout!");
-			Log.e(TAG, e.toString());
-			return -1;
-		}
-		if (readByte >= 0)
-			System.out.printf("Returned :%2x\n", readByte);
+		Log.d(TAG, "Schedule readTask timer for " + String.valueOf(timeout) + " ms");
+		t.schedule(readTask, timeout);
 
+		Integer readByte = -1;
+		try {
+			readByte = RX.read();
+			if (readByte >= 0) {
+				System.out.printf("Read Call Returned : %2x\n", readByte);
+				t.cancel();
+				System.out.printf("Timer Cancelled");
+			}
+		} catch (Exception e) {
+			Log.d(TAG, e.toString());
+			return readByte;
+		}
 		return readByte;
+
 	}
 
 	public int[] getDeviceSetup() {
@@ -566,13 +505,16 @@ public class FirmWareUploader {
 	}
 
 	private boolean erase(byte pages) {
+		// Erase - 0x43, Extended Erase - 0x44
+		System.out.printf("Erasing flash");
+
 		if (!sendCommand(_CMDList.get("er").byteValue()))
 			return false;
 		if ((pages & 0xFF) == 0xFF) {
 			ByteBuffer bb = ByteBuffer.allocate(3);
 			bb.put((byte) 0xFF);
-			bb.put((byte) 0xFE);
-			bb.put((byte) 0x01);
+			bb.put((byte) 0xFF);
+			bb.put((byte) 0x00);
 
 			Log.d("ERASE: ", "ALL");
 
@@ -581,8 +523,11 @@ public class FirmWareUploader {
 															// Command (for
 															// STM32L1)
 				byte[] eraseall = bb.array();
+				for (int i=0; i<eraseall.length; i++) {
+					System.out.printf("%2x\n",eraseall[i]);
+				}
 				write(eraseall, 3);
-				return (readWithTimeout(5000) & 0xFF) == STM32_ACK;
+				return (readWithTimerTimeout(10000) & 0xFF) == STM32_ACK;
 			}
 
 		} else {
@@ -595,7 +540,7 @@ public class FirmWareUploader {
 				cs ^= pg_num;
 			}
 			write(cs);
-			return (readWithTimeout(1000) & 0xFF) == STM32_ACK;
+			return (readWithTimerTimeout(10000) & 0xFF) == STM32_ACK;
 		}
 		return false;
 	}
@@ -627,9 +572,7 @@ public class FirmWareUploader {
 			throw new IllegalArgumentException("Data length invalid");
 		}
 
-//		showToast("flushing");
-
-//		flush();
+		flush();
 
 		/* must be 32bit aligned */
 		Log.e(TAG, "address% 4 == 0 " + (address % 4 == 0));
@@ -654,7 +597,7 @@ public class FirmWareUploader {
 		
 		write(addrbytes, 5);
 		
-		if (readWithTimeout(1000) != STM32_ACK) {
+		if (readWithTimerTimeout(1000) != STM32_ACK) {
 			showToast("Unable to write addressing");
 			System.err.println("Unable to write adressing \n");
 			return false;
@@ -667,14 +610,13 @@ public class FirmWareUploader {
 		
 		bb = ByteBuffer.allocate(len + 2 + extra);
 		bb.put(cs);							// Put the length into buffer
-		write(cs);
+
 		/* write the data and build the checksum */
 		for (i = 0; i < len; ++i)
 			cs ^= data[i];
 		Log.d("DATA: ", String.valueOf(cs));
 
 		bb.put(data, 0, len);
-		write(data, len);
 		//bb.put(data);
 		
 		/* write the alignment padding */
@@ -687,20 +629,14 @@ public class FirmWareUploader {
 		bb.put(cs);
 		
 		byte[] bytes = bb.array();
-//		showToast("before, write(bytes, bytes.length);");
-		write(cs);
-//		write(bytes, bytes.length);
-//		showToast("Write Thread is " + String.valueOf(Thread.currentThread().getId()));
-
-//		showToast(String.valueOf(bytes.length) + " | " + String.valueOf(bytes[0]));
+		write(bytes, bytes.length);
 
 		IOIOUtils.getUtils().ioioSync(ioio_);
-//		showToast("after, ioioSync");
 
 		System.out.printf("Checksum : %2x\n", ((int) cs) & 0xFF);
 		//byte aRes = (byte) readWithTimeout(2 * 1000);
-//		byte aRes = (byte) readLoopWithTimeout(2 * 1000);
-		byte aRes = (byte) thread.readByteWithTimeout(1000);
+		byte aRes = (byte) readWithTimerTimeout(1000);
+
 
 		System.out.printf("Result write : %2x\n", ((int) aRes) & 0xFF);
 		return aRes == STM32_ACK;
@@ -755,68 +691,5 @@ public class FirmWareUploader {
 		public void onUploadCompleted(boolean b);
 	}
 
-	private class ReadThread extends Thread {
 
-		@SuppressWarnings("unused")
-		private InputStream RX;
-
-
-		public ReadThread(InputStream RX) {
-			stopthread = false;
-			this.RX = RX;
-		}
-
-		@Override
-		public void run() {
-
-			try {
-				Thread.sleep(100);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-
-		}
-
-		public int readByteWithTimeout(int timeout) {
-
-			long now = System.currentTimeMillis();
-			int avail = 0;
-			while (System.currentTimeMillis() < (now + timeout)) {
-
-				try {
-					avail = this.RX.available();
-				} catch (IOException e) {
-					showToast(e.toString());
-					e.printStackTrace();
-				}
-
-				if (avail >= 1) {
-					Integer tmp = -1;
-					try {
-//						showToast("Read Thread is " + String.valueOf(this.getId()));
-						return this.RX.read();
-					} catch (IOException e) {
-						showToast(e.toString());
-						e.printStackTrace();
-					}
-					System.out.printf("Call returned : %2x\n", tmp);
-				}
-
-			}
-			showToast("Read Timeout!");
-			return -1;
-
-		}
-
-		private void emptyInputStream() {
-			try {
-				while (RX.available() > 0) {
-					RX.read();
-				}
-			} catch (Exception e) {
-				Log.e(TAG, e.toString());
-				e.printStackTrace();
-			}
-		}
-	}
 }

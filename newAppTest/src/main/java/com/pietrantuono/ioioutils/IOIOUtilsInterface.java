@@ -66,6 +66,8 @@ public interface IOIOUtilsInterface {
 	
 	void modeApplication(Activity activity);
 
+	IOIOUtils.Mode getUutMode(Activity activity);
+
 //	IOIOUtils.Mode getUutMode(Activity activity);
 
 	DigitalOutput getIrange();
