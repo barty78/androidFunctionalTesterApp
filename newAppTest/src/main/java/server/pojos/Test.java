@@ -1,4 +1,3 @@
-
 package server.pojos;
 
 import com.google.gson.annotations.Expose;
@@ -33,17 +32,17 @@ public class Test {
     @Expose
     private int isNominal;
     @Expose
-    private Double limitParam1;
+    private Long limitParam1;
     @Expose
-    private Double limitParam2;
+    private Long limitParam2;
     @Expose
     private Long Upper;
     @Expose
     private Long Lower;
     @Expose
-    private Double Nominal;
+    private Long Nominal;
     @Expose
-    private Double Tolerance;
+    private Long Tolerance;
 
     /**
      * 
@@ -231,17 +230,17 @@ public class Test {
 
     public void setIsNominal(int isNominal) {this.isNominal = isNominal;}
 
-    public Double getLimitParam1() {
+    public Long getLimitParam1() {
         return limitParam1;
     }
 
-    public void setLimitParam1(Double limitParam1) {this.limitParam1 = limitParam1;}
+    public void setLimitParam1(Long limitParam1) {this.limitParam1 = limitParam1;}
 
-    public Double getLimitParam2() {
+    public Long getLimitParam2() {
         return limitParam2;
     }
 
-    public void setLimitParam2(Double limitParam2) {this.limitParam2 = limitParam2;}
+    public void setLimitParam2(Long limitParam2) {this.limitParam2 = limitParam2;}
 
     /**
      * 
@@ -284,7 +283,7 @@ public class Test {
      * @return
      *     The Nominal
      */
-    public Double getNominal() {
+    public Long getNominal() {
         return Nominal;
     }
 
@@ -293,7 +292,7 @@ public class Test {
      * @param Nominal
      *     The Nominal
      */
-    public void setNominal(Double Nominal) {
+    public void setNominal(Long Nominal) {
         this.Nominal = Nominal;
     }
 
@@ -302,7 +301,7 @@ public class Test {
      * @return
      *     The Tolerance
      */
-    public Double getTolerance() {
+    public Long getTolerance() {
         return Tolerance;
     }
 
@@ -311,7 +310,7 @@ public class Test {
      * @param Tolerance
      *     The Tolerance
      */
-    public void setTolerance(Double Tolerance) {
+    public void setTolerance(Long Tolerance) {
         this.Tolerance = Tolerance;
     }
 
