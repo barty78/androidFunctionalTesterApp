@@ -56,7 +56,6 @@ public class TestFromSequenceCreator {
 	}
 
 	private static Sensors createSensors(NewSequenceInterface sequence) {
-		if(!containsSensorsTests(sequence))return null;
 		Sensors sensors = new Sensors();
 		sensors.setS0(createS0(sequence));
 		sensors.setS1(createS1(sequence));
@@ -65,6 +64,7 @@ public class TestFromSequenceCreator {
 	}
 
 	private static S0 createS0(NewSequenceInterface sequence) {
+		if(!containsSensorsTests(sequence))return null;
 		S0 s0 = new S0();
 		s0.setIDTest(getIdsOfSensorsTests(sequence));
 		s0.setAvg(getAverage(sequence, SensorNumber.ZERO));
@@ -75,6 +75,7 @@ public class TestFromSequenceCreator {
 	}
 
 	private static S1 createS1(NewSequenceInterface sequence) {
+		if(!containsSensorsTests(sequence))return null;
 		S1 s1 = new S1();
 		s1.setIDTest(getIdsOfSensorsTests(sequence));
 		s1.setAvg(getAverage(sequence, SensorNumber.ONE));
@@ -85,6 +86,7 @@ public class TestFromSequenceCreator {
 	}
 
 	private static S2 createS2(NewSequenceInterface sequence) {
+		if(!containsSensorsTests(sequence))return null;
 		S2 s2 = new S2();
 		s2.setIDTest(getIdsOfSensorsTests(sequence));
 		s2.setAvg(getAverage(sequence, SensorNumber.TWO));
