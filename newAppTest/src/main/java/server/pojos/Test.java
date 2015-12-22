@@ -30,7 +30,7 @@ public class Test {
     @Expose
     private Long active;
     @Expose
-    private int isNominal;
+    private Integer isNominal;
     @Expose
     private Long limitParam1;
     @Expose
