@@ -26,23 +26,30 @@ public class MyDatabaseUtils {
         record.getReadings().save();
         record.getReadings().getTest().setForeginkey(record.getReadings());
         record.getReadings().getTest().save();
-        if (record.getReadings().getSensors() != null)
+        if (record.getReadings().getSensors() != null) {
             record.getReadings().getSensors().setForeignkey(record.getReadings());
-        if (record.getReadings().getSensors() != null) record.getReadings().getSensors().save();
-        if (record.getReadings().getSensors() != null)
+        }
+        if (record.getReadings().getSensors() != null) {
+            record.getReadings().getSensors().save();
+        }
+        if (record.getReadings().getSensors() != null) {
             record.getReadings().getSensors().getS0().setForeignkey(record.getReadings().getSensors());
-        if (record.getReadings().getSensors() != null)
+        }
+        if (record.getReadings().getSensors() != null) {
             record.getReadings().getSensors().getS0().save();
+        }
 
         if (record.getReadings().getSensors() != null)
             record.getReadings().getSensors().getS1().setForeignkey(record.getReadings().getSensors());
         if (record.getReadings().getSensors() != null)
             record.getReadings().getSensors().getS1().save();
 
-        if (record.getReadings().getSensors() != null)
+        if (record.getReadings().getSensors() != null) {
             record.getReadings().getSensors().getS2().setForeignkey(record.getReadings().getSensors());
-        if (record.getReadings().getSensors() != null)
+        }
+        if (record.getReadings().getSensors() != null) {
             record.getReadings().getSensors().getS2().save();
+        }
 
         for (int i = 0; i < record.getReadings().getTest().getIDTest().size(); i++) {
             SingleTest singleTest = new SingleTest();
@@ -108,14 +115,14 @@ public class MyDatabaseUtils {
 
         Sensors sensors = new Select().from(Sensors.class).where("Readings = ?", readingss.getId()).executeSingle();
         if (sensors != null) {
-            S0 s0 = new Select().from(S0.class).where("Sensors = ?", readingss.getId()).executeSingle();
+            S0 s0 = new Select().from(S0.class).where("Sensors = ?", sensors.getId()).executeSingle();
             List<Model> foo = new Select().from(S0.class).execute();
             sensors.setS0(s0);
 
-            S1 s1 = new Select().from(S1.class).where("Sensors = ?", readingss.getId()).executeSingle();
+            S1 s1 = new Select().from(S1.class).where("Sensors = ?", sensors.getId()).executeSingle();
             sensors.setS1(s1);
 
-            S2 s2 = new Select().from(S2.class).where("Sensors = ?", readingss.getId()).executeSingle();
+            S2 s2 = new Select().from(S2.class).where("Sensors = ?", sensors.getId()).executeSingle();
             sensors.setS2(s2);
 
             List<SingleS0> singleS0s = new Select().from(SingleS0.class).where("S0 = ?", s0.getId()).execute();
