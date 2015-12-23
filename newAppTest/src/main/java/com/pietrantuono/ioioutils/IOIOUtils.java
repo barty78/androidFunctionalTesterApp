@@ -993,11 +993,12 @@ public class IOIOUtils implements IOIOUtilsInterface {
 
                 final Thread readThread = Thread.currentThread();
                 Timer t = new Timer();
-                TimerTask readTask = new TimerTask() {
+                final TimerTask readTask = new TimerTask() {
                     @Override
                     public void run() {
                         readThread.interrupt();
                         System.out.printf("Timer expired, interrupt");
+                        this.cancel();
                     }
                 };
                 Log.d(TAG, "Schedule readTask timer for " + String.valueOf(timeout) + " ms");
@@ -1005,13 +1006,15 @@ public class IOIOUtils implements IOIOUtilsInterface {
 
                 String tmp = null;
                 try {
-                    if (r.ready()) {
-                        tmp = r.readLine();
+                    //if (r.ready()) {
+                    Log.d(TAG, "Read attempt");
+
+                    tmp = r.readLine();
                         t.cancel();
                         System.out.printf("Timer Cancelled");
                         sb.append(tmp);
                         if (tmp != null){Log.d(TAG + " - CALL", tmp);}
-                    }
+                  //  }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -1029,8 +1032,10 @@ public class IOIOUtils implements IOIOUtilsInterface {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            try {
+                uart2.close();
+            } catch (Exception e) {}
 
-            uart2.close();
             uart2 = null;
 
         }

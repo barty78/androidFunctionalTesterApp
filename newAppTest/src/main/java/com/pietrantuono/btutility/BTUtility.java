@@ -8,6 +8,7 @@ import com.pietrantuono.activities.NewIOIOActivityListener;
 import com.pietrantuono.activities.SettingsActivity;
 import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.ioioutils.IOIOUtils;
+import com.pietrantuono.pericoach.newtestapp.BuildConfig;
 import com.pietrantuono.pericoach.newtestapp.R;
 import com.pietrantuono.pericoachengineering.util.Utils;
 import com.pietrantuono.sensors.NewDevice;
@@ -174,6 +175,7 @@ public class BTUtility {
 	}
 	private void removeDevicesFromList(boolean removeBondedDevices,
 			boolean unpair) {
+		if(mListItems==null || mListItems.size()<=0)return;
 		// Clear devices from the adapter... we always leave item0, which is the
 		// Refresh option
 		for (int i = mListItems.size() - 1; i == 0; i--) {
@@ -258,7 +260,9 @@ public class BTUtility {
 		connectFilter.addAction(INTENT_CONNECT_SUCCEEDED);
 		// connectFilter.addAction(INTENT_REFRESH);
 		activityRef.get().registerReceiver(mConnectReceiver, connectFilter);
-		BluetoothDevice device = mBTAdapter.getRemoteDevice(macaddress);
+		BluetoothDevice device=null;
+		if(BuildConfig.FLAVOR.equalsIgnoreCase("maurizio")) {device= mBTAdapter.getRemoteDevice("00:17:E9:C0:82:EE");}
+		else {device= mBTAdapter.getRemoteDevice(macaddress);}
 		NewPFMATDevice.specifyDevice(device, activityRef.get());
 		NewPFMATDevice.connect(activityRef.get(), INTENT_CONNECT_SUCCEEDED,
 				INTENT_CONNECT_FAILED);
