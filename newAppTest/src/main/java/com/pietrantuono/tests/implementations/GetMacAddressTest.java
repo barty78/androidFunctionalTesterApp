@@ -5,9 +5,7 @@ import android.app.AlertDialog;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.ioioutils.IOIOUtils;
-import com.pietrantuono.pericoach.newtestapp.R;
 import com.pietrantuono.tests.superclass.Test;
 
 import java.util.concurrent.ExecutorService;
@@ -61,6 +59,7 @@ public class GetMacAddressTest extends Test {
             if (matcher.matches()) {
                 Log.d("MAC: ", "MAC VALID.");
                 mac = strFileContents;
+
                 if(macAlredySeen(mac)){
                     Toast.makeText((Activity)activityListener,"DEVICE ALRREDY TESTED, ABORTING !",Toast.LENGTH_LONG).show();
                     setSuccess(false);
@@ -71,6 +70,7 @@ public class GetMacAddressTest extends Test {
                 Success();
                 activityListener.addView("BT MAC ADDR: ", strFileContents, false);
 //                activityListener.setSerial(strFileContents);
+                ServiceDBHelper.saveMac(activityListener.getBarcode(),strFileContents);
                 activityListener.setMacAddress(strFileContents);
                 activityListener.addFailOrPass(true, true, "");
                 return;
@@ -86,7 +86,7 @@ public class GetMacAddressTest extends Test {
     private boolean macAlredySeen(String mac) {
         if(activityListener.getBarcode()==null || activityListener.getBarcode().length()<=0)return true;
         if(mac==null || mac.length()<=0)return true;
-        return ServiceDBHelper.checkMac(activityListener.getBarcode(),mac);
+        return ServiceDBHelper.isMacAlreadySeen(activityListener.getBarcode(), mac);
     }
 
     public String getBT_Addr() {

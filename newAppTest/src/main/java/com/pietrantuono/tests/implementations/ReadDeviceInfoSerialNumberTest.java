@@ -27,8 +27,9 @@ public class ReadDeviceInfoSerialNumberTest extends Test {
 		} else {
 			if (serial.toLowerCase().equalsIgnoreCase(
 					activityListener.getSerial().toLowerCase())) {
-				if(!ServiceDBHelper.isSerialAlreadySeen(serial)){
+				if(!ServiceDBHelper.isSerialAlreadySeen(activityListener.getBarcode(), serial)){
 				Success();
+					ServiceDBHelper.saveSerial(activityListener.getBarcode(),serial);
 				activityListener.addFailOrPass(serial, true, true, description);
 				}
 				else {

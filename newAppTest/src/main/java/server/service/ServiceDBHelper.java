@@ -90,18 +90,18 @@ public class ServiceDBHelper {
 		return device.save();
 	}
 
-	public static boolean checkSerial(String barcode, String serial){
-		if(barcode==null || barcode.length()<=0)return false;
-		if(serial==null)return false;
+	public static boolean isSerialAlreadySeen(String barcode, String serial){
+		if(barcode==null || barcode.length()<=0)return true;
+		if(serial==null)return true;
 		String args[]= new String[2];
 		args[0]=barcode;
 		args[1]=serial;
 		return new Select().from(Device.class).where("Barcode = ? AND Serial = ?", args).execute().size()>0;
 	}
 
-	public static boolean checkMac(String barcode, String mac){
-		if(barcode==null || barcode.length()<=0)return false;
-		if(mac==null)return false;
+	public static boolean isMacAlreadySeen(String barcode, String mac){
+		if(barcode==null || barcode.length()<=0)return true;
+		if(mac==null)return true;
 		String args[]= new String[2];
 		args[0]=barcode;
 		args[1]=mac;

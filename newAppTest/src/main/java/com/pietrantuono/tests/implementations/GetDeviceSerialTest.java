@@ -8,120 +8,116 @@ import java.util.regex.Pattern;
 import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.ioioutils.IOIOUtils;
 import com.pietrantuono.tests.superclass.Test;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.graphics.Color;
 import android.util.Log;
 import android.widget.Toast;
+
 import ioio.lib.api.IOIO;
 import server.service.ServiceDBHelper;
 
 public class GetDeviceSerialTest extends Test {
-	private static ExecutorService executor = Executors.newFixedThreadPool(1);
-	public int retries = 0;
-	private AlertDialog alertDialog;
-	private String serial = "";
+    private static ExecutorService executor = Executors.newFixedThreadPool(1);
+    public int retries = 0;
+    private AlertDialog alertDialog;
+    private String serial = "";
 
-	public GetDeviceSerialTest(Activity activity, IOIO ioio) {
-		super(activity, ioio, "Read UUT Serial Number", false, true, 0, 0, 0);
-	}
+    public GetDeviceSerialTest(Activity activity, IOIO ioio) {
+        super(activity, ioio, "Read UUT Serial Number", false, true, 0, 0, 0);
+    }
 
-	@Override
-	public void execute() {
-		if (isinterrupted)
-			return;
-		Log.d(TAG, "Get Device Serial Test Starting");
-		if (IOIOUtils.getUtils().getUutMode(getActivity()) == IOIOUtils.Mode.bootloader) {
-			IOIOUtils.getUtils().modeApplication((Activity) activityListener);
-		}
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+    @Override
+    public void execute() {
+        if (isinterrupted)
+            return;
+        Log.d(TAG, "Get Device Serial Test Starting");
+        if (IOIOUtils.getUtils().getUutMode(getActivity()) == IOIOUtils.Mode.bootloader) {
+            IOIOUtils.getUtils().modeApplication((Activity) activityListener);
+        }
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
 //		IOIOUtils.getUtils().resetUart2(ioio, (Activity)activityListener) ;
 
-		IOIOUtils.getUtils().clearUartLog();	// Clear the UART log buffer
+        IOIOUtils.getUtils().clearUartLog();    // Clear the UART log buffer
 
-		IOIOUtils.getUtils().resetDevice((Activity) activityListener);
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		
-		((Activity) activityListener).runOnUiThread(new Runnable() {
-			@Override
-			public void run() {
-				activityListener.setSerial("");
-				String strFileContents = "";
-				if (IOIOUtils.getUtils().getUartLog().length() != 0) {		// Did we receive anything at all
+        IOIOUtils.getUtils().resetDevice((Activity) activityListener);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
-					if (IOIOUtils.getUtils().getUartLog().indexOf("itoa16: ") != -1) {
-						strFileContents = IOIOUtils.getUtils().getUartLog()
-								.substring(IOIOUtils.getUtils().getUartLog().indexOf("itoa16: ") + 8,
-										IOIOUtils.getUtils().getUartLog().indexOf("itoa16: ") + 32)
-								.toString();
-						retries = 0;
+        ((Activity) activityListener).runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                activityListener.setSerial("");
+                String strFileContents = "";
+                if (IOIOUtils.getUtils().getUartLog().length() != 0) {        // Did we receive anything at all
 
-						Pattern pattern = Pattern.compile("^[\\p{Alnum}]+$");
-						Matcher matcher = pattern.matcher(strFileContents);
-						if (matcher.matches()) {
-							Log.d("SERIAL: ", "MATCH!.");
-							serial = strFileContents;
+                    if (IOIOUtils.getUtils().getUartLog().indexOf("itoa16: ") != -1) {
+                        strFileContents = IOIOUtils.getUtils().getUartLog()
+                                .substring(IOIOUtils.getUtils().getUartLog().indexOf("itoa16: ") + 8,
+                                        IOIOUtils.getUtils().getUartLog().indexOf("itoa16: ") + 32)
+                                .toString();
+                        retries = 0;
 
-							if (!PeriCoachTestApplication.getIsRetestAllowed()) {
-								Log.d(TAG, "Retest is " + PeriCoachTestApplication.getIsRetestAllowed());
-								if (!ServiceDBHelper.isSerialAlreadySeen(serial)) {
-									Success();
-									activityListener.addView("Serial (HW reading):", strFileContents, false);
-									activityListener.setSerial(strFileContents);
-									activityListener.addFailOrPass(true, true, "");
-									return;
-								} else {
-									try {
-										Toast.makeText((Activity) activityListener, "Serial number already tested! Aborting test", Toast.LENGTH_LONG).show();
-									} catch (Exception e) {
-									}
-									activityListener.addFailOrPass(true, false, "");
+                        Pattern pattern = Pattern.compile("^[\\p{Alnum}]+$");
+                        Matcher matcher = pattern.matcher(strFileContents);
+                        if (matcher.matches()) {
+                            Log.d("SERIAL: ", "MATCH!.");
+                            serial = strFileContents;
 
-									activityListener.onCurrentSequenceEnd();
-									return;
-								}
-							} else {
-								Success();
-								activityListener.addView("Serial (HW reading):", strFileContents, false);
-								activityListener.setSerial(strFileContents);
-								activityListener.addFailOrPass(true, true, "");
-								return;
-							}
+                            Log.d(TAG, "Retest is " + PeriCoachTestApplication.getIsRetestAllowed());
+                            if (!ServiceDBHelper.isSerialAlreadySeen(activityListener.getBarcode(), serial)) {
+                                Success();
+                                activityListener.addView("Serial (HW reading):", strFileContents, false);
+                                activityListener.setSerial(strFileContents);
+                                activityListener.addFailOrPass(true, true, "");
+                                ServiceDBHelper.saveSerial(activityListener.getBarcode(),strFileContents);
+                                return;
+                            } else {
+                                try {
+                                    Toast.makeText((Activity) activityListener, "Serial number already tested! Aborting test", Toast.LENGTH_LONG).show();
+                                } catch (Exception e) {
+                                }
+                                activityListener.addFailOrPass(true, false, "");
 
-						}
-					} else {
-						if (retries > 2) {
-							setSuccess(false);
-							activityListener.addView("Serial (HW reading):", "ERROR", Color.RED, true);
-							activityListener.addFailOrPass(true, false, "Retries Exceeded");
-
-						} else {
-							retries++;
-							execute();
-						}
-					}
-				} else {
-					if (retries > 2) {
-						setSuccess(false);
-						activityListener.addView("Serial (HW reading):", "ERROR", Color.RED, true);
-						activityListener.addFailOrPass(true, false, "No Comms");
-
-					} else {
-						retries++;
-						execute();
-					}
+                                activityListener.onCurrentSequenceEnd();
+                                return;
+                            }
 
 
-				}
+                        }
+                    } else {
+                        if (retries > 2) {
+                            setSuccess(false);
+                            activityListener.addView("Serial (HW reading):", "ERROR", Color.RED, true);
+                            activityListener.addFailOrPass(true, false, "Retries Exceeded");
+
+                        } else {
+                            retries++;
+                            execute();
+                        }
+                    }
+                } else {
+                    if (retries > 2) {
+                        setSuccess(false);
+                        activityListener.addView("Serial (HW reading):", "ERROR", Color.RED, true);
+                        activityListener.addFailOrPass(true, false, "No Comms");
+
+                    } else {
+                        retries++;
+                        execute();
+                    }
+
+
+                }
 
 //				if (retries > 2) {
 //
@@ -156,32 +152,32 @@ public class GetDeviceSerialTest extends Test {
 //
 //				}
 
-				return;
-			}
-		});
+                return;
+            }
+        });
 
-	}
+    }
 
-	public String getSerial() {
-		return serial;
-	}
+    public String getSerial() {
+        return serial;
+    }
 
-	@Override
-	public void interrupt() {
-		super.interrupt();
-		try {
-			alertDialog.dismiss();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		// try{RD1.close();}catch (Exception e){e.printStackTrace();}
-		// try{RX1.close();}catch (Exception e){e.printStackTrace();}
-		// try{uart1.close();}catch (Exception e){e.printStackTrace();}
-		try {
-			executor.shutdownNow();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+    @Override
+    public void interrupt() {
+        super.interrupt();
+        try {
+            alertDialog.dismiss();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        // try{RD1.close();}catch (Exception e){e.printStackTrace();}
+        // try{RX1.close();}catch (Exception e){e.printStackTrace();}
+        // try{uart1.close();}catch (Exception e){e.printStackTrace();}
+        try {
+            executor.shutdownNow();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }
