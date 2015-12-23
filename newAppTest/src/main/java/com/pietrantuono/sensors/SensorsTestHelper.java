@@ -28,11 +28,11 @@ public class SensorsTestHelper implements OnSampleCallback {
 	static final String TAG = "SensorsTestHelper";
 	final static int INITIAL_FREEMODE_SAMPLE_CAPACITY = 512;
 	@SuppressWarnings("ucd")
-	static final int CALIBRATION_TIME_MS = 2500; // 2 seconds
+	static final int CALIBRATION_TIME_MS = 1500; // 1.5 seconds
 	@SuppressWarnings("ucd")
 	final short NORMAL_VOLTAGE = 127;
 	@SuppressWarnings("ucd")
-	final int CALIBRATION_MIN_SAMPLES = 20;
+	final int CALIBRATION_MIN_SAMPLES = 10;
 	boolean samplingSensor0=true;
 	boolean samplingSensor1=true;
 	boolean samplingSensor2=true;

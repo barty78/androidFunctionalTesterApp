@@ -56,6 +56,7 @@ public class TestFromSequenceCreator {
 	}
 
 	private static Sensors createSensors(NewSequenceInterface sequence) {
+		if(!containsSensorsTests(sequence))return null;
 		Sensors sensors = new Sensors();
 		sensors.setS0(createS0(sequence));
 		sensors.setS1(createS1(sequence));

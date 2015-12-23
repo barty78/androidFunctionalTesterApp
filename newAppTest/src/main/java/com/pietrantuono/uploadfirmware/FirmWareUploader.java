@@ -469,19 +469,19 @@ public class FirmWareUploader {
 			@Override
 			public void run() {
 				readThread.interrupt();
-				System.out.printf("Timer expired, interrupt");
+				System.out.printf("Timer expired, interrupt\n");
 			}
 		};
-		Log.d(TAG, "Schedule readTask timer for " + String.valueOf(timeout) + " ms");
+//		Log.d(TAG, "Schedule readTask timer for " + String.valueOf(timeout) + " ms");
 		t.schedule(readTask, timeout);
 
 		Integer readByte = -1;
 		try {
 			readByte = RX.read();
 			if (readByte >= 0) {
-				System.out.printf("Read Call Returned : %2x\n", readByte);
+//				System.out.printf("Read Call Returned : %2x\n", readByte);
 				t.cancel();
-				System.out.printf("Timer Cancelled");
+//				System.out.printf("Timer Cancelled\n");
 			}
 		} catch (Exception e) {
 			Log.d(TAG, e.toString());
@@ -631,7 +631,7 @@ public class FirmWareUploader {
 		byte[] bytes = bb.array();
 		write(bytes, bytes.length);
 
-		IOIOUtils.getUtils().ioioSync(ioio_);
+//		IOIOUtils.getUtils().ioioSync(ioio_);
 
 		System.out.printf("Checksum : %2x\n", ((int) cs) & 0xFF);
 		//byte aRes = (byte) readWithTimeout(2 * 1000);

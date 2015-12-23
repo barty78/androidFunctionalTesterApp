@@ -130,11 +130,11 @@ public class SensorTest {
 			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test");
 			return;
 		}
-		try {
-			Thread.sleep(200);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			Thread.sleep(200);
+//		} catch (InterruptedException e) {
+//			e.printStackTrace();
+//		}
 		if (load)
 			try {
 				IOIOUtils.getUtils().getSensor_High().write(false);
@@ -299,13 +299,13 @@ public class SensorTest {
 		}
 		if (activity != null && activity != null)
 			((SensorTestCallback) (activity.get())).onSensorTestCompleted(mSensorResult);
-		if(!isTest)this.sensorsTestHelper.sendVoltage(this.sensorsTestHelper.NORMAL_VOLTAGE);
+//		if(!isTest)this.sensorsTestHelper.sendVoltage(this.sensorsTestHelper.NORMAL_VOLTAGE);
 		if(!isTest)stop();
-		try {
-			Thread.sleep(200);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			Thread.sleep(200);
+//		} catch (InterruptedException e) {
+//			e.printStackTrace();
+//		}
 
 		return mSensorResult;
 	}

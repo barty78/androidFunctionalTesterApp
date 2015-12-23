@@ -4,7 +4,7 @@ import com.pietrantuono.btutility.BTUtility;
 import com.pietrantuono.tests.superclass.Test;
 public class BluetoothConnectTestForTesting extends Test {
 	private BTUtility btUtility;
-	private Boolean testing = true;
+	private Boolean testing = false;
 	public BluetoothConnectTestForTesting(Activity activity) {
 		super(activity, null, "Bluetooth Connect", false, true, 0, 0, 0);
 	}

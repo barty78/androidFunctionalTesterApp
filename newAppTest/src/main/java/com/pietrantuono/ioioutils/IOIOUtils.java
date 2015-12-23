@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -192,28 +194,51 @@ public class IOIOUtils implements IOIOUtilsInterface {
         // Read barcodeOK pulse with timeout
 
         int readByte = -1;
+        int timeout = 1000;
 
-        Callable<Integer> readPulse = new Callable<Integer>() {
+        final Thread readThread = Thread.currentThread();
+        Timer t = new Timer();
+        TimerTask readTask = new TimerTask() {
             @Override
-            public Integer call() throws Exception {
-                input.waitForValue(false);
-                return 1;
+            public void run() {
+                readThread.interrupt();
+                System.out.printf("Timer expired, interrupt");
             }
         };
-        Future<Integer> future = executor.submit(readPulse);
+        Log.d(TAG, "Schedule readTask timer for " + String.valueOf(timeout) + " ms");
+        t.schedule(readTask, timeout);
+
         try {
-            readByte = future.get(1000, TimeUnit.MILLISECONDS);
+            input.waitForValue(false);
+            t.cancel();
+            return 1;
         } catch (Exception e) {
             e.printStackTrace();
             Log.e(TAG, e.toString());
-            Crashlytics.logException(e);
-            Log.e(TAG, e.toString());
-            Log.d("READ: ", "Timed Out...");
             return -1;
-
         }
 
-        return readByte;
+//        Callable<Integer> readPulse = new Callable<Integer>() {
+//            @Override
+//            public Integer call() throws Exception {
+//                input.waitForValue(false);
+//                return 1;
+//            }
+//        };
+//        Future<Integer> future = executor.submit(readPulse);
+//        try {
+//            readByte = future.get(1000, TimeUnit.MILLISECONDS);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            Log.e(TAG, e.toString());
+//            Crashlytics.logException(e);
+//            Log.e(TAG, e.toString());
+//            Log.d("READ: ", "Timed Out...");
+//            return -1;
+//
+//        }
+//
+//        return readByte;
 
     }
 
@@ -225,6 +250,13 @@ public class IOIOUtils implements IOIOUtilsInterface {
                          final Activity ac) {
 
         stopUartThread();
+        ac.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(ac, "CLOSING ALL IOIO",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
 
         try {
             if (POWER != null) POWER.close();
@@ -331,6 +363,13 @@ public class IOIOUtils implements IOIOUtilsInterface {
         isinterrupted = false;
 
         uutMode = Mode.bootloader;
+        ac.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(ac, "INITING ALL IOIO",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
 
         try {
             POWER = ioio_.openDigitalOutput(19,
@@ -477,6 +516,19 @@ public class IOIOUtils implements IOIOUtilsInterface {
 
         toggle5VDC(ac);
 
+    }
+
+    public void openUart2(final IOIO ioio_, final Activity ac) {
+        try {
+            uart2 = ioio_.openUart(13, 14, 115200, Uart.Parity.EVEN, // STM32
+                    // Bootloader
+                    // requires
+                    // EVEN
+                    // Parity..
+                    Uart.StopBits.ONE);
+        } catch (ConnectionLostException e) {
+            Log.e(TAG, e.toString());
+        }
     }
 
     @Override
@@ -799,6 +851,7 @@ public class IOIOUtils implements IOIOUtilsInterface {
         if (thread == null || stopthread) {
             thread = new Uart2Thread();
             Log.d(TAG, "Starting UART Thread");
+            thread.setPriority(Thread.MIN_PRIORITY);
             thread.start();
         }
         if (isinterrupted) return;
@@ -909,60 +962,107 @@ public class IOIOUtils implements IOIOUtilsInterface {
         @SuppressWarnings("unused")
         private String line;
         private long now = System.currentTimeMillis();
+        private boolean setup = false;
+        private InputStream is;
+        private int timeout = 200;
 
-        public Uart2Thread() {
-            stopthread = false;
-        }
+
+        public Uart2Thread() {stopthread = false;}
 
         @Override
         public void run() {
 
-            InputStream is = getIOIOUart().getInputStream();
-            r = new BufferedReader(new InputStreamReader(is));
+            if (!setup) {
+                is = getIOIOUart().getInputStream();
+                r = new BufferedReader(new InputStreamReader(is));
+                setup = true;
+            }
 
             while (!stopthread) {
-//                if (System.currentTimeMillis() > (now + 5000)) {
-//                    Log.d(TAG, "UART Task is running: ");
-//                    now = System.currentTimeMillis();
-//                }
+                if (System.currentTimeMillis() > (now + 5000)) {
+                    Log.d(TAG, "UART Task is running: ");
+                    now = System.currentTimeMillis();
+                }
                 line = null;
 
                 try {
-                    Thread.sleep(400);
+                    Thread.sleep(10);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
 
+                final Thread readThread = Thread.currentThread();
+                Timer t = new Timer();
+                TimerTask readTask = new TimerTask() {
+                    @Override
+                    public void run() {
+                        readThread.interrupt();
+                        System.out.printf("Timer expired, interrupt");
+                    }
+                };
+                Log.d(TAG, "Schedule readTask timer for " + String.valueOf(timeout) + " ms");
+                t.schedule(readTask, timeout);
 
-                MyCallable myCallable = new MyCallable();
-                Future<String> future = executor.submit(myCallable);
+                String tmp = null;
                 try {
-                    line = future.get(200, TimeUnit.MILLISECONDS);//TIMEOT
-                    //future.cancel(true);
-                } catch (Exception e) {
-                    //Log.e(TAG, e.toString());
-                    
+                    if (r.ready()) {
+                        tmp = r.readLine();
+                        t.cancel();
+                        System.out.printf("Timer Cancelled");
+                        sb.append(tmp);
+                        if (tmp != null){Log.d(TAG + " - CALL", tmp);}
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-                //Log.d(TAG, sb.toString());
 
             }
-        }
 
-
-        private class MyCallable implements Callable {
-
-            @Override
-            public String call() throws Exception {
-                if (r.ready()) {
-                    String tmp = r.readLine();
-                    sb.append(tmp);
-                    Log.d(TAG + " - CALL", tmp);
-                    return tmp;
-                }
-                return null;
+            try {
+                r.close();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
 
+            try {
+                is.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            uart2.close();
+            uart2 = null;
+
         }
+//                MyCallable myCallable = new MyCallable();
+//                Future<String> future = executor.submit(myCallable);
+//                try {
+//                    line = future.get(200, TimeUnit.MILLISECONDS);//TIMEOT
+//                    //future.cancel(true);
+//                } catch (Exception e) {
+//                    //Log.e(TAG, e.toString());
+//
+//                }
+//                //Log.d(TAG, sb.toString());
+//
+//            }
+//        }
+//
+//
+//        private class MyCallable implements Callable {
+//
+//            @Override
+//            public String call() throws Exception {
+//                if (r.ready()) {
+//                    String tmp = r.readLine();
+//                    sb.append(tmp);
+//                    Log.d(TAG + " - CALL", tmp);
+//                    return tmp;
+//                }
+//                return null;
+//            }
+//
+//        }
 
     }
 

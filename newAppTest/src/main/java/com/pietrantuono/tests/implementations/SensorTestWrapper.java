@@ -4,6 +4,7 @@ import ioio.lib.api.IOIO;
 import android.app.Activity;
 import android.util.Log;
 
+import com.pietrantuono.ioioutils.IOIOUtils;
 import com.pietrantuono.sensors.ClosedTest;
 import com.pietrantuono.sensors.SensorTest;
 import com.pietrantuono.sensors.SensorsTestHelper;
@@ -37,7 +38,6 @@ public class SensorTestWrapper extends Test {
 			this.load = false;
 		}
 		Log.d(TAG, "Sensor Load is " + this.load);
-
 		this.voltage = -1;
 		if (description != null && description.contains("GAIN @")){
 			this.voltage = Short.valueOf(description.substring(description.indexOf("@") + 2, description.length()));
@@ -53,6 +53,7 @@ public class SensorTestWrapper extends Test {
 		if(isinterrupted)return;
 		helper = new SensorsTestHelper((Activity)activityListener,activityListener.getBtutility(),ioio);
 		sensorTest.setSensorsTestHelper(helper);
+		IOIOUtils.getUtils().stopUartThread();
 		sensorTest.execute();
 	}
 

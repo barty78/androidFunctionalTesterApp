@@ -418,21 +418,21 @@ public class NewSequence implements NewSequenceInterface {
 				sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 4000, 4095, 50,
 						"Sensor Input Test, LOADED, GAIN @ 230"));
 
-		MyDummyTest test = new MyDummyTest.Builder().setActivity(activity).setDescription("first").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
-		test.setIdTest(1);test.setValue(1);
-		sequence.add(test);
-		test = new MyDummyTest.Builder().setActivity(activity).setDescription("second").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
-		test.setIdTest(2);test.setValue(2);
-		sequence.add(test);
-		test = new MyDummyTest.Builder().setActivity(activity).setDescription("third").setIoio(ioio).setIsBlockingTest(true).createMyDummyTest();
-		test.setSuccess(false);test.setIdTest(3);test.setValue(3);
-		sequence.add(test);
-		sequence.add(new BluetoothConnectTestForTesting(activity));
-
-		sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 0, 0, 0,
-				"Sensor Input Test, LOADED, GAIN @ 127"));
-		test = new MyDummyTest.Builder().setActivity(activity).setDescription("fourth").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
-		sequence.add(test);
+//		MyDummyTest test = new MyDummyTest.Builder().setActivity(activity).setDescription("first").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
+//		test.setIdTest(1);test.setValue(1);
+//		sequence.add(test);
+//		test = new MyDummyTest.Builder().setActivity(activity).setDescription("second").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
+//		test.setIdTest(2);test.setValue(2);
+//		sequence.add(test);
+//		test = new MyDummyTest.Builder().setActivity(activity).setDescription("third").setIoio(ioio).setIsBlockingTest(true).createMyDummyTest();
+//		test.setSuccess(false);test.setIdTest(3);test.setValue(3);
+//		sequence.add(test);
+//		sequence.add(new BluetoothConnectTestForTesting(activity));
+//
+//		sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 0, 0, 0,
+//				"Sensor Input Test, LOADED, GAIN @ 127"));
+//		test = new MyDummyTest.Builder().setActivity(activity).setDescription("fourth").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
+//		sequence.add(test);
 
 	}
 

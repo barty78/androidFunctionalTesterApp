@@ -40,6 +40,12 @@ public class GetMacAddressTest extends Test {
         if (isinterrupted) return;
         String strFileContents = "";
 
+        try {
+            Thread.sleep(2 * 1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         if (IOIOUtils.getUtils().getUartLog().length() != 0) {
             if (IOIOUtils.getUtils().getUartLog().indexOf(key) != -1) {
                 strFileContents = IOIOUtils.getUtils().getUartLog()
@@ -60,6 +66,7 @@ public class GetMacAddressTest extends Test {
                 Success();
                 activityListener.addView("BT MAC ADDR: ", strFileContents, false);
 //                activityListener.setSerial(strFileContents);
+                activityListener.setMacAddress(strFileContents);
                 activityListener.addFailOrPass(true, true, "");
                 return;
 

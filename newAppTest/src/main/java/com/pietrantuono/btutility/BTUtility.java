@@ -242,17 +242,17 @@ public class BTUtility {
 	public void connectUsingMac(){
 		if (isstopped)
 			return;
-		mListItems = new ArrayList<ConnectDeviceItem>();
-
-		Set<BluetoothDevice> pairedDevices = mBTAdapter.getBondedDevices();
-		if (pairedDevices.size() > 0)
-			for (BluetoothDevice device : pairedDevices)
-				if (device.getName() != null
-						&& (device.getName().contains("PeriCoach"))) {
-					mListItems.add(new ConnectDeviceItem(Type.DEVICE, device
-							.getName(), device, R.drawable.device));
-				}
-		removeDevicesFromList(true, true);
+//		mListItems = new ArrayList<ConnectDeviceItem>();
+//
+//		Set<BluetoothDevice> pairedDevices = mBTAdapter.getBondedDevices();
+//		if (pairedDevices.size() > 0)
+//			for (BluetoothDevice device : pairedDevices)
+//				if (device.getName() != null
+//						&& (device.getName().contains("PeriCoach"))) {
+//					mListItems.add(new ConnectDeviceItem(Type.DEVICE, device
+//							.getName(), device, R.drawable.device));
+//				}
+//		removeDevicesFromList(true, true);
 		IntentFilter connectFilter = new IntentFilter();
 		connectFilter.addAction(INTENT_CONNECT_FAILED);
 		connectFilter.addAction(INTENT_CONNECT_SUCCEEDED);

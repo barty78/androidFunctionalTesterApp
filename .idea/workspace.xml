@@ -6,7 +6,7 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c3e6e43e-5ddb-4d23-8f7a-0ad602dc1457" name="Default" comment="" />
@@ -36,35 +36,72 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="NewSequence.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/newAppTest/src/peter/java/customclasses/NewSequence.java">
+      <file leaf-file-name="SensorTestWrapper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/SensorTestWrapper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-19.925926">
-              <caret line="362" column="68" selection-start-line="362" selection-start-column="68" selection-end-line="362" selection-end-column="68" />
+            <state vertical-scroll-proportion="-28.962963">
+              <caret line="54" column="29" selection-start-line="54" selection-start-column="29" selection-end-line="54" selection-end-column="29" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GetDeviceSerialTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/GetDeviceSerialTest.java">
+      <file leaf-file-name="SensorTest.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/sensors/SensorTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.69627196">
+              <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BTUtility.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/btutility/BTUtility.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-57.62069">
+              <caret line="418" column="45" selection-start-line="418" selection-start-column="45" selection-end-line="418" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="38" column="42" selection-start-line="38" selection-start-column="42" selection-end-line="38" selection-end-column="42" />
+              <caret line="330" column="17" selection-start-line="330" selection-start-column="17" selection-end-line="330" selection-end-column="17" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IOIOUtilsInterface.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/IOIOUtilsInterface.java">
+      <file leaf-file-name="SensorsTestHelper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/sensors/SensorsTestHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.333333">
-              <caret line="62" column="39" selection-start-line="62" selection-start-column="39" selection-end-line="62" selection-end-column="39" />
-              <folding>
-                <element signature="e#960#984#1" expanded="true" />
-                <element signature="e#1249#1273#1" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.0">
+              <caret line="30" column="55" selection-start-line="30" selection-start-column="55" selection-end-line="30" selection-end-column="55" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NewSessionPollingThread.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/sensors/NewSessionPollingThread.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="33" column="24" selection-start-line="33" selection-start-column="24" selection-end-line="33" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BluetoothConnectTestForTesting.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/BluetoothConnectTestForTesting.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="18" column="50" selection-start-line="18" selection-start-column="50" selection-end-line="18" selection-end-column="50" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -73,27 +110,7 @@
         <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/UploadFirmwareTest.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="172" column="0" selection-start-line="172" selection-start-column="0" selection-end-line="172" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AccelerometerSelfTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/AccelerometerSelfTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.5555553">
-              <caret line="23" column="39" selection-start-line="23" selection-start-column="39" selection-end-line="23" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GetMacAddressTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/GetMacAddressTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="47" column="36" selection-start-line="47" selection-start-column="36" selection-end-line="47" selection-end-column="36" />
+              <caret line="27" column="16" selection-start-line="27" selection-start-column="16" selection-end-line="27" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -102,48 +119,50 @@
       <file leaf-file-name="FirmWareUploader.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/uploadfirmware/FirmWareUploader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="33.148148">
-              <caret line="128" column="0" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
-              <folding>
-                <element signature="e#1137#1161#0" expanded="true" />
-                <element signature="e#2692#2716#0" expanded="true" />
-                <element signature="e#12717#12858#0" expanded="true" />
-                <element signature="e#12857#12858#0" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.0">
+              <caret line="482" column="27" selection-start-line="482" selection-start-column="27" selection-end-line="482" selection-end-column="27" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IOIOUtils.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="IOIOUtils.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/IOIOUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.33333334">
-              <caret line="943" column="20" selection-start-line="943" selection-start-column="20" selection-end-line="943" selection-end-column="20" />
-              <folding>
-                <element signature="e#15420#15421#0" expanded="true" />
-                <element signature="e#15452#15453#0" expanded="true" />
-                <element signature="e#15604#15605#0" expanded="true" />
-                <element signature="e#15635#15636#0" expanded="true" />
-                <element signature="e#15789#15790#0" expanded="true" />
-                <element signature="e#15821#15822#0" expanded="true" />
-                <element signature="e#15862#15863#0" expanded="true" />
-                <element signature="e#15892#15893#0" expanded="true" />
-                <element signature="e#17218#17219#0" expanded="true" />
-                <element signature="e#17245#17246#0" expanded="true" />
-                <element signature="e#19609#19633#0" expanded="true" />
-                <element signature="e#20061#20062#0" expanded="true" />
-                <element signature="e#20091#20092#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MyDummyTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/newAppTest/src/peter/java/customclasses/MyDummyTest.java">
-          <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-              <folding />
+              <caret line="1032" column="26" selection-start-line="1032" selection-start-column="26" selection-end-line="1032" selection-end-column="26" />
+              <folding>
+                <element signature="e#5444#5642#0" expanded="true" />
+                <element signature="e#5641#5642#0" expanded="true" />
+                <element signature="e#7063#7264#0" expanded="true" />
+                <element signature="e#7263#7264#0" expanded="true" />
+                <element signature="e#9927#10128#0" expanded="true" />
+                <element signature="e#10127#10128#0" expanded="true" />
+                <element signature="e#17104#17105#0" expanded="true" />
+                <element signature="e#17136#17137#0" expanded="true" />
+                <element signature="e#17288#17289#0" expanded="true" />
+                <element signature="e#17319#17320#0" expanded="true" />
+                <element signature="e#17473#17474#0" expanded="true" />
+                <element signature="e#17505#17506#0" expanded="true" />
+                <element signature="e#17546#17547#0" expanded="true" />
+                <element signature="e#17576#17577#0" expanded="true" />
+                <element signature="e#18723#18724#0" expanded="true" />
+                <element signature="e#18753#18754#0" expanded="true" />
+                <element signature="e#18902#18903#0" expanded="true" />
+                <element signature="e#18929#18930#0" expanded="true" />
+                <element signature="e#19627#19651#0" expanded="true" />
+                <element signature="e#21293#21317#0" expanded="true" />
+                <element signature="e#21745#21746#0" expanded="true" />
+                <element signature="e#21775#21776#0" expanded="true" />
+                <element signature="e#23234#23258#0" expanded="true" />
+                <element signature="e#24234#24235#0" expanded="true" />
+                <element signature="e#24259#24260#0" expanded="true" />
+                <element signature="e#24869#24896#0" expanded="true" />
+                <element signature="e#25951#26197#0" expanded="true" />
+                <element signature="e#26196#26197#0" expanded="true" />
+                <element signature="e#28224#28225#0" expanded="true" />
+                <element signature="e#28257#28258#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -2714,13 +2733,18 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/newAppTest/src/peter/java/customclasses/NewSequence.java" />
-        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/uploadfirmware/FirmWareUploader.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/GetDeviceSerialTest.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/AccelerometerSelfTest.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/IOIOUtilsInterface.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/GetMacAddressTest.java" />
+        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/BluetoothConnectTestForTesting.java" />
+        <option value="$PROJECT_DIR$/newAppTest/src/peter/java/customclasses/NewSequence.java" />
+        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/SensorTestWrapper.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/IOIOUtils.java" />
+        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/sensors/SensorTest.java" />
+        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/uploadfirmware/FirmWareUploader.java" />
+        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/btutility/BTUtility.java" />
+        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/sensors/SensorsTestHelper.java" />
       </list>
     </option>
   </component>
@@ -3146,19 +3170,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/uploadfirmware/FirmWareUploader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="33.148148">
-          <caret line="128" column="0" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
-          <folding>
-            <element signature="e#1137#1161#0" expanded="true" />
-            <element signature="e#2692#2716#0" expanded="true" />
-            <element signature="e#12717#12858#0" expanded="true" />
-            <element signature="e#12857#12858#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/IOIOUtilsInterface.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-11.333333">
@@ -3178,10 +3189,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/UploadFirmwareTest.java">
+    <entry file="file://F:/Android/android-sdk/sources/android-22/java/io/BufferedReader.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="172" column="0" selection-start-line="172" selection-start-column="0" selection-end-line="172" selection-end-column="0" />
+          <caret line="374" column="18" selection-start-line="374" selection-start-column="18" selection-end-line="374" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/PCBDetectHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33552632">
+          <caret line="23" column="9" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/peter/java/customclasses/NewSequence.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="356" column="43" selection-start-line="356" selection-start-column="43" selection-end-line="356" selection-end-column="43" />
           <folding />
         </state>
       </provider>
@@ -3189,7 +3216,7 @@
     <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/GetDeviceSerialTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="38" column="42" selection-start-line="38" selection-start-column="42" selection-end-line="38" selection-end-column="42" />
+          <caret line="37" column="31" selection-start-line="37" selection-start-column="31" selection-end-line="37" selection-end-column="31" />
           <folding />
         </state>
       </provider>
@@ -3197,38 +3224,135 @@
     <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/GetMacAddressTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="47" column="36" selection-start-line="47" selection-start-column="36" selection-end-line="47" selection-end-column="36" />
+          <caret line="69" column="62" selection-start-line="69" selection-start-column="62" selection-end-line="69" selection-end-column="62" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/peter/java/customclasses/NewSequence.java">
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/BluetoothConnectTestForTesting.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-19.925926">
-          <caret line="362" column="68" selection-start-line="362" selection-start-column="68" selection-end-line="362" selection-end-column="68" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="18" column="50" selection-start-line="18" selection-start-column="50" selection-end-line="18" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.ytai.ioio/IOIOLibCore/5.05/e2179ff3c838ab800b1966f7566ee53acb005ef/IOIOLibCore-5.05-sources.jar!/ioio/lib/api/Closeable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.05592105">
+          <caret line="3" column="9" selection-start-line="3" selection-start-column="9" selection-end-line="3" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/UploadFirmwareTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="27" column="16" selection-start-line="27" selection-start-column="16" selection-end-line="27" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/SensorTestWrapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-28.962963">
+          <caret line="54" column="29" selection-start-line="54" selection-start-column="29" selection-end-line="54" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://F:/Android/android-sdk/sources/android-22/android/os/Looper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="98" column="25" selection-start-line="98" selection-start-column="25" selection-end-line="98" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/IOIOUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="943" column="20" selection-start-line="943" selection-start-column="20" selection-end-line="943" selection-end-column="20" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1032" column="26" selection-start-line="1032" selection-start-column="26" selection-end-line="1032" selection-end-column="26" />
           <folding>
-            <element signature="e#15420#15421#0" expanded="true" />
-            <element signature="e#15452#15453#0" expanded="true" />
-            <element signature="e#15604#15605#0" expanded="true" />
-            <element signature="e#15635#15636#0" expanded="true" />
-            <element signature="e#15789#15790#0" expanded="true" />
-            <element signature="e#15821#15822#0" expanded="true" />
-            <element signature="e#15862#15863#0" expanded="true" />
-            <element signature="e#15892#15893#0" expanded="true" />
-            <element signature="e#17218#17219#0" expanded="true" />
-            <element signature="e#17245#17246#0" expanded="true" />
-            <element signature="e#19609#19633#0" expanded="true" />
-            <element signature="e#20061#20062#0" expanded="true" />
-            <element signature="e#20091#20092#0" expanded="true" />
+            <element signature="e#5444#5642#0" expanded="true" />
+            <element signature="e#5641#5642#0" expanded="true" />
+            <element signature="e#7063#7264#0" expanded="true" />
+            <element signature="e#7263#7264#0" expanded="true" />
+            <element signature="e#9927#10128#0" expanded="true" />
+            <element signature="e#10127#10128#0" expanded="true" />
+            <element signature="e#17104#17105#0" expanded="true" />
+            <element signature="e#17136#17137#0" expanded="true" />
+            <element signature="e#17288#17289#0" expanded="true" />
+            <element signature="e#17319#17320#0" expanded="true" />
+            <element signature="e#17473#17474#0" expanded="true" />
+            <element signature="e#17505#17506#0" expanded="true" />
+            <element signature="e#17546#17547#0" expanded="true" />
+            <element signature="e#17576#17577#0" expanded="true" />
+            <element signature="e#18723#18724#0" expanded="true" />
+            <element signature="e#18753#18754#0" expanded="true" />
+            <element signature="e#18902#18903#0" expanded="true" />
+            <element signature="e#18929#18930#0" expanded="true" />
+            <element signature="e#19627#19651#0" expanded="true" />
+            <element signature="e#21293#21317#0" expanded="true" />
+            <element signature="e#21745#21746#0" expanded="true" />
+            <element signature="e#21775#21776#0" expanded="true" />
+            <element signature="e#23234#23258#0" expanded="true" />
+            <element signature="e#24234#24235#0" expanded="true" />
+            <element signature="e#24259#24260#0" expanded="true" />
+            <element signature="e#24869#24896#0" expanded="true" />
+            <element signature="e#25951#26197#0" expanded="true" />
+            <element signature="e#26196#26197#0" expanded="true" />
+            <element signature="e#28224#28225#0" expanded="true" />
+            <element signature="e#28257#28258#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/sensors/NewSessionPollingThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="33" column="24" selection-start-line="33" selection-start-column="24" selection-end-line="33" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/uploadfirmware/FirmWareUploader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="482" column="27" selection-start-line="482" selection-start-column="27" selection-end-line="482" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="330" column="17" selection-start-line="330" selection-start-column="17" selection-end-line="330" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/btutility/BTUtility.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-57.62069">
+          <caret line="418" column="45" selection-start-line="418" selection-start-column="45" selection-end-line="418" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/sensors/SensorsTestHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="30" column="55" selection-start-line="30" selection-start-column="55" selection-end-line="30" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/sensors/SensorTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.69627196">
+          <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
