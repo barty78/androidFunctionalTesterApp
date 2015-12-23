@@ -29,4 +29,9 @@ public interface NewIOIOActivityListener {
 	void setResult(boolean success);
 
 	String getMac();
+
+	void setBarcode(String barcode);
+
+	String getBarcode();
+
 }

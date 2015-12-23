@@ -61,7 +61,12 @@ public class GetMacAddressTest extends Test {
             if (matcher.matches()) {
                 Log.d("MAC: ", "MAC VALID.");
                 mac = strFileContents;
-
+                if(macAlredySeen(mac)){
+                    Toast.makeText((Activity)activityListener,"DEVICE ALRREDY TESTED, ABORTING !",Toast.LENGTH_LONG).show();
+                    setSuccess(false);
+                    activityListener.addFailOrPass(true,false,description);
+                    return;
+                }
 
                 Success();
                 activityListener.addView("BT MAC ADDR: ", strFileContents, false);
@@ -76,6 +81,12 @@ public class GetMacAddressTest extends Test {
             }
             return;
         }
+    }
+
+    private boolean macAlredySeen(String mac) {
+        if(activityListener.getBarcode()==null || activityListener.getBarcode().length()<=0)return true;
+        if(mac==null || mac.length()<=0)return true;
+        return ServiceDBHelper.checkMac(activityListener.getBarcode(),mac);
     }
 
     public String getBT_Addr() {

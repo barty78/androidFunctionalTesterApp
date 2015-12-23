@@ -82,6 +82,7 @@ public class MainActivity extends Activity
 	private Job job = null;
 	private  BaseIOIOLooper looper;
 	private boolean sequenceStarted;
+	private String barcode;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -314,6 +315,16 @@ public class MainActivity extends Activity
 		return newSequence.getBT_Addr();
 	}
 
+	@Override
+	public void setBarcode(String barcode) {
+		this.barcode=barcode;
+	}
+
+	@Override
+	public String getBarcode() {
+		return barcode;
+	}
+
 	private void waitForPCBConnected() {
 		sequenceStarted=false;
 		Log.d(TAG, "Wait for PCB to connect");
@@ -374,6 +385,7 @@ public class MainActivity extends Activity
 	
 	private void start(){
 		sequenceStarted=true;
+		barcode=null;
 		newSequence=null;
 		newSequence = getNewSequence();
 		Log.d(TAG, "Logging is " + newSequence.isLog());

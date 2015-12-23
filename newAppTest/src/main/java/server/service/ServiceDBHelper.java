@@ -56,9 +56,8 @@ public class ServiceDBHelper {
 	}
 	@SuppressWarnings("ucd")
 	public static boolean isBarcodeAlreadySeen(String barcode){
-		List sameBarcode= new Select().from(Device.class).where("Barcode = ?",barcode).execute();
-		if(sameBarcode!=null && sameBarcode.size()>0)return true;
-		return false;
+		return new Select().from(Device.class).where("Barcode = ?",barcode).execute().size()>0;
+
 	}
 	@SuppressWarnings("ucd")
 	public static boolean isSerialAlreadySeen(String serial){
@@ -69,6 +68,9 @@ public class ServiceDBHelper {
 
 	public static Long saveBarcode(String barcode){
 		if(barcode==null || barcode.length()<=0)return -1l;
+		Device existing = null;
+		existing=new Select().from(Device.class).where("Barcode = ?", barcode).executeSingle();
+		if(existing!=null)return existing.getId();
 		Device device= new Device();
 		device.setBarcode(barcode);
 		return device.save();
