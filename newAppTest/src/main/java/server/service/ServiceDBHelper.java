@@ -47,24 +47,12 @@ public class ServiceDBHelper {
 		return device;
 	}
 
-	private static boolean isDeviceAlreadySeen(Device device){
-		List sameBarcode= new Select().from(Device.class).where("Barcode = ?",device.getBarcode()).execute();
-		if(sameBarcode!=null && sameBarcode.size()>0)return true;
-		List sameSerial= new Select().from(Device.class).where("Serial = ?",device.getBarcode()).execute();
-		if(sameSerial!=null && sameSerial.size()>0)return true;
-		return false;
-	}
+
 	@SuppressWarnings("ucd")
 	public static boolean isBarcodeAlreadySeen(String barcode){
 		return new Select().from(Device.class).where("Barcode = ?",barcode).execute().size()>0;
 
 	}
-	@SuppressWarnings("ucd")
-	public static boolean isSerialAlreadySeen(String serial){
-		List sameSerial= new Select().from(Device.class).where("Serial = ?",serial).execute();
-		if(sameSerial!=null && sameSerial.size()>0)return true;
-		return false;
-		}
 
 	public static Long saveBarcode(String barcode){
 		if(barcode==null || barcode.length()<=0)return -1l;

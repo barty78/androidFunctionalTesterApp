@@ -79,7 +79,7 @@ public class GetDeviceSerialTest extends Test {
                                 activityListener.addView("Serial (HW reading):", strFileContents, false);
                                 activityListener.setSerial(strFileContents);
                                 activityListener.addFailOrPass(true, true, "");
-                                ServiceDBHelper.saveSerial(activityListener.getBarcode(),strFileContents);
+                                ServiceDBHelper.saveSerial(activityListener.getBarcode(),serial);
                                 return;
                             } else {
                                 try {

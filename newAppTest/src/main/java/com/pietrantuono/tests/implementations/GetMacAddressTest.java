@@ -60,7 +60,7 @@ public class GetMacAddressTest extends Test {
                 Log.d("MAC: ", "MAC VALID.");
                 mac = strFileContents;
 
-                if(macAlredySeen(mac)){
+                if(ServiceDBHelper.isMacAlreadySeen(activityListener.getBarcode(),mac)){
                     Toast.makeText((Activity)activityListener,"DEVICE ALRREDY TESTED, ABORTING !",Toast.LENGTH_LONG).show();
                     setSuccess(false);
                     activityListener.addFailOrPass(true,false,description);
@@ -70,7 +70,7 @@ public class GetMacAddressTest extends Test {
                 Success();
                 activityListener.addView("BT MAC ADDR: ", strFileContents, false);
 //                activityListener.setSerial(strFileContents);
-                ServiceDBHelper.saveMac(activityListener.getBarcode(),strFileContents);
+                ServiceDBHelper.saveMac(activityListener.getBarcode(),mac);
                 activityListener.setMacAddress(strFileContents);
                 activityListener.addFailOrPass(true, true, "");
                 return;
@@ -83,11 +83,7 @@ public class GetMacAddressTest extends Test {
         }
     }
 
-    private boolean macAlredySeen(String mac) {
-        if(activityListener.getBarcode()==null || activityListener.getBarcode().length()<=0)return true;
-        if(mac==null || mac.length()<=0)return true;
-        return ServiceDBHelper.isMacAlreadySeen(activityListener.getBarcode(), mac);
-    }
+
 
     public String getBT_Addr() {
         return mac;

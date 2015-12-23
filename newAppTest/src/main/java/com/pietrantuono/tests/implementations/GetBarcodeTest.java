@@ -83,7 +83,6 @@ public class GetBarcodeTest extends Test {
                     ServiceDBHelper.saveBarcode(barcode);
                     setSuccess(true);
                     activityListener.addFailOrPass(true, true, barcode);
-
                     return;
 
                 }
