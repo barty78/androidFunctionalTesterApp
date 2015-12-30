@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.pietrantuono.pericoach.newtestapp.BuildConfig;
 import com.pietrantuono.pericoach.newtestapp.R;
 
 import android.content.Context;
@@ -56,10 +57,16 @@ public class RetrofitRestServices {
             String ENDPOINT = null;
             SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
             boolean use_default = sharedPref.getBoolean("use_default_url", true);
-            if (use_default) ENDPOINT = context.getResources().getString(R.string.default_url);
-            else
-                ENDPOINT = sharedPref.getString("custom_url", "http://peritest.hopto.org/periprod/v1");
 
+            if (BuildConfig.DEBUG) {
+                if (use_default) ENDPOINT = context.getResources().getString(R.string.default_url);
+                else
+                    ENDPOINT = sharedPref.getString("custom_url", "http://peritest.hopto.org/peridev/v1");
+            } else {
+                if (use_default) ENDPOINT = context.getResources().getString(R.string.default_url);
+                else
+                    ENDPOINT = sharedPref.getString("custom_url", "http://peritest.hopto.org/periprod/v1");
+            }
             Gson gson = new GsonBuilder()
                     .excludeFieldsWithoutExposeAnnotation()
                     .registerTypeAdapter(Long.class, new MyLongTypeAdapter())
