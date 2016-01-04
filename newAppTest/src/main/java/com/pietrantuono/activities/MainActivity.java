@@ -53,6 +53,7 @@ import server.MyIntTypeAdapter;
 import server.MyLongTypeAdapter;
 import server.RetrofitRestServices;
 import server.pojos.Device;
+import server.pojos.DevicesList;
 import server.pojos.Job;
 import server.pojos.records.TestRecord;
 import server.service.ServiceDBHelper;
@@ -362,12 +363,12 @@ public class MainActivity extends Activity
 			@Override
 			public void run() {
 				MyDialogs.showProgress(MainActivity.this);
-				RetrofitRestServices.getRest(MainActivity.this).getLastDevices(PeriCoachTestApplication.getDeviceid(),PeriCoachTestApplication.getLastId(), new Callback<List<Device>>() {
+				RetrofitRestServices.getRest(MainActivity.this).getLastDevices(PeriCoachTestApplication.getDeviceid(),PeriCoachTestApplication.getLastId(), new Callback<DevicesList>() {
 					@Override
-					public void success(List<Device> arg0, Response arg1) {
+					public void success(DevicesList arg0, Response arg1) {
 						if(isFinishing())return;
 						MyDialogs.dismisProgress(MainActivity.this);	
-						if(arg0!=null && arg0.size()>0)ServiceDBHelper.addDevices(arg0);
+						if(arg0!=null)ServiceDBHelper.addDevices(arg0);
 						else Toast.makeText(MainActivity.this, "Failed devices download, continuing anyway", Toast.LENGTH_LONG).show();
 						start();
 					}

@@ -8,27 +8,38 @@ import com.activeandroid.Model;
 import com.activeandroid.query.Select;
 
 import server.pojos.Device;
+import server.pojos.DevicesList;
 
 public class ServiceDBHelper {
 	
-	public static void addDevices(List<Device> arg0){
-		HashSet<Device> devicesReceived= new HashSet<Device>();
+	public static void addDevices(DevicesList arg0) {
+		if (arg0.getNew() != null && arg0.getNew().size() > 0) addNewDevices(arg0.getNew());
+		if (arg0.getUpdated() != null && arg0.getUpdated().size() > 0)updateDevices(arg0.getUpdated());
+	}
+
+	private static void updateDevices(List<Device> updatedDevices) {
 		HashSet<Device> devicesToBeSaved= new HashSet<Device>();
-		devicesReceived.addAll(arg0);
-		for (Device device:devicesReceived) {
-			Device existingdevice=null;
-			existingdevice=weHaveItAlready(device.getBarcode());
-			if(existingdevice==null)devicesToBeSaved.add(device);
-			else {
-				if(device.getBt_addr()!=null && device.getBt_addr().length()<=0)existingdevice.setBt_addr(device.getBt_addr());
-				if(device.getDeviceId()!=0 )existingdevice.setDeviceId(device.getDeviceId());
-				if(device.getFwver()!=null && device.getFwver().length()<=0)existingdevice.setFwver(device.getFwver());
-				if(device.getJobId()!=0 )existingdevice.setJobId(device.getJobId());
-				if(device.getModel()!=null && device.getModel().length()<=0)existingdevice.setModel(device.getModel());
-				if(device.getSerial()!=null && device.getSerial().length()<=0)existingdevice.setSerial(device.getSerial());
-				devicesToBeSaved.add(existingdevice);
-			}
+		for (Device device:updatedDevices) {
+			Device existingdevice = weHaveItAlready(device.getBarcode());
+			if(existingdevice!=null) devicesToBeSaved.add(existingdevice);
 		}
+		ActiveAndroid.beginTransaction();
+		try {
+			for (Device device:devicesToBeSaved) {
+				device.save();
+			}
+			ActiveAndroid.setTransactionSuccessful();
+		}
+		finally {
+			ActiveAndroid.endTransaction();
+		}
+
+
+	}
+
+	private static void addNewDevices(List<Device> newDevices) {
+		HashSet<Device> devicesToBeSaved= new HashSet<Device>();
+		devicesToBeSaved.addAll(newDevices);
 		ActiveAndroid.beginTransaction();
 		try {
 		        for (Device device:devicesToBeSaved) {
@@ -40,6 +51,8 @@ public class ServiceDBHelper {
 		        ActiveAndroid.endTransaction();
 		}
 	}
+
+
 
 	private static Device weHaveItAlready(String barcode) {
 		Device device=null;
