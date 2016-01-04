@@ -10,6 +10,7 @@ import com.pietrantuono.pericoach.newtestapp.R;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import retrofit.Callback;
 import retrofit.RestAdapter;
@@ -56,12 +57,14 @@ public class RetrofitRestServices {
         if (rest == null) {
             String ENDPOINT = null;
             SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-            boolean use_default = sharedPref.getBoolean("use_default_url", true);
+            boolean use_default = sharedPref.getBoolean("use_default_url", false);
 
+            Log.d("REST", String.valueOf(BuildConfig.DEBUG));
             if (BuildConfig.DEBUG) {
-                if (use_default) ENDPOINT = context.getResources().getString(R.string.default_url);
-                else
-                    ENDPOINT = sharedPref.getString("custom_url", "http://peritest.hopto.org/peridev/v1");
+//                if (use_default) ENDPOINT = context.getResources().getString(R.string.default_url);
+//                else
+//                    ENDPOINT = sharedPref.getString("custom_url", "http://peritest.hopto.org/peridev/v1");
+                ENDPOINT = "http://peritest.hopto.org/peridev/v1";
             } else {
                 if (use_default) ENDPOINT = context.getResources().getString(R.string.default_url);
                 else
