@@ -24,6 +24,7 @@ import com.pietrantuono.ioioutils.PCBDetectHelper.PCBDetectHelperInterface;
 import com.pietrantuono.ioioutils.Voltage;
 import com.pietrantuono.pericoach.newtestapp.R;
 import com.pietrantuono.sensors.SensorTestCallback;
+import com.pietrantuono.tests.superclass.Test;
 import com.pietrantuono.uploadfirmware.ProgressAndTextView;
 
 import android.app.Activity;
@@ -401,9 +402,12 @@ public class MainActivity extends Activity
 		IOIOUtils.getUtils().initialize(MainActivity.this, myIOIO, MainActivity.this);
 		uiHelper.setCurrentAndNextTaskinUI();
 		detectHelper.setPCBDetectCallback(MainActivity.this);
-		detectHelper.startCheckingIfConnectionDrops(_PCB_Detect);// TODO
-																	// attention
-																	// here!
+		//TODO - Only do dropped connection testing for open test.
+		if(job.getTesttypeId() == 1) {
+			detectHelper.startCheckingIfConnectionDrops(_PCB_Detect);// TODO
+			// attention
+			// here!
+		}
 		goAndExecuteNextTest();
 	}
 

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.lang.ref.WeakReference;
 
 import com.pietrantuono.activities.MainActivity;
+import com.pietrantuono.activities.NewIOIOActivityListener;
 import com.pietrantuono.constants.NewMSensorResult;
 import com.pietrantuono.ioioutils.IOIOUtils;
 import com.pietrantuono.pericoach.newtestapp.R;
@@ -26,6 +27,7 @@ public class SensorTest {
 	public final float lowerLimit;
 	public final float upperLimit;
 	public final float varLimit;
+	public NewIOIOActivityListener activityListener;
 	protected SensorsTestHelper sensorsTestHelper;
 	protected WeakReference<Activity> activity = null;
 	protected short voltage = -1;
@@ -48,6 +50,8 @@ public class SensorTest {
 		this.varLimit=varLimit;
 		this.voltage=wrapper.getVoltage();
 		this.load=wrapper.getLoad();
+		this.activityListener=(NewIOIOActivityListener)activity;
+
 	}
 
 	public void stop() {
@@ -102,32 +106,27 @@ public class SensorTest {
 		Log.d("SensorTest", "execute");
 		if (this.activity == null || activity == null) {
 			Log.e(SensorsTestHelper.TAG, "You must set the activity");
-			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test");
+			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - Activity Error");
 			return;
 		}
 		if (this.voltage == -1) {
 			Log.e(SensorsTestHelper.TAG, "You must set the voltage");
-			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test");
-			return;
-		}
-		if (this.sensorsTestHelper.samplesref == null) {
-			Log.e(SensorsTestHelper.TAG, "samplesref null?!");
-			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test");
-			return;
-		}
-		if (this.sensorsTestHelper.samplesref == null) {
-			Log.e(SensorsTestHelper.TAG, "samplesref null?!");
-			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test");
+			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - No Set Voltage");
 			return;
 		}
 		if (load == null) {
 			Log.e(SensorsTestHelper.TAG, "load null?!");
-			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test");
+			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - No Load Set");
+			return;
+		}
+		if (this.sensorsTestHelper.samplesref == null) {
+			Log.e(SensorsTestHelper.TAG, "samplesref null?!");
+			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - No Samples Ref");
 			return;
 		}
 		if (mSensorResult == null) {
 			Log.e(SensorsTestHelper.TAG, "mSensorResult null?!");
-			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test");
+			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - No Sensor Result Object");
 			return;
 		}
 //		try {
@@ -169,16 +168,15 @@ public class SensorTest {
 			public void run() {
 				Log.d("execute","executin first runnable");
 				endTest();
-
 			}
 		}, (SensorsTestHelper.CALIBRATION_TIME_MS * 1) + DELAY);
-
 	}
 
 	public NewMSensorResult endTest() {
 		if (stopped)return mSensorResult;
 		sensorsTestHelper.accetpData(false);
 		sensorsTestHelper.stop();
+
 		final LinearLayout layout = (LinearLayout) this.sensorsTestHelper.activityref.get().findViewById(R.id.sensorsreading);
 		this.sensorsTestHelper.activityref.get().runOnUiThread(new Runnable() {
 			@Override
@@ -186,35 +184,43 @@ public class SensorTest {
 				layout.setVisibility(View.VISIBLE);
 			}
 		});
+
 		if (stopped)
 			return mSensorResult;
 		Log.d("SensorTest", "endTest");
 		if (this.sensorsTestHelper.samplesref == null) {
 			Log.d(SensorsTestHelper.TAG, "samplesref == null " + (this.sensorsTestHelper.samplesref == null));
-			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test");
+			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - No Samples");
 			return mSensorResult;
 		}
-		if (this.sensorsTestHelper.samplesref.mSamples == null) {
-			Log.d(SensorsTestHelper.TAG, "samplesref.mSamples == null " + (this.sensorsTestHelper.samplesref.mSamples == null));
-			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test");
-			return mSensorResult;
-		}
+
+//		if (this.sensorsTestHelper.samplesref.mSamples == null) {
+//			Log.d(SensorsTestHelper.TAG, "samplesref.mSamples == null " + (this.sensorsTestHelper.samplesref.mSamples == null));
+//			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test");
+//			return mSensorResult;
+//		}
+
 		if (this.sensorsTestHelper.samplesref.mSamples == null) {
 			Log.d(SensorsTestHelper.TAG, "Samples size = " + this.sensorsTestHelper.samplesref.mSamples.size());
-			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test");
+			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - No Samples");
 			return mSensorResult;
 		}
+
 		if (this.sensorsTestHelper.samplesref == null || this.sensorsTestHelper.samplesref.mSamples == null
 				|| this.sensorsTestHelper.samplesref.mSamples.size() < this.sensorsTestHelper.CALIBRATION_MIN_SAMPLES) {
+
 			if (activity.get() != null && !activity.get().isFinishing()
-					&& !((MainActivity) (activity.get())).isMainActivityBeingDestroyed())
+					&& !((MainActivity) (activity.get())).isMainActivityBeingDestroyed()) {
+				((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor Test - Insufficient Samples");
 				return mSensorResult;
+			}
 			Toast.makeText(activity.get(),
 					"Error taking measure, please check Bluetooth and PeriCoach device and restart test",
 					Toast.LENGTH_LONG).show();
 			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test");
 			return mSensorResult;
 		}
+
 		SessionSamples tempSamples = new SessionSamples(this.sensorsTestHelper.INITIAL_FREEMODE_SAMPLE_CAPACITY);
 		int numberOfSamplesTocopy = this.sensorsTestHelper.samplesref.mSamples.size() < this.sensorsTestHelper.INITIAL_FREEMODE_SAMPLE_CAPACITY
 				? this.sensorsTestHelper.samplesref.mSamples.size() : this.sensorsTestHelper.INITIAL_FREEMODE_SAMPLE_CAPACITY;
@@ -234,6 +240,7 @@ public class SensorTest {
 			sensor1 += force.mSensor1;
 			sensor2 += force.mSensor2;
 		}
+
 		//
 		Force mUserMaxForce = tempSamples.getMaxSampleSeen();
 		Force mUserMinForce = tempSamples.getMinSampleSeen();

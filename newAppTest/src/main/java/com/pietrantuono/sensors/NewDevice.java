@@ -201,7 +201,7 @@ public abstract class NewDevice
 			DeviceRecvStream recvStream = new DeviceRecvStream(mPacketHandler);
 			byte[] readBuffer = new byte [READ_BUFSIZE];
 			int bytesRead;
-			
+
 			// read() is a blocking call so we just run a simple loop.  When the application closes the underlying socket the read() call
 			// will fail with an IOException, causing this thread to exit gracefully
 			while (true)

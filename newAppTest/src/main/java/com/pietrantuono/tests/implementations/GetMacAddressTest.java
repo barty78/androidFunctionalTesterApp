@@ -68,7 +68,7 @@ public class GetMacAddressTest extends Test {
                 }
 
                 Success();
-                activityListener.addView("BT MAC ADDR: ", strFileContents, false);
+                activityListener.addView("BT ADDR: ", strFileContents, false);
 //                activityListener.setSerial(strFileContents);
                 ServiceDBHelper.saveMac(activityListener.getBarcode(),mac);
                 activityListener.setMacAddress(strFileContents);

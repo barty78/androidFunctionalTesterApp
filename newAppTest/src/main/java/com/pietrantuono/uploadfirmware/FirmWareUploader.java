@@ -81,6 +81,13 @@ public class FirmWareUploader {
 				^ ((v & 0x0000FF00) >> 8) ^ ((v & 0x000000FF) >> 0);
 	}
 
+	private byte stm32_gen_data_cs(byte[] data, int len) {
+		byte cs = 0;
+		for (int i = 0; i < len; ++i)
+			cs ^= data[i];
+		return cs;
+	}
+
 	public FirmWareUploader(OutputStream TX, InputStream RX, Activity c,
 			ProgressBar progress, TextView percent,
 			NewIOIOActivityListener listner, IOIO ioio_) {
@@ -566,20 +573,21 @@ public class FirmWareUploader {
 		byte cs;
 		int i;
 		int c, extra;
-		Log.e(TAG, "len > 0 && len < 257 " + (len > 0 && len < 257));
-		if (!(len > 0 && len < 257)) {
-			showToast("Data length invalid");
-			throw new IllegalArgumentException("Data length invalid");
-		}
 
-		flush();
+//		Log.e(TAG, "len > 0 && len < 257 " + (len > 0 && len < 257));
+//		if (!(len > 0 && len < 257)) {
+//			showToast("Data length invalid");
+//			throw new IllegalArgumentException("Data length invalid");
+//		}
 
-		/* must be 32bit aligned */
-		Log.e(TAG, "address% 4 == 0 " + (address % 4 == 0));
-		if (!(address % 4 == 0)) {
-			showToast("Address not 32bit aligned");
-			throw new IllegalArgumentException("Address not 32bit aligned");
-		}
+//		flush();
+//
+//		/* must be 32bit aligned */
+//		Log.e(TAG, "address% 4 == 0 " + (address % 4 == 0));
+//		if (!(address % 4 == 0)) {
+//			showToast("Address not 32bit aligned");
+//			throw new IllegalArgumentException("Address not 32bit aligned");
+//		}
 
 		cs = (byte) stm32_gen_cs(address);
 
@@ -589,54 +597,61 @@ public class FirmWareUploader {
 			System.err.println("Unable to send write command \n");
 			return false;
 		}
+
+		write(address, 4);
+		write(cs);
+
+//		ByteBuffer bb = ByteBuffer.allocate(5);
+//		bb.put(addressToByteArray(address));
+//		bb.put(cs);							// Put the address into buffer
+//		byte[] addrbytes = bb.array();
+//
+//		write(addrbytes, 5);
 		
-		ByteBuffer bb = ByteBuffer.allocate(5);
-		bb.put(addressToByteArray(address));
-		bb.put(cs);							// Put the address into buffer
-		byte[] addrbytes = bb.array();
-		
-		write(addrbytes, 5);
-		
-		if (readWithTimerTimeout(1000) != STM32_ACK) {
-			showToast("Unable to write addressing");
-			System.err.println("Unable to write adressing \n");
+		if (readWithTimerTimeout(1000) != STM32_ACK)
 			return false;
-		}
+
 		// System.out.println("Address has been written \n");
 
 		/* setup the cs and send the length */
 		extra = len % 4;
-		cs = (byte) (len - 1 + extra);
-		
-		bb = ByteBuffer.allocate(len + 2 + extra);
-		bb.put(cs);							// Put the length into buffer
+//		cs = (byte) (len - 1 + extra);
+
+		write((byte) (len - 1 + extra));		// Write length byte
+		write(data, data.length);				//	Write data
+
+//		bb = ByteBuffer.allocate(len + 2 + extra);
+//		bb.put(cs);							// Put the length into buffer
 
 		/* write the data and build the checksum */
+//		cs = stm32_gen_data_cs(data, len);
+
 		for (i = 0; i < len; ++i)
 			cs ^= data[i];
-		Log.d("DATA: ", String.valueOf(cs));
+//		Log.d("DATA: ", String.valueOf(cs));
 
-		bb.put(data, 0, len);
+//		bb.put(data, 0, len);
 		//bb.put(data);
 		
 		/* write the alignment padding */
 		for (c = 0; c < extra; ++c) {
-			bb.put((byte) 0xFF);
+			write(0xFF);
 			cs ^= 0xFF;
 		}
 
+		write(cs);	// Write cs
+
 		/* send the checksum */
-		bb.put(cs);
+//		bb.put(cs);
 		
-		byte[] bytes = bb.array();
-		write(bytes, bytes.length);
+//		byte[] bytes = bb.array();
+//		write(bytes, bytes.length);
 
 //		IOIOUtils.getUtils().ioioSync(ioio_);
 
 		System.out.printf("Checksum : %2x\n", ((int) cs) & 0xFF);
 		//byte aRes = (byte) readWithTimeout(2 * 1000);
 		byte aRes = (byte) readWithTimerTimeout(1000);
-
 
 		System.out.printf("Result write : %2x\n", ((int) aRes) & 0xFF);
 		return aRes == STM32_ACK;
@@ -662,14 +677,19 @@ public class FirmWareUploader {
 			System.err.println("Unable to send char buffer to the device.");
 		}
 	}
-	
-	public byte[] addressToByteArray(int c) {
-		byte[] aData = new byte[4];
-		aData[0] = (byte) ((c >> 24) & 0x000000FF);
-		aData[1] = (byte) ((c >> 16) & 0x000000FF);
-		aData[2] = (byte) ((c >> 8) & 0x000000FF);
-		aData[3] = (byte) ((c >> 0) & 0x000000FF);
-		return aData;
+
+	private void write(int c, int length) {
+
+		if (length == 4) {
+
+			byte[] aData = new byte[4];
+			aData[0] = (byte) ((c >> 24) & 0x000000FF);
+			aData[1] = (byte) ((c >> 16) & 0x000000FF);
+			aData[2] = (byte) ((c >> 8) & 0x000000FF);
+			aData[3] = (byte) ((c >> 0) & 0x000000FF);
+
+			write(aData, 4);
+		}
 	}
 
 	public void upload(UploaderListener listener) {
