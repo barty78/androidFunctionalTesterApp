@@ -41,6 +41,11 @@ public class Device extends Model {
     @Expose
     private String fwver;
 
+    @Column(name ="bt_addr")
+    @Expose
+    private String bt_addr;
+
+
     /**
      * 
      * @return
@@ -149,53 +154,32 @@ public class Device extends Model {
         this.fwver = fwver;
     }
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((barcode == null) ? 0 : barcode.hashCode());
-		result = prime * result + ((fwver == null) ? 0 : fwver.hashCode());
-		result = prime * result + (int) (deviceId ^ (deviceId >>> 32));
-		result = prime * result + (int) (jobId ^ (jobId >>> 32));
-		result = prime * result + ((model == null) ? 0 : model.hashCode());
-		result = prime * result + ((serial == null) ? 0 : serial.hashCode());
-		return result;
-	}
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Device other = (Device) obj;
-		if (barcode == null) {
-			if (other.barcode != null)
-				return false;
-		} else if (!barcode.equals(other.barcode))
-			return false;
-		if (fwver == null) {
-			if (other.fwver != null)
-				return false;
-		} else if (!fwver.equals(other.fwver))
-			return false;
-		if (deviceId != other.deviceId)
-			return false;
-		if (jobId != other.jobId)
-			return false;
-		if (model == null) {
-			if (other.model != null)
-				return false;
-		} else if (!model.equals(other.model))
-			return false;
-		if (serial == null) {
-			if (other.serial != null)
-				return false;
-		} else if (!serial.equals(other.serial))
-			return false;
-		return true;
-	}
+        Device device = (Device) o;
+
+        return barcode.equals(device.barcode);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + barcode.hashCode();
+        return result;
+    }
+
+    public String getBt_addr() {
+        return bt_addr;
+    }
+
+    public void setBt_addr(String bt_addr) {
+        this.bt_addr = bt_addr;
+    }
+
 
 }

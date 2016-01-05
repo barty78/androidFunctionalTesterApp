@@ -21,6 +21,7 @@ import retrofit.http.GET;
 import retrofit.http.Header;
 import retrofit.http.POST;
 import server.pojos.Device;
+import server.pojos.DevicesList;
 import server.pojos.Firmware;
 import server.pojos.Job;
 import server.pojos.Test;
@@ -45,10 +46,10 @@ public class RetrofitRestServices {
         void postResults(@Header("DeviceId") String DeviceId, @Header("JobNo") String JobNo, @Body TestRecord record, Callback<Response> callback);
 
         @GET("/devices")
-        void getLastDevices(@Header("DeviceId") String DeviceId, @Header("LastId") String LastId, Callback<List<Device>> callback);
+        void getLastDevices(@Header("DeviceId") String DeviceId, @Header("LastId") String LastId, Callback<DevicesList> callback);
 
         @GET("/devices")
-        void getAllDevices(@Header("DeviceId") String DeviceId, Callback<List<Device>> callback);
+        void getAllDevices(@Header("DeviceId") String DeviceId, Callback<DevicesList> callback);
 
     }
 

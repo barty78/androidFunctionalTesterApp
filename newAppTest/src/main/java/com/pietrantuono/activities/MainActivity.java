@@ -53,6 +53,7 @@ import server.MyIntTypeAdapter;
 import server.MyLongTypeAdapter;
 import server.RetrofitRestServices;
 import server.pojos.Device;
+import server.pojos.DevicesList;
 import server.pojos.Job;
 import server.pojos.records.TestRecord;
 import server.service.ServiceDBHelper;
@@ -83,6 +84,7 @@ public class MainActivity extends Activity
 	private Job job = null;
 	private  BaseIOIOLooper looper;
 	private boolean sequenceStarted;
+	private String barcode;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -315,6 +317,16 @@ public class MainActivity extends Activity
 		return newSequence.getBT_Addr();
 	}
 
+	@Override
+	public void setBarcode(String barcode) {
+		this.barcode=barcode;
+	}
+
+	@Override
+	public String getBarcode() {
+		return barcode;
+	}
+
 	private void waitForPCBConnected() {
 		sequenceStarted=false;
 		Log.d(TAG, "Wait for PCB to connect");
@@ -351,12 +363,12 @@ public class MainActivity extends Activity
 			@Override
 			public void run() {
 				MyDialogs.showProgress(MainActivity.this);
-				RetrofitRestServices.getRest(MainActivity.this).getLastDevices(PeriCoachTestApplication.getDeviceid(),PeriCoachTestApplication.getLastId(), new Callback<List<Device>>() {
+				RetrofitRestServices.getRest(MainActivity.this).getLastDevices(PeriCoachTestApplication.getDeviceid(),PeriCoachTestApplication.getLastId(), new Callback<DevicesList>() {
 					@Override
-					public void success(List<Device> arg0, Response arg1) {
+					public void success(DevicesList arg0, Response arg1) {
 						if(isFinishing())return;
 						MyDialogs.dismisProgress(MainActivity.this);	
-						if(arg0!=null && arg0.size()>0)ServiceDBHelper.addDevices(arg0);
+						if(arg0!=null)ServiceDBHelper.addDevices(arg0);
 						else Toast.makeText(MainActivity.this, "Failed devices download, continuing anyway", Toast.LENGTH_LONG).show();
 						start();
 					}
@@ -375,6 +387,7 @@ public class MainActivity extends Activity
 	
 	private void start(){
 		sequenceStarted=true;
+		barcode=null;
 		newSequence=null;
 		newSequence = getNewSequence();
 		Log.d(TAG, "Logging is " + newSequence.isLog());

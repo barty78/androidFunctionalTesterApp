@@ -408,7 +408,11 @@ public class NewSequence implements NewSequenceInterface {
 		test = new MyDummyTest.Builder().setActivity(activity).setDescription("second").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
 		test.setIdTest(2);test.setValue(2);
 		sequence.add(test);
+<<<<<<< HEAD
+		sequence.add(new BluetoothConnectTestForTesting(activity));
+=======
 			sequence.add(new BluetoothConnectTestForTesting(activity));
+>>>>>>> use_device_info
 
 			sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 0, 0, 0,
 					"Sensor Input Test, LOADED, GAIN @ 127"));
