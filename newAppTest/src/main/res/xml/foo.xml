@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tests-steps xmlns:cat="http://schemas.android.com/apk/res-auto">
+
+    <generic-step />
+    <pause-step />
+    <prompt-step />
+    <setdigitaloutput-step />
+    <setsensorvoltage-step />
+
+    <acceleromterself-test />
+    <awakemodecurrent-test />
+    <batteryleveluutvoltage-test />
+    <btconnecttest-test />
+
+    <cats>
+        <siamese-cat
+            cat:fur="short"
+            tail="5" />
+
+        <persian-cat
+            barks="true"
+            fur="short"
+            tail="5" />
+    </cats>
+
+</tests-steps>
+
