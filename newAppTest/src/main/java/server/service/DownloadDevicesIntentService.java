@@ -12,6 +12,7 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 import server.RetrofitRestServices;
 import server.pojos.Device;
+import server.pojos.DevicesList;
 
 public class DownloadDevicesIntentService extends IntentService{
 	public DownloadDevicesIntentService() {
@@ -21,16 +22,16 @@ public class DownloadDevicesIntentService extends IntentService{
 	@Override
 	protected void onHandleIntent(Intent intent) {
 		Log.e("TAG","Downlaoding devices list");
-		RetrofitRestServices.getRest(DownloadDevicesIntentService.this).getAllDevices(PeriCoachTestApplication.getDeviceid(), new Callback<List<Device>>() {
+		RetrofitRestServices.getRest(DownloadDevicesIntentService.this).getAllDevices(PeriCoachTestApplication.getDeviceid(), new Callback<DevicesList>() {
 			
 			@Override
-			public void success(List<Device> arg0, Response arg1) {
-				if(arg0!=null && arg0.size()>0)
-				{
-					ServiceDBHelper.addDevices(arg0);
-				Log.d("TAG","Downlaoded devices list of "+arg0.size()+" items");
-				}
-				else Log.d("TAG","Downlaoded empty devices list");
+			public void success(DevicesList arg0, Response arg1) {
+//				if(arg0!=null && arg0.size()>0)
+//				{
+//					ServiceDBHelper.addDevices(arg0);
+//				Log.d("TAG","Downlaoded devices list of "+arg0.size()+" items");
+//				}
+//				else Log.d("TAG","Downlaoded empty devices list");
 			}
 			
 			@Override

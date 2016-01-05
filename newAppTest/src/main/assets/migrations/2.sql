@@ -1,0 +1,1 @@
+ALTER TABLE Devices ADD COLUMN bt_addr TEXT;
