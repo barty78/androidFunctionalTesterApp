@@ -16,11 +16,6 @@ class MyLooper extends BaseIOIOLooper {
 	}
 
 	@Override
-	public void loop() throws ConnectionLostException, InterruptedException {
-		Thread.sleep(1000);
-	}
-
-	@Override
 	public void disconnected() {
 	callback.onIOIOLooperDisconnected();
 	}
