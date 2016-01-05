@@ -116,7 +116,8 @@ public class NewSequence implements NewSequenceInterface {
 		if (currentStepNumber >= 0 && currentStepNumber<sequence.size()-1)
 			return getNextTest().getDescription();
 		else
-			return sequence.get(1).getDescription();
+//			return sequence.get(1).getDescription();
+		return null;
 	}
 
 	@Override
@@ -352,7 +353,7 @@ public class NewSequence implements NewSequenceInterface {
 		//				"Battery Charging Test"));
 
 		//		sequence.add(new DummyUploadFirmwareTest(activity, ioio, false));
-//				sequence.add(new UploadFirmwareTest(activity, ioio));
+				sequence.add(new UploadFirmwareTest(activity, ioio));
 
 				sequence.add(new GetDeviceSerialTest(activity, ioio));
 				sequence.add(new AccelerometerSelfTest(activity, ioio));

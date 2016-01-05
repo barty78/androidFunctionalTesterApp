@@ -573,6 +573,89 @@ public class FirmWareUploader {
 		byte cs;
 		int i;
 		int c, extra;
+		Log.e(TAG, "len > 0 && len < 257 " + (len > 0 && len < 257));
+		if (!(len > 0 && len < 257)) {
+			showToast("Data length invalid");
+			throw new IllegalArgumentException("Data length invalid");
+		}
+
+		flush();
+
+		/* must be 32bit aligned */
+		Log.e(TAG, "address% 4 == 0 " + (address % 4 == 0));
+		if (!(address % 4 == 0)) {
+			showToast("Address not 32bit aligned");
+			throw new IllegalArgumentException("Address not 32bit aligned");
+		}
+
+		cs = (byte) stm32_gen_cs(address);
+
+		/* send the address and checksum */
+		if (!sendCommand(_CMDList.get("wm").byteValue())) {
+			showToast("Unable to send write command");
+			System.err.println("Unable to send write command \n");
+			return false;
+		}
+
+		ByteBuffer bb = ByteBuffer.allocate(5);
+		write(address, 4);
+//		bb.put(addressToByteArray(address));
+		write(cs);
+//		bb.put(cs);							// Put the address into buffer
+//		byte[] addrbytes = bb.array();
+
+//		write(addrbytes, 5);
+
+		if (readWithTimerTimeout(1000) != STM32_ACK) {
+			showToast("Unable to write addressing");
+			System.err.println("Unable to write adressing \n");
+			return false;
+		}
+		// System.out.println("Address has been written \n");
+
+		/* setup the cs and send the length */
+		extra = len % 4;
+		cs = (byte) (len - 1 + extra);
+
+		bb = ByteBuffer.allocate(len + 2 + extra);
+		bb.put(cs);							// Put the length into buffer
+
+		/* write the data and build the checksum */
+		for (i = 0; i < len; ++i)
+			cs ^= data[i];
+		Log.d("DATA: ", String.valueOf(cs));
+
+		bb.put(data, 0, len);
+		//bb.put(data);
+
+		/* write the alignment padding */
+		for (c = 0; c < extra; ++c) {
+			bb.put((byte) 0xFF);
+			cs ^= 0xFF;
+		}
+
+		/* send the checksum */
+		bb.put(cs);
+
+		byte[] bytes = bb.array();
+		write(bytes, bytes.length);
+
+		IOIOUtils.getUtils().ioioSync(ioio_);
+
+		System.out.printf("Checksum : %2x\n", ((int) cs) & 0xFF);
+		//byte aRes = (byte) readWithTimeout(2 * 1000);
+		byte aRes = (byte) readWithTimerTimeout(1000);
+
+
+		System.out.printf("Result write : %2x\n", ((int) aRes) & 0xFF);
+		return aRes == STM32_ACK;
+	}
+
+	public boolean writeMemoryBasic(int address, byte[] data, int len) {
+
+		byte cs;
+		int i;
+		int c, extra;
 
 //		Log.e(TAG, "len > 0 && len < 257 " + (len > 0 && len < 257));
 //		if (!(len > 0 && len < 257)) {

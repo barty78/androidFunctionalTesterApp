@@ -54,6 +54,7 @@ public class SensorTestWrapper extends Test {
 		helper = new SensorsTestHelper((Activity)activityListener,activityListener.getBtutility(),ioio);
 		sensorTest.setSensorsTestHelper(helper);
 		IOIOUtils.getUtils().stopUartThread();
+//		IOIOUtils.getUtils().closeUart((Activity)activityListener);
 		sensorTest.execute();
 	}
 

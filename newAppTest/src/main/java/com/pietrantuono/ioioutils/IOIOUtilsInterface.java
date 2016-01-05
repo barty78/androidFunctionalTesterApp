@@ -81,6 +81,8 @@ public interface IOIOUtilsInterface {
 
 	void clearUartLog();
 
+	void closeUart(Activity activity);
+
 	String readBarcode(Activity activity);
 
 	@SuppressWarnings("ucd")

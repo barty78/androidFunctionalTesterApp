@@ -250,13 +250,13 @@ public class IOIOUtils implements IOIOUtilsInterface {
                          final Activity ac) {
 
         stopUartThread();
-        ac.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(ac, "CLOSING ALL IOIO",
-                        Toast.LENGTH_SHORT).show();
-            }
-        });
+//        ac.runOnUiThread(new Runnable() {
+//            @Override
+//            public void run() {
+//                Toast.makeText(ac, "CLOSING ALL IOIO",
+//                        Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
         try {
             if (POWER != null) POWER.close();
@@ -363,13 +363,13 @@ public class IOIOUtils implements IOIOUtilsInterface {
         isinterrupted = false;
 
         uutMode = Mode.bootloader;
-        ac.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(ac, "INITING ALL IOIO",
-                        Toast.LENGTH_SHORT).show();
-            }
-        });
+//        ac.runOnUiThread(new Runnable() {
+//            @Override
+//            public void run() {
+//                Toast.makeText(ac, "INITING ALL IOIO",
+//                        Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
         try {
             POWER = ioio_.openDigitalOutput(19,
@@ -831,6 +831,15 @@ public class IOIOUtils implements IOIOUtilsInterface {
         } catch (Exception e) {
             report(e, activity);
             return;
+        }
+    }
+
+    @Override
+    public void closeUart(Activity activity) {
+        try {
+            if (uart2 != null) uart2.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

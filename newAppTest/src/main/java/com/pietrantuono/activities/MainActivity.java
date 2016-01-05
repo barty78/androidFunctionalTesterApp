@@ -421,7 +421,7 @@ public class MainActivity extends Activity
 			public void run() {
 				goAndExecuteNextTest();
 			}
-		}, 5 * 1000);
+		}, 1 * 1000);  //TODO - Why 5 sec delay here? 1 sec works.
 
 	}
 
