@@ -5,6 +5,7 @@ import server.service.ServiceDBHelper;
 import android.app.Activity;
 import android.widget.Toast;
 
+import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.btutility.BTUtility;
 import com.pietrantuono.tests.superclass.Test;
 
@@ -31,18 +32,21 @@ public class ReadDeviceInfoSerialNumberTest extends Test {
         } else {
             if (serial.toLowerCase().equalsIgnoreCase(
                     activityListener.getSerial().toLowerCase())) {
-                if (!ServiceDBHelper.isSerialAlreadySeen(activityListener.getBarcode(), serial)) {
-                    Success();
-                    ServiceDBHelper.saveSerial(activityListener.getBarcode(), serial);
-                    activityListener.addFailOrPass(serial, true, true, description);
-                } else {
+
+                if (!PeriCoachTestApplication.getIsRetestAllowed() && ServiceDBHelper.isSerialAlreadySeen(activityListener.getBarcode(), serial)) {
                     try {
                         Toast.makeText((Activity) activityListener, "Barcode already tested! Aborting test", Toast.LENGTH_LONG).show();
                     } catch (Exception e) {
                     }
-                    activityListener.onCurrentSequenceEnd();
+                    activityListener
+                            .addFailOrPass(serial, true, false, description);
                     return;
                 }
+
+                Success();
+                ServiceDBHelper.saveSerial(activityListener.getBarcode(), serial);
+                activityListener.addFailOrPass(serial, true, true, description);
+
             } else {
                 activityListener
                         .addFailOrPass(serial, true, false, description);

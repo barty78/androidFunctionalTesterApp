@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<tests-steps xmlns:cat="http://schemas.android.com/apk/res-auto">
+<tests-steps >
 
     <generic-step />
     <pause-step />
@@ -14,7 +14,7 @@
 
     <cats>
         <siamese-cat
-            cat:fur="short"
+            fur="short"
             tail="5" />
 
         <persian-cat

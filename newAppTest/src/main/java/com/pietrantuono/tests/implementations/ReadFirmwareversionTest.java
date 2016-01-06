@@ -43,7 +43,6 @@ public class ReadFirmwareversionTest extends Test {
 		} catch (Exception e) {
 		}
 		if (firmwarever == null) {
-//			activityListener.addView("Firmware: ", "NOT AVAILABLE",false);
 			activityListener.addFailOrPass(true, false, "NULL",
 					description);
 		}
@@ -51,49 +50,10 @@ public class ReadFirmwareversionTest extends Test {
 		else {
 			if (firmwarever.equals(PeriCoachTestApplication.getGetFirmware().getVersion())) {
 				Success();
-//				activityListener.addView("Firmware: ", firmwarever,false);
 				activityListener.addFailOrPass(true, true, firmwarever, description);
 			} else {
-//				getListener().addView("Firmware: ", firmwarever,false);
 				activityListener.addFailOrPass(true, false, firmwarever, description);
 			}
-//			AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-//			builder.setTitle("Please check firmware version");
-//			builder.setMessage("Firmware version is: " + firmwarever);
-//			builder.setPositiveButton("OK", new OnClickListener() {
-//
-//				@Override
-//				public void onClick(DialogInterface dialog, int which) {
-//
-//					handler.post(new Runnable() {
-//						@Override
-//						public void run() {
-//							Success();
-//							activityListener.addView("Firmware: ", firmwarever,false);
-//							activityListener.addFailOrPass(firmwarever, true,
-//									true, description);
-//						}
-//					});
-//
-//				}
-//			});
-//			builder.setNegativeButton("Not OK", new OnClickListener() {
-//
-//				@Override
-//				public void onClick(DialogInterface dialog, int which) {
-//					handler.post(new Runnable() {
-//						@Override
-//						public void run() {
-//							getListener().addView("Firmware: ", firmwarever,false);
-//							getListener().addFailOrPass(firmwarever, true,
-//									false, description);
-//						}
-//					});
-//
-//				}
-//			});
-//			alertDialog=builder.create();
-//			alertDialog.show();
 		}
 	}
 

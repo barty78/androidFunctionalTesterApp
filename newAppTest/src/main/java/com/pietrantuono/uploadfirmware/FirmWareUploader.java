@@ -266,8 +266,8 @@ public class FirmWareUploader {
 				public void run() {
 					if (prog >= 100) {
 						if(listener!=null)listener.onUploadCompleted(true);
-						Toast.makeText(c, "WRITE COMPLETED",
-								Toast.LENGTH_LONG).show();
+//						Toast.makeText(c, "WRITE COMPLETED",
+//								Toast.LENGTH_LONG).show();
 
 						if (progress != null) {
 							progress.setProgress(100);
@@ -313,11 +313,11 @@ public class FirmWareUploader {
 			});
 			if (isCancelled())
 				return;
-			try {
-				Thread.sleep(2 * 1000 + 500);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+//			try {
+//				Thread.sleep(2 * 1000 + 500);
+//			} catch (InterruptedException e) {
+//				e.printStackTrace();
+//			}
 			
 		}
 	}

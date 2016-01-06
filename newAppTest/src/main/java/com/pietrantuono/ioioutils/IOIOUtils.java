@@ -1010,20 +1010,20 @@ public class IOIOUtils implements IOIOUtilsInterface {
                         this.cancel();
                     }
                 };
-                Log.d(TAG, "Schedule readTask timer for " + String.valueOf(timeout) + " ms");
+//                Log.d(TAG, "Schedule readTask timer for " + String.valueOf(timeout) + " ms");
                 t.schedule(readTask, timeout);
 
                 String tmp = null;
                 try {
-                    //if (r.ready()) {
-                    Log.d(TAG, "Read attempt");
+                    if (r.ready()) {
+//                    Log.d(TAG, "Read attempt");
 
                     tmp = r.readLine();
                         t.cancel();
                         System.out.printf("Timer Cancelled");
                         sb.append(tmp);
                         if (tmp != null){Log.d(TAG + " - CALL", tmp);}
-                  //  }
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

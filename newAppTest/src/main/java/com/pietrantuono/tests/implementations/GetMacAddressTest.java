@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.ioioutils.IOIOUtils;
 import com.pietrantuono.tests.superclass.Test;
 
@@ -60,7 +61,7 @@ public class GetMacAddressTest extends Test {
                 Log.d("MAC: ", "MAC VALID.");
                 mac = strFileContents;
 
-                if(ServiceDBHelper.isMacAlreadySeen(activityListener.getBarcode(),mac)){
+                if(ServiceDBHelper.isMacAlreadySeen(activityListener.getBarcode(),mac) && !PeriCoachTestApplication.getIsRetestAllowed()){
                     Toast.makeText((Activity)activityListener,"DEVICE ALRREDY TESTED, ABORTING !",Toast.LENGTH_LONG).show();
                     setSuccess(false);
                     activityListener.addFailOrPass(true,false,description);

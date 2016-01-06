@@ -66,7 +66,7 @@ public class MainActivity extends Activity
 		PCBConnectedCallback,
 		SensorTestCallback, ActivityUIHelperCallback, MyOnCancelListener.Callback, ActivityCallback {
 	private static IOIO myIOIO;
-	private static final String TAG = "MainActivity";
+	private static final String TAG = MainActivity.class.getSimpleName();
 	private String mJobNo = null;
 	private final IOIOAndroidApplicationHelperWrapper ioioAndroidApplicationHelperWrapper = new IOIOAndroidApplicationHelperWrapper(this);
 	private DigitalInput _PCB_Detect;

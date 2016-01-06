@@ -69,7 +69,7 @@ public class OtherSelectJobActivity extends Activity implements MyCallback {
 		try {
 		getJobsFromServer();}
 		catch (Exception e){}
-		
+		OtherSelectJobActivityHelper.postTestsAndSepsXML(OtherSelectJobActivity.this);
 	}
 
 	@Override
@@ -115,11 +115,7 @@ public class OtherSelectJobActivity extends Activity implements MyCallback {
 				Log.d("Test ID:", String.valueOf(job.getTestId()));
 				Log.d("Firmware ID:", String.valueOf(job.getFirmwareId()));
 				//PeriCoachTestApplication.setFirmwareId(job.getFirmwareId());
-				if(job.getIsretestallowed() == 0) {
-					PeriCoachTestApplication.setIsRetestAllowed(false);
-				} else if (job.getIsretestallowed() == 1) {
-					PeriCoachTestApplication.setIsRetestAllowed(true);
-				}
+				PeriCoachTestApplication.setIsRetestAllowed(job.getIsretestallowed()!=0);
 
 				getFirmwareListFromServer(job.getFirmwareId());
 

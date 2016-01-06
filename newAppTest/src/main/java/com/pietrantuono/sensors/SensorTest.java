@@ -49,6 +49,7 @@ public class SensorTest {
 		this.upperLimit=upperLimit;
 		this.varLimit=varLimit;
 		this.voltage=wrapper.getVoltage();
+		this.zeroVoltage=wrapper.getZeroVoltage();
 		this.load=wrapper.getLoad();
 		this.activityListener=(NewIOIOActivityListener)activity;
 
@@ -114,6 +115,11 @@ public class SensorTest {
 			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - No Set Voltage");
 			return;
 		}
+		if (this.zeroVoltage == -1) {
+			Log.e(SensorsTestHelper.TAG, "You must set the zeroing voltage");
+			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - No Set Zeroing Voltage");
+			return;
+		}
 		if (load == null) {
 			Log.e(SensorsTestHelper.TAG, "load null?!");
 			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - No Load Set");
@@ -146,9 +152,13 @@ public class SensorTest {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		this.sensorsTestHelper.sendVoltage(voltage);
+		this.sensorsTestHelper.sendVoltages(voltage, zeroVoltage);
+
+
 
 		Handler h = new Handler(Looper.getMainLooper());
+
+
 		h.postDelayed(new Runnable() {
 			@Override
 			public void run() {

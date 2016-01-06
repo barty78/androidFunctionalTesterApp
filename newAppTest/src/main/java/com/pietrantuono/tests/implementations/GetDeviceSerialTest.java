@@ -42,8 +42,6 @@ public class GetDeviceSerialTest extends Test {
             e.printStackTrace();
         }
 
-//		IOIOUtils.getUtils().resetUart2(ioio, (Activity)activityListener) ;
-
         IOIOUtils.getUtils().clearUartLog();    // Clear the UART log buffer
 
         IOIOUtils.getUtils().resetDevice((Activity) activityListener);
@@ -73,25 +71,32 @@ public class GetDeviceSerialTest extends Test {
                             Log.d("SERIAL: ", "MATCH!.");
                             serial = strFileContents;
 
-                            Log.d(TAG, "Retest is " + PeriCoachTestApplication.getIsRetestAllowed());
-                            if (!ServiceDBHelper.isSerialAlreadySeen(activityListener.getBarcode(), serial)) {
+                            if (!PeriCoachTestApplication.getIsRetestAllowed()) {
+                                Log.d(TAG, "Retest is " + PeriCoachTestApplication.getIsRetestAllowed());
+                                if (!ServiceDBHelper.isSerialAlreadySeen(activityListener.getBarcode(), serial)) {
+                                    Success();
+                                    activityListener.addView("Serial (HW reading):", strFileContents, false);
+                                    activityListener.setSerial(strFileContents);
+                                    activityListener.addFailOrPass(true, true, "");
+                                    ServiceDBHelper.saveSerial(activityListener.getBarcode(), serial);
+                                    return;
+                                } else {
+                                    try {
+                                        Toast.makeText((Activity) activityListener, "Serial number already tested! Aborting test", Toast.LENGTH_LONG).show();
+                                    } catch (Exception e) {
+                                    }
+                                    activityListener.addFailOrPass(true, false, "");
+
+                                    activityListener.onCurrentSequenceEnd();
+                                    return;
+                                }
+                            } else {
                                 Success();
                                 activityListener.addView("Serial (HW reading):", strFileContents, false);
                                 activityListener.setSerial(strFileContents);
                                 activityListener.addFailOrPass(true, true, "");
-                                ServiceDBHelper.saveSerial(activityListener.getBarcode(),serial);
-                                return;
-                            } else {
-                                try {
-                                    Toast.makeText((Activity) activityListener, "Serial number already tested! Aborting test", Toast.LENGTH_LONG).show();
-                                } catch (Exception e) {
-                                }
-                                activityListener.addFailOrPass(true, false, "");
-
-                                activityListener.onCurrentSequenceEnd();
                                 return;
                             }
-
 
                         }
                     } else {
@@ -115,43 +120,7 @@ public class GetDeviceSerialTest extends Test {
                         retries++;
                         execute();
                     }
-
-
                 }
-
-//				if (retries > 2) {
-//
-//					activityListener.addView("Serial (HW reading):", "ERROR", Color.RED, true);
-//					Toast.makeText((Activity) activityListener, "Unable to read serial number", Toast.LENGTH_LONG)
-//					.show();
-//				} else {
-//					retries++;
-//					final AlertDialog.Builder builder = new AlertDialog.Builder((Activity) activityListener);
-//					builder.setTitle("Unable to read serial number");
-//					builder.setMessage("Click OK to retry");
-//					builder.setCancelable(true);
-//					builder.setOnCancelListener(new MyOnCancelListener((Activity) activityListener));
-//					builder.setPositiveButton("OK", new OnClickListener() {
-//						@Override
-//						public void onClick(DialogInterface dialog, int which) {
-//							dialog.dismiss();
-//							// uart1.close();
-//							execute();
-//						}
-//					});
-//					builder.setNegativeButton("CLOSE TEST", new OnClickListener() {
-//						@Override
-//						public void onClick(DialogInterface dialog, int which) {
-//							dialog.dismiss();
-//							((Activity) activityListener).onBackPressed();
-//						}
-//					});
-//
-//					alertDialog = builder.create();
-//					alertDialog.show();
-//
-//				}
-
                 return;
             }
         });

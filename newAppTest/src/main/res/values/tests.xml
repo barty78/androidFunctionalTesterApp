@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Register all test and step implementation classes here.
+    Ensure that integer values are unique as they are identifiers. -->
+
+    <!-- Test Implementation Classes -->
+
+    <item name="GetBarcodeTest" type="integer">1</item>
+    <item name="CurrentTest" type="integer">2</item>
+    <item name="VoltageTest" type="integer">3</item>
+    <item name="LedCheckTest" type="integer">4</item>
+    <item name="ChargingTerminationTest" type="integer">5</item>
+    <item name="UploadFirmwareTest" type="integer">6</item>
+    <item name="GetDeviceSerialTest" type="integer">7</item>
+    <item name="WakeDeviceTest" type="integer">8</item>
+    <item name="AwakeModeCurrentTest" type="integer">9</item>
+    <item name="BluetoothDiscoverableModeTestForTesting" type="integer">26</item>
+    <item name="BluetoothConnectTestForTesting" type="integer">25</item>
+    <item name="BTConnectCurrent" type="integer">12</item>
+    <item name="ReadDeviceInfoSerialNumberTest" type="integer">13</item>
+    <item name="ReadModelNumberTest" type="integer">14</item>
+    <item name="ReadFirmwareversionTest" type="integer">15</item>
+    <item name="BatteryLevelUUTVoltageTest" type="integer">16</item>
+    <item name="DummyTest" type="integer">18</item>
+    <item name="ChargingTest" type="integer">19</item>
+    <item name="SensorTestWrapper" type="integer">17</item>
+    <item name="AccelerometerSelfTest" type="integer">20</item>
+    <item name="BluetoothConnectTest" type="integer">11</item>
+    <item name="BluetoothDiscoverableModeTest" type="integer">10</item>
+    <item name="UUTCurrentTest" type="integer">23</item>
+    <item name="ChargeLedCheckTest" type="integer">24</item>
+    <item name="MagnetWakeDeviceTest" type="integer">21</item>
+    <item name="UartBlockWriteTest" type="integer">27</item>
+    <item name="DummyUploadFirmwareTest" type="integer">28</item>
+    <item name="GetMacAddressTest" type="integer">22</item>
+    <item name="ListenToUart" type="integer">29</item>
+    <item name="UartLoopbackTest" type="integer">30</item>
+
+    <!-- Step Implementation Classes -->
+    <item name="PauseStep" type="integer">1001</item>
+    <item name="PromptStep" type="integer">1002</item>
+    <item name="SetDigitalOutputStep" type="integer">1003</item>
+    <item name="SetSensorVoltagesStep" type="integer">1004</item>
+
+</resources>
