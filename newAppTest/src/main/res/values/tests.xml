@@ -4,7 +4,8 @@
     <!-- Register all test and step implementation classes here.
     Ensure that integer values are unique as they are identifiers. -->
 
-    <!-- Test Implementation Classes - Start from value 1-->
+    <!-- Test Implementation Classes -->
+
     <item name="GetBarcodeTest" type="integer">1</item>
     <item name="CurrentTest" type="integer">2</item>
     <item name="VoltageTest" type="integer">3</item>
@@ -36,7 +37,7 @@
     <item name="ListenToUart" type="integer">29</item>
     <item name="UartLoopbackTest" type="integer">30</item>
 
-    <!-- Step Implementation Classes - Start from value 1001-->
+    <!-- Step Implementation Classes -->
     <item name="PauseStep" type="integer">1001</item>
     <item name="PromptStep" type="integer">1002</item>
     <item name="SetDigitalOutputStep" type="integer">1003</item>

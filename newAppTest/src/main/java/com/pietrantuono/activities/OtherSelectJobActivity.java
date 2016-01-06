@@ -69,7 +69,7 @@ public class OtherSelectJobActivity extends Activity implements MyCallback {
 		try {
 		getJobsFromServer();}
 		catch (Exception e){}
-		
+		OtherSelectJobActivityHelper.postTestsAndSepsXML(OtherSelectJobActivity.this);
 	}
 
 	@Override
