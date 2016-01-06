@@ -21,6 +21,7 @@ import android.preference.EditTextPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
+import android.preference.PreferenceScreen;
 import android.preference.SwitchPreference;
 import android.provider.Settings;
 import android.text.Spannable;
@@ -109,6 +110,8 @@ public class SettingsActivity  extends PreferenceActivity {
                 return false;
             }
         });
+        PreferenceScreen preferenceScreen= (PreferenceScreen) findPreference("devices_list");
+        preferenceScreen.addPreference()
     }
 
     private void downloadUnprocessed() {

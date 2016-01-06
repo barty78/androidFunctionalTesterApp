@@ -11,6 +11,7 @@
         android:visible="true"
         android:showAsAction="always">
     </Preference>
+
     <Preference
         android:key="@string/download_unprocessed"
         android:title="Download unprocessed"
@@ -19,7 +20,15 @@
         android:visible="true"
         android:showAsAction="always">
     </Preference>
+    <PreferenceScreen
+        android:key="devices_list"
+        android:title="Devices list"
+        android:summary="Devices list"
+        android:icon="@drawable/device"
+        android:visible="true"
+        android:showAsAction="always">
 
+    </PreferenceScreen>
     <SwitchPreference
         android:defaultValue="false"
         android:key="@string/use_mac"
