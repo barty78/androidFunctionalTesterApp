@@ -16,6 +16,7 @@ import com.pietrantuono.tests.implementations.BluetoothConnectTestForTesting;
 import com.pietrantuono.tests.implementations.GetMacAddressTest;
 import com.pietrantuono.tests.implementations.ListenToUart;
 import com.pietrantuono.tests.implementations.SensorTestWrapper;
+import com.pietrantuono.tests.implementations.UploadFirmwareTest;
 import com.pietrantuono.tests.implementations.steps.Step;
 import com.pietrantuono.tests.superclass.Test;
 
@@ -413,12 +414,7 @@ public class NewSequence implements NewSequenceInterface {
         test.setIdTest(2);
         test.setValue(2);
         sequence.add(test);
-        sequence.add(new BluetoothConnectTestForTesting(activity));
-
-        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 0, 0, 0,
-                "Sensor Input Test, LOADED, GAIN @ 127"));
-        test = new MyDummyTest.Builder().setActivity(activity).setDescription("fourth").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
-        sequence.add(test);
+        sequence.add(new UploadFirmwareTest(activity,ioio));
 
     }
 
