@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.pietrantuono.activities.OtherSelectJobActivityHelper;
 import com.pietrantuono.pericoach.newtestapp.BuildConfig;
 import com.pietrantuono.pericoach.newtestapp.R;
 
@@ -50,6 +51,9 @@ public class RetrofitRestServices {
 
         @GET("/devices")
         void getAllDevices(@Header("DeviceId") String DeviceId, Callback<DevicesList> callback);
+
+        @POST("/testclasses")
+        void postXMLTests(@Header("DeviceId") String DeviceId,@Body OtherSelectJobActivityHelper.XMLTestsList xMLTestsList, Callback<Response> callback);
 
     }
 

@@ -131,6 +131,7 @@ public class FirmWareUploader {
 	private class WriteTask extends AsyncTask<Void, Void, Void> {
 		private FileOutputStream fileOutputStream;
 		private int prog = 0;
+		private String error="";
 
 		protected Void doInBackground(Void... v) {
 
@@ -149,6 +150,7 @@ public class FirmWareUploader {
 
 					System.err
 							.println("File provided larger then available flash space.\n");
+					error="File provided larger then available flash space.";
 					return null;
 				}
 
@@ -179,6 +181,7 @@ public class FirmWareUploader {
 						System.err.printf(
 								"Failed to write memory at address 0x%08x\n",
 								addr);
+						error="Failed to write memory at address "+String.format("0x%08x",addr);
 						return null;
 					} else {
 						fileOutputStream.write(buffer, 0, len);
@@ -265,7 +268,7 @@ public class FirmWareUploader {
 				@Override
 				public void run() {
 					if (prog >= 100) {
-						if(listener!=null)listener.onUploadCompleted(true);
+						if(listener!=null)listener.onUploadSuccess();
 //						Toast.makeText(c, "WRITE COMPLETED",
 //								Toast.LENGTH_LONG).show();
 
@@ -298,7 +301,7 @@ public class FirmWareUploader {
 //						}, 2000);
 					} else {
 
-						if(listener!=null)listener.onUploadCompleted(false);
+						if(listener!=null)listener.onUploadFailure(error);
 
 //						Toast.makeText(c, "WRITE FAILED!",
 //								Toast.LENGTH_LONG).show();
@@ -791,7 +794,8 @@ public class FirmWareUploader {
 	
 	public interface UploaderListener{
 		
-		public void onUploadCompleted(boolean b);
+		public void onUploadSuccess();
+		public void onUploadFailure(String error);
 	}
 
 

@@ -641,6 +641,7 @@ public class UIHelper {
 		ProgressBar progress = (ProgressBar) v.findViewById(R.id.testResultInd);
 		progressandtextview.setProgress(progress);
 		progressandtextview.setTextView(passfail);
+		progressandtextview.setDescriptionTextView(text);
 		try {
 			number.setText("" + (sequence.getCurrentTestNumber() + 1));
 		} catch (Exception e) {
