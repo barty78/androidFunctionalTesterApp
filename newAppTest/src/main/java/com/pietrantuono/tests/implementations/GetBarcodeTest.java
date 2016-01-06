@@ -102,32 +102,6 @@ public class GetBarcodeTest extends Test {
             } else {
                 counter++;
                 execute();
-//				final AlertDialog.Builder builder = new AlertDialog.Builder((Activity) activityListener);
-//				builder.setTitle("Unable to read barcode");
-//				builder.setMessage("Please check barcode reader and press OK to retry");
-//				builder.setPositiveButton("OK", new OnClickListener() {
-//					@Override
-//					public void onClick(DialogInterface dialog, int which) {
-//						dialog.dismiss();
-//						execute();
-//					}
-//				});
-//				builder.setNegativeButton("CLOSE TEST", new OnClickListener() {
-//					@Override
-//					public void onClick(DialogInterface dialog, int which) {
-//						dialog.dismiss();
-//						((Activity) activityListener).onBackPressed();
-//					}
-//				});
-//				builder.setCancelable(true);
-//				builder.setOnCancelListener(new MyOnCancelListener((Activity) activityListener));
-//				alertDialog = builder.create();
-//				((Activity) activityListener).runOnUiThread(new Runnable() {
-//					@Override
-//					public void run() {
-//						alertDialog.show();
-//					}
-//				});
             }
         }
     }
