@@ -124,7 +124,7 @@ public class SensorsTestHelper implements OnSampleCallback {
 	
 
 	@SuppressWarnings("ucd")
-	void sendVoltage(final Short voltage) {
+	void sendVoltages(final Short voltage, final Short zerovoltage) {
 		Handler handler = new Handler();
 		Byte sensor = (byte) (0 & 0xFF);
 		NewPFMATDevice.getDevice().sendRefVoltage(sensor, voltage);
@@ -134,17 +134,38 @@ public class SensorsTestHelper implements OnSampleCallback {
 				Byte sensor = (byte) (1 & 0xFF);
 				NewPFMATDevice.getDevice().sendRefVoltage(sensor, voltage);
 			}
-		}, 20);
+		}, 50);
 		handler.postDelayed(new Runnable() {
 			@Override
 			public void run() {
 				Byte sensor = (byte) (2 & 0xFF);
 				NewPFMATDevice.getDevice().sendRefVoltage(sensor, voltage);
 			}
-		}, 40);
-	}
+		}, 100);
 
-	
+		handler.postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				Byte sensor = (byte) (0 & 0xFF);
+				NewPFMATDevice.getDevice().sendZeroVoltage(sensor, zerovoltage);
+			}
+		}, 150);
+
+		handler.postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				Byte sensor = (byte) (1 & 0xFF);
+				NewPFMATDevice.getDevice().sendZeroVoltage(sensor, zerovoltage);
+			}
+		}, 200);
+		handler.postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				Byte sensor = (byte) (2 & 0xFF);
+				NewPFMATDevice.getDevice().sendZeroVoltage(sensor, zerovoltage);
+			}
+		}, 250);
+	}
 
 	public void setSamplesref(SessionSamples samplesref) {
 		this.samplesref = samplesref;

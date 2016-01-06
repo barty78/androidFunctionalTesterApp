@@ -114,7 +114,7 @@ public class ClosedTest extends SensorTest {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		this.sensorsTestHelper.sendVoltage(voltage);
+		this.sensorsTestHelper.sendVoltages(voltage, zeroVoltage);
 		this.sensorsTestHelper.samplesref.clear();
 		if (this.sensorsTestHelper.activityref == null || this.sensorsTestHelper.activityref.get() == null)
 			return;
@@ -308,7 +308,7 @@ public class ClosedTest extends SensorTest {
 		}
 		if (activity != null && activity != null && !isTest)
 			((SensorTestCallback) (activity.get())).onSensorTestCompleted(mSensorResult);
-		if(!isTest)this.sensorsTestHelper.sendVoltage(this.sensorsTestHelper.NORMAL_VOLTAGE);
+		if(!isTest)this.sensorsTestHelper.sendVoltages(this.sensorsTestHelper.NORMAL_VOLTAGE, (short)0);
 		if(!isTest)stop();
 		try {
 			Thread.sleep(200);

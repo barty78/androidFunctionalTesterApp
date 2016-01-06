@@ -13,6 +13,7 @@ import com.pietrantuono.tests.superclass.Test;
 public class SensorTestWrapper extends Test {
 	private int TestLimitIndex=0;
 	private short voltage;
+	private short zeroVoltage;
 	private SensorTest sensorTest;
 	private SensorsTestHelper helper;
 	private Boolean load;
@@ -39,10 +40,16 @@ public class SensorTestWrapper extends Test {
 		}
 		Log.d(TAG, "Sensor Load is " + this.load);
 		this.voltage = -1;
-		if (description != null && description.contains("GAIN @")){
-			this.voltage = Short.valueOf(description.substring(description.indexOf("@") + 2, description.length()));
+		this.zeroVoltage = -1;
+
+		if (description != null && description.contains("GAIN/ZERO @")){
+			String tmp = description.substring(description.indexOf("GAIN/ZERO @") + 12, description.length());
+			this.voltage = Short.valueOf(tmp.substring(0, tmp.indexOf("/")));
+			this.zeroVoltage = Short.valueOf(tmp.substring(tmp.indexOf("/") + 1, tmp.length()));
 		}
-		Log.d(TAG, "Sensor Voltage is " + this.voltage);
+
+		Log.d(TAG, "Sensor Gain Voltage is " + this.voltage);
+		Log.d(TAG, "Sensor Zero Voltage is " + this.zeroVoltage);
 
 		if(isClosedTest){sensorTest=new ClosedTest(activity,SensorTestWrapper.this, lowerLimit, upperLimit, varLimit);}
 		else {sensorTest=new SensorTest(activity,SensorTestWrapper.this, lowerLimit, upperLimit, varLimit);}
@@ -80,6 +87,9 @@ public class SensorTestWrapper extends Test {
 
 	public short getVoltage() {
 		return voltage;
+	}
+	public short getZeroVoltage() {
+		return zeroVoltage;
 	}
 
 	public Boolean getLoad() {
