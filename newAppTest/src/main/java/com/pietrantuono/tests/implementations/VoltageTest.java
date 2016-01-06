@@ -26,8 +26,8 @@ public 	class VoltageTest extends Test {
 	 * @param description		- Test Description
 	 */
 
-	public VoltageTest(Activity activity,IOIO ioio, int pinNumber, Units units, boolean isNominal, float limitParam1, float limitParam2, String description) {
-		super(activity,ioio,description, false, true, limitParam1, limitParam2, 0);
+	public VoltageTest(Activity activity,IOIO ioio, int pinNumber, Units units, boolean isBlocking, boolean isNominal, float limitParam1, float limitParam2, String description) {
+		super(activity,ioio,description, false, isBlocking, limitParam1, limitParam2, 0);
 		this.pinNumber = pinNumber;
 		this.units = units;
 		this.scaling = 1f;
@@ -46,8 +46,8 @@ public 	class VoltageTest extends Test {
 	 * @param description		- Test Description
 	 */
 
-	public VoltageTest(Activity activity,IOIO ioio, int pinNumber, Units units, float scaling, boolean isNominal, float limitParam1, float limitParam2, String description) {
-		super(activity,ioio,description, false, true, 0, 0, 0);
+	public VoltageTest(Activity activity,IOIO ioio, int pinNumber, Units units, boolean isBlocking, float scaling, boolean isNominal, float limitParam1, float limitParam2, String description) {
+		super(activity,ioio,description, false, isBlocking, 0, 0, 0);
 		this.pinNumber = pinNumber;
 		this.units = units;
 		this.scaling = scaling;

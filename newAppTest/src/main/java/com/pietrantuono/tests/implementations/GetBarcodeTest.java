@@ -62,21 +62,13 @@ public class GetBarcodeTest extends Test {
             counter = 0;
             activityListener.addView("Barcode", barcode, false);
             if (!checkJob(barcode)) {
-                try {
-                    Toast.makeText((Activity) activityListener, "Invalid barcode! Aborting test", Toast.LENGTH_LONG).show();
-                } catch (Exception e) {
-                }
-                activityListener.addFailOrPass(true, false, "Invalid barcode! Aborting test", description);
+                activityListener.addFailOrPass("", true, false, description + " - Invalid Barcode");
                 return;
             } ;
             if (!PeriCoachTestApplication.getIsRetestAllowed()) {
                 Log.d(TAG, "Retest is " + PeriCoachTestApplication.getIsRetestAllowed());
                 if (ServiceDBHelper.isBarcodeAlreadySeen(barcode)) {
-                    try {
-                        Toast.makeText((Activity) activityListener, "Barcode already tested! Aborting test", Toast.LENGTH_LONG).show();
-                    } catch (Exception e) {
-                    }
-                    activityListener.onCurrentSequenceEnd();
+                    activityListener.addFailOrPass("", true, false, description + " - Barcode already tested");
                     return;
                 } else {
                     activityListener.setBarcode(barcode);
@@ -96,8 +88,7 @@ public class GetBarcodeTest extends Test {
         } else {
             if (counter >= limitParam1) {
                 counter = 0;
-                Toast.makeText((Activity) activityListener, "Unable to read barcode", Toast.LENGTH_LONG).show();
-                activityListener.addFailOrPass(true, false, "Read Fail", description);
+                activityListener.addFailOrPass("", true, false, description + " Read Failed");
                 return;
             } else {
                 counter++;
@@ -178,6 +169,5 @@ public class GetBarcodeTest extends Test {
         }
         return true;
     }
-
 
 }

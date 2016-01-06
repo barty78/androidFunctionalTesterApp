@@ -3,6 +3,7 @@ package com.pietrantuono.activities.uihelper;
 import java.util.ArrayList;
 
 import com.crashlytics.android.Crashlytics;
+import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.constants.NewMResult;
 import com.pietrantuono.constants.NewMSensorResult;
 import com.pietrantuono.constants.NewSequenceInterface;
@@ -124,7 +125,12 @@ public class UIHelper {
 			@Override
 			public void run() {
 				TextView job_number = (TextView) activity.findViewById(R.id.job_number);
-				job_number.setText(jobnumber);
+				if (PeriCoachTestApplication.getIsRetestAllowed()) {
+					job_number.setText(jobnumber + " (Retests)");
+				} else {
+					job_number.setText(jobnumber + " (No Retests)");
+				}
+
 				if (success)
 					job_number.setTextColor(Color.GREEN);
 

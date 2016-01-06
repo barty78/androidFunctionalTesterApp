@@ -68,11 +68,13 @@ public class TestsParser {
 
 			case R.integer.VoltageTest:
 				isNominal = testToBeParsed.getIsNominal() == 1;
+
 				limitParam1 = (float) testToBeParsed.getLimitParam1().doubleValue();
 				limitParam2 = (float) testToBeParsed.getLimitParam2().doubleValue();
+				boolean isBlocking = testToBeParsed.getBlocking()!=0;
 				pinnumber = (int) testToBeParsed.getIoiopinnum();
-				test = new VoltageTest(activity, ioio, pinnumber, Voltage.Units.V, isNominal, limitParam1, limitParam2,
-						"Voltage Measurement - DC_PRES (5V_DC Off)");
+				test = new VoltageTest(activity, ioio, pinnumber, Voltage.Units.V, isBlocking, isNominal, limitParam1, limitParam2,
+						getDescription(testToBeParsed));
 				break;
 
 			case R.integer.LedCheckTest:
@@ -192,6 +194,15 @@ public class TestsParser {
 			case R.integer.UUTCurrentTest:
 				test = new UUTCurrentTest(activity, ioio,
 						getDescription(testToBeParsed));
+				break;
+
+			case R.integer.PauseStep:
+				break;
+			case R.integer.PromptStep:
+				break;
+			case R.integer.SetDigitalOutputStep:
+				break;
+			case R.integer.SetSensorVoltagesStep:
 				break;
 
 		}
