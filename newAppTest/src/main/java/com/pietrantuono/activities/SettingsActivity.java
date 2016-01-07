@@ -110,8 +110,6 @@ public class SettingsActivity  extends PreferenceActivity {
                 return false;
             }
         });
-        PreferenceScreen preferenceScreen= (PreferenceScreen) findPreference("devices_list");
-        preferenceScreen.addPreference()
     }
 
     private void downloadUnprocessed() {

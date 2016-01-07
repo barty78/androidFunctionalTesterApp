@@ -57,7 +57,7 @@ public class BatteryLevelUUTVoltage extends ActivityInstrumentationTestCase2<Mai
 		
 		NewSequenceInterface newSequence = new GenericSequence();	
 		com.pietrantuono.tests.superclass.Test test;
-		test= new BatteryLevelUUTVoltageTest(mainActivity,"bar",1);
+		test= new BatteryLevelUUTVoltageTest(mainActivity,"registerSequenceFragment",1);
 		newSequence.addTest(test);
 		
 		mainActivity.setNewSequence(newSequence);

@@ -6,6 +6,7 @@ import java.util.List;
 import com.crashlytics.android.Crashlytics;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.pietrantuono.activities.fragments.SequenceFragment;
 import com.pietrantuono.activities.uihelper.ActivityCallback;
 import com.pietrantuono.activities.uihelper.MyDialogInterface;
 import com.pietrantuono.activities.uihelper.MyDialogs;
@@ -32,6 +33,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -61,10 +63,10 @@ import server.utils.MyDatabaseUtils;
 import server.utils.TestFromSequenceCreator;
 
 @SuppressWarnings("unused")
-public class MainActivity extends Activity
+public class MainActivity extends AppCompatActivity
 		implements ActivtyWrapper,IOIOLooperProvider, NewIOIOActivityListener, 
-		PCBConnectedCallback,
-		SensorTestCallback, ActivityUIHelperCallback, MyOnCancelListener.Callback, ActivityCallback {
+		PCBConnectedCallback,SensorTestCallback, ActivityUIHelperCallback,
+		MyOnCancelListener.Callback, ActivityCallback, SequenceFragment.SequenceFragmentCallback {
 	private static IOIO myIOIO;
 	private static final String TAG = MainActivity.class.getSimpleName();
 	private String mJobNo = null;
@@ -590,4 +592,13 @@ public class MainActivity extends Activity
 	}
 
 
+	@Override
+	public void registerSequenceFragment(SequenceFragment sequenceFragment) {
+		uiHelper.registerSequenceFragment(sequenceFragment);
+	}
+
+	@Override
+	public void unregisterSequenceFragment() {
+		uiHelper.unregisterSequenceFragment();
+	}
 }

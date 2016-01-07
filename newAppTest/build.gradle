@@ -19,8 +19,8 @@ repositories {
 }
 
 android {
-    compileSdkVersion 22
-    buildToolsVersion "22.0.1"
+    compileSdkVersion 23
+    buildToolsVersion "23.0.1"
 
     defaultConfig {
         applicationId "com.pietrantuono.pericoach.newtestapp"
@@ -62,12 +62,6 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:23.1.1'
-    compile 'com.google.code.gson:gson:2.3.1'
-    compile 'com.github.ytai.ioio:IOIOLibAndroid:5.05'
-    compile 'com.github.ytai.ioio:IOIOLibAndroidBluetooth:5.05'
-    compile 'com.github.ytai.ioio:IOIOLibAndroidAccessory:5.05'
-    compile 'com.github.ytai.ioio:IOIOLibAndroidDevice:5.05'
     compile files('libs/MyJarCopy.jar')
     compile files('libs/activeandroid-build.jar')
     compile files('libs/android-async-http-1.4.6 (3).jar')
@@ -76,8 +70,16 @@ dependencies {
     compile('com.crashlytics.sdk.android:crashlytics:2.5.3@aar') {
         transitive = true;
     }
+    compile 'com.android.support:support-v4:23.1.1'
+    compile 'com.google.code.gson:gson:2.3.1'
+    compile 'com.github.ytai.ioio:IOIOLibAndroid:5.05'
+    compile 'com.github.ytai.ioio:IOIOLibAndroidBluetooth:5.05'
+    compile 'com.github.ytai.ioio:IOIOLibAndroidAccessory:5.05'
+    compile 'com.github.ytai.ioio:IOIOLibAndroidDevice:5.05'
     compile 'com.pietrantuono.pfmat:pfmat:0.0.1'
     compile 'joda-time:joda-time:2.9.1'
+    compile 'com.android.support:design:23.1.1'
+
 }
 
 

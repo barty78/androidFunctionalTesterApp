@@ -100,7 +100,7 @@ public class CurrentCurrent extends ActivityInstrumentationTestCase2<MainActivit
 				.thenReturn(uartMock);
 		AnalogInput analogInput=Mockito.mock(AnalogInput.class);
 		when(ioioMock.openAnalogInput(anyInt())).thenReturn(analogInput);
-		Test test=new CurrentTest(mainActivity, ioioMock, 1, 2, 2, Current.Scale.mA, true, 0,1, "bar");
+		Test test=new CurrentTest(mainActivity, ioioMock, 1, 2, 2, Current.Scale.mA, true, 0,1, "registerSequenceFragment");
 		NewSequenceInterface newSequence = new GenericSequence();
 		newSequence.addTest(test);
 		mainActivity.setNewSequence(newSequence);

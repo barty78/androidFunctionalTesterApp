@@ -25,7 +25,7 @@ public class OtherSelectJobActivityHelper {
     private static final String TAG = "OtherSelectJobActivityr";
 
     public static void postTestsAndSepsXML(OtherSelectJobActivity context) {
-        //int[] bar = context.getResources().get
+        //int[] registerSequenceFragment = context.getResources().get
         Field[] ID_Fields = R.integer.class.getFields();
         int[] resourcesIdsArray = new int[ID_Fields.length];
         int[] testIDs = new int[ID_Fields.length];

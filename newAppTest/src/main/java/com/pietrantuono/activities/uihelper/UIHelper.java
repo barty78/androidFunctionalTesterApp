@@ -3,6 +3,8 @@ package com.pietrantuono.activities.uihelper;
 import java.util.ArrayList;
 
 import com.crashlytics.android.Crashlytics;
+import com.pietrantuono.activities.fragments.PagerAdapter;
+import com.pietrantuono.activities.fragments.SequenceFragment;
 import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.constants.NewMResult;
 import com.pietrantuono.constants.NewMSensorResult;
@@ -21,6 +23,9 @@ import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.SystemClock;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,6 +39,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
+import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,7 +49,7 @@ public class UIHelper {
 	private View v = null;
 	private NewSequenceInterface sequence;
 	private static final String TAG = "UIHelper";
-
+	private static SequenceFragment sequenceFragment;
 
 	public UIHelper(Activity activity, NewSequenceInterface sequence) {
 		this.activity = activity;
@@ -51,6 +57,18 @@ public class UIHelper {
 		setUpRetryButton();
 		setUpExitButton();
 		setOverallFailOrPass(false);
+		setupViewpager(activity);
+		if(sequenceFragment!=null)
+			sequenceFragment.setSequence(sequence);
+	}
+
+	private void setupViewpager(Activity activity) {
+		ViewPager viewPager= (ViewPager) activity.findViewById(R.id.pager);
+		AppCompatActivity appcompat = (AppCompatActivity) activity;
+		viewPager.setAdapter(new PagerAdapter(appcompat.getSupportFragmentManager()));
+		TabLayout tabLayout= (TabLayout) activity.findViewById(R.id.tabs);
+		viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+		tabLayout.setupWithViewPager(viewPager);
 	}
 
 	public void setupChronometer(Activity activity){
@@ -79,7 +97,6 @@ public class UIHelper {
 			}
 		});
 		Log.d(TAG, "Chronometer stopped");
-
 	}
 
 	public void setResult(boolean success) {
@@ -90,7 +107,14 @@ public class UIHelper {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+	}
 
+	public void registerSequenceFragment(SequenceFragment sequenceFragment) {
+		this.sequenceFragment=sequenceFragment;
+	}
+
+	public void unregisterSequenceFragment() {
+		this.sequenceFragment=null;
 	}
 
 
@@ -130,18 +154,14 @@ public class UIHelper {
 				} else {
 					job_number.setText(jobnumber + " (No Retests)");
 				}
-
 				if (success)
 					job_number.setTextColor(Color.GREEN);
-
 			}
 		});
-
 	}
 
 	public void setConnected(final boolean conn) {
 		final TextView connected = (TextView) activity.findViewById(R.id.connected);
-
 		final ImageView connectedicon = (ImageView) activity.findViewById(R.id.image);
 		activity.runOnUiThread(new Runnable() {
 			@Override
@@ -155,13 +175,12 @@ public class UIHelper {
 					connected.setTextColor(Color.RED);
 					connectedicon.setImageResource(R.drawable.ic_disconnect);
 				}
-
 			}
 		});
 	}
 
 	public synchronized void addView(final String label, final String text, boolean goAndExecuteNextTest) {
-		addView(label, text, 0,goAndExecuteNextTest);
+		addView(label, text, 0, goAndExecuteNextTest);
 	}
 
 	public synchronized void addView(final String label, final String text, final int color, final boolean goAndExecuteNextTest) {
@@ -182,8 +201,6 @@ public class UIHelper {
 					texttv.setTextColor(Color.GREEN);
 				else
 					texttv.setTextColor(color);
-				
-				
 				final ViewTreeObserver observer = layout.getViewTreeObserver();
 				observer.addOnPreDrawListener(new OnPreDrawListener() {				
 					@Override
@@ -191,20 +208,15 @@ public class UIHelper {
 						observer.removeOnPreDrawListener(this);
 						if(goAndExecuteNextTest)((ActivityCallback) activity).goAndExecuteNextTest();
 						return true;
-						
 					}
 				});
 				layout.addView(view);
-
 			}
 		});
-
 	}
 
 	public synchronized void setStatusMSG(final String message, final Boolean success) {
-
 		activity.runOnUiThread(new Runnable() {
-
 			@Override
 			public void run() {
 				TextView tv = (TextView) activity.findViewById(R.id.teststatusmsg);
@@ -225,103 +237,10 @@ public class UIHelper {
 
 	public synchronized ProgressAndTextView addFailOrPass(final Boolean istest, final Boolean success, String reading,
 			String otherreading, String description) {
-		
-		ActivityUIHelperCallback callback = (ActivityUIHelperCallback) activity;
-		if (istest) {
-			try {
-				callback.getResults().get(callback.getIterationNumber()).get(sequence.getCurrentTestNumber())
-						.setTestsuccessful(success);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+		if(sequenceFragment!=null){
+			return  sequenceFragment.addFailOrPass(istest,success,reading,otherreading,description);
 		}
-		final LinearLayout ll = (LinearLayout) activity.findViewById(R.id.ll);
-		final ScrollView scrollView = (ScrollView) activity.findViewById(R.id.scroll);
-		final ProgressAndTextView progressandtextview = new ProgressAndTextView(null, null);
-		LayoutInflater inflater = activity.getLayoutInflater();
-
-		if (istest)
-			v = inflater.inflate(R.layout.sensorsummaryrowitem, null);
-		else
-			v = inflater.inflate(R.layout.voltagerowitem, null);
-		TextView number = (TextView) v.findViewById(R.id.testSeqNum);
-		TextView text = (TextView) v.findViewById(R.id.testName);
-		TextView passfail = (TextView) v.findViewById(R.id.testResultIndText);
-		TextView readingtextView = (TextView) v.findViewById(R.id.reading);
-		if (reading != null && !reading.isEmpty())
-			readingtextView.setText(reading);
-		else
-			readingtextView.setText("");
-		ProgressBar progress = (ProgressBar) v.findViewById(R.id.testResultInd);
-		progressandtextview.setProgress(progress);
-		progressandtextview.setTextView(passfail);
-		try {
-			number.setText("" + (sequence.getCurrentTestNumber() + 1));
-		} catch (Exception e) {
-			Toast.makeText(activity, e.toString(), Toast.LENGTH_LONG).show();
-			Crashlytics.logException(e);
-		}
-		try {
-			String Testdescription = description;
-			if (Testdescription == null)
-				Testdescription = sequence.getCurrentTestDescription();
-
-			if (otherreading == null)
-				text.setText(Testdescription);
-			else
-				text.setText(Testdescription + " " + otherreading);
-		} catch (Exception e) {
-			Toast.makeText(activity, e.toString(), Toast.LENGTH_LONG).show();
-			Crashlytics.logException(e);
-		}
-		if (success) {
-			if (istest)
-				passfail.setText("PASS");
-			else
-				passfail.setText("DONE");
-			Resources res = activity.getResources();
-			Drawable background = null;
-			if (istest)
-				background = res.getDrawable(R.drawable.greenprogress);
-			else
-				background = res.getDrawable(R.drawable.blueprogress);
-			progress.setProgressDrawable(background);
-
-		} else {
-			passfail.setText("FAIL");
-			Resources res = activity.getResources();
-			Drawable background = res.getDrawable(R.drawable.redprogress);
-			progress.setProgressDrawable(background);
-		}
-		activity.runOnUiThread(new Runnable() {
-
-			@Override
-			public void run() {
-				final ViewTreeObserver observer = ll.getViewTreeObserver();
-				observer.addOnPreDrawListener( new OnPreDrawListener() {
-					
-					@Override
-					public boolean onPreDraw() {
-						observer.removeOnPreDrawListener(this);
-						if(activity==null || activity.isFinishing())return true;
-						((ActivityCallback) activity).goAndExecuteNextTest();
-						return true;
-						
-					}
-				});
-				
-				ll.addView(v);
-				scrollView.post(new Runnable() {
-					@Override
-					public void run() {
-						scrollView.fullScroll(ScrollView.FOCUS_DOWN);
-					}
-				});
-				
-				
-			}
-		});
-		return progressandtextview;
+		else return null;
 	}
 
 	public synchronized ProgressAndTextView addFailOrPass(final Boolean istest, final Boolean success, String reading,
@@ -332,7 +251,6 @@ public class UIHelper {
 
 	public void setOverallFailOrPass(final Boolean show) {
 		final ActivityUIHelperCallback callback = (ActivityUIHelperCallback) activity;
-
 		activity.runOnUiThread(new Runnable() {
 
 			@Override
@@ -377,8 +295,6 @@ public class UIHelper {
 		});
 	}
 
-	
-
 	public void setCurrentAndNextTaskinUI() {
 		activity.runOnUiThread(new Runnable() {
 			@Override
@@ -389,10 +305,8 @@ public class UIHelper {
 				String currentstenumber = null;
 				try {
 					currentstepdesc = sequence.getCurrentTestDescription();
-
 				} catch (Exception e) {
 					e.printStackTrace();
-
 				}
 				try {
 					currentstenumber = "" + (sequence.getCurrentTestNumber() + 1);
@@ -401,7 +315,6 @@ public class UIHelper {
 					e.printStackTrace();
 
 				}
-
 				if (currentstepdesc == null)
 					currenttask.setText("");
 				else {
@@ -427,7 +340,6 @@ public class UIHelper {
 				if (nexttaskdescription == null)
 					nexttask.setText("");
 				else {
-
 					if (nexttasknumber == null)
 						nexttask.setText(nexttaskdescription);
 					else
@@ -435,10 +347,7 @@ public class UIHelper {
 				}
 			}
 		});
-
 	}
-
-	
 
 	private void setUpRetryButton() {
 		if (activity == null || activity.isFinishing())
@@ -464,7 +373,6 @@ public class UIHelper {
 				builder.create().show();
 			}
 		});
-
 	}
 
 	private void setUpExitButton() {
@@ -493,206 +401,18 @@ public class UIHelper {
 		});
 	}
 
-	
-
-	
 	public void addSensorTestCompletedRow(NewMSensorResult mSensorResult) {
-		if (activity == null || activity.isFinishing())
-			return;
-		int RED = activity.getResources().getColor(R.color.dark_red);
-		int GREEN = activity.getResources().getColor(R.color.dark_green);
-		final LinearLayout ll = (LinearLayout) activity.findViewById(R.id.ll);
-		LayoutInflater inflater = activity.getLayoutInflater();
-		v = inflater.inflate(R.layout.sensors_summary_row_item, null);
-		TextView testName = (TextView) v.findViewById(R.id.testName);
-		testName.setText(mSensorResult.getDescription());
-		TextView testSeqNum = (TextView) v.findViewById(R.id.testSeqNum);
-		testSeqNum.setText("" + (sequence.getCurrentTestNumber() + 1));
-		TextView avg0 = (TextView) v.findViewById(R.id.avg0);
-		if (mSensorResult.getSensor0AvgPass())
-			avg0.setTextColor(GREEN);
-		else
-			avg0.setTextColor(RED);
-		avg0.setText(Short.toString(mSensorResult.getSensor0avg()));
-
-		TextView avg1 = (TextView) v.findViewById(R.id.avg1);
-		if (mSensorResult.getSensor1AvgPass())
-			avg1.setTextColor(GREEN);
-		else
-			avg1.setTextColor(RED);
-		avg1.setText(Short.toString(mSensorResult.getSensor1avg()));
-
-		TextView avg2 = (TextView) v.findViewById(R.id.avg2);
-		if (mSensorResult.getSensor2AvgPass())
-			avg2.setTextColor(GREEN);
-		else
-			avg2.setTextColor(RED);
-		avg2.setText(Short.toString(mSensorResult.getSensor2avg()));
-
-		TextView passfail = (TextView) v.findViewById(R.id.pass_or_fail_avg_text);
-		ProgressBar progress = (ProgressBar) v.findViewById(R.id.pass_or_fail_avg_indicator);
-		if (mSensorResult.getSensor0AvgPass() && mSensorResult.getSensor1AvgPass()
-				&& mSensorResult.getSensor2AvgPass()) {
-			passfail.setText("PASS");
-			Resources res = activity.getResources();
-			Drawable background = null;
-			background = res.getDrawable(R.drawable.greenprogress);
-			progress.setProgressDrawable(background);
-
-		} else {
-			passfail.setText("FAIL");
-			Resources res = activity.getResources();
-			Drawable background = res.getDrawable(R.drawable.redprogress);
-			progress.setProgressDrawable(background);
-		}
-
-		TextView stability0 = (TextView) v.findViewById(R.id.stability0);
-		if (mSensorResult.getSensor0stabilitypass())
-			stability0.setTextColor(GREEN);
-		else
-			stability0.setTextColor(RED);
-		stability0.setText("" + (mSensorResult.getSensor0max() - mSensorResult.getSensor0min() > 0
-				? mSensorResult.getSensor0max() - mSensorResult.getSensor0min() : (short) 0));
-
-		TextView stability1 = (TextView) v.findViewById(R.id.stability1);
-		if (mSensorResult.getSensor1stabilitypass())
-			stability1.setTextColor(GREEN);
-		else
-			stability1.setTextColor(RED);
-		stability1.setText("" + (mSensorResult.getSensor1max() - mSensorResult.getSensor1min() > 0
-				? mSensorResult.getSensor1max() - mSensorResult.getSensor1min() : (short) 0));
-
-		TextView stability2 = (TextView) v.findViewById(R.id.stability2);
-		if (mSensorResult.getSensor2stabilitypass())
-			stability2.setTextColor(GREEN);
-		else
-			stability2.setTextColor(RED);
-		stability2.setText("" + (mSensorResult.getSensor2max() - mSensorResult.getSensor2min() > 0
-				? mSensorResult.getSensor2max() - mSensorResult.getSensor2min() : (short) 0));
-
-		TextView pass_or_fail_stability_text = (TextView) v.findViewById(R.id.pass_or_fail_stability_text);
-		ProgressBar pass_or_fail_stability_indicator = (ProgressBar) v
-				.findViewById(R.id.pass_or_fail_stability_indicator);
-		if (mSensorResult.getSensor0stabilitypass() && mSensorResult.getSensor1stabilitypass()
-				&& mSensorResult.getSensor2stabilitypass()) {
-			pass_or_fail_stability_text.setText("PASS");
-			Resources res = activity.getResources();
-			Drawable background = null;
-			background = res.getDrawable(R.drawable.greenprogress);
-			pass_or_fail_stability_indicator.setProgressDrawable(background);
-
-		} else {
-			pass_or_fail_stability_text.setText("FAIL");
-			Resources res = activity.getResources();
-			Drawable background = res.getDrawable(R.drawable.redprogress);
-			pass_or_fail_stability_indicator.setProgressDrawable(background);
-		}
-		final ScrollView scrollView = (ScrollView) activity.findViewById(R.id.scroll);
-		activity.runOnUiThread(new Runnable() {
-			@Override
-			public void run() {
-				ll.addView(v);
-				scrollView.post(new Runnable() {
-					@Override
-					public void run() {
-						scrollView.fullScroll(ScrollView.FOCUS_DOWN);
-					}
-				});
-
-			}
-		});
+		sequenceFragment.addSensorTestCompletedRow(mSensorResult);
 	}
 
 	public void setSequence(NewSequenceInterface sequence) {
 		this.sequence = sequence;
-
+		if(sequenceFragment!=null)sequenceFragment.setSequence(sequence);
 	}
 
-	
-
-	
-	
-	
 	public synchronized ProgressAndTextView createUploadProgress(final Boolean istest, final Boolean success,String description) {
-
-		ActivityUIHelperCallback callback = (ActivityUIHelperCallback) activity;
-		if (istest) {
-			try {
-				callback.getResults().get(callback.getIterationNumber()).get(sequence.getCurrentTestNumber())
-						.setTestsuccessful(success);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		final LinearLayout ll = (LinearLayout) activity.findViewById(R.id.ll);
-		final ScrollView scrollView = (ScrollView) activity.findViewById(R.id.scroll);
-		final ProgressAndTextView progressandtextview = new ProgressAndTextView(null, null);
-		LayoutInflater inflater = activity.getLayoutInflater();
-
-		if (istest)
-			v = inflater.inflate(R.layout.sensorsummaryrowitem, null);
-		else
-			v = inflater.inflate(R.layout.voltagerowitem, null);
-		TextView number = (TextView) v.findViewById(R.id.testSeqNum);
-		TextView text = (TextView) v.findViewById(R.id.testName);
-		TextView passfail = (TextView) v.findViewById(R.id.testResultIndText);
-		TextView readingtextView = (TextView) v.findViewById(R.id.reading);
-		readingtextView.setText("");
-		ProgressBar progress = (ProgressBar) v.findViewById(R.id.testResultInd);
-		progressandtextview.setProgress(progress);
-		progressandtextview.setTextView(passfail);
-		progressandtextview.setDescriptionTextView(text);
-		try {
-			number.setText("" + (sequence.getCurrentTestNumber() + 1));
-		} catch (Exception e) {
-			Toast.makeText(activity, e.toString(), Toast.LENGTH_LONG).show();
-			Crashlytics.logException(e);
-		}
-		try {
-			String Testdescription = description;
-			if (Testdescription == null)
-				Testdescription = sequence.getCurrentTestDescription();
-
-		
-				text.setText(Testdescription);
-		} catch (Exception e) {
-			Toast.makeText(activity, e.toString(), Toast.LENGTH_LONG).show();
-			Crashlytics.logException(e);
-		}
-		if (success) {
-			if (istest)
-				passfail.setText("PASS");
-			else
-				passfail.setText("DONE");
-			Resources res = activity.getResources();
-			Drawable background = null;
-			if (istest)
-				background = res.getDrawable(R.drawable.greenprogress);
-			else
-				background = res.getDrawable(R.drawable.blueprogress);
-			progress.setProgressDrawable(background);
-
-		} else {
-			passfail.setText("FAIL");
-			Resources res = activity.getResources();
-			Drawable background = res.getDrawable(R.drawable.redprogress);
-			progress.setProgressDrawable(background);
-		}
-		activity.runOnUiThread(new Runnable() {
-
-			@Override
-			public void run() {
-				ll.addView(v);
-				scrollView.post(new Runnable() {
-					@Override
-					public void run() {
-						scrollView.fullScroll(ScrollView.FOCUS_DOWN);
-					}
-				});
-				
-			}
-		});
-		return progressandtextview;
+		if(sequenceFragment!=null) return sequenceFragment.createUploadProgress(istest,success,description);
+		else return null;
 	}
 	
 	public void cleanUI(final Activity activity) {
@@ -707,8 +427,7 @@ public class UIHelper {
 				cronometer.setText("00:00");
 				LinearLayout layout = (LinearLayout)activity.findViewById(R.id.barcode_adn_serial);
 				layout.removeAllViews();
-				LinearLayout ll = (LinearLayout) activity.findViewById(R.id.ll);
-				ll.removeAllViews();
+				if(sequenceFragment!=null)sequenceFragment.cleanUI();
 				TextView currenttask = (TextView) activity.findViewById(R.id.currenttask);
 				currenttask.setText("");
 				TextView nexttask = (TextView) activity.findViewById(R.id.nexttask);
@@ -717,11 +436,7 @@ public class UIHelper {
 		});
 
 	}
-	
-	
-	
-	
-	
+
 	public void playSound(Activity activity){
 		Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 		Ringtone r = RingtoneManager.getRingtone(activity.getApplicationContext(), notification);
