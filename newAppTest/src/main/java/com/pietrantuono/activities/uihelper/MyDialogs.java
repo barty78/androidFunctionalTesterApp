@@ -43,7 +43,7 @@ public class MyDialogs {
 		dialog= new ProgressDialog(activity);
 		dialog.setTitle("Checking results");
 		dialog.setMessage("Downloading devices list");
-		dialog.setCancelable(false);
+		dialog.setCancelable(true);
 		dialog.show();
 		
 	}
