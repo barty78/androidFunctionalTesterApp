@@ -345,12 +345,12 @@ public class NewSequence implements NewSequenceInterface {
                 "Voltage Measurement - V_3V1"));
         sequence.add(new VoltageTest(activity, ioio, 40, Voltage.Units.V, true, true, 1.8f, 0.2f,
                 "Voltage Measurement - V_1V8"));
-        sequence.add(new VoltageTest(activity, ioio, 37, Voltage.Units.V, false, 1.33f, true, 3.5f, 0.2f,
+        sequence.add(new VoltageTest(activity, ioio, 37, Voltage.Units.V, false, 3f, true, 3.5f, 0.2f,
                 "Voltage Measurement - V_BATT"));
 
         //		sequence.add(new ChargingTerminationTest(activity, ioio,
         //				"Battery Charging Termination Test"));
-        sequence.add(new VoltageTest(activity, ioio, 38, Voltage.Units.V, false, true, 0f, 0.1f,
+        sequence.add(new VoltageTest(activity, ioio, 38, Voltage.Units.V, false, false, 0.1f, -0.1f,
                 "Voltage Measurement - DC_PRES (5V_DC Off)"));
         sequence.add(new SetDigitalOutputStep(activity, IOIOUtils.Outputs._5V_DC.getValue(), false,
                 "Set 5VDC to On"));

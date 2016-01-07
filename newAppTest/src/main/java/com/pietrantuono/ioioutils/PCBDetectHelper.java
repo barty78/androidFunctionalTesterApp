@@ -21,6 +21,8 @@ public interface PCBDetectHelperInterface {
 
 	void stopCheckingIfConnectionDrops();
 
+	void stopWaitingForPCBDisconnected();
+
 	void waitForPCBDetect(PCBConnectedCallback callback, DigitalInput digitalInput);
 
 	void waitForPCBDisconneted(PCBConnectedCallback callback, DigitalInput digitalInput);

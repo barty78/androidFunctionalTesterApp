@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.crashlytics.android.Crashlytics;
 import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.ioioutils.IOIOUtils;
+import com.pietrantuono.pericoach.newtestapp.BuildConfig;
 import com.pietrantuono.pericoach.newtestapp.R;
 import com.pietrantuono.tests.superclass.Test;
 import com.pietrantuono.uploadfirmware.FirmWareUploader;
@@ -32,6 +33,7 @@ public class UploadFirmwareTest extends Test {
     private Boolean initialised = false;
     private Boolean looping = true;
     private Boolean resetted = true;
+    private Boolean known = false;
     private AlertDialog alertDialog;
     boolean fileComparisonPassed = false;
     boolean fileMD5Passed = false;
@@ -95,14 +97,36 @@ public class UploadFirmwareTest extends Test {
                             pet.getProgress().setProgressDrawable(background);
                             pet.getProgress().setProgress(100);
                             pet.getTextView().setText("FAIL");
-                            pet.setDescriptionTextViewText(description + " Init fail");
+                            pet.setDescriptionTextViewText(description + "\nERROR: Device Init Failed");
                             activityListener.goAndExecuteNextTest();
                         }
                     });
                     return;
                 }
-                firmWareUploader.getInfo();
+                retries=0;
+                while(!known && retries < 3) {
 
+                    known = firmWareUploader.getInfo();
+                    if (retries <= 2) onGetInfoFailed();
+
+                }
+                if (retries >= 3) {
+                    setSuccess(false);
+                    ((Activity) activityListener).runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Resources res = ((Activity) activityListener).getResources();
+                            Drawable background = res
+                                    .getDrawable(R.drawable.redprogress);
+                            pet.getProgress().setProgressDrawable(background);
+                            pet.getProgress().setProgress(100);
+                            pet.getTextView().setText("FAIL");
+                            pet.setDescriptionTextViewText(description + "\nERROR: Get Device Info Failed");
+                            activityListener.goAndExecuteNextTest();
+                        }
+                    });
+                    return;
+                }
 
                 firmWareUploader.upload(new UploaderListener() {
                     @Override
@@ -154,7 +178,7 @@ public class UploadFirmwareTest extends Test {
                                 pet.getProgress().setProgressDrawable(background);
                                 pet.getProgress().setProgress(100);
                                 pet.getTextView().setText("FAIL");
-                                pet.setDescriptionTextViewText(description+" "+error);
+                                pet.setDescriptionTextViewText(description+"\nERROR: "+error);
                             }
                         });
 
@@ -178,16 +202,30 @@ public class UploadFirmwareTest extends Test {
         final Activity activity = (Activity) activityListener;
         if (activity == null || activity.isFinishing()) return;
         IOIOUtils.getUtils().resetDevice((Activity) activityListener);
-        activity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(activity, "INIT FAILED, " + String.valueOf(3 - retries) + " Attempts Remaining",
-                        Toast.LENGTH_SHORT).show();
-                resetted = true;
-                initialised = false;
-                retries++;
-            }
-        });
+        if (BuildConfig.DEBUG) {
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(activity, "INIT FAILED, " + String.valueOf(3 - retries) + " Attempts Remaining",
+                            Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+        resetted = true;
+        initialised = false;
+        retries++;
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void onGetInfoFailed() {
+        final Activity activity = (Activity) activityListener;
+        if (activity == null || activity.isFinishing()) return;
+        retries++;
     }
 
     @Override

@@ -338,7 +338,7 @@ public class MainActivity extends Activity
 					detectHelper.waitForPCBDetect(MainActivity.this, _PCB_Detect);
 				}
 			}
-		});
+	});
 	}
 
 	private void waitForPCBDisconnected() {
@@ -493,6 +493,13 @@ public class MainActivity extends Activity
 	public void manuallyRedoCurrentTest() {
 		newSequence.executeCurrentTest();
 
+	}
+
+	@Override
+	public void restartSequence(){
+		detectHelper.stopCheckingIfConnectionDrops();// OK
+		detectHelper.stopWaitingForPCBDisconnected();
+		onPCBDisconnected();
 	}
 
 	@Override

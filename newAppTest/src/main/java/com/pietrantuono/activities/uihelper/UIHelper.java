@@ -104,6 +104,8 @@ public class UIHelper {
 		void goAndExecuteNextTest();
 
 		void manuallyRedoCurrentTest();
+
+		void restartSequence();
 	}
 
 	private static class MyOnChronometerTickListener implements OnChronometerTickListener {
@@ -449,11 +451,12 @@ public class UIHelper {
 			@Override
 			public void onClick(View v) {
 				AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-				builder.setTitle("Retry last test").setMessage("Are sure you want to retry last test?");
+				builder.setTitle("Restart Sequence").setMessage("Are sure you want to restart the sequence?");
 				builder.setPositiveButton("Yes, let's try again", new OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
-						activityUIHelperCallback.manuallyRedoCurrentTest();
+//						activityUIHelperCallback.manuallyRedoCurrentTest();
+						activityUIHelperCallback.restartSequence();
 					}
 				});
 				builder.setNegativeButton("NO", new OnClickListener() {

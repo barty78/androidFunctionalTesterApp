@@ -38,6 +38,7 @@ import ioio.lib.api.IOIO;
 @SuppressWarnings("ucd")
 public class FirmWareUploader {
 	private static final String TAG = "FirmWareUploader";
+	private String error="";
 	private OutputStream TX;
 	private InputStream RX;
 	private static final byte STM32_CMD_INIT = 0x7F;
@@ -131,7 +132,6 @@ public class FirmWareUploader {
 	private class WriteTask extends AsyncTask<Void, Void, Void> {
 		private FileOutputStream fileOutputStream;
 		private int prog = 0;
-		private String error="";
 
 		protected Void doInBackground(Void... v) {
 
@@ -150,7 +150,8 @@ public class FirmWareUploader {
 
 					System.err
 							.println("File provided larger then available flash space.\n");
-					error="File provided larger then available flash space.";
+//					error="File provided larger then available flash space.";
+					error="File too big to flash: (" + String.valueOf(size) + " > " + String.valueOf(fl_end-fl_start) + ")";
 					return null;
 				}
 
@@ -269,8 +270,6 @@ public class FirmWareUploader {
 				public void run() {
 					if (prog >= 100) {
 						if(listener!=null)listener.onUploadSuccess();
-//						Toast.makeText(c, "WRITE COMPLETED",
-//								Toast.LENGTH_LONG).show();
 
 						if (progress != null) {
 							progress.setProgress(100);
@@ -282,46 +281,20 @@ public class FirmWareUploader {
 						if (percent != null)
 							percent.setText("PASS");
 
-//						Handler h = new Handler();
-//						h.postDelayed(new Runnable() {
-//
-//							@Override
-//							public void run() {
-//								if (progress != null) {
-//									progress.setProgress(100);
-//									Resources res = c.getResources();
-//									Drawable background = res
-//											.getDrawable(R.drawable.greenprogress);
-//									progress.setProgressDrawable(background);
-//								}
-//								if (percent != null)
-//									percent.setText("PASS");
-//
-//							}
-//						}, 2000);
 					} else {
 
 						if(listener!=null)listener.onUploadFailure(error);
-
-//						Toast.makeText(c, "WRITE FAILED!",
-//								Toast.LENGTH_LONG).show();
 
 						if (progress != null)
 							progress.setProgress(0);
 						if (percent != null)
 							percent.setText("");
 					}
-
 				}
 			});
+
 			if (isCancelled())
 				return;
-//			try {
-//				Thread.sleep(2 * 1000 + 500);
-//			} catch (InterruptedException e) {
-//				e.printStackTrace();
-//			}
-			
 		}
 	}
 
@@ -332,6 +305,7 @@ public class FirmWareUploader {
 		if (!sendCommand(STM32_CMD_GET)) {
 			System.out
 					.println("Failed to send command to the device: reset your device.");
+			error="Failed to send command to the device: reset your device.";
 			return false;
 		}
 		if (isstopped)
@@ -370,17 +344,20 @@ public class FirmWareUploader {
 			System.out
 					.println("Seems this bootloader returns more then we understand in the GET command, we will skip the unknown bytes\n");
 			System.out.println("Please reset your device. Stopping.");
+			error="get cmd: More bytes than known.";
 			return false;
 		}
 		if (readWithTimerTimeout(1000) != STM32_ACK) {
 			System.out.println("No ACK received from the device");
 			System.out.printf("Next data: %d\n", readWithTimerTimeout(1000));
+			error="get cmd: No ACK received.";
 			return false;
 		}
 
 		/* get the version and read protection status */
 		if (!sendCommand(_CMDList.get("gvr").byteValue())) {
 			System.out.println("No ACK received from the device");
+			error="gvr cmd: No ACK received.";
 			return false;
 		}
 		if (isstopped)
@@ -396,6 +373,7 @@ public class FirmWareUploader {
 			return false;
 		if (readWithTimerTimeout(1000) != STM32_ACK) {
 			System.out.println("No ACK received from the device");
+			error="gvr cmd: No ACK received.";
 			return false;
 		}
 		if (isstopped)
@@ -403,6 +381,7 @@ public class FirmWareUploader {
 		/* get the device ID */
 		if (!sendCommand(_CMDList.get("gid").byteValue())) {
 			System.out.println("No ACK received from the device");
+			error="gid cmd: No ACK received.";
 			return false;
 		}
 		if (isstopped)
@@ -411,6 +390,7 @@ public class FirmWareUploader {
 		if (len != 2) {
 			System.err
 					.println("More then two bytes sent in the PID, unknown/unsupported device\n");
+			error="gid cmd: Unsupported device (> 2 bytes).";
 			return false;
 		}
 		if (isstopped)
@@ -419,17 +399,19 @@ public class FirmWareUploader {
 		if (readWithTimerTimeout(1000) != STM32_ACK) {
 			System.err
 					.println("More then two bytes sent in the PID, unknown/unsupported device\n");
+			error="PID: Unsupported device (> 2 bytes).";
 			return false;
 		}
-		// updateUiText("Product ID - " + pid + ".\n");//TODO
 
 		int[] aData = getDeviceSetup();
+		if (aData == null){
+			error="ERROR: Device info error";
+			return false;
+		}
 		fl_start = aData[3];
-		// updateUiText("Flash Start Address - " + fl_start + ".\n");//TODO
 
 		System.out.printf("Flash Start Address - %x.\n", fl_start);
 		fl_end = aData[4];
-		// updateUiText("Flash End Address - " + fl_end + ".\n");//TODO
 		System.out.printf("Flash End Address - %x.\n", fl_end);
 		mem_end = aData[8];
 

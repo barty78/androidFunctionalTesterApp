@@ -51,6 +51,15 @@ public class PCBDetectHelperImpl implements PCBDetectHelperInterface {
 		}
 		detectAsyncTask = null;
 	}
+
+	@Override
+	public void stopWaitingForPCBDisconnected() {
+		if (waitDisconnectDetectAsyncTask !=null && !waitDisconnectDetectAsyncTask.isCancelled()) {
+			waitDisconnectDetectAsyncTask.cancel(true);
+		}
+		waitDisconnectDetectAsyncTask = null;
+	}
+
 	private class PCBDisconnectDetectAsyncTask extends
 			AsyncTask<Void, Void, Boolean> {
 		@Override
