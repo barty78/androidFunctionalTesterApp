@@ -100,18 +100,20 @@ public class MyDatabaseUtils {
         Test test = new Select().from(Test.class).where("Readings = ?", readingss.getId()).executeSingle();
         readingss.setTest(test);
 
-        List<SingleTest> singleTests = new Select().from(SingleTest.class).where("Test = ?", test.getId()).execute();
-        List<Long> ids = new ArrayList<Long>();
-        List<Long> results = new ArrayList<Long>();
-        List<Double> values = new ArrayList<Double>();
-        for (int i = 0; i < singleTests.size(); i++) {
-            ids.add(singleTests.get(i).getIDTest());
-            results.add(singleTests.get(i).getResult());
-            values.add(singleTests.get(i).getValue());
+        if(test!=null && test.getId()!=null) {
+            List<SingleTest> singleTests = new Select().from(SingleTest.class).where("Test = ?", test.getId()).execute();
+            List<Long> ids = new ArrayList<Long>();
+            List<Long> results = new ArrayList<Long>();
+            List<Double> values = new ArrayList<Double>();
+            for (int i = 0; i < singleTests.size(); i++) {
+                ids.add(singleTests.get(i).getIDTest());
+                results.add(singleTests.get(i).getResult());
+                values.add(singleTests.get(i).getValue());
+            }
+            test.setIDTest(ids);
+            test.setResult(results);
+            test.setValue(values);
         }
-        test.setIDTest(ids);
-        test.setResult(results);
-        test.setValue(values);
 
         Sensors sensors = new Select().from(Sensors.class).where("Readings = ?", readingss.getId()).executeSingle();
         if (sensors != null) {

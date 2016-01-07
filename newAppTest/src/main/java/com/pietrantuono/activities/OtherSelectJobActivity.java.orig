@@ -275,8 +275,15 @@ public class OtherSelectJobActivity extends Activity implements MyCallback {
 			startMainActivity(job);
 			return;
 		}
+<<<<<<< HEAD
+		startMainActivity(job);
+
+		//downloadSequence(job);
+		//startMainActivity(job	);
+=======
 		//downloadSequence(job);
 		startMainActivity(job	);
+>>>>>>> master
 	}
 
 	@Override

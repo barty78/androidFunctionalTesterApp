@@ -1,5 +1,9 @@
 package com.pietrantuono.pericoach.newtestapp.syncadapter;
 
+import java.io.File;
+import java.io.RandomAccessFile;
+import java.nio.channels.FileChannel;
+import java.nio.channels.FileLock;
 import java.util.Iterator;
 import java.util.List;
 
@@ -13,11 +17,13 @@ import server.pojos.records.TestRecord;
 import server.pojos.records.response.Response;
 import server.utils.MyDatabaseUtils;
 
+import com.activeandroid.ActiveAndroid;
 import com.activeandroid.Model;
 import com.activeandroid.query.Select;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.pietrantuono.application.PeriCoachTestApplication;
+import com.pietrantuono.pericoach.newtestapp.BuildConfig;
 import com.pietrantuono.pericoach.newtestapp.R;
 
 import android.accounts.Account;
@@ -112,7 +118,36 @@ public class MySyncAdapter extends AbstractThreadedSyncAdapter {
 								issuePositiveNotification(record);
 								record.setUploaded(true);
 								//MyDatabaseUtils.deteteRecod(record);
-								record.save();
+								try {
+									// Get a file channel for the file
+									File dbFile = context.getDatabasePath("containsmac");
+
+									//File file = new File(dbFile);
+									FileChannel channel = new RandomAccessFile(dbFile, "rw").getChannel();
+
+									// Use the file channel to create a lock on the file.
+									// This method blocks until it can retrieve the lock.
+									FileLock lock = channel.lock();
+									ActiveAndroid.beginTransaction();
+									try{
+										record.save();
+										ActiveAndroid.setTransactionSuccessful();
+										if(BuildConfig.DEBUG)Log.d(TAG,"setTransactionSuccessful");
+									}
+									catch (Exception e){
+										if(BuildConfig.DEBUG)Log.e(TAG,e.toString());
+									}
+									finally{
+										ActiveAndroid.endTransaction();
+									}
+									// Release the lock
+									lock.release();
+									// Close the file
+									channel.close();
+								} catch (Exception e) {
+									e.printStackTrace();
+								}
+
 							}
 
 							@Override
