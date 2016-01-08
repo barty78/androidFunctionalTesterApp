@@ -92,7 +92,7 @@ public class ChargeTermination extends ActivityInstrumentationTestCase2<MainActi
 		
 		NewSequenceInterface newSequence = new GenericSequence();
 		com.pietrantuono.tests.superclass.Test test;
-		test= new Charge_termination_test(mainActivity,ioioMock,"bar");
+		test= new Charge_termination_test(mainActivity,ioioMock,"registerSequenceFragment");
 		newSequence.addTest(test);
 		
 		mainActivity.setNewSequence(newSequence);

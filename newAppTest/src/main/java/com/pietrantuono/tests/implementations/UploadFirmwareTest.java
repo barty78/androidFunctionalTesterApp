@@ -37,7 +37,7 @@ public class UploadFirmwareTest extends Test {
     private AlertDialog alertDialog;
     boolean fileComparisonPassed = false;
     boolean fileMD5Passed = false;
-    private int retries;
+    private int retries=0;
 
     public UploadFirmwareTest(Activity activity, IOIO ioio) {
         super(activity, ioio, "Upload Firmware", false, true, 0, 0, 0);            // Blocking Test, if fails - STOP

@@ -21,6 +21,7 @@ import android.preference.EditTextPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
+import android.preference.PreferenceScreen;
 import android.preference.SwitchPreference;
 import android.provider.Settings;
 import android.text.Spannable;
@@ -29,10 +30,12 @@ import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.lang.ref.PhantomReference;
 import java.text.SimpleDateFormat;
@@ -49,6 +52,8 @@ import server.utils.MyDatabaseUtils;
 public class SettingsActivity  extends PreferenceActivity {
     private final static String FILE_ALL_RECORDS="allrecords";
     private final static String FILE_UNPROCESSED_RECORDS="unprocessedrecords";
+    private static final String FILE_LOGS = "logs";
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,6 +114,14 @@ public class SettingsActivity  extends PreferenceActivity {
                 return false;
             }
         });
+        findPreference(getResources().getString(R.string.get_logs)).setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                getLogs();
+                return false;
+            }
+        });
+
     }
 
     private void downloadUnprocessed() {
@@ -172,8 +185,8 @@ public class SettingsActivity  extends PreferenceActivity {
         emailIntent .putExtra(Intent.EXTRA_STREAM, uri);
         SimpleDateFormat sdf=new SimpleDateFormat("HH:mm dd MMMM yyyy");
         Date date= new Date(time);
-        emailIntent .putExtra(Intent.EXTRA_SUBJECT, "Unprocessed records "+sdf.format(date));
-        startActivity(Intent.createChooser(emailIntent , "Send data..."));
+        emailIntent .putExtra(Intent.EXTRA_SUBJECT, "Unprocessed records " + sdf.format(date));
+        startActivity(Intent.createChooser(emailIntent, "Send data..."));
     }
 
 
@@ -242,4 +255,63 @@ public class SettingsActivity  extends PreferenceActivity {
         emailIntent .putExtra(Intent.EXTRA_SUBJECT, "All records "+sdf.format(date));
         startActivity(Intent.createChooser(emailIntent , "Send data..."));
     }
+
+    private void getLogs() {
+        List<TestRecord> records = new Select().from(TestRecord.class).execute();
+        if(records==null || records.size()<=0){
+            Toast.makeText(SettingsActivity.this,"No records found...",Toast.LENGTH_LONG).show();
+            return;
+        }
+        String root = Environment.getExternalStorageDirectory().toString();
+        File dir = new File(root + "/logs");
+        dir.mkdirs();
+        long time=System.currentTimeMillis();
+        String suffix=""+time+".txt";
+        File file = new File (dir, FILE_LOGS.concat(""+suffix));
+        OutputStreamWriter outputStreamWriter = null;
+        FileOutputStream fileOutputStream=null;
+        try {
+            fileOutputStream= new FileOutputStream(file);
+            outputStreamWriter= new OutputStreamWriter(fileOutputStream);
+        } catch (Exception e) {
+            Toast.makeText(SettingsActivity.this,"Unable to create file",Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        try {
+            Process process = Runtime.getRuntime().exec("logcat -d");
+            BufferedReader bufferedReader = new BufferedReader(
+                    new InputStreamReader(process.getInputStream()));
+
+            StringBuilder log=new StringBuilder();
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                log.append(line);
+                outputStreamWriter.write(line+"\n");
+            }
+
+        } catch (IOException e) {
+        }
+        try {
+            outputStreamWriter.close();
+            fileOutputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(SettingsActivity.this,e.toString(),Toast.LENGTH_LONG).show();
+            Log.e("Exception", "File close failed: " + e.toString());
+            Crashlytics.logException(e);
+        }
+        File outFile = new File (dir, FILE_LOGS.concat(""+suffix));
+        Uri uri = Uri.fromFile(outFile);
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        emailIntent .setType("vnd.android.cursor.dir/email");
+        String to[] = {"pbartlett@analyticamedical.com","maurizio.pietrantuono@gmail.com"};
+        emailIntent .putExtra(Intent.EXTRA_EMAIL, to);
+        emailIntent .putExtra(Intent.EXTRA_STREAM, uri);
+        SimpleDateFormat sdf=new SimpleDateFormat("HH:mm dd MMMM yyyy");
+        Date date= new Date(time);
+        emailIntent .putExtra(Intent.EXTRA_SUBJECT, "App logs "+sdf.format(date));
+        startActivity(Intent.createChooser(emailIntent , "Send data..."));
+    }
+
 }

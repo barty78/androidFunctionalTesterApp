@@ -133,4 +133,8 @@
         <item>Auto</item>
     </string-array>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="get_logs">get_logs</string>
+
 </resources>

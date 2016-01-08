@@ -26,6 +26,7 @@ import com.pietrantuono.tests.implementations.DummyUploadFirmwareTest;
 import com.pietrantuono.tests.implementations.GetBarcodeTest;
 import com.pietrantuono.tests.implementations.GetDeviceSerialTest;
 import com.pietrantuono.tests.implementations.GetMacAddressTest;
+import com.pietrantuono.tests.implementations.GetNFCTest;
 import com.pietrantuono.tests.implementations.LedCheckTest;
 import com.pietrantuono.tests.implementations.ListenToUart;
 import com.pietrantuono.tests.implementations.MagnetWakeDeviceTest;
@@ -194,6 +195,9 @@ public class TestsParser {
 			case R.integer.UUTCurrentTest:
 				test = new UUTCurrentTest(activity, ioio,
 						getDescription(testToBeParsed));
+				break;
+			case R.integer.GetNFCTest:
+				test = new GetNFCTest(activity, ioio, 0);
 				break;
 
 			case R.integer.PauseStep:

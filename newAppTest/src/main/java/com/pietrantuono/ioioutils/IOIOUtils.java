@@ -1021,7 +1021,7 @@ public class IOIOUtils implements IOIOUtilsInterface {
                     tmp = r.readLine();
                         t.cancel();
                         System.out.printf("Timer Cancelled");
-                        sb.append(tmp);
+                        sb.append(tmp + "\n");
                         if (tmp != null){Log.d(TAG + " - CALL", tmp);}
                     }
                 } catch (IOException e) {

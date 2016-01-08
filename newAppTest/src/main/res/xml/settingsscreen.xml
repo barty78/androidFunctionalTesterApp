@@ -11,6 +11,7 @@
         android:visible="true"
         android:showAsAction="always">
     </Preference>
+
     <Preference
         android:key="@string/download_unprocessed"
         android:title="Download unprocessed"
@@ -20,6 +21,15 @@
         android:showAsAction="always">
     </Preference>
 
+
+    <Preference
+        android:key="@string/get_logs"
+        android:title="Get app logs"
+        android:summary="Get app logs"
+        android:icon="@drawable/ic_action_log"
+        android:visible="true"
+        android:showAsAction="always">
+    </Preference>
     <SwitchPreference
         android:defaultValue="false"
         android:key="@string/use_mac"

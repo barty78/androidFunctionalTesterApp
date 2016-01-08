@@ -97,7 +97,7 @@ public class ChargeTermination2 extends ActivityInstrumentationTestCase2<MainAct
 		when(ioioMock.openUart(anyInt(), anyInt(), anyInt(), any(Uart.Parity.class), any(Uart.StopBits.class)))
 				.thenReturn(uartMock);
 
-		Test test=new Charge_termination_test(mainActivity,ioioMock,"bar");
+		Test test=new Charge_termination_test(mainActivity,ioioMock,"registerSequenceFragment");
 		NewSequenceInterface newSequence = new GenericSequence();
 		newSequence.addTest(test);
 		mainActivity.setNewSequence(newSequence);

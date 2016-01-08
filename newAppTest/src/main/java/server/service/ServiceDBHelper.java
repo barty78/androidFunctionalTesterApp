@@ -1,6 +1,7 @@
 package server.service;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 
 import com.activeandroid.ActiveAndroid;
@@ -40,6 +41,10 @@ public class ServiceDBHelper {
 	private static void addNewDevices(List<Device> newDevices) {
 		HashSet<Device> devicesToBeSaved= new HashSet<Device>();
 		devicesToBeSaved.addAll(newDevices);
+		Iterator<Device> iterator = devicesToBeSaved.iterator();
+		while (iterator.hasNext()){
+			if(weHaveItAlready(iterator.next().getBarcode())!=null)iterator.remove();
+		}
 		ActiveAndroid.beginTransaction();
 		try {
 		        for (Device device:devicesToBeSaved) {
