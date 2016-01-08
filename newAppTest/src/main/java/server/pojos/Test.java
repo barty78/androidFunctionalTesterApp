@@ -7,11 +7,11 @@ public class Test {
 
     @Expose
     private Long id;
-    
+
     @SerializedName("testclass_id")
     @Expose
     private Long testclassId;
-    
+
     @SerializedName("limit_id")
     @Expose
     private Long limitId;
@@ -25,6 +25,8 @@ public class Test {
     private Long blocking;
     @Expose
     private Long units;
+    @Expose
+    private Integer scaling;
     @Expose
     private Integer ioiopinnum;
     @Expose
@@ -45,7 +47,7 @@ public class Test {
     private Long Tolerance;
 
     /**
-     * 
+     *
      * @return
      *     The id
      */
@@ -54,7 +56,7 @@ public class Test {
     }
 
     /**
-     * 
+     *
      * @param id
      *     The id
      */
@@ -63,7 +65,7 @@ public class Test {
     }
 
     /**
-     * 
+     *
      * @return
      *     The testclassId
      */
@@ -72,7 +74,7 @@ public class Test {
     }
 
     /**
-     * 
+     *
      * @param testclassId
      *     The testclass_id
      */
@@ -81,7 +83,7 @@ public class Test {
     }
 
     /**
-     * 
+     *
      * @return
      *     The limitId
      */
@@ -90,7 +92,7 @@ public class Test {
     }
 
     /**
-     * 
+     *
      * @param limitId
      *     The limit_id
      */
@@ -99,7 +101,7 @@ public class Test {
     }
 
     /**
-     * 
+     *
      * @return
      *     The number
      */
@@ -108,7 +110,7 @@ public class Test {
     }
 
     /**
-     * 
+     *
      * @param number
      *     The number
      */
@@ -117,7 +119,7 @@ public class Test {
     }
 
     /**
-     * 
+     *
      * @return
      *     The name
      */
@@ -126,7 +128,7 @@ public class Test {
     }
 
     /**
-     * 
+     *
      * @param name
      *     The name
      */
@@ -135,7 +137,7 @@ public class Test {
     }
 
     /**
-     * 
+     *
      * @return
      *     The istest
      */
@@ -144,7 +146,7 @@ public class Test {
     }
 
     /**
-     * 
+     *
      * @param istest
      *     The istest
      */
@@ -153,7 +155,7 @@ public class Test {
     }
 
     /**
-     * 
+     *
      * @return
      *     The blocking
      */
@@ -162,7 +164,7 @@ public class Test {
     }
 
     /**
-     * 
+     *
      * @param blocking
      *     The blocking
      */
@@ -171,7 +173,7 @@ public class Test {
     }
 
     /**
-     * 
+     *
      * @return
      *     The units
      */
@@ -180,7 +182,7 @@ public class Test {
     }
 
     /**
-     * 
+     *
      * @param units
      *     The units
      */
@@ -189,7 +191,7 @@ public class Test {
     }
 
     /**
-     * 
+     *
      * @return
      *     The ioiopinnum
      */
@@ -198,7 +200,7 @@ public class Test {
     }
 
     /**
-     * 
+     *
      * @param ioiopinnum
      *     The ioiopinnum
      */
@@ -207,7 +209,7 @@ public class Test {
     }
 
     /**
-     * 
+     *
      * @return
      *     The active
      */
@@ -216,7 +218,7 @@ public class Test {
     }
 
     /**
-     * 
+     *
      * @param active
      *     The active
      */
@@ -243,7 +245,7 @@ public class Test {
     public void setLimitParam2(Long limitParam2) {this.limitParam2 = limitParam2;}
 
     /**
-     * 
+     *
      * @return
      *     The Upper
      */
@@ -252,7 +254,7 @@ public class Test {
     }
 
     /**
-     * 
+     *
      * @param Upper
      *     The Upper
      */
@@ -261,7 +263,7 @@ public class Test {
     }
 
     /**
-     * 
+     *
      * @return
      *     The Lower
      */
@@ -270,7 +272,7 @@ public class Test {
     }
 
     /**
-     * 
+     *
      * @param Lower
      *     The Lower
      */
@@ -279,7 +281,7 @@ public class Test {
     }
 
     /**
-     * 
+     *
      * @return
      *     The Nominal
      */
@@ -288,7 +290,7 @@ public class Test {
     }
 
     /**
-     * 
+     *
      * @param Nominal
      *     The Nominal
      */
@@ -297,7 +299,7 @@ public class Test {
     }
 
     /**
-     * 
+     *
      * @return
      *     The Tolerance
      */
@@ -306,7 +308,7 @@ public class Test {
     }
 
     /**
-     * 
+     *
      * @param Tolerance
      *     The Tolerance
      */
