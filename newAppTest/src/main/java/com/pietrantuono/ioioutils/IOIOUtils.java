@@ -32,6 +32,8 @@ import android.widget.Toast;
 import com.crashlytics.android.Crashlytics;
 import com.pietrantuono.activities.MyOnCancelListener;
 import com.pietrantuono.activities.NewIOIOActivityListener;
+import com.pietrantuono.activities.fragments.SerialConsoleFragment;
+import com.pietrantuono.activities.fragments.SerialConsoleFragmentCallback;
 
 public class IOIOUtils implements IOIOUtilsInterface {
     private Uart uart1;
@@ -858,7 +860,7 @@ public class IOIOUtils implements IOIOUtilsInterface {
 
         // When entering Application mode, start the Uart Thread so that console is captured.  We will search console log for signs of life, etc...
         if (thread == null || stopthread) {
-            thread = new Uart2Thread();
+            thread = new Uart2Thread((SerialConsoleFragmentCallback) activity);
             Log.d(TAG, "Starting UART Thread");
             thread.setPriority(Thread.MIN_PRIORITY);
             thread.start();
@@ -968,6 +970,7 @@ public class IOIOUtils implements IOIOUtilsInterface {
 
     private class Uart2Thread extends Thread {
 
+        private final SerialConsoleFragmentCallback callback;
         @SuppressWarnings("unused")
         private String line;
         private long now = System.currentTimeMillis();
@@ -976,7 +979,10 @@ public class IOIOUtils implements IOIOUtilsInterface {
         private int timeout = 200;
 
 
-        public Uart2Thread() {stopthread = false;}
+        public Uart2Thread(SerialConsoleFragmentCallback callback) {
+            stopthread = false;
+            this.callback=callback;
+        }
 
         @Override
         public void run() {
@@ -1020,13 +1026,22 @@ public class IOIOUtils implements IOIOUtilsInterface {
 
                     tmp = r.readLine();
                         t.cancel();
+                        t.purge();
+                        t=null;
                         System.out.printf("Timer Cancelled");
                         sb.append(tmp + "\n");
                         if (tmp != null){Log.d(TAG + " - CALL", tmp);}
+                        if (tmp != null){callback.updateUI(tmp);}
+                    }
+                    else {
+                        t.cancel();
+                        t.purge();
+                        t=null;
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+
 
             }
 

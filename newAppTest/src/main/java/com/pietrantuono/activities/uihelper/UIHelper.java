@@ -66,9 +66,7 @@ public class UIHelper {
 		ViewPager viewPager= (ViewPager) activity.findViewById(R.id.pager);
 		AppCompatActivity appcompat = (AppCompatActivity) activity;
 		viewPager.setAdapter(new PagerAdapter(appcompat.getSupportFragmentManager()));
-		TabLayout tabLayout= (TabLayout) activity.findViewById(R.id.tabs);
-		viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-		tabLayout.setupWithViewPager(viewPager);
+		viewPager.setOffscreenPageLimit(viewPager.getAdapter().getCount());
 	}
 
 	public void setupChronometer(Activity activity){

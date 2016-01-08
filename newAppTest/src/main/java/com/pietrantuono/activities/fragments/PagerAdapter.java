@@ -8,6 +8,7 @@ public class PagerAdapter extends FragmentPagerAdapter {
 
     public PagerAdapter(FragmentManager fm) {
         super(fm);
+
     }
 
     @Override
@@ -25,20 +26,6 @@ public class PagerAdapter extends FragmentPagerAdapter {
         }
     }
 
-    @Override
-    public CharSequence getPageTitle(int position) {
-        switch (position) {
-            case 0:
-                return "Running sequence";
-            case 1:
-                return "Devices list";
-            case 2:
-                return "Serial console";
-
-            default:
-                return "Devices list";
-        }
-    }
 
     @Override
     public int getCount() {
