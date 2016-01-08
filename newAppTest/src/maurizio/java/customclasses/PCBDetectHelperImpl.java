@@ -33,6 +33,14 @@ public class PCBDetectHelperImpl implements PCBDetectHelperInterface {
 		detectAsyncTask = new PCBDisconnectDetectAsyncTask();
 		detectAsyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 	}
+
+	@Override
+	public void stopWaitingForPCBDisconnected() {
+		if (waitDisconnectDetectAsyncTask !=null && !waitDisconnectDetectAsyncTask.isCancelled()) {
+			waitDisconnectDetectAsyncTask.cancel(true);
+		}
+		waitDisconnectDetectAsyncTask = null;
+	}
 	/* (non-Javadoc)
 	 * @see com.pietrantuono.ioioutils.PCBDetectHelper#setPCBDetectCallback(com.pietrantuono.activities.ActivtyWrapper)
 	 */
