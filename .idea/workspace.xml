@@ -10,45 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c3e6e43e-5ddb-4d23-8f7a-0ad602dc1457" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/newAppTest/src/main/res/drawable-hdpi/ic_action_av_replay.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/newAppTest/src/main/res/drawable-hdpi/ic_action_log.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/DevicesListFragment.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/DevicesListPreferenceScreen.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/PagerAdapter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/SequenceFragment.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/newAppTest/src/main/res/layout/devices_list_fragment.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/newAppTest/src/main/res/layout/devices_row.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/newAppTest/src/main/res/layout/sequence_fragment.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/newAppTest/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/androidTest/java/com/pietrantuono/pericoach/newtestapp/test/ui/BatteryLevelUUTVoltage.java" afterPath="$PROJECT_DIR$/newAppTest/src/androidTest/java/com/pietrantuono/pericoach/newtestapp/test/ui/BatteryLevelUUTVoltage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/androidTest/java/com/pietrantuono/pericoach/newtestapp/test/ui/ChargeTermination.java" afterPath="$PROJECT_DIR$/newAppTest/src/androidTest/java/com/pietrantuono/pericoach/newtestapp/test/ui/ChargeTermination.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/androidTest/java/com/pietrantuono/pericoach/newtestapp/test/ui/ChargeTermination2.java" afterPath="$PROJECT_DIR$/newAppTest/src/androidTest/java/com/pietrantuono/pericoach/newtestapp/test/ui/ChargeTermination2.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/androidTest/java/com/pietrantuono/pericoach/newtestapp/test/ui/CurrentCurrent.java" afterPath="$PROJECT_DIR$/newAppTest/src/androidTest/java/com/pietrantuono/pericoach/newtestapp/test/ui/CurrentCurrent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/IOIOUtils.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/IOIOUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/MainActivity.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/server/utils/MyDatabaseUtils.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/server/utils/MyDatabaseUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/uihelper/MyDialogs.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/uihelper/MyDialogs.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/pericoach/newtestapp/syncadapter/MySyncAdapter.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/pericoach/newtestapp/syncadapter/MySyncAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/peter/java/customclasses/NewSequence.java" afterPath="$PROJECT_DIR$/newAppTest/src/peter/java/customclasses/NewSequence.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/OtherSelectJobActivity.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/OtherSelectJobActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/OtherSelectJobActivityHelper.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/OtherSelectJobActivityHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/server/service/ServiceDBHelper.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/server/service/ServiceDBHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/SettingsActivity.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/SettingsActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/server/TestsParser.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/server/TestsParser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/uihelper/UIHelper.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/uihelper/UIHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/UploadFirmwareTest.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/UploadFirmwareTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/res/layout/activity_main.xml" afterPath="$PROJECT_DIR$/newAppTest/src/main/res/layout/activity_main.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build.gradle" afterPath="$PROJECT_DIR$/newAppTest/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gradle.xml" afterPath="$PROJECT_DIR$/.idea/gradle.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/local.properties.orig" afterPath="$PROJECT_DIR$/local.properties.orig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/local.properties" afterPath="$PROJECT_DIR$/local.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/res/xml/settingsscreen.xml" afterPath="$PROJECT_DIR$/newAppTest/src/main/res/xml/settingsscreen.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/newAppTest/src/main/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/res/values/tests.xml" afterPath="$PROJECT_DIR$/newAppTest/src/main/res/values/tests.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/GetNFCTest.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/GetNFCTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="pericoach-test-app-android-studio.iws" />
@@ -80,8 +46,8 @@
       <file leaf-file-name="IOIOUtils.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/IOIOUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7297297">
-              <caret line="518" column="5" selection-start-line="518" selection-start-column="5" selection-end-line="518" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.6660714">
+              <caret line="501" column="67" selection-start-line="501" selection-start-column="67" selection-end-line="501" selection-end-column="67" />
               <folding />
             </state>
           </provider>
@@ -164,10 +130,10 @@
         <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/GetNFCTest.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="103" column="37" selection-start-line="103" selection-start-column="37" selection-end-line="103" selection-end-column="37" />
+              <caret line="103" column="57" selection-start-line="103" selection-start-column="57" selection-end-line="103" selection-end-column="57" />
               <folding>
-                <element signature="e#5575#5741#0" expanded="true" />
-                <element signature="e#5740#5741#0" expanded="true" />
+                <element signature="e#6306#6472#0" expanded="true" />
+                <element signature="e#6471#6472#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -201,19 +167,6 @@
               <folding>
                 <element signature="e#3587#4496#0" expanded="true" />
                 <element signature="e#4495#4496#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PeriCoachTestApplication.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/application/PeriCoachTestApplication.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="92" column="23" selection-start-line="92" selection-start-column="23" selection-end-line="92" selection-end-column="23" />
-              <folding>
-                <element signature="e#2633#2634#0" expanded="true" />
-                <element signature="e#2682#2683#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -2864,9 +2817,9 @@
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/OtherSelectJobActivity.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/peter/java/customclasses/NewSequence.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/UploadFirmwareTest.java" />
-        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/GetNFCTest.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/res/values/tests.xml" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/server/TestsParser.java" />
+        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/GetNFCTest.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/IOIOUtils.java" />
       </list>
     </option>
@@ -2882,10 +2835,10 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1358" />
+    <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1096" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -3801,13 +3754,13 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1358" y="-8" width="1936" height="1096" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Fabric" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.29591838" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" x="52" y="61" width="1245" height="631" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.29591838" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" x="52" y="61" width="1245" height="631" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2457356" sideWeight="0.58829784" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -3816,8 +3769,8 @@
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2457356" sideWeight="0.41170213" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30106384" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34871408" sideWeight="0.41170213" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30106384" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32995737" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -3828,7 +3781,7 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21382979" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17590618" sideWeight="0.42765957" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17549168" sideWeight="0.42765957" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" x="1052" y="29" width="364" height="248" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -3861,14 +3814,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/Voltage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="120" column="25" selection-start-line="120" selection-start-column="25" selection-end-line="120" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/uploadfirmware/ProgressAndTextView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -4291,17 +4236,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/GetNFCTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="103" column="37" selection-start-line="103" selection-start-column="37" selection-end-line="103" selection-end-column="37" />
-          <folding>
-            <element signature="e#5575#5741#0" expanded="true" />
-            <element signature="e#5740#5741#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/newAppTest/src/main/res/values/tests.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.24324325">
@@ -4331,10 +4265,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://F:/Android/android-sdk/sources/android-23/java/util/Arrays.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.41335455">
+          <caret line="2660" column="25" selection-start-line="2660" selection-start-column="25" selection-end-line="2660" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/GetNFCTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="103" column="57" selection-start-line="103" selection-start-column="57" selection-end-line="103" selection-end-column="57" />
+          <folding>
+            <element signature="e#6306#6472#0" expanded="true" />
+            <element signature="e#6471#6472#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/IOIOUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7297297">
-          <caret line="518" column="5" selection-start-line="518" selection-start-column="5" selection-end-line="518" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.6660714">
+          <caret line="501" column="67" selection-start-line="501" selection-start-column="67" selection-end-line="501" selection-end-column="67" />
           <folding />
         </state>
       </provider>

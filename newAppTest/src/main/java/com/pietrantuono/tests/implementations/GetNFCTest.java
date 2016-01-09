@@ -35,7 +35,7 @@ public class GetNFCTest extends Test {
     public int counter = 0;
     private int retries=0;
     private Boolean ready = false;
-    private int timeout = 200;
+    final protected static char[] hexArray = "0123456789ABCDEF".toCharArray();
 
     private static ExecutorService executor = Executors.newFixedThreadPool(1);
     private AlertDialog alertDialog;
@@ -59,8 +59,8 @@ public class GetNFCTest extends Test {
 
     private final static byte std_ACK[] = new byte[]
             {0x00, 0x00, (byte) 0xFF, 0x00, (byte) 0xFF, 0x00, 0x00,
-                    0x00, (byte) 0xFF, 0x0C, (byte) 0xF4, (byte) 0xD5,
-                    0x4B, 0x01, 0x01, 0x00, 0x04, 0x08, 0x04, 0x00,
+                    0x00, (byte) 0xFF, 0x0F, (byte) 0xF1, (byte) 0xD5,
+                    0x4B, 0x01, 0x01, 0x00, 0x44, 0x00, 0x04, 0x00,
                     0x00, 0x00, 0x00, 0x4b, 0x00};
 
     /**
@@ -90,7 +90,7 @@ public class GetNFCTest extends Test {
         }
 
 
-        if (!Arrays.equals(ReadwithTimeout(wake_res.length), wake_res)) {
+        if (!Arrays.equals(ReadwithTimeout(200, wake_res.length), wake_res)) {
             activityListener.addFailOrPass("", true, false, description + " Read Failed");
             return;
         }
@@ -100,11 +100,18 @@ public class GetNFCTest extends Test {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        byte[] result = ReadwithTimeout(5000, std_ACK.length);
+        byte[] tmp1 = Arrays.copyOfRange(std_ACK, 0, 18);
+        byte[] tmp2 = Arrays.copyOfRange(result, 0, 18);
 
-        if (!Arrays.equals(ReadwithTimeout(std_ACK.length), std_ACK)) {
+        printBuffer(tmp1);
+        printBuffer(tmp2);
+        if (!Arrays.equals(tmp1, tmp2)) {
             activityListener.addFailOrPass("", true, false, description + " Read Failed");
             return;
         }
+
+        activityListener.addFailOrPass(true, true, bytesToHex(Arrays.copyOfRange(result,19,result.length)), "");
 
 //        if (barcode != null && !barcode.isEmpty()) {
 //            counter = 0;
@@ -147,7 +154,17 @@ public class GetNFCTest extends Test {
 
     }
 
-    public byte[] ReadwithTimeout(int len) {
+    public static String bytesToHex(byte[] bytes) {
+        char[] hexChars = new char[bytes.length * 2];
+        for (int j = 0; j < bytes.length; j++) {
+            int v = bytes[j] & 0xFF;
+            hexChars[j * 2] = hexArray[v >>> 4];
+            hexChars[j * 2 + 1] = hexArray[v & 0x0F];
+        }
+        return new String(hexChars);
+    }
+
+    public byte[] ReadwithTimeout(int timeout, int len) {
         byte[] buffer = new byte[len];
         int count = 0;
 
@@ -164,22 +181,23 @@ public class GetNFCTest extends Test {
 
         while (count < len) {
             try {
-                count += RX.read(buffer, count, len);
+                count += RX.read(buffer, count, len-count);
+                Log.d(TAG, String.valueOf(count) + "|" + String.valueOf(len));
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
         t.cancel();
 
-        if (buffer != null) {
-            for (int i = 0; i < buffer.length; i++) {
-                Log.d(TAG + " - CALL", String.valueOf(buffer[i]));
-            }
-
-            return buffer;
-        }
+        if (buffer != null) return buffer;
 
         return null;
+    }
+
+    private void printBuffer(byte[] buffer){
+        for (int i = 0; i < buffer.length; i++) {
+            Log.d(TAG + " - CALL", String.valueOf(buffer[i]));
+        }
     }
 
     @Override
