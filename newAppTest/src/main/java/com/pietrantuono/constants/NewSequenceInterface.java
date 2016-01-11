@@ -20,22 +20,15 @@ public interface NewSequenceInterface {
 
 	Boolean isSequenceStarted();
 
-
 	String getCurrentTestDescription();
 
 	String getNextTestDescription() throws Exception;
 
 	void reset();
 
-	
-
-	
-
 	int getNumberOfSteps();
 
 	Boolean isSequenceEnded();
-
-	
 
 	void stopAll(MainActivity mainActivity);
 

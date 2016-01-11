@@ -26,7 +26,7 @@ public class Test {
     @Expose
     private Long units;
     @Expose
-    private Integer scaling;
+    private Float scaling;
     @Expose
     private Integer ioiopinnum;
     @Expose
@@ -179,6 +179,24 @@ public class Test {
      */
     public Long getUnits() {
         return units;
+    }
+
+    /**
+     *
+     * @param scaling
+     *     The scaling
+     */
+    public void setScaling(Float scaling) {
+        this.scaling = scaling;
+    }
+
+    /**
+     *
+     * @return
+     *     The scaling
+     */
+    public Float getScaling() {
+        return scaling;
     }
 
     /**
