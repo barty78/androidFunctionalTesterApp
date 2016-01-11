@@ -77,7 +77,7 @@ public interface IOIOUtilsInterface {
 
 	Uart getIOIOUart();
 
-	StringBuilder getUartLog();
+	String getUartLog();
 
 	void clearUartLog();
 

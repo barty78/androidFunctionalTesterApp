@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.util.Arrays;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.Callable;
@@ -32,6 +33,8 @@ import android.widget.Toast;
 import com.crashlytics.android.Crashlytics;
 import com.pietrantuono.activities.MyOnCancelListener;
 import com.pietrantuono.activities.NewIOIOActivityListener;
+import com.pietrantuono.activities.fragments.SerialConsoleFragment;
+import com.pietrantuono.activities.fragments.SerialConsoleFragmentCallback;
 
 public class IOIOUtils implements IOIOUtilsInterface {
     private Uart uart1;
@@ -67,6 +70,7 @@ public class IOIOUtils implements IOIOUtilsInterface {
     private static OutputStream outputStream;
     private static BufferedReader r;
     private static StringBuilder sb;
+    private static byte[] log = new byte[0];
     private static Uart2Thread thread;
     private static IOIOUtilsInterface instance;
 
@@ -531,6 +535,20 @@ public class IOIOUtils implements IOIOUtilsInterface {
         }
     }
 
+    public void openUart2(final IOIO ioio_, final Activity ac,
+                          int baud, Uart.Parity parity, Uart.StopBits stop) {
+        try {
+            uart2 = ioio_.openUart(13, 14, baud, parity, // STM32
+                    // Bootloader
+                    // requires
+                    // EVEN
+                    // Parity..
+                    stop);
+        } catch (ConnectionLostException e) {
+            Log.e(TAG, e.toString());
+        }
+    }
+
     @Override
     public void ioioSync(final IOIO ioio_) {
         try {
@@ -546,7 +564,7 @@ public class IOIOUtils implements IOIOUtilsInterface {
     @Override
     public DigitalOutput getDigitalOutput(int pinNumber) {
         switch (pinNumber) {
-            case (1):
+            case 1:
                 return Sensor_High;
 //			break;
             case 2:
@@ -858,7 +876,7 @@ public class IOIOUtils implements IOIOUtilsInterface {
 
         // When entering Application mode, start the Uart Thread so that console is captured.  We will search console log for signs of life, etc...
         if (thread == null || stopthread) {
-            thread = new Uart2Thread();
+            thread = new Uart2Thread((SerialConsoleFragmentCallback) activity);
             Log.d(TAG, "Starting UART Thread");
             thread.setPriority(Thread.MIN_PRIORITY);
             thread.start();
@@ -939,14 +957,16 @@ public class IOIOUtils implements IOIOUtilsInterface {
      * @see com.pietrantuono.ioioutils.IOIOUtilsInterface#getUartLog()
      */
     @Override
-    public StringBuilder getUartLog() {
-        return sb;
+//    public StringBuilder getUartLog() {
+    public String getUartLog() {
+        return new String(log);
     }
 
     @Override
     public void clearUartLog() {
         Log.d(TAG, "Clearing Uart Log StringBuilder instance");
         sb = new StringBuilder();
+        log = new byte[0];
     }
 
     /* (non-Javadoc)
@@ -968,6 +988,7 @@ public class IOIOUtils implements IOIOUtilsInterface {
 
     private class Uart2Thread extends Thread {
 
+        private final SerialConsoleFragmentCallback callback;
         @SuppressWarnings("unused")
         private String line;
         private long now = System.currentTimeMillis();
@@ -976,14 +997,16 @@ public class IOIOUtils implements IOIOUtilsInterface {
         private int timeout = 200;
 
 
-        public Uart2Thread() {stopthread = false;}
+        public Uart2Thread(SerialConsoleFragmentCallback callback) {
+            stopthread = false;
+            this.callback=callback;
+        }
 
         @Override
         public void run() {
 
             if (!setup) {
                 is = getIOIOUart().getInputStream();
-                r = new BufferedReader(new InputStreamReader(is));
                 setup = true;
             }
 
@@ -1013,27 +1036,36 @@ public class IOIOUtils implements IOIOUtilsInterface {
 //                Log.d(TAG, "Schedule readTask timer for " + String.valueOf(timeout) + " ms");
                 t.schedule(readTask, timeout);
 
-                String tmp = null;
+                byte[] buf = new byte[1024];
+                int numbytes = 0;
                 try {
-                    if (r.ready()) {
-//                    Log.d(TAG, "Read attempt");
-
-                    tmp = r.readLine();
-                        t.cancel();
-                        System.out.printf("Timer Cancelled");
-                        sb.append(tmp + "\n");
-                        if (tmp != null){Log.d(TAG + " - CALL", tmp);}
-                    }
+                    numbytes = is.read(buf);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                if (numbytes > 0) {
+                    byte[] temp = log;
+                    log = new byte[temp.length + numbytes];
+                    if (temp.length != 0) {
+                        System.arraycopy(temp, 0, log, 0, temp.length);
+                    }
+                    System.arraycopy(buf, 0, log, temp.length, numbytes);
 
-            }
-
-            try {
-                r.close();
-            } catch (IOException e) {
-                e.printStackTrace();
+                    t.cancel();
+                    t.purge();
+                    t = null;
+                    System.out.printf("Timer Cancelled");
+                    if (temp != null) {
+                        Log.d(TAG + " - CALL", new String(Arrays.copyOfRange(log, temp.length, temp.length+numbytes)));
+                    }
+                    if (temp != null) {
+                        callback.updateUI(new String(Arrays.copyOfRange(log, temp.length, temp.length+numbytes)));
+                    }
+                } else {
+                    t.cancel();
+                    t.purge();
+                    t = null;
+                }
             }
 
             try {
@@ -1046,38 +1078,7 @@ public class IOIOUtils implements IOIOUtilsInterface {
             } catch (Exception e) {}
 
             uart2 = null;
-
         }
-//                MyCallable myCallable = new MyCallable();
-//                Future<String> future = executor.submit(myCallable);
-//                try {
-//                    line = future.get(200, TimeUnit.MILLISECONDS);//TIMEOT
-//                    //future.cancel(true);
-//                } catch (Exception e) {
-//                    //Log.e(TAG, e.toString());
-//
-//                }
-//                //Log.d(TAG, sb.toString());
-//
-//            }
-//        }
-//
-//
-//        private class MyCallable implements Callable {
-//
-//            @Override
-//            public String call() throws Exception {
-//                if (r.ready()) {
-//                    String tmp = r.readLine();
-//                    sb.append(tmp);
-//                    Log.d(TAG + " - CALL", tmp);
-//                    return tmp;
-//                }
-//                return null;
-//            }
-//
-//        }
-
     }
 
     /* (non-Javadoc)

@@ -7,6 +7,7 @@ import com.crashlytics.android.Crashlytics;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.pietrantuono.activities.fragments.SequenceFragment;
+import com.pietrantuono.activities.fragments.SerialConsoleFragmentCallback;
 import com.pietrantuono.activities.uihelper.ActivityCallback;
 import com.pietrantuono.activities.uihelper.MyDialogInterface;
 import com.pietrantuono.activities.uihelper.MyDialogs;
@@ -66,7 +67,7 @@ import server.utils.TestFromSequenceCreator;
 public class MainActivity extends AppCompatActivity
 		implements ActivtyWrapper,IOIOLooperProvider, NewIOIOActivityListener, 
 		PCBConnectedCallback,SensorTestCallback, ActivityUIHelperCallback,
-		MyOnCancelListener.Callback, ActivityCallback, SequenceFragment.SequenceFragmentCallback {
+		MyOnCancelListener.Callback, ActivityCallback, SequenceFragment.SequenceFragmentCallback, SerialConsoleFragmentCallback {
 	private static IOIO myIOIO;
 	private static final String TAG = MainActivity.class.getSimpleName();
 	private String mJobNo = null;
@@ -87,6 +88,7 @@ public class MainActivity extends AppCompatActivity
 	private  BaseIOIOLooper looper;
 	private boolean sequenceStarted;
 	private String barcode;
+	private SerialConsoleFragmentCallback serialConsoleFragmentCallback;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -607,5 +609,25 @@ public class MainActivity extends AppCompatActivity
 	@Override
 	public void unregisterSequenceFragment() {
 		uiHelper.unregisterSequenceFragment();
+	}
+
+	@Override
+	public void updateUI(String text) {
+		if(serialConsoleFragmentCallback!=null)serialConsoleFragmentCallback.updateUI(text);
+	}
+
+	@Override
+	public void clearSerialConsole() {
+		if(serialConsoleFragmentCallback!=null)serialConsoleFragmentCallback.clearSerialConsole();
+	}
+
+	@Override
+	public void setCallback(SerialConsoleFragmentCallback serialConsoleFragmentCallback) {
+		this.serialConsoleFragmentCallback=serialConsoleFragmentCallback;
+	}
+
+	@Override
+	public void removeCallback() {
+		this.serialConsoleFragmentCallback=null;
 	}
 }

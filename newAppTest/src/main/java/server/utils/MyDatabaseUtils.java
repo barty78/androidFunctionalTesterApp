@@ -100,7 +100,7 @@ public class MyDatabaseUtils {
         Test test = new Select().from(Test.class).where("Readings = ?", readingss.getId()).executeSingle();
         readingss.setTest(test);
 
-        if(test!=null && test.getId()!=null) {
+        if (test != null && test.getId() != null) {
             List<SingleTest> singleTests = new Select().from(SingleTest.class).where("Test = ?", test.getId()).execute();
             List<Long> ids = new ArrayList<Long>();
             List<Long> results = new ArrayList<Long>();
@@ -116,7 +116,7 @@ public class MyDatabaseUtils {
         }
 
         Sensors sensors = new Select().from(Sensors.class).where("Readings = ?", readingss.getId()).executeSingle();
-        if (sensors != null) {
+        if (sensors != null && sensors.getId() != null) {
             S0 s0 = new Select().from(S0.class).where("Sensors = ?", sensors.getId()).executeSingle();
             List<Model> foo = new Select().from(S0.class).execute();
             sensors.setS0(s0);
@@ -127,66 +127,69 @@ public class MyDatabaseUtils {
             S2 s2 = new Select().from(S2.class).where("Sensors = ?", sensors.getId()).executeSingle();
             sensors.setS2(s2);
 
-            List<SingleS0> singleS0s = new Select().from(SingleS0.class).where("S0 = ?", s0.getId()).execute();
-            List<Long> idstestsS0 = new ArrayList<Long>();
-            List<Long> maxS0 = new ArrayList<Long>();
-            List<Long> minS0 = new ArrayList<Long>();
-            List<Long> avgS0 = new ArrayList<Long>();
-            List<Long> resultS0 = new ArrayList<Long>();
-            for (int i = 0; i < singleS0s.size(); i++) {
-                idstestsS0.add(singleS0s.get(i).getIDTest());
-                maxS0.add(singleS0s.get(i).getMax());
-                minS0.add(singleS0s.get(i).getMin());
-                avgS0.add(singleS0s.get(i).getAvg());
-                resultS0.add(singleS0s.get(i).getResult());
+            if (s0 != null && s0.getId() != null) {
+                List<SingleS0> singleS0s = new Select().from(SingleS0.class).where("S0 = ?", s0.getId()).execute();
+                List<Long> idstestsS0 = new ArrayList<Long>();
+                List<Long> maxS0 = new ArrayList<Long>();
+                List<Long> minS0 = new ArrayList<Long>();
+                List<Long> avgS0 = new ArrayList<Long>();
+                List<Long> resultS0 = new ArrayList<Long>();
+                for (int i = 0; i < singleS0s.size(); i++) {
+                    idstestsS0.add(singleS0s.get(i).getIDTest());
+                    maxS0.add(singleS0s.get(i).getMax());
+                    minS0.add(singleS0s.get(i).getMin());
+                    avgS0.add(singleS0s.get(i).getAvg());
+                    resultS0.add(singleS0s.get(i).getResult());
+                }
+                s0.setIDTest(idstestsS0);
+                s0.setResult(resultS0);
+                s0.setAvg(avgS0);
+                s0.setMax(maxS0);
+                s0.setMin(minS0);
+                s0.setResult(resultS0);
             }
-            s0.setIDTest(idstestsS0);
-            s0.setResult(resultS0);
-            s0.setAvg(avgS0);
-            s0.setMax(maxS0);
-            s0.setMin(minS0);
-            s0.setResult(resultS0);
-
-            List<SingleS1> singleS1s = new Select().from(SingleS1.class).where("S1 = ?", s1.getId()).execute();
-            List<Long> idstestsS1 = new ArrayList<Long>();
-            List<Long> maxS1 = new ArrayList<Long>();
-            List<Long> minS1 = new ArrayList<Long>();
-            List<Long> avgS1 = new ArrayList<Long>();
-            List<Long> resultS1 = new ArrayList<Long>();
-            for (int i = 0; i < singleS1s.size(); i++) {
-                idstestsS1.add(singleS1s.get(i).getIDTest());
-                maxS1.add(singleS1s.get(i).getMax());
-                minS1.add(singleS1s.get(i).getMin());
-                avgS1.add(singleS1s.get(i).getAvg());
-                resultS1.add(singleS1s.get(i).getResult());
+            if (s1 != null && s1.getId() != null) {
+                List<SingleS1> singleS1s = new Select().from(SingleS1.class).where("S1 = ?", s1.getId()).execute();
+                List<Long> idstestsS1 = new ArrayList<Long>();
+                List<Long> maxS1 = new ArrayList<Long>();
+                List<Long> minS1 = new ArrayList<Long>();
+                List<Long> avgS1 = new ArrayList<Long>();
+                List<Long> resultS1 = new ArrayList<Long>();
+                for (int i = 0; i < singleS1s.size(); i++) {
+                    idstestsS1.add(singleS1s.get(i).getIDTest());
+                    maxS1.add(singleS1s.get(i).getMax());
+                    minS1.add(singleS1s.get(i).getMin());
+                    avgS1.add(singleS1s.get(i).getAvg());
+                    resultS1.add(singleS1s.get(i).getResult());
+                }
+                s1.setIDTest(idstestsS1);
+                s1.setResult(resultS1);
+                s1.setAvg(avgS1);
+                s1.setMax(maxS1);
+                s1.setMin(minS1);
+                s1.setResult(resultS1);
             }
-            s1.setIDTest(idstestsS1);
-            s1.setResult(resultS1);
-            s1.setAvg(avgS1);
-            s1.setMax(maxS1);
-            s1.setMin(minS1);
-            s1.setResult(resultS1);
-
-            List<SingleS2> singleS2s = new Select().from(SingleS2.class).where("S2 = ?", s2.getId()).execute();
-            List<Long> idstestsS2 = new ArrayList<Long>();
-            List<Long> maxS2 = new ArrayList<Long>();
-            List<Long> minS2 = new ArrayList<Long>();
-            List<Long> avgS2 = new ArrayList<Long>();
-            List<Long> resultS2 = new ArrayList<Long>();
-            for (int i = 0; i < singleS2s.size(); i++) {
-                idstestsS2.add(singleS2s.get(i).getIDTest());
-                maxS2.add(singleS2s.get(i).getMax());
-                minS2.add(singleS2s.get(i).getMin());
-                avgS2.add(singleS2s.get(i).getAvg());
-                resultS2.add(singleS2s.get(i).getResult());
+            if (s2 != null && s2.getId() != null) {
+                List<SingleS2> singleS2s = new Select().from(SingleS2.class).where("S2 = ?", s2.getId()).execute();
+                List<Long> idstestsS2 = new ArrayList<Long>();
+                List<Long> maxS2 = new ArrayList<Long>();
+                List<Long> minS2 = new ArrayList<Long>();
+                List<Long> avgS2 = new ArrayList<Long>();
+                List<Long> resultS2 = new ArrayList<Long>();
+                for (int i = 0; i < singleS2s.size(); i++) {
+                    idstestsS2.add(singleS2s.get(i).getIDTest());
+                    maxS2.add(singleS2s.get(i).getMax());
+                    minS2.add(singleS2s.get(i).getMin());
+                    avgS2.add(singleS2s.get(i).getAvg());
+                    resultS2.add(singleS2s.get(i).getResult());
+                }
+                s2.setIDTest(idstestsS2);
+                s2.setResult(resultS2);
+                s2.setAvg(avgS2);
+                s2.setMax(maxS2);
+                s2.setMin(minS2);
+                s2.setResult(resultS2);
             }
-            s2.setIDTest(idstestsS2);
-            s2.setResult(resultS2);
-            s2.setAvg(avgS2);
-            s2.setMax(maxS2);
-            s2.setMin(minS2);
-            s2.setResult(resultS2);
-
             readingss.setSensors(sensors);
         }
         record.setReadings(readingss);

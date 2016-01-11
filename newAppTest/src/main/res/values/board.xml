@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- IOIO Board IO Allocation -->
+    <item name="Sensor_High" type="integer">1</item>
+    <item name="Sensor_Low" type="integer">2</item>
+    <item name="EMag" type="integer">3</item>
+    <!--<item name="" type="integer">4</item>-->
+    <!--<item name="" type="integer">5</item>-->
+    <item name="Uart1_RX" type="integer">6</item>
+    <item name="Uart1_TX" type="integer">7</item>
+    <!--<item name="" type="integer">8</item>-->
+    <item name="IRange" type="integer">9</item>
+    <!--<item name="" type="integer">10</item>-->
+    <!--<item name="" type="integer">11</item>-->
+    <!--<item name="" type="integer">12</item>-->
+    <item name="Uart2_RX" type="integer">13</item>
+    <item name="Uart2_TX" type="integer">14</item>
+    <item name="Barcode_OK" type="integer">15</item>
+    <!--<item name="" type="integer">16</item>-->
+    <item name="Barcode_TRGR" type="integer">17</item>
+    <item name="_5V_DC" type="integer">18</item>
+    <item name="Power" type="integer">19</item>
+    <item name="Reset" type="integer">20</item>
+    <item name="HallInt" type="integer">21</item>
+    <item name="PCB_Detect" type="integer">22</item>
+    <item name="Boot1" type="integer">23</item>
+    <item name="Boot0" type="integer">24</item>
+    <!--<item name="" type="integer">25</item>-->
+
+</resources>

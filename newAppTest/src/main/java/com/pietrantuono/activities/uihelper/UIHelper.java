@@ -66,9 +66,7 @@ public class UIHelper {
 		ViewPager viewPager= (ViewPager) activity.findViewById(R.id.pager);
 		AppCompatActivity appcompat = (AppCompatActivity) activity;
 		viewPager.setAdapter(new PagerAdapter(appcompat.getSupportFragmentManager()));
-		TabLayout tabLayout= (TabLayout) activity.findViewById(R.id.tabs);
-		viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-		tabLayout.setupWithViewPager(viewPager);
+		viewPager.setOffscreenPageLimit(viewPager.getAdapter().getCount());
 	}
 
 	public void setupChronometer(Activity activity){
@@ -130,6 +128,8 @@ public class UIHelper {
 		void manuallyRedoCurrentTest();
 
 		void restartSequence();
+
+		void clearSerialConsole();
 	}
 
 	private static class MyOnChronometerTickListener implements OnChronometerTickListener {
@@ -435,6 +435,8 @@ public class UIHelper {
 				currenttask.setText("");
 				TextView nexttask = (TextView) activity.findViewById(R.id.nexttask);
 				nexttask.setText("");
+				final ActivityUIHelperCallback activityUIHelperCallback = (ActivityUIHelperCallback) activity;
+				activityUIHelperCallback.clearSerialConsole();
 			}
 		});
 
