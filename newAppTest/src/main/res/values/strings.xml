@@ -136,5 +136,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="get_logs">get_logs</string>
+    <string name="barcode">BARCODE:&#160;</string>
+    <string name="serial">SERIAL:&#160;</string>
+    <string name="address">ADDRESS:&#160;</string>
 
 </resources>

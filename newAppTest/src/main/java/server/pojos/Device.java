@@ -45,7 +45,9 @@ public class Device extends Model {
     @Expose
     private String bt_addr;
 
-
+    @Column(name ="passed")
+    @Expose
+    private int passed;
     /**
      * 
      * @return
