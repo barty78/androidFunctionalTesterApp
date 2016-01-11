@@ -10,15 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c3e6e43e-5ddb-4d23-8f7a-0ad602dc1457" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/cache.properties.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/MainActivity.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/server/pojos/Test.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/server/pojos/Test.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/server/TestsParser.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/server/TestsParser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gradle.xml" afterPath="$PROJECT_DIR$/.idea/gradle.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/local.properties" afterPath="$PROJECT_DIR$/local.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="pericoach-test-app-android-studio.iws" />
@@ -46,83 +38,7 @@
     <favorites_list name="pericoach-test-app-android-studio" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="TestsParser.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/server/TestsParser.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.9122807">
-              <caret line="71" column="8" selection-start-line="71" selection-start-column="8" selection-end-line="71" selection-end-column="8" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#3906#3963#0" expanded="true" />
-                <element signature="e#7027#7099#0" expanded="true" />
-                <element signature="e#7543#7606#0" expanded="true" />
-                <element signature="e#7904#7959#0" expanded="true" />
-                <element signature="e#8135#8193#0" expanded="true" />
-                <element signature="e#8332#8399#0" expanded="true" />
-                <element signature="e#8495#8559#0" expanded="true" />
-                <element signature="e#8736#8805#0" expanded="true" />
-                <element signature="e#8959#9022#0" expanded="true" />
-                <element signature="e#9114#9172#0" expanded="true" />
-                <element signature="e#9259#9325#0" expanded="true" />
-                <element signature="e#9420#9484#0" expanded="true" />
-                <element signature="e#9577#9639#0" expanded="true" />
-                <element signature="e#9730#9790#0" expanded="true" />
-                <element signature="e#9931#9987#0" expanded="true" />
-                <element signature="e#10075#10130#0" expanded="true" />
-                <element signature="e#10222#10278#0" expanded="true" />
-                <element signature="e#10372#10438#0" expanded="true" />
-                <element signature="e#10670#10737#0" expanded="true" />
-                <element signature="e#11093#11461#0" expanded="true" />
-                <element signature="e#11460#11461#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BatteryLevelUUTVoltageTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/BatteryLevelUUTVoltageTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="28" column="85" selection-start-line="28" selection-start-column="76" selection-end-line="28" selection-end-column="85" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SensorTestWrapper.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/SensorTestWrapper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="50" column="61" selection-start-line="50" selection-start-column="61" selection-end-line="50" selection-end-column="61" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Test.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/server/pojos/Test.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="336" column="49" selection-start-line="336" selection-start-column="49" selection-end-line="336" selection-end-column="49" />
-              <folding>
-                <element signature="e#4972#4973#0" expanded="true" />
-                <element signature="e#5004#5005#0" expanded="true" />
-                <element signature="e#5201#5202#0" expanded="true" />
-                <element signature="e#5231#5232#0" expanded="true" />
-                <element signature="e#5278#5279#0" expanded="true" />
-                <element signature="e#5316#5317#0" expanded="true" />
-                <element signature="e#5352#5353#0" expanded="true" />
-                <element signature="e#5386#5387#0" expanded="true" />
-                <element signature="e#5438#5439#0" expanded="true" />
-                <element signature="e#5484#5485#0" expanded="true" />
-                <element signature="e#5577#5578#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -3332,7 +3248,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="803" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2503639" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -3343,10 +3259,10 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="FLOATING" visible="true" weight="0.3297568" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" x="54" y="59" width="417" height="457" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4614265" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" x="671" y="404" width="80" height="40" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4614265" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" x="671" y="404" width="80" height="40" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2997076" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32751092" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32751092" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32995737" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -3391,7 +3307,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/newAppTest/src/main/java/server/TestsParser.java</url>
-          <line>114</line>
+          <line>115</line>
           <properties />
           <option name="timeStamp" value="2" />
         </line-breakpoint>
@@ -3808,9 +3724,56 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/server/TestsParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4423963">
+          <caret line="114" column="8" selection-start-line="114" selection-start-column="8" selection-end-line="120" selection-end-column="90" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3906#3963#0" expanded="true" />
+            <element signature="e#7035#7107#0" expanded="true" />
+            <element signature="e#7551#7614#0" expanded="true" />
+            <element signature="e#7912#7967#0" expanded="true" />
+            <element signature="e#8143#8201#0" expanded="true" />
+            <element signature="e#8340#8407#0" expanded="true" />
+            <element signature="e#8503#8567#0" expanded="true" />
+            <element signature="e#8744#8813#0" expanded="true" />
+            <element signature="e#8967#9030#0" expanded="true" />
+            <element signature="e#9122#9180#0" expanded="true" />
+            <element signature="e#9267#9333#0" expanded="true" />
+            <element signature="e#9428#9492#0" expanded="true" />
+            <element signature="e#9585#9647#0" expanded="true" />
+            <element signature="e#9738#9798#0" expanded="true" />
+            <element signature="e#9939#9995#0" expanded="true" />
+            <element signature="e#10083#10138#0" expanded="true" />
+            <element signature="e#10230#10286#0" expanded="true" />
+            <element signature="e#10380#10446#0" expanded="true" />
+            <element signature="e#10678#10745#0" expanded="true" />
+            <element signature="e#11101#11469#0" expanded="true" />
+            <element signature="e#11468#11469#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/BatteryLevelUUTVoltageTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.16589862">
+          <caret line="28" column="85" selection-start-line="28" selection-start-column="76" selection-end-line="28" selection-end-column="85" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/SensorTestWrapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.813364">
+          <caret line="50" column="61" selection-start-line="50" selection-start-column="61" selection-end-line="50" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/server/pojos/Test.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="8.753456">
           <caret line="336" column="49" selection-start-line="336" selection-start-column="49" selection-end-line="336" selection-end-column="49" />
           <folding>
             <element signature="e#4972#4973#0" expanded="true" />
@@ -3824,53 +3787,6 @@
             <element signature="e#5438#5439#0" expanded="true" />
             <element signature="e#5484#5485#0" expanded="true" />
             <element signature="e#5577#5578#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/SensorTestWrapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="50" column="61" selection-start-line="50" selection-start-column="61" selection-end-line="50" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/BatteryLevelUUTVoltageTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="28" column="85" selection-start-line="28" selection-start-column="76" selection-end-line="28" selection-end-column="85" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/server/TestsParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9122807">
-          <caret line="71" column="8" selection-start-line="71" selection-start-column="8" selection-end-line="71" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3906#3963#0" expanded="true" />
-            <element signature="e#7027#7099#0" expanded="true" />
-            <element signature="e#7543#7606#0" expanded="true" />
-            <element signature="e#7904#7959#0" expanded="true" />
-            <element signature="e#8135#8193#0" expanded="true" />
-            <element signature="e#8332#8399#0" expanded="true" />
-            <element signature="e#8495#8559#0" expanded="true" />
-            <element signature="e#8736#8805#0" expanded="true" />
-            <element signature="e#8959#9022#0" expanded="true" />
-            <element signature="e#9114#9172#0" expanded="true" />
-            <element signature="e#9259#9325#0" expanded="true" />
-            <element signature="e#9420#9484#0" expanded="true" />
-            <element signature="e#9577#9639#0" expanded="true" />
-            <element signature="e#9730#9790#0" expanded="true" />
-            <element signature="e#9931#9987#0" expanded="true" />
-            <element signature="e#10075#10130#0" expanded="true" />
-            <element signature="e#10222#10278#0" expanded="true" />
-            <element signature="e#10372#10438#0" expanded="true" />
-            <element signature="e#10670#10737#0" expanded="true" />
-            <element signature="e#11093#11461#0" expanded="true" />
-            <element signature="e#11460#11461#0" expanded="true" />
           </folding>
         </state>
       </provider>

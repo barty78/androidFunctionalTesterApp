@@ -111,7 +111,8 @@ public class TestsParser {
             test = new ReadModelNumberTest(activity);
         } else if (classID == activity.getResources().getInteger(R.integer.ReadFirmwareversionTest)) {
             test = new ReadFirmwareversionTest(activity);
-        } else if (classID == activity.getResources().getInteger(R.integer.BatteryLevelUUTVoltageTest)) {
+        }
+        else if (classID == activity.getResources().getInteger(R.integer.BatteryLevelUUTVoltageTest)) {
             float tolerance = (float) testToBeParsed.getScaling().floatValue();//TODO doublecheck if is correct to use Scaling
             test = new BatteryLevelUUTVoltageTest(activity,
                     testToBeParsed.getLimitId(),
