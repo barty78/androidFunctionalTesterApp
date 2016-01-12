@@ -10,7 +10,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c3e6e43e-5ddb-4d23-8f7a-0ad602dc1457" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/server/pojos/Device.java.orig" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileSnapshots.bin" />
@@ -18,11 +17,9 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/analytica/pericoach/android/DBManager.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/analytica/pericoach/android/DBManager.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/Holder.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/Holder.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/analytica/pericoach/android/Job.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/analytica/pericoach/android/Job.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/RecyclerAdapter.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/RecyclerAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/server/TestsParser.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/server/TestsParser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/res/layout/devices_list_fragment.xml" afterPath="$PROJECT_DIR$/newAppTest/src/main/res/layout/devices_list_fragment.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/build/generated/source/r/maurizio/debug/com/pietrantuono/pericoach/newtestapp/R.java" afterPath="$PROJECT_DIR$/newAppTest/build/generated/source/r/maurizio/debug/com/pietrantuono/pericoach/newtestapp/R.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/res/layout/devices_row.xml" afterPath="$PROJECT_DIR$/newAppTest/src/main/res/layout/devices_row.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/res/raw/sql.xml" afterPath="$PROJECT_DIR$/newAppTest/src/main/res/raw/sql.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/newAppTest/src/main/res/values/strings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="pericoach-test-app-android-studio.iws" />
@@ -51,77 +48,40 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="DevicesListFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/DevicesListFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="57" column="52" selection-start-line="57" selection-start-column="52" selection-end-line="57" selection-end-column="52" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RecyclerAdapter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/RecyclerAdapter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="36" column="52" selection-start-line="36" selection-start-column="52" selection-end-line="36" selection-end-column="52" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Holder.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/Holder.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="51" column="11" selection-start-line="48" selection-start-column="10" selection-end-line="51" selection-end-column="11" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DBManager.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/analytica/pericoach/android/DBManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3382353">
-              <caret line="1100" column="21" selection-start-line="1100" selection-start-column="21" selection-end-line="1100" selection-end-column="21" />
+              <caret line="52" column="120" selection-start-line="52" selection-start-column="120" selection-end-line="52" selection-end-column="120" />
               <folding>
-                <element signature="e#49353#49369#0" expanded="true" />
-                <element signature="e#54945#54963#0" expanded="true" />
+                <element signature="e#2228#2277#0" expanded="true" />
+                <element signature="e#2396#2397#0" expanded="true" />
+                <element signature="e#2430#2431#0" expanded="true" />
+                <element signature="e#2473#2474#0" expanded="true" />
+                <element signature="e#2510#2511#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sql.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/res/raw/sql.xml">
+      <file leaf-file-name="strings.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/res/values/strings.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.7777777">
-              <caret line="5" column="8" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="8" />
+            <state vertical-scroll-proportion="0.6496815">
+              <caret line="144" column="20" selection-start-line="144" selection-start-column="20" selection-end-line="144" selection-end-column="20" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DataProvider.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/DataProvider.java">
+      <file leaf-file-name="DBManager.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/analytica/pericoach/android/DBManager.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="27" column="23" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OtherSelectJobActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/OtherSelectJobActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.4074073">
-              <caret line="223" column="47" selection-start-line="223" selection-start-column="19" selection-end-line="223" selection-end-column="47" />
-              <folding />
+              <caret line="106" column="18" selection-start-line="106" selection-start-column="18" selection-end-line="106" selection-end-column="18" />
+              <folding>
+                <element signature="e#9648#9660#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -132,14 +92,26 @@
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.6206896">
-              <caret line="7" column="32" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
+            <state vertical-scroll-proportion="-13.586206">
+              <caret line="79" column="42" selection-start-line="79" selection-start-column="42" selection-end-line="79" selection-end-column="42" />
               <folding>
-                <element signature="e#270#296#0" expanded="true" />
-                <element signature="e#327#353#0" expanded="true" />
-                <element signature="e#913#930#0" expanded="true" />
-                <element signature="e#1577#1593#0" expanded="true" />
-                <element signature="e#2239#2256#0" expanded="true" />
+                <element signature="e#225#251#0" expanded="true" />
+                <element signature="e#283#309#0" expanded="true" />
+                <element signature="e#339#365#0" expanded="true" />
+                <element signature="e#867#884#0" expanded="true" />
+                <element signature="e#1531#1547#0" expanded="true" />
+                <element signature="e#2193#2210#0" expanded="true" />
+                <element signature="e#2857#2876#0" expanded="true" />
+                <element signature="e#3525#3543#0" expanded="true" />
+                <element signature="e#4026#4042#0" expanded="true" />
+                <element signature="e#4253#4265#0" expanded="true" />
+                <element signature="e#4734#4748#0" expanded="true" />
+                <element signature="e#4957#4969#0" expanded="true" />
+                <element signature="e#5479#5495#0" expanded="true" />
+                <element signature="e#5977#5993#0" expanded="true" />
+                <element signature="e#6202#6214#0" expanded="true" />
+                <element signature="e#6683#6697#0" expanded="true" />
+                <element signature="e#6904#6916#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -151,9 +123,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="resourceFile" />
-        <option value="Class" />
         <option value="layoutResourceFile_vertical" />
         <option value="valueResourceFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -2645,7 +2617,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/newAppTest/src/maurizio/java/customclasses/NewSequence.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/MyLooper.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/superclass/Test.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/res/xml/test_classes.xml" />
@@ -2681,7 +2652,6 @@
         <option value="$PROJECT_DIR$/newAppTest/src/peter/java/customclasses/NewSequence.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/IOIOUtils.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/assets/migrations/3.sql" />
-        <option value="$PROJECT_DIR$/newAppTest/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/PagerAdapter.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/DevicesListFragment.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/res/layout/recycler_header.xml" />
@@ -2689,13 +2659,15 @@
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/server/pojos/Device.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/assets/migrations/4.sql" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/server/TestsParser.java" />
-        <option value="$PROJECT_DIR$/newAppTest/src/main/res/layout/devices_row.xml" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/res/layout/devices_list_fragment.xml" />
-        <option value="$PROJECT_DIR$/newAppTest/src/main/java/analytica/pericoach/android/Job.java" />
-        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/Holder.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/RecyclerAdapter.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/res/raw/sql.xml" />
+        <option value="$PROJECT_DIR$/newAppTest/src/main/java/analytica/pericoach/android/Job.java" />
+        <option value="$PROJECT_DIR$/newAppTest/src/main/java/analytica/pericoach/android/Contract.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/analytica/pericoach/android/DBManager.java" />
+        <option value="$PROJECT_DIR$/newAppTest/src/main/res/layout/devices_row.xml" />
+        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/Holder.java" />
+        <option value="$PROJECT_DIR$/newAppTest/src/main/res/values/strings.xml" />
       </list>
     </option>
   </component>
@@ -2737,9 +2709,18 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="AndroidView">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pericoach-test-app-android-studio" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="Scratches" />
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -2835,6 +2816,36 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pericoach-test-app-android-studio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NewAppTest-Android Studio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="newAppTest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="values" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -3158,6 +3169,44 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="btutility" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pericoach-test-app-android-studio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NewAppTest-Android Studio" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="newAppTest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pietrantuono" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="activities" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -3334,16 +3383,7 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="AndroidView">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pericoach-test-app-android-studio" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -3369,6 +3409,9 @@
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Peter\StudioProjects\pericoach-test-app-android-studio\newAppTest\src\main\res\values" />
+    </key>
+    <key name="MoveMembersDialog.RECENTS_KEY">
+      <recent name="analytica.pericoach.android.Contract" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.pietrantuono.tests.implementations" />
@@ -3568,25 +3611,24 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.41911766" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" x="671" y="404" width="80" height="40" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22647059" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" x="671" y="404" width="80" height="40" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22889842" sideWeight="0.42765957" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22889842" sideWeight="0.42765957" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21176471" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" x="1052" y="29" width="364" height="248" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32995737" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29558823" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32794118" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5147059" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32995737" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23676682" sideWeight="0.41170213" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4617647" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27181688" sideWeight="0.41170213" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3617647" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Fabric" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -3597,6 +3639,7 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" x="930" y="29" width="486" height="248" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -3648,27 +3691,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/uihelper/ActivityCallback.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.054054055">
-          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/DevicesListPreferenceScreen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.0270271">
-          <caret line="81" column="13" selection-start-line="81" selection-start-column="13" selection-end-line="81" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/server/utils/TestFromSequenceCreator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="358" column="64" selection-start-line="358" selection-start-column="64" selection-end-line="358" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/superclass/Test.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3694,13 +3716,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/application/PeriCoachTestApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="92" column="23" selection-start-line="92" selection-start-column="23" selection-end-line="92" selection-end-column="23" />
         </state>
       </provider>
     </entry>
@@ -3777,7 +3792,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="369" column="0" selection-start-line="369" selection-start-column="0" selection-end-line="369" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3785,10 +3799,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.49924126">
           <caret line="72" column="11" selection-start-line="72" selection-start-column="11" selection-end-line="72" selection-end-column="11" />
-          <folding>
-            <element signature="e#1852#2321#0" expanded="false" />
-            <element signature="e#2320#2321#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3796,10 +3806,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="71" column="0" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
-          <folding>
-            <element signature="e#11448#11644#0" expanded="false" />
-            <element signature="e#11643#11644#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3810,22 +3816,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0502794">
-          <caret line="140" column="34" selection-start-line="140" selection-start-column="34" selection-end-line="140" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/server/pojos/DevicesList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.26649746">
           <caret line="11" column="16" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
-          <folding>
-            <element signature="e#539#540#0" expanded="true" />
-            <element signature="e#565#566#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3868,7 +3862,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="45" selection-start-line="0" selection-start-column="45" selection-end-line="0" selection-end-column="45" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3879,14 +3872,6 @@
           <folding>
             <element signature="e#7415#7478#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/server/pojos/Device.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.410891">
-          <caret line="55" column="25" selection-start-line="55" selection-start-column="19" selection-end-line="55" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3914,39 +3899,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/server/RetrofitRestServices.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.32967034">
-          <caret line="37" column="23" selection-start-line="37" selection-start-column="23" selection-end-line="37" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/res/layout/devices_row.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.6206896">
-          <caret line="7" column="32" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
-          <folding>
-            <element signature="e#270#296#0" expanded="true" />
-            <element signature="e#327#353#0" expanded="true" />
-            <element signature="e#913#930#0" expanded="true" />
-            <element signature="e#1577#1593#0" expanded="true" />
-            <element signature="e#2239#2256#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/DevicesListFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="57" column="52" selection-start-line="57" selection-start-column="52" selection-end-line="57" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/newAppTest/src/main/res/layout/devices_list_fragment.xml">
       <provider editor-type-id="android-designer">
         <state />
@@ -3958,26 +3910,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/analytica/pericoach/android/DataManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.13186814">
-          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/OtherSelectJobActivityHelper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2453271">
           <caret line="23" column="27" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/DataProvider.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="27" column="23" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
           <folding />
         </state>
       </provider>
@@ -3998,49 +3934,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42011833">
-          <caret line="88" column="36" selection-start-line="88" selection-start-column="36" selection-end-line="88" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/analytica/pericoach/android/Job.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.66237944">
-          <caret line="108" column="33" selection-start-line="108" selection-start-column="33" selection-end-line="108" selection-end-column="33" />
-          <folding>
-            <element signature="e#2094#2095#0" expanded="true" />
-            <element signature="e#2142#2143#0" expanded="true" />
-            <element signature="e#2179#2180#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/newAppTest/src/main/assets/migrations/2.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="26" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/Holder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="51" column="11" selection-start-line="48" selection-start-column="10" selection-end-line="51" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/RecyclerAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="36" column="52" selection-start-line="36" selection-start-column="52" selection-end-line="36" selection-end-column="52" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -4052,30 +3949,195 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/OtherSelectJobActivity.java">
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/RecyclerAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.4074073">
-          <caret line="223" column="47" selection-start-line="223" selection-start-column="19" selection-end-line="223" selection-end-column="47" />
+        <state vertical-scroll-proportion="0.40397352">
+          <caret line="36" column="52" selection-start-line="36" selection-start-column="52" selection-end-line="36" selection-end-column="52" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/DevicesListFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="57" column="52" selection-start-line="57" selection-start-column="52" selection-end-line="57" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/analytica/pericoach/android/Contract.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6456954">
+          <caret line="13" column="4" selection-start-line="13" selection-start-column="4" selection-end-line="23" selection-end-column="55" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/newAppTest/src/main/res/raw/sql.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.7777777">
-          <caret line="5" column="8" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="8" />
+        <state vertical-scroll-proportion="0.1986755">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="16" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/analytica/pericoach/android/Job.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.050909">
+          <caret line="117" column="28" selection-start-line="117" selection-start-column="28" selection-end-line="117" selection-end-column="28" />
+          <folding>
+            <element signature="e#2247#2248#0" expanded="true" />
+            <element signature="e#2285#2286#0" expanded="true" />
+            <element signature="e#2312#2313#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/DataProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.0430464">
+          <caret line="27" column="18" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/SettingsActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33251232">
+          <caret line="61" column="8" selection-start-line="61" selection-start-column="8" selection-end-line="61" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/server/RetrofitRestServices.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33251232">
+          <caret line="11" column="23" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33251232">
+          <caret line="369" column="146" selection-start-line="369" selection-start-column="146" selection-end-line="369" selection-end-column="146" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/application/PeriCoachTestApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33251232">
+          <caret line="174" column="8" selection-start-line="174" selection-start-column="8" selection-end-line="174" selection-end-column="8" />
+          <folding>
+            <element signature="e#4971#4972#0" expanded="true" />
+            <element signature="e#5021#5022#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/OtherSelectJobActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33251232">
+          <caret line="19" column="23" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/server/pojos/Device.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.719346">
+          <caret line="55" column="25" selection-start-line="55" selection-start-column="19" selection-end-line="55" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/btutility/BTUtility.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.37058824">
+          <caret line="302" column="17" selection-start-line="302" selection-start-column="15" selection-end-line="302" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4267#4536#0" expanded="true" />
+            <element signature="e#4535#4536#0" expanded="true" />
+            <element signature="e#7658#7746#0" expanded="true" />
+            <element signature="e#7745#7746#0" expanded="true" />
+            <element signature="e#8813#8919#0" expanded="true" />
+            <element signature="e#8918#8919#0" expanded="true" />
+            <element signature="e#10302#10398#0" expanded="true" />
+            <element signature="e#10397#10398#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/analytica/pericoach/android/DataManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.14441417">
+          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/analytica/pericoach/android/DBManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3382353">
-          <caret line="1100" column="21" selection-start-line="1100" selection-start-column="21" selection-end-line="1100" selection-end-column="21" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="106" column="18" selection-start-line="106" selection-start-column="18" selection-end-line="106" selection-end-column="18" />
           <folding>
-            <element signature="e#49353#49369#0" expanded="true" />
-            <element signature="e#54945#54963#0" expanded="true" />
+            <element signature="e#9648#9660#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/res/layout/devices_row.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.586206">
+          <caret line="79" column="42" selection-start-line="79" selection-start-column="42" selection-end-line="79" selection-end-column="42" />
+          <folding>
+            <element signature="e#225#251#0" expanded="true" />
+            <element signature="e#283#309#0" expanded="true" />
+            <element signature="e#339#365#0" expanded="true" />
+            <element signature="e#867#884#0" expanded="true" />
+            <element signature="e#1531#1547#0" expanded="true" />
+            <element signature="e#2193#2210#0" expanded="true" />
+            <element signature="e#2857#2876#0" expanded="true" />
+            <element signature="e#3525#3543#0" expanded="true" />
+            <element signature="e#4026#4042#0" expanded="true" />
+            <element signature="e#4253#4265#0" expanded="true" />
+            <element signature="e#4734#4748#0" expanded="true" />
+            <element signature="e#4957#4969#0" expanded="true" />
+            <element signature="e#5479#5495#0" expanded="true" />
+            <element signature="e#5977#5993#0" expanded="true" />
+            <element signature="e#6202#6214#0" expanded="true" />
+            <element signature="e#6683#6697#0" expanded="true" />
+            <element signature="e#6904#6916#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/Holder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="52" column="120" selection-start-line="52" selection-start-column="120" selection-end-line="52" selection-end-column="120" />
+          <folding>
+            <element signature="e#2228#2277#0" expanded="true" />
+            <element signature="e#2396#2397#0" expanded="true" />
+            <element signature="e#2430#2431#0" expanded="true" />
+            <element signature="e#2473#2474#0" expanded="true" />
+            <element signature="e#2510#2511#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6496815">
+          <caret line="144" column="20" selection-start-line="144" selection-start-column="20" selection-end-line="144" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>

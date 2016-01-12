@@ -139,5 +139,12 @@
     <string name="barcode">BARCODE:&#160;</string>
     <string name="serial">SERIAL:&#160;</string>
     <string name="address">ADDRESS:&#160;</string>
-
+    <string name="executed">EXECUTED</string>
+    <string name="passed">PASSED</string>
+    <string name="open_open">OPEN:&#160;</string>
+    <string name="closed">CLOSED:&#160;</string>
+    <string name="yes_yes">YES</string>
+    <string name="no_no">NO</string>
+    <string name="na">N/A</string>
+    <string name="test_type">TEST TYPE:&#160;</string>
 </resources>
