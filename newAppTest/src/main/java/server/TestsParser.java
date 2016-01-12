@@ -120,7 +120,7 @@ public class TestsParser {
                     getDescription(testToBeParsed),
                     (int) testToBeParsed.getNominal().doubleValue());// TODO check voltage
         } else if (classID == activity.getResources().getInteger(R.integer.SensorTestWrapper)) {
-            test = new SensorTestWrapper(true/*TODO check*/, activity, ioio, (int) ((long) testToBeParsed.getLimitId()), testToBeParsed.getLimitParam1(), testToBeParsed.getLimitParam2(), testToBeParsed.getLimitParam3(), testToBeParsed.getName());//TODO dublecheck
+            test = new SensorTestWrapper(job.getTesttypeId()!=0, activity, ioio, (int) ((long) testToBeParsed.getLimitId()), testToBeParsed.getLimitParam1(), testToBeParsed.getLimitParam2(), testToBeParsed.getLimitParam3(), testToBeParsed.getName());//TODO dublecheck
         } else if (classID == activity.getResources().getInteger(R.integer.DummyTest)) {
             test = new DummyTest(activity, getDescription(testToBeParsed) + " " + dummycounter + 1, false, true);
             dummycounter++;
