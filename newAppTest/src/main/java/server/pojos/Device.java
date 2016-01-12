@@ -48,6 +48,14 @@ public class Device extends Model {
     @Column(name ="passed")
     @Expose
     private int passed;
+
+    @Column(name ="executed_tests")
+    @Expose
+    private long executed_tests;
+
+    @Column(name ="status")
+    @Expose
+    private long status;
     /**
      * 
      * @return
@@ -183,5 +191,20 @@ public class Device extends Model {
         this.bt_addr = bt_addr;
     }
 
+    public Long getExec_Tests() {
+        return executed_tests;
+    }
+
+    public void setExec_Tests(Long exec_tests) {
+        this.executed_tests = exec_tests;
+    }
+
+    public Long getStatus() {
+        return status;
+    }
+
+    public void setStatus(Long status) {
+        this.status = status;
+    }
 
 }

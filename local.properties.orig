@@ -8,8 +8,9 @@
 # For customization when using a Version Control System, please read the
 # header note.
 <<<<<<< HEAD
-#Thu Jan 07 06:02:08 CET 2016
-=======
-#Thu Jan 07 08:59:54 CET 2016
->>>>>>> master
+#Mon Jan 11 05:53:21 CET 2016
 sdk.dir=/Users/mauriziopietrantuono/Library/Android/sdk
+=======
+#Tue Jan 12 08:25:48 EST 2016
+sdk.dir=F\:\\Android\\android-sdk
+>>>>>>> sequence_parse

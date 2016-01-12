@@ -2,6 +2,7 @@ package server;
 
 import ioio.lib.api.IOIO;
 import server.pojos.Job;
+
 import android.app.Activity;
 import android.util.Log;
 import android.widget.Toast;
@@ -40,220 +41,168 @@ import com.pietrantuono.tests.implementations.UartLoopbackTest;
 import com.pietrantuono.tests.implementations.UploadFirmwareTest;
 import com.pietrantuono.tests.implementations.VoltageTest;
 import com.pietrantuono.tests.implementations.WakeDeviceTest;
+import com.pietrantuono.tests.implementations.steps.PauseStep;
+import com.pietrantuono.tests.implementations.steps.PromptStep;
+import com.pietrantuono.tests.implementations.steps.SetDigitalOutputStep;
+import com.pietrantuono.tests.implementations.steps.SetSensorVoltagesStep;
 import com.pietrantuono.tests.superclass.Test;
 
 public class TestsParser {
 
-	private static String TAG = TestsParser.class.getSimpleName();
+    private static String TAG = TestsParser.class.getSimpleName();
 
-	public static Test parseTest(final server.pojos.Test testToBeParsed,
-			final Activity activity, IOIO ioio, Job job) {
-		Test test = null;
-		int dummycounter = 0;
+    public static Test parseTest(final server.pojos.Test testToBeParsed,
+                                 final Activity activity, IOIO ioio, Job job) {
+        Test test = null;
+        int dummycounter = 0;
+        int classID = (int) testToBeParsed.getTestclassId().intValue();
 
-		switch ((int) testToBeParsed.getTestclassId().intValue()) {
-			case R.integer.GetBarcodeTest:
-				float limitParam1 = (float) testToBeParsed.getLimitParam1().doubleValue();
+        if (classID == activity.getResources().getInteger(R.integer.GetBarcodeTest)) {
+            float limitParam1 = (float) testToBeParsed.getLimitParam1().doubleValue();
+            test = new GetBarcodeTest(activity, ioio, job, limitParam1);
 
-				test = new GetBarcodeTest(activity, ioio, job, limitParam1);
-				break;
+        } else if (classID == activity.getResources().getInteger(R.integer.CurrentTest)) {
+            boolean isNominal = testToBeParsed.getIsNominal() == 1;
+            float limitParam1 = (float) testToBeParsed.getLimitParam1().doubleValue();
+            float limitParam2 = (float) testToBeParsed.getLimitParam2().doubleValue();
+            int pinnumber = (int) testToBeParsed.getIoiopinnum();
+            test = new CurrentTest(activity, ioio, pinnumber, Current.Units.mA, isNominal, limitParam1, limitParam2,
+                    getDescription(testToBeParsed));
 
-			case R.integer.CurrentTest:
-				boolean isNominal = testToBeParsed.getIsNominal() == 1;
-				limitParam1 = (float) testToBeParsed.getLimitParam1().doubleValue();
-				float limitParam2 = (float) testToBeParsed.getLimitParam2().doubleValue();
-				int pinnumber = (int) testToBeParsed.getIoiopinnum();
-				test = new CurrentTest(activity, ioio, pinnumber, Current.Units.mA, isNominal, limitParam1, limitParam2,
-						getDescription(testToBeParsed));
-				break;
+        } else if (classID == activity.getResources().getInteger(R.integer.VoltageTest)) {
+            boolean isNominal = testToBeParsed.getIsNominal() == 1;
+            float limitParam1 = (float) testToBeParsed.getLimitParam1().doubleValue();
+            float limitParam2 = (float) testToBeParsed.getLimitParam2().doubleValue();
+            boolean isBlocking = testToBeParsed.getBlocking() != 0;
+            int pinnumber = (int) testToBeParsed.getIoiopinnum();
+            test = new VoltageTest(activity, ioio, pinnumber, Voltage.Units.V, isBlocking, isNominal, limitParam1, limitParam2,
+                    getDescription(testToBeParsed));
+        } else if (classID == activity.getResources().getInteger(R.integer.LedCheckTest)) {
+            test = new LedCheckTest(activity, getDescription(testToBeParsed),
+                    getDescription(testToBeParsed));
+        } else if (classID == activity.getResources().getInteger(R.integer.ChargingTerminationTest)) {
+            test = new ChargingTerminationTest(activity, ioio,
+                    getDescription(testToBeParsed));
 
-			case R.integer.VoltageTest:
-				isNominal = testToBeParsed.getIsNominal() == 1;
+        } else if (classID == activity.getResources().getInteger(R.integer.UploadFirmwareTest)) {
+            test = new UploadFirmwareTest(activity, ioio);
+        } else if (classID == activity.getResources().getInteger(R.integer.GetDeviceSerialTest)) {
+            test = new GetDeviceSerialTest(activity, ioio);
+        } else if (classID == activity.getResources().getInteger(R.integer.WakeDeviceTest)) {
+            test = new WakeDeviceTest(activity, ioio);
+        } else if (classID == activity.getResources().getInteger(R.integer.AwakeModeCurrentTest)) {
+            test = new AwakeModeCurrentTest(activity, ioio,
+                    getDescription(testToBeParsed));
+        } else if (classID == activity.getResources().getInteger(R.integer.BluetoothDiscoverableModeTest)) {
+            test = new BluetoothDiscoverableModeTest(activity);
+        } else if (classID == activity.getResources().getInteger(R.integer.BluetoothDiscoverableModeTestForTesting)) {
+            test = new BluetoothDiscoverableModeTestForTesting(activity);//TODO
 
-				limitParam1 = (float) testToBeParsed.getLimitParam1().doubleValue();
-				limitParam2 = (float) testToBeParsed.getLimitParam2().doubleValue();
-				boolean isBlocking = testToBeParsed.getBlocking()!=0;
-				pinnumber = (int) testToBeParsed.getIoiopinnum();
-				test = new VoltageTest(activity, ioio, pinnumber, Voltage.Units.V, isBlocking, isNominal, limitParam1, limitParam2,
-						getDescription(testToBeParsed));
-				break;
+        } else if (classID == activity.getResources().getInteger(R.integer.BluetoothConnectTest)) {
 
-			case R.integer.LedCheckTest:
-				test = new LedCheckTest(activity, getDescription(testToBeParsed),
-						getDescription(testToBeParsed));
-				break;
+            test = new BluetoothConnectTest(activity);
+        } else if (classID == activity.getResources().getInteger(R.integer.BluetoothConnectTestForTesting)) {
+            test = new BluetoothConnectTestForTesting(activity);//TODO
+        } else if (classID == activity.getResources().getInteger(R.integer.BTConnectCurrent)) {
+            test = new BTConnectCurrent(activity, ioio);
+        } else if (classID == activity.getResources().getInteger(R.integer.ReadDeviceInfoSerialNumberTest)) {
+            test = new ReadDeviceInfoSerialNumberTest(activity);
+        } else if (classID == activity.getResources().getInteger(R.integer.ReadModelNumberTest)) {
+            test = new ReadModelNumberTest(activity);
+        } else if (classID == activity.getResources().getInteger(R.integer.ReadFirmwareversionTest)) {
+            test = new ReadFirmwareversionTest(activity);
+        }
+        else if (classID == activity.getResources().getInteger(R.integer.BatteryLevelUUTVoltageTest)) {
+            float tolerance = (float) testToBeParsed.getScaling().floatValue();//TODO doublecheck if is correct to use Scaling
+            int voltage = testToBeParsed.getNominal()!=null? (int) testToBeParsed.getNominal().doubleValue() :0;
+            test = new BatteryLevelUUTVoltageTest(activity,
+                    testToBeParsed.getLimitId(),
+                    tolerance,
+                    getDescription(testToBeParsed),
+                    voltage);// TODO check voltage
+        } else if (classID == activity.getResources().getInteger(R.integer.SensorTestWrapper)) {
+            test = new SensorTestWrapper(job.getTesttypeId()!=0, activity, ioio, (int) ((long) testToBeParsed.getLimitId()), testToBeParsed.getLimitParam1(), testToBeParsed.getLimitParam2(), testToBeParsed.getLimitParam3(), testToBeParsed.getName());//TODO dublecheck
+        } else if (classID == activity.getResources().getInteger(R.integer.DummyTest)) {
+            test = new DummyTest(activity, getDescription(testToBeParsed) + " " + dummycounter + 1, false, true);
+            dummycounter++;
+        } else if (classID == activity.getResources().getInteger(R.integer.ChargingTest)) {
+            test = new ChargingTest(activity, ioio,
+                    getDescription(testToBeParsed));
+        } else if (classID == activity.getResources().getInteger(R.integer.AccelerometerSelfTest)) {
+            test = new AccelerometerSelfTest(activity, ioio);
+        } else if (classID == activity.getResources().getInteger(R.integer.ChargeLedCheckTest)) {
+            test = new ChargeLedCheckTest(activity, ioio, getDescription(testToBeParsed),
+                    getDescription(testToBeParsed));
+        } else if (classID == activity.getResources().getInteger(R.integer.DummyUploadFirmwareTest)) {
+            test = new DummyUploadFirmwareTest(activity, ioio, false); //TODO - Get boolean for loopback from db field.
+        } else if (classID == activity.getResources().getInteger(R.integer.GetMacAddressTest)) {
+            test = new GetMacAddressTest(activity, ioio);
+        } else if (classID == activity.getResources().getInteger(R.integer.ListenToUart)) {
+            test = new ListenToUart(activity, ioio);
+        } else if (classID == activity.getResources().getInteger(R.integer.MagnetWakeDeviceTest)) {
+            test = new MagnetWakeDeviceTest(activity, ioio);
+        } else if (classID == activity.getResources().getInteger(R.integer.UartBlockWriteTest)) {
+            test = new UartBlockWriteTest(activity, ioio);
+        } else if (classID == activity.getResources().getInteger(R.integer.UartLoopbackTest)) {
+            test = new UartLoopbackTest(activity, ioio);
+        } else if (classID == activity.getResources().getInteger(R.integer.UUTCurrentTest)) {
+            test = new UUTCurrentTest(activity, ioio,
+                    getDescription(testToBeParsed));
+        } else if (classID == activity.getResources().getInteger(R.integer.GetNFCTest)) {
+            test = new GetNFCTest(activity, ioio, 0);
+        } else if (classID == activity.getResources().getInteger(R.integer.PauseStep)) {
+            test = new PauseStep(activity, "Pause Step");
+        } else if (classID == activity.getResources().getInteger(R.integer.PromptStep)) {
+            test = new PromptStep(activity, "Prompt Step");
+        } else if (classID == activity.getResources().getInteger(R.integer.SetDigitalOutputStep)) {
+            boolean value = testToBeParsed.getBlocking() > 0 ? true : false;
+            test = new SetDigitalOutputStep(activity, testToBeParsed.getIoiopinnum(), value, "Set Digital Output Step");
+        } else if (classID == activity.getResources().getInteger(R.integer.SetSensorVoltagesStep)) {
+            test = new SetSensorVoltagesStep(activity, (short) ((int) testToBeParsed.getIoiopinnum()), (short) ((int) testToBeParsed.getScaling()), "Set Sensor Voltages Step");
+            //);
+        }
+        if (test == null) {
+            Log.e(TAG, "Unable to parse test n " + testToBeParsed.getId() + " !!!");
+            activity.runOnUiThread(new Runnable() {
 
-			case R.integer.ChargingTerminationTest:
-				test = new ChargingTerminationTest(activity, ioio,
-						getDescription(testToBeParsed));
-				break;
+                @Override
+                public void run() {
 
-			case R.integer.UploadFirmwareTest:
-				test = new UploadFirmwareTest(activity, ioio);
-				break;
+                    Toast.makeText(
+                            activity,
+                            "Unable to parse test n� "
+                                    + testToBeParsed.getId() + " !!!",
+                            Toast.LENGTH_LONG).show();
 
-			case R.integer.GetDeviceSerialTest:
-				test = new GetDeviceSerialTest(activity, ioio);
-				break;
+                }
+            });
 
-			case R.integer.WakeDeviceTest:
-				test = new WakeDeviceTest(activity, ioio);
-				break;
+            try {
+                Thread.sleep(3 * 1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return test;
+        }
 
-			case R.integer.AwakeModeCurrentTest:
-				test = new AwakeModeCurrentTest(activity, ioio,
-						getDescription(testToBeParsed));
-				break;
+        if (testToBeParsed.getIstest() != 1) {
+            test.setIsTest(false);// Default is Test (true)
+        }
 
-			case R.integer.BluetoothDiscoverableModeTest:
-				test = new BluetoothDiscoverableModeTest(activity);
-				break;
+        if (testToBeParsed.getActive() != 1) {
+            test.setActive(false);// Default is active
+        }
+        if (testToBeParsed.getBlocking() == 1) {
+            test.setBlockingTest(true);// Default is non blocking
+        }
+        test.setIdTest(testToBeParsed.getId());
+        return test;
+    }
 
-			case R.integer.BluetoothDiscoverableModeTestForTesting:
-				test = new BluetoothDiscoverableModeTestForTesting(activity);//TODO
-				break;
-
-			case R.integer.BluetoothConnectTest:
-				test = new BluetoothConnectTest(activity);
-				break;
-
-			case R.integer.BluetoothConnectTestForTesting:
-				test = new BluetoothConnectTestForTesting(activity);//TODO
-				break;
-
-			case R.integer.BTConnectCurrent:
-				test = new BTConnectCurrent(activity, ioio);
-				break;
-
-			case R.integer.ReadDeviceInfoSerialNumberTest:
-				test = new ReadDeviceInfoSerialNumberTest(activity);
-				break;
-
-			case R.integer.ReadModelNumberTest:
-				test = new ReadModelNumberTest(activity);
-				break;
-
-			case R.integer.ReadFirmwareversionTest:
-				test = new ReadFirmwareversionTest(activity);
-				break;
-
-			case R.integer.BatteryLevelUUTVoltageTest:
-				float tolerance = (float) testToBeParsed.getTolerance().floatValue();
-				float nominal = (float) testToBeParsed.getNominal().floatValue();
-				test = new BatteryLevelUUTVoltageTest(activity, nominal, tolerance,
-						getDescription(testToBeParsed),
-						(int) testToBeParsed.getNominal().doubleValue());// TODO check voltage
-				break;
-
-			case R.integer.SensorTestWrapper:
-				//test= new SensorTestWrapper.SensorTestWrapperBuilder().Builder()
-				break;
-
-			case R.integer.DummyTest:
-				test = new DummyTest(activity, getDescription(testToBeParsed) + " " + dummycounter + 1, false, true);
-				dummycounter++;
-				break;
-
-			case R.integer.ChargingTest:
-				test = new ChargingTest(activity, ioio,
-						getDescription(testToBeParsed));
-				break;
-
-			case R.integer.AccelerometerSelfTest:
-				test = new AccelerometerSelfTest(activity, ioio);
-				break;
-
-			case R.integer.ChargeLedCheckTest:
-				test = new ChargeLedCheckTest(activity, ioio, getDescription(testToBeParsed),
-						getDescription(testToBeParsed));
-				break;
-
-			case R.integer.DummyUploadFirmwareTest:
-				test = new DummyUploadFirmwareTest(activity, ioio, false); //TODO - Get boolean for loopback from db field.
-				break;
-
-			case R.integer.GetMacAddressTest:
-				test = new GetMacAddressTest(activity, ioio);
-				break;
-
-			case R.integer.ListenToUart:
-				test = new ListenToUart(activity, ioio);
-				break;
-
-			case R.integer.MagnetWakeDeviceTest:
-				test = new MagnetWakeDeviceTest(activity, ioio);
-				break;
-
-			case R.integer.UartBlockWriteTest:
-				test = new UartBlockWriteTest(activity, ioio);
-				break;
-
-			case R.integer.UartLoopbackTest:
-				test = new UartLoopbackTest(activity, ioio);
-				break;
-
-			case R.integer.UUTCurrentTest:
-				test = new UUTCurrentTest(activity, ioio,
-						getDescription(testToBeParsed));
-				break;
-			case R.integer.GetNFCTest:
-				test = new GetNFCTest(activity, ioio, 0);
-				break;
-
-			case R.integer.PauseStep:
-				break;
-			case R.integer.PromptStep:
-				break;
-			case R.integer.SetDigitalOutputStep:
-				break;
-			case R.integer.SetSensorVoltagesStep:
-				break;
-
-		}
-			
-
-		if (test == null) {
-			Log.e(TAG,"Unable to parse test n "+ testToBeParsed.getId() + " !!!");
-			activity.runOnUiThread(new Runnable() {
-
-				@Override
-				public void run() {
-					
-					Toast.makeText(
-							activity,
-							"Unable to parse test n� "
-									+ testToBeParsed.getId() + " !!!",
-							Toast.LENGTH_LONG).show();
-
-				}
-			});
-
-			try {
-				Thread.sleep(3 * 1000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			return test;
-		}
-
-		if (testToBeParsed.getIstest() != 1) {
-			test.setIsTest(false);// Default is Test (true)
-		}
-
-		if (testToBeParsed.getActive() != 1) {
-			test.setActive(false);// Default is active
-		}
-		if (testToBeParsed.getBlocking() == 1) {
-			test.setBlockingTest(true);// Default is non blocking
-		}
-		test.setIdTest(testToBeParsed.getId());
-		return test;
-	}
-
-	private static String getDescription(server.pojos.Test test) {
-		if (test.getName() != null)
-			return test.getName();
-		else
-			return "No test name availble";
-	}
+    private static String getDescription(server.pojos.Test test) {
+        if (test.getName() != null)
+            return test.getName();
+        else
+            return "No test name availble";
+    }
 }
