@@ -1,0 +1,2 @@
+ALTER TABLE Devices ADD COLUMN executed_tests INTEGER;
+ALTER TABLE Devices ADD COLUMN status INTEGER;

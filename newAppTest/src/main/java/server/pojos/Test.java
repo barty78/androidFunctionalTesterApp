@@ -38,6 +38,8 @@ public class Test {
     @Expose
     private Long limitParam2;
     @Expose
+    private Long limitParam3;
+    @Expose
     private Long Upper;
     @Expose
     private Long Lower;
@@ -334,4 +336,23 @@ public class Test {
         this.Tolerance = Tolerance;
     }
 
+    public Integer getScaling() {
+        return scaling;
+    }
+
+    public void setScaling(Integer scaling) {
+        this.scaling = scaling;
+    }
+
+    public Long getLimitParam3() {
+        return limitParam3;
+    }
+
+    public void setLimitParam3(Long limitParam3) {
+        this.limitParam3 = limitParam3;
+    }
+
+    public void setIsNominal(Integer isNominal) {
+        this.isNominal = isNominal;
+    }
 }
