@@ -473,6 +473,8 @@ public class FirmWareUploader {
 			if (readByte >= 0) {
 //				System.out.printf("Read Call Returned : %2x\n", readByte);
 				t.cancel();
+				t.purge();
+				t=null;
 //				System.out.printf("Timer Cancelled\n");
 			}
 		} catch (Exception e) {
@@ -642,21 +644,6 @@ public class FirmWareUploader {
 		int i;
 		int c, extra;
 
-//		Log.e(TAG, "len > 0 && len < 257 " + (len > 0 && len < 257));
-//		if (!(len > 0 && len < 257)) {
-//			showToast("Data length invalid");
-//			throw new IllegalArgumentException("Data length invalid");
-//		}
-
-//		flush();
-//
-//		/* must be 32bit aligned */
-//		Log.e(TAG, "address% 4 == 0 " + (address % 4 == 0));
-//		if (!(address % 4 == 0)) {
-//			showToast("Address not 32bit aligned");
-//			throw new IllegalArgumentException("Address not 32bit aligned");
-//		}
-
 		cs = (byte) stm32_gen_cs(address);
 
 		/* send the address and checksum */
@@ -669,13 +656,6 @@ public class FirmWareUploader {
 		write(address, 4);
 		write(cs);
 
-//		ByteBuffer bb = ByteBuffer.allocate(5);
-//		bb.put(addressToByteArray(address));
-//		bb.put(cs);							// Put the address into buffer
-//		byte[] addrbytes = bb.array();
-//
-//		write(addrbytes, 5);
-		
 		if (readWithTimerTimeout(1000) != STM32_ACK)
 			return false;
 
@@ -683,42 +663,24 @@ public class FirmWareUploader {
 
 		/* setup the cs and send the length */
 		extra = len % 4;
-//		cs = (byte) (len - 1 + extra);
-
 		write((byte) (len - 1 + extra));		// Write length byte
 		write(data, data.length);				//	Write data
 
-//		bb = ByteBuffer.allocate(len + 2 + extra);
-//		bb.put(cs);							// Put the length into buffer
-
 		/* write the data and build the checksum */
-//		cs = stm32_gen_data_cs(data, len);
-
 		for (i = 0; i < len; ++i)
 			cs ^= data[i];
 //		Log.d("DATA: ", String.valueOf(cs));
 
-//		bb.put(data, 0, len);
-		//bb.put(data);
-		
 		/* write the alignment padding */
 		for (c = 0; c < extra; ++c) {
 			write(0xFF);
 			cs ^= 0xFF;
 		}
 
-		write(cs);	// Write cs
-
 		/* send the checksum */
-//		bb.put(cs);
-		
-//		byte[] bytes = bb.array();
-//		write(bytes, bytes.length);
-
-//		IOIOUtils.getUtils().ioioSync(ioio_);
-
+		write(cs);	// Write cs
 		System.out.printf("Checksum : %2x\n", ((int) cs) & 0xFF);
-		//byte aRes = (byte) readWithTimeout(2 * 1000);
+
 		byte aRes = (byte) readWithTimerTimeout(1000);
 
 		System.out.printf("Result write : %2x\n", ((int) aRes) & 0xFF);

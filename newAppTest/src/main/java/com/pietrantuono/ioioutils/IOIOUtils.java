@@ -197,7 +197,6 @@ public class IOIOUtils implements IOIOUtilsInterface {
         if (isinterrupted) return -1;
         // Read barcodeOK pulse with timeout
 
-        int readByte = -1;
         int timeout = 1000;
 
         final Thread readThread = Thread.currentThread();
@@ -215,35 +214,14 @@ public class IOIOUtils implements IOIOUtilsInterface {
         try {
             input.waitForValue(false);
             t.cancel();
+            t.purge();
+            t=null;
             return 1;
         } catch (Exception e) {
             e.printStackTrace();
             Log.e(TAG, e.toString());
             return -1;
         }
-
-//        Callable<Integer> readPulse = new Callable<Integer>() {
-//            @Override
-//            public Integer call() throws Exception {
-//                input.waitForValue(false);
-//                return 1;
-//            }
-//        };
-//        Future<Integer> future = executor.submit(readPulse);
-//        try {
-//            readByte = future.get(1000, TimeUnit.MILLISECONDS);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            Log.e(TAG, e.toString());
-//            Crashlytics.logException(e);
-//            Log.e(TAG, e.toString());
-//            Log.d("READ: ", "Timed Out...");
-//            return -1;
-//
-//        }
-//
-//        return readByte;
-
     }
 
     /* (non-Javadoc)
