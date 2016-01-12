@@ -34,7 +34,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<Holder> {
 
     @Override
     public void onBindViewHolder(Holder holder, int position) {
-        holder.setData(devices.get(position));
+        holder.setData(devices.get(position),context);
     }
 
     @Override

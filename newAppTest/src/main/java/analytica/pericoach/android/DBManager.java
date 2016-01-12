@@ -9,11 +9,18 @@ import hydrix.pfmat.generic.Result;
 import hydrix.pfmat.generic.TEST;
 import hydrix.pfmat.generic.TestLimits;
 import hydrix.pfmat.generic.TestSamples;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
+import server.RetrofitRestServices;
+import server.pojos.ErrorFromServer;
+import utils.MyDialogs;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 import java.io.InputStream;
 
@@ -23,6 +30,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
+import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.pericoach.newtestapp.R;
 import com.pietrantuono.pericoachengineering.classes.OpenTestResult;
 
@@ -41,7 +49,7 @@ public class DBManager {
 	private SQLiteDatabase db;
 
 	private final String DB_NAME = "PeriCoachTest";
-	private final int DB_VERSION = 1;
+	private final int DB_VERSION = 2;
 
 	public DBManager(Context context) {
 		this.context = context;
@@ -1041,14 +1049,18 @@ public class DBManager {
 	}
 
 	private class CustomSQLiteOpenHelper extends SQLiteOpenHelper {
+		private static final String JOBS_TABLE_NAME = "jobs";
+		private static final String JOBS_TESTTYPE_ID_COLUMN = "testtype_id";
+		private static final String JOBS_JOB_ID_COLUMN = "job_id";
+		private static final String JOBS_JOB_NUMBER_COLUMN = "jobNo";
+		private Context context;
 		public CustomSQLiteOpenHelper(Context context) {
 			super(context, DB_NAME, null, DB_VERSION);
+			this.context=context;
 		}
 
 		@Override
 		public void onCreate(SQLiteDatabase db) {
-			int cacca=0;
-			cacca++;
 			String s;
 			try {
 				Toast.makeText(context, "1", 2000).show();
@@ -1071,8 +1083,40 @@ public class DBManager {
 
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-			db.execSQL("DROP TABLE IF EXISTS jobs");
-			onCreate(db);
+			if(oldVersion<2){
+				Log.d(TAG, "Upgrading database");
+				String ADD_TESTTYPE_ID="ALTER TABLE "+JOBS_TABLE_NAME+" ADD COLUMN "+JOBS_TESTTYPE_ID_COLUMN+" NUMERIC";
+				db.execSQL(ADD_TESTTYPE_ID);
+				String ADD_JOB_ID="ALTER TABLE "+JOBS_TABLE_NAME+" ADD COLUMN "+JOBS_JOB_ID_COLUMN+" NUMERIC";
+				db.execSQL(ADD_JOB_ID);
+				getAndUpdateJobs(context);
+			}
+		}
+
+		private void getAndUpdateJobs(final Context context) {
+			RetrofitRestServices.getRest(context).getJobListActiveJobs(PeriCoachTestApplication.getDeviceid(), new Callback<List<server.pojos.Job>>() {
+				@Override
+				public void success(List<server.pojos.Job> arg0, Response arg1) {
+					CustomSQLiteOpenHelper helper = new CustomSQLiteOpenHelper(context);
+					db=helper.getWritableDatabase();
+					if (arg0 == null || arg0.size() <= 0) {/*Do nothing*/} else
+					{
+
+					for(server.pojos.Job job:arg0){
+
+						ContentValues values=new ContentValues();
+						values.put(JOBS_JOB_ID_COLUMN,job.getId());
+						values.put(JOBS_TESTTYPE_ID_COLUMN,job.getTesttypeId());
+						String selection=JOBS_JOB_NUMBER_COLUMN+" = ?";
+						String[] selectionArgs = new String[]{job.getJobno()};
+						db.update(JOBS_TABLE_NAME,values,selection,selectionArgs);
+					}
+					}
+				}
+
+				@Override
+				public void failure(RetrofitError arg0) {/*Do nothing*/}
+			});
 		}
 
 	}

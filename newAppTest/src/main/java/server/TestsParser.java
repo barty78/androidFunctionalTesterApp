@@ -113,13 +113,11 @@ public class TestsParser {
             test = new ReadFirmwareversionTest(activity);
         }
         else if (classID == activity.getResources().getInteger(R.integer.BatteryLevelUUTVoltageTest)) {
-            float tolerance = (float) testToBeParsed.getScaling().floatValue();//TODO doublecheck if is correct to use Scaling
-            int voltage = testToBeParsed.getNominal()!=null? (int) testToBeParsed.getNominal().doubleValue() :0;
             test = new BatteryLevelUUTVoltageTest(activity,
-                    testToBeParsed.getLimitId(),
-                    tolerance,
+                    testToBeParsed.getLimitParam1(),
+                    testToBeParsed.getLimitParam2(),
                     getDescription(testToBeParsed),
-                    voltage);// TODO check voltage
+                    (int) testToBeParsed.getScaling());
         } else if (classID == activity.getResources().getInteger(R.integer.SensorTestWrapper)) {
             test = new SensorTestWrapper(job.getTesttypeId()!=0, activity, ioio, (int) ((long) testToBeParsed.getLimitId()), testToBeParsed.getLimitParam1(), testToBeParsed.getLimitParam2(), testToBeParsed.getLimitParam3(), testToBeParsed.getName());//TODO dublecheck
         } else if (classID == activity.getResources().getInteger(R.integer.DummyTest)) {

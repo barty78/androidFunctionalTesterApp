@@ -3,7 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@android:color/black"
-    android:layout_margin="10dp"
+    android:layout_marginTop="@dimen/device_row_margin"
+    android:layout_marginLeft="@dimen/device_row_margin"
+    android:layout_marginRight="@dimen/device_row_margin"
     android:orientation="horizontal">
 
     <LinearLayout
