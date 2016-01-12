@@ -8,10 +8,7 @@
     tools:context="com.pietrantuono.activities.fragments.DevicesListFragment">
 
     <android.support.v7.widget.RecyclerView
-        android:background="@color/tab_text_color"
         android:id="@+id/list"
-        android:divider="@color/tab_text_color"
-        android:dividerHeight="1dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />

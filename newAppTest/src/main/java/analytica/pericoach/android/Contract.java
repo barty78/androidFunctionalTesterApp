@@ -21,6 +21,6 @@ public class Contract {
     static final String JOBS_CREATED_COLUMN = "created";
     static final String JOBS_LAST_REPORTED_RECORD_COLUMN = "LastReportedRecord";
     static final String JOBS_REPORT_NUMBER_COLUMN = "ReportNumber";
-    static final String JOBS_ACTIVE_COLUMN = "activer";
+    static final String JOBS_ACTIVE_COLUMN = "active";
 
 }
