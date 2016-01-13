@@ -24,10 +24,10 @@ public class Current {
 
 	@IntDef({mA, uA, nA})
 	@Retention(RetentionPolicy.SOURCE)
-
 	public @interface Units {}
 
-	@Units double units;
+	//@Units
+	double units;
 
 	public void setUnits(@Units int units){
 		this.units = 1 * (10 ^ units);
@@ -138,7 +138,7 @@ public class Current {
 	 * @throws Exception
 	 */
 	@SuppressWarnings("ucd")
-	public static Result checkCurrent(IOIO ioio, int pinNumber, int gain, int Rshunt, Units units, Boolean isNominal, float limitParam1, float limitParam2) throws Exception{
+	public static Result checkCurrent(IOIO ioio, int pinNumber, int gain, int Rshunt, @Units int units, Boolean isNominal, float limitParam1, float limitParam2) throws Exception{
 		float average=getCurrent(ioio, pinNumber, gain, Rshunt, units);
 		if (!isNominal) {
 			Boolean success=((average > limitParam2) && (average < limitParam1))?true:false;									// Use Param1 as Upper, Param2 as Lower
@@ -154,7 +154,7 @@ public class Current {
 		private float reading;
 		private String readingString;
 		private Boolean success;
-		private Result(Boolean success, float reading, Units units) {
+		private Result(Boolean success, float reading, @Units int units) {
 			this.reading=reading;
 			df.setRoundingMode(RoundingMode.DOWN);
 			this.success = success;

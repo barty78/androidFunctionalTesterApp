@@ -15,7 +15,7 @@ public class CurrentTest extends Test {
 	private Boolean isNominal;
 	private int gain = 50;
 	private int Rshunt;
-	private Current.Units units;
+	private @Current.Units int units;
 	public void Units() {
 	}
 	/**
@@ -30,7 +30,7 @@ public class CurrentTest extends Test {
 	 * @param limitParam2		- Limit Parameter 2 (Lower / Precision)
 	 * @param description		- Test Description
 	 */
-	public CurrentTest(Activity activity, IOIO ioio, int pinNumber, Units units, Boolean isNominal, float limitParam1, float limitParam2, String description) {
+	public CurrentTest(Activity activity, IOIO ioio, int pinNumber, @Units int units, Boolean isNominal, float limitParam1, float limitParam2, String description) {
 		super(activity, ioio, description, false, true, limitParam1, limitParam2, 0);
 		this.pinNumber = pinNumber;
 		this.units = units;
@@ -86,7 +86,7 @@ public class CurrentTest extends Test {
 		}
 		
 		// If we are reading uA (Sleep) current, change back to mA range ready for next test step.
-		if (units == units.uA) {
+		if (units == uA) {
 			IOIOUtils.getUtils().setIrange((Activity)activityListener, false);
 		}
 		IOIOUtils.getUtils().toggleTrigger((Activity)activityListener);

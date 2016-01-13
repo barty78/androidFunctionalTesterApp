@@ -66,18 +66,18 @@ public class TestsParser {
             float limitParam1 = (float) testToBeParsed.getLimitParam1().doubleValue();
             float limitParam2 = (float) testToBeParsed.getLimitParam2().doubleValue();
             int pinnumber = (int) testToBeParsed.getIoiopinnum();
-            String units_str = testToBeParsed.getUnits().toString();
-            Current.Units units = null;
-            if (units_str == Current.Units) {
-                units = Current.Units.mA;
-            } else if (units_str == Current.Units.uA.toString()) {
-                units = Current.Units.uA;
-            } else if (units_str == Current.Units.nA.toString()) {
-                units = Current.Units.nA;
-            }
-
-            test = new CurrentTest(activity, ioio, pinnumber, units, isNominal, limitParam1, limitParam2,
-                    getDescription(testToBeParsed));
+//            String units_str = testToBeParsed.getUnits().toString();
+//            Current.Units units = null;
+//            if (units_str == Current.Units) {
+//                units = Current.Units.mA;
+//            } else if (units_str == Current.Units.uA.toString()) {
+//                units = Current.Units.uA;
+//            } else if (units_str == Current.Units.nA.toString()) {
+//                units = Current.Units.nA;
+//            }
+//
+//            test = new CurrentTest(activity, ioio, pinnumber, units, isNominal, limitParam1, limitParam2,
+//                    getDescription(testToBeParsed));
 
         } else if (classID == activity.getResources().getInteger(R.integer.VoltageTest)) {
             boolean isNominal = testToBeParsed.getIsNominal() == 1;
