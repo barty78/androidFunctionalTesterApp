@@ -4,6 +4,8 @@ public class Job {
 	
 	private long id;
 	private Integer test_id;
+	private int testtype_id;
+	private int job_id;
 	private String date;
 	private String jobNo;
 	private Integer totalqty;
@@ -104,4 +106,20 @@ public class Job {
     public void setPassedQty(Integer passedQty) {
         this.passedqty = passedQty;
     }
+
+	public int getTesttype_id() {
+		return testtype_id;
+	}
+
+	public void setTesttype_id(int testtype_id) {
+		this.testtype_id = testtype_id;
+	}
+
+	public int getJob_id() {
+		return job_id;
+	}
+
+	public void setJob_id(int job_id) {
+		this.job_id = job_id;
+	}
 }

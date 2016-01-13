@@ -21,6 +21,7 @@ import android.util.Log;
 
 import customclasses.AndroidID;
 import server.pojos.Firmware;
+import server.pojos.Job;
 import server.pojos.Sequence;
 
 public class PeriCoachTestApplication extends  com.activeandroid.app.Application {
@@ -28,6 +29,7 @@ public class PeriCoachTestApplication extends  com.activeandroid.app.Application
 	private static Firmware GetFirmware=null;
 	private static File firmware=null;
 	private static File firmwareCheckFile=null;
+	private static Job job=null;
 	private static Account mAccount;
 	private static final String AUTHORITY = "com.example.android.datasync.provider";
 	private static String IOIOAddress="";
@@ -80,7 +82,11 @@ public class PeriCoachTestApplication extends  com.activeandroid.app.Application
 	public static Context getContext(){
 		return context;
 	}
-	
+
+	public static Job getCurrentJob() {return job;}
+
+	public static void setCurrentJob(Job job) {PeriCoachTestApplication.job = job;}
+
 	public static Firmware getGetFirmware() {
 		return GetFirmware;
 	}

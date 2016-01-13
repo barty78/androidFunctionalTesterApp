@@ -336,14 +336,6 @@ public class Test {
         this.Tolerance = Tolerance;
     }
 
-    public Integer getScaling() {
-        return scaling;
-    }
-
-    public void setScaling(Integer scaling) {
-        this.scaling = scaling;
-    }
-
     public Long getLimitParam3() {
         return limitParam3;
     }

@@ -52,7 +52,7 @@ public class OtherSelectJobActivity extends Activity implements MyCallback {
 	private ListView listview;
 	private ArrayList<server.pojos.Job> jobsFromServer;
 	private ArrayList<server.pojos.Job> jobsFromdb;
-	private server.pojos.Job job;
+	private static server.pojos.Job job;
 	private JobListAdapter adapter;
 	private static DataProvider dataProvider = null;
 	private static REST rest = null;
@@ -109,13 +109,15 @@ public class OtherSelectJobActivity extends Activity implements MyCallback {
 		listview.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-				job = (server.pojos.Job) (parent
-						.getAdapter().getItem(position));
+									int position, long id) {
+				job = (server.pojos.Job) (parent.getAdapter().getItem(position));
+				Log.d("Job#:", String.valueOf(job.getJobno()));
 				Log.d("Test ID:", String.valueOf(job.getTestId()));
 				Log.d("Firmware ID:", String.valueOf(job.getFirmwareId()));
 				//PeriCoachTestApplication.setFirmwareId(job.getFirmwareId());
-				PeriCoachTestApplication.setIsRetestAllowed(job.getIsretestallowed()!=0);
+				Log.d("Job ID: ", String.valueOf(job.getId()));
+				PeriCoachTestApplication.setCurrentJob(job);
+				PeriCoachTestApplication.setIsRetestAllowed(job.getIsretestallowed() != 0);
 
 				getFirmwareListFromServer(job.getFirmwareId());
 
@@ -150,6 +152,9 @@ public class OtherSelectJobActivity extends Activity implements MyCallback {
 				} else {
 					jobsFromServer = new ArrayList<server.pojos.Job>();
 					jobsFromServer.addAll(arg0);
+					for (int i = 0; i < jobsFromServer.size(); i++) {
+						Log.d("JOB", jobsFromServer.get(i).getId() + " | " + jobsFromServer.get(i).getJobno());
+					}
 					populateList();
 //					getFirmwareListFromServer();
 					compareJobLists();
