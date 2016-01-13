@@ -5,6 +5,7 @@ import java.util.List;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.pietrantuono.activities.OtherSelectJobActivityHelper;
+import com.pietrantuono.ioioutils.Current;
 import com.pietrantuono.pericoach.newtestapp.BuildConfig;
 import com.pietrantuono.pericoach.newtestapp.R;
 
@@ -81,6 +82,7 @@ public class RetrofitRestServices {
                     .registerTypeAdapter(Double.class, new MyDoubleTypeAdapter())
                     .registerTypeAdapter(Integer.class, new MyIntTypeAdapter())
                     .registerTypeAdapter(Float.class, new MyFloatTypeAdapter())
+                    //.registerTypeAdapter(Current.Units.class,new CurrentDeserializer())
                     .create();
 
             RestAdapter restAdapter = new RestAdapter.Builder()

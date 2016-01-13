@@ -7,7 +7,7 @@ import android.app.Activity;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.pietrantuono.ioioutils.Current;
+import com.pietrantuono.ioioutils.Units;
 import com.pietrantuono.ioioutils.Voltage;
 import com.pietrantuono.pericoach.newtestapp.R;
 import com.pietrantuono.tests.implementations.AccelerometerSelfTest;
@@ -66,15 +66,7 @@ public class TestsParser {
             float limitParam1 = (float) testToBeParsed.getLimitParam1().doubleValue();
             float limitParam2 = (float) testToBeParsed.getLimitParam2().doubleValue();
             int pinnumber = (int) testToBeParsed.getIoiopinnum();
-            String units_str = testToBeParsed.getUnits().toString();
-            Current.Units units = null;
-            if (units_str == Current.Units) {
-                units = Current.Units.mA;
-            } else if (units_str == Current.Units.uA.toString()) {
-                units = Current.Units.uA;
-            } else if (units_str == Current.Units.nA.toString()) {
-                units = Current.Units.nA;
-            }
+            @Units int units = testToBeParsed.getUnits();
 
             test = new CurrentTest(activity, ioio, pinnumber, units, isNominal, limitParam1, limitParam2,
                     getDescription(testToBeParsed));

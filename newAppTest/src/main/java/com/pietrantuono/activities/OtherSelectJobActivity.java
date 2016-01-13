@@ -204,7 +204,6 @@ public class OtherSelectJobActivity extends Activity implements MyCallback {
 	}
 
 	private void addJobToDB(Job job) {
-		job.setId(TEST.OPEN_TEST);
 		getDataProvider().addJobToDB(job);
 
 	}

@@ -2,6 +2,7 @@ package server.pojos;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.pietrantuono.ioioutils.Units;
 
 public class Test {
 
@@ -23,8 +24,10 @@ public class Test {
     private Long istest;
     @Expose
     private Long blocking;
+
+    @SerializedName("units")
     @Expose
-    private Long units;
+    private String units;
     @Expose
     private Float scaling;
     @Expose
@@ -179,8 +182,23 @@ public class Test {
      * @return
      *     The units
      */
-    public Long getUnits() {
-        return units;
+    public @Units
+    int getUnits() {
+        if(units==null)return Units.NULL;
+        switch (units){
+            case "mA":
+                return Units.mA;
+            case "uA":
+                return Units.uA;
+            case "nA":
+                return Units.nA;
+            case "V":
+                return Units.V;
+            case "%":
+                return Units.percent;
+            default:
+                return Units.NULL;
+        }
     }
 
     /**
@@ -206,9 +224,8 @@ public class Test {
      * @param units
      *     The units
      */
-    public void setUnits(Long units) {
-        this.units = units;
-    }
+    public void setUnits(@Units int units) {}
+
 
     /**
      *

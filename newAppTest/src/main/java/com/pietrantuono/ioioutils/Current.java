@@ -1,13 +1,10 @@
 package com.pietrantuono.ioioutils;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
 import android.os.Handler;
 import android.os.Looper;
-import android.support.annotation.IntDef;
 import android.util.Log;
 import ioio.lib.api.AnalogInput;
 import ioio.lib.api.IOIO;
@@ -17,14 +14,6 @@ public class Current {
 	private static DecimalFormat df = new DecimalFormat("##.##");
 	private static Boolean isinterrupted=false;;
 	private static int currentsleeptime=0;
-
-	public static final int mA = 3;
-	public static final int uA = 6;
-	public static final int nA = 9;
-
-	@IntDef({mA, uA, nA})
-	@Retention(RetentionPolicy.SOURCE)
-	public @interface Units {}
 
 	//@Units
 	double units;
@@ -159,15 +148,15 @@ public class Current {
 			df.setRoundingMode(RoundingMode.DOWN);
 			this.success = success;
 			switch (units) {
-			case mA:
+			case Units.mA:
 				if (reading==0) readingString="0mA";
 				else readingString=df.format(reading) + "mA";
 				break;
-			case uA:
+			case Units.uA:
 				if (reading==0) readingString="0uA";
 				else readingString=df.format(reading) + "uA";
 				break;
-			case nA:
+			case Units.nA:
 				if (reading==0) readingString="0nA";
 				else readingString=df.format(reading) + "nA";
 				break;

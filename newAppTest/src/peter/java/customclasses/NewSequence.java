@@ -11,8 +11,8 @@ import com.pietrantuono.activities.MainActivity;
 import com.pietrantuono.constants.NewMResult;
 import com.pietrantuono.constants.NewMSensorResult;
 import com.pietrantuono.constants.NewSequenceInterface;
-import com.pietrantuono.ioioutils.Current;
 import com.pietrantuono.ioioutils.IOIOUtils;
+import com.pietrantuono.ioioutils.Units;
 import com.pietrantuono.ioioutils.Voltage;
 import com.pietrantuono.tests.implementations.AccelerometerSelfTest;
 import com.pietrantuono.tests.implementations.BatteryLevelUUTVoltageTest;
@@ -21,7 +21,6 @@ import com.pietrantuono.tests.implementations.CurrentTest;
 import com.pietrantuono.tests.implementations.GetBarcodeTest;
 import com.pietrantuono.tests.implementations.GetDeviceSerialTest;
 import com.pietrantuono.tests.implementations.GetMacAddressTest;
-import com.pietrantuono.tests.implementations.GetNFCTest;
 import com.pietrantuono.tests.implementations.LedCheckTest;
 import com.pietrantuono.tests.implementations.MagnetWakeDeviceTest;
 import com.pietrantuono.tests.implementations.ReadDeviceInfoSerialNumberTest;
@@ -340,7 +339,7 @@ public class NewSequence implements NewSequenceInterface {
 
         sequence.add(new GetBarcodeTest(activity, ioio, job, 5f));
 
-        sequence.add(new CurrentTest(activity, ioio, 42, Current.Units.uA, false, 100f, 0f,
+        sequence.add(new CurrentTest(activity, ioio, 42, Units.uA, false, 100f, 0f,
                 "Current Measurement - UUT Unprogrammed"));
 
 
@@ -379,7 +378,7 @@ public class NewSequence implements NewSequenceInterface {
         sequence.add(new MagnetWakeDeviceTest(activity, ioio));
         sequence.add(new GetMacAddressTest(activity, ioio));
 
-        sequence.add(new CurrentTest(activity, ioio, 42, Current.Units.mA, true, 30f, 0.2f,
+        sequence.add(new CurrentTest(activity, ioio, 42, Units.mA, true, 30f, 0.2f,
                 "Current Measurement - Awake"));
         sequence.add(new VoltageTest(activity, ioio, 44, Voltage.Units.V, true, true, 3.1f, 0.1f,
                 "Voltage Measurement - Awake Mode (V_3V1)"));
