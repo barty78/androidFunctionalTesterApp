@@ -66,17 +66,34 @@ public class TestsParser {
             float limitParam1 = (float) testToBeParsed.getLimitParam1().doubleValue();
             float limitParam2 = (float) testToBeParsed.getLimitParam2().doubleValue();
             int pinnumber = (int) testToBeParsed.getIoiopinnum();
-            test = new CurrentTest(activity, ioio, pinnumber, Current.Units.mA, isNominal, limitParam1, limitParam2,
+            String units_str = testToBeParsed.getUnits().toString();
+            Current.Units units = null;
+            if (units_str == Current.Units) {
+                units = Current.Units.mA;
+            } else if (units_str == Current.Units.uA.toString()) {
+                units = Current.Units.uA;
+            } else if (units_str == Current.Units.nA.toString()) {
+                units = Current.Units.nA;
+            }
+
+            test = new CurrentTest(activity, ioio, pinnumber, units, isNominal, limitParam1, limitParam2,
                     getDescription(testToBeParsed));
 
         } else if (classID == activity.getResources().getInteger(R.integer.VoltageTest)) {
             boolean isNominal = testToBeParsed.getIsNominal() == 1;
             float limitParam1 = (float) testToBeParsed.getLimitParam1().doubleValue();
             float limitParam2 = (float) testToBeParsed.getLimitParam2().doubleValue();
-            boolean isBlocking = testToBeParsed.getBlocking() != 0;
+            boolean isBlocking = testToBeParsed.getBlocking() == 1;
             int pinnumber = (int) testToBeParsed.getIoiopinnum();
-            test = new VoltageTest(activity, ioio, pinnumber, Voltage.Units.V, isBlocking, isNominal, limitParam1, limitParam2,
-                    getDescription(testToBeParsed));
+            if (testToBeParsed.getScaling() != null) {
+                float scaling = (float) testToBeParsed.getScaling().doubleValue();
+                test = new VoltageTest(activity, ioio, pinnumber, Voltage.Units.V, isBlocking, scaling, isNominal, limitParam1, limitParam2,
+                        getDescription(testToBeParsed));
+            } else {
+                test = new VoltageTest(activity, ioio, pinnumber, Voltage.Units.V, isBlocking, isNominal, limitParam1, limitParam2,
+                        getDescription(testToBeParsed));
+            }
+
         } else if (classID == activity.getResources().getInteger(R.integer.LedCheckTest)) {
             test = new LedCheckTest(activity, getDescription(testToBeParsed),
                     getDescription(testToBeParsed));
@@ -153,7 +170,7 @@ public class TestsParser {
         } else if (classID == activity.getResources().getInteger(R.integer.PromptStep)) {
             test = new PromptStep(activity, "Prompt Step");
         } else if (classID == activity.getResources().getInteger(R.integer.SetDigitalOutputStep)) {
-            boolean value = testToBeParsed.getBlocking() > 0 ? true : false;
+            boolean value = testToBeParsed.getScaling() != 0;
             test = new SetDigitalOutputStep(activity, testToBeParsed.getIoiopinnum(), value, "Set Digital Output Step");
         } else if (classID == activity.getResources().getInteger(R.integer.SetSensorVoltagesStep)) {
             test = new SetSensorVoltagesStep(activity, (short) ((int) testToBeParsed.getIoiopinnum()), (short) ((int) testToBeParsed.getScaling()), "Set Sensor Voltages Step");
@@ -183,16 +200,9 @@ public class TestsParser {
             return test;
         }
 
-        if (testToBeParsed.getIstest() != 1) {
-            test.setIsTest(false);// Default is Test (true)
-        }
-
-        if (testToBeParsed.getActive() != 1) {
-            test.setActive(false);// Default is active
-        }
-        if (testToBeParsed.getBlocking() == 1) {
-            test.setBlockingTest(true);// Default is non blocking
-        }
+        test.setIsTest(testToBeParsed.getIstest() != 0);// Default is Test (true)
+        test.setActive(testToBeParsed.getActive() != 0);// Default is active
+        test.setBlockingTest(testToBeParsed.getBlocking() != 0);// Default is non blocking
         test.setIdTest(testToBeParsed.getId());
         return test;
     }

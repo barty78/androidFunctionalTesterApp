@@ -1,10 +1,13 @@
 package com.pietrantuono.ioioutils;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.support.annotation.IntDef;
 import android.util.Log;
 import ioio.lib.api.AnalogInput;
 import ioio.lib.api.IOIO;
@@ -14,24 +17,43 @@ public class Current {
 	private static DecimalFormat df = new DecimalFormat("##.##");
 	private static Boolean isinterrupted=false;;
 	private static int currentsleeptime=0;
-	
-	public enum Units {
-		
-		mA	((double)1E3),
-		uA	((double)1E6),
-		nA	((double)1E9);
-		
-		public Double value;
-		
-		public Double getValue() {
-			return value;
-		}
-		
-		Units(double value) {
-			this.value = value;
-		}
+
+	public static final int mA = 3;
+	public static final int uA = 6;
+	public static final int nA = 9;
+
+	@IntDef({mA, uA, nA})
+	@Retention(RetentionPolicy.SOURCE)
+
+	public @interface Units {}
+
+	@Units double units;
+
+	public void setUnits(@Units int units){
+		this.units = 1 * (10 ^ units);
 	}
-	
+
+	public double getUnits() {
+		return units;
+	}
+
+//	public enum Units {
+//
+//		mA	((double)1E3),
+//		uA	((double)1E6),
+//		nA	((double)1E9);
+//
+//		public Double value;
+//
+//		public Double getValue() {
+//			return value;
+//		}
+//
+//		Units(double value) {
+//			this.value = value;
+//		}
+//	}
+//
 	
 	
 	/**
@@ -46,7 +68,7 @@ public class Current {
 	 * @param units			- Reading units (mA, uA, nA)
 	 * @throws Exception
 	 */
-	private static float getCurrent(IOIO ioio, int pinNumber, int gain, int Rshunt, Units units) throws Exception {
+	private static float getCurrent(IOIO ioio, int pinNumber, int gain, int Rshunt, @Units int units) throws Exception {
 		return getCurrent(ioio, pinNumber, gain, Rshunt, units, 10, 0);
 	}
 		
@@ -66,7 +88,7 @@ public class Current {
 	 * @return average reading
 	 * @throws Exception
 	 */
-	private static float getCurrent(IOIO ioio, int pinNumber, int gain, int Rshunt, Units units, int numberofreadings, int sleeptime) throws Exception {
+	private static float getCurrent(IOIO ioio, int pinNumber, int gain, int Rshunt, double units, int numberofreadings, int sleeptime) throws Exception {
 		if(isinterrupted)return 0f;
 		currentsleeptime=sleeptime;
 		if (ioio == null)
@@ -86,10 +108,10 @@ public class Current {
 			Thread.sleep(sleeptime);
 		}
 		analogInput.close();
-		float average = (float) (((total / numsamples) / (gain * Rshunt)) * units.getValue());
+		float average = (float) (((total / numsamples) / (gain * Rshunt)) * units);
 		Log.d("GAIN", String.valueOf(gain));
 		Log.d("SHUNT", String.valueOf(Rshunt));
-		Log.d("UNITS", String.valueOf(units.getValue()));
+		Log.d("UNITS", String.valueOf(units));
 		Log.d("VOLTAGE", String.valueOf(total/numsamples));
 		Log.d("CURRENT", String.valueOf(average));
 		return average;

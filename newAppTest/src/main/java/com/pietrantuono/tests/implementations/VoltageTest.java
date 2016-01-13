@@ -47,13 +47,11 @@ public 	class VoltageTest extends Test {
 	 */
 
 	public VoltageTest(Activity activity,IOIO ioio, int pinNumber, Units units, boolean isBlocking, float scaling, boolean isNominal, float limitParam1, float limitParam2, String description) {
-		super(activity,ioio,description, false, isBlocking, 0, 0, 0);
+		super(activity,ioio,description, false, isBlocking, limitParam1, limitParam2, 0);
 		this.pinNumber = pinNumber;
 		this.units = units;
 		this.scaling = scaling;
 		this.isNominal = isNominal;
-		this.limitParam1 = limitParam1;
-		this.limitParam2 = limitParam2;
 		this.description=description;
 	}
 
