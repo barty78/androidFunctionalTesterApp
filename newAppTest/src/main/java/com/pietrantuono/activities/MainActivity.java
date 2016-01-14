@@ -273,7 +273,9 @@ public class MainActivity extends AppCompatActivity
 		sequenceStarted=false;
 		newSequence.setEndtime(System.currentTimeMillis());
 		final boolean overallresult = newSequence.getOverallResultBool();
-		Log.d(TAG, "Overall Sequence Result is " + overallresult);
+//		Gson gson = new Gson();
+
+//		Log.d(TAG, "Sequence End - Sequence Object" + gson.toJson(newSequence));
 		if (newSequence.isLog()){// Create a record if sequence is set as logging,
 			newSequence.deleteUnusedTests();
 			if (newSequence.getCurrentTestNumber() != 0) {    //  Don't create a record if the first test failed,
@@ -394,7 +396,6 @@ public class MainActivity extends AppCompatActivity
 		barcode=null;
 		newSequence=null;
 		newSequence = getNewSequence();
-		Log.d(TAG, "Logging is " + newSequence.isLog());
 		newSequence.setStarttime(System.currentTimeMillis());
 		try {newSequence.setJobNo(Long.parseLong(mJobNo));} 
 		catch (Exception e) {	}
@@ -588,7 +589,8 @@ public class MainActivity extends AppCompatActivity
 	
 	public NewSequenceInterface getNewSequence() {
 		if(job.getTestId()==999)return new NewSequence(MainActivity.this, myIOIO, job);
-
+		Gson gson = new Gson();
+		System.out.println("TESTING: " + gson.toJson(PeriCoachTestApplication.getSequence()));
 		if(sequenceForTests==null)return new NewSequence(MainActivity.this, myIOIO, job, PeriCoachTestApplication.getSequence());
 		else return sequenceForTests;
 	}

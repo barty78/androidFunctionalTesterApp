@@ -114,6 +114,7 @@ public class OtherSelectJobActivity extends Activity implements MyCallback {
 				Log.d("Job#:", String.valueOf(job.getJobno()));
 				Log.d("Test ID:", String.valueOf(job.getTestId()));
 				Log.d("Firmware ID:", String.valueOf(job.getFirmwareId()));
+				Log.d("Logging", String.valueOf(job.getIslogging()!=0));
 				//PeriCoachTestApplication.setFirmwareId(job.getFirmwareId());
 				Log.d("Job ID: ", String.valueOf(job.getId()));
 				PeriCoachTestApplication.setCurrentJob(job);
@@ -305,8 +306,7 @@ public class OtherSelectJobActivity extends Activity implements MyCallback {
 				} else {
 					Sequence sequence= new Sequence();
 					sequence.setTests(arg0);
-					if(job.getIslogging()==0)sequence.setLog(false);
-					else sequence.setLog(true);
+					sequence.setLog(job.getIslogging() == 1);
 					PeriCoachTestApplication.setSequence(sequence);
 					startMainActivity(job);
 

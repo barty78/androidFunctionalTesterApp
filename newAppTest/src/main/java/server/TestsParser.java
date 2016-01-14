@@ -54,7 +54,6 @@ public class TestsParser {
     public static Test parseTest(final server.pojos.Test testToBeParsed,
                                  final Activity activity, IOIO ioio, Job job) {
         Test test = null;
-        int dummycounter = 0;
 
         Log.d(TAG, "Test ID: " + testToBeParsed.getId());
         int classID = (int) testToBeParsed.getTestclassId().intValue();
@@ -137,10 +136,14 @@ public class TestsParser {
                     getDescription(testToBeParsed),
                     (int) (float)testToBeParsed.getScaling());
         } else if (classID == activity.getResources().getInteger(R.integer.SensorTestWrapper)) {
-            test = new SensorTestWrapper(job.getTesttypeId()!=0, activity, ioio, (int) ((long) testToBeParsed.getLimitId()), testToBeParsed.getLimitParam1(), testToBeParsed.getLimitParam2(), testToBeParsed.getLimitParam3(), testToBeParsed.getName());//TODO dublecheck
+            Long limitParam1 = testToBeParsed.getLimitParam1().longValue();
+            Long limitParam2 = testToBeParsed.getLimitParam2().longValue();
+            Long limitParam3 = testToBeParsed.getLimitParam3().longValue();
+            Log.d(TAG, getDescription(testToBeParsed) + " - LIMITS: (" + limitParam1 + "|" + limitParam2 + "-" + limitParam3 + ")");
+            test = new SensorTestWrapper(job.getTesttypeId()==2, activity, ioio, (int) ((long) testToBeParsed.getLimitId()),
+                    limitParam2, limitParam1, limitParam3, getDescription(testToBeParsed));
         } else if (classID == activity.getResources().getInteger(R.integer.DummyTest)) {
-            test = new DummyTest(activity, getDescription(testToBeParsed) + " " + dummycounter + 1, false, true);
-            dummycounter++;
+            test = new DummyTest(activity, getDescription(testToBeParsed) + " " + testToBeParsed.getNumber(), false, true);
         } else if (classID == activity.getResources().getInteger(R.integer.ChargingTest)) {
             test = new ChargingTest(activity, ioio,
                     getDescription(testToBeParsed));
@@ -173,9 +176,10 @@ public class TestsParser {
         } else if (classID == activity.getResources().getInteger(R.integer.SetDigitalOutputStep)) {
             boolean value = testToBeParsed.getScaling() != 0;
             test = new SetDigitalOutputStep(activity, testToBeParsed.getIoiopinnum(), value, getDescription(testToBeParsed));
-            Log.d(TAG, getDescription(testToBeParsed) + " IO State - " + value);
+            Log.d(TAG, getDescription(testToBeParsed) + " - IO State - " + value);
         } else if (classID == activity.getResources().getInteger(R.integer.SetSensorVoltagesStep)) {
-            test = new SetSensorVoltagesStep(activity, (short) ((int) testToBeParsed.getIoiopinnum()), (short) ((float) testToBeParsed.getScaling()), "Set Sensor Voltages Step");
+            Log.d(TAG, getDescription(testToBeParsed) + " - GAIN/ZERO - " + testToBeParsed.getIoiopinnum() + "/" + testToBeParsed.getScaling());
+            test = new SetSensorVoltagesStep(activity, (short) ((int) testToBeParsed.getIoiopinnum()), (short) ((float) testToBeParsed.getScaling()), getDescription(testToBeParsed));
             //);
         }
         if (test == null) {

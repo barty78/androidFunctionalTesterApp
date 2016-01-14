@@ -51,7 +51,7 @@ public class NewSequence implements NewSequenceInterface {
     private long starttime = 0;
     private long endtime = 0;
     private long jobNo = 0;
-    private boolean log = true;
+    private static boolean log = true;
     private Job job;
 
 	/* (non-Javadoc)
@@ -479,7 +479,7 @@ public class NewSequence implements NewSequenceInterface {
 
     @Override
     public boolean isLog() {
-        return log;
+        return this.log;
     }
 
     @Override
