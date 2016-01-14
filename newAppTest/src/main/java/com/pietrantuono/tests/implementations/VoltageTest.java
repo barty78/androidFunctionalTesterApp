@@ -5,13 +5,15 @@ import android.app.Activity;
 import android.util.Log;
 
 import com.pietrantuono.ioioutils.Voltage;
-import com.pietrantuono.ioioutils.Voltage.Units;
+import com.pietrantuono.ioioutils.Units;
 import com.pietrantuono.tests.superclass.Test;
+
 public 	class VoltageTest extends Test {
 	private int pinNumber;
 	private boolean isNominal = true;
 	private float scaling;
-	private Voltage.Units units;
+	private @com.pietrantuono.ioioutils.Units
+	int units;
 	public void Units() {
 	}
 
@@ -26,7 +28,7 @@ public 	class VoltageTest extends Test {
 	 * @param description		- Test Description
 	 */
 
-	public VoltageTest(Activity activity,IOIO ioio, int pinNumber, Units units, boolean isBlocking, boolean isNominal, float limitParam1, float limitParam2, String description) {
+	public VoltageTest(Activity activity,IOIO ioio, int pinNumber, @Units int units, boolean isBlocking, boolean isNominal, float limitParam1, float limitParam2, String description) {
 		super(activity,ioio,description, false, isBlocking, limitParam1, limitParam2, 0);
 		this.pinNumber = pinNumber;
 		this.units = units;
@@ -46,7 +48,7 @@ public 	class VoltageTest extends Test {
 	 * @param description		- Test Description
 	 */
 
-	public VoltageTest(Activity activity,IOIO ioio, int pinNumber, Units units, boolean isBlocking, float scaling, boolean isNominal, float limitParam1, float limitParam2, String description) {
+	public VoltageTest(Activity activity,IOIO ioio, int pinNumber, @Units int units, boolean isBlocking, float scaling, boolean isNominal, float limitParam1, float limitParam2, String description) {
 		super(activity,ioio,description, false, isBlocking, limitParam1, limitParam2, 0);
 		this.pinNumber = pinNumber;
 		this.units = units;

@@ -343,22 +343,22 @@ public class NewSequence implements NewSequenceInterface {
                 "Current Measurement - UUT Unprogrammed"));
 
 
-        sequence.add(new VoltageTest(activity, ioio, 44, Voltage.Units.V, true, true, 3.1f, 0.2f,
+        sequence.add(new VoltageTest(activity, ioio, 44, Units.V, true, true, 3.1f, 0.2f,
                 "Voltage Measurement - V_3V1"));
-        sequence.add(new VoltageTest(activity, ioio, 40, Voltage.Units.V, true, true, 1.8f, 0.2f,
+        sequence.add(new VoltageTest(activity, ioio, 40, Units.V, true, true, 1.8f, 0.2f,
                 "Voltage Measurement - V_1V8"));
-        sequence.add(new VoltageTest(activity, ioio, 37, Voltage.Units.V, false, 3f, true, 3.5f, 0.2f,
+        sequence.add(new VoltageTest(activity, ioio, 37, Units.V, false, 3f, true, 3.5f, 0.2f,
                 "Voltage Measurement - V_BATT"));
 
         //		sequence.add(new ChargingTerminationTest(activity, ioio,
         //				"Battery Charging Termination Test"));
-        sequence.add(new VoltageTest(activity, ioio, 38, Voltage.Units.V, false, false, 0.1f, -0.1f,
+        sequence.add(new VoltageTest(activity, ioio, 38, Units.V, false, false, 0.1f, -0.1f,
                 "Voltage Measurement - DC_PRES (5V_DC Off)"));
-        sequence.add(new SetDigitalOutputStep(activity, IOIOUtils.Outputs._5V_DC.getValue(), false,
-                "Set 5VDC to On"));
-        sequence.add(new VoltageTest(activity, ioio, 38, Voltage.Units.V, false, true, 1.8f, 0.1f,
-                "Voltage Measurement - DC_PRES (5V_DC On)"));
         sequence.add(new SetDigitalOutputStep(activity, IOIOUtils.Outputs._5V_DC.getValue(), true,
+                "Set 5VDC to On"));
+        sequence.add(new VoltageTest(activity, ioio, 38, Units.V, false, true, 1.8f, 0.1f,
+                "Voltage Measurement - DC_PRES (5V_DC On)"));
+        sequence.add(new SetDigitalOutputStep(activity, IOIOUtils.Outputs._5V_DC.getValue(), false,
                 "Set 5VDC to Off"));
 
         //		sequence.add(new ChargingTest(activity, ioio,
@@ -380,15 +380,15 @@ public class NewSequence implements NewSequenceInterface {
 
         sequence.add(new CurrentTest(activity, ioio, 42, Units.mA, true, 30f, 0.2f,
                 "Current Measurement - Awake"));
-        sequence.add(new VoltageTest(activity, ioio, 44, Voltage.Units.V, true, true, 3.1f, 0.1f,
+        sequence.add(new VoltageTest(activity, ioio, 44, Units.V, true, true, 3.1f, 0.1f,
                 "Voltage Measurement - Awake Mode (V_3V1)"));
-        sequence.add(new VoltageTest(activity, ioio, 39, Voltage.Units.V, false, true, 1.8f, 0.1f,
+        sequence.add(new VoltageTest(activity, ioio, 39, Units.V, false, true, 1.8f, 0.1f,
                 "Voltage Measurement - Awake Mode (V_1V8_SW)"));
-        sequence.add(new VoltageTest(activity, ioio, 33, Voltage.Units.V, false, true, 3.3f, 0.1f,
+        sequence.add(new VoltageTest(activity, ioio, 33, Units.V, false, true, 3.3f, 0.1f,
                 "Voltage Measurement - Awake Mode (V_BT)"));
-        sequence.add(new VoltageTest(activity, ioio, 32, Voltage.Units.V, false, -1.95f, true, -1.4f, 0.1f,
+        sequence.add(new VoltageTest(activity, ioio, 32, Units.V, false, -1.95f, true, -1.4f, 0.1f,
                 "Voltage Measurement - Awake Mode (V_REF_AN)"));
-        sequence.add(new VoltageTest(activity, ioio, 41, Voltage.Units.V, false, -1.95f, false, 0.1f, -0.1f,
+        sequence.add(new VoltageTest(activity, ioio, 41, Units.V, false, -1.95f, false, 0.1f, -0.1f,
                 "Voltage Measurement - Awake Mode (V_ZERO_AN)"));
 
         //		sequence.add(new VoltageTest(activity, ioio, 31, -6.0f, 0.2f,
@@ -428,22 +428,22 @@ public class NewSequence implements NewSequenceInterface {
                 "Battery Level - UUT voltage @ 4.1V", 15));
 
         sequence.add(new SetSensorVoltagesStep(activity, (short) 0, (short) 0, "Set GAIN -> 0, ZERO -> 0"));
-        sequence.add(new VoltageTest(activity, ioio, 32, Voltage.Units.V, false, -2f, false, 0.1f, -0.1f,
+        sequence.add(new VoltageTest(activity, ioio, 32, Units.V, false, -2f, false, 0.1f, -0.1f,
                 "Voltage Measurement(V_REF_AN)"));
         sequence.add(new SetSensorVoltagesStep(activity, (short) 30, (short) 0, "Set GAIN -> 30, ZERO -> 0"));
-        sequence.add(new VoltageTest(activity, ioio, 32, Voltage.Units.V, false, -2f, true, -0.3f, 0.3f,
+        sequence.add(new VoltageTest(activity, ioio, 32, Units.V, false, -2f, true, -0.3f, 0.3f,
                 "Voltage Measurement(V_REF_AN)"));
         sequence.add(new SetSensorVoltagesStep(activity, (short) 0, (short) 30, "Set GAIN -> 0, ZERO -> 30"));
-        sequence.add(new VoltageTest(activity, ioio, 32, Voltage.Units.V, false, -2f, true, -0.3f, 0.3f,
+        sequence.add(new VoltageTest(activity, ioio, 32, Units.V, false, -2f, true, -0.3f, 0.3f,
                 "Voltage Measurement(V_REF_AN)"));
         sequence.add(new SetSensorVoltagesStep(activity, (short) 255, (short) 0, "Set GAIN -> 255, ZERO -> 0"));
-        sequence.add(new VoltageTest(activity, ioio, 32, Voltage.Units.V, false, -2f, true, -3f, 0.1f,
+        sequence.add(new VoltageTest(activity, ioio, 32, Units.V, false, -2f, true, -3f, 0.1f,
                 "Voltage Measurement(V_REF_AN)"));
         sequence.add(new SetSensorVoltagesStep(activity, (short) 0, (short) 255, "Set GAIN -> 0, ZERO -> 255"));
-        sequence.add(new VoltageTest(activity, ioio, 32, Voltage.Units.V, false, -2f, true, -3f, 0.1f,
+        sequence.add(new VoltageTest(activity, ioio, 32, Units.V, false, -2f, true, -3f, 0.1f,
                 "Voltage Measurement(V_REF_AN)"));
         sequence.add(new SetSensorVoltagesStep(activity, (short) 255, (short) 255, "Set GAIN -> 255, ZERO -> 255"));
-        sequence.add(new VoltageTest(activity, ioio, 32, Voltage.Units.V, false, -2f, true, -6f, 0.1f,
+        sequence.add(new VoltageTest(activity, ioio, 32, Units.V, false, -2f, true, -6f, 0.1f,
                 "Voltage Measurement(V_REF_AN)"));
         sequence.add(new SetSensorVoltagesStep(activity, (short) 127, (short) 0, "Set GAIN -> 127, ZERO -> 0"));
 

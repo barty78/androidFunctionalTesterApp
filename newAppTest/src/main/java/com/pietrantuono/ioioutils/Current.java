@@ -16,13 +16,14 @@ public class Current {
 	private static int currentsleeptime=0;
 
 	//@Units
-	double units;
+	private static double units;
 
-	public void setUnits(@Units int units){
-		this.units = 1 * (10 ^ units);
+	private static void setUnits(@Units int units){
+		Current current = new Current();
+		current.units = 1 * Math.pow(10, units);
 	}
 
-	public double getUnits() {
+	private static double getUnits() {
 		return units;
 	}
 
@@ -58,7 +59,8 @@ public class Current {
 	 * @throws Exception
 	 */
 	private static float getCurrent(IOIO ioio, int pinNumber, int gain, int Rshunt, @Units int units) throws Exception {
-		return getCurrent(ioio, pinNumber, gain, Rshunt, units, 10, 0);
+		setUnits(units);
+		return getCurrent(ioio, pinNumber, gain, Rshunt, getUnits(), 10, 0);
 	}
 		
 	

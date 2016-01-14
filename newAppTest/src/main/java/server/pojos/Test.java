@@ -37,19 +37,19 @@ public class Test {
     @Expose
     private Integer isNominal;
     @Expose
-    private Long limitParam1;
+    private Float limitParam1;
     @Expose
-    private Long limitParam2;
+    private Float limitParam2;
     @Expose
-    private Long limitParam3;
-    @Expose
-    private Long Upper;
-    @Expose
-    private Long Lower;
-    @Expose
-    private Long Nominal;
-    @Expose
-    private Long Tolerance;
+    private Float limitParam3;
+//    @Expose
+//    private Long Upper;
+//    @Expose
+//    private Long Lower;
+//    @Expose
+//    private Long Nominal;
+//    @Expose
+//    private Long Tolerance;
 
     /**
      *
@@ -269,95 +269,95 @@ public class Test {
 
     public void setIsNominal(int isNominal) {this.isNominal = isNominal;}
 
-    public Long getLimitParam1() {
+    public Float getLimitParam1() {
         return limitParam1;
     }
 
-    public void setLimitParam1(Long limitParam1) {this.limitParam1 = limitParam1;}
+    public void setLimitParam1(Float limitParam1) {this.limitParam1 = limitParam1;}
 
-    public Long getLimitParam2() {
+    public Float getLimitParam2() {
         return limitParam2;
     }
 
-    public void setLimitParam2(Long limitParam2) {this.limitParam2 = limitParam2;}
+    public void setLimitParam2(Float limitParam2) {this.limitParam2 = limitParam2;}
 
-    /**
-     *
-     * @return
-     *     The Upper
-     */
-    public Long getUpper() {
-        return Upper;
-    }
+//    /**
+//     *
+//     * @return
+//     *     The Upper
+//     */
+//    public Long getUpper() {
+//        return Upper;
+//    }
+//
+//    /**
+//     *
+//     * @param Upper
+//     *     The Upper
+//     */
+//    public void setUpper(Long Upper) {
+//        this.Upper = Upper;
+//    }
+//
+//    /**
+//     *
+//     * @return
+//     *     The Lower
+//     */
+//    public Long getLower() {
+//        return Lower;
+//    }
+//
+//    /**
+//     *
+//     * @param Lower
+//     *     The Lower
+//     */
+//    public void setLower(Long Lower) {
+//        this.Lower = Lower;
+//    }
+//
+//    /**
+//     *
+//     * @return
+//     *     The Nominal
+//     */
+//    public Long getNominal() {
+//        return Nominal;
+//    }
+//
+//    /**
+//     *
+//     * @param Nominal
+//     *     The Nominal
+//     */
+//    public void setNominal(Long Nominal) {
+//        this.Nominal = Nominal;
+//    }
+//
+//    /**
+//     *
+//     * @return
+//     *     The Tolerance
+//     */
+//    public Long getTolerance() {
+//        return Tolerance;
+//    }
+//
+//    /**
+//     *
+//     * @param Tolerance
+//     *     The Tolerance
+//     */
+//    public void setTolerance(Long Tolerance) {
+//        this.Tolerance = Tolerance;
+//    }
 
-    /**
-     *
-     * @param Upper
-     *     The Upper
-     */
-    public void setUpper(Long Upper) {
-        this.Upper = Upper;
-    }
-
-    /**
-     *
-     * @return
-     *     The Lower
-     */
-    public Long getLower() {
-        return Lower;
-    }
-
-    /**
-     *
-     * @param Lower
-     *     The Lower
-     */
-    public void setLower(Long Lower) {
-        this.Lower = Lower;
-    }
-
-    /**
-     *
-     * @return
-     *     The Nominal
-     */
-    public Long getNominal() {
-        return Nominal;
-    }
-
-    /**
-     *
-     * @param Nominal
-     *     The Nominal
-     */
-    public void setNominal(Long Nominal) {
-        this.Nominal = Nominal;
-    }
-
-    /**
-     *
-     * @return
-     *     The Tolerance
-     */
-    public Long getTolerance() {
-        return Tolerance;
-    }
-
-    /**
-     *
-     * @param Tolerance
-     *     The Tolerance
-     */
-    public void setTolerance(Long Tolerance) {
-        this.Tolerance = Tolerance;
-    }
-
-    public Long getLimitParam3() {
+    public Float getLimitParam3() {
         return limitParam3;
     }
 
-    public void setLimitParam3(Long limitParam3) {
+    public void setLimitParam3(Float limitParam3) {
         this.limitParam3 = limitParam3;
     }
 

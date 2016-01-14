@@ -34,6 +34,7 @@ public class CurrentTest extends Test {
 	public CurrentTest(Activity activity, IOIO ioio, int pinNumber, @Units int units, Boolean isNominal, float limitParam1, float limitParam2, String description) {
 		super(activity, ioio, description, false, true, limitParam1, limitParam2, 0);
 		this.pinNumber = pinNumber;
+		Log.d(TAG, String.valueOf(units));
 		this.units = units;
 		this.isNominal = isNominal;
 		this.description=description;
@@ -58,6 +59,7 @@ public class CurrentTest extends Test {
 		switch(units){
 			case Units.mA:
 				Rshunt = 2;
+
 				break;
 			case Units.uA:
 				Rshunt = 1002;
