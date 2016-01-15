@@ -16,6 +16,7 @@ import com.pietrantuono.constants.NewSequenceInterface;
 import com.pietrantuono.tests.implementations.GetBarcodeTest;
 import com.pietrantuono.tests.implementations.GetDeviceSerialTest;
 import com.pietrantuono.tests.implementations.GetMacAddressTest;
+import com.pietrantuono.tests.implementations.ReadFirmwareversionTest;
 import com.pietrantuono.tests.implementations.ReadModelNumberTest;
 import com.pietrantuono.tests.implementations.SensorTestWrapper;
 
@@ -30,18 +31,16 @@ public class TestFromSequenceCreator {
 		TestRecord record = new TestRecord();
 		record.setBarcode(getBarcode(sequence));
 		record.setDuration("" + sequence.getDuration());
-		record.setFixtureNo(PeriCoachTestApplication.getFixtureIdintification());// TODO
-																					// implement
-		record.setFWVer(PeriCoachTestApplication.getGetFirmware().getVersion());
+		record.setFixtureNo(PeriCoachTestApplication.getFixtureIdintification());
+		record.setFWVer(getFwVer(sequence));
 		record.setJobNo(sequence.getJobNo());
 		record.setModel(getModel(sequence));
 		record.setResult(sequence.getOverallResult());
 		record.setSerial(getSerial(sequence));
 		record.setStartedAt(sequence.getStartTime());
-		record.setLog(sequence.isLog());
 		record.setBT_Addr(sequence.getBT_Addr());
 		Readings readings = createReadings(sequence);
-		record.setReadings(readings);// TODO implement
+		record.setReadings(readings);
 		MyDatabaseUtils.ProcessAndSaveRecords(record);
 		return record;
 	}
@@ -144,7 +143,20 @@ public class TestFromSequenceCreator {
 			return serial;
 		serial = deviceSerialTest.getSerial();
 		return serial;
+	}
 
+	private static String getFwVer(NewSequenceInterface sequence) {
+		String fwver = "";
+		ReadFirmwareversionTest firmwareversionTest = null;
+		for (int i = 0; i < sequence.getSequence().size(); i++) {
+			if (sequence.getSequence().get(i) instanceof ReadFirmwareversionTest)
+				firmwareversionTest = (ReadFirmwareversionTest) sequence.getSequence()
+						.get(i);
+		}
+		if (firmwareversionTest == null)
+			return fwver;
+		fwver = firmwareversionTest.getVersion();
+		return fwver;
 	}
 
 	private static String getMacAddr(NewSequenceInterface sequence) {

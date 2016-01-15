@@ -105,9 +105,11 @@ public class MySyncAdapter extends AbstractThreadedSyncAdapter {
 					        .registerTypeAdapter(Integer.class, new MyIntTypeAdapter())
 					        .create();
 					String recordstring=gson.toJson(record, TestRecord.class);
-				if (!record.isLog()) {
-					continue;
-				}
+				// No need to check if logging here, record is not created in the first place if job is non logging.  Redundant.
+//				if (!record.isLog()) {
+//					Log.d(TAG, "Record is non logging");
+//					continue;
+//				}
 				Log.d(TAG, "Posting record: " + recordstring);
 				RetrofitRestServices.getRest(context).postResults(PeriCoachTestApplication.getDeviceid(),
 						Long.toString(record.getJobNo()), record, new Callback<Response>() {
