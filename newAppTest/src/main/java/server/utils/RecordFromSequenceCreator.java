@@ -20,7 +20,7 @@ import com.pietrantuono.tests.implementations.ReadFirmwareversionTest;
 import com.pietrantuono.tests.implementations.ReadModelNumberTest;
 import com.pietrantuono.tests.implementations.SensorTestWrapper;
 
-public class TestFromSequenceCreator {
+public class RecordFromSequenceCreator {
 
 	public static TestRecord createRecordFromSequence(NewSequenceInterface sequence) {
 		if (sequence == null)

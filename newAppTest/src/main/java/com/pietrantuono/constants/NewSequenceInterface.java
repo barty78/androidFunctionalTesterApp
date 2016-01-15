@@ -50,7 +50,7 @@ public interface NewSequenceInterface {
 
 	boolean getOverallResultBool();
 
-	boolean isLog();
+//	boolean isLog();
 
 	void setLog(boolean log);
 

@@ -64,7 +64,7 @@ import server.pojos.Job;
 import server.pojos.records.TestRecord;
 import server.service.ServiceDBHelper;
 import server.utils.MyDatabaseUtils;
-import server.utils.TestFromSequenceCreator;
+import server.utils.RecordFromSequenceCreator;
 
 @SuppressWarnings("unused")
 public class MainActivity extends AppCompatActivity
@@ -289,7 +289,7 @@ public class MainActivity extends AppCompatActivity
                 // usually Barcode Test.
                 // 	TODO - Maybe check if barcode is actually set instead,
                 // if no barcode then no record
-                TestRecord record = TestFromSequenceCreator.createRecordFromSequence(newSequence);
+                TestRecord record = RecordFromSequenceCreator.createRecordFromSequence(newSequence);
                 MyDatabaseUtils.RecontructRecord(record);
                 Gson gson = new GsonBuilder()
                         .excludeFieldsWithoutExposeAnnotation()
