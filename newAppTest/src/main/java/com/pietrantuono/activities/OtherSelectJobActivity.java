@@ -3,6 +3,7 @@ package com.pietrantuono.activities;
 import com.crashlytics.android.Crashlytics;
 import io.fabric.sdk.android.Fabric;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
@@ -97,6 +98,8 @@ public class OtherSelectJobActivity extends Activity implements MyCallback {
 	}
 
 	private void populateList() {
+		removeInactiveJobsFromList(jobsFromServer);
+		removeInactiveJobsFromList(jobsFromServer);
 		listview = (ListView) findViewById(R.id.listView);
 		if (jobsFromServer != null && jobsFromServer.size()>0)
 			adapter = new JobListAdapter(jobsFromServer,
@@ -114,7 +117,7 @@ public class OtherSelectJobActivity extends Activity implements MyCallback {
 				Log.d("Job#:", String.valueOf(job.getJobno()));
 				Log.d("Test ID:", String.valueOf(job.getTestId()));
 				Log.d("Firmware ID:", String.valueOf(job.getFirmwareId()));
-				Log.d("Logging", String.valueOf(job.getIslogging()!=0));
+				Log.d("Logging", String.valueOf(job.getIslogging() != 0));
 				//PeriCoachTestApplication.setFirmwareId(job.getFirmwareId());
 				Log.d("Job ID: ", String.valueOf(job.getId()));
 				PeriCoachTestApplication.setCurrentJob(job);
@@ -136,6 +139,13 @@ public class OtherSelectJobActivity extends Activity implements MyCallback {
 
 		});
 
+	}
+
+	private void removeInactiveJobsFromList(ArrayList<Job> jobsList) {
+		Iterator<Job> jobIterator=jobsList.iterator();
+		while(jobIterator.hasNext()){
+			if(jobIterator.next().getActive()!=0)jobIterator.remove();
+		}
 	}
 
 	private void getJobsFromServer() {
