@@ -9,6 +9,7 @@ import ioio.lib.api.DigitalInput;
 import ioio.lib.api.DigitalOutput;
 import ioio.lib.api.IOIO;
 import ioio.lib.api.Uart;
+import server.pojos.Device;
 import server.pojos.Job;
 import server.service.ServiceDBHelper;
 
@@ -19,6 +20,7 @@ import android.content.DialogInterface.OnClickListener;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.activeandroid.query.Select;
 import com.pietrantuono.activities.MyOnCancelListener;
 import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.ioioutils.IOIOUtils;
@@ -64,7 +66,16 @@ public class GetBarcodeTest extends Test {
             if (!checkJob(barcode)) {
                 activityListener.addFailOrPass("", true, false, description + " - Invalid Barcode");
                 return;
-            } ;
+            }
+            ;
+            if (PeriCoachTestApplication.getCurrentJob().getTesttypeId() == 1) {//OPEN TEST
+                // For open test it doesn't really need anything, but maybe for completeness we should use stage_dep and make sure status is 0
+                // so status == stage_dep
+                if (!checkDeviceStatus(barcode)) {
+                    activityListener.addFailOrPass("", true, false, description + " - Device must pass OPEN TEST, current test is CLOSED TEST");
+                    return;
+                } else {/*IS CLOSED TEST, perform different check*/ }
+            }
             if (!PeriCoachTestApplication.getIsRetestAllowed()) {
                 Log.d(TAG, "Retest is " + PeriCoachTestApplication.getIsRetestAllowed());
                 if (ServiceDBHelper.isBarcodeAlreadySeen(barcode)) {
@@ -95,6 +106,12 @@ public class GetBarcodeTest extends Test {
                 execute();
             }
         }
+    }
+
+    private boolean checkDeviceStatus(String barcode) {
+        Device device=new Select().from(Device.class).where("Barcode = ?",barcode).executeSingle();
+        if(device==null)return false;
+        return device.getStatus()==PeriCoachTestApplication.getCurrentJob().getStage_dep();
     }
 
     @Override

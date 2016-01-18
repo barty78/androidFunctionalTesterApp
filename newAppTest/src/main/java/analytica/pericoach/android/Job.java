@@ -15,6 +15,7 @@ public class Job {
 	private Integer lastReportedRecord;
 	private Integer lastReportNumber;
 	private Integer active;
+	private Integer stage_dep;
 	
 	public long getId() {
 		return id;
@@ -121,5 +122,13 @@ public class Job {
 
 	public void setJob_id(int job_id) {
 		this.job_id = job_id;
+	}
+
+	public Integer getStage_dep() {
+		return stage_dep;
+	}
+
+	public void setStage_dep(Integer stage_dep) {
+		this.stage_dep = stage_dep;
 	}
 }
