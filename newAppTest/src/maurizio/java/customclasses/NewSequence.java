@@ -419,10 +419,7 @@ public class NewSequence implements NewSequenceInterface {
 
     }
 
-    @Override
-    public boolean isLog() {
-        return log;
-    }
+
 
     @Override
     public void setLog(boolean log) {
