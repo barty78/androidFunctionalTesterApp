@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,8 @@ import com.pietrantuono.constants.NewMSensorResult;
 import com.pietrantuono.constants.NewSequenceInterface;
 import com.pietrantuono.pericoach.newtestapp.R;
 import com.pietrantuono.uploadfirmware.ProgressAndTextView;
+
+import server.pojos.Test;
 
 public class SequenceFragment extends Fragment {
     private SequenceFragmentCallback mListener;
@@ -80,7 +83,7 @@ public class SequenceFragment extends Fragment {
     }
 
     public synchronized ProgressAndTextView addFailOrPass(final Boolean istest, final Boolean success, String reading,
-                                                          String otherreading, String description) {
+                                                          String otherreading, String description, boolean isSensorTest,server.pojos.Test testToBeParsed) {
 
         UIHelper.ActivityUIHelperCallback callback = (UIHelper.ActivityUIHelperCallback) mListener;
         if (istest) {
@@ -147,6 +150,8 @@ public class SequenceFragment extends Fragment {
             Drawable background = res.getDrawable(R.drawable.redprogress);
             progress.setProgressDrawable(background);
         }
+        if(!isSensorTest)v.setOnClickListener(new ListItemClickListener((AppCompatActivity)getActivity(),testToBeParsed));
+        else{v.setOnClickListener(new SensorItemClickListener((AppCompatActivity) getActivity(), testToBeParsed));}
         activity.runOnUiThread(new Runnable() {
 
             @Override
@@ -175,16 +180,18 @@ public class SequenceFragment extends Fragment {
 
             }
         });
+
         return progressandtextview;
     }
 
-    public void addSensorTestCompletedRow(NewMSensorResult mSensorResult) {
+    public void addSensorTestCompletedRow(NewMSensorResult mSensorResult, Test testToBeParsed) {
         if (activity == null || activity.isFinishing())
             return;
         int RED = activity.getResources().getColor(R.color.dark_red);
         int GREEN = activity.getResources().getColor(R.color.dark_green);
         LayoutInflater inflater = activity.getLayoutInflater();
         v = inflater.inflate(R.layout.sensors_summary_row_item, null);
+        v.setOnClickListener(new SensorItemClickListener((AppCompatActivity)getActivity(),testToBeParsed));
         TextView testName = (TextView) v.findViewById(R.id.testName);
         testName.setText(mSensorResult.getDescription());
         TextView testSeqNum = (TextView) v.findViewById(R.id.testSeqNum);

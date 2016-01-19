@@ -51,7 +51,7 @@ public class CurrentTest extends Test {
 						readbyte, readbyte.length);
 			} catch (Exception e1) {
 				report(e1);
-				activityListener.addFailOrPass(true, false, "ERROR", "Fixture Fault");
+				activityListener.addFailOrPass(true, false, "ERROR", "Fixture Fault",testToBeParsed);
 				return;
 			}
 		Result result = null;
@@ -77,12 +77,12 @@ public class CurrentTest extends Test {
 				|| ((Activity) activityListener).isFinishing())
 			return;
 		if (result == null) {
-			activityListener.addFailOrPass(true, false, "ERROR", description);
+			activityListener.addFailOrPass(true, false, "ERROR", description,testToBeParsed);
 			return;
 		}
 		if (result.isSuccess()) {
 			Success();
-			activityListener.addFailOrPass(true, true, result.getReading(),description);
+			activityListener.addFailOrPass(true, true, result.getReading(),description,testToBeParsed);
 		} else {
 			activityListener
 					.addFailOrPass(true, false, result.getReading(),description);
@@ -99,4 +99,5 @@ public class CurrentTest extends Test {
 		super.interrupt();
 		try {Current.interrupt();}catch (Exception e){;}
 	}
+
 }

@@ -1,7 +1,6 @@
 package com.pietrantuono.activities;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import com.crashlytics.android.Crashlytics;
 import com.google.gson.Gson;
@@ -28,10 +27,8 @@ import com.pietrantuono.ioioutils.PCBDetectHelper.PCBDetectHelperInterface;
 import com.pietrantuono.ioioutils.Voltage;
 import com.pietrantuono.pericoach.newtestapp.R;
 import com.pietrantuono.sensors.SensorTestCallback;
-import com.pietrantuono.tests.superclass.Test;
 import com.pietrantuono.uploadfirmware.ProgressAndTextView;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -58,7 +55,6 @@ import server.MyDoubleTypeAdapter;
 import server.MyIntTypeAdapter;
 import server.MyLongTypeAdapter;
 import server.RetrofitRestServices;
-import server.pojos.Device;
 import server.pojos.DevicesList;
 import server.pojos.Job;
 import server.pojos.records.TestRecord;
@@ -165,10 +161,8 @@ public class MainActivity extends AppCompatActivity
         });
     }
 
-    @Override
-    public synchronized ProgressAndTextView addFailOrPass(final Boolean istest, final Boolean success, String reading) {
-        return uiHelper.addFailOrPass(istest, success, reading, null);
-    }
+
+
 
     @Override
     @SuppressWarnings("ucd")
@@ -438,13 +432,13 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     @SuppressWarnings("ucd")
-    public void onSensorTestCompleted(NewMSensorResult mSensorResult) {
+    public void onSensorTestCompleted(NewMSensorResult mSensorResult, server.pojos.Test testToBeParsed) {
         try {
             results.get(getIterationNumber()).set(newSequence.getCurrentTestNumber(), mSensorResult);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        uiHelper.addSensorTestCompletedRow(mSensorResult);
+        uiHelper.addSensorTestCompletedRow(mSensorResult,testToBeParsed);
         Handler h = new Handler(android.os.Looper.getMainLooper());
         h.postDelayed(new Runnable() {
             @Override
@@ -495,14 +489,36 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    @SuppressWarnings("ucd")
+    public ProgressAndTextView addFailOrPass(Boolean istest, Boolean success, String reading,String otherreading, String description,server.pojos.Test testToBeParsed) {
+        return uiHelper.addFailOrPass(istest, success, reading, otherreading, description, false,testToBeParsed);
+    }
+    @Override
+    public ProgressAndTextView addFailOrPass(Boolean istest, Boolean success, String reading, String description,server.pojos.Test testToBeParsed) {
+        return addFailOrPass(istest, success, reading, null, description, testToBeParsed);
+    }
+
+    @Override
     public ProgressAndTextView addFailOrPass(String otherreadig, Boolean istest, Boolean success, String description) {
-        return uiHelper.addFailOrPass(istest, success, null, otherreadig, description);
+        return addFailOrPass(istest,success,null,otherreadig,description,null);
     }
 
     @Override
     public ProgressAndTextView addFailOrPass(Boolean istest, Boolean success, String reading, String description) {
-        return uiHelper.addFailOrPass(istest, success, reading, null, description);
+        return addFailOrPass(istest, success, reading, null,description, null);
+    }
+    @Override
+    public synchronized ProgressAndTextView addFailOrPass(final Boolean istest, final Boolean success, String reading,server.pojos.Test testToBeParsed ) {
+        return addFailOrPass(istest, success, reading, null,null,testToBeParsed);
+    }
+
+    @Override
+    public ProgressAndTextView addFailOrPass(Boolean istest, Boolean success, String reading) {
+        return addFailOrPass(istest,success,reading,null,null,null);
+    }
+    @Override
+    public ProgressAndTextView addFailOrPass(final Boolean istest, final Boolean success, String reading, String description, boolean isSensorTest,server.pojos.Test testToBeParsed){
+        return uiHelper.addFailOrPass(istest, success, reading, null, description, true,testToBeParsed);
+
     }
 
     @Override

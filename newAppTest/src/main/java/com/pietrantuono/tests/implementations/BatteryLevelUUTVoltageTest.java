@@ -49,14 +49,14 @@ public class BatteryLevelUUTVoltageTest extends Test {
                         readbyte, readbyte.length);
             } catch (Exception e1) {
                 report(e1);
-                getListener().addFailOrPass(true, false, "Fixture Fault");
+                getListener().addFailOrPass(true, false, "Fixture Fault",testToBeParsed);
                 return;
             }
         if(isinterrupted)return;
         try {
             Thread.sleep(2 * 1000);
         } catch (Exception e) {
-            getListener().addFailOrPass(true, false, "ERROR", "App Fault");
+            getListener().addFailOrPass(true, false, "ERROR", "App Fault",testToBeParsed);
 
         }
 
@@ -67,17 +67,17 @@ public class BatteryLevelUUTVoltageTest extends Test {
         try {
             battlevel = getListener().getBtutility().requestBatteryLevelAndWait();
         } catch (Exception e) {
-            getListener().addFailOrPass(true, false, "ERROR", "UUT Comms Fault");
+            getListener().addFailOrPass(true, false, "ERROR", "UUT Comms Fault",testToBeParsed);
             return;
         }
         setValue(battlevel);
         if (limit + (limit * precision) > battlevel
                 && battlevel > limit - (limit * precision)) {
             setSuccess(true);
-            getListener().addFailOrPass(true, true, df.format(battlevel) + "%",description);
+            getListener().addFailOrPass(true, true, df.format(battlevel) + "%",description,testToBeParsed);
         } else {
             setSuccess(false);
-            getListener().addFailOrPass(true, false, df.format(battlevel) + "%",description);
+            getListener().addFailOrPass(true, false, df.format(battlevel) + "%",description,testToBeParsed);
         }
     }
 

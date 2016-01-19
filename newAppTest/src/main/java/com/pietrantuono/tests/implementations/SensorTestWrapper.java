@@ -53,6 +53,8 @@ public class SensorTestWrapper extends Test {
 
 		if(isClosedTest){sensorTest=new ClosedTest(activity,SensorTestWrapper.this, lowerLimit, upperLimit, varLimit);}
 		else {sensorTest=new SensorTest(activity,SensorTestWrapper.this, lowerLimit, upperLimit, varLimit);}
+		sensorTest.setTestToBeParsed(testToBeParsed);
+
 	}
 
 	@Override

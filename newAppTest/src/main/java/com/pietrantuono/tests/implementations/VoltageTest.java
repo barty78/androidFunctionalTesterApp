@@ -66,7 +66,7 @@ public 	class VoltageTest extends Test {
 		try {
 			Thread.sleep(1 * 1000);
 		} catch (Exception e) {
-			activityListener.addFailOrPass(true,false, description);
+			activityListener.addFailOrPass(true,false, description,testToBeParsed);
 			report(e);
 		}
 
@@ -81,14 +81,14 @@ public 	class VoltageTest extends Test {
 				|| ((Activity) activityListener).isFinishing())
 			return;
 		if (result == null) {
-			activityListener.addFailOrPass(true, false, "ERROR", description);
+			activityListener.addFailOrPass(true, false, "ERROR", description,testToBeParsed);
 			return;
 		}
 		if (result.isSuccess()) {
 			Success();
-			activityListener.addFailOrPass(true, true, result.getReading(), description);
+			activityListener.addFailOrPass(true, true, result.getReading(), description,testToBeParsed);
 		} else {
-			activityListener.addFailOrPass(true, false, result.getReading(), description);
+			activityListener.addFailOrPass(true, false, result.getReading(), description,testToBeParsed);
 		}
 	}
 	@Override

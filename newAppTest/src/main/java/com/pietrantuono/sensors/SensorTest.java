@@ -20,6 +20,7 @@ import android.widget.Toast;
 import hydrix.pfmat.generic.Force;
 import hydrix.pfmat.generic.SessionSamples;
 import hydrix.pfmat.generic.TestLimits;
+import server.pojos.Test;
 
 public class SensorTest {
 
@@ -36,6 +37,7 @@ public class SensorTest {
 	protected NewMSensorResult mSensorResult = null;
 	protected Boolean stopped = false;
 	public boolean isTest=false;
+	Test testToBeParsed;
 
 	public void setSensorsTestHelper(SensorsTestHelper sensorsTestHelper) {
 		this.sensorsTestHelper = sensorsTestHelper;
@@ -107,32 +109,33 @@ public class SensorTest {
 		Log.d("SensorTest", "execute");
 		if (this.activity == null || activity == null) {
 			Log.e(SensorsTestHelper.TAG, "You must set the activity");
-			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - Activity Error");
+			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - Activity Error",true,testToBeParsed);
 			return;
 		}
 		if (this.voltage == -1) {
 			Log.e(SensorsTestHelper.TAG, "You must set the voltage");
-			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - No Set Voltage");
+			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - No Set Voltage",true,testToBeParsed);
 			return;
 		}
 		if (this.zeroVoltage == -1) {
 			Log.e(SensorsTestHelper.TAG, "You must set the zeroing voltage");
-			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - No Set Zeroing Voltage");
+			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - No Set Zeroing Voltage",true,testToBeParsed
+			);
 			return;
 		}
 		if (load == null) {
 			Log.e(SensorsTestHelper.TAG, "load null?!");
-			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - No Load Set");
+			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - No Load Set",true,testToBeParsed);
 			return;
 		}
 		if (this.sensorsTestHelper.samplesref == null) {
 			Log.e(SensorsTestHelper.TAG, "samplesref null?!");
-			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - No Samples Ref");
+			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - No Samples Ref",true,testToBeParsed);
 			return;
 		}
 		if (mSensorResult == null) {
 			Log.e(SensorsTestHelper.TAG, "mSensorResult null?!");
-			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - No Sensor Result Object");
+			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - No Sensor Result Object",true,testToBeParsed);
 			return;
 		}
 //		try {
@@ -200,7 +203,7 @@ public class SensorTest {
 		Log.d("SensorTest", "endTest");
 		if (this.sensorsTestHelper.samplesref == null) {
 			Log.d(SensorsTestHelper.TAG, "samplesref == null " + (this.sensorsTestHelper.samplesref == null));
-			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - No Samples");
+			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - No Samples",true,testToBeParsed);
 			return mSensorResult;
 		}
 
@@ -212,7 +215,7 @@ public class SensorTest {
 
 		if (this.sensorsTestHelper.samplesref.mSamples == null) {
 			Log.d(SensorsTestHelper.TAG, "Samples size = " + this.sensorsTestHelper.samplesref.mSamples.size());
-			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - No Samples");
+			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - No Samples",true,testToBeParsed);
 			return mSensorResult;
 		}
 
@@ -221,13 +224,13 @@ public class SensorTest {
 
 			if (activity.get() != null && !activity.get().isFinishing()
 					&& !((MainActivity) (activity.get())).isMainActivityBeingDestroyed()) {
-				((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor Test - Insufficient Samples");
+				((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor Test - Insufficient Samples",true,testToBeParsed);
 				return mSensorResult;
 			}
 			Toast.makeText(activity.get(),
 					"Error taking measure, please check Bluetooth and PeriCoach device and restart test",
 					Toast.LENGTH_LONG).show();
-			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test");
+			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test",true,testToBeParsed);
 			return mSensorResult;
 		}
 
@@ -315,7 +318,7 @@ public class SensorTest {
 			mSensorResult.setTestsuccessful(false);
 		}
 		if (activity != null && activity != null)
-			((SensorTestCallback) (activity.get())).onSensorTestCompleted(mSensorResult);
+			((SensorTestCallback) (activity.get())).onSensorTestCompleted(mSensorResult,testToBeParsed);
 //		if(!isTest)this.sensorsTestHelper.sendVoltage(this.sensorsTestHelper.NORMAL_VOLTAGE);
 		if(!isTest)stop();
 //		try {
@@ -347,4 +350,7 @@ public class SensorTest {
 		this.activity = new WeakReference<Activity>(activity);
 	}
 
+	public void setTestToBeParsed(Test testToBeParsed) {
+		this.testToBeParsed = testToBeParsed;
+	}
 }
