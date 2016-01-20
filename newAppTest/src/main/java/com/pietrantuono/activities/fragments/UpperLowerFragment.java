@@ -1,7 +1,7 @@
 package com.pietrantuono.activities.fragments;
 
 
-import android.app.AlertDialog;
+import android.support.v7.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -22,8 +22,10 @@ import server.pojos.Test;
 public class UpperLowerFragment extends DialogFragment {
     private static final String UPPER = "upper";
     private static final String LOWER = "lower";
+    private static final String DESCRIPTION = "description";
     private float upper;
     private float lower;
+    private String description;
 
     public UpperLowerFragment() {  }
 
@@ -31,7 +33,8 @@ public class UpperLowerFragment extends DialogFragment {
         UpperLowerFragment upperLowerFragment= new UpperLowerFragment();
         Bundle bundle= new Bundle();
         bundle.putFloat(UPPER,testToBeParsed.getLimitParam1());
-        bundle.putFloat(LOWER,testToBeParsed.getLimitParam2());
+        bundle.putFloat(LOWER, testToBeParsed.getLimitParam2());
+        bundle.putString(DESCRIPTION,testToBeParsed.getName()!=null?testToBeParsed.getName():"");
         upperLowerFragment.setArguments(bundle);
         return upperLowerFragment;
     }
@@ -39,25 +42,28 @@ public class UpperLowerFragment extends DialogFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(savedInstanceState!=null){
-            upper=savedInstanceState.getFloat(UPPER,Float.MAX_VALUE);
-            lower=savedInstanceState.getFloat(LOWER,Float.MAX_VALUE);
+        if(getArguments()!=null){
+            upper=getArguments().getFloat(UPPER, Float.MAX_VALUE);
+            lower=getArguments().getFloat(LOWER, Float.MAX_VALUE);
+            description=getArguments().getString(DESCRIPTION);
         }
     }
 
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+        AlertDialog.Builder builder= new AlertDialog.Builder(getActivity());
         LayoutInflater layoutInflater=getActivity().getLayoutInflater();
         View v =layoutInflater.inflate(R.layout.fragment_upper_lower_dialog, null);
         ((TextView)v.findViewById(R.id.lower)).setText(""+(lower!=Float.MAX_VALUE?lower:"ERROR"));
-        ((TextView)v.findViewById(R.id.upper)).setText(""+(upper!=Float.MAX_VALUE?upper:"ERROR"));
-        AlertDialog.Builder builder= new AlertDialog.Builder(getActivity());
+        ((TextView)v.findViewById(R.id.upper)).setText("" + (upper != Float.MAX_VALUE ? upper:"ERROR"));
         builder.setView(v);
         builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) { }
+            public void onClick(DialogInterface dialog, int which) {
+            }
         });
+        builder.setTitle(description!=null?description:"");
         return builder.create();
     }
 }

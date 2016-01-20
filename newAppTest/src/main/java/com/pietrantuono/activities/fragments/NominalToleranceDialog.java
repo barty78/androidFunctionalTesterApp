@@ -23,14 +23,17 @@ public class NominalToleranceDialog extends DialogFragment {
 
     private static final String NOMINAL = "nominal";
     private static final String TOLERANCE = "tolerance";
+    private static final String DESCRIPTION="description";
     private float nominal;
     private float tolerance;
+    private String description;
 
     public static NominalToleranceDialog newInstance(Test testToBeParsed) {
         NominalToleranceDialog nominalToleranceDialog=  new NominalToleranceDialog();
         Bundle bundle= new Bundle();
         bundle.putFloat(NOMINAL,testToBeParsed.getLimitParam1());
         bundle.putFloat(TOLERANCE,testToBeParsed.getLimitParam2());
+        bundle.putString(DESCRIPTION, testToBeParsed.getName() != null ? testToBeParsed.getName() : "");
         nominalToleranceDialog.setArguments(bundle);
         return nominalToleranceDialog;
     }
@@ -41,9 +44,10 @@ public class NominalToleranceDialog extends DialogFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(savedInstanceState!=null){
-            nominal = savedInstanceState.getFloat(NOMINAL, Float.MAX_VALUE);
-            tolerance=savedInstanceState.getFloat(TOLERANCE,Float.MAX_VALUE);
+        if(getArguments()!=null){
+            nominal = getArguments().getFloat(NOMINAL, Float.MAX_VALUE);
+            tolerance=getArguments().getFloat(TOLERANCE,Float.MAX_VALUE);
+            description=getArguments().getString(DESCRIPTION);
         }
     }
 
@@ -61,7 +65,7 @@ public class NominalToleranceDialog extends DialogFragment {
             public void onClick(DialogInterface dialog, int id) {
             }
         });
-
+        builder.setTitle(description!=null?description:"");
         return builder.create();
     }
 }
