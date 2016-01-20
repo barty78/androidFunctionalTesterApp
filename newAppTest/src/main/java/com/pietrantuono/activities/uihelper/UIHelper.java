@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 import com.crashlytics.android.Crashlytics;
 import com.pietrantuono.activities.fragments.PagerAdapter;
-import com.pietrantuono.activities.fragments.SequenceFragment;
+import com.pietrantuono.activities.fragments.sequence.NewSequenceFragment;
+import com.pietrantuono.activities.fragments.sequence.SequenceFragment;
 import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.constants.NewMResult;
 import com.pietrantuono.constants.NewMSensorResult;
@@ -51,7 +52,7 @@ public class UIHelper {
 	private View v = null;
 	private NewSequenceInterface sequence;
 	private static final String TAG = "UIHelper";
-	private static SequenceFragment sequenceFragment;
+	private static NewSequenceFragment sequenceFragment;
 
 	public UIHelper(Activity activity, NewSequenceInterface sequence) {
 		this.activity = activity;
@@ -110,7 +111,7 @@ public class UIHelper {
 			}
 	}
 
-	public void registerSequenceFragment(SequenceFragment sequenceFragment) {
+	public void registerSequenceFragment(NewSequenceFragment sequenceFragment) {
 		this.sequenceFragment=sequenceFragment;
 	}
 
@@ -243,7 +244,7 @@ public class UIHelper {
 	public synchronized ProgressAndTextView addFailOrPass(final Boolean istest, final Boolean success, String reading,
 			String otherreading, String description, boolean issensortest,server.pojos.Test testToBeParsed) {
 		if(sequenceFragment!=null){
-			return  sequenceFragment.addFailOrPass(istest,success,reading,otherreading,description,issensortest,testToBeParsed);
+			return  sequenceFragment.addTest(istest,success,reading,otherreading,description,issensortest,testToBeParsed);
 		}
 		else return null;
 	}
@@ -402,7 +403,7 @@ public class UIHelper {
 	}
 
 	public void addSensorTestCompletedRow(NewMSensorResult mSensorResult, Test testToBeParsed) {
-		sequenceFragment.addSensorTestCompletedRow(mSensorResult,testToBeParsed);
+		sequenceFragment.addSensorTest(mSensorResult,testToBeParsed);
 	}
 
 	public void setSequence(NewSequenceInterface sequence) {
@@ -411,7 +412,7 @@ public class UIHelper {
 	}
 
 	public synchronized ProgressAndTextView createUploadProgress(final Boolean istest, final Boolean success,String description) {
-		if(sequenceFragment!=null) return sequenceFragment.createUploadProgress(istest,success,description);
+		if(sequenceFragment!=null) return sequenceFragment.addUploadRow(istest,success,description);
 		else return null;
 	}
 	

@@ -9,13 +9,14 @@ import com.pietrantuono.activities.NewIOIOActivityListener;
 
 import java.util.ArrayList;
 
+import customclasses.DebugHelper;
 import ioio.lib.api.IOIO;
 
 public abstract class Test {
 	public String description;
 	public boolean isSensorTest=false;
 	public boolean istest=true;
-	public boolean isBlockingTest=false;
+	private boolean isBlockingTest=false;
 	public boolean isinterrupted=false;
 	public NewIOIOActivityListener activityListener;
 	public IOIO ioio;
@@ -37,7 +38,6 @@ public abstract class Test {
 	public Boolean isSensorTest(){return isSensorTest;}
 	public Boolean isTest() {return istest;}
 	public void setIsTest(boolean isTest) {this.istest = isTest;}
-	public Boolean isBlockingTest() {return isBlockingTest;}
 	public boolean isActive() {	return active;}
 	public void setActive(boolean active) {this.active = active;}
 	public void setBlockingTest(boolean isBlockingTest) {this.isBlockingTest = isBlockingTest;}
@@ -126,4 +126,10 @@ public abstract class Test {
 	public void setTestToBeParsed(server.pojos.Test testToBeParsed) {
 		this.testToBeParsed = testToBeParsed;
 	}
+
+	public Boolean isBlockingTest() {
+		if(DebugHelper.isMaurizioDebug())return false;
+		return isBlockingTest;
+	}
+
 }

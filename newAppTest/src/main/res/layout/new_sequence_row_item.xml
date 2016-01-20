@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="55dp"
+    android:layout_margin="@dimen/card_margin"
+    card_view:cardCornerRadius="@dimen/card_radius"
+    card_view:cardElevation="@dimen/card_elevation"
+    card_view:cardUseCompatPadding="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:id="@+id/testSeqNum"
+            android:layout_width="50dp"
+            android:layout_height="35dp"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="1" />
+
+        <TextView
+            android:id="@+id/testName"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/testSeqNum"
+            android:gravity="left|center"
+            android:paddingLeft="5dp"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/reading"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/progresscontainer"
+            android:ems="5"
+            android:gravity="left|center"
+            android:paddingLeft="5dp"
+            android:text="" />
+
+
+        <com.mikepenz.iconics.view.IconicsImageView
+            android:id="@+id/progresscontainer"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            app:iiv_color="@color/primary"
+            app:iiv_icon="gmd-close" />
+
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

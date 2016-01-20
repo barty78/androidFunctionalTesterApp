@@ -5,8 +5,9 @@ import java.util.ArrayList;
 import com.crashlytics.android.Crashlytics;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.pietrantuono.activities.fragments.SequenceFragment;
 import com.pietrantuono.activities.fragments.SerialConsoleFragmentCallback;
+import com.pietrantuono.activities.fragments.sequence.NewSequenceFragment;
+import com.pietrantuono.activities.fragments.sequence.SequenceFragment;
 import com.pietrantuono.activities.uihelper.ActivityCallback;
 import com.pietrantuono.activities.uihelper.MyDialogInterface;
 import com.pietrantuono.activities.uihelper.MyDialogs;
@@ -66,7 +67,7 @@ import server.utils.RecordFromSequenceCreator;
 public class MainActivity extends AppCompatActivity
         implements ActivtyWrapper, IOIOLooperProvider, NewIOIOActivityListener,
         PCBConnectedCallback, SensorTestCallback, ActivityUIHelperCallback,
-        MyOnCancelListener.Callback, ActivityCallback, SequenceFragment.SequenceFragmentCallback, SerialConsoleFragmentCallback {
+        MyOnCancelListener.Callback, ActivityCallback, NewSequenceFragment.SequenceFragmentCallback, SerialConsoleFragmentCallback {
     private static IOIO myIOIO;
     private static final String TAG = MainActivity.class.getSimpleName();
     private String mJobNo = null;
@@ -147,7 +148,7 @@ public class MainActivity extends AppCompatActivity
                     return;
                 }
                 if (newSequence.isSequenceStarted()) {
-                    if (newSequence.getCurrentTest().isBlockingTest && !newSequence.getCurrentTest().isSuccess()) {
+                    if (newSequence.getCurrentTest().isBlockingTest() && !newSequence.getCurrentTest().isSuccess()) {
                         Log.d(TAG, "Blocking Test Failed - Sequence Ended");
                         onCurrentSequenceEnd();
                         return;
@@ -631,7 +632,7 @@ public class MainActivity extends AppCompatActivity
 
 
     @Override
-    public void registerSequenceFragment(SequenceFragment sequenceFragment) {
+    public void registerSequenceFragment(NewSequenceFragment sequenceFragment) {
         uiHelper.registerSequenceFragment(sequenceFragment);
     }
 
