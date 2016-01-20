@@ -55,7 +55,13 @@ public class ReadFirmwareversionTest extends Test {
 				activityListener.addFailOrPass(true, false, firmwarever, description);
 			}
 		}
+
 	}
+
+	public String getVersion() {
+		return firmwarever;
+	}
+
 
 	@Override
 	public void interrupt() {

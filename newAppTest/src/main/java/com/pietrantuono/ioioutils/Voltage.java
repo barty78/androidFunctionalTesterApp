@@ -1,10 +1,13 @@
 package com.pietrantuono.ioioutils;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.support.annotation.IntDef;
 
 import com.pietrantuono.application.PeriCoachTestApplication;
 

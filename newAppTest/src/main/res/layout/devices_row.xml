@@ -2,8 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/black"
-    android:layout_margin="10dp"
+    android:layout_marginLeft="@dimen/device_row_margin"
+    android:layout_marginRight="@dimen/device_row_margin"
+    android:layout_marginTop="@dimen/device_row_margin"
     android:orientation="horizontal">
 
     <LinearLayout
@@ -71,18 +72,36 @@
 
     </LinearLayout>
 
-    <ImageView
+    <LinearLayout
         android:id="@+id/passed"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/address"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/passed"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/passed_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/na"
+             />
+
+    </LinearLayout>
+
 
     <View
-        android:layout_below="@+id/address"
-        android:background="@color/tab_text_color"
         android:layout_width="match_parent"
-        android:layout_height="1dp" />
+        android:layout_height="1dp"
+        android:layout_below="@+id/passed"
+        android:background="@color/tab_text_color" />
 
 
 </RelativeLayout>

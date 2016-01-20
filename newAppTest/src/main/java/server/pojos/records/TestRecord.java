@@ -56,21 +56,10 @@ public class TestRecord extends MyModel{
     @Column(name = "Result")
     @Expose
     private long Result;
-    
-    @Column(name = "log")
-    private boolean log=true;
 
     @Column(name = "BT_Addr")
     @Expose
     private String BT_Addr;
-
-    public boolean isLog() {
-		return log;
-	}
-
-	public void setLog(boolean log) {
-		this.log = log;
-	}
 
     public long getJobNo() {
         return JobNo;

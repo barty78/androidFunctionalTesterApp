@@ -15,12 +15,11 @@ public class PagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return SerialConsoleFragment.newInstance();
+                return DevicesListFragment.newInstance();
             case 1:
                 return SequenceFragment.newInstance();
             case 2:
-                return DevicesListFragment.newInstance();
-
+                return SerialConsoleFragment.newInstance();
             default:
                 return SequenceFragment.newInstance();
         }

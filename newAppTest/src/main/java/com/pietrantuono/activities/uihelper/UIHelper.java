@@ -67,6 +67,7 @@ public class UIHelper {
 		AppCompatActivity appcompat = (AppCompatActivity) activity;
 		viewPager.setAdapter(new PagerAdapter(appcompat.getSupportFragmentManager()));
 		viewPager.setOffscreenPageLimit(viewPager.getAdapter().getCount());
+		viewPager.setCurrentItem(1);
 	}
 
 	public void setupChronometer(Activity activity){

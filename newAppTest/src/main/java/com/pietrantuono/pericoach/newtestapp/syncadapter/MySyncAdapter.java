@@ -105,9 +105,7 @@ public class MySyncAdapter extends AbstractThreadedSyncAdapter {
 					        .registerTypeAdapter(Integer.class, new MyIntTypeAdapter())
 					        .create();
 					String recordstring=gson.toJson(record, TestRecord.class);
-				if (!record.isLog()) {
-					continue;
-				}
+
 				Log.d(TAG, "Posting record: " + recordstring);
 				RetrofitRestServices.getRest(context).postResults(PeriCoachTestApplication.getDeviceid(),
 						Long.toString(record.getJobNo()), record, new Callback<Response>() {

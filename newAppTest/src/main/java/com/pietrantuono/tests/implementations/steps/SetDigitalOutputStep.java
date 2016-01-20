@@ -32,7 +32,7 @@ public class SetDigitalOutputStep extends Test implements Step{
 
         if(IOIOUtils.getUtils().getDigitalOutput(pinNumber) != null) {
             try {
-                IOIOUtils.getUtils().getDigitalOutput(pinNumber).write(value);
+                IOIOUtils.getUtils().getDigitalOutput(pinNumber).write(value ^= true);
             } catch (ConnectionLostException e) {
                 getListener().addFailOrPass(false, false, "IOIO Error");
                 e.printStackTrace();

@@ -7,7 +7,7 @@ import android.app.Activity;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.pietrantuono.ioioutils.Current;
+import com.pietrantuono.ioioutils.Units;
 import com.pietrantuono.ioioutils.Voltage;
 import com.pietrantuono.pericoach.newtestapp.R;
 import com.pietrantuono.tests.implementations.AccelerometerSelfTest;
@@ -54,29 +54,46 @@ public class TestsParser {
     public static Test parseTest(final server.pojos.Test testToBeParsed,
                                  final Activity activity, IOIO ioio, Job job) {
         Test test = null;
-        int dummycounter = 0;
+
+        Log.d(TAG, "Test ID: " + testToBeParsed.getId());
         int classID = (int) testToBeParsed.getTestclassId().intValue();
 
         if (classID == activity.getResources().getInteger(R.integer.GetBarcodeTest)) {
-            float limitParam1 = (float) testToBeParsed.getLimitParam1().doubleValue();
-            test = new GetBarcodeTest(activity, ioio, job, limitParam1);
+            float retries = (float) testToBeParsed.getIoiopinnum();
+            Log.d(TAG, getDescription(testToBeParsed) + " - Retries(" + retries + ")");
+            test = new GetBarcodeTest(activity, ioio, job, retries);
 
         } else if (classID == activity.getResources().getInteger(R.integer.CurrentTest)) {
             boolean isNominal = testToBeParsed.getIsNominal() == 1;
             float limitParam1 = (float) testToBeParsed.getLimitParam1().doubleValue();
             float limitParam2 = (float) testToBeParsed.getLimitParam2().doubleValue();
             int pinnumber = (int) testToBeParsed.getIoiopinnum();
-            test = new CurrentTest(activity, ioio, pinnumber, Current.Units.mA, isNominal, limitParam1, limitParam2,
+            Log.d(TAG, getDescription(testToBeParsed) + " - Limits(" + limitParam1 + "/" + limitParam2 + "|" + isNominal + ")");
+            @Units int units = testToBeParsed.getUnits();
+
+            test = new CurrentTest(activity, ioio, pinnumber, units, isNominal, limitParam1, limitParam2,
                     getDescription(testToBeParsed));
 
         } else if (classID == activity.getResources().getInteger(R.integer.VoltageTest)) {
             boolean isNominal = testToBeParsed.getIsNominal() == 1;
             float limitParam1 = (float) testToBeParsed.getLimitParam1().doubleValue();
             float limitParam2 = (float) testToBeParsed.getLimitParam2().doubleValue();
-            boolean isBlocking = testToBeParsed.getBlocking() != 0;
+            Log.d(TAG, getDescription(testToBeParsed) + "  - Limits(" + limitParam1 + "/" + limitParam2 + "|" + isNominal + ")");
+            boolean isBlocking = testToBeParsed.getBlocking() == 1;
             int pinnumber = (int) testToBeParsed.getIoiopinnum();
-            test = new VoltageTest(activity, ioio, pinnumber, Voltage.Units.V, isBlocking, isNominal, limitParam1, limitParam2,
-                    getDescription(testToBeParsed));
+            @Units int units = testToBeParsed.getUnits();
+            if (testToBeParsed.getScaling() != 0) {
+                float scaling = (float) testToBeParsed.getScaling().doubleValue();
+                Log.d(TAG, "Scaling set to " + scaling);
+                test = new VoltageTest(activity, ioio, pinnumber, units, isBlocking, scaling, isNominal, limitParam1, limitParam2,
+                        getDescription(testToBeParsed));
+            } else {
+                Log.d(TAG, "Default Scaling = 1.0");
+
+                test = new VoltageTest(activity, ioio, pinnumber, units, isBlocking, isNominal, limitParam1, limitParam2,
+                        getDescription(testToBeParsed));
+            }
+
         } else if (classID == activity.getResources().getInteger(R.integer.LedCheckTest)) {
             test = new LedCheckTest(activity, getDescription(testToBeParsed),
                     getDescription(testToBeParsed));
@@ -113,18 +130,20 @@ public class TestsParser {
             test = new ReadFirmwareversionTest(activity);
         }
         else if (classID == activity.getResources().getInteger(R.integer.BatteryLevelUUTVoltageTest)) {
-            float tolerance = (float) testToBeParsed.getScaling().floatValue();//TODO doublecheck if is correct to use Scaling
-            int voltage = testToBeParsed.getNominal()!=null? (int) testToBeParsed.getNominal().doubleValue() :0;
             test = new BatteryLevelUUTVoltageTest(activity,
-                    testToBeParsed.getLimitId(),
-                    tolerance,
+                    testToBeParsed.getLimitParam1(),
+                    testToBeParsed.getLimitParam2(),
                     getDescription(testToBeParsed),
-                    voltage);// TODO check voltage
+                    (int) (float)testToBeParsed.getScaling());
         } else if (classID == activity.getResources().getInteger(R.integer.SensorTestWrapper)) {
-            test = new SensorTestWrapper(job.getTesttypeId()!=0, activity, ioio, (int) ((long) testToBeParsed.getLimitId()), testToBeParsed.getLimitParam1(), testToBeParsed.getLimitParam2(), testToBeParsed.getLimitParam3(), testToBeParsed.getName());//TODO dublecheck
+            Long limitParam1 = testToBeParsed.getLimitParam1().longValue();
+            Long limitParam2 = testToBeParsed.getLimitParam2().longValue();
+            Long limitParam3 = testToBeParsed.getLimitParam3().longValue();
+            Log.d(TAG, getDescription(testToBeParsed) + " - LIMITS: (" + limitParam1 + "|" + limitParam2 + "-" + limitParam3 + ")");
+            test = new SensorTestWrapper(job.getTesttypeId()==2, activity, ioio, (int) ((long) testToBeParsed.getLimitId()),
+                    limitParam2, limitParam1, limitParam3, getDescription(testToBeParsed));
         } else if (classID == activity.getResources().getInteger(R.integer.DummyTest)) {
-            test = new DummyTest(activity, getDescription(testToBeParsed) + " " + dummycounter + 1, false, true);
-            dummycounter++;
+            test = new DummyTest(activity, getDescription(testToBeParsed) + " " + testToBeParsed.getNumber(), false, true);
         } else if (classID == activity.getResources().getInteger(R.integer.ChargingTest)) {
             test = new ChargingTest(activity, ioio,
                     getDescription(testToBeParsed));
@@ -155,10 +174,12 @@ public class TestsParser {
         } else if (classID == activity.getResources().getInteger(R.integer.PromptStep)) {
             test = new PromptStep(activity, "Prompt Step");
         } else if (classID == activity.getResources().getInteger(R.integer.SetDigitalOutputStep)) {
-            boolean value = testToBeParsed.getBlocking() > 0 ? true : false;
-            test = new SetDigitalOutputStep(activity, testToBeParsed.getIoiopinnum(), value, "Set Digital Output Step");
+            boolean value = testToBeParsed.getScaling() != 0;
+            test = new SetDigitalOutputStep(activity, testToBeParsed.getIoiopinnum(), value, getDescription(testToBeParsed));
+            Log.d(TAG, getDescription(testToBeParsed) + " - IO State - " + value);
         } else if (classID == activity.getResources().getInteger(R.integer.SetSensorVoltagesStep)) {
-            test = new SetSensorVoltagesStep(activity, (short) ((int) testToBeParsed.getIoiopinnum()), (short) ((int) testToBeParsed.getScaling()), "Set Sensor Voltages Step");
+            Log.d(TAG, getDescription(testToBeParsed) + " - GAIN/ZERO - " + testToBeParsed.getIoiopinnum() + "/" + testToBeParsed.getScaling());
+            test = new SetSensorVoltagesStep(activity, (short) ((int) testToBeParsed.getIoiopinnum()), (short) ((float) testToBeParsed.getScaling()), getDescription(testToBeParsed));
             //);
         }
         if (test == null) {
@@ -184,18 +205,10 @@ public class TestsParser {
             }
             return test;
         }
-
-        if (testToBeParsed.getIstest() != 1) {
-            test.setIsTest(false);// Default is Test (true)
-        }
-
-        if (testToBeParsed.getActive() != 1) {
-            test.setActive(false);// Default is active
-        }
-        if (testToBeParsed.getBlocking() == 1) {
-            test.setBlockingTest(true);// Default is non blocking
-        }
         test.setIdTest(testToBeParsed.getId());
+        test.setIsTest(testToBeParsed.getIstest() != 0);// Default is Test (true)
+        test.setActive(testToBeParsed.getActive() != 0);// Default is active
+        test.setBlockingTest(testToBeParsed.getBlocking() != 0);// Default is non blocking
         return test;
     }
 

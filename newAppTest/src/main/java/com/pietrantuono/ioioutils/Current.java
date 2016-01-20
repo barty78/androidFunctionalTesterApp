@@ -14,24 +14,36 @@ public class Current {
 	private static DecimalFormat df = new DecimalFormat("##.##");
 	private static Boolean isinterrupted=false;;
 	private static int currentsleeptime=0;
-	
-	public enum Units {
-		
-		mA	((double)1E3),
-		uA	((double)1E6),
-		nA	((double)1E9);
-		
-		public Double value;
-		
-		public Double getValue() {
-			return value;
-		}
-		
-		Units(double value) {
-			this.value = value;
-		}
+
+	//@Units
+	private static double units;
+
+	private static void setUnits(@Units int units){
+		Current current = new Current();
+		current.units = 1 * Math.pow(10, units);
 	}
-	
+
+	private static double getUnits() {
+		return units;
+	}
+
+//	public enum Units {
+//
+//		mA	((double)1E3),
+//		uA	((double)1E6),
+//		nA	((double)1E9);
+//
+//		public Double value;
+//
+//		public Double getValue() {
+//			return value;
+//		}
+//
+//		Units(double value) {
+//			this.value = value;
+//		}
+//	}
+//
 	
 	
 	/**
@@ -46,8 +58,9 @@ public class Current {
 	 * @param units			- Reading units (mA, uA, nA)
 	 * @throws Exception
 	 */
-	private static float getCurrent(IOIO ioio, int pinNumber, int gain, int Rshunt, Units units) throws Exception {
-		return getCurrent(ioio, pinNumber, gain, Rshunt, units, 10, 0);
+	private static float getCurrent(IOIO ioio, int pinNumber, int gain, int Rshunt, @Units int units) throws Exception {
+		setUnits(units);
+		return getCurrent(ioio, pinNumber, gain, Rshunt, getUnits(), 10, 0);
 	}
 		
 	
@@ -66,7 +79,7 @@ public class Current {
 	 * @return average reading
 	 * @throws Exception
 	 */
-	private static float getCurrent(IOIO ioio, int pinNumber, int gain, int Rshunt, Units units, int numberofreadings, int sleeptime) throws Exception {
+	private static float getCurrent(IOIO ioio, int pinNumber, int gain, int Rshunt, double units, int numberofreadings, int sleeptime) throws Exception {
 		if(isinterrupted)return 0f;
 		currentsleeptime=sleeptime;
 		if (ioio == null)
@@ -86,10 +99,10 @@ public class Current {
 			Thread.sleep(sleeptime);
 		}
 		analogInput.close();
-		float average = (float) (((total / numsamples) / (gain * Rshunt)) * units.getValue());
+		float average = (float) (((total / numsamples) / (gain * Rshunt)) * units);
 		Log.d("GAIN", String.valueOf(gain));
 		Log.d("SHUNT", String.valueOf(Rshunt));
-		Log.d("UNITS", String.valueOf(units.getValue()));
+		Log.d("UNITS", String.valueOf(units));
 		Log.d("VOLTAGE", String.valueOf(total/numsamples));
 		Log.d("CURRENT", String.valueOf(average));
 		return average;
@@ -116,7 +129,7 @@ public class Current {
 	 * @throws Exception
 	 */
 	@SuppressWarnings("ucd")
-	public static Result checkCurrent(IOIO ioio, int pinNumber, int gain, int Rshunt, Units units, Boolean isNominal, float limitParam1, float limitParam2) throws Exception{
+	public static Result checkCurrent(IOIO ioio, int pinNumber, int gain, int Rshunt, @Units int units, Boolean isNominal, float limitParam1, float limitParam2) throws Exception{
 		float average=getCurrent(ioio, pinNumber, gain, Rshunt, units);
 		if (!isNominal) {
 			Boolean success=((average > limitParam2) && (average < limitParam1))?true:false;									// Use Param1 as Upper, Param2 as Lower
@@ -132,20 +145,20 @@ public class Current {
 		private float reading;
 		private String readingString;
 		private Boolean success;
-		private Result(Boolean success, float reading, Units units) {
+		private Result(Boolean success, float reading, @Units int units) {
 			this.reading=reading;
 			df.setRoundingMode(RoundingMode.DOWN);
 			this.success = success;
 			switch (units) {
-			case mA:
+			case Units.mA:
 				if (reading==0) readingString="0mA";
 				else readingString=df.format(reading) + "mA";
 				break;
-			case uA:
+			case Units.uA:
 				if (reading==0) readingString="0uA";
 				else readingString=df.format(reading) + "uA";
 				break;
-			case nA:
+			case Units.nA:
 				if (reading==0) readingString="0nA";
 				else readingString=df.format(reading) + "nA";
 				break;
