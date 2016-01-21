@@ -407,13 +407,20 @@ public class NewSequence implements NewSequenceInterface {
 //				(short) 127));
 
         MyDummyTest test = new MyDummyTest.Builder().setActivity(activity).setDescription("first").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
+        test.setSuccess(true);
         test.setIdTest(1);
         test.setValue(1);
         sequence.add(test);
         test = new MyDummyTest.Builder().setActivity(activity).setDescription("second").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
+        test.setSuccess(false);
         test.setIdTest(2);
         test.setValue(2);
-        sequence.add(new ListenToUart(activity,ioio));
+        sequence.add(test);
+        test = new MyDummyTest.Builder().setActivity(activity).setDescription("second").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
+        test.setIdTest(2);
+        test.setValue(2);
+        sequence.add(test);
+        //sequence.add(new ListenToUart(activity,ioio));
         //sequence.add(test);
         //sequence.add(new UploadFirmwareTest(activity,ioio));
 

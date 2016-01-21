@@ -76,7 +76,6 @@ public 	class VoltageTest extends Test {
 		} catch (Exception e) {
 			report(e);
 		}
-		setValue(result.getReadingValue());
 		if (activityListener == null
 				|| ((Activity) activityListener).isFinishing())
 			return;
@@ -84,6 +83,8 @@ public 	class VoltageTest extends Test {
 			activityListener.addFailOrPass(true, false, "ERROR", description,testToBeParsed);
 			return;
 		}
+		setValue(result.getReadingValue());
+
 		if (result.isSuccess()) {
 			Success();
 			activityListener.addFailOrPass(true, true, result.getReading(), description,testToBeParsed);

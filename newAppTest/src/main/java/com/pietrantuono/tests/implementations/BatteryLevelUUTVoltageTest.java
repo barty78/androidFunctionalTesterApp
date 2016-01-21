@@ -7,12 +7,16 @@ import android.app.Activity;
 import android.util.Log;
 
 import com.pietrantuono.ioioutils.IOIOUtils;
+import com.pietrantuono.ioioutils.Voltage;
 import com.pietrantuono.tests.superclass.Test;
+
+import ioio.lib.api.IOIO;
 
 public class BatteryLevelUUTVoltageTest extends Test {
     private static final int WAIT_TIME_IN_SECS = 10;
-    private int voltage;
+    private float voltage;
     private float limit;
+    private IOIO ioio;
     private float precision;
     private boolean resultreceived;
     private short batt = -1;
@@ -26,8 +30,9 @@ public class BatteryLevelUUTVoltageTest extends Test {
      * @param activity
      * @param description
      */
-    public BatteryLevelUUTVoltageTest(Activity activity, float limit, float precision, String description, int voltage) {
+    public BatteryLevelUUTVoltageTest(Activity activity, IOIO ioio, float limit, float precision, String description, float voltage) {
         super(activity, null, description, false, false, 0, 0, 0);
+        this.ioio = ioio;
         this.voltage = voltage;
         this.limit = limit;
         this.precision = precision;
@@ -40,18 +45,11 @@ public class BatteryLevelUUTVoltageTest extends Test {
         if(getListener().getBtutility()==null){report("BU utility is null");return;}
         DecimalFormat df = new DecimalFormat("##.##");
         df.setRoundingMode(RoundingMode.DOWN);
-        byte[] writebyte = new byte[] { 0x00, (byte) voltage }; // Value of 170 =
-        // 3.5v
-        byte[] readbyte = new byte[] {};
-        if (IOIOUtils.getUtils().getMaster() != null)
-            try {
-                IOIOUtils.getUtils().getMaster().writeRead(0x60, false, writebyte, writebyte.length,
-                        readbyte, readbyte.length);
-            } catch (Exception e1) {
-                report(e1);
-                getListener().addFailOrPass(true, false, "Fixture Fault",testToBeParsed);
-                return;
-            }
+        // Set battery voltage based on parameter
+        if (!IOIOUtils.getUtils().setBattVoltage(ioio, 37, 3f, voltage)) {
+            getListener().addFailOrPass(true, false, "Fixture Fault - Battery Voltage Setpoint not reached", testToBeParsed);
+            return;
+        }
         if(isinterrupted)return;
         try {
             Thread.sleep(2 * 1000);

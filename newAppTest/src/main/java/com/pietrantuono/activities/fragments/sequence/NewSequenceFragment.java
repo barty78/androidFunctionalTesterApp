@@ -2,28 +2,17 @@ package com.pietrantuono.activities.fragments.sequence;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
-import android.widget.ScrollView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.crashlytics.android.Crashlytics;
-import com.pietrantuono.activities.fragments.ListItemClickListener;
-import com.pietrantuono.activities.fragments.SensorItemClickListener;
 import com.pietrantuono.activities.uihelper.ActivityCallback;
-import com.pietrantuono.activities.uihelper.UIHelper;
 import com.pietrantuono.constants.NewMSensorResult;
 import com.pietrantuono.constants.NewSequenceInterface;
 import com.pietrantuono.pericoach.newtestapp.R;
@@ -59,7 +48,7 @@ public class NewSequenceFragment extends Fragment {
         View v = inflater.inflate(R.layout.new_sequence_fragment, container, false);
         recyclerView = (RecyclerView) v.findViewById(R.id.recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        adapter=new SequenceAdapter(getActivity());
+        adapter=new SequenceAdapter(getActivity(), activity);
         recyclerView.setAdapter(adapter);
         return v;
     }
@@ -86,34 +75,31 @@ public class NewSequenceFragment extends Fragment {
 
     public synchronized ProgressAndTextView addTest(final Boolean istest, final Boolean success, String reading,
                                                           String otherreading, String description, boolean isSensorTest, Test testToBeParsed) {
-        final ViewTreeObserver observer = recyclerView.getViewTreeObserver();
-        observer.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
-
+        adapter.addTest(istest, success, reading, otherreading, description, isSensorTest, testToBeParsed, sequence);
+        Handler handler= new Handler(getActivity().getMainLooper());
+        handler.postDelayed(new Runnable() {
             @Override
-            public boolean onPreDraw() {
-                observer.removeOnPreDrawListener(this);
-                if (activity == null || activity.isFinishing()) return true;
+            public void run() {
                 ((ActivityCallback) activity).goAndExecuteNextTest();
-                return true;
-
             }
-        });
-        adapter.addTest(istest, success,reading, otherreading, description,  isSensorTest, testToBeParsed);
-
+        },100);
         return null;
     }
 
     public ProgressAndTextView addSensorTest(NewMSensorResult mSensorResult, Test testToBeParsed) {
-        adapter.addSensorTest(mSensorResult, testToBeParsed);
+        adapter.addSensorTest(mSensorResult, testToBeParsed,sequence);
         return null;
     }
 
 
     public synchronized ProgressAndTextView addUploadRow(final Boolean istest, final Boolean success, String description) {
-        return adapter.addUploadRow(istest,success,description);
+        return adapter.addUploadRow(istest,success,description,sequence);
     }
 
-    public void cleanUI() {}
+    public void cleanUI() {
+        adapter.clear();
+        adapter.notifyDataSetChanged();
+    }
 
     public void setSequence(NewSequenceInterface sequence) {
         this.sequence = sequence;

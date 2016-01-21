@@ -43,17 +43,21 @@ public class CurrentTest extends Test {
 	public void execute() {
 		if(isinterrupted)return;
 		Log.d(TAG, "Test Starting: " + description);
-		byte[] writebyte = new byte[] { 0x00, (byte) 100 }; // Value of 210 =
-		byte[] readbyte = new byte[] {};
-		if (IOIOUtils.getUtils().getMaster() != null)
-			try {
-				IOIOUtils.getUtils().getMaster().writeRead(0x60, false, writebyte, writebyte.length,
-						readbyte, readbyte.length);
-			} catch (Exception e1) {
-				report(e1);
-				activityListener.addFailOrPass(true, false, "ERROR", "Fixture Fault",testToBeParsed);
-				return;
-			}
+		if (!IOIOUtils.getUtils().setBattVoltage(ioio, 34, 2f, 3.7f)){
+			getListener().addFailOrPass(true, false, "Fixture Fault - Battery Voltage Setpoint not reached", testToBeParsed);
+			return;
+		}
+//		byte[] writebyte = new byte[] { 0x00, (byte) 100 }; // Value of 210 =
+//		byte[] readbyte = new byte[] {};
+//		if (IOIOUtils.getUtils().getMaster() != null)
+//			try {
+//				IOIOUtils.getUtils().getMaster().writeRead(0x60, false, writebyte, writebyte.length,
+//						readbyte, readbyte.length);
+//			} catch (Exception e1) {
+//				report(e1);
+//				activityListener.addFailOrPass(true, false, "ERROR", "Fixture Fault",testToBeParsed);
+//				return;
+//			}
 		Result result = null;
 
 		switch(units){

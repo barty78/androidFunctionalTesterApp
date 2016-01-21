@@ -539,6 +539,73 @@ public class IOIOUtils implements IOIOUtilsInterface {
         }
     }
 
+    private void setDAC(int DAC){
+        byte[] writebyte = new byte[] { 0x00, (byte) DAC };
+        byte[] readbyte = new byte[] {};
+        try {
+            getMaster().writeRead(0x60, false, writebyte, writebyte.length,
+                    readbyte, readbyte.length);
+        } catch (ConnectionLostException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public boolean setBattVoltage(final IOIO ioio_, int pin, float scaling, final float voltage) {
+        boolean reached = false;
+        boolean adjusting = true;
+        float measured = 0;
+
+        int DAC = 125;
+        int stepsize = 1;
+        int min = 0;
+        int max = 255;
+        float precision = 0.001f;
+
+        try {
+            measured = (Voltage.getVoltage(ioio_, pin) * scaling);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        while(adjusting) {
+            if (measured < (voltage - (voltage * precision))) {
+                // Increase set voltage, or decrease DAC setting
+                DAC = DAC - stepsize;
+                setDAC(DAC);
+            }
+            if (measured > (voltage + (voltage * precision))){
+                // Increase set voltage, or decrease DAC setting
+                DAC = DAC + stepsize;
+                setDAC(DAC);
+            }
+            try {
+                Thread.sleep(10);
+            } catch (Exception e) {
+            }
+            try {
+                measured = (Voltage.getVoltage(ioio_, pin, 30, 1) * scaling);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            if (measured < (voltage + (voltage * precision)) && measured > (voltage - (voltage * precision))){
+                Log.d(TAG, "Voltage Setpoint reached");
+                reached = true;
+                adjusting = false;
+            }
+            System.out.println("Target " + voltage + " | DAC set to " + DAC + " | Bat V is " + measured + "V");
+
+            // If we hit the DAC limits, stop adjusting.
+            if (DAC == min || DAC == max) {
+                adjusting = false;
+            }
+        }
+
+        return reached;
+    }
+
     @Override
     public DigitalOutput getDigitalOutput(int pinNumber) {
         switch (pinNumber) {
