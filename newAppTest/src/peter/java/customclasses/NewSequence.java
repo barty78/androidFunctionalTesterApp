@@ -337,7 +337,7 @@ public class NewSequence implements NewSequenceInterface {
 
 //        sequence.add(new GetNFCTest(activity, ioio, 3));
 
-        sequence.add(new GetBarcodeTest(activity, ioio, job, 5f));
+//        sequence.add(new GetBarcodeTest(activity, ioio, job, 5f));
 
         sequence.add(new CurrentTest(activity, ioio, 42, Units.uA, false, 100f, 0f,
                 "Current Measurement - UUT Unprogrammed"));
@@ -422,10 +422,10 @@ public class NewSequence implements NewSequenceInterface {
         sequence.add(new LedCheckTest(activity, "Green", "Green LED Check"));
         sequence.add(new LedCheckTest(activity, "Blue", "Blue LED Check"));
 
-        sequence.add(new BatteryLevelUUTVoltageTest(activity, 15, 0.5f,
-                "Battery Level - UUT voltage @ 3.5V", 100));
-        sequence.add(new BatteryLevelUUTVoltageTest(activity, 85, 0.15f,
-                "Battery Level - UUT voltage @ 4.1V", 15));
+        sequence.add(new BatteryLevelUUTVoltageTest(activity, ioio, 15, 0.5f,
+                "Battery Level - UUT voltage @ 3.5V", 3.6f));
+        sequence.add(new BatteryLevelUUTVoltageTest(activity, ioio, 85, 0.15f,
+                "Battery Level - UUT voltage @ 4.1V", 4.1f));
 
         sequence.add(new SetSensorVoltagesStep(activity, (short) 0, (short) 0, "Set GAIN -> 0, ZERO -> 0"));
         sequence.add(new VoltageTest(activity, ioio, 32, Units.V, false, -2f, false, 0.1f, -0.1f,

@@ -132,11 +132,12 @@ public class TestsParser {
             test = new ReadFirmwareversionTest(activity);
         }
         else if (classID == activity.getResources().getInteger(R.integer.BatteryLevelUUTVoltageTest)) {
-            test = new BatteryLevelUUTVoltageTest(activity,
+            test = new BatteryLevelUUTVoltageTest(activity, ioio,
                     testToBeParsed.getLimitParam1(),
                     testToBeParsed.getLimitParam2(),
                     getDescription(testToBeParsed),
-                    (int) (float)testToBeParsed.getScaling());
+//                    (int) (float)testToBeParsed.getScaling());
+                    testToBeParsed.getScaling());
             test.setTestToBeParsed(testToBeParsed);
         } else if (classID == activity.getResources().getInteger(R.integer.SensorTestWrapper)) {
             Long limitParam1 = testToBeParsed.getLimitParam1().longValue();
