@@ -19,7 +19,6 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 import hydrix.pfmat.generic.Force;
 import hydrix.pfmat.generic.SessionSamples;
-import hydrix.pfmat.generic.TestLimits;
 
 public class ClosedTest extends SensorTest {
 	// private final SensorsTestHelper sensorsTestHelper;
@@ -69,32 +68,32 @@ public class ClosedTest extends SensorTest {
 
 		if (this.activity == null || activity == null) {
 			Log.e(SensorsTestHelper.TAG, "You must set the activity");
-			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Closed Sensor test");
+			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Closed Sensor test",true,testToBeParsed);
 			return;
 		}
 		if (this.voltage == -1) {
 			Log.e(SensorsTestHelper.TAG, "You must set the voltage");
-			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Closed ensor test");
+			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Closed ensor test",true,testToBeParsed);
 			return;
 		}
 		if (this.sensorsTestHelper.samplesref == null) {
 			Log.e(SensorsTestHelper.TAG, "samplesref null?!");
-			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Closed Sensor test");
+			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Closed Sensor test",true,testToBeParsed);
 			return;
 		}
 		if (this.sensorsTestHelper.samplesref == null) {
 			Log.e(SensorsTestHelper.TAG, "samplesref null?!");
-			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Closed Sensor test");
+			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Closed Sensor test",true,testToBeParsed);
 			return;
 		}
 		if (load == null) {
 			Log.e(SensorsTestHelper.TAG, "load null?!");
-			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Closed Sensor test");
+			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Closed Sensor test",true,testToBeParsed);
 			return;
 		}
 		if (mSensorResult == null) {
 			Log.e(SensorsTestHelper.TAG, "mSensorResult null?!");
-			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Closed Sensor test");
+			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Closed Sensor test",true,testToBeParsed);
 			return;
 		}
 		try {
@@ -172,7 +171,7 @@ public class ClosedTest extends SensorTest {
 			Toast.makeText(activity.get(),
 					"Error taking measure, please check Bluetooth and PeriCoach device and restart test",
 					Toast.LENGTH_LONG).show();
-			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test");
+			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test",true,testToBeParsed);
 			return mSensorResult;
 		}
 		// Results sensor 0
@@ -307,7 +306,7 @@ public class ClosedTest extends SensorTest {
 			mSensorResult.setTestsuccessful(false);
 		}
 		if (activity != null && activity != null && !isTest)
-			((SensorTestCallback) (activity.get())).onSensorTestCompleted(mSensorResult);
+			((SensorTestCallback) (activity.get())).onSensorTestCompleted(mSensorResult, testToBeParsed);
 		if(!isTest)this.sensorsTestHelper.sendVoltages(this.sensorsTestHelper.NORMAL_VOLTAGE, (short)0);
 		if(!isTest)stop();
 		try {

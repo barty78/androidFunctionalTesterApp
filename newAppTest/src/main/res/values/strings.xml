@@ -149,4 +149,11 @@
     <string name="no_no">NO</string>
     <string name="na">N/A</string>
     <string name="test_type">TEST TYPE:&#160;</string>
+    <string name="nominal">NOMINAL:&#160;</string>
+    <string name="tolerance">TOLERANCE:&#160;</string>
+    <string name="lower">LOWER:&#160;</string>
+    <string name="upper">UPPER:&#160;</string>
+    <string name="min">MIN:&#160;</string>
+    <string name="max">MAX:&#160;</string>
+    <string name="var">VAR:&#160;</string>
 </resources>

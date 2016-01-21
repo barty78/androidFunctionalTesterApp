@@ -49,6 +49,13 @@ public class Device extends Model {
     @Expose
     private int passed;
 
+//    I've also added two new fields to devices...  Executed_Tests and Status..  Let me explain their use..
+//    Both are bitmasked against testtype (ie, open test = 1, closed test = 2, other tests would be 4/8/16 etc.)..
+//    Executed tests identifies which tests the device has actually been run with.  Status identifies if test have passed or failed..  Since a device will go through more than one test sequence during production, we needed to be able to determine if a device has actually been through a test type, and if it passed/failed.
+//    The web service has already been updated to handle setting these fields, so nothing needs changing in the app to set the fields..  Web service uses the result and sets executed_tests and status accordingly.  You just need to use the fields in the devices list to display.
+
+
+
     @Column(name ="executed_tests")
     @Expose
     private long executed_tests;

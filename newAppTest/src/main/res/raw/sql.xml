@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS [jobs] (
   [LastUpdated] TIMESTAMP NOT NULL DEFAULT (datetime('now','localtime')),
   [LastReportedRecord] NUMERIC NOT NULL DEFAULT 0,
   [ReportNumber] NUMERIC NOT NULL DEFAULT 0,
+  [stage_dep] NUMERIC NOT NULL,
   [active] NUMERIC NOT NULL DEFAULT 0
   );
 </statement>

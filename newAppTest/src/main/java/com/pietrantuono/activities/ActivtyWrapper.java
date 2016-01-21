@@ -18,8 +18,7 @@ public interface ActivtyWrapper {
 	public void toast(String text, int lenght);
 
 	public void goAndExecuteNextTest();
-	
-	@SuppressWarnings("ucd")
+
 	public ProgressAndTextView addFailOrPass(final Boolean istest, final Boolean success, String reading);
 
 	public void onIOIOLooperSetup(IOIO ioio);

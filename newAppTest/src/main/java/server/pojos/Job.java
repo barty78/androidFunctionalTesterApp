@@ -6,16 +6,15 @@ import com.google.gson.annotations.SerializedName;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-
 public class Job implements Parcelable {
 
     @Expose
     private long id;
-    
+
     @SerializedName("testtype_id")
     @Expose
     private long testtypeId;
-    
+
     @SerializedName("test_id")
     @Expose
     private long testId;
@@ -27,43 +26,51 @@ public class Job implements Parcelable {
 
     @Expose
     private String jobno;
-    
+
     @Expose
     private long quantity;
-    
+
     @SerializedName("barcodeprefix")
     @Expose
     private String barcodeprefix;
-    
-    
+
+
     @SerializedName("created_at")
     @Expose
     private String createdAt;
-    
+
     @SerializedName("updated_at")
     @Expose
     private String updatedAt;
-    
+
     @Expose
     private long islogging;
 
     @Expose
     private long isretestallowed;
-    
+
     @Expose
     private long active;
-    
+
     @Expose
     private String description;
-    
-    
-    
-    
+
+
+//    Ok.  Stage_dep field is now sent from the web service in the job api..  stage_dep will tell us what needs to be run/passed before the current test can be executed for the device..  So a value of 0 is nothing (this is the first stage of testing).  A value of 1 means that open test needs to have been run, a value of 2 means closed test needs to have been run.  A value of 3 means both open and closed needs to have been run..  So right now, it will be only values of 0 or 1 because we have no stages after closed test..
+//    So we now just need to work out when/where and what the app logic should be.
+//    For open test it doesn't really need anything, but maybe for completeness we should use stage_dep and make sure status is 0
+//    so status == stage_dep
+//    for closed test, once we've IDed the device, we should check against local db that status & stage_dep == stage_dep
+    @Expose
+    @SerializedName("stage_dep")
+    private int stage_dep;
+
+
 
     public Job() {}
 
-	/**
-     * 
+    /**
+     *
      * @return
      *     The id
      */
@@ -72,7 +79,7 @@ public class Job implements Parcelable {
     }
 
     /**
-     * 
+     *
      * @param id
      *     The id
      */
@@ -81,7 +88,7 @@ public class Job implements Parcelable {
     }
 
     /**
-     * 
+     *
      * @return
      *     The testtypeId
      */
@@ -90,7 +97,7 @@ public class Job implements Parcelable {
     }
 
     /**
-     * 
+     *
      * @param testtypeId
      *     The testtype_id
      */
@@ -99,7 +106,7 @@ public class Job implements Parcelable {
     }
 
     /**
-     * 
+     *
      * @return
      *     The testId
      */
@@ -108,7 +115,7 @@ public class Job implements Parcelable {
     }
 
     /**
-     * 
+     *
      * @param testId
      *     The test_id
      */
@@ -136,7 +143,7 @@ public class Job implements Parcelable {
 
 
     /**
-     * 
+     *
      * @return
      *     The jobno
      */
@@ -145,7 +152,7 @@ public class Job implements Parcelable {
     }
 
     /**
-     * 
+     *
      * @param jobno
      *     The jobno
      */
@@ -154,7 +161,7 @@ public class Job implements Parcelable {
     }
 
     /**
-     * 
+     *
      * @return
      *     The quantity
      */
@@ -163,7 +170,7 @@ public class Job implements Parcelable {
     }
 
     /**
-     * 
+     *
      * @param quantity
      *     The quantity
      */
@@ -172,7 +179,7 @@ public class Job implements Parcelable {
     }
 
     /**
-     * 
+     *
      * @return
      *     The createdAt
      */
@@ -181,7 +188,7 @@ public class Job implements Parcelable {
     }
 
     /**
-     * 
+     *
      * @param createdAt
      *     The created_at
      */
@@ -190,7 +197,7 @@ public class Job implements Parcelable {
     }
 
     /**
-     * 
+     *
      * @return
      *     The updatedAt
      */
@@ -199,7 +206,7 @@ public class Job implements Parcelable {
     }
 
     /**
-     * 
+     *
      * @param updatedAt
      *     The updated_at
      */
@@ -208,7 +215,7 @@ public class Job implements Parcelable {
     }
 
     /**
-     * 
+     *
      * @return
      *     The islogging
      */
@@ -217,7 +224,7 @@ public class Job implements Parcelable {
     }
 
     /**
-     * 
+     *
      * @param islogging
      *     The islogging
      */
@@ -237,7 +244,7 @@ public class Job implements Parcelable {
     public long getIsretestallowed() {return isretestallowed;}
 
     /**
-     * 
+     *
      * @return
      *     The active
      */
@@ -246,7 +253,7 @@ public class Job implements Parcelable {
     }
 
     /**
-     * 
+     *
      * @param active
      *     The active
      */
@@ -255,7 +262,7 @@ public class Job implements Parcelable {
     }
 
     /**
-     * 
+     *
      * @return
      *     The description
      */
@@ -264,7 +271,7 @@ public class Job implements Parcelable {
     }
 
     /**
-     * 
+     *
      * @param description
      *     The description
      */
@@ -272,16 +279,25 @@ public class Job implements Parcelable {
         this.description = description;
     }
 
-	public String getBarcodeprefix() {
-		return barcodeprefix;
-	}
+    public String getBarcodeprefix() {
+        return barcodeprefix;
+    }
 
-	public void setBarcodeprefix(String barcodeprefix) {
-		this.barcodeprefix = barcodeprefix;
-	}
+    public void setBarcodeprefix(String barcodeprefix) {
+        this.barcodeprefix = barcodeprefix;
+    }
 
 
-    protected Job(Parcel in) { // NO_UCD (use private)
+    public int getStage_dep() {
+        return stage_dep;
+    }
+
+    public void setStage_dep(int stage_dep) {
+        this.stage_dep = stage_dep;
+    }
+
+
+    protected Job(Parcel in) {
         id = in.readLong();
         testtypeId = in.readLong();
         testId = in.readLong();
@@ -295,6 +311,7 @@ public class Job implements Parcelable {
         isretestallowed = in.readLong();
         active = in.readLong();
         description = in.readString();
+        stage_dep = in.readInt();
     }
 
     @Override
@@ -317,9 +334,10 @@ public class Job implements Parcelable {
         dest.writeLong(isretestallowed);
         dest.writeLong(active);
         dest.writeString(description);
+        dest.writeInt(stage_dep);
     }
 
-    @SuppressWarnings({"unused","ucd"})
+    @SuppressWarnings("unused")
     public static final Parcelable.Creator<Job> CREATOR = new Parcelable.Creator<Job>() {
         @Override
         public Job createFromParcel(Parcel in) {

@@ -43,6 +43,8 @@ import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import server.pojos.Test;
+
 public class UIHelper {
 	
 	private Activity activity;
@@ -239,17 +241,11 @@ public class UIHelper {
 	}
 
 	public synchronized ProgressAndTextView addFailOrPass(final Boolean istest, final Boolean success, String reading,
-			String otherreading, String description) {
+			String otherreading, String description, boolean issensortest,server.pojos.Test testToBeParsed) {
 		if(sequenceFragment!=null){
-			return  sequenceFragment.addFailOrPass(istest,success,reading,otherreading,description);
+			return  sequenceFragment.addFailOrPass(istest,success,reading,otherreading,description,issensortest,testToBeParsed);
 		}
 		else return null;
-	}
-
-	public synchronized ProgressAndTextView addFailOrPass(final Boolean istest, final Boolean success, String reading,
-			String otherreading) {
-		return addFailOrPass(istest, success, reading, otherreading, null);
-
 	}
 
 	public void setOverallFailOrPass(final Boolean show) {
@@ -405,8 +401,8 @@ public class UIHelper {
 		});
 	}
 
-	public void addSensorTestCompletedRow(NewMSensorResult mSensorResult) {
-		sequenceFragment.addSensorTestCompletedRow(mSensorResult);
+	public void addSensorTestCompletedRow(NewMSensorResult mSensorResult, Test testToBeParsed) {
+		sequenceFragment.addSensorTestCompletedRow(mSensorResult,testToBeParsed);
 	}
 
 	public void setSequence(NewSequenceInterface sequence) {

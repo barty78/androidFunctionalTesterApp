@@ -53,6 +53,8 @@ public class SensorTestWrapper extends Test {
 
 		if(isClosedTest){sensorTest=new ClosedTest(activity,SensorTestWrapper.this, lowerLimit, upperLimit, varLimit);}
 		else {sensorTest=new SensorTest(activity,SensorTestWrapper.this, lowerLimit, upperLimit, varLimit);}
+
+
 	}
 
 	@Override
@@ -94,5 +96,11 @@ public class SensorTestWrapper extends Test {
 
 	public Boolean getLoad() {
 		return load;
+	}
+
+	@Override
+	public void setTestToBeParsed(server.pojos.Test testToBeParsed) {
+		super.setTestToBeParsed(testToBeParsed);
+		sensorTest.setTestToBeParsed(testToBeParsed);
 	}
 }

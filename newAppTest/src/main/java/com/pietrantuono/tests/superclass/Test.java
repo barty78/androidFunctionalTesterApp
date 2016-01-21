@@ -28,8 +28,9 @@ public abstract class Test {
 	//Limits variables
 	public boolean isNominal;
 	public float limitParam1, limitParam2,limitParam3;
-	
-	
+	public server.pojos.Test testToBeParsed;
+
+
 	public abstract void execute();
 	public String getDescription(){return description;}
 	public void setDescription(String description){this.description=description;}
@@ -78,9 +79,9 @@ public abstract class Test {
 			@Override
 			public void run() {
 				Crashlytics.logException(e);
-				Log.d(TAG,e.toString());
-				if (activityListener==null) return;
-				Toast.makeText(activity, e.toString(), Toast.LENGTH_LONG).show();		
+				Log.d(TAG, e.toString());
+				if (activityListener == null) return;
+				Toast.makeText(activity, e.toString(), Toast.LENGTH_LONG).show();
 			}
 		});
 		
@@ -119,5 +120,10 @@ public abstract class Test {
 	}
 	public void setValue(double value) {
 		this.value = value;
+	}
+
+
+	public void setTestToBeParsed(server.pojos.Test testToBeParsed) {
+		this.testToBeParsed = testToBeParsed;
 	}
 }

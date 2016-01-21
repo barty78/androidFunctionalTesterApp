@@ -73,6 +73,7 @@ public class TestsParser {
 
             test = new CurrentTest(activity, ioio, pinnumber, units, isNominal, limitParam1, limitParam2,
                     getDescription(testToBeParsed));
+            test.setTestToBeParsed(testToBeParsed);
 
         } else if (classID == activity.getResources().getInteger(R.integer.VoltageTest)) {
             boolean isNominal = testToBeParsed.getIsNominal() == 1;
@@ -93,6 +94,7 @@ public class TestsParser {
                 test = new VoltageTest(activity, ioio, pinnumber, units, isBlocking, isNominal, limitParam1, limitParam2,
                         getDescription(testToBeParsed));
             }
+            test.setTestToBeParsed(testToBeParsed);
 
         } else if (classID == activity.getResources().getInteger(R.integer.LedCheckTest)) {
             test = new LedCheckTest(activity, getDescription(testToBeParsed),
@@ -130,11 +132,13 @@ public class TestsParser {
             test = new ReadFirmwareversionTest(activity);
         }
         else if (classID == activity.getResources().getInteger(R.integer.BatteryLevelUUTVoltageTest)) {
-            test = new BatteryLevelUUTVoltageTest(activity,
+            test = new BatteryLevelUUTVoltageTest(activity, ioio,
                     testToBeParsed.getLimitParam1(),
                     testToBeParsed.getLimitParam2(),
                     getDescription(testToBeParsed),
-                    (int) (float)testToBeParsed.getScaling());
+//                    (int) (float)testToBeParsed.getScaling());
+                    testToBeParsed.getScaling());
+            test.setTestToBeParsed(testToBeParsed);
         } else if (classID == activity.getResources().getInteger(R.integer.SensorTestWrapper)) {
             Long limitParam1 = testToBeParsed.getLimitParam1().longValue();
             Long limitParam2 = testToBeParsed.getLimitParam2().longValue();
@@ -142,6 +146,7 @@ public class TestsParser {
             Log.d(TAG, getDescription(testToBeParsed) + " - LIMITS: (" + limitParam1 + "|" + limitParam2 + "-" + limitParam3 + ")");
             test = new SensorTestWrapper(job.getTesttypeId()==2, activity, ioio, (int) ((long) testToBeParsed.getLimitId()),
                     limitParam2, limitParam1, limitParam3, getDescription(testToBeParsed));
+            test.setTestToBeParsed(testToBeParsed);
         } else if (classID == activity.getResources().getInteger(R.integer.DummyTest)) {
             test = new DummyTest(activity, getDescription(testToBeParsed) + " " + testToBeParsed.getNumber(), false, true);
         } else if (classID == activity.getResources().getInteger(R.integer.ChargingTest)) {

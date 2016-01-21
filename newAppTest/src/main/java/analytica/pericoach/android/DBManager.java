@@ -38,7 +38,7 @@ public class DBManager {
     private SQLiteDatabase db;
 
     private static final String DB_NAME = "PeriCoachTest";
-    private static final int DB_VERSION = 2;
+    private static final int DB_VERSION = 3;
 
     public DBManager(Context context) {
         this.context = context;
@@ -64,10 +64,17 @@ public class DBManager {
 		 * entity.getTotalQty(), currentDate, currentDateandTime };
 		 */
 
-        String strSQL = "INSERT INTO jobs(jobNo,test_id,totalqty"
+        String strSQL = "INSERT INTO jobs("
+                //"jobNo,test_id,totalqty"
+                + Contract.JOBS_JOB_NUMBER_COLUMN
+                + Contract.SEPARATOR + Contract.JOBS_TESTID_COLUMN
+                + Contract.SEPARATOR + Contract.JOBS_TOTALQUANTITY_COLUMN
                 + Contract.SEPARATOR + Contract.JOBS_JOB_ID_COLUMN
-                + Contract.SEPARATOR + Contract.JOBS_TESTTYPE_ID_COLUMN +
-                ") "
+                + Contract.SEPARATOR + Contract.JOBS_TESTTYPE_ID_COLUMN
+                + Contract.SEPARATOR + Contract.JOBS_ACTIVE_COLUMN
+                + Contract.SEPARATOR + Contract.JOBS_STAGE_DEP
+                +
+        ") "
                 + "VALUES(?,?,?,?,?);";
 
         Object[] values = new Object[]{
@@ -75,7 +82,10 @@ public class DBManager {
                 entity.getTestID(),
                 entity.getTotalQty(),
                 entity.getJob_id(),
-                entity.getTesttype_id()};
+                entity.getTesttype_id(),
+                entity.isActive()?0:1,
+                entity.getStage_dep()
+        };
 
         Log.d("SQL: ", strSQL);
         try {
@@ -101,42 +111,6 @@ public class DBManager {
         }
 
         db.close();
-    }
-
-
-    public static Job getJobByJobID(int jobID, Context context) {
-        Job job=null;
-        CustomSQLiteOpenHelper helper = CustomSQLiteOpenHelper.getCustomSQLiteOpenHelper(context);
-        SQLiteDatabase database = helper.getWritableDatabase();
-        try {
-            String selection = Contract.JOBS_JOB_ID_COLUMN + " = ?";
-            String[] selectionArgs = new String[]{"" + jobID};
-            String limit = "1";
-            Cursor c = database.query(
-                    Contract.JOBS_TABLE_NAME,
-                    null,
-                    selection,
-                    selectionArgs,
-                    null,
-                    null,
-                    limit
-            );
-            while (c.moveToNext()) {
-                job= new Job();
-                job.setJob_id(c.getInt(c.getColumnIndexOrThrow(Contract.JOBS_JOB_ID_COLUMN)));
-                job.setJobNo(c.getString(c.getColumnIndexOrThrow(Contract.JOBS_JOB_NUMBER_COLUMN)));
-                job.setTestID(c.getInt(c.getColumnIndexOrThrow(Contract.JOBS_TESTID_COLUMN)));
-                job.setTesttype_id(c.getInt(c.getColumnIndexOrThrow(Contract.JOBS_TESTTYPE_ID_COLUMN)));
-                job.setActive(c.getColumnIndexOrThrow(Contract.JOBS_ACTIVE_COLUMN));
-            }
-
-        } catch (SQLException e) {
-            Log.e("DB Error", e.toString());
-            e.printStackTrace();
-        } finally {
-            database.close();
-        }
-        return job;
     }
 
 
@@ -171,6 +145,7 @@ public class DBManager {
                 entity.setActive(c.getInt(9));
                 entity.setJob_id(c.getInt(c.getColumnIndexOrThrow(Contract.JOBS_JOB_ID_COLUMN)));
                 entity.setTesttype_id(c.getInt(c.getColumnIndexOrThrow(Contract.JOBS_TESTTYPE_ID_COLUMN)));
+                entity.setStage_dep(c.getColumnIndexOrThrow(Contract.JOBS_STAGE_DEP));
 
                 entityList.add(entity);
             }
@@ -390,6 +365,11 @@ public class DBManager {
                 String ADD_JOB_ID = "ALTER TABLE " + Contract.JOBS_TABLE_NAME + " ADD COLUMN " + Contract.JOBS_JOB_ID_COLUMN + " NUMERIC";
                 db.execSQL(ADD_JOB_ID);
                 getAndUpdateJobs(context);
+            }
+            if(oldVersion<3){
+                Log.d(TAG, "Upgrading database");
+                String ADD_TESTTYPE_ID = "ALTER TABLE " + Contract.JOBS_TABLE_NAME + " ADD COLUMN " + Contract.JOBS_STAGE_DEP + " NUMERIC";
+                db.execSQL(ADD_TESTTYPE_ID);
             }
         }
 

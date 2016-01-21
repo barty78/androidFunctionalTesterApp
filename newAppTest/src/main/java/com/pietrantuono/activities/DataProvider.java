@@ -19,9 +19,10 @@ class DataProvider {
 		DBManager dbManager= new DBManager(context);
 		analytica.pericoach.android.Job job = new analytica.pericoach.android.Job();
 		job.setJobNo(jobToBeInserted.getJobno());
-		job.setTestID((TEST.OPEN_TEST));//TODO please note
+		job.setTestID((int) jobToBeInserted.getTestId());
 		job.setTotalQty((int) (jobToBeInserted.getQuantity()));
 		job.setId(jobToBeInserted.getId());
+		job.setActive((int) jobToBeInserted.getActive());
 		//job.setJobNo("11");
 		//job.setTestID(1);
 		//job.setTotalQty(3);

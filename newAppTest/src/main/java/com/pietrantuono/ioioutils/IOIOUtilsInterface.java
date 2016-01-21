@@ -23,6 +23,8 @@ public interface IOIOUtilsInterface {
 
 	void ioioSync(IOIO ioio_);
 
+	boolean setBattVoltage(IOIO ioio_, int pin, float scaling, float voltage);
+
 	DigitalOutput getDigitalOutput(int pinNumber);
 
 	void resetUart2(IOIO ioio_, Activity ac);
