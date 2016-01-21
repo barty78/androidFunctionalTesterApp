@@ -43,7 +43,7 @@ public class CurrentTest extends Test {
 	public void execute() {
 		if(isinterrupted)return;
 		Log.d(TAG, "Test Starting: " + description);
-		if (!IOIOUtils.getUtils().setBattVoltage(ioio, 3.7f)){
+		if (!IOIOUtils.getUtils().setBattVoltage(ioio, 34, 2f, 3.7f)){
 			getListener().addFailOrPass(true, false, "Fixture Fault - Battery Voltage Setpoint not reached", testToBeParsed);
 			return;
 		}

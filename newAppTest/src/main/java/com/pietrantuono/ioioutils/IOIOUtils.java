@@ -553,7 +553,7 @@ public class IOIOUtils implements IOIOUtilsInterface {
     }
 
     @Override
-    public boolean setBattVoltage(final IOIO ioio_, final float voltage) {
+    public boolean setBattVoltage(final IOIO ioio_, int pin, float scaling, final float voltage) {
         boolean reached = false;
         boolean adjusting = true;
         float measured = 0;
@@ -565,13 +565,12 @@ public class IOIOUtils implements IOIOUtilsInterface {
         float precision = 0.001f;
 
         try {
-            measured = (Voltage.getVoltage(ioio_, 34) * 2);
+            measured = (Voltage.getVoltage(ioio_, pin) * scaling);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         while(adjusting) {
-            System.out.println("Target " + voltage + " | DAC set to " + DAC + " | Bat V is " + measured + "V");
             if (measured < (voltage - (voltage * precision))) {
                 // Increase set voltage, or decrease DAC setting
                 DAC = DAC - stepsize;
@@ -583,11 +582,11 @@ public class IOIOUtils implements IOIOUtilsInterface {
                 setDAC(DAC);
             }
             try {
-                Thread.sleep(100);
+                Thread.sleep(10);
             } catch (Exception e) {
             }
             try {
-                measured = (Voltage.getVoltage(ioio_, 34) * 2);
+                measured = (Voltage.getVoltage(ioio_, pin, 30, 1) * scaling);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -596,6 +595,7 @@ public class IOIOUtils implements IOIOUtilsInterface {
                 reached = true;
                 adjusting = false;
             }
+            System.out.println("Target " + voltage + " | DAC set to " + DAC + " | Bat V is " + measured + "V");
 
             // If we hit the DAC limits, stop adjusting.
             if (DAC == min || DAC == max) {

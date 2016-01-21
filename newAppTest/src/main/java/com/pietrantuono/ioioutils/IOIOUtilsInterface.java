@@ -23,7 +23,7 @@ public interface IOIOUtilsInterface {
 
 	void ioioSync(IOIO ioio_);
 
-	boolean setBattVoltage(IOIO ioio_, float voltage);
+	boolean setBattVoltage(IOIO ioio_, int pin, float scaling, float voltage);
 
 	DigitalOutput getDigitalOutput(int pinNumber);
 

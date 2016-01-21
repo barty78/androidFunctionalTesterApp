@@ -46,7 +46,7 @@ public class BatteryLevelUUTVoltageTest extends Test {
         DecimalFormat df = new DecimalFormat("##.##");
         df.setRoundingMode(RoundingMode.DOWN);
         // Set battery voltage based on parameter
-        if (!IOIOUtils.getUtils().setBattVoltage(ioio, voltage)) {
+        if (!IOIOUtils.getUtils().setBattVoltage(ioio, 37, 3f, voltage)) {
             getListener().addFailOrPass(true, false, "Fixture Fault - Battery Voltage Setpoint not reached", testToBeParsed);
             return;
         }
