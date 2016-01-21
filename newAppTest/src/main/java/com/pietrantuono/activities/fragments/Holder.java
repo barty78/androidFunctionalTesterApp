@@ -1,9 +1,11 @@
 package com.pietrantuono.activities.fragments;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.pietrantuono.application.PeriCoachTestApplication;
@@ -23,6 +25,7 @@ public class Holder extends RecyclerView.ViewHolder {
     private TextView passed_tv;
     private Context context;
     private Device device;
+    private ProgressBar progressBar;
 
     public Holder(View itemView) {
         super(itemView);
@@ -30,6 +33,7 @@ public class Holder extends RecyclerView.ViewHolder {
         serial = (TextView) itemView.findViewById(R.id.serial_tv);
         address = (TextView) itemView.findViewById(R.id.address_tv);
         passed_tv = (TextView) itemView.findViewById(R.id.passed_tv);
+        progressBar = (ProgressBar) itemView.findViewById(R.id.testResultInd);
     }
 
     public void setData(Device device, Context context) {
@@ -51,16 +55,8 @@ public class Holder extends RecyclerView.ViewHolder {
         if ((device.getStatus() & job.getTesttypeId()) == job.getTesttypeId()) {
             Log.d("HOLDER", "TestType: " + String.valueOf(job.getTesttypeId()) + " | Status: " + String.valueOf(device.getStatus()));
             passed_tv.setText(context.getString(R.string.passed_passed));
+            Drawable background = context.getResources().getDrawable(R.drawable.greenprogress);
+            progressBar.setProgressDrawable(background);
         }
     }
-
-
-    private int getFirstBit(int integer) {
-        return integer & 1;
-    }
-
-    private int getSecondBit(int integer) {
-        return integer >> 1 & 1;
-    }
-
 }

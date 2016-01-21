@@ -118,23 +118,10 @@ public class OtherSelectJobActivity extends Activity implements MyCallback {
 				Log.d("Test ID:", String.valueOf(job.getTestId()));
 				Log.d("Firmware ID:", String.valueOf(job.getFirmwareId()));
 				Log.d("Logging", String.valueOf(job.getIslogging() != 0));
-				//PeriCoachTestApplication.setFirmwareId(job.getFirmwareId());
 				Log.d("Job ID: ", String.valueOf(job.getId()));
 				PeriCoachTestApplication.setCurrentJob(job);
 				PeriCoachTestApplication.setIsRetestAllowed(job.getIsretestallowed() != 0);
-
 				getFirmwareListFromServer(job.getFirmwareId());
-
-//				if (job.getTestId() != 999) {		// Special job type 999 bypasses server defined sequence, uses internal one instead
-//					startMainActivity(job);
-//				}
-//				if (firmwarefilepresent) {
-//					downloadSequence(job);
-//				} else {
-//					Toast.makeText(OtherSelectJobActivity.this,
-//							"Firmware file not present", Toast.LENGTH_LONG)
-//							.show();
-//				}
 			}
 
 		});
