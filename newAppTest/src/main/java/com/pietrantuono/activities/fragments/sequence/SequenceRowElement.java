@@ -105,7 +105,6 @@ public class SequenceRowElement {
         private boolean istest;
         private boolean success;
 
-
         public UploadRowElement(String description, boolean istest, boolean success,NewSequenceInterface sequence) {
             super(sequence);
             this.description = description;

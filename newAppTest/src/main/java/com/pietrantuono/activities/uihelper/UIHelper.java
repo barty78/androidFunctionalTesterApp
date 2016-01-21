@@ -2,10 +2,8 @@ package com.pietrantuono.activities.uihelper;
 
 import java.util.ArrayList;
 
-import com.crashlytics.android.Crashlytics;
 import com.pietrantuono.activities.fragments.PagerAdapter;
 import com.pietrantuono.activities.fragments.sequence.NewSequenceFragment;
-import com.pietrantuono.activities.fragments.sequence.SequenceFragment;
 import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.constants.NewMResult;
 import com.pietrantuono.constants.NewMSensorResult;
@@ -24,7 +22,6 @@ import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.SystemClock;
-import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -39,10 +36,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
-import android.widget.TableLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import server.pojos.Test;
 
@@ -256,7 +250,7 @@ public class UIHelper {
 			@Override
 			public void run() {
 
-				RelativeLayout resultlayout = (RelativeLayout) activity.findViewById(R.id.progresscontainer);
+				RelativeLayout resultlayout = (RelativeLayout) activity.findViewById(R.id.result);
 				TextView resulttxt = (TextView) activity.findViewById(R.id.testResultIndText);
 				ProgressBar progress = (ProgressBar) activity.findViewById(R.id.testResultInd);
 

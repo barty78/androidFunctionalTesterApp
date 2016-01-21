@@ -2,12 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="35dp"
-        android:background="@drawable/list_grey_gradient" >
+        android:background="@drawable/list_grey_gradient">
 
         <TextView
             android:id="@+id/testSeqNum"
@@ -38,7 +38,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="35dp"
-        android:background="@drawable/list_grey_gradient" >
+        android:background="@drawable/list_grey_gradient">
 
         <TextView
             android:id="@+id/testSeqNum1"
@@ -58,22 +58,22 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_toLeftOf="@+id/progresscontainer"
+            android:layout_toLeftOf="@+id/result"
             android:layout_toRightOf="@+id/view"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_toLeftOf="@+id/progresscontainer"
+                android:layout_toLeftOf="@+id/result"
                 android:layout_toRightOf="@+id/view"
-                android:orientation="horizontal" >
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="horizontal" >
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -87,7 +87,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="horizontal" >
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -101,7 +101,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="horizontal" >
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -115,7 +115,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="horizontal" >
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -125,19 +125,19 @@
                         android:textColor="@color/list_highlight_color" />
                 </LinearLayout>
             </LinearLayout>
-            <View 
-                android:background="@drawable/dotted"
+
+            <View
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
-                />
+                android:background="@drawable/dotted" />
         </LinearLayout>
 
         <RelativeLayout
-            android:id="@+id/progresscontainer"
+            android:id="@+id/result"
             android:layout_width="70dp"
             android:layout_height="35dp"
             android:layout_alignParentRight="true"
-            android:visibility="invisible" >
+            android:visibility="invisible">
 
             <ProgressBar
                 android:id="@+id/testResultInd"
@@ -163,7 +163,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="35dp"
-        android:background="@drawable/list_grey_gradient" >
+        android:background="@drawable/list_grey_gradient">
 
         <TextView
             android:id="@+id/testSeqNum2"
@@ -183,15 +183,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_toLeftOf="@+id/progresscontainer2"
+            android:layout_toLeftOf="@+id/result1"
             android:layout_toRightOf="@+id/view2"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:orientation="horizontal" >
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -205,56 +205,56 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:orientation="horizontal" >
+                android:orientation="horizontal">
 
                 <TextView
-                    android:textStyle="bold"
                     android:id="@+id/avg0"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="0"
-                    android:textColor="@color/list_highlight_color" />
+                    android:textColor="@color/list_highlight_color"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:orientation="horizontal" >
+                android:orientation="horizontal">
 
                 <TextView
-                    android:textStyle="bold"
                     android:id="@+id/avg1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="0"
-                    android:textColor="@color/list_highlight_color" />
+                    android:textColor="@color/list_highlight_color"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:orientation="horizontal" >
+                android:orientation="horizontal">
 
                 <TextView
-                    android:textStyle="bold"
                     android:id="@+id/avg2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="0"
-                    android:textColor="@color/list_highlight_color" />
+                    android:textColor="@color/list_highlight_color"
+                    android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>
 
         <RelativeLayout
-            android:id="@+id/progresscontainer2"
+            android:id="@+id/result1"
             android:layout_width="70dp"
             android:layout_height="35dp"
-            android:layout_alignParentRight="true" >
+            android:layout_alignParentRight="true">
 
             <ProgressBar
                 android:id="@+id/pass_or_fail_avg_indicator"
@@ -280,7 +280,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="35dp"
-        android:background="@drawable/list_grey_gradient" >
+        android:background="@drawable/list_grey_gradient">
 
         <TextView
             android:id="@+id/testSeqNum3"
@@ -300,15 +300,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_toLeftOf="@+id/progresscontainer3"
+            android:layout_toLeftOf="@+id/result2"
             android:layout_toRightOf="@+id/view3"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:orientation="horizontal" >
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -322,56 +322,56 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:orientation="horizontal" >
+                android:orientation="horizontal">
 
                 <TextView
-                    android:textStyle="bold"
                     android:id="@+id/stability0"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="0"
-                    android:textColor="@color/list_highlight_color" />
+                    android:textColor="@color/list_highlight_color"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:orientation="horizontal" >
+                android:orientation="horizontal">
 
                 <TextView
-                    android:textStyle="bold"
                     android:id="@+id/stability1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="0"
-                    android:textColor="@color/list_highlight_color" />
+                    android:textColor="@color/list_highlight_color"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:orientation="horizontal" >
+                android:orientation="horizontal">
 
                 <TextView
-                    android:textStyle="bold"
                     android:id="@+id/stability2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="0"
-                    android:textColor="@color/list_highlight_color" />
+                    android:textColor="@color/list_highlight_color"
+                    android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>
 
         <RelativeLayout
-            android:id="@+id/progresscontainer3"
+            android:id="@+id/result2"
             android:layout_width="70dp"
             android:layout_height="35dp"
-            android:layout_alignParentRight="true" >
+            android:layout_alignParentRight="true">
 
             <ProgressBar
                 android:id="@+id/pass_or_fail_stability_indicator"

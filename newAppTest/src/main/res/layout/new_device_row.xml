@@ -7,7 +7,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_below="@+id/progresscontainer"
+        android:layout_below="@+id/result"
         android:background="@color/list_highlight_color" />
 
     <RelativeLayout
@@ -96,7 +96,7 @@
 
 
     <RelativeLayout
-        android:id="@+id/progresscontainer"
+        android:id="@+id/result"
         android:layout_width="70dp"
         android:layout_height="69dp"
         android:layout_alignParentRight="true"

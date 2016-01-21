@@ -49,7 +49,11 @@ public class SequenceAdapter extends RecyclerView.Adapter<SequenceItemHolder> {
     public SequenceItemHolder onCreateViewHolder(ViewGroup parent, @Type int viewType) {
         if(viewType==TEST){
             View v = layoutInflater.inflate(R.layout.new_sequence_row_item, parent, false);
-            return new SequenceItemHolder.TesteItemHolder(v,context);
+            return new TestItemHolder(v,context);
+        }
+        if(viewType==SENSOR_TEST){
+            View v = layoutInflater.inflate(R.layout.new_sensor_summary_row_item, parent, false);
+            return new SensorItemHolder(v,context);
         }
         return null;
     }
@@ -81,7 +85,9 @@ public class SequenceAdapter extends RecyclerView.Adapter<SequenceItemHolder> {
     }
 
     public void addSensorTest(NewMSensorResult mSensorResult, Test testToBeParsed,NewSequenceInterface sequence) {
-
+        SequenceRowElement.SensorTestRowElement sensorTestRowElement= new SequenceRowElement.SensorTestRowElement(mSensorResult,testToBeParsed,sequence);
+        items.add(sensorTestRowElement);
+        notifyItemInserted(items.size());
     }
 
     public ProgressAndTextView addUploadRow(Boolean istest, Boolean success, String description,NewSequenceInterface sequence) {

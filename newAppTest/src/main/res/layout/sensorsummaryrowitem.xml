@@ -42,7 +42,7 @@
         android:id="@+id/reading"
         android:layout_width="wrap_content"
         android:layout_height="35dp"
-        android:layout_toLeftOf="@+id/progresscontainer"
+        android:layout_toLeftOf="@+id/result"
         android:ems="5"
         android:gravity="left|center"
         android:paddingLeft="5dp"
@@ -50,7 +50,7 @@
         android:textColor="@color/list_highlight_color" />
 
     <RelativeLayout
-        android:id="@+id/progresscontainer"
+        android:id="@+id/result"
         android:layout_width="70dp"
         android:layout_height="35dp"
         android:layout_alignParentRight="true" >
