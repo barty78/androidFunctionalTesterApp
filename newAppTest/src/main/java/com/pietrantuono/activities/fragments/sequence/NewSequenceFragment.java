@@ -86,7 +86,20 @@ public class NewSequenceFragment extends Fragment {
 
     public synchronized ProgressAndTextView addTest(final Boolean istest, final Boolean success, String reading,
                                                           String otherreading, String description, boolean isSensorTest, Test testToBeParsed) {
+        final ViewTreeObserver observer = recyclerView.getViewTreeObserver();
+        observer.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+
+            @Override
+            public boolean onPreDraw() {
+                observer.removeOnPreDrawListener(this);
+                if (activity == null || activity.isFinishing()) return true;
+                ((ActivityCallback) activity).goAndExecuteNextTest();
+                return true;
+
+            }
+        });
         adapter.addTest(istest, success,reading, otherreading, description,  isSensorTest, testToBeParsed);
+
         return null;
     }
 
