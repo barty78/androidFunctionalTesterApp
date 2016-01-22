@@ -57,7 +57,8 @@ public class TestUploadFirmwareTest extends Test {
     }
 
     public void start() {
-
+        holder.setWait();
+        if(true)return;
         Handler handler= new Handler();
         handler.postDelayed(new Runnable() {
             @Override

@@ -1,12 +1,16 @@
 package com.pietrantuono.activities.fragments.sequence.holders;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.RotateAnimation;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -29,6 +33,7 @@ public class UlploadItemHolder extends SequenceItemHolder {
     private final TextView testName;
     private final IconicsImageView result;
     private final DonutProgress donutProgress;
+    private RotateAnimation animation;
 
     public UlploadItemHolder(View v, Context context) {
         super(v, context);
@@ -60,12 +65,14 @@ public class UlploadItemHolder extends SequenceItemHolder {
     }
 
     public void reset() {
+        if(animation!=null)animation.cancel();
         result.setVisibility(View.INVISIBLE);
         donutProgress.setVisibility(View.INVISIBLE);
         donutProgress.setProgress(0);
     }
 
     public void setFail() {
+        if(animation!=null)animation.cancel();
         result.setVisibility(View.VISIBLE);
         donutProgress.setVisibility(View.INVISIBLE);
         result.setIcon(GoogleMaterial.Icon.gmd_cancel);
@@ -73,6 +80,7 @@ public class UlploadItemHolder extends SequenceItemHolder {
     }
 
     public void setPass() {
+        if(animation!=null)animation.cancel();
         result.setVisibility(View.VISIBLE);
         donutProgress.setVisibility(View.INVISIBLE);
         result.setIcon(GoogleMaterial.Icon.gmd_check_circle);
@@ -80,8 +88,25 @@ public class UlploadItemHolder extends SequenceItemHolder {
     }
 
     public void setProgress(int progress) {
+        if(animation!=null)animation.cancel();
         result.setVisibility(View.INVISIBLE);
         donutProgress.setVisibility(View.VISIBLE);
         donutProgress.setProgress(progress);
+    }
+
+    public void setWait(){
+        result.setVisibility(View.VISIBLE);
+        donutProgress.setVisibility(View.INVISIBLE);
+        result.setIcon(GoogleMaterial.Icon.gmd_hourglass_empty);
+        result.setColor(context.getResources().getColor(R.color.primary));
+        Display display = ((Activity)context).getWindowManager().getDefaultDisplay();
+        result.measure(display.getWidth(), display.getHeight());
+        float pivotX = result.getMeasuredWidth() / 2f;
+        float pivotY = result.getMeasuredHeight()/ 2f;
+        animation= new RotateAnimation(0,360,pivotX,pivotY);
+        animation.setDuration(1*1000);
+        animation.setRepeatCount(Animation.INFINITE);
+        animation.setRepeatMode(Animation.RESTART);
+        result.startAnimation(animation);
     }
 }
