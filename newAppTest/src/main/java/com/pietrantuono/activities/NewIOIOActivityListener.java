@@ -1,6 +1,7 @@
 package com.pietrantuono.activities;
 
 import com.pietrantuono.btutility.BTUtility;
+import com.pietrantuono.tests.implementations.upload.UploadTestCallback;
 import com.pietrantuono.tests.superclass.Test;
 import com.pietrantuono.uploadfirmware.ProgressAndTextView;
 
@@ -41,7 +42,7 @@ public interface NewIOIOActivityListener {
 
     public void setSerialBT(String serial, Boolean success);
 
-    ProgressAndTextView createUploadProgress(boolean b, boolean c, String description);
+    void createUploadProgress(boolean b, boolean c, String description, UploadTestCallback callback);
 
     public void onCurrentSequenceEnd();
 

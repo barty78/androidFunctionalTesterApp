@@ -7,7 +7,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.pietrantuono.activities.fragments.SerialConsoleFragmentCallback;
 import com.pietrantuono.activities.fragments.sequence.NewSequenceFragment;
-import com.pietrantuono.activities.fragments.sequence.SequenceFragment;
 import com.pietrantuono.activities.uihelper.ActivityCallback;
 import com.pietrantuono.activities.uihelper.MyDialogInterface;
 import com.pietrantuono.activities.uihelper.MyDialogs;
@@ -28,6 +27,7 @@ import com.pietrantuono.ioioutils.PCBDetectHelper.PCBDetectHelperInterface;
 import com.pietrantuono.ioioutils.Voltage;
 import com.pietrantuono.pericoach.newtestapp.R;
 import com.pietrantuono.sensors.SensorTestCallback;
+import com.pietrantuono.tests.implementations.upload.UploadTestCallback;
 import com.pietrantuono.uploadfirmware.ProgressAndTextView;
 
 import android.content.Intent;
@@ -558,9 +558,8 @@ public class MainActivity extends AppCompatActivity
 
 
     @Override
-    @SuppressWarnings("ucd")
-    public ProgressAndTextView createUploadProgress(boolean b, boolean c, String description) {
-        return uiHelper.createUploadProgress(b, c, description);
+    public void createUploadProgress(boolean b, boolean c, String description, UploadTestCallback callback) {
+        uiHelper.createUploadProgress(b, c, description, callback);
     }
 
     @Override

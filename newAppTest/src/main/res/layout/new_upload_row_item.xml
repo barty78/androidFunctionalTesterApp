@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="55dp"
+    xmlns:foo="http://schemas.android.com/apk/res-auto"
+    android:layout_marginLeft="@dimen/card_margin"
+    android:layout_marginRight="@dimen/card_margin"
+    android:layout_marginTop="@dimen/card_margin"
+    card_view:cardCornerRadius="@dimen/card_radius"
+    card_view:cardElevation="@dimen/card_elevation"
+    card_view:cardUseCompatPadding="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:id="@+id/testSeqNum"
+            android:layout_width="50dp"
+            android:layout_height="35dp"
+            android:layout_centerVertical="true"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/testName"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/testSeqNum"
+            android:gravity="left|center"
+            android:paddingLeft="5dp"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/reading"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/result"
+            android:ems="5"
+            android:gravity="left|center"
+            android:paddingLeft="5dp"
+            android:text="" />
+
+
+        <com.mikepenz.iconics.view.IconicsImageView
+            android:visibility="invisible"
+            android:id="@+id/result"
+            android:layout_width="@dimen/result_size"
+            android:layout_height="@dimen/result_size"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/icon_margin"
+            app:iiv_color="@color/primary" />
+
+        <com.github.lzyzsd.circleprogress.DonutProgress
+            android:visibility="invisible"
+            foo:donut_unfinished_color="@color/accent"
+            foo:donut_finished_color="#ff00ff00"
+            foo:donut_suffix_text="%"
+            foo:donut_max="100"
+            android:id="@+id/progress"
+            android:layout_width="@dimen/upload_progress_size"
+            android:layout_height="36dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/icon_margin"
+            />
+
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

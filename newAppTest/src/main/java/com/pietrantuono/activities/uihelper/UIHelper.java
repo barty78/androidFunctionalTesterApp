@@ -9,6 +9,7 @@ import com.pietrantuono.constants.NewMResult;
 import com.pietrantuono.constants.NewMSensorResult;
 import com.pietrantuono.constants.NewSequenceInterface;
 import com.pietrantuono.pericoach.newtestapp.R;
+import com.pietrantuono.tests.implementations.upload.UploadTestCallback;
 import com.pietrantuono.uploadfirmware.ProgressAndTextView;
 
 import android.app.Activity;
@@ -405,9 +406,8 @@ public class UIHelper {
 		if(sequenceFragment!=null)sequenceFragment.setSequence(sequence);
 	}
 
-	public synchronized ProgressAndTextView createUploadProgress(final Boolean istest, final Boolean success,String description) {
-		if(sequenceFragment!=null) return sequenceFragment.addUploadRow(istest,success,description);
-		else return null;
+	public void  createUploadProgress(final Boolean istest, final Boolean success, String description, UploadTestCallback callback) {
+		if(sequenceFragment!=null) sequenceFragment.addUploadRow(istest,success,description, callback);
 	}
 	
 	public void cleanUI(final Activity activity) {

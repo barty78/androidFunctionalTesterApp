@@ -15,15 +15,7 @@ import com.pietrantuono.constants.NewMResult;
 import com.pietrantuono.constants.NewMSensorResult;
 import com.pietrantuono.constants.NewSequenceInterface;
 import com.pietrantuono.ioioutils.Current.Scale;
-import com.pietrantuono.tests.implementations.AccelerometerSelfTest;
 //import com.pietrantuono.tests.implementations.ClosedTestWrapper;
-import com.pietrantuono.tests.implementations.CurrentTest;
-import com.pietrantuono.tests.implementations.GetBarcodeTest;
-import com.pietrantuono.tests.implementations.GetDeviceSerialTest;
-import com.pietrantuono.tests.implementations.MagnetWakeDeviceTest;
-import com.pietrantuono.tests.implementations.UUTCurrentTest;
-import com.pietrantuono.tests.implementations.UploadFirmwareTest;
-import com.pietrantuono.tests.implementations.VoltageTest;
 import com.pietrantuono.tests.superclass.Test;
 
 public class NewSequenceForTest implements NewSequenceInterface {

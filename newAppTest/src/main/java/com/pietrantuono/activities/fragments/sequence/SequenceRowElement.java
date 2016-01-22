@@ -22,7 +22,7 @@ public class SequenceRowElement {
         };
     }
 
-    static class TestRowElement extends RowElement{
+    public static class TestRowElement extends RowElement{
         private boolean istest;
         private boolean success;
         private String reading;
@@ -76,7 +76,7 @@ public class SequenceRowElement {
         }
     }
 
-    static class SensorTestRowElement extends RowElement{
+    public static class SensorTestRowElement extends RowElement{
         private NewMSensorResult mSensorResult;
         private Test testToBeParsed;
 
@@ -101,7 +101,7 @@ public class SequenceRowElement {
         }
     }
 
-    static class UploadRowElement extends RowElement{
+    public static class UploadRowElement extends RowElement{
         private boolean istest;
         private boolean success;
 

@@ -11,12 +11,9 @@ import com.pietrantuono.activities.MainActivity;
 import com.pietrantuono.constants.NewMResult;
 import com.pietrantuono.constants.NewMSensorResult;
 import com.pietrantuono.constants.NewSequenceInterface;
-import com.pietrantuono.tests.implementations.AccelerometerSelfTest;
 import com.pietrantuono.tests.implementations.BluetoothConnectTestForTesting;
 import com.pietrantuono.tests.implementations.GetMacAddressTest;
-import com.pietrantuono.tests.implementations.ListenToUart;
 import com.pietrantuono.tests.implementations.SensorTestWrapper;
-import com.pietrantuono.tests.implementations.UploadFirmwareTest;
 import com.pietrantuono.tests.implementations.steps.Step;
 import com.pietrantuono.tests.superclass.Test;
 
