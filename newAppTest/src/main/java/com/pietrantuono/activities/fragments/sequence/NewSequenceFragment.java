@@ -88,6 +88,13 @@ public class NewSequenceFragment extends Fragment {
 
     public ProgressAndTextView addSensorTest(NewMSensorResult mSensorResult, Test testToBeParsed) {
         adapter.addSensorTest(mSensorResult, testToBeParsed,sequence);
+//        Handler handler= new Handler(getActivity().getMainLooper());
+//        handler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                ((ActivityCallback) activity).goAndExecuteNextTest();
+//            }
+//        }, 100);
         return null;
     }
 

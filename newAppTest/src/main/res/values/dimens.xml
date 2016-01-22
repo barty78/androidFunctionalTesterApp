@@ -5,4 +5,5 @@
     <dimen name="card_elevation">2dp</dimen>
     <dimen name="card_radius">2dp</dimen>
     <dimen name="icon_margin">10dp</dimen>
+    <dimen name="result_size">24dp</dimen>
 </resources>

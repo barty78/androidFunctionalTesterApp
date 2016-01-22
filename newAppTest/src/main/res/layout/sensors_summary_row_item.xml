@@ -183,7 +183,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_toLeftOf="@+id/result1"
+            android:layout_toLeftOf="@+id/result1_avg"
             android:layout_toRightOf="@+id/view2"
             android:orientation="horizontal">
 
@@ -251,7 +251,7 @@
         </LinearLayout>
 
         <RelativeLayout
-            android:id="@+id/result1"
+            android:id="@+id/result1_avg"
             android:layout_width="70dp"
             android:layout_height="35dp"
             android:layout_alignParentRight="true">
@@ -300,7 +300,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_toLeftOf="@+id/result2"
+            android:layout_toLeftOf="@+id/result_stability"
             android:layout_toRightOf="@+id/view3"
             android:orientation="horizontal">
 
@@ -368,7 +368,7 @@
         </LinearLayout>
 
         <RelativeLayout
-            android:id="@+id/result2"
+            android:id="@+id/result_stability"
             android:layout_width="70dp"
             android:layout_height="35dp"
             android:layout_alignParentRight="true">

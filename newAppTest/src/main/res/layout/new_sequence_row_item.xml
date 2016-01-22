@@ -48,8 +48,8 @@
 
         <com.mikepenz.iconics.view.IconicsImageView
             android:id="@+id/result"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
+            android:layout_width="@dimen/result_size"
+            android:layout_height="@dimen/result_size"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/icon_margin"

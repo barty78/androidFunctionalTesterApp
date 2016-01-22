@@ -4,9 +4,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
@@ -14,7 +12,6 @@ import android.widget.TextView;
 
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.iconics.view.IconicsImageView;
-import com.pietrantuono.activities.fragments.SensorItemClickListener;
 import com.pietrantuono.pericoach.newtestapp.R;
 
 /**
@@ -23,25 +20,25 @@ import com.pietrantuono.pericoach.newtestapp.R;
 public class SensorItemHolder extends SequenceItemHolder {
     private final TextView avg1;
     private final TextView avg2;
-    private final TextView passfail;
-    private TextView testSeqNum;
-    private TextView testName;
-    private TextView reading;
-    private IconicsImageView result1;
-    private IconicsImageView result2;
-    private TextView avg0;
+    private final TextView testSeqNum;
+    private final TextView testName;
+    private final IconicsImageView result1_avg;
+    private final IconicsImageView result_stability;
+    private final TextView avg0;
+    private final TextView stability0;
+    private final TextView stability2;
 
     public SensorItemHolder(View itemView, Context context) {
         super(itemView, context);
         testSeqNum = (TextView) itemView.findViewById(R.id.testSeqNum);
         testName = (TextView) itemView.findViewById(R.id.testName);
-        reading = (TextView) itemView.findViewById(R.id.reading);
-        result1 = (IconicsImageView) itemView.findViewById(R.id.result1);
-        result2 = (IconicsImageView) itemView.findViewById(R.id.result2);
+        result1_avg = (IconicsImageView) itemView.findViewById(R.id.result1_avg);
+        result_stability = (IconicsImageView) itemView.findViewById(R.id.result_stability);
         avg0= (TextView) itemView.findViewById(R.id.avg0);
         avg1 = (TextView) itemView.findViewById(R.id.avg1);
         avg2 = (TextView) itemView.findViewById(R.id.avg2);
-        passfail = (TextView) itemView.findViewById(R.id.pass_or_fail_avg_text);
+        stability0 = (TextView) itemView.findViewById(R.id.stability0);
+        stability2 = (TextView) itemView.findViewById(R.id.stability2);
     }
 
     @Override
@@ -74,23 +71,17 @@ public class SensorItemHolder extends SequenceItemHolder {
             avg2.setTextColor(Color.RED);
         avg2.setText(Short.toString(rowElement.getmSensorResult().getSensor2avg()));
 
-        ProgressBar progress = (ProgressBar) itemView.findViewById(R.id.pass_or_fail_avg_indicator);
         if (rowElement.getmSensorResult().getSensor0AvgPass() && rowElement.getmSensorResult().getSensor1AvgPass()
                 && rowElement.getmSensorResult().getSensor2AvgPass()) {
-            passfail.setText("PASS");
-            Resources res = activity.getResources();
-            Drawable background = null;
-            background = res.getDrawable(R.drawable.greenprogress);
-            progress.setProgressDrawable(background);
-
+            //PASS
+            result1_avg.setIcon(GoogleMaterial.Icon.gmd_check_circle);
+            result1_avg.setColor(Color.GREEN);
         } else {
-            passfail.setText("FAIL");
-            Resources res = activity.getResources();
-            Drawable background = res.getDrawable(R.drawable.redprogress);
-            progress.setProgressDrawable(background);
+            //FAIL
+            result1_avg.setIcon(GoogleMaterial.Icon.gmd_cancel);
+            result1_avg.setColor(Color.RED);
         }
 
-        TextView stability0 = (TextView) itemView.findViewById(R.id.stability0);
         if (rowElement.getmSensorResult().getSensor0stabilitypass())
             stability0.setTextColor(Color.GREEN);
         else
@@ -106,7 +97,6 @@ public class SensorItemHolder extends SequenceItemHolder {
         stability1.setText("" + (rowElement.getmSensorResult().getSensor1max() - rowElement.getmSensorResult().getSensor1min() > 0
                 ? rowElement.getmSensorResult().getSensor1max() - rowElement.getmSensorResult().getSensor1min() : (short) 0));
 
-        TextView stability2 = (TextView) itemView.findViewById(R.id.stability2);
         if (rowElement.getmSensorResult().getSensor2stabilitypass())
             stability2.setTextColor(Color.GREEN);
         else
@@ -114,35 +104,15 @@ public class SensorItemHolder extends SequenceItemHolder {
         stability2.setText("" + (rowElement.getmSensorResult().getSensor2max() - rowElement.getmSensorResult().getSensor2min() > 0
                 ? rowElement.getmSensorResult().getSensor2max() - rowElement.getmSensorResult().getSensor2min() : (short) 0));
 
-        TextView pass_or_fail_stability_text = (TextView) itemView.findViewById(R.id.pass_or_fail_stability_text);
-        ProgressBar pass_or_fail_stability_indicator = (ProgressBar) v
-                .findViewById(R.id.pass_or_fail_stability_indicator);
         if (rowElement.getmSensorResult().getSensor0stabilitypass() && rowElement.getmSensorResult().getSensor1stabilitypass()
                 && rowElement.getmSensorResult().getSensor2stabilitypass()) {
-            pass_or_fail_stability_text.setText("PASS");
-            Resources res = activity.getResources();
-            Drawable background = null;
-            background = res.getDrawable(R.drawable.greenprogress);
-            pass_or_fail_stability_indicator.setProgressDrawable(background);
-
+            //PASS
+            result_stability.setIcon(GoogleMaterial.Icon.gmd_check_circle);
+            result_stability.setColor(Color.GREEN);
         } else {
-            pass_or_fail_stability_text.setText("FAIL");
-            Resources res = activity.getResources();
-            Drawable background = res.getDrawable(R.drawable.redprogress);
-            pass_or_fail_stability_indicator.setProgressDrawable(background);
+            //FAIL
+            result_stability.setIcon(GoogleMaterial.Icon.gmd_cancel);
+            result_stability.setColor(Color.RED);
         }
-        activity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                ll.addView(v);
-                scrollView.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        scrollView.fullScroll(ScrollView.FOCUS_DOWN);
-                    }
-                });
-
-            }
-        });
     }
 }

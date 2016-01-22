@@ -432,7 +432,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    @SuppressWarnings("ucd")
     public void onSensorTestCompleted(NewMSensorResult mSensorResult, server.pojos.Test testToBeParsed) {
         try {
             results.get(getIterationNumber()).set(newSequence.getCurrentTestNumber(), mSensorResult);

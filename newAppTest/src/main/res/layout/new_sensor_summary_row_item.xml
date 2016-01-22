@@ -133,7 +133,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_toLeftOf="@+id/result1"
+                    android:layout_toLeftOf="@+id/result1_avg"
                     android:orientation="horizontal">
 
                     <LinearLayout
@@ -199,7 +199,7 @@
                 </LinearLayout>
 
                 <com.mikepenz.iconics.view.IconicsImageView
-                    android:id="@+id/result1"
+                    android:id="@+id/result1_avg"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_alignParentRight="true"
@@ -216,7 +216,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_toLeftOf="@+id/result2"
+                    android:layout_toLeftOf="@+id/result_stability"
                     android:orientation="horizontal">
 
                     <LinearLayout
@@ -282,9 +282,9 @@
                 </LinearLayout>
 
                 <com.mikepenz.iconics.view.IconicsImageView
-                    android:id="@+id/result2"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:id="@+id/result_stability"
+                    android:layout_width="@dimen/result_size"
+                    android:layout_height="@dimen/result_size"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/icon_margin"
