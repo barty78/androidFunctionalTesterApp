@@ -72,7 +72,8 @@ public class SequenceAdapter extends RecyclerView.Adapter<SequenceItemHolder> {
     @Override
     public void onBindViewHolder(SequenceItemHolder holder, int position) {
         holder.setData(items.get(position));
-        if((holder instanceof UlploadItemHolder) && callback!=null)callback.onViewHolderReady((UlploadItemHolder)holder);
+        if((holder instanceof UlploadItemHolder) && callback!=null)
+            callback.onViewHolderReady((UlploadItemHolder)holder);
     }
 
     @Override

@@ -15,6 +15,7 @@ import com.pietrantuono.tests.implementations.BluetoothConnectTestForTesting;
 import com.pietrantuono.tests.implementations.GetMacAddressTest;
 import com.pietrantuono.tests.implementations.SensorTestWrapper;
 import com.pietrantuono.tests.implementations.steps.Step;
+import com.pietrantuono.tests.implementations.upload.TestUploadFirmwareTest;
 import com.pietrantuono.tests.superclass.Test;
 
 import org.joda.time.DateTime;
@@ -417,10 +418,8 @@ public class NewSequence implements NewSequenceInterface {
         test.setIdTest(2);
         test.setValue(2);
         sequence.add(test);
-        BluetoothConnectTestForTesting bluetoothConnectTestForTesting= new BluetoothConnectTestForTesting(activity);
-        sequence.add(bluetoothConnectTestForTesting);
-        SensorTestWrapper sensorTestWrapper= new SensorTestWrapper(false,activity,ioio,1,1,1,1,"Sensor Input Test, LOADED, GAIN/ZERO @ 127/50");
-        sequence.add(sensorTestWrapper);
+        TestUploadFirmwareTest testUploadFirmwareTest = new TestUploadFirmwareTest(activity, ioio, true);
+        sequence.add(testUploadFirmwareTest);
         //sequence.add(new ListenToUart(activity,ioio));
         //sequence.add(test);
         //sequence.add(new UploadFirmwareTest(activity,ioio));

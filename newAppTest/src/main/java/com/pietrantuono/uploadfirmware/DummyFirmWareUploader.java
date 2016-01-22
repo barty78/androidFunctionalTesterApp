@@ -2,15 +2,19 @@ package com.pietrantuono.uploadfirmware;
 
 import android.app.Activity;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.parser.BinaryParser;
 import com.pietrantuono.activities.NewIOIOActivityListener;
+import com.pietrantuono.activities.fragments.sequence.holders.UlploadItemHolder;
 import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.ioioutils.IOIOUtils;
 import com.pietrantuono.pericoach.newtestapp.R;
@@ -65,12 +69,11 @@ public class DummyFirmWareUploader {
 	private int fl_end;
 	@SuppressWarnings("ucd")
 	public int mem_end;
-	private ProgressBar progress;
-	private TextView percent;
 	private Boolean isstopped = false;
 	private WriteTask task = null;
 	private UploaderListener listener;
-	private IOIO ioio_;
+    private final UlploadItemHolder holder;
+    private IOIO ioio_;
 	private static Boolean stopthread=false;
 	private Boolean loopback;
 
@@ -83,15 +86,14 @@ public class DummyFirmWareUploader {
 	}
 
 	public DummyFirmWareUploader(OutputStream TX, InputStream RX, Activity c,
-								 ProgressBar progress, TextView percent,
+                                 UlploadItemHolder holder,
 								 NewIOIOActivityListener listner, IOIO ioio_, Boolean loopback) {
 		this.TX = TX;
 		this.c = c;
 		this.RX = RX;
-		this.ioio_ = ioio_;
+        this.holder = holder;
+        this.ioio_ = ioio_;
 		this.loopback = loopback;
-		this.progress = progress;
-		this.percent = percent;
 		isstopped = false;
 
 		if(thread == null) {
@@ -223,15 +225,7 @@ public class DummyFirmWareUploader {
 
 				@Override
 				public void run() {
-					if (progress != null)
-						progress.setProgress(prog);
-					else
-						Log.e(TAG, "progress si null");
-					if (percent != null)
-						percent.setText("" + prog + "%");
-					else
-						Log.e(TAG, "percent si null");
-
+                    holder.setProgress(prog);
 				}
 			});
 
@@ -250,12 +244,7 @@ public class DummyFirmWareUploader {
 
 				@Override
 				public void run() {
-					if (progress != null) {
-						progress.setProgress(0);
-
-					}
-					if (percent != null)
-						percent.setText("");
+					holder.reset();
 
 				}
 			});
@@ -280,15 +269,7 @@ public class DummyFirmWareUploader {
 						Toast.makeText(c, "WRITE COMPLETED",
 								Toast.LENGTH_LONG).show();
 
-						if (progress != null) {
-							progress.setProgress(100);
-							Resources res = c.getResources();
-							Drawable background = res
-									.getDrawable(R.drawable.greenprogress);
-							progress.setProgressDrawable(background);
-						}
-						if (percent != null)
-							percent.setText("PASS");
+                        holder.setPass();
 
 //						Handler h = new Handler();
 //						h.postDelayed(new Runnable() {
@@ -315,11 +296,7 @@ public class DummyFirmWareUploader {
 
 //						Toast.makeText(c, "WRITE FAILED!",
 //								Toast.LENGTH_LONG).show();
-
-						if (progress != null)
-							progress.setProgress(0);
-						if (percent != null)
-							percent.setText("");
+                        holder.setFail();
 
 
 //						Handler h = new Handler();
