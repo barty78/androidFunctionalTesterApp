@@ -4,6 +4,7 @@ import ioio.lib.api.IOIO;
 import android.app.Activity;
 import android.util.Log;
 
+import com.pietrantuono.ioioutils.IOIOUtils;
 import com.pietrantuono.ioioutils.Voltage;
 import com.pietrantuono.ioioutils.Units;
 import com.pietrantuono.tests.superclass.Test;
@@ -61,7 +62,10 @@ public 	class VoltageTest extends Test {
 	public void execute() {
 		if(isinterrupted)return;
 		Log.d(TAG, "Test Starting: " + description);
-		
+		if(pinNumber == 32) {
+			String string = "V_REF_AN Voltage Test (" + System.currentTimeMillis() + ")\n";
+			IOIOUtils.getUtils().appendUartLog((Activity) activityListener, string.getBytes(), string.getBytes().length);
+		}
 		Voltage.Result result = null;
 		try {
 			Thread.sleep(1 * 1000);
@@ -83,6 +87,10 @@ public 	class VoltageTest extends Test {
 		if (result == null) {
 			activityListener.addFailOrPass(true, false, "ERROR", description,testToBeParsed);
 			return;
+		}
+		if(pinNumber == 32) {
+			String string = "V_REF_AN Measurement: " + result.getReadingValue() + "V\n";
+			IOIOUtils.getUtils().appendUartLog((Activity) activityListener, string.getBytes(), string.getBytes().length);
 		}
 		if (result.isSuccess()) {
 			Success();

@@ -184,7 +184,7 @@ public class TestsParser {
             Log.d(TAG, getDescription(testToBeParsed) + " - IO State - " + value);
         } else if (classID == activity.getResources().getInteger(R.integer.SetSensorVoltagesStep)) {
             Log.d(TAG, getDescription(testToBeParsed) + " - GAIN/ZERO - " + testToBeParsed.getIoiopinnum() + "/" + testToBeParsed.getScaling());
-            test = new SetSensorVoltagesStep(activity, (short) ((int) testToBeParsed.getIoiopinnum()), (short) ((float) testToBeParsed.getScaling()), getDescription(testToBeParsed));
+            test = new SetSensorVoltagesStep(activity, (short) ((float) testToBeParsed.getScaling()), (short) ((int) testToBeParsed.getIoiopinnum()), getDescription(testToBeParsed));
             //);
         }
         if (test == null) {

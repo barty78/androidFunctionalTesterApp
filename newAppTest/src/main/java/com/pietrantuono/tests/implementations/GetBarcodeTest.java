@@ -68,7 +68,7 @@ public class GetBarcodeTest extends Test {
                 return;
             }
             ;
-            if (PeriCoachTestApplication.getCurrentJob().getTesttypeId() == 1) {//OPEN TEST
+            if (PeriCoachTestApplication.getCurrentJob().getTesttypeId() == 2) {//OPEN TEST
                 // For open test it doesn't really need anything, but maybe for completeness we should use stage_dep and make sure status is 0
                 // so status == stage_dep
                 if (!checkDeviceStatus(barcode)) {

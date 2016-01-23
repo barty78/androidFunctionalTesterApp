@@ -73,6 +73,7 @@ public class IOIOUtils implements IOIOUtilsInterface {
     private static byte[] log = new byte[0];
     private static Uart2Thread thread;
     private static IOIOUtilsInterface instance;
+    private static SerialConsoleFragmentCallback callback;
 
     public static Mode uutMode;
 
@@ -1008,6 +1009,20 @@ public class IOIOUtils implements IOIOUtilsInterface {
     }
 
     @Override
+    public void appendUartLog(Activity activity, byte[] bytes, int numBytes){
+        callback = ((SerialConsoleFragmentCallback) activity);
+        byte[] temp = log;
+        log = new byte[temp.length + numBytes];
+        if (temp.length != 0) {
+            System.arraycopy(temp, 0, log, 0, temp.length);
+        }
+        System.arraycopy(bytes, 0, log, temp.length, numBytes);
+
+        callback.updateUI(new String(Arrays.copyOfRange(log, temp.length, temp.length + numBytes)));
+
+    }
+
+    @Override
     public void clearUartLog() {
         Log.d(TAG, "Clearing Uart Log StringBuilder instance");
         sb = new StringBuilder();
@@ -1089,6 +1104,7 @@ public class IOIOUtils implements IOIOUtilsInterface {
                     e.printStackTrace();
                 }
                 if (numbytes > 0) {
+//                    appendUartLog(buf, numbytes);
                     byte[] temp = log;
                     log = new byte[temp.length + numbytes];
                     if (temp.length != 0) {
