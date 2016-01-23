@@ -13,10 +13,12 @@ import com.pietrantuono.constants.NewMSensorResult;
 import com.pietrantuono.constants.NewSequenceInterface;
 import com.pietrantuono.tests.implementations.AccelerometerSelfTest;
 import com.pietrantuono.tests.implementations.BluetoothConnectTestForTesting;
+import com.pietrantuono.tests.implementations.DummyTest;
 import com.pietrantuono.tests.implementations.GetMacAddressTest;
 import com.pietrantuono.tests.implementations.ListenToUart;
 import com.pietrantuono.tests.implementations.SensorTestWrapper;
 import com.pietrantuono.tests.implementations.UploadFirmwareTest;
+import com.pietrantuono.tests.implementations.steps.SetSensorVoltagesStep;
 import com.pietrantuono.tests.implementations.steps.Step;
 import com.pietrantuono.tests.superclass.Test;
 
@@ -406,16 +408,12 @@ public class NewSequence implements NewSequenceInterface {
 //		sequence.add(new SensorTestWrapper(false, activity, ioio, "Sensor Input Test, LOADED, GAIN @ 127", 3, true,
 //				(short) 127));
 
-        MyDummyTest test = new MyDummyTest.Builder().setActivity(activity).setDescription("first").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
-        test.setIdTest(1);
-        test.setValue(1);
-        sequence.add(test);
-        test = new MyDummyTest.Builder().setActivity(activity).setDescription("second").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
-        test.setIdTest(2);
-        test.setValue(2);
-        sequence.add(new ListenToUart(activity,ioio));
-        //sequence.add(test);
-        //sequence.add(new UploadFirmwareTest(activity,ioio));
+        DummyTest dummyTest= new DummyTest(activity,"Dummy1",false,true);
+        sequence.add(dummyTest);
+        SetSensorVoltagesStep setSensorVoltagesStep=new SetSensorVoltagesStep(activity,(short)100,(short)100,"FUBAR");
+        sequence.add(setSensorVoltagesStep);
+        DummyTest dummyTest2= new DummyTest(activity,"Dummy2",false,true);
+        sequence.add(dummyTest2);
 
     }
 
