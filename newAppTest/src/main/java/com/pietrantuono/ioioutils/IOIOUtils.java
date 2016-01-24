@@ -558,12 +558,17 @@ public class IOIOUtils implements IOIOUtilsInterface {
         boolean reached = false;
         boolean adjusting = true;
         float measured = 0;
-
+//        float error = 0;
         int DAC = 125;
         int stepsize = 1;
         int min = 0;
         int max = 255;
         float precision = 0.001f;
+
+        //Use linear equation based LT1671 and MCP4706 DAC, to set DAC output based on voltage setpoint
+        DAC = (int) ((voltage - 4.26f) / (-0.00378f));
+        Log.d(TAG, "Corresponding DAC for voltage: " + voltage + " is " + DAC);
+        setDAC(DAC);
 
         try {
             measured = (Voltage.getVoltage(ioio_, pin) * scaling);
@@ -572,6 +577,7 @@ public class IOIOUtils implements IOIOUtilsInterface {
         }
 
         while(adjusting) {
+//            error = Math.abs(measured-voltage);
             if (measured < (voltage - (voltage * precision))) {
                 // Increase set voltage, or decrease DAC setting
                 DAC = DAC - stepsize;
