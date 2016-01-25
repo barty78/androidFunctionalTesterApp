@@ -34,7 +34,7 @@ public class TestItemHolder extends SequenceItemHolder {
             throw new RuntimeException("Wrong adata " + Log.getStackTraceString(new Exception()));
         SequenceRowElement.TestRowElement testRowElement = (SequenceRowElement.TestRowElement) rowElement;
 
-        testSeqNum.setText("" + testRowElement.getSequence().getCurrentTestNumber() + 1);
+        testSeqNum.setText("" + (testRowElement.getSequence().getCurrentTestNumber() + 1));
         testName.setText(testRowElement.getDescription() != null ? testRowElement.getDescription() : context.getString(R.string.no_description));
         reading.setText(testRowElement.getReading() != null ? testRowElement.getReading() : "");
         if (testRowElement.isSuccess()) {
