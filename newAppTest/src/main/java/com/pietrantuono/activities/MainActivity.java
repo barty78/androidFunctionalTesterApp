@@ -17,6 +17,7 @@ import com.pietrantuono.btutility.BTUtility;
 import com.pietrantuono.constants.NewMResult;
 import com.pietrantuono.constants.NewMSensorResult;
 
+import customclasses.DebugHelper;
 import customclasses.NewSequence;
 
 import com.pietrantuono.constants.NewSequenceInterface;
@@ -274,6 +275,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void onCurrentSequenceEnd() {
+        IOIOUtils.getUtils().stopUartThread();
         sequenceStarted = false;
         newSequence.setEndtime(System.currentTimeMillis());
         final boolean overallresult = newSequence.getOverallResultBool();

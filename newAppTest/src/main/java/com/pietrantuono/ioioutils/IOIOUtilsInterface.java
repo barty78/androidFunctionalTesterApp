@@ -4,6 +4,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import com.pietrantuono.activities.NewIOIOActivityListener;
+import com.pietrantuono.activities.fragments.SerialConsoleFragmentCallback;
 
 import android.app.Activity;
 
@@ -23,7 +24,7 @@ public interface IOIOUtilsInterface {
 
 	void ioioSync(IOIO ioio_);
 
-	boolean setBattVoltage(IOIO ioio_, int pin, float scaling, float voltage);
+	boolean setBattVoltage(IOIO ioio_, boolean calibrate, int pin, float scaling, float voltage);
 
 	DigitalOutput getDigitalOutput(int pinNumber);
 
@@ -80,6 +81,8 @@ public interface IOIOUtilsInterface {
 	Uart getIOIOUart();
 
 	String getUartLog();
+
+	void appendUartLog(Activity activity, byte[] bytes, int numBytes);
 
 	void clearUartLog();
 

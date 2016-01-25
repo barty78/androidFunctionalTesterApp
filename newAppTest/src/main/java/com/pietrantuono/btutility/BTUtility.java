@@ -594,14 +594,14 @@ public class BTUtility {
 				Byte sensor = (byte) (1 & 0xFF);
 				NewPFMATDevice.getDevice().sendZeroVoltage(sensor, voltage);
 			}
-		}, 50);
+		}, 100);
 		handler.postDelayed(new Runnable() {
 			@Override
 			public void run() {
 				Byte sensor = (byte) (2 & 0xFF);
 				NewPFMATDevice.getDevice().sendZeroVoltage(sensor, voltage);
 			}
-		}, 100);
+		}, 200);
 	}
 
 
@@ -617,7 +617,7 @@ public class BTUtility {
 				Log.d("SENSOR", "Setting sensor " + sensor + " to " + voltage);
 				NewPFMATDevice.getDevice().sendRefVoltage(sensor, voltage);
 			}
-		}, 50);
+		}, 100);
 		handler.postDelayed(new Runnable() {
 			@Override
 			public void run() {
@@ -625,7 +625,7 @@ public class BTUtility {
 				Log.d("SENSOR", "Setting sensor " + sensor + " to " + voltage);
 				NewPFMATDevice.getDevice().sendRefVoltage(sensor, voltage);
 			}
-		}, 100);
+		}, 200);
 	}
 	public void abort() {
 		Log.d("BTUtility", "abort");
