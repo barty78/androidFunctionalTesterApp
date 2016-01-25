@@ -34,6 +34,8 @@ public class PeriCoachTestApplication extends  com.activeandroid.app.Application
 	private static final String AUTHORITY = "com.example.android.datasync.provider";
 	private static String IOIOAddress="";
 	private static String android_id="";
+	private static Float gradient=null;
+	private static Float maxBatteryVoltage=null;
 	@SuppressWarnings("unused")
 	private String TAG=getClass().getSimpleName();
 	private static File dir;
@@ -78,6 +80,17 @@ public class PeriCoachTestApplication extends  com.activeandroid.app.Application
 	    dir=getFilesDir();
 
 	}
+
+	public static Float getMaxBatteryVoltage() {
+		return maxBatteryVoltage;
+	}
+
+	public static void setMaxBatteryVoltage(Float voltage) {PeriCoachTestApplication.maxBatteryVoltage = voltage;}
+
+	public static Float getGradient() {
+		return gradient;}
+
+	public static void setGradient(Float gradient) {PeriCoachTestApplication.gradient = gradient;}
 	
 	public static Context getContext(){
 		return context;

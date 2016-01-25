@@ -43,10 +43,10 @@ public class CurrentTest extends Test {
 	public void execute() {
 		if(isinterrupted)return;
 		Log.d(TAG, "Test Starting: " + description);
-		if (!IOIOUtils.getUtils().setBattVoltage(ioio, 34, 2f, 3.7f)){
-			getListener().addFailOrPass(true, false, "Fixture Fault - Battery Voltage Setpoint not reached", testToBeParsed);
-			return;
-		}
+//		if (!IOIOUtils.getUtils().setBattVoltage(ioio, 34, 2f, 3.7f)){
+//			getListener().addFailOrPass(true, false, "Fixture Fault - Battery Voltage Setpoint not reached", testToBeParsed);
+//			return;
+//		}
 //		byte[] writebyte = new byte[] { 0x00, (byte) 100 }; // Value of 210 =
 //		byte[] readbyte = new byte[] {};
 //		if (IOIOUtils.getUtils().getMaster() != null)

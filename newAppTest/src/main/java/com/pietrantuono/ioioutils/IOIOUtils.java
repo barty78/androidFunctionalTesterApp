@@ -35,6 +35,7 @@ import com.pietrantuono.activities.MyOnCancelListener;
 import com.pietrantuono.activities.NewIOIOActivityListener;
 import com.pietrantuono.activities.fragments.SerialConsoleFragment;
 import com.pietrantuono.activities.fragments.SerialConsoleFragmentCallback;
+import com.pietrantuono.application.PeriCoachTestApplication;
 
 public class IOIOUtils implements IOIOUtilsInterface {
     private Uart uart1;
@@ -438,6 +439,8 @@ public class IOIOUtils implements IOIOUtilsInterface {
             return;
         }
 
+        setBattVoltage(ioio_, true, 34, 2f, 3.7f);
+
         try {
             trigger = ioio_.openDigitalOutput(45,
                     DigitalOutput.Spec.Mode.NORMAL, true);
@@ -554,24 +557,46 @@ public class IOIOUtils implements IOIOUtilsInterface {
     }
 
     @Override
-    public boolean setBattVoltage(final IOIO ioio_, int pin, float scaling, final float voltage) {
+    public boolean setBattVoltage(final IOIO ioio_, boolean calibrate, int pin, float scaling, final float voltage) {
         boolean reached = false;
         boolean adjusting = true;
         float measured = 0;
-//        float error = 0;
-        int DAC = 125;
+        int DAC = 0;
         int stepsize = 1;
-        int min = 0;
-        int max = 255;
+        float min=0;
+        float max=0;
         float precision = 0.001f;
 
+        if (calibrate && PeriCoachTestApplication.getGradient() == null) {
+            setDAC(DAC);      // Set and measure max voltage to work out gradient
+            try {
+                max = (Voltage.getVoltage(ioio_, pin, 30, 1) * scaling);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            PeriCoachTestApplication.setMaxBatteryVoltage(max);
+            Log.d(TAG, "DAC " + DAC + " | Max Voltage " + max);
+
+            DAC = 255;
+            setDAC(DAC);    // Set and measure min voltage to work out gradient
+            try {
+                min = (Voltage.getVoltage(ioio_, pin, 30, 1) * scaling);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            Log.d(TAG, "DAC " + DAC + " | Min Voltage " + min);
+
+            PeriCoachTestApplication.setGradient((max-min) / 256);
+//            grad = (max - min) / 256;
+            Log.d(TAG, "Grad " + PeriCoachTestApplication.getGradient());
+        }
         //Use linear equation based LT1671 and MCP4706 DAC, to set DAC output based on voltage setpoint
-        DAC = (int) ((voltage - 4.26f) / (-0.00378f));
+        DAC = (int) ((voltage - PeriCoachTestApplication.getMaxBatteryVoltage()) / -(PeriCoachTestApplication.getGradient()));
         Log.d(TAG, "Corresponding DAC for voltage: " + voltage + " is " + DAC);
         setDAC(DAC);
 
         try {
-            measured = (Voltage.getVoltage(ioio_, pin) * scaling);
+            measured = (Voltage.getVoltage(ioio_, pin, 30, 1) * scaling);
         } catch (Exception e) {
             e.printStackTrace();
         }
