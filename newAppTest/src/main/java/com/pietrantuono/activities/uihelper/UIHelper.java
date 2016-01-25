@@ -169,11 +169,11 @@ public class UIHelper {
 				if (conn) {
 					connected.setText("FIXTURE CONNECTED");
 					connected.setTextColor(activity.getResources().getColor(R.color.dark_green));
-					connectedicon.setImageResource(R.drawable.ic_connect);
+					connectedicon.setImageResource(R.drawable.ic_action_connected);
 				} else {
 					connected.setText("CONNECTING TO FIXTURE");
 					connected.setTextColor(Color.RED);
-					connectedicon.setImageResource(R.drawable.ic_disconnect);
+					connectedicon.setImageResource(R.drawable.ic_action_disconnected);
 				}
 			}
 		});

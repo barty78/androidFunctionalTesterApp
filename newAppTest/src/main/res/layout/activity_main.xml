@@ -35,7 +35,7 @@
                 android:id="@+id/image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_disconnect" />
+                android:src="@drawable/ic_action_disconnected" />
 
             <TextView
                 android:id="@+id/connected"

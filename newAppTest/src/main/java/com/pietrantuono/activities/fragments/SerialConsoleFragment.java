@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ public class SerialConsoleFragment extends Fragment implements SerialConsoleFrag
     private TextView textView;
     private ScrollView scrollView;
     private Activity activity;
+    private CardView card;
 
     public SerialConsoleFragment() {
     }
@@ -52,6 +54,7 @@ public class SerialConsoleFragment extends Fragment implements SerialConsoleFrag
         View v = inflater.inflate(R.layout.serial_console_fragment, container, false);
         textView = (TextView) v.findViewById(R.id.text);
         scrollView = (ScrollView) v.findViewById(R.id.scroll);
+        card=(CardView) v.findViewById(R.id.card);
         return v;
     }
 
@@ -59,9 +62,11 @@ public class SerialConsoleFragment extends Fragment implements SerialConsoleFrag
     @Override
     public void updateUI(final String text) {
         if (activity == null) return;
+
         scrollView.post(new Runnable() {
             @Override
             public void run() {
+                card.setVisibility(View.VISIBLE);
                 String currentText=textView.getText().toString();
                 if(currentText.length()>100*1000)currentText="";
 //                String newText=currentText + text;

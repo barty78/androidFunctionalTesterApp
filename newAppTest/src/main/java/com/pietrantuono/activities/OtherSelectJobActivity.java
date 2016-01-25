@@ -11,17 +11,16 @@ import com.pietrantuono.activities.classes.JobListAdapter;
 import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.pericoach.newtestapp.R;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
-import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -31,14 +30,13 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
-import hydrix.pfmat.generic.TEST;
+
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 //import server.Job;
 import server.RetrofitRestServices;
 import server.RetrofitRestServices.REST;
-import server.TestsParser;
 import server.pojos.ErrorFromServer;
 import server.pojos.Firmware;
 import server.pojos.Job;
@@ -49,15 +47,14 @@ import utils.MyDialogs;
 import utils.DownloadTask.MyCallback;
 
 @SuppressWarnings("ucd")
-public class OtherSelectJobActivity extends Activity implements MyCallback {
-	private ListView listview;
+public class OtherSelectJobActivity extends AppCompatActivity implements MyCallback, JobHolder.Callback {
+	private RecyclerView recyclerView;
 	private ArrayList<server.pojos.Job> jobsFromServer;
 	private ArrayList<server.pojos.Job> jobsFromdb;
 	private static server.pojos.Job job;
-	private JobListAdapter adapter;
+	private JobAdapter adapter;
 	private static DataProvider dataProvider = null;
 	private static REST rest = null;
-	private boolean firmwarefilepresent = false;
 	private DownloadTask task;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -100,31 +97,16 @@ public class OtherSelectJobActivity extends Activity implements MyCallback {
 	private void populateList() {
 		removeInactiveJobsFromList(jobsFromServer);
 		removeInactiveJobsFromList(jobsFromServer);
-		listview = (ListView) findViewById(R.id.listView);
+		recyclerView = (RecyclerView) findViewById(R.id.recycler);
 		if (jobsFromServer != null && jobsFromServer.size()>0)
-			adapter = new JobListAdapter(jobsFromServer,
+			adapter = new JobAdapter(jobsFromServer,
 					OtherSelectJobActivity.this);
 		else if (jobsFromdb != null && jobsFromdb.size()>0)
-			adapter = new JobListAdapter(jobsFromdb,
+			adapter = new JobAdapter(jobsFromdb,
 					OtherSelectJobActivity.this);
-		listview.setAdapter(adapter);
-		registerForContextMenu(listview);
-		listview.setOnItemClickListener(new OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-									int position, long id) {
-				job = (server.pojos.Job) (parent.getAdapter().getItem(position));
-				Log.d("Job#:", String.valueOf(job.getJobno()));
-				Log.d("Test ID:", String.valueOf(job.getTestId()));
-				Log.d("Firmware ID:", String.valueOf(job.getFirmwareId()));
-				Log.d("Logging", String.valueOf(job.getIslogging() != 0));
-				Log.d("Job ID: ", String.valueOf(job.getId()));
-				PeriCoachTestApplication.setCurrentJob(job);
-				PeriCoachTestApplication.setIsRetestAllowed(job.getIsretestallowed() != 0);
-				getFirmwareListFromServer(job.getFirmwareId());
-			}
-
-		});
+		recyclerView.setLayoutManager(new LinearLayoutManager(OtherSelectJobActivity.this));
+		recyclerView.setAdapter(adapter);
+		registerForContextMenu(recyclerView);
 
 	}
 
@@ -233,7 +215,7 @@ public class OtherSelectJobActivity extends Activity implements MyCallback {
 		OtherSelectJobActivity.rest = rest;
 	}
 
-	private void getFirmwareListFromServer(Long firmwareid) {
+	public void getFirmwareListFromServer(long firmwareid) {
 		MyDialogs.showIndeterminateProgress(OtherSelectJobActivity.this,
 				"Downloading firmware list", "Please wait...");
 		getRest().getFirmware(PeriCoachTestApplication.getDeviceid(),
@@ -391,7 +373,9 @@ public class OtherSelectJobActivity extends Activity implements MyCallback {
 		}		
 	}
 
-	
 
-	
+	@Override
+	public void setJob(Job job) {
+		OtherSelectJobActivity.job=job;
+	}
 }
