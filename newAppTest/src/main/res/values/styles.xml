@@ -15,7 +15,8 @@
         <!-- other colors -->
         <item name="android:textColorPrimary">@color/primary_text</item>
         <item name="android:textColorSecondary">@color/secondary_text</item>
-        
+
+        <item name="colorButtonNormal">@color/primary</item>
 
         <!-- You can also set colorControlNormal, colorControlActivated
              colorControlHighlight, and colorSwitchThumbNormal. -->

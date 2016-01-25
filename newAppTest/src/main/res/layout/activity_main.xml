@@ -1,23 +1,35 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:widget="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    tools:context="${relativePackage}.${activityClass}" >
+    android:weightSum="1"
+    tools:context="${relativePackage}.${activityClass}">
 
-    <RelativeLayout
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="2"
-        android:orientation="vertical" >
+        android:layout_weight="0.20"
+        android:layout_marginLeft="@dimen/card_margin"
+        android:layout_marginRight="@dimen/card_margin"
+        android:layout_marginTop="@dimen/card_margin"
+        card_view:cardCornerRadius="@dimen/card_radius"
+        card_view:cardElevation="@dimen/card_elevation"
+        card_view:cardUseCompatPadding="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/card_margin"
+        android:orientation="vertical">
 
         <LinearLayout
             android:id="@+id/connected_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/image"
@@ -41,88 +53,79 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/connected_container"
             android:gravity="center_vertical"
-            android:orientation="vertical" >
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@color/list_highlight_color" />
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:orientation="horizontal" >
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:ems="8"
-                    android:text="Job Number:"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
+                    android:text="JOB NUMBER:"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/job_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:singleLine="true"
                     android:text="NOT AVAILABLE"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="#FF0000" />
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
             </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@color/list_highlight_color" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="top"
-                android:orientation="horizontal" >
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:ems="8"
-                    android:lines="2"
-                    android:text="Current Step: "
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
+                    android:lines="1"
+                    android:text="CURRENT STEP:"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/currenttask"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="8dp"
-                    android:lines="2"
-                    android:text=""
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="#00FF00" />
+                    android:layout_marginLeft="8dp"
+                    android:lines="1"
+                    android:maxEms="5"
+                    android:text="foooffff"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="top"
-                android:orientation="horizontal" >
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:ems="8"
-                    android:lines="2"
-                    android:text="Next Step: "
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
+                    android:lines="1"
+                    android:text="NEXT STEP:"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/nexttask"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="8dp"
-                    android:lines="2"
-                    android:text=""
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="#00FF00" />
+                    android:layout_marginLeft="8dp"
+                    android:lines="1"
+                    android:maxEms="5"
+                    android:text="fofofoof"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
             </LinearLayout>
         </LinearLayout>
 
@@ -133,21 +136,22 @@
             android:layout_below="@+id/jobandstepscontainer"
             android:gravity="center_vertical"
             android:orientation="vertical"
-            android:visibility="invisible" >
+            android:visibility="invisible">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="LIVE SENSOR READINGS"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/jobandstepscontainer"
                 android:gravity="center_vertical"
-                android:orientation="horizontal" >
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/sensor0"
@@ -157,7 +161,7 @@
                     android:gravity="center"
                     android:text="0"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="#00FF00" />
+                    android:textColor="@color/primary" />
 
                 <TextView
                     android:id="@+id/sensor1"
@@ -167,7 +171,7 @@
                     android:gravity="center"
                     android:text="0"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="#00FF00" />
+                    android:textColor="@color/primary" />
 
                 <TextView
                     android:id="@+id/sensor2"
@@ -177,7 +181,7 @@
                     android:gravity="center"
                     android:text="0"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="#00FF00" />
+                    android:textColor="@color/primary" />
             </LinearLayout>
         </LinearLayout>
 
@@ -187,21 +191,25 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/sensorsreading"
             android:orientation="horizontal"
-            android:weightSum="1" >
+            android:weightSum="1">
 
             <Button
                 android:id="@+id/exit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
-                android:text="EXIT" />
+                android:text="EXIT"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/button_text_size" />
 
             <Button
                 android:id="@+id/retry"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
-                android:text="RESTART" />
+                android:text="RESTART"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/button_text_size" />
         </LinearLayout>
 
         <LinearLayout
@@ -210,35 +218,31 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/cromometercontainer"
             android:gravity="center_vertical"
-            android:orientation="vertical" >
-        </LinearLayout>
+            android:orientation="vertical"></LinearLayout>
 
         <LinearLayout
             android:id="@+id/cromometercontainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
+            android:layout_margin="@dimen/cronomter_margin"
             android:gravity="center_vertical"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@color/list_highlight_color" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:gravity="center_vertical"
-                android:orientation="horizontal" >
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center_horizontal"
-                    android:orientation="vertical" >
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/teststatusmsg"
@@ -246,8 +250,8 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="LOAD \nFIXTURE"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="@color/list_highlight_color"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/primary"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -256,24 +260,27 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center_horizontal"
-                    android:orientation="vertical" >
+                    android:orientation="vertical">
 
                     <Chronometer
                         android:id="@+id/chronometer"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/list_highlight_color"
-                        android:textSize="50dp" />
+                        android:textAppearance="?android:textAppearanceMedium"
+                        android:textColor="@color/primary"
+                        android:textStyle="bold" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
 
+    </android.support.v7.widget.CardView>
+
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="4"
-        android:orientation="vertical" >
+        android:layout_weight="0.8"
+        android:orientation="vertical">
 
         <RelativeLayout
             android:id="@+id/result"
@@ -282,7 +289,7 @@
             android:layout_above="@+id/barcode_adn_serial"
             android:layout_below="@+id/next_and_retry"
             android:gravity="center_vertical"
-            android:visibility="gone" >
+            android:visibility="gone">
 
             <ProgressBar
                 android:id="@+id/testResultInd"
@@ -307,7 +314,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
             <android.support.v4.view.ViewPager
                 android:id="@+id/pager"

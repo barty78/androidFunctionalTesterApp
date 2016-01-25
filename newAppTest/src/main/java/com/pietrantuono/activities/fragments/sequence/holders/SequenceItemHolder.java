@@ -20,14 +20,4 @@ public abstract class SequenceItemHolder extends RecyclerView.ViewHolder {
     public abstract void setData(SequenceRowElement.RowElement rowElement);
 
 
-    public class SensorItemHolder extends SequenceItemHolder {
-        public SensorItemHolder(View v, Context context) {
-            super(v,context);
-        }
-
-        @Override
-        public void setData(SequenceRowElement.RowElement rowElement) {
-
-        }
-    }
 }

@@ -155,8 +155,7 @@ public class UIHelper {
 				} else {
 					job_number.setText(jobnumber + " (No Retests)");
 				}
-				if (success)
-					job_number.setTextColor(Color.GREEN);
+
 			}
 		});
 	}
@@ -169,7 +168,7 @@ public class UIHelper {
 			public void run() {
 				if (conn) {
 					connected.setText("FIXTURE CONNECTED");
-					connected.setTextColor(Color.GREEN);
+					connected.setTextColor(activity.getResources().getColor(R.color.dark_green));
 					connectedicon.setImageResource(R.drawable.ic_connect);
 				} else {
 					connected.setText("CONNECTING TO FIXTURE");
@@ -198,8 +197,7 @@ public class UIHelper {
 					labeltv.setText(label);
 				if (text != null)
 					texttv.setText(text);
-				if (color == 0)
-					texttv.setTextColor(Color.GREEN);
+
 				else
 					texttv.setTextColor(color);
 				final ViewTreeObserver observer = layout.getViewTreeObserver();

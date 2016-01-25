@@ -1,6 +1,7 @@
 package com.pietrantuono.activities.fragments;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -8,6 +9,8 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.mikepenz.google_material_typeface_library.GoogleMaterial;
+import com.mikepenz.iconics.view.IconicsImageView;
 import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.pericoach.newtestapp.R;
 
@@ -22,18 +25,17 @@ public class Holder extends RecyclerView.ViewHolder {
     private TextView barcode;
     private TextView serial;
     private TextView address;
-    private TextView passed_tv;
     private Context context;
     private Device device;
-    private ProgressBar progressBar;
+    private final IconicsImageView result;
 
     public Holder(View itemView) {
         super(itemView);
         barcode = (TextView) itemView.findViewById(R.id.barcode_tv);
         serial = (TextView) itemView.findViewById(R.id.serial_tv);
         address = (TextView) itemView.findViewById(R.id.address_tv);
-        passed_tv = (TextView) itemView.findViewById(R.id.passed_tv);
-        progressBar = (ProgressBar) itemView.findViewById(R.id.testResultInd);
+        result = (IconicsImageView) itemView.findViewById(R.id.result);
+
     }
 
     public void setData(Device device, Context context) {
@@ -54,9 +56,9 @@ public class Holder extends RecyclerView.ViewHolder {
         Log.d("HOLDER", "TestType: " + String.valueOf(job.getTesttypeId()) + " | Exec_Tests: " + String.valueOf(device.getExec_Tests()));
         if ((device.getStatus() & job.getTesttypeId()) == job.getTesttypeId()) {
             Log.d("HOLDER", "TestType: " + String.valueOf(job.getTesttypeId()) + " | Status: " + String.valueOf(device.getStatus()));
-            passed_tv.setText(context.getString(R.string.passed_passed));
-            Drawable background = context.getResources().getDrawable(R.drawable.greenprogress);
-            progressBar.setProgressDrawable(background);
+            result.setIcon(GoogleMaterial.Icon.gmd_check_circle);
+            result.setColor(Color.GREEN);
         }
+
     }
 }

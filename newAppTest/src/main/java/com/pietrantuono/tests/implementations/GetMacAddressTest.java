@@ -64,7 +64,7 @@ public class GetMacAddressTest extends Test {
                 if(ServiceDBHelper.isMacAlreadySeen(activityListener.getBarcode(),mac) && !PeriCoachTestApplication.getIsRetestAllowed()){
                     Toast.makeText((Activity)activityListener,"DEVICE ALRREDY TESTED, ABORTING !",Toast.LENGTH_LONG).show();
                     setSuccess(false);
-                    activityListener.addFailOrPass(true,false,description);
+                    activityListener.addFailOrPass(true,false,mac);
                     return;
                 }
 
