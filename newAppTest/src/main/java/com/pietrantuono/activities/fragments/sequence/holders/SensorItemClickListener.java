@@ -1,7 +1,9 @@
-package com.pietrantuono.activities.fragments;
+package com.pietrantuono.activities.fragments.sequence.holders;
 
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+
+import com.pietrantuono.activities.fragments.SensorLimitsDialogFragment;
 
 import server.pojos.Test;
 

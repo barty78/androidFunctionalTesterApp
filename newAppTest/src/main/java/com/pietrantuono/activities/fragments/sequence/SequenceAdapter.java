@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import com.pietrantuono.activities.fragments.sequence.holders.SensorItemHolder;
 import com.pietrantuono.activities.fragments.sequence.holders.SequenceItemHolder;
 import com.pietrantuono.activities.fragments.sequence.holders.TestItemHolder;
-import com.pietrantuono.activities.fragments.sequence.holders.UlploadItemHolder;
+import com.pietrantuono.activities.fragments.sequence.holders.UploadItemHolder;
 import com.pietrantuono.constants.NewMSensorResult;
 import com.pietrantuono.constants.NewSequenceInterface;
 import com.pietrantuono.pericoach.newtestapp.R;
@@ -64,7 +64,7 @@ public class SequenceAdapter extends RecyclerView.Adapter<SequenceItemHolder> {
         }
         if (viewType == FW_UPLOAD) {
             View v = layoutInflater.inflate(R.layout.new_upload_row_item, parent, false);
-            return new UlploadItemHolder(v, context);
+            return new UploadItemHolder(v, context);
         }
         return null;
     }
@@ -72,8 +72,8 @@ public class SequenceAdapter extends RecyclerView.Adapter<SequenceItemHolder> {
     @Override
     public void onBindViewHolder(SequenceItemHolder holder, int position) {
         holder.setData(items.get(position));
-        if((holder instanceof UlploadItemHolder) && callback!=null)
-            callback.onViewHolderReady((UlploadItemHolder)holder);
+        if((holder instanceof UploadItemHolder) && callback!=null)
+            callback.onViewHolderReady((UploadItemHolder)holder);
     }
 
     @Override

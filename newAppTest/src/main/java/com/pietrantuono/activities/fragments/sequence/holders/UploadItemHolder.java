@@ -29,13 +29,13 @@ import com.pietrantuono.uploadfirmware.ProgressAndTextView;
 /**
  * Created by Maurizio Pietrantuono, maurizio.pietrantuono@gmail.com.
  */
-public class UlploadItemHolder extends SequenceItemHolder {
+public class UploadItemHolder extends SequenceItemHolder {
     private final TextView testSeqNum;
     private final TextView testName;
     private final IconicsImageView result;
     private final DonutProgress donutProgress;
 
-    public UlploadItemHolder(View v, Context context) {
+    public UploadItemHolder(View v, Context context) {
         super(v, context);
         testSeqNum = (TextView) itemView.findViewById(R.id.testSeqNum);
         testName = (TextView) itemView.findViewById(R.id.testName);
@@ -70,11 +70,12 @@ public class UlploadItemHolder extends SequenceItemHolder {
         donutProgress.setProgress(0);
     }
 
-    public void setFail() {
+    public void setFail(String text) {
         result.setVisibility(View.VISIBLE);
         donutProgress.setVisibility(View.INVISIBLE);
         result.setIcon(GoogleMaterial.Icon.gmd_cancel);
         result.setColor(Color.RED);
+        testName.setText(text);
     }
 
     public void setPass() {

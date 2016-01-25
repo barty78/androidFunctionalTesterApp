@@ -2,23 +2,16 @@ package com.pietrantuono.tests.implementations.upload;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.res.Resources;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
-import com.mikepenz.google_material_typeface_library.GoogleMaterial;
-import com.pietrantuono.activities.fragments.sequence.holders.UlploadItemHolder;
+import com.pietrantuono.activities.fragments.sequence.holders.UploadItemHolder;
 import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.ioioutils.IOIOUtils;
-import com.pietrantuono.pericoach.newtestapp.R;
 import com.pietrantuono.tests.superclass.Test;
 import com.pietrantuono.uploadfirmware.DummyFirmWareUploader;
 import com.pietrantuono.uploadfirmware.DummyFirmWareUploader.UploaderListener;
-import com.pietrantuono.uploadfirmware.ProgressAndTextView;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -38,7 +31,7 @@ public class DummyUploadFirmwareTest extends Test {
     boolean fileMD5Passed = false;
     private int retries;
     private Boolean loopback;
-    public UlploadItemHolder holder;
+    public UploadItemHolder holder;
 
     public DummyUploadFirmwareTest(Activity activity, IOIO ioio, Boolean loopback) {
         super(activity, ioio, "Dummy Upload Firmware", false, true, 0, 0, 0);            // Blocking Test, if fails - STOP
@@ -51,7 +44,7 @@ public class DummyUploadFirmwareTest extends Test {
         String version = PeriCoachTestApplication.getGetFirmware().getVersion();
         activityListener.createUploadProgress(false, true, description + " (Version: " + version + ")", new UploadTestCallback() {
             @Override
-            public void onViewHolderReady(UlploadItemHolder holder) {
+            public void onViewHolderReady(UploadItemHolder holder) {
                 DummyUploadFirmwareTest.this.holder = holder;
                 start();
             }
@@ -102,7 +95,7 @@ public class DummyUploadFirmwareTest extends Test {
                     ((Activity) activityListener).runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            holder.setFail();
+                            holder.setFail("");
                             activityListener.goAndExecuteNextTest();
                         }
                     });
@@ -128,7 +121,7 @@ public class DummyUploadFirmwareTest extends Test {
                             ((Activity) activityListener).runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    holder.setFail();
+                                    holder.setFail("");
                                     activityListener.goAndExecuteNextTest();
                                 }
                             });

@@ -2,6 +2,7 @@ package com.pietrantuono.activities.fragments.sequence.holders;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -34,7 +35,7 @@ public class TestItemHolder extends SequenceItemHolder {
             throw new RuntimeException("Wrong adata " + Log.getStackTraceString(new Exception()));
         SequenceRowElement.TestRowElement testRowElement = (SequenceRowElement.TestRowElement) rowElement;
 
-        testSeqNum.setText("" + testRowElement.getSequence().getCurrentTestNumber() + 1);
+        testSeqNum.setText("" + (testRowElement.getSequence().getCurrentTestNumber() + 1));
         testName.setText(testRowElement.getDescription() != null ? testRowElement.getDescription() : context.getString(R.string.no_description));
         reading.setText(testRowElement.getReading() != null ? testRowElement.getReading() : "");
         if (testRowElement.isSuccess()) {
@@ -52,6 +53,8 @@ public class TestItemHolder extends SequenceItemHolder {
                 result.setColor(context.getResources().getColor(R.color.primary));
             }
         }
+        if(!testRowElement.isSensorTest())itemView.setOnClickListener((new ListItemClickListener((AppCompatActivity) context,testRowElement.getTestToBeParsed())));
+        else{itemView.setOnClickListener((new SensorItemClickListener((AppCompatActivity) context,testRowElement.getTestToBeParsed())));}
 
     }
 }

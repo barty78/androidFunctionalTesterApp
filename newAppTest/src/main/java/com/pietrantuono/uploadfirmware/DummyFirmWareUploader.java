@@ -1,23 +1,15 @@
 package com.pietrantuono.uploadfirmware;
 
 import android.app.Activity;
-import android.content.res.Resources;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.view.View;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.parser.BinaryParser;
 import com.pietrantuono.activities.NewIOIOActivityListener;
-import com.pietrantuono.activities.fragments.sequence.holders.UlploadItemHolder;
+import com.pietrantuono.activities.fragments.sequence.holders.UploadItemHolder;
 import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.ioioutils.IOIOUtils;
-import com.pietrantuono.pericoach.newtestapp.R;
 
 import java.io.ByteArrayInputStream;
 import java.io.FileNotFoundException;
@@ -72,7 +64,7 @@ public class DummyFirmWareUploader {
 	private Boolean isstopped = false;
 	private WriteTask task = null;
 	private UploaderListener listener;
-    private final UlploadItemHolder holder;
+    private final UploadItemHolder holder;
     private IOIO ioio_;
 	private static Boolean stopthread=false;
 	private Boolean loopback;
@@ -86,7 +78,7 @@ public class DummyFirmWareUploader {
 	}
 
 	public DummyFirmWareUploader(OutputStream TX, InputStream RX, Activity c,
-                                 UlploadItemHolder holder,
+                                 UploadItemHolder holder,
 								 NewIOIOActivityListener listner, IOIO ioio_, Boolean loopback) {
 		this.TX = TX;
 		this.c = c;
@@ -296,7 +288,7 @@ public class DummyFirmWareUploader {
 
 //						Toast.makeText(c, "WRITE FAILED!",
 //								Toast.LENGTH_LONG).show();
-                        holder.setFail();
+                        holder.setFail("");
 
 
 //						Handler h = new Handler();

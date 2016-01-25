@@ -36,7 +36,6 @@ public class PeriCoachTestApplication extends  com.activeandroid.app.Application
 	private static String android_id="";
 	private static Float gradient=null;
 	private static Float maxBatteryVoltage=null;
-	@SuppressWarnings("unused")
 	private String TAG=getClass().getSimpleName();
 	private static File dir;
 	private static AssetManager assetManager;

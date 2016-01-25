@@ -2,6 +2,7 @@ package com.pietrantuono.activities.fragments.sequence.holders;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -112,5 +113,7 @@ public class SensorItemHolder extends SequenceItemHolder {
             result_stability.setIcon(GoogleMaterial.Icon.gmd_cancel);
             result_stability.setColor(Color.RED);
         }
+        itemView.setOnClickListener((new SensorItemClickListener((AppCompatActivity) context,rowElement.getTestToBeParsed())));
+
     }
 }

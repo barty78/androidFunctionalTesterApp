@@ -13,30 +13,33 @@
     </layouts>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="ERROR" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c3e6e43e-5ddb-4d23-8f7a-0ad602dc1457" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/steps/SetSensorVoltagesStep.java.orig" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/steps/SetSensorVoltagesStep.java.orig" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/ListItemClickListener.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/sequence/holders/ListItemClickListener.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/SensorItemClickListener.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/sequence/holders/SensorItemClickListener.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/sequence/holders/UlploadItemHolder.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/sequence/holders/UploadItemHolder.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/btutility/BTUtility.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/btutility/BTUtility.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/BatteryLevelUUTVoltageTest.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/BatteryLevelUUTVoltageTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/CurrentTest.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/CurrentTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/GetBarcodeTest.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/GetBarcodeTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/IOIOUtils.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/IOIOUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/IOIOUtilsInterface.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/IOIOUtilsInterface.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/MainActivity.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/peter/java/customclasses/NewSequence.java" afterPath="$PROJECT_DIR$/newAppTest/src/peter/java/customclasses/NewSequence.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/uploadfirmware/DummyFirmWareUploader.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/uploadfirmware/DummyFirmWareUploader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/upload/DummyUploadFirmwareTest.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/upload/DummyUploadFirmwareTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/uploadfirmware/FirmWareUploader.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/uploadfirmware/FirmWareUploader.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/application/PeriCoachTestApplication.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/application/PeriCoachTestApplication.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/SensorTestWrapper.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/SensorTestWrapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/steps/SetSensorVoltagesStep.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/steps/SetSensorVoltagesStep.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/server/TestsParser.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/server/TestsParser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/sequence/holders/UlploadItemHolder.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/sequence/holders/UlploadItemHolder.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/VoltageTest.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/VoltageTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/local.properties.orig" afterPath="$PROJECT_DIR$/local.properties.orig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/sequence/holders/SensorItemHolder.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/sequence/holders/SensorItemHolder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/sequence/SequenceAdapter.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/sequence/SequenceAdapter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/sequence/SequenceFragment.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/sequence/SequenceFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/sequence/holders/TestItemHolder.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/sequence/holders/TestItemHolder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/upload/TestUploadFirmwareTest.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/upload/TestUploadFirmwareTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/upload/UploadFirmwareTest.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/upload/UploadFirmwareTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/upload/UploadTestCallback.java" afterPath="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/upload/UploadTestCallback.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gradle.xml" afterPath="$PROJECT_DIR$/.idea/gradle.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/local.properties" afterPath="$PROJECT_DIR$/local.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newAppTest/src/main/res/layout/new_upload_row_item.xml" afterPath="$PROJECT_DIR$/newAppTest/src/main/res/layout/new_upload_row_item.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="pericoach-test-app-android-studio.iws" />
@@ -64,94 +67,7 @@
     <favorites_list name="pericoach-test-app-android-studio" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="UlploadItemHolder.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/sequence/holders/UlploadItemHolder.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.63903743">
-              <caret line="87" column="0" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IconicsImageView.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.mikepenz/iconics-core/2.5.3/9138b0ea338e5b748629197a22735afe744068d6/iconics-core-2.5.3-sources.jar!/com/mikepenz/iconics/view/IconicsImageView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="123" column="14" selection-start-line="123" selection-start-column="14" selection-end-line="123" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="View.java" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-23/android/view/View.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="10942" column="0" selection-start-line="10942" selection-start-column="0" selection-end-line="10942" selection-end-column="0" />
-              <folding>
-                <element signature="e#428811#428812#0" expanded="true" />
-                <element signature="e#428869#428870#0" expanded="true" />
-                <element signature="e#430028#430029#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UIHelper.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/uihelper/UIHelper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="409" column="61" selection-start-line="409" selection-start-column="61" selection-end-line="409" selection-end-column="61" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/MainActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="415" column="36" selection-start-line="415" selection-start-column="36" selection-end-line="415" selection-end-column="36" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TestUploadFirmwareTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/upload/TestUploadFirmwareTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="59" column="15" selection-start-line="59" selection-start-column="15" selection-end-line="59" selection-end-column="15" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NewSequence.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/newAppTest/src/maurizio/java/customclasses/NewSequence.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="406" column="0" selection-start-line="406" selection-start-column="0" selection-end-line="406" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SequenceAdapter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/sequence/SequenceAdapter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="65" column="62" selection-start-line="65" selection-start-column="62" selection-end-line="65" selection-end-column="62" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -2695,11 +2611,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/NominalToleranceDialog.java" />
-        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/UpperLowerFragment.java" />
-        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/SensorLimitsDialogFragment.java" />
-        <option value="$PROJECT_DIR$/newAppTest/src/main/res/layout/sensorsummaryrowitem.xml" />
-        <option value="$PROJECT_DIR$/newAppTest/src/main/res/layout/new_device_row.xml" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/Holder.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/OtherSelectJobActivity.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/res/values/styles.xml" />
@@ -2733,19 +2644,24 @@
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/uihelper/UIHelper.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/NewIOIOActivityListener.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/sequence/UlploadItemHolder.java" />
-        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/sequence/holders/TestItemHolder.java" />
-        <option value="$PROJECT_DIR$/newAppTest/src/main/res/layout/new_upload_row_item.xml" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/sequence/holders/SequenceItemHolder.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/maurizio/java/customclasses/NewSequence.java" />
-        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/uploadfirmware/DummyFirmWareUploader.java" />
-        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/upload/DummyUploadFirmwareTest.java" />
-        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/upload/TestUploadFirmwareTest.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/sequence/SequenceAdapter.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/VoltageTest.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/steps/SetSensorVoltagesStep.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/MainActivity.java" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/IOIOUtils.java" />
+        <option value="$PROJECT_DIR$/newAppTest/src/main/res/layout/new_upload_row_item.xml" />
         <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/sequence/holders/UlploadItemHolder.java" />
+        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/sequence/holders/UploadItemHolder.java" />
+        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/upload/UploadFirmwareTest.java" />
+        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/uploadfirmware/FirmWareUploader.java" />
+        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/upload/TestUploadFirmwareTest.java" />
+        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/sequence/holders/SensorItemHolder.java" />
+        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/sequence/holders/TestItemHolder.java" />
+        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/uploadfirmware/DummyFirmWareUploader.java" />
+        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/upload/DummyUploadFirmwareTest.java" />
+        <option value="$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/application/PeriCoachTestApplication.java" />
       </list>
     </option>
   </component>
@@ -2787,7 +2703,7 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -2798,7 +2714,7 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -3890,34 +3806,32 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="796" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32474965" sideWeight="0.43283582" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.40882352" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" x="680" y="401" width="80" height="40" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2453505" sideWeight="0.5361702" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31176472" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32474965" sideWeight="0.43283582" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" x="959" y="23" width="340" height="373" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32995737" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" x="959" y="23" width="321" height="79" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.40882352" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" x="680" y="401" width="80" height="40" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3867647" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.45441177" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32995737" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24391988" sideWeight="0.5671642" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31176472" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20529328" sideWeight="0.5671642" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Fabric" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2453505" sideWeight="0.5361702" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Fabric" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297568" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31176472" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -3927,6 +3841,8 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Analyze Dataflow from" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32941177" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32995737" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31176472" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -4033,8 +3949,8 @@
           <option name="timeStamp" value="97" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/sequence/holders/UlploadItemHolder.java</url>
-          <line>93</line>
+          <url>file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/sequence/holders/UploadItemHolder.java</url>
+          <line>94</line>
           <properties />
           <option name="timeStamp" value="98" />
         </line-breakpoint>
@@ -4066,39 +3982,10 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/maurizio/java/customclasses/DebugHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35433072">
-          <caret line="9" column="18" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/server/pojos/Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="167" column="0" selection-start-line="167" selection-start-column="0" selection-end-line="167" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/uihelper/ActivityCallback.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16901408">
-          <caret line="4" column="16" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/GetBarcodeTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.24788733">
-          <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/Voltage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2877095">
           <caret line="65" column="24" selection-start-line="65" selection-start-column="24" selection-end-line="65" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4121,7 +4008,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.25">
           <caret line="6" column="32" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4129,7 +4015,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.27559054">
           <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4144,7 +4029,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.48863637">
           <caret line="73" column="44" selection-start-line="73" selection-start-column="12" selection-end-line="73" selection-end-column="44" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4152,7 +4036,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3318182">
           <caret line="23" column="32" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4167,7 +4050,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.81595093">
           <caret line="634" column="35" selection-start-line="634" selection-start-column="35" selection-end-line="634" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4207,12 +4089,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.78356165">
           <caret line="250" column="61" selection-start-line="250" selection-start-column="61" selection-end-line="250" selection-end-column="61" />
-          <folding>
-            <element signature="e#3197#3532#0" expanded="false" />
-            <element signature="e#3531#3532#0" expanded="false" />
-            <element signature="e#6374#6475#0" expanded="false" />
-            <element signature="e#6474#6475#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -4220,7 +4096,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33150685">
           <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4228,9 +4103,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.37362638">
           <caret line="286" column="61" selection-start-line="286" selection-start-column="61" selection-end-line="286" selection-end-column="61" />
-          <folding>
-            <element signature="e#12100#12120#0" expanded="true" />
-          </folding>
         </state>
       </provider>
       <provider editor-type-id="android-designer">
@@ -4241,7 +4113,6 @@
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="51" column="53" selection-start-line="51" selection-start-column="53" selection-end-line="51" selection-end-column="53" />
-          <folding />
         </state>
       </provider>
       <provider selected="true" editor-type-id="android-designer">
@@ -4252,14 +4123,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.23863636">
           <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/upload/UploadFirmwareTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.3636364">
-          <caret line="51" column="10" selection-start-line="51" selection-start-column="10" selection-end-line="51" selection-end-column="10" />
         </state>
       </provider>
     </entry>
@@ -4267,17 +4130,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3659091">
           <caret line="5215" column="20" selection-start-line="5215" selection-start-column="20" selection-end-line="5215" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/sequence/SequenceRowElement.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.71590906">
-          <caret line="107" column="31" selection-start-line="107" selection-start-column="15" selection-end-line="107" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -4285,17 +4137,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.375">
           <caret line="11" column="44" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/sequence/holders/SensorItemHolder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.52272725">
-          <caret line="43" column="74" selection-start-line="43" selection-start-column="74" selection-end-line="43" selection-end-column="74" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4318,38 +4159,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/uploadfirmware/DummyFirmWareUploader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.2085562">
-          <caret line="365" column="41" selection-start-line="365" selection-start-column="41" selection-end-line="365" selection-end-column="41" />
-          <folding>
-            <element signature="e#1790#1807#0" expanded="false" />
-            <element signature="e#6494#6606#0" expanded="false" />
-            <element signature="e#6605#6606#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/upload/DummyUploadFirmwareTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6871658">
-          <caret line="100" column="38" selection-start-line="100" selection-start-column="38" selection-end-line="100" selection-end-column="38" />
-          <folding>
-            <element signature="e#2336#2462#0" expanded="false" />
-            <element signature="e#2461#2462#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/sequence/SequenceFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="308" column="52" selection-start-line="308" selection-start-column="52" selection-end-line="308" selection-end-column="52" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4375,7 +4184,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.91354465">
           <caret line="106" column="1" selection-start-line="106" selection-start-column="1" selection-end-line="106" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4383,7 +4191,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.9197861">
           <caret line="115" column="0" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4399,15 +4206,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="2.4657533">
           <caret line="87" column="0" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/maurizio/java/customclasses/NewSequence.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="406" column="0" selection-start-line="406" selection-start-column="0" selection-end-line="406" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4415,69 +4213,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3313253">
           <caret line="22" column="9" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="415" column="36" selection-start-line="415" selection-start-column="36" selection-end-line="415" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/IOIOUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6927711">
-          <caret line="442" column="12" selection-start-line="442" selection-start-column="12" selection-end-line="442" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/sequence/holders/TestItemHolder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2159091">
-          <caret line="40" column="47" selection-start-line="40" selection-start-column="47" selection-end-line="40" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/uihelper/UIHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="409" column="61" selection-start-line="409" selection-start-column="61" selection-end-line="409" selection-end-column="61" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/upload/TestUploadFirmwareTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="59" column="15" selection-start-line="59" selection-start-column="15" selection-end-line="59" selection-end-column="15" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/newAppTest/src/main/res/layout/new_upload_row_item.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4428224">
-          <caret line="52" column="52" selection-start-line="52" selection-start-column="41" selection-end-line="52" selection-end-column="52" />
-          <folding />
+        <state vertical-scroll-proportion="0.9130435">
+          <caret line="66" column="45" selection-start-line="66" selection-start-column="45" selection-end-line="66" selection-end-column="45" />
         </state>
       </provider>
       <provider editor-type-id="android-designer">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/sequence/SequenceAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="65" column="62" selection-start-line="65" selection-start-column="62" selection-end-line="65" selection-end-column="62" />
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-23/android/view/View.java">
@@ -4485,9 +4231,444 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="10942" column="0" selection-start-line="10942" selection-start-column="0" selection-end-line="10942" selection-end-column="0" />
           <folding>
-            <element signature="e#428811#428812#0" expanded="true" />
-            <element signature="e#428869#428870#0" expanded="true" />
-            <element signature="e#430028#430029#0" expanded="true" />
+            <element signature="e#0#876728#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#60847#60853#0" expanded="false" />
+            <element signature="e#143577#143578#0" expanded="false" />
+            <element signature="e#143616#143617#0" expanded="false" />
+            <element signature="e#191303#191304#0" expanded="false" />
+            <element signature="e#191352#191353#0" expanded="false" />
+            <element signature="e#204598#204599#0" expanded="false" />
+            <element signature="e#204662#204663#0" expanded="false" />
+            <element signature="e#205082#205083#0" expanded="false" />
+            <element signature="e#205122#205123#0" expanded="false" />
+            <element signature="e#209143#209144#0" expanded="false" />
+            <element signature="e#209195#209196#0" expanded="false" />
+            <element signature="e#209408#209409#0" expanded="false" />
+            <element signature="e#209462#209463#0" expanded="false" />
+            <element signature="e#209984#209985#0" expanded="false" />
+            <element signature="e#210038#210039#0" expanded="false" />
+            <element signature="e#210483#210484#0" expanded="false" />
+            <element signature="e#210536#210537#0" expanded="false" />
+            <element signature="e#217741#217742#0" expanded="false" />
+            <element signature="e#217800#217801#0" expanded="false" />
+            <element signature="e#237017#237018#0" expanded="false" />
+            <element signature="e#237066#237067#0" expanded="false" />
+            <element signature="e#239340#239341#0" expanded="false" />
+            <element signature="e#239383#239384#0" expanded="false" />
+            <element signature="e#251631#251632#0" expanded="false" />
+            <element signature="e#251675#251676#0" expanded="false" />
+            <element signature="e#254486#254487#0" expanded="false" />
+            <element signature="e#254531#254532#0" expanded="false" />
+            <element signature="e#257642#257643#0" expanded="false" />
+            <element signature="e#257684#257685#0" expanded="false" />
+            <element signature="e#260816#260817#0" expanded="false" />
+            <element signature="e#260870#260871#0" expanded="false" />
+            <element signature="e#262624#262625#0" expanded="false" />
+            <element signature="e#262677#262678#0" expanded="false" />
+            <element signature="e#262930#262931#0" expanded="false" />
+            <element signature="e#262964#262965#0" expanded="false" />
+            <element signature="e#264196#264197#0" expanded="false" />
+            <element signature="e#264231#264232#0" expanded="false" />
+            <element signature="e#264745#264746#0" expanded="false" />
+            <element signature="e#264804#264805#0" expanded="false" />
+            <element signature="e#265055#265056#0" expanded="false" />
+            <element signature="e#265128#265129#0" expanded="false" />
+            <element signature="e#267071#267072#0" expanded="false" />
+            <element signature="e#267133#267134#0" expanded="false" />
+            <element signature="e#268115#268116#0" expanded="false" />
+            <element signature="e#268172#268173#0" expanded="false" />
+            <element signature="e#268904#268905#0" expanded="false" />
+            <element signature="e#268943#268944#0" expanded="false" />
+            <element signature="e#269283#269284#0" expanded="false" />
+            <element signature="e#269333#269334#0" expanded="false" />
+            <element signature="e#269634#269635#0" expanded="false" />
+            <element signature="e#269674#269675#0" expanded="false" />
+            <element signature="e#270019#270020#0" expanded="false" />
+            <element signature="e#270071#270072#0" expanded="false" />
+            <element signature="e#270363#270364#0" expanded="false" />
+            <element signature="e#270400#270401#0" expanded="false" />
+            <element signature="e#270730#270731#0" expanded="false" />
+            <element signature="e#270776#270777#0" expanded="false" />
+            <element signature="e#271074#271075#0" expanded="false" />
+            <element signature="e#271113#271114#0" expanded="false" />
+            <element signature="e#271453#271454#0" expanded="false" />
+            <element signature="e#271503#271504#0" expanded="false" />
+            <element signature="e#271810#271811#0" expanded="false" />
+            <element signature="e#271852#271853#0" expanded="false" />
+            <element signature="e#287642#287643#0" expanded="false" />
+            <element signature="e#287687#287688#0" expanded="false" />
+            <element signature="e#288151#288152#0" expanded="false" />
+            <element signature="e#288192#288193#0" expanded="false" />
+            <element signature="e#289300#289301#0" expanded="false" />
+            <element signature="e#289351#289352#0" expanded="false" />
+            <element signature="e#289644#289645#0" expanded="false" />
+            <element signature="e#289697#289698#0" expanded="false" />
+            <element signature="e#289964#289965#0" expanded="false" />
+            <element signature="e#290025#290026#0" expanded="false" />
+            <element signature="e#298524#298525#0" expanded="false" />
+            <element signature="e#298593#298594#0" expanded="false" />
+            <element signature="e#301350#301351#0" expanded="false" />
+            <element signature="e#301392#301393#0" expanded="false" />
+            <element signature="e#302446#302447#0" expanded="false" />
+            <element signature="e#302510#302511#0" expanded="false" />
+            <element signature="e#303742#303743#0" expanded="false" />
+            <element signature="e#303802#303803#0" expanded="false" />
+            <element signature="e#304267#304268#0" expanded="false" />
+            <element signature="e#304329#304330#0" expanded="false" />
+            <element signature="e#304632#304633#0" expanded="false" />
+            <element signature="e#304702#304703#0" expanded="false" />
+            <element signature="e#308158#308159#0" expanded="false" />
+            <element signature="e#308229#308230#0" expanded="false" />
+            <element signature="e#308727#308728#0" expanded="false" />
+            <element signature="e#308795#308796#0" expanded="false" />
+            <element signature="e#310038#310039#0" expanded="false" />
+            <element signature="e#310111#310112#0" expanded="false" />
+            <element signature="e#313659#313660#0" expanded="false" />
+            <element signature="e#313724#313725#0" expanded="false" />
+            <element signature="e#317127#317331#0" expanded="false" />
+            <element signature="e#317330#317331#0" expanded="false" />
+            <element signature="e#318193#318199#0" expanded="false" />
+            <element signature="e#321856#321862#0" expanded="false" />
+            <element signature="e#327471#327472#0" expanded="false" />
+            <element signature="e#327523#327524#0" expanded="false" />
+            <element signature="e#328476#328477#0" expanded="false" />
+            <element signature="e#328528#328529#0" expanded="false" />
+            <element signature="e#356420#356421#0" expanded="false" />
+            <element signature="e#356466#356467#0" expanded="false" />
+            <element signature="e#356672#356673#0" expanded="false" />
+            <element signature="e#356700#356701#0" expanded="false" />
+            <element signature="e#356780#356781#0" expanded="false" />
+            <element signature="e#356831#356832#0" expanded="false" />
+            <element signature="e#356909#356910#0" expanded="false" />
+            <element signature="e#356964#356965#0" expanded="false" />
+            <element signature="e#359948#359949#0" expanded="false" />
+            <element signature="e#359988#359989#0" expanded="false" />
+            <element signature="e#360533#360534#0" expanded="false" />
+            <element signature="e#360574#360575#0" expanded="false" />
+            <element signature="e#371521#371522#0" expanded="false" />
+            <element signature="e#371549#371550#0" expanded="false" />
+            <element signature="e#371984#371985#0" expanded="false" />
+            <element signature="e#372012#372013#0" expanded="false" />
+            <element signature="e#372441#372442#0" expanded="false" />
+            <element signature="e#372469#372470#0" expanded="false" />
+            <element signature="e#373627#373628#0" expanded="false" />
+            <element signature="e#373673#373674#0" expanded="false" />
+            <element signature="e#375083#375084#0" expanded="false" />
+            <element signature="e#375156#375157#0" expanded="false" />
+            <element signature="e#377217#377218#0" expanded="false" />
+            <element signature="e#377252#377253#0" expanded="false" />
+            <element signature="e#384089#384090#0" expanded="false" />
+            <element signature="e#384120#384121#0" expanded="false" />
+            <element signature="e#384824#384825#0" expanded="false" />
+            <element signature="e#384852#384853#0" expanded="false" />
+            <element signature="e#386704#386705#0" expanded="false" />
+            <element signature="e#386732#386733#0" expanded="false" />
+            <element signature="e#388780#388781#0" expanded="false" />
+            <element signature="e#388808#388809#0" expanded="false" />
+            <element signature="e#389443#389444#0" expanded="false" />
+            <element signature="e#389471#389472#0" expanded="false" />
+            <element signature="e#390441#390442#0" expanded="false" />
+            <element signature="e#390469#390470#0" expanded="false" />
+            <element signature="e#391595#391596#0" expanded="false" />
+            <element signature="e#391622#391623#0" expanded="false" />
+            <element signature="e#392194#392195#0" expanded="false" />
+            <element signature="e#392222#392223#0" expanded="false" />
+            <element signature="e#393944#393945#0" expanded="false" />
+            <element signature="e#393971#393972#0" expanded="false" />
+            <element signature="e#394903#394904#0" expanded="false" />
+            <element signature="e#394931#394932#0" expanded="false" />
+            <element signature="e#396731#396732#0" expanded="false" />
+            <element signature="e#396759#396760#0" expanded="false" />
+            <element signature="e#401587#401588#0" expanded="false" />
+            <element signature="e#401646#401647#0" expanded="false" />
+            <element signature="e#412306#412307#0" expanded="false" />
+            <element signature="e#412347#412348#0" expanded="false" />
+            <element signature="e#412455#412456#0" expanded="false" />
+            <element signature="e#412492#412493#0" expanded="false" />
+            <element signature="e#425905#425906#0" expanded="false" />
+            <element signature="e#425935#425936#0" expanded="false" />
+            <element signature="e#426217#426218#0" expanded="false" />
+            <element signature="e#426258#426259#0" expanded="false" />
+            <element signature="e#426538#426539#0" expanded="false" />
+            <element signature="e#426579#426580#0" expanded="false" />
+            <element signature="e#426959#426960#0" expanded="false" />
+            <element signature="e#426990#426991#0" expanded="false" />
+            <element signature="e#427356#427357#0" expanded="false" />
+            <element signature="e#427387#427388#0" expanded="false" />
+            <element signature="e#427590#427591#0" expanded="false" />
+            <element signature="e#427627#427628#0" expanded="false" />
+            <element signature="e#427829#427830#0" expanded="false" />
+            <element signature="e#427866#427867#0" expanded="false" />
+            <element signature="e#429644#429645#0" expanded="false" />
+            <element signature="e#429681#429682#0" expanded="false" />
+            <element signature="e#430806#430807#0" expanded="false" />
+            <element signature="e#430844#430845#0" expanded="false" />
+            <element signature="e#432256#432257#0" expanded="false" />
+            <element signature="e#432310#432311#0" expanded="false" />
+            <element signature="e#436204#436205#0" expanded="false" />
+            <element signature="e#436252#436253#0" expanded="false" />
+            <element signature="e#437452#437453#0" expanded="false" />
+            <element signature="e#437501#437502#0" expanded="false" />
+            <element signature="e#438928#438929#0" expanded="false" />
+            <element signature="e#438977#438978#0" expanded="false" />
+            <element signature="e#440480#440481#0" expanded="false" />
+            <element signature="e#440526#440527#0" expanded="false" />
+            <element signature="e#441654#441655#0" expanded="false" />
+            <element signature="e#441700#441701#0" expanded="false" />
+            <element signature="e#442872#442873#0" expanded="false" />
+            <element signature="e#442918#442919#0" expanded="false" />
+            <element signature="e#444311#444312#0" expanded="false" />
+            <element signature="e#444357#444358#0" expanded="false" />
+            <element signature="e#445619#445620#0" expanded="false" />
+            <element signature="e#445702#445703#0" expanded="false" />
+            <element signature="e#446996#446997#0" expanded="false" />
+            <element signature="e#447023#447024#0" expanded="false" />
+            <element signature="e#453270#453271#0" expanded="false" />
+            <element signature="e#453297#453298#0" expanded="false" />
+            <element signature="e#455451#455452#0" expanded="false" />
+            <element signature="e#455481#455482#0" expanded="false" />
+            <element signature="e#455651#455652#0" expanded="false" />
+            <element signature="e#455713#455714#0" expanded="false" />
+            <element signature="e#457810#457811#0" expanded="false" />
+            <element signature="e#457838#457839#0" expanded="false" />
+            <element signature="e#460014#460015#0" expanded="false" />
+            <element signature="e#460043#460044#0" expanded="false" />
+            <element signature="e#462283#462284#0" expanded="false" />
+            <element signature="e#462331#462332#0" expanded="false" />
+            <element signature="e#462712#462713#0" expanded="false" />
+            <element signature="e#462754#462755#0" expanded="false" />
+            <element signature="e#463117#463118#0" expanded="false" />
+            <element signature="e#463164#463165#0" expanded="false" />
+            <element signature="e#463543#463544#0" expanded="false" />
+            <element signature="e#463584#463585#0" expanded="false" />
+            <element signature="e#463959#463960#0" expanded="false" />
+            <element signature="e#464016#464017#0" expanded="false" />
+            <element signature="e#464407#464408#0" expanded="false" />
+            <element signature="e#464458#464459#0" expanded="false" />
+            <element signature="e#464707#464708#0" expanded="false" />
+            <element signature="e#464756#464757#0" expanded="false" />
+            <element signature="e#465604#465605#0" expanded="false" />
+            <element signature="e#465656#465657#0" expanded="false" />
+            <element signature="e#466870#466871#0" expanded="false" />
+            <element signature="e#466922#466923#0" expanded="false" />
+            <element signature="e#467997#467998#0" expanded="false" />
+            <element signature="e#468049#468050#0" expanded="false" />
+            <element signature="e#469096#469097#0" expanded="false" />
+            <element signature="e#469137#469138#0" expanded="false" />
+            <element signature="e#470341#470342#0" expanded="false" />
+            <element signature="e#470394#470395#0" expanded="false" />
+            <element signature="e#473499#473500#0" expanded="false" />
+            <element signature="e#473538#473539#0" expanded="false" />
+            <element signature="e#475212#475213#0" expanded="false" />
+            <element signature="e#475258#475259#0" expanded="false" />
+            <element signature="e#477594#477595#0" expanded="false" />
+            <element signature="e#477627#477628#0" expanded="false" />
+            <element signature="e#478931#478932#0" expanded="false" />
+            <element signature="e#478983#478984#0" expanded="false" />
+            <element signature="e#484012#484013#0" expanded="false" />
+            <element signature="e#484048#484049#0" expanded="false" />
+            <element signature="e#486215#486216#0" expanded="false" />
+            <element signature="e#486267#486268#0" expanded="false" />
+            <element signature="e#495577#495578#0" expanded="false" />
+            <element signature="e#495609#495610#0" expanded="false" />
+            <element signature="e#498845#498846#0" expanded="false" />
+            <element signature="e#498887#498888#0" expanded="false" />
+            <element signature="e#511749#511750#0" expanded="false" />
+            <element signature="e#511789#511790#0" expanded="false" />
+            <element signature="e#530623#530624#0" expanded="false" />
+            <element signature="e#530680#530681#0" expanded="false" />
+            <element signature="e#531367#531368#0" expanded="false" />
+            <element signature="e#531400#531401#0" expanded="false" />
+            <element signature="e#532169#532170#0" expanded="false" />
+            <element signature="e#532200#532201#0" expanded="false" />
+            <element signature="e#532967#532968#0" expanded="false" />
+            <element signature="e#533000#533001#0" expanded="false" />
+            <element signature="e#533648#533649#0" expanded="false" />
+            <element signature="e#533682#533683#0" expanded="false" />
+            <element signature="e#534435#534436#0" expanded="false" />
+            <element signature="e#534466#534467#0" expanded="false" />
+            <element signature="e#535216#535217#0" expanded="false" />
+            <element signature="e#535250#535251#0" expanded="false" />
+            <element signature="e#544707#544708#0" expanded="false" />
+            <element signature="e#544735#544736#0" expanded="false" />
+            <element signature="e#549364#549365#0" expanded="false" />
+            <element signature="e#549413#549414#0" expanded="false" />
+            <element signature="e#550046#550047#0" expanded="false" />
+            <element signature="e#550114#550115#0" expanded="false" />
+            <element signature="e#558279#558280#0" expanded="false" />
+            <element signature="e#558325#558326#0" expanded="false" />
+            <element signature="e#558516#558517#0" expanded="false" />
+            <element signature="e#558574#558575#0" expanded="false" />
+            <element signature="e#560204#560205#0" expanded="false" />
+            <element signature="e#560245#560246#0" expanded="false" />
+            <element signature="e#562292#562293#0" expanded="false" />
+            <element signature="e#562364#562365#0" expanded="false" />
+            <element signature="e#568267#568268#0" expanded="false" />
+            <element signature="e#568317#568318#0" expanded="false" />
+            <element signature="e#576271#576272#0" expanded="false" />
+            <element signature="e#576344#576345#0" expanded="false" />
+            <element signature="e#583309#583310#0" expanded="false" />
+            <element signature="e#583342#583343#0" expanded="false" />
+            <element signature="e#584949#584950#0" expanded="false" />
+            <element signature="e#584976#584977#0" expanded="false" />
+            <element signature="e#593316#593317#0" expanded="false" />
+            <element signature="e#593361#593362#0" expanded="false" />
+            <element signature="e#596870#596871#0" expanded="false" />
+            <element signature="e#596921#596922#0" expanded="false" />
+            <element signature="e#597121#597122#0" expanded="false" />
+            <element signature="e#597161#597162#0" expanded="false" />
+            <element signature="e#608238#608239#0" expanded="false" />
+            <element signature="e#608266#608267#0" expanded="false" />
+            <element signature="e#608983#608984#0" expanded="false" />
+            <element signature="e#609011#609012#0" expanded="false" />
+            <element signature="e#609333#609334#0" expanded="false" />
+            <element signature="e#609357#609358#0" expanded="false" />
+            <element signature="e#609682#609683#0" expanded="false" />
+            <element signature="e#609706#609707#0" expanded="false" />
+            <element signature="e#610025#610026#0" expanded="false" />
+            <element signature="e#610049#610050#0" expanded="false" />
+            <element signature="e#610377#610378#0" expanded="false" />
+            <element signature="e#610401#610402#0" expanded="false" />
+            <element signature="e#613015#613016#0" expanded="false" />
+            <element signature="e#613090#613091#0" expanded="false" />
+            <element signature="e#643024#643025#0" expanded="false" />
+            <element signature="e#643048#643049#0" expanded="false" />
+            <element signature="e#653352#653353#0" expanded="false" />
+            <element signature="e#653385#653386#0" expanded="false" />
+            <element signature="e#658156#658157#0" expanded="false" />
+            <element signature="e#658204#658205#0" expanded="false" />
+            <element signature="e#658249#658250#0" expanded="false" />
+            <element signature="e#658308#658309#0" expanded="false" />
+            <element signature="e#673688#673689#0" expanded="false" />
+            <element signature="e#673722#673723#0" expanded="false" />
+            <element signature="e#691345#691346#0" expanded="false" />
+            <element signature="e#691379#691380#0" expanded="false" />
+            <element signature="e#691665#691666#0" expanded="false" />
+            <element signature="e#691702#691703#0" expanded="false" />
+            <element signature="e#695538#695539#0" expanded="false" />
+            <element signature="e#695576#695577#0" expanded="false" />
+            <element signature="e#697100#697101#0" expanded="false" />
+            <element signature="e#697160#697161#0" expanded="false" />
+            <element signature="e#698733#698734#0" expanded="false" />
+            <element signature="e#698794#698795#0" expanded="false" />
+            <element signature="e#711616#711617#0" expanded="false" />
+            <element signature="e#711683#711684#0" expanded="false" />
+            <element signature="e#712040#712041#0" expanded="false" />
+            <element signature="e#712066#712067#0" expanded="false" />
+            <element signature="e#712341#712342#0" expanded="false" />
+            <element signature="e#712368#712369#0" expanded="false" />
+            <element signature="e#712812#712813#0" expanded="false" />
+            <element signature="e#712838#712839#0" expanded="false" />
+            <element signature="e#715331#715332#0" expanded="false" />
+            <element signature="e#715355#715356#0" expanded="false" />
+            <element signature="e#718460#718461#0" expanded="false" />
+            <element signature="e#718485#718486#0" expanded="false" />
+            <element signature="e#733513#733514#0" expanded="false" />
+            <element signature="e#733546#733547#0" expanded="false" />
+            <element signature="e#734321#734322#0" expanded="false" />
+            <element signature="e#734353#734354#0" expanded="false" />
+            <element signature="e#735086#735087#0" expanded="false" />
+            <element signature="e#735126#735127#0" expanded="false" />
+            <element signature="e#737363#737364#0" expanded="false" />
+            <element signature="e#737419#737420#0" expanded="false" />
+            <element signature="e#737772#737773#0" expanded="false" />
+            <element signature="e#737829#737830#0" expanded="false" />
+            <element signature="e#738506#738507#0" expanded="false" />
+            <element signature="e#738534#738535#0" expanded="false" />
+            <element signature="e#746609#746610#0" expanded="false" />
+            <element signature="e#746651#746652#0" expanded="false" />
+            <element signature="e#751636#751637#0" expanded="false" />
+            <element signature="e#751697#751698#0" expanded="false" />
+            <element signature="e#752216#752217#0" expanded="false" />
+            <element signature="e#752277#752278#0" expanded="false" />
+            <element signature="e#752810#752811#0" expanded="false" />
+            <element signature="e#752852#752853#0" expanded="false" />
+            <element signature="e#761555#761556#0" expanded="false" />
+            <element signature="e#761583#761584#0" expanded="false" />
+            <element signature="e#762752#762753#0" expanded="false" />
+            <element signature="e#762821#762822#0" expanded="false" />
+            <element signature="e#770629#770630#0" expanded="false" />
+            <element signature="e#770667#770668#0" expanded="false" />
+            <element signature="e#777186#777187#0" expanded="false" />
+            <element signature="e#777239#777240#0" expanded="false" />
+            <element signature="e#809838#809839#0" expanded="false" />
+            <element signature="e#809884#809885#0" expanded="false" />
+            <element signature="e#809943#809944#0" expanded="false" />
+            <element signature="e#809991#809992#0" expanded="false" />
+            <element signature="e#810373#810374#0" expanded="false" />
+            <element signature="e#810426#810427#0" expanded="false" />
+            <element signature="e#810493#810494#0" expanded="false" />
+            <element signature="e#810548#810549#0" expanded="false" />
+            <element signature="e#810930#810931#0" expanded="false" />
+            <element signature="e#810983#810984#0" expanded="false" />
+            <element signature="e#811042#811043#0" expanded="false" />
+            <element signature="e#811097#811098#0" expanded="false" />
+            <element signature="e#811479#811480#0" expanded="false" />
+            <element signature="e#811532#811533#0" expanded="false" />
+            <element signature="e#811591#811592#0" expanded="false" />
+            <element signature="e#811646#811647#0" expanded="false" />
+            <element signature="e#811972#811973#0" expanded="false" />
+            <element signature="e#812014#812015#0" expanded="false" />
+            <element signature="e#812073#812074#0" expanded="false" />
+            <element signature="e#812117#812118#0" expanded="false" />
+            <element signature="e#812443#812444#0" expanded="false" />
+            <element signature="e#812485#812486#0" expanded="false" />
+            <element signature="e#812544#812545#0" expanded="false" />
+            <element signature="e#812588#812589#0" expanded="false" />
+            <element signature="e#812914#812915#0" expanded="false" />
+            <element signature="e#812956#812957#0" expanded="false" />
+            <element signature="e#813015#813016#0" expanded="false" />
+            <element signature="e#813059#813060#0" expanded="false" />
+            <element signature="e#813420#813421#0" expanded="false" />
+            <element signature="e#813469#813470#0" expanded="false" />
+            <element signature="e#813528#813529#0" expanded="false" />
+            <element signature="e#813579#813580#0" expanded="false" />
+            <element signature="e#813946#813947#0" expanded="false" />
+            <element signature="e#813996#813997#0" expanded="false" />
+            <element signature="e#814055#814056#0" expanded="false" />
+            <element signature="e#814107#814108#0" expanded="false" />
+            <element signature="e#814474#814475#0" expanded="false" />
+            <element signature="e#814524#814525#0" expanded="false" />
+            <element signature="e#814583#814584#0" expanded="false" />
+            <element signature="e#814635#814636#0" expanded="false" />
+            <element signature="e#814987#814988#0" expanded="false" />
+            <element signature="e#815034#815035#0" expanded="false" />
+            <element signature="e#815093#815094#0" expanded="false" />
+            <element signature="e#815142#815143#0" expanded="false" />
+            <element signature="e#815494#815495#0" expanded="false" />
+            <element signature="e#815541#815542#0" expanded="false" />
+            <element signature="e#815600#815601#0" expanded="false" />
+            <element signature="e#815649#815650#0" expanded="false" />
+            <element signature="e#819769#819770#0" expanded="false" />
+            <element signature="e#819825#819826#0" expanded="false" />
+            <element signature="e#820149#820150#0" expanded="false" />
+            <element signature="e#820206#820207#0" expanded="false" />
+            <element signature="e#822218#822219#0" expanded="false" />
+            <element signature="e#822289#822290#0" expanded="false" />
+            <element signature="e#822721#822722#0" expanded="false" />
+            <element signature="e#822759#822760#0" expanded="false" />
+            <element signature="e#823626#823627#0" expanded="false" />
+            <element signature="e#823674#823675#0" expanded="false" />
+            <element signature="e#824109#824110#0" expanded="false" />
+            <element signature="e#824147#824148#0" expanded="false" />
+            <element signature="e#834390#834391#0" expanded="false" />
+            <element signature="e#834431#834432#0" expanded="false" />
+            <element signature="e#835256#835257#0" expanded="false" />
+            <element signature="e#835297#835298#0" expanded="false" />
+            <element signature="e#835687#835688#0" expanded="false" />
+            <element signature="e#835748#835749#0" expanded="false" />
+            <element signature="e#835806#835807#0" expanded="false" />
+            <element signature="e#835869#835870#0" expanded="false" />
+            <element signature="e#836841#836857#0" expanded="false" />
+            <element signature="e#841183#841189#0" expanded="false" />
+            <element signature="e#846651#846657#0" expanded="false" />
+            <element signature="e#864160#864161#0" expanded="false" />
+            <element signature="e#864195#864196#0" expanded="false" />
+            <element signature="e#865572#865573#0" expanded="false" />
+            <element signature="e#865620#865621#0" expanded="false" />
+            <element signature="e#865790#865791#0" expanded="false" />
+            <element signature="e#865853#865854#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -4500,10 +4681,237 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/sequence/holders/UlploadItemHolder.java">
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/uploadfirmware/FirmWareUploader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.63903743">
-          <caret line="87" column="0" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#7614#7771#0" expanded="true" />
+            <element signature="e#7770#7771#0" expanded="true" />
+            <element signature="e#8178#8330#0" expanded="true" />
+            <element signature="e#8329#8330#0" expanded="true" />
+            <element signature="e#8459#8901#0" expanded="true" />
+            <element signature="e#8900#8901#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/upload/TestUploadFirmwareTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3315508">
+          <caret line="86" column="25" selection-start-line="86" selection-start-column="25" selection-end-line="86" selection-end-column="25" />
+          <folding>
+            <element signature="e#1505#1732#0" expanded="false" />
+            <element signature="e#1731#1732#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/maurizio/java/customclasses/NewSequence.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.040106952">
+          <caret line="406" column="0" selection-start-line="406" selection-start-column="0" selection-end-line="406" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="415" column="36" selection-start-line="415" selection-start-column="36" selection-end-line="415" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#3458#3481#0" expanded="false" />
+            <element signature="e#5663#6573#0" expanded="false" />
+            <element signature="e#6572#6573#0" expanded="false" />
+            <element signature="e#8017#8018#0" expanded="false" />
+            <element signature="e#8080#8081#0" expanded="false" />
+            <element signature="e#8325#9934#0" expanded="false" />
+            <element signature="e#9933#9934#0" expanded="false" />
+            <element signature="e#11747#12379#0" expanded="false" />
+            <element signature="e#12378#12379#0" expanded="false" />
+            <element signature="e#12447#12448#0" expanded="false" />
+            <element signature="e#12490#12491#0" expanded="false" />
+            <element signature="e#12534#12535#0" expanded="false" />
+            <element signature="e#12581#12582#0" expanded="false" />
+            <element signature="e#12641#12642#0" expanded="false" />
+            <element signature="e#12679#12680#0" expanded="false" />
+            <element signature="e#12727#12728#0" expanded="false" />
+            <element signature="e#12757#12758#0" expanded="false" />
+            <element signature="e#12903#13197#0" expanded="false" />
+            <element signature="e#13196#13197#0" expanded="false" />
+            <element signature="e#13356#13657#0" expanded="false" />
+            <element signature="e#13656#13657#0" expanded="false" />
+            <element signature="e#13822#15050#0" expanded="false" />
+            <element signature="e#15049#15050#0" expanded="false" />
+            <element signature="e#16894#17028#0" expanded="false" />
+            <element signature="e#17027#17028#0" expanded="false" />
+            <element signature="e#17137#17138#0" expanded="false" />
+            <element signature="e#17179#17180#0" expanded="false" />
+            <element signature="e#17225#17226#0" expanded="false" />
+            <element signature="e#17267#17268#0" expanded="false" />
+            <element signature="e#17306#17307#0" expanded="false" />
+            <element signature="e#17353#17354#0" expanded="false" />
+            <element signature="e#17387#17388#0" expanded="false" />
+            <element signature="e#17416#17417#0" expanded="false" />
+            <element signature="e#17972#17973#0" expanded="false" />
+            <element signature="e#18002#18003#0" expanded="false" />
+            <element signature="e#20120#20121#0" expanded="false" />
+            <element signature="e#20156#20157#0" expanded="false" />
+            <element signature="e#20215#20216#0" expanded="false" />
+            <element signature="e#20245#20246#0" expanded="false" />
+            <element signature="e#20284#20285#0" expanded="false" />
+            <element signature="e#20316#20317#0" expanded="false" />
+            <element signature="e#20369#20370#0" expanded="false" />
+            <element signature="e#20411#20412#0" expanded="false" />
+            <element signature="e#20464#20465#0" expanded="false" />
+            <element signature="e#20497#20498#0" expanded="false" />
+            <element signature="e#20755#20756#0" expanded="false" />
+            <element signature="e#20809#20810#0" expanded="false" />
+            <element signature="e#21306#21537#0" expanded="false" />
+            <element signature="e#21536#21537#0" expanded="false" />
+            <element signature="e#21629#21851#0" expanded="false" />
+            <element signature="e#21850#21851#0" expanded="false" />
+            <element signature="e#21957#21958#0" expanded="false" />
+            <element signature="e#21993#21994#0" expanded="false" />
+            <element signature="e#22634#22635#0" expanded="false" />
+            <element signature="e#22676#22677#0" expanded="false" />
+            <element signature="e#22902#22903#0" expanded="false" />
+            <element signature="e#22955#22956#0" expanded="false" />
+            <element signature="e#23526#23527#0" expanded="false" />
+            <element signature="e#23583#23584#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/uihelper/UIHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="409" column="61" selection-start-line="409" selection-start-column="61" selection-end-line="409" selection-end-column="61" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/sequence/holders/UploadItemHolder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.0828876">
+          <caret line="31" column="14" selection-start-line="31" selection-start-column="14" selection-end-line="31" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/upload/UploadFirmwareTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5588235">
+          <caret line="72" column="22" selection-start-line="72" selection-start-column="22" selection-end-line="72" selection-end-column="22" />
+          <folding>
+            <element signature="e#1884#2107#0" expanded="false" />
+            <element signature="e#2106#2107#0" expanded="false" />
+            <element signature="e#2196#2324#0" expanded="false" />
+            <element signature="e#2323#2324#0" expanded="false" />
+            <element signature="e#3758#4276#0" expanded="false" />
+            <element signature="e#4275#4276#0" expanded="false" />
+            <element signature="e#4674#5196#0" expanded="false" />
+            <element signature="e#5195#5196#0" expanded="false" />
+            <element signature="e#5975#6275#0" expanded="false" />
+            <element signature="e#6274#6275#0" expanded="false" />
+            <element signature="e#6987#7458#0" expanded="false" />
+            <element signature="e#7457#7458#0" expanded="false" />
+            <element signature="e#7531#7831#0" expanded="false" />
+            <element signature="e#7830#7831#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/sequence/SequenceRowElement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="24" column="24" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/application/PeriCoachTestApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.36096257">
+          <caret line="37" column="42" selection-start-line="37" selection-start-column="25" selection-end-line="37" selection-end-column="42" />
+          <folding>
+            <element signature="e#2511#2512#0" expanded="true" />
+            <element signature="e#2542#2543#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/ioioutils/IOIOUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3315508">
+          <caret line="594" column="0" selection-start-line="594" selection-start-column="0" selection-end-line="594" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/upload/DummyUploadFirmwareTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.42780748">
+          <caret line="123" column="53" selection-start-line="123" selection-start-column="53" selection-end-line="123" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/uploadfirmware/DummyFirmWareUploader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.42780748">
+          <caret line="290" column="41" selection-start-line="290" selection-start-column="41" selection-end-line="290" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/sequence/holders/TestItemHolder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.040106952">
+          <caret line="14" column="3" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/sequence/SequenceFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.37463978">
+          <caret line="152" column="39" selection-start-line="152" selection-start-column="0" selection-end-line="153" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/tests/implementations/BatteryLevelUUTVoltageTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.37165776">
+          <caret line="32" column="37" selection-start-line="32" selection-start-column="11" selection-end-line="32" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/sequence/holders/SensorItemHolder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.71925133">
+          <caret line="115" column="64" selection-start-line="115" selection-start-column="64" selection-end-line="115" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/sequence/holders/SensorItemClickListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.28074867">
+          <caret line="12" column="36" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newAppTest/src/main/java/com/pietrantuono/activities/fragments/sequence/SequenceAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7513369">
+          <caret line="65" column="60" selection-start-line="65" selection-start-column="60" selection-end-line="65" selection-end-column="60" />
           <folding />
         </state>
       </provider>

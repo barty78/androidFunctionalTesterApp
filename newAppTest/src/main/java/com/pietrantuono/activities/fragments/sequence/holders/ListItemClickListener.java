@@ -1,9 +1,12 @@
-package com.pietrantuono.activities.fragments;
+package com.pietrantuono.activities.fragments.sequence.holders;
 
 import android.app.Activity;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+
+import com.pietrantuono.activities.fragments.NominalToleranceDialog;
+import com.pietrantuono.activities.fragments.UpperLowerFragment;
 
 import server.pojos.Test;
 

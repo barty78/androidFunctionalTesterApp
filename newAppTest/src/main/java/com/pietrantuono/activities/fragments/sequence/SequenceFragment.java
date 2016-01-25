@@ -18,8 +18,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
-import com.pietrantuono.activities.fragments.ListItemClickListener;
-import com.pietrantuono.activities.fragments.SensorItemClickListener;
+import com.pietrantuono.activities.fragments.sequence.holders.ListItemClickListener;
+import com.pietrantuono.activities.fragments.sequence.holders.SensorItemClickListener;
 import com.pietrantuono.activities.uihelper.ActivityCallback;
 import com.pietrantuono.activities.uihelper.UIHelper;
 import com.pietrantuono.constants.NewMSensorResult;
