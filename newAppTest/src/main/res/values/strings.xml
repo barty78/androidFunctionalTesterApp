@@ -157,4 +157,6 @@
     <string name="max">MAX:&#160;</string>
     <string name="var">VAR:&#160;</string>
     <string name="no_description">NO DESCRIPTION</string>
+    <string name="nothing_to_show">Nothing to show here</string>
+    <string name="loading">Loading...</string>
 </resources>

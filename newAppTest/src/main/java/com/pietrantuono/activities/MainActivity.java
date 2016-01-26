@@ -369,31 +369,7 @@ public class MainActivity extends AppCompatActivity
     public void onPCBConnectedStartNewSequence() {
         sequenceStarted = false;
         if (isFinishing()) return;
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                MyDialogs.showProgress(MainActivity.this);
-                RetrofitRestServices.getRest(MainActivity.this).getLastDevices(PeriCoachTestApplication.getDeviceid(), PeriCoachTestApplication.getLastId(), new Callback<DevicesList>() {
-                    @Override
-                    public void success(DevicesList arg0, Response arg1) {
-                        if (isFinishing()) return;
-                        MyDialogs.dismisProgress(MainActivity.this);
-                        if (arg0 != null) ServiceDBHelper.addDevices(arg0);
-                        else
-                            Toast.makeText(MainActivity.this, "Failed devices download, continuing anyway", Toast.LENGTH_LONG).show();
-                        start();
-                    }
-
-                    @Override
-                    public void failure(RetrofitError arg0) {
-                        Toast.makeText(MainActivity.this, "Failed devices download, continuing anyway", Toast.LENGTH_LONG).show();
-                        MyDialogs.dismisProgress(MainActivity.this);
-                        start();
-                    }
-                });
-            }
-        });
-
+        start();
     }
 
     private void start() {

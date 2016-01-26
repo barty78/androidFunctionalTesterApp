@@ -10,4 +10,5 @@
     <dimen name="button_text_size">10sp</dimen>
     <dimen name="cronomter_margin">10dp</dimen>
     <dimen name="select_job_activity_item_icon_size">24dp</dimen>
+    <dimen name="loading_progress_size">100dp</dimen>
 </resources>

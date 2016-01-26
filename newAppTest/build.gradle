@@ -15,6 +15,7 @@ apply plugin: 'io.fabric'
 repositories {
     maven { url 'https://maven.fabric.io/public' }
     maven { url 'https://dl.bintray.com/pietmau/maven/' }
+    maven { url 'https://dl.bintray.com/kennyc1012/maven' }
 
 }
 
@@ -85,7 +86,8 @@ dependencies {
     compile 'com.mikepenz:iconics-core:2.5.3@aar'
     compile 'com.mikepenz:google-material-typeface:2.1.0.1.original@aar'
     compile 'com.github.lzyzsd:circleprogress:1.1.0@aar'
-
+    compile 'com.kennyc:multistateview:1.1'
+    compile 'me.zhanghai.android.materialprogressbar:library:1.1.4'
 }
 
 
