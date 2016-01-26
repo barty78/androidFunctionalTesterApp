@@ -26,6 +26,7 @@ import ioio.lib.api.Uart;
 import server.pojos.Job;
 import server.service.ServiceDBHelper;
 
+@SuppressWarnings("unused")
 public class GetNFCTest extends Test {
 
     private InputStream RX;

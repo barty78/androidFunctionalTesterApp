@@ -3,6 +3,7 @@ package analytica.pericoach.android;
 /**
  * Created by Maurizio Pietrantuono, maurizio.pietrantuono@gmail.com.
  */
+@SuppressWarnings("unused")
 public class Contract {
     static final String SEPARATOR = ",";
 

@@ -1,30 +1,17 @@
 package com.pietrantuono.activities.fragments.sequence.holders;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.util.Log;
-import android.util.TypedValue;
-import android.view.Display;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.RotateAnimation;
-import android.widget.ProgressBar;
-import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
 import com.github.lzyzsd.circleprogress.DonutProgress;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.iconics.view.IconicsImageView;
 import com.pietrantuono.activities.fragments.sequence.SequenceRowElement;
-import com.pietrantuono.activities.uihelper.UIHelper;
 import com.pietrantuono.pericoach.newtestapp.R;
-import com.pietrantuono.uploadfirmware.ProgressAndTextView;
 
 /**
  * Created by Maurizio Pietrantuono, maurizio.pietrantuono@gmail.com.

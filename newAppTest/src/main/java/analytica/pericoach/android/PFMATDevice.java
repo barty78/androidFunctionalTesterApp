@@ -17,6 +17,7 @@ import android.support.v4.app.NotificationCompat;
 import android.content.Intent;
 import hydrix.pfmat.generic.Device;
 
+@SuppressWarnings("unused")
 public class PFMATDevice
 {
 	// Members
@@ -61,6 +62,7 @@ public class PFMATDevice
 			return;
 		}
 		
+		@SuppressWarnings("unused")
 		final class ConnectTask extends AsyncTask<Void, Void, Boolean>
 		{
 			static private final long DEVICE_INFO_TIMEOUT_MS = 3000;

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import android.util.Log;
 
+@SuppressWarnings("unused")
 public class ClosedTestResult {
 	
 	private Device.Information mdeviceInfo;

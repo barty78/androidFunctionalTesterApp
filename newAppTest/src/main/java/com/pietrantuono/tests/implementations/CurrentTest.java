@@ -17,8 +17,7 @@ public class CurrentTest extends Test {
 	private int Rshunt;
 	private @Units
 	int units;
-	public void Units() {
-	}
+
 	/**
 	 * * Current Measurement Test Implementation
 	 * 

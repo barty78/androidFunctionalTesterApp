@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- TabIndicator Default -->
-    <dimen name="tab_text_size">15sp</dimen>
     <color name="tab_text_color">#9FC1FB</color>
     <color name="tab_text_selected_color">#FFFFFF</color>
     <color name="tab_text_disabled_color">#000000</color>

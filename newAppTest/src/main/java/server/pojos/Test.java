@@ -25,6 +25,7 @@ public class Test {
     @Expose
     private Long blocking;
 
+    @SuppressWarnings("unused")
     @SerializedName("units")
     @Expose
     private String units;
@@ -65,6 +66,7 @@ public class Test {
      * @param id
      *     The id
      */
+    @SuppressWarnings("unused")
     public void setId(Long id) {
         this.id = id;
     }
@@ -83,6 +85,7 @@ public class Test {
      * @param testclassId
      *     The testclass_id
      */
+    @SuppressWarnings("unused")
     public void setTestclassId(Long testclassId) {
         this.testclassId = testclassId;
     }
@@ -101,6 +104,7 @@ public class Test {
      * @param limitId
      *     The limit_id
      */
+    @SuppressWarnings("unused")
     public void setLimitId(Long limitId) {
         this.limitId = limitId;
     }
@@ -119,6 +123,7 @@ public class Test {
      * @param number
      *     The number
      */
+    @SuppressWarnings("unused")
     public void setNumber(Long number) {
         this.number = number;
     }
@@ -137,6 +142,7 @@ public class Test {
      * @param name
      *     The name
      */
+    @SuppressWarnings("unused")
     public void setName(String name) {
         this.name = name;
     }
@@ -155,6 +161,7 @@ public class Test {
      * @param istest
      *     The istest
      */
+    @SuppressWarnings("unused")
     public void setIstest(Long istest) {
         this.istest = istest;
     }
@@ -173,6 +180,7 @@ public class Test {
      * @param blocking
      *     The blocking
      */
+    @SuppressWarnings("unused")
     public void setBlocking(Long blocking) {
         this.blocking = blocking;
     }
@@ -206,6 +214,7 @@ public class Test {
      * @param scaling
      *     The scaling
      */
+    @SuppressWarnings("unused")
     public void setScaling(Float scaling) {
         this.scaling = scaling;
     }
@@ -224,6 +233,7 @@ public class Test {
      * @param units
      *     The units
      */
+    @SuppressWarnings("unused")
     public void setUnits(@Units int units) {}
 
 
@@ -241,6 +251,7 @@ public class Test {
      * @param ioiopinnum
      *     The ioiopinnum
      */
+    @SuppressWarnings("unused")
     public void setIoiopinnum(Integer ioiopinnum) {
         this.ioiopinnum = ioiopinnum;
     }
@@ -259,6 +270,7 @@ public class Test {
      * @param active
      *     The active
      */
+    @SuppressWarnings("unused")
     public void setActive(Long active) {
         this.active = active;
     }
@@ -267,18 +279,21 @@ public class Test {
         return isNominal;
     }
 
+    @SuppressWarnings("unused")
     public void setIsNominal(int isNominal) {this.isNominal = isNominal;}
 
     public Float getLimitParam1() {
         return limitParam1;
     }
 
+    @SuppressWarnings("unused")
     public void setLimitParam1(Float limitParam1) {this.limitParam1 = limitParam1;}
 
     public Float getLimitParam2() {
         return limitParam2;
     }
 
+    @SuppressWarnings("unused")
     public void setLimitParam2(Float limitParam2) {this.limitParam2 = limitParam2;}
 
 //    /**
@@ -357,10 +372,12 @@ public class Test {
         return limitParam3;
     }
 
+    @SuppressWarnings("unused")
     public void setLimitParam3(Float limitParam3) {
         this.limitParam3 = limitParam3;
     }
 
+    @SuppressWarnings("unused")
     public void setIsNominal(Integer isNominal) {
         this.isNominal = isNominal;
     }

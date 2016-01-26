@@ -14,6 +14,7 @@ public class Response {
      * @return
      *     The error
      */
+    @SuppressWarnings("unused")
     public boolean isError() {
         return error;
     }
@@ -23,6 +24,7 @@ public class Response {
      * @param error
      *     The error
      */
+    @SuppressWarnings("unused")
     public void setError(boolean error) {
         this.error = error;
     }
@@ -41,6 +43,7 @@ public class Response {
      * @param message
      *     The message
      */
+    @SuppressWarnings("unused")
     public void setMessage(String message) {
         this.message = message;
     }

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -39,9 +40,11 @@ import server.pojos.Job;
 import server.service.ServiceDBHelper;
 
 public class DevicesListFragment extends Fragment {
+    private final String TAG = getClass().getSimpleName();
     private RecyclerView recyclerView;
     private Context context;
     private MultiStateView state;
+    private SwipeRefreshLayout swiper;
 
     public DevicesListFragment() {
     }
@@ -51,11 +54,13 @@ public class DevicesListFragment extends Fragment {
         return fragment;
     }
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
         }
+
     }
 
     @Override
@@ -76,15 +81,17 @@ public class DevicesListFragment extends Fragment {
         View v = inflater.inflate(R.layout.devices_list_fragment, container, false);
         recyclerView = (RecyclerView) v.findViewById(R.id.list);
         state = (MultiStateView) v.findViewById(R.id.state);
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        v.findViewById(R.id.fab).setOnClickListener(new View.OnClickListener() {
+        swiper = (SwipeRefreshLayout) v.findViewById(R.id.swiper);
+        swiper.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
-            public void onClick(View v) {
+            public void onRefresh() {
+                swiper.setRefreshing(true);
                 downloadDevicesList();
             }
         });
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
         state.setViewState(MultiStateView.VIEW_STATE_LOADING);
-        downloadDevicesList();
+        populateList();
         return v;
     }
 
@@ -109,10 +116,12 @@ public class DevicesListFragment extends Fragment {
     }
 
     private void downloadDevicesList() {
-        state.setViewState(MultiStateView.VIEW_STATE_LOADING);
+        if(swiper!=null)swiper.setRefreshing(true);
+        //state.setViewState(MultiStateView.VIEW_STATE_LOADING);
         RetrofitRestServices.getRest(getActivity()).getLastDevices(PeriCoachTestApplication.getDeviceid(), PeriCoachTestApplication.getLastId(), new Callback<DevicesList>() {
             @Override
             public void success(DevicesList arg0, Response arg1) {
+                if(swiper!=null)swiper.setRefreshing(false);
                 if (arg0 != null) ServiceDBHelper.addDevices(arg0);
                 else Snackbar.make(state, "Failed devices download", Snackbar.LENGTH_LONG).show();
                 populateList();
@@ -120,10 +129,15 @@ public class DevicesListFragment extends Fragment {
 
             @Override
             public void failure(RetrofitError arg0) {
+                if(swiper!=null)swiper.setRefreshing(false);
                 Snackbar.make(state, "Failed devices download", Snackbar.LENGTH_LONG).show();
                 populateList();
             }
         });
     }
 
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        if(isVisibleToUser)downloadDevicesList();
+    }
 }

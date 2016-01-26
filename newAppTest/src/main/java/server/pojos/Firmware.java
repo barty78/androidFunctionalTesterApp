@@ -3,6 +3,7 @@ package server.pojos;
 
 import com.google.gson.annotations.Expose;
 
+@SuppressWarnings("unused")
 public class Firmware {
 
     @Expose

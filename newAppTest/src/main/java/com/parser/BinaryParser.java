@@ -20,16 +20,11 @@ import android.content.Context;
 import android.util.Log;
 
 @SuppressWarnings("ucd")
-public class BinaryParser extends Parser {
+public class BinaryParser  {
 	private static final String TAG="BinaryParser";
 	//String _filename;
 	private byte[] _data;
-	public BinaryParser(String iFileName) throws IOException{
 
-		//_filename = iFileName;
-		readData();
-
-	}
 	public BinaryParser(Context context) throws IOException{
 		//_filename = iFileName;
 		readData();
@@ -74,7 +69,6 @@ public class BinaryParser extends Parser {
 
 	}
 
-	@Override
 	public byte[] getData() {
 		return _data;
 	}

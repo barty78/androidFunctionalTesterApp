@@ -21,7 +21,6 @@ import server.service.ServiceDBHelper;
 public class GetDeviceSerialTest extends Test {
     private static ExecutorService executor = Executors.newFixedThreadPool(1);
     public int retries = 0;
-    private AlertDialog alertDialog;
     private String serial = "";
 
     public GetDeviceSerialTest(Activity activity, IOIO ioio) {
@@ -133,15 +132,7 @@ public class GetDeviceSerialTest extends Test {
 
     @Override
     public void interrupt() {
-        super.interrupt();
-        try {
-            alertDialog.dismiss();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        // try{RD1.close();}catch (Exception e){e.printStackTrace();}
-        // try{RX1.close();}catch (Exception e){e.printStackTrace();}
-        // try{uart1.close();}catch (Exception e){e.printStackTrace();}
+
         try {
             executor.shutdownNow();
         } catch (Exception e) {

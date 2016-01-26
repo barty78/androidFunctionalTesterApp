@@ -61,10 +61,6 @@ public class SensorsTestHelper implements OnSampleCallback {
 		this.newSessionPollingThreadref.start();
 	}
 
-	public SensorsTestHelper() {
-		// TODO Auto-generated constructor stub
-	}
-
 	@Override
 	public synchronized void  onSample(int requestTimestampMS, final short sensor0, final short sensor1, final short sensor2) {
 		if(!acceptdata) {
@@ -117,13 +113,6 @@ public class SensorsTestHelper implements OnSampleCallback {
 		}
 	}
 
-	void sendSensorData() {
-		NewPFMATDevice.getDevice().sendGetSensorData(0);
-	}
-
-	
-
-	@SuppressWarnings("ucd")
 	void sendVoltages(final Short voltage, final Short zerovoltage) {
 		Handler handler = new Handler();
 		Byte sensor = (byte) (0 & 0xFF);
@@ -165,25 +154,6 @@ public class SensorsTestHelper implements OnSampleCallback {
 				NewPFMATDevice.getDevice().sendZeroVoltage(sensor, zerovoltage);
 			}
 		}, 250);
-	}
-
-	public void setSamplesref(SessionSamples samplesref) {
-		this.samplesref = samplesref;
-	}
-
-	public void setClosedtestsamplesrefsensor0(SessionSamples closedtestsamplesrefsensor0) {
-		this.closedtestsamplesrefsensor0 = closedtestsamplesrefsensor0;
-	}
-
-	public void setClosedtestsamplesrefsensor1(SessionSamples closedtestsamplesrefsensor1) {
-		this.closedtestsamplesrefsensor1 = closedtestsamplesrefsensor1;
-	}
-
-	public void setClosedtestsamplesrefsensor2(SessionSamples closedtestsamplesrefsensor2) {
-		this.closedtestsamplesrefsensor2 = closedtestsamplesrefsensor2;
-	}
-	public void setActivityref(Activity activity) {
-		this.activityref = new WeakReference<Activity>(activity);
 	}
 
 	public void accetpData(boolean accept){

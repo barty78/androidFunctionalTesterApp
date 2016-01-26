@@ -8,6 +8,7 @@ import com.activeandroid.annotation.Table;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+@SuppressWarnings("unused")
 @Table(name = "Devices")
 public class Device extends Model {
 	

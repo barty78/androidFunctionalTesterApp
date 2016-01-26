@@ -68,6 +68,7 @@ public class OtherSelectJobActivityHelper {
 
 
 
+    @SuppressWarnings("unused")
     public static class XMLTestsList {
         @SerializedName("tests")
         @Expose

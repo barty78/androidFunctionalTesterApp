@@ -71,6 +71,7 @@ public class SingleS0 extends MyModel {
 		Avg = avg;
 	}
 
+	@SuppressWarnings("unused")
 	public S0 getForeignkey() {
 		return foreignkey;
 	}

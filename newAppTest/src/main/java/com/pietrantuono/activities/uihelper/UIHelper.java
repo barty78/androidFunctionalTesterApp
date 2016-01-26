@@ -10,7 +10,6 @@ import com.pietrantuono.constants.NewMSensorResult;
 import com.pietrantuono.constants.NewSequenceInterface;
 import com.pietrantuono.pericoach.newtestapp.R;
 import com.pietrantuono.tests.implementations.upload.UploadTestCallback;
-import com.pietrantuono.uploadfirmware.ProgressAndTextView;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -44,7 +43,6 @@ import server.pojos.Test;
 public class UIHelper {
 	
 	private Activity activity;
-	private View v = null;
 	private NewSequenceInterface sequence;
 	private static final String TAG = "UIHelper";
 	private static NewSequenceFragment sequenceFragment;
@@ -121,10 +119,6 @@ public class UIHelper {
 		int getIterationNumber();
 
 		void closeActivity();
-
-		void goAndExecuteNextTest();
-
-		void manuallyRedoCurrentTest();
 
 		void restartSequence();
 
@@ -234,12 +228,12 @@ public class UIHelper {
 
 	}
 
-	public synchronized ProgressAndTextView addFailOrPass(final Boolean istest, final Boolean success, String reading,
-			String otherreading, String description, boolean issensortest,server.pojos.Test testToBeParsed) {
+	public synchronized void addFailOrPass(final Boolean istest, final Boolean success, String reading,
+										   String otherreading, String description, boolean issensortest, Test testToBeParsed) {
 		if(sequenceFragment!=null){
-			return  sequenceFragment.addTest(istest,success,reading,otherreading,description,issensortest,testToBeParsed);
+			sequenceFragment.addTest(istest, success, reading, otherreading, description, issensortest, testToBeParsed);
 		}
-		else return null;
+
 	}
 
 	public void setOverallFailOrPass(final Boolean show) {

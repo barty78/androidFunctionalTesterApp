@@ -13,13 +13,10 @@ import com.pietrantuono.tests.superclass.Test;
 import ioio.lib.api.IOIO;
 
 public class BatteryLevelUUTVoltageTest extends Test {
-    private static final int WAIT_TIME_IN_SECS = 10;
     private float voltage;
     private float limit;
     private IOIO ioio;
     private float precision;
-    private boolean resultreceived;
-    private short batt = -1;
 
     /**
      * IMPORTANT: Bluetooth must be open using
@@ -79,6 +76,7 @@ public class BatteryLevelUUTVoltageTest extends Test {
         }
     }
 
+    @SuppressWarnings("unused")
     public interface Callback {
         public void onResultReceived(short battLevel);
     }

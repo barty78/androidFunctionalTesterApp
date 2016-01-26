@@ -23,6 +23,7 @@ public class BTDevice extends Device
 	private BluetoothSocket mSocket = null;
 
 	// Construction
+	@SuppressWarnings("unused")
 	public BTDevice(BluetoothDevice btDevice)
 	{
 		// Cache these details for later use in connectSpecific

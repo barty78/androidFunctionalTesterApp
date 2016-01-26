@@ -31,7 +31,8 @@ public class Test extends MyModel {
     @Column(name = "Readings")
     private Readings foreginkey;
     
-    public Readings getForeginkey() {
+    @SuppressWarnings("unused")
+	public Readings getForeginkey() {
 		return foreginkey;
 	}
 

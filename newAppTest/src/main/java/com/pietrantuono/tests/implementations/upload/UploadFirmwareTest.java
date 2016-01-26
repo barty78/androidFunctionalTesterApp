@@ -24,6 +24,7 @@ import com.pietrantuono.tests.superclass.Test;
 import com.pietrantuono.uploadfirmware.FirmWareUploader;
 import com.pietrantuono.uploadfirmware.FirmWareUploader.UploaderListener;
 
+@SuppressWarnings("ALL")
 public class UploadFirmwareTest extends Test {
     private InputStream RX;
     private OutputStream TX;

@@ -5,6 +5,7 @@ import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 import com.google.gson.annotations.Expose;
 
+@SuppressWarnings("unused")
 @Table(name = "TestRecord")
 public class TestRecord extends MyModel{
 

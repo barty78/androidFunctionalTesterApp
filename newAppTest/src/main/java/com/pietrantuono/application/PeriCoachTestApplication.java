@@ -36,7 +36,6 @@ public class PeriCoachTestApplication extends  com.activeandroid.app.Application
 	private static String android_id="";
 	private static float gradient;
 	private static float maxBatteryVoltage;
-	private String TAG=getClass().getSimpleName();
 	private static File dir;
 	private static AssetManager assetManager;
 	private static final String LAST_ID="last_id";
@@ -193,49 +192,7 @@ public class PeriCoachTestApplication extends  com.activeandroid.app.Application
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
 		return preferences.getString(LAST_ID, "");
 	}
-	
-	public static void setFirmwareFileForTest(){
-		copyAssets("check");
-		copyAssets("");
-		setFirmware("PeriCoach-0188-2.0.0.0.bin");
-	}
-	private static void copyAssets(String prefix) {
-	    String[] files = null;
-	    try {
-	        files = assetManager.list("");
-	    } catch (IOException e) {
-	        Log.e("tag", "Failed to get asset file list.", e);
-	    }
-	    if (files != null) for (String filename : files) {
-	    	if(filename.toLowerCase().contains(("Peri").toLowerCase())) continue;
-	        InputStream in = null;
-	        OutputStream out = null;
-	        try {
-	          in = assetManager.open(filename);
-	          File outFile = new File(dir, prefix+filename);
-	          out = new FileOutputStream(outFile);
-	          copyFile(in, out);
-	        } catch(IOException e) {
-	            Log.e("tag", "Failed to copy asset file: " + filename, e);
-	        }     
-	        finally {
-	            if (in != null) {
-	                try {
-	                    in.close();
-	                } catch (IOException e) {
-	                    // NOOP
-	                }
-	            }
-	            if (out != null) {
-	                try {
-	                    out.close();
-	                } catch (IOException e) {
-	                    // NOOP
-	                }
-	            }
-	        }  
-	    }
-	}
+
 	private static void copyFile(InputStream in, OutputStream out) throws IOException {
 	    byte[] buffer = new byte[1024];
 	    int read;

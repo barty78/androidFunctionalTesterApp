@@ -135,7 +135,6 @@ public class BTUtility {
 				false, false, bluetoothConnectTest.getDescription());
 	}
 
-	private void discoveryAndConnect(){}
 
 	public void connectProbeViaBT(Test bluetoothConnectTest) {
 		if (isstopped)
@@ -307,171 +306,8 @@ public class BTUtility {
 //		checkDeviceID(mDeviceId);
 		start();
 	}
-	private void checkDeviceID(String device) {
-		if (isstopped)
-			return;
-		if (scancode == null || scancode.isEmpty())
-			scancode = "";
-		ArrayList<String> devices = null;
-		final Activity activity = activityRef.get();
-		if (activity == null)
-			return;
-		DBManager db = (new DBManager(activity));
-		if (!deviceIDOK) {
-			ArrayList<String> temp = db.getAllDevices();
-			if (temp != null && temp.size() > 0) {
-				devices = new ArrayList<String>();
-				devices.addAll(temp);
-				Boolean duplicate = false;
-				for (String item : devices) {
-					if (item.equalsIgnoreCase(device))
-						duplicate = true;
-				}
-				if (!duplicate) {
-					deviceIDOK = true;
-					checkScancode();
-					return;
-				} else {
-					AlertDialog.Builder builder = new AlertDialog.Builder(
-							activity);
-					builder.setMessage("This device has already been tested")
-							.setTitle("Device already used")
-							.setPositiveButton("Continue anyway",
-									new DialogInterface.OnClickListener() {
-										public void onClick(
-												DialogInterface dialog, int id) {
-											if (isstopped)
-												return;
-											deviceIDOK = true;
-											checkScancode();
-											return;
-										}
-									})
-							.setNegativeButton("Stop test",
-									new DialogInterface.OnClickListener() {
-										public void onClick(
-												DialogInterface dialog, int id) {
-											activity.onBackPressed();
-											return;
-										}
-									}).setCancelable(true);
-					// Create the AlertDialog object and return it
-					builder.setOnCancelListener(new MyOnCancelListener(activity));
-					alertDialog2 = builder.create();
-					alertDialog2.show();
-				}
-			} else
-				checkScancode();
-		} else
-			checkScancode();
-	}
-	private void checkScancode() {
-		if (isstopped)
-			return;
-		if (scancode == null || scancode.isEmpty())
-			scancode = "";
-		ArrayList<String> scancodes = null;
-		final Activity activity = activityRef.get();
-		if (activity == null)
-			return;
-		DBManager db = (new DBManager(activity));
-		if (!scancodeOK) {
-			ArrayList<String> temp = db.getAllScancodes();
-			if (temp != null && temp.size() > 0) {
-				scancodes = new ArrayList<String>();
-				scancodes.addAll(temp);
-				Boolean duplicate = false;
-				for (String item : scancodes) {
-					if (item.equalsIgnoreCase(scancode))
-						duplicate = true;
-				}
-				if (!duplicate) {
-					scancodeOK = true;
-					start();
-					return;
-				} else {
-					AlertDialog.Builder builder = new AlertDialog.Builder(
-							activity);
-					builder.setMessage("This device has already been tested")
-							.setTitle("Barcode already used")
-							.setPositiveButton("Continue anyway",
-									new DialogInterface.OnClickListener() {
-										public void onClick(
-												DialogInterface dialog, int id) {
-											if (isstopped)
-												return;
-											scancodeOK = true;
-											alertDialog.dismiss();
-											start();
-											return;
-										}
-									})
-							.setNegativeButton("Stop test",
-									new DialogInterface.OnClickListener() {
-										public void onClick(
-												DialogInterface dialog, int id) {
-											activity.onBackPressed();
-											return;
-										}
-									})
-							.setNeutralButton("Edit scancode",
-									new DialogInterface.OnClickListener() {
-										public void onClick(
-												DialogInterface dialog, int id) {
-											if (isstopped)
-												return;
-											AlertDialog.Builder alert = new AlertDialog.Builder(
-													activity);
-											alert.setTitle("Edit scancode");
-											alert.setMessage("You can change the scancode");
-											// Set an EditText view to get user
-											// input
-											final EditText input = new EditText(
-													activity);
-											input.setInputType(InputType.TYPE_CLASS_NUMBER);
-											input.setText(scancode);
-											alert.setView(input);
-											alert.setPositiveButton(
-													"Ok",
-													new DialogInterface.OnClickListener() {
-														public void onClick(
-																DialogInterface dialog,
-																int whichButton) {
-															if (isstopped)
-																return;
-															String value = input
-																	.getText()
-																	.toString();
-															scancode = value;
-															checkScancode();
-														}
-													});
-											alert.setNegativeButton(
-													"Cancel",
-													new DialogInterface.OnClickListener() {
-														public void onClick(
-																DialogInterface dialog,
-																int whichButton) {
-															// Canceled.
-															if (isstopped)
-																return;
-															checkScancode();
-														}
-													});
-											alertDialog3 = alert.create();
-											alertDialog3.show();
-										}
-									}).setCancelable(true);
-					// Create the AlertDialog object and return it
-					builder.setOnCancelListener(new MyOnCancelListener(activity));
-					alertDialog = builder.create();
-					alertDialog.show();
-				}
-			} else
-				start();
-		} else
-			start();
-	}
+
+
 	private void start() {
 		if (isstopped)
 			return;
@@ -519,20 +355,6 @@ public class BTUtility {
 		return mFirmwareVer;
 	}
 
-	public short getBatteryLevel() {
-		if (isstopped)
-			return 0;
-		NewDevice device = NewPFMATDevice.getDevice();
-		NewDevice.Information info = (device == null || !device.isConnected()) ? null
-				: NewPFMATDevice.getDevice().getInformation();
-		device.sendGetBatteryStatus(null);
-		if (info != null) {
-			Log.d("BATTERY LEVEL", String.valueOf(info.mBatteryPercent));
-			device = null;
-			return info.mBatteryPercent;
-		}
-		return -1;
-	}
 	public short requestBatteryLevelAndWait() {
 		if (isstopped)
 			return 0;
@@ -551,16 +373,6 @@ public class BTUtility {
 			return info.mBatteryPercent;
 		}
 		return -1;
-	}
-
-	public void getBatteryLevel(BatteryLevelUUTVoltageTest.Callback callback) {
-		if (isstopped)
-			return ;
-		NewDevice device = NewPFMATDevice.getDevice();
-		NewDevice.Information info = (device == null || !device.isConnected()) ? null
-				: NewPFMATDevice.getDevice().getInformation();
-		device.sendGetBatteryStatus(callback);
-
 	}
 
 
@@ -708,14 +520,7 @@ public class BTUtility {
 		}
 		stopBTDiscovery();
 	}
-	@SuppressLint("NewApi")
-	public static String listenToGetIOIOAddress(Activity activity){
-		BTUtility.activity=activity;
-		IntentFilter myfilter = new IntentFilter(android.bluetooth.BluetoothDevice.ACTION_ACL_CONNECTED);
-		activity.registerReceiver(mReceiver, myfilter);
-		String add="";
-		return add;
-	}
+
 	private final static BroadcastReceiver mReceiver = new BroadcastReceiver() {
 	    @Override
 	    public void onReceive(Context context, Intent intent) {

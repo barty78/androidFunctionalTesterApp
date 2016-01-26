@@ -159,21 +159,6 @@ public class RecordFromSequenceCreator {
 		return fwver;
 	}
 
-	private static String getMacAddr(NewSequenceInterface sequence) {
-		String mac = "";
-		GetMacAddressTest macAddressTest = null;
-		for (int i = 0; i < sequence.getSequence().size(); i++) {
-			if (sequence.getSequence().get(i) instanceof GetMacAddressTest)
-				macAddressTest = (GetMacAddressTest) sequence.getSequence()
-						.get(i);
-		}
-		if (macAddressTest == null)
-			return mac;
-		mac = macAddressTest.getBT_Addr();
-		return mac;
-
-	}
-
 	static enum SensorNumber {
 		ZERO, ONE, TWO
 	}

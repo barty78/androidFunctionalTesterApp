@@ -22,13 +22,13 @@ import hydrix.pfmat.generic.SessionSamples;
 import hydrix.pfmat.generic.TestLimits;
 import server.pojos.Test;
 
+@SuppressWarnings("unused")
 public class SensorTest {
 
 	private static final int DELAY = 1 * 1000;
 	public final float lowerLimit;
 	public final float upperLimit;
 	public final float varLimit;
-	public NewIOIOActivityListener activityListener;
 	protected SensorsTestHelper sensorsTestHelper;
 	protected WeakReference<Activity> activity = null;
 	protected short voltage = -1;
@@ -53,7 +53,6 @@ public class SensorTest {
 		this.voltage=wrapper.getVoltage();
 		this.zeroVoltage=wrapper.getZeroVoltage();
 		this.load=wrapper.getLoad();
-		this.activityListener=(NewIOIOActivityListener)activity;
 
 	}
 
@@ -74,16 +73,19 @@ public class SensorTest {
 		}
 	}
 
+	@SuppressWarnings("unused")
 	public SensorTest setZeroVoltage(short voltage) {
 		this.zeroVoltage = voltage;
 		return this;
 	}
 
+	@SuppressWarnings("unused")
 	public SensorTest setVoltage(short voltage) {
 		this.voltage = voltage;
 		return this;
 	}
 
+	@SuppressWarnings("unused")
 	public SensorTest setLoad(Boolean load) {
 		this.load = load;
 		return this;
@@ -338,14 +340,17 @@ public class SensorTest {
 		return mSensorResult;
 	}
 
+	@SuppressWarnings("unused")
 	public void setmSensorResult(NewMSensorResult mSensorResult) {
 		this.mSensorResult = mSensorResult;
 	}
 
+	@SuppressWarnings("unused")
 	public void setTest(boolean isTest) {
 		this.isTest = isTest;
 	}
 	
+	@SuppressWarnings("unused")
 	public void setActivity(Activity activity) {
 		this.activity = new WeakReference<Activity>(activity);
 	}

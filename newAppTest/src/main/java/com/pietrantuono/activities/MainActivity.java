@@ -17,7 +17,6 @@ import com.pietrantuono.btutility.BTUtility;
 import com.pietrantuono.constants.NewMResult;
 import com.pietrantuono.constants.NewMSensorResult;
 
-import customclasses.DebugHelper;
 import customclasses.NewSequence;
 
 import com.pietrantuono.constants.NewSequenceInterface;
@@ -29,7 +28,6 @@ import com.pietrantuono.ioioutils.Voltage;
 import com.pietrantuono.pericoach.newtestapp.R;
 import com.pietrantuono.sensors.SensorTestCallback;
 import com.pietrantuono.tests.implementations.upload.UploadTestCallback;
-import com.pietrantuono.uploadfirmware.ProgressAndTextView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -50,17 +48,12 @@ import ioio.lib.api.exception.ConnectionLostException;
 import ioio.lib.util.BaseIOIOLooper;
 import ioio.lib.util.IOIOLooper;
 import ioio.lib.util.IOIOLooperProvider;
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
 import server.MyDoubleTypeAdapter;
 import server.MyIntTypeAdapter;
 import server.MyLongTypeAdapter;
-import server.RetrofitRestServices;
-import server.pojos.DevicesList;
 import server.pojos.Job;
+import server.pojos.Test;
 import server.pojos.records.TestRecord;
-import server.service.ServiceDBHelper;
 import server.utils.MyDatabaseUtils;
 import server.utils.RecordFromSequenceCreator;
 
@@ -136,7 +129,6 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    @Override
     public synchronized void goAndExecuteNextTest() {
         if (!sequenceStarted) return;
         runOnUiThread(new Runnable() {
@@ -369,6 +361,7 @@ public class MainActivity extends AppCompatActivity
     public void onPCBConnectedStartNewSequence() {
         sequenceStarted = false;
         if (isFinishing()) return;
+        PeriCoachTestApplication.forceSync();
         start();
     }
 
@@ -466,42 +459,34 @@ public class MainActivity extends AppCompatActivity
         return results;
     }
 
-    @Override
-    public ProgressAndTextView addFailOrPass(Boolean istest, Boolean success, String reading,String otherreading, String description,server.pojos.Test testToBeParsed) {
-        return uiHelper.addFailOrPass(istest, success, reading, otherreading, description, false,testToBeParsed);
+    private void addFailOrPass(Boolean istest, Boolean success, String reading, String otherreading, String description, Test testToBeParsed) {
+        uiHelper.addFailOrPass(istest, success, reading, otherreading, description, false,testToBeParsed);
     }
     @Override
-    public ProgressAndTextView addFailOrPass(Boolean istest, Boolean success, String reading, String description,server.pojos.Test testToBeParsed) {
-        return addFailOrPass(istest, success, reading, null, description, testToBeParsed);
-    }
-
-    @Override
-    public ProgressAndTextView addFailOrPass(String otherreadig, Boolean istest, Boolean success, String description) {
-        return addFailOrPass(istest,success,null,otherreadig,description,null);
+    public void addFailOrPass(Boolean istest, Boolean success, String reading, String description, Test testToBeParsed) {
+        addFailOrPass(istest, success, reading, null, description, testToBeParsed);
     }
 
     @Override
-    public ProgressAndTextView addFailOrPass(Boolean istest, Boolean success, String reading, String description) {
-        return addFailOrPass(istest, success, reading, null,description, null);
-    }
-    @Override
-    public synchronized ProgressAndTextView addFailOrPass(final Boolean istest, final Boolean success, String reading,server.pojos.Test testToBeParsed ) {
-        return addFailOrPass(istest, success, reading, null,null,testToBeParsed);
+    public void addFailOrPass(String otherreadig, Boolean istest, Boolean success, String description) {
+        addFailOrPass(istest, success, null, otherreadig, description, null);
     }
 
     @Override
-    public ProgressAndTextView addFailOrPass(Boolean istest, Boolean success, String reading) {
-        return addFailOrPass(istest,success,reading,null,null,null);
+    public void addFailOrPass(Boolean istest, Boolean success, String reading, String description) {
+        addFailOrPass(istest, success, reading, null,description, null);
     }
     @Override
-    public ProgressAndTextView addFailOrPass(final Boolean istest, final Boolean success, String reading, String description, boolean isSensorTest,server.pojos.Test testToBeParsed){
-        return uiHelper.addFailOrPass(istest, success, reading, null, description, true,testToBeParsed);
-
+    public synchronized void addFailOrPass(final Boolean istest, final Boolean success, String reading, Test testToBeParsed) {
+        addFailOrPass(istest, success, reading, null, null, testToBeParsed);
     }
 
+    public void addFailOrPass(Boolean istest, Boolean success, String reading) {
+        addFailOrPass(istest,success,reading,null,null,null);
+    }
     @Override
-    public void manuallyRedoCurrentTest() {
-        newSequence.executeCurrentTest();
+    public void addFailOrPass(final Boolean istest, final Boolean success, String reading, String description, boolean isSensorTest, Test testToBeParsed){
+        uiHelper.addFailOrPass(istest, success, reading, null, description, true,testToBeParsed);
 
     }
 
@@ -545,8 +530,7 @@ public class MainActivity extends AppCompatActivity
         return MainActivity.this.isFinishing();
     }
 
-    @Override
-    public void toast(String text, int lenght) {
+    private void toast(String text, int lenght) {
         Toast.makeText(MainActivity.this, text, lenght).show();
     }
 

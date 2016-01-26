@@ -60,13 +60,6 @@ public class GenericSequence implements NewSequenceInterface {
 		return currentStepNumber + 1;
 	}
 
-	public synchronized String getCurrentTestNumberAsString() {
-		if (currentStepNumber >= 0)
-			return Integer.toString(getCurrentTestNumber());
-		else
-			return Integer.toString(0);
-	}
-
 	@Override
 	public synchronized String getCurrentTestDescription() {
 		if (currentStepNumber >= 0)
@@ -89,12 +82,6 @@ public class GenericSequence implements NewSequenceInterface {
 		// currentStep=sequence.get(currentStepNumber);
 	}
 
-	public synchronized String getNexttTestNumberAsAString() {
-		if (currentStepNumber >= 0)
-			return Integer.toString(getNexttTestNumber());
-		else
-			return ("" + 1);
-	}
 
 	public ArrayList<NewMResult> getEmptyResultsList() {
 		ArrayList<NewMResult> results = new ArrayList<NewMResult>();
@@ -191,10 +178,6 @@ public class GenericSequence implements NewSequenceInterface {
 		return overallresult;
 	}
 
-	@Override
-	public boolean isLog() {
-		return log;
-	}
 
 	@Override
 	public void setLog(boolean log) {

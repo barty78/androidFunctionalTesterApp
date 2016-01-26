@@ -15,8 +15,8 @@ import java.io.OutputStream;
 
 import ioio.lib.api.IOIO;
 
+@SuppressWarnings("unused")
 public class TestUploadFirmwareTest extends Test {
-    private InputStream RX;
     private OutputStream TX;
     private DummyFirmWareUploader dummyFirmWareUploader;
     private Boolean initialised = true;

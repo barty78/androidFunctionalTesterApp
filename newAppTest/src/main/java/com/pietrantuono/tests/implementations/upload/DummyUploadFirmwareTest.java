@@ -26,9 +26,6 @@ public class DummyUploadFirmwareTest extends Test {
     private Boolean initialised = true;
     private Boolean looping = true;
     private Boolean resetted = true;
-    private AlertDialog alertDialog;
-    boolean fileComparisonPassed = false;
-    boolean fileMD5Passed = false;
     private int retries;
     private Boolean loopback;
     public UploadItemHolder holder;
@@ -170,12 +167,5 @@ public class DummyUploadFirmwareTest extends Test {
             dummyFirmWareUploader.stop();
         } catch (Exception e) {
         }
-        ;
-        try {
-            alertDialog.dismiss();
-            ;
-        } catch (Exception e) {
-        }
-        ;
     }
 }

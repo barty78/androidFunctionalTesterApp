@@ -47,6 +47,7 @@ public class SingleTest extends MyModel {
 		Result = result;
 	}
 
+	@SuppressWarnings("unused")
 	public Test getForeignkey() {
 		return foreignkey;
 	}
