@@ -99,7 +99,7 @@ public class SetSensorVoltagesStep extends Test implements Step{
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                getListener().addFailOrPass(false, true, "");
+                getListener().addFailOrPass(false, true, "", description);
             }
         }, 1500);
 
