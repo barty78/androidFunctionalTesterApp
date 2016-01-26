@@ -75,6 +75,7 @@ public class NewSequenceFragment extends Fragment {
     public synchronized void addTest(final Boolean istest, final Boolean success, String reading,
                                      String otherreading, String description, boolean isSensorTest, Test testToBeParsed) {
         adapter.addTest(istest, success, reading, otherreading, description, isSensorTest, testToBeParsed, sequence);
+        recyclerView.smoothScrollToPosition(adapter.getItemCount() - 1);
         Handler handler = new Handler(getActivity().getMainLooper());
         handler.postDelayed(new Runnable() {
             @Override
@@ -86,6 +87,7 @@ public class NewSequenceFragment extends Fragment {
 
     public void addSensorTest(NewMSensorResult mSensorResult, Test testToBeParsed) {
         adapter.addSensorTest(mSensorResult, testToBeParsed, sequence);
+        recyclerView.smoothScrollToPosition(adapter.getItemCount() - 1);
         Handler handler = new Handler(getActivity().getMainLooper());
         handler.postDelayed(new Runnable() {
             @Override
@@ -97,6 +99,7 @@ public class NewSequenceFragment extends Fragment {
 
     public void addUploadRow(final Boolean istest, final Boolean success, String description, UploadTestCallback callback) {
         adapter.addUploadRow(istest, success, description, sequence, callback);
+        recyclerView.smoothScrollToPosition(adapter.getItemCount()-1);
     }
 
     public void cleanUI() {
