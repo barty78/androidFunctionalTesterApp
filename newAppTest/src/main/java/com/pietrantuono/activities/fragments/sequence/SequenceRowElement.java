@@ -8,6 +8,7 @@ import server.pojos.Test;
 /**
  * Created by Maurizio Pietrantuono, maurizio.pietrantuono@gmail.com.
  */
+@SuppressWarnings("unused")
 public class SequenceRowElement {
 
     public static abstract class RowElement{
@@ -17,6 +18,7 @@ public class SequenceRowElement {
             this.sequence = sequence;
         }
 
+        @SuppressWarnings("unused")
         public NewSequenceInterface getSequence(){
             return sequence;
         };
@@ -54,6 +56,7 @@ public class SequenceRowElement {
             return istest;
         }
 
+        @SuppressWarnings("unused")
         public String getOtherreading() {
             return otherreading;
         }
@@ -116,10 +119,12 @@ public class SequenceRowElement {
             return description;
         }
 
+        @SuppressWarnings("unused")
         public boolean istest() {
             return istest;
         }
 
+        @SuppressWarnings("unused")
         public boolean isSuccess() {
             return success;
         }

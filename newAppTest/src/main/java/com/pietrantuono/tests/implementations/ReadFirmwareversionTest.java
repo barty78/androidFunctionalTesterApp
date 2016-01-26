@@ -11,7 +11,6 @@ import com.pietrantuono.tests.superclass.Test;
 public class ReadFirmwareversionTest extends Test {
 	private String firmwarever;
 	private BTUtility btUtility;
-	private AlertDialog alertDialog;
 
 	/**
 	 * IMPORTANT: Bluetooth must be open using
@@ -66,6 +65,5 @@ public class ReadFirmwareversionTest extends Test {
 	@Override
 	public void interrupt() {
 		super.interrupt();
-		try {alertDialog.dismiss();}catch(Exception e){}
 	}
 }

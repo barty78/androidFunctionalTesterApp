@@ -4,8 +4,6 @@ import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
@@ -19,7 +17,6 @@ import server.pojos.Job;
  * Created by Maurizio Pietrantuono, maurizio.pietrantuono@gmail.com.
  */
 public class JobHolder extends RecyclerView.ViewHolder{
-    private final Context context;
     private final Callback callback;
     private final IconicsImageView image;
     private final TextView description;
@@ -28,7 +25,6 @@ public class JobHolder extends RecyclerView.ViewHolder{
 
     public JobHolder(View itemView, Context context) {
         super(itemView);
-        this.context = context;
         image= (IconicsImageView) itemView.findViewById(R.id.image);
         description= (TextView) itemView.findViewById(R.id.description);
         jobnumber= (TextView) itemView.findViewById(R.id.jobnumber);

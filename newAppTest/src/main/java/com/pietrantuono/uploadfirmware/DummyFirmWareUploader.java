@@ -32,11 +32,8 @@ public class DummyFirmWareUploader {
 	private static final String TAG = "DummyFirmWareUploader";
 	private OutputStream TX;
 	private InputStream RX;
-	private static final byte STM32_CMD_INIT = 0x7F;
-	private static final byte STM32_CMD_GET = 0x00;
 	private static final byte XOR_BYTE = (byte) 0xFF;
 	private static final byte STM32_ACK = 0x79;
-	private static final byte STM32_NACK = 0x1F;
 
 	private Activity c;
 	private ExecutorService executor = Executors.newFixedThreadPool(1);
@@ -59,14 +56,11 @@ public class DummyFirmWareUploader {
 					0x1FF80000, 0x1FF8001F, 0x1FFF0000, 0x1FF01FFF }, { 0x0 } };
 	private int fl_start;
 	private int fl_end;
-	@SuppressWarnings("ucd")
-	public int mem_end;
 	private Boolean isstopped = false;
 	private WriteTask task = null;
 	private UploaderListener listener;
     private final UploadItemHolder holder;
     private IOIO ioio_;
-	private static Boolean stopthread=false;
 	private Boolean loopback;
 
 	private static ReadThread thread;
@@ -103,22 +97,6 @@ public class DummyFirmWareUploader {
 		} catch (Exception e) {
 			Log.e(TAG, e.toString());
 		}
-	}
-
-	public boolean deviceInit() {// IMPOSSIBLE TO CHECK BECAUSE NOT ALWAYS
-									// DEVICE
-									// ACKNOWLEDGES
-		if (isstopped)
-			return false;
-		System.out.printf("Init : %x.\n", STM32_CMD_INIT);
-
-		write(STM32_CMD_INIT);
-
-		int tmp = (readWithTimeout(2000) & 0xFF);
-		if (tmp == STM32_ACK) {
-			return true;
-		}
-		return false;
 	}
 
 	private class WriteTask extends AsyncTask<Void, Void, Void> {
@@ -425,7 +403,6 @@ public class DummyFirmWareUploader {
 		fl_end = aData[4];
 		// updateUiText("Flash End Address - " + fl_end + ".\n");//TODO
 		System.out.printf("Flash End Address - %x.\n", fl_end);
-		mem_end = aData[8];
 
 		return true;
 
@@ -461,36 +438,6 @@ public class DummyFirmWareUploader {
 			System.err.printf("Received : %2x\n", c);
 			return false;
 		}
-	}
-
-	private int readLoopWithTimeout(int timeout) {
-		long now = System.currentTimeMillis();
-		int avail = 0;
-		while (System.currentTimeMillis() < (now + timeout)) {
-
-			try {
-				avail = RX.available();
-			} catch (IOException e) {
-				showToast(e.toString());
-				e.printStackTrace();
-			}
-
-			if (avail >= 1) {
-				Integer tmp = -1;
-				try {
-//					tmp = RX.read();
-					return RX.read();
-				} catch (IOException e) {
-					showToast(e.toString());
-					e.printStackTrace();
-				}
-				System.out.printf("Call returned : %2x\n", tmp);
-					return tmp;
-				}
-
-		}
-		showToast("Read Timeout!");
-		return -1;
 	}
 
 
@@ -532,41 +479,6 @@ public class DummyFirmWareUploader {
 		}
 		return null;
 
-	}
-
-	private boolean erase(byte pages) {
-		if (!sendCommand(_CMDList.get("er").byteValue()))
-			return false;
-		if ((pages & 0xFF) == 0xFF) {
-			ByteBuffer bb = ByteBuffer.allocate(3);
-			bb.put((byte) 0xFF);
-			bb.put((byte) 0xFE);
-			bb.put((byte) 0x01);
-
-			Log.d("ERASE: ", "ALL");
-
-			if (_CMDList.get("er").byteValue() == 0x44) { // Handle the Extended
-															// Erase Memory
-															// Command (for
-															// STM32L1)
-				byte[] eraseall = bb.array();
-				write(eraseall, 3);
-				return (readWithTimeout(5000) & 0xFF) == STM32_ACK;
-			}
-
-		} else {
-			byte cs = 0;
-			byte pg_num;
-			write(pages);
-			cs ^= pages;
-			for (pg_num = 0; pg_num <= pages; pg_num++) {
-				write(pg_num);
-				cs ^= pg_num;
-			}
-			write(cs);
-			return (readWithTimeout(1000) & 0xFF) == STM32_ACK;
-		}
-		return false;
 	}
 
 	private void showToast(final String s) {
@@ -680,14 +592,6 @@ public class DummyFirmWareUploader {
 		System.out.printf("Result write : %2x\n", ((int) aRes) & 0xFF);
 		return aRes == STM32_ACK;
 	}
-	
-	public void flush() {
-		try {
-			TX.flush();
-		} catch (IOException e) {
-			System.err.println("Unable to flush the output stream");
-		}
-	}
 
 	private void write(byte[] iData, int length) {
 		for (int i = 0; i < length; i++) {
@@ -736,7 +640,6 @@ public class DummyFirmWareUploader {
 
 
 		public ReadThread(InputStream RX) {
-			stopthread = false;
 			this.RX = RX;
 		}
 

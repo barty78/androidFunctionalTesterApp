@@ -16,6 +16,7 @@ import ioio.lib.api.IOIO;
 import ioio.lib.api.Uart;
 import ioio.lib.api.exception.ConnectionLostException;
 
+@SuppressWarnings("unused")
 public class UartBlockWriteTest extends Test {
 	private Uart uart;
 	private InputStream RX;
@@ -44,6 +45,7 @@ public class UartBlockWriteTest extends Test {
 		stopthread = true;
 	}
 
+	@SuppressWarnings("unused")
 	public class UartThread extends Thread {
 		
 		final int BYTE_COUNT = 100;

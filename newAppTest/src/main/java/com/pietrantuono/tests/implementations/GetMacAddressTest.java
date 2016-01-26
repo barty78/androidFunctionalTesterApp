@@ -19,10 +19,8 @@ import server.service.ServiceDBHelper;
 
 public class GetMacAddressTest extends Test {
     private static ExecutorService executor = Executors.newFixedThreadPool(1);
-    private int retries = 0;
     private static final String key = "BT MAC ADDR: ";
     private static final int mac_length = 17;
-    private AlertDialog alertDialog;
     private String mac = "";
 
     private String TAG = getClass().getSimpleName();
@@ -94,11 +92,7 @@ public class GetMacAddressTest extends Test {
     @Override
     public void interrupt() {
         super.interrupt();
-        try {
-            alertDialog.dismiss();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
         try {
             executor.shutdownNow();
         } catch (Exception e) {

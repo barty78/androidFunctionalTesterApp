@@ -12,6 +12,7 @@ import java.lang.reflect.Type;
 /**
  * Created by Maurizio Pietrantuono, maurizio.pietrantuono@gmail.com.
  */
+@SuppressWarnings("unused")
 public class CurrentDeserializer implements JsonDeserializer<Integer> {
     @Override
     public @Units

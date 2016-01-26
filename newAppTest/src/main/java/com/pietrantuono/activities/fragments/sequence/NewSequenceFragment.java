@@ -10,14 +10,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 
 import com.pietrantuono.activities.uihelper.ActivityCallback;
 import com.pietrantuono.constants.NewMSensorResult;
 import com.pietrantuono.constants.NewSequenceInterface;
 import com.pietrantuono.pericoach.newtestapp.R;
 import com.pietrantuono.tests.implementations.upload.UploadTestCallback;
-import com.pietrantuono.uploadfirmware.ProgressAndTextView;
 
 import server.pojos.Test;
 
@@ -49,7 +47,7 @@ public class NewSequenceFragment extends Fragment {
         View v = inflater.inflate(R.layout.new_sequence_fragment, container, false);
         recyclerView = (RecyclerView) v.findViewById(R.id.recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        adapter=new SequenceAdapter(getActivity(), activity);
+        adapter = new SequenceAdapter(getActivity(), activity);
         recyclerView.setAdapter(adapter);
         return v;
     }
@@ -74,34 +72,31 @@ public class NewSequenceFragment extends Fragment {
         activity = null;
     }
 
-    public synchronized ProgressAndTextView addTest(final Boolean istest, final Boolean success, String reading,
-                                                          String otherreading, String description, boolean isSensorTest, Test testToBeParsed) {
+    public synchronized void addTest(final Boolean istest, final Boolean success, String reading,
+                                     String otherreading, String description, boolean isSensorTest, Test testToBeParsed) {
         adapter.addTest(istest, success, reading, otherreading, description, isSensorTest, testToBeParsed, sequence);
-        Handler handler= new Handler(getActivity().getMainLooper());
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                ((ActivityCallback) activity).goAndExecuteNextTest();
-            }
-        },100);
-        return null;
-    }
-
-    public ProgressAndTextView addSensorTest(NewMSensorResult mSensorResult, Test testToBeParsed) {
-        adapter.addSensorTest(mSensorResult, testToBeParsed,sequence);
-        Handler handler= new Handler(getActivity().getMainLooper());
+        Handler handler = new Handler(getActivity().getMainLooper());
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 ((ActivityCallback) activity).goAndExecuteNextTest();
             }
         }, 100);
-        return null;
     }
 
+    public void addSensorTest(NewMSensorResult mSensorResult, Test testToBeParsed) {
+        adapter.addSensorTest(mSensorResult, testToBeParsed, sequence);
+        Handler handler = new Handler(getActivity().getMainLooper());
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ((ActivityCallback) activity).goAndExecuteNextTest();
+            }
+        }, 100);
+    }
 
     public void addUploadRow(final Boolean istest, final Boolean success, String description, UploadTestCallback callback) {
-        adapter.addUploadRow(istest,success,description,sequence,callback);
+        adapter.addUploadRow(istest, success, description, sequence, callback);
     }
 
     public void cleanUI() {
@@ -111,10 +106,6 @@ public class NewSequenceFragment extends Fragment {
 
     public void setSequence(NewSequenceInterface sequence) {
         this.sequence = sequence;
-    }
-
-    public NewSequenceInterface getSequence() {
-        return sequence;
     }
 
 

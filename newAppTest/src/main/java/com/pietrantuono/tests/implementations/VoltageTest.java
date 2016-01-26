@@ -13,10 +13,6 @@ public 	class VoltageTest extends Test {
 	private int pinNumber;
 	private boolean isNominal = true;
 	private float scaling;
-	private @com.pietrantuono.ioioutils.Units
-	int units;
-	public void Units() {
-	}
 
 	/**
 	 * @param activity			- Activity Instance
@@ -32,7 +28,6 @@ public 	class VoltageTest extends Test {
 	public VoltageTest(Activity activity,IOIO ioio, int pinNumber, @Units int units, boolean isBlocking, boolean isNominal, float limitParam1, float limitParam2, String description) {
 		super(activity,ioio,description, false, isBlocking, limitParam1, limitParam2, 0);
 		this.pinNumber = pinNumber;
-		this.units = units;
 		this.scaling = 1f;
 		this.isNominal = isNominal;
 		this.description=description;
@@ -52,7 +47,6 @@ public 	class VoltageTest extends Test {
 	public VoltageTest(Activity activity,IOIO ioio, int pinNumber, @Units int units, boolean isBlocking, float scaling, boolean isNominal, float limitParam1, float limitParam2, String description) {
 		super(activity,ioio,description, false, isBlocking, limitParam1, limitParam2, 0);
 		this.pinNumber = pinNumber;
-		this.units = units;
 		this.scaling = scaling;
 		this.isNominal = isNominal;
 		this.description=description;

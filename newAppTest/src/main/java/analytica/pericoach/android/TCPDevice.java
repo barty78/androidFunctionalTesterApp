@@ -15,6 +15,7 @@ public class TCPDevice extends Device
 	private Socket mSocket = null;
 
 	// Construction
+	@SuppressWarnings("unused")
 	public TCPDevice(String ipAddress, short port)
 	{
 		// Cache these details for later use in connectSpecific

@@ -3,6 +3,7 @@ package server.pojos;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+@SuppressWarnings("unused")
 public class ErrorFromServer {
 
 @SerializedName("error")

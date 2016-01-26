@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+@SuppressWarnings("unused")
 public class Job implements Parcelable {
 
     @Expose

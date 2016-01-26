@@ -2,8 +2,6 @@ package com.pietrantuono.activities;
 
 import com.pietrantuono.btutility.BTUtility;
 import com.pietrantuono.tests.implementations.upload.UploadTestCallback;
-import com.pietrantuono.tests.superclass.Test;
-import com.pietrantuono.uploadfirmware.ProgressAndTextView;
 
 public interface NewIOIOActivityListener {
 
@@ -16,19 +14,16 @@ public interface NewIOIOActivityListener {
 
     void setStatusMSG(String serial, Boolean success);
 
-    public ProgressAndTextView addFailOrPass(Boolean istest, Boolean success, String reading, String otherreading, String description, server.pojos.Test testToBeParsed);
+    public void addFailOrPass(final Boolean istest, final Boolean success, String reading, String description, server.pojos.Test testToBeParsed);
 
-    public ProgressAndTextView addFailOrPass(final Boolean istest, final Boolean success, String reading, String description, server.pojos.Test testToBeParsed);
+    public void addFailOrPass(final Boolean istest, final Boolean success, String description, server.pojos.Test testToBeParsed);
 
-    public ProgressAndTextView addFailOrPass(final Boolean istest, final Boolean success, String description, server.pojos.Test testToBeParsed);
+    public void addFailOrPass(String otherreadig, final Boolean istest, final Boolean success, String description);
 
-    public ProgressAndTextView addFailOrPass(String otherreadig, final Boolean istest, final Boolean success, String description);
+    public void addFailOrPass(final Boolean istest, final Boolean success, String reading, String description);
 
-    public ProgressAndTextView addFailOrPass(final Boolean istest, final Boolean success, String reading, String description);
 
-    public ProgressAndTextView addFailOrPass(final Boolean istest, final Boolean success, String reading, String description, boolean isSensorTest,server.pojos.Test testToBeParsed);
-
-    public ProgressAndTextView addFailOrPass(final Boolean istest, final Boolean success, String reading);
+    public void addFailOrPass(final Boolean istest, final Boolean success, String reading);
 
     public void setSerial(String serial);
 

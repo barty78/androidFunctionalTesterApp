@@ -11,6 +11,7 @@ import com.pietrantuono.sensors.SensorsTestHelper;
 import com.pietrantuono.tests.superclass.Test;
 
 public class SensorTestWrapper extends Test {
+	@SuppressWarnings("unused")
 	private int TestLimitIndex=0;
 	private short voltage;
 	private short zeroVoltage;

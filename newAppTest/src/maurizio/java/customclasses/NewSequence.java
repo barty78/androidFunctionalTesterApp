@@ -28,6 +28,7 @@ import server.pojos.Job;
 import ioio.lib.api.IOIO;
 import server.pojos.Sequence;
 
+@SuppressWarnings("unused")
 public class NewSequence implements NewSequenceInterface {
     private List<Test> sequence = null;
     private volatile int currentStepNumber = -1;

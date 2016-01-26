@@ -46,7 +46,6 @@ public class IOIOUtils implements IOIOUtilsInterface {
     private static DigitalInput barcodeOK;
     private static DigitalOutput barcodeTRGR;
     private static final String TAG = "IOIOUtils";
-    private static ExecutorService executor = Executors.newFixedThreadPool(1);
     private static DigitalOutput boot0;
     private static DigitalOutput boot1;
     private static DigitalOutput POWER;
@@ -70,8 +69,6 @@ public class IOIOUtils implements IOIOUtilsInterface {
     private static InputStream iS;
     private static InputStream inputStream;
     private static OutputStream outputStream;
-    private static BufferedReader r;
-    private static StringBuilder sb;
     private static byte[] log = new byte[0];
     private static Uart2Thread thread;
     private static IOIOUtilsInterface instance;
@@ -93,15 +90,12 @@ public class IOIOUtils implements IOIOUtilsInterface {
 
         public Integer mode;
 
-        public Integer getMode() {
-            return mode;
-        }
-
         Mode(int mode) {
             this.mode = mode;
         }
     }
 
+    @SuppressWarnings("unused")
     public enum Outputs {
 
         boot0((int) 24),
@@ -499,7 +493,6 @@ public class IOIOUtils implements IOIOUtilsInterface {
         inputStream = uart2.getInputStream();
         outputStream = uart2.getOutputStream();
 
-        sb = new StringBuilder();
 
         toggle5VDC(ac);
 
@@ -725,7 +718,6 @@ public class IOIOUtils implements IOIOUtilsInterface {
         inputStream = uart2.getInputStream();
         outputStream = uart2.getOutputStream();
 
-        sb = new StringBuilder();
 
     }
 
@@ -1057,7 +1049,6 @@ public class IOIOUtils implements IOIOUtilsInterface {
     @Override
     public void clearUartLog() {
         Log.d(TAG, "Clearing Uart Log StringBuilder instance");
-        sb = new StringBuilder();
         log = new byte[0];
     }
 

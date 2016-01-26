@@ -2,6 +2,7 @@ package com.pietrantuono.constants;
 
 import com.pietrantuono.tests.superclass.Test;
 
+@SuppressWarnings("unused")
 public class NewMResult {
 	private Test test = null;
 	private Boolean issuccesfull=false;

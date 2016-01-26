@@ -30,6 +30,7 @@ class NewBTDevice extends NewDevice
 		mBTDevice = btDevice;
 	}
 
+	@SuppressWarnings("unused")
 	public final BluetoothDevice getBluetoothDeviceInfo() {return mBTDevice;}
 	
 	@Override

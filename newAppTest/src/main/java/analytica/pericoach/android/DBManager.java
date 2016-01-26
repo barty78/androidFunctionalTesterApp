@@ -268,56 +268,6 @@ public class DBManager {
     }
 
 
-    public ArrayList<TestLimits> getLimitsforTest(Integer testType) {
-
-        CustomSQLiteOpenHelper helper = new CustomSQLiteOpenHelper(context);
-        this.db = helper.getWritableDatabase();
-
-        String strSQL;
-
-        strSQL = "SELECT * FROM testlimit"
-                + " WHERE test_id=(SELECT rowid FROM test WHERE type=?);";
-
-        String[] values = new String[]{testType.toString()};
-
-        // create an ArrayList that will hold all of the data collected from
-        // the database.
-        ArrayList<TestLimits> entityList = new ArrayList<TestLimits>();
-
-        try {
-            // ask the database object to create the cursor.
-            Cursor c = db.rawQuery(strSQL, values);
-
-            while (c.moveToNext()) {
-                // TODO - Hardcoded Object size, Needs to be implemented more
-                // efficiently
-                TestLimits entity = new TestLimits();
-                entity.setDesc(c.getString(0));
-                entity.setTestID(c.getInt(1));
-                entity.setSeqNo(c.getInt(2));
-                entity.setLowerLimits(new Force((short) c.getInt(3), (short) c
-                        .getInt(4), (short) c.getInt(5)));
-                entity.setUpperLimits(new Force((short) c.getInt(6), (short) c
-                        .getInt(7), (short) c.getInt(8)));
-                entity.setStability(c.getInt(9));
-                entity.setCreatedDate(c.getString(10));
-                entity.setModifiedDate(c.getString(11));
-
-                entityList.add(entity);
-            }
-
-            db.close();
-            return entityList;
-
-        } catch (SQLException e) {
-            Log.e("DB Error", e.toString());
-            e.printStackTrace();
-        }
-
-        return null;
-    }
-
-
     private static class CustomSQLiteOpenHelper extends SQLiteOpenHelper {
         private static CustomSQLiteOpenHelper customSQLiteOpenHelper;
         private Context context;

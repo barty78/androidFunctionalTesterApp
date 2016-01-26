@@ -14,7 +14,6 @@ import ioio.lib.api.IOIO;
 public class AccelerometerSelfTest extends Test {
 	private static ExecutorService executor = Executors.newFixedThreadPool(1);
 	private int retries = 0;
-	private AlertDialog alertDialog;
 	private String TAG=getClass().getSimpleName();
 	public AccelerometerSelfTest(Activity activity, IOIO ioio) {
 		super(activity, ioio, "Accelerometer Self-Test", false, false, 0, 0, 0);
@@ -62,7 +61,6 @@ public class AccelerometerSelfTest extends Test {
 	@Override
 	public void interrupt() {
 		super.interrupt();
-		try{alertDialog.dismiss();}catch (Exception e){e.printStackTrace();}
 		try{executor.shutdownNow();}catch (Exception e){e.printStackTrace();}
 	}
 }

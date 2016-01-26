@@ -36,7 +36,7 @@ import com.pietrantuono.pericoach.newtestapp.R;
 
 import ioio.lib.api.IOIO;
 
-@SuppressWarnings("ucd")
+@SuppressWarnings({"ucd", "unused"})
 public class FirmWareUploader {
     private static final String TAG = "FirmWareUploader";
     private final UploadItemHolder holder;

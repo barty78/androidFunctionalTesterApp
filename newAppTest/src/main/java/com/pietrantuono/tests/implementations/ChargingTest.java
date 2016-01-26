@@ -13,9 +13,6 @@ import com.pietrantuono.tests.superclass.Test;
 import ioio.lib.api.IOIO;
 
 public class ChargingTest extends Test {
-	private AlertDialog alertDialog;
-	private Boolean CHGPin;
-	private Boolean success = false;
 
 	public ChargingTest(Activity activity, IOIO ioio,
 						String description) {
@@ -78,59 +75,8 @@ public class ChargingTest extends Test {
 		}
 	}
 
-	private void showAlert(Activity ac, final Boolean value) {
-		if(isinterrupted)return;
-
-		final AlertDialog.Builder builder = new AlertDialog.Builder(ac);
-		builder.setTitle("Check Pink LED");
-		builder.setMessage("Is It On?");
-		builder.setPositiveButton("Yes, it's ON", new OnClickListener() {
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				dialog.dismiss();
-				if(isinterrupted)return;
-				if (value) {
-					setSuccess(true);
-//					switch5vDC(false);
-					activityListener.addFailOrPass(false, true, description);
-				} else {
-					setSuccess(false);
-//					switch5vDC(false);
-					activityListener.addFailOrPass(false, false, description);
-				}
-			}
-		});
-		builder.setNegativeButton("No, it's OFF", new OnClickListener() {
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				dialog.dismiss();
-				if(isinterrupted)return;
-				if (value) {
-					setSuccess(false);
-//					switch5vDC(false);
-					activityListener.addFailOrPass(false, false, description);
-				} else {
-					setSuccess(false);
-//					switch5vDC(false);
-					activityListener.addFailOrPass(false, true, description);
-				}
-			}
-		});
-		builder.setCancelable(true);
-		builder.setOnCancelListener(new MyOnCancelListener(ac));
-		alertDialog=builder.create();
-		((Activity)activityListener).runOnUiThread(new Runnable() {
-			@Override
-			public void run() {
-				if (isinterrupted) return;
-				alertDialog.show();
-			}
-		});
-	}
-
 	@Override
 	public void interrupt() {
 		super.interrupt();
-		try{alertDialog.dismiss();}catch(Exception e){}
 	}
 }

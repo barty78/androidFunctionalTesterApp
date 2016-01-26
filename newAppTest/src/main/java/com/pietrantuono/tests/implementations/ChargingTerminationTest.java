@@ -10,7 +10,6 @@ import android.content.DialogInterface.OnClickListener;
 public class ChargingTerminationTest extends Test {
 	private AlertDialog alertDialog;
 	private Boolean CHGPin;
-	private Boolean success = false;
 
 	public ChargingTerminationTest(Activity activity, IOIO ioio,
 								   String description) {

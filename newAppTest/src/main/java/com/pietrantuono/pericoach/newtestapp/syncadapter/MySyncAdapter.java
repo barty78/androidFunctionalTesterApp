@@ -13,8 +13,10 @@ import server.MyDoubleTypeAdapter;
 import server.MyIntTypeAdapter;
 import server.MyLongTypeAdapter;
 import server.RetrofitRestServices;
+import server.pojos.DevicesList;
 import server.pojos.records.TestRecord;
 import server.pojos.records.response.Response;
+import server.service.ServiceDBHelper;
 import server.utils.MyDatabaseUtils;
 
 import com.activeandroid.ActiveAndroid;
@@ -43,7 +45,6 @@ import android.util.Log;
 public class MySyncAdapter extends AbstractThreadedSyncAdapter {
 	private MyUploader myuploader;
 	private Context context;
-	public static final int SLEEP_TIME_IN_SECS = 5;
 	int notificationId = 001;
 	private String TAG="MySyncAdapter";
 
@@ -53,6 +54,7 @@ public class MySyncAdapter extends AbstractThreadedSyncAdapter {
 
 	}
 
+	@SuppressWarnings("unused")
 	public MySyncAdapter(Context context, boolean autoInitialize, boolean allowParallelSyncs) {
 		super(context, autoInitialize, allowParallelSyncs);
 		this.context = context;
@@ -65,6 +67,17 @@ public class MySyncAdapter extends AbstractThreadedSyncAdapter {
 		myuploader = new MyUploader();
 		myuploader.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 		Log.d(TAG, "onPerformSync");
+
+		RetrofitRestServices.getRest(context).getLastDevices(PeriCoachTestApplication.getDeviceid(), PeriCoachTestApplication.getLastId(), new Callback<DevicesList>() {
+			@Override
+			public void success(DevicesList arg0, retrofit.client.Response arg1) {
+				if (arg0 != null) ServiceDBHelper.addDevices(arg0);
+			}
+
+			@Override
+			public void failure(RetrofitError arg0) {
+			}
+		});
 
 		return;
 	}

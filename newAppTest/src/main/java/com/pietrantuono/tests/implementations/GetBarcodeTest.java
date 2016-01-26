@@ -26,6 +26,7 @@ import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.ioioutils.IOIOUtils;
 import com.pietrantuono.tests.superclass.Test;
 
+@SuppressWarnings("unused")
 public class GetBarcodeTest extends Test {
     private Uart uart1;
     private InputStream RX1;

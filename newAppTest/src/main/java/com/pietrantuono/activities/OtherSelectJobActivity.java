@@ -7,7 +7,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
-import com.pietrantuono.activities.classes.JobListAdapter;
 import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.pericoach.newtestapp.R;
 
@@ -25,11 +24,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
 
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -197,10 +192,6 @@ public class OtherSelectJobActivity extends AppCompatActivity implements MyCallb
 		}
 	}
 
-	public static void setdataProvider(DataProvider provider) {
-		dataProvider = provider;
-	}
-
 	public REST getRest() {
 		if (rest != null)
 			return rest;
@@ -209,10 +200,6 @@ public class OtherSelectJobActivity extends AppCompatActivity implements MyCallb
 			return rest;
 
 		}
-	}
-
-	public static void setRest(REST rest) {
-		OtherSelectJobActivity.rest = rest;
 	}
 
 	public void getFirmwareListFromServer(long firmwareid) {

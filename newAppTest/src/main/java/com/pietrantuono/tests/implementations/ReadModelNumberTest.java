@@ -11,7 +11,7 @@ public class ReadModelNumberTest extends Test{
 	public String getModelnumber() {
 		return modelnumber;
 	}
-	private AlertDialog alertDialog;
+
 	/**
 	 * IMPORTANT: Bluetooth must be open using
 	 * {@link com.pietrantuono.tests.implementations.BluetoothConnectTest} 
@@ -44,6 +44,5 @@ public class ReadModelNumberTest extends Test{
 	@Override
 	public void interrupt() {
 		super.interrupt();
-		try {alertDialog.dismiss();}catch(Exception e){}
 	}
 }

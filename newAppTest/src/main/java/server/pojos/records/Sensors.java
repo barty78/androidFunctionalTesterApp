@@ -28,7 +28,8 @@ public class Sensors extends MyModel {
     @Column(name = "Readings")
     private Readings foreignkey;
     
-    public Readings getForeignkey() {
+    @SuppressWarnings("unused")
+	public Readings getForeignkey() {
 		return foreignkey;
 	}
 

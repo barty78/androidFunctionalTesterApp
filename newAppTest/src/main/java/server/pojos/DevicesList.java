@@ -32,6 +32,7 @@ public class DevicesList {
      * @param New
      * The New
      */
+    @SuppressWarnings("unused")
     public void setNew(List<Device> New) {
         this.New = New;
     }

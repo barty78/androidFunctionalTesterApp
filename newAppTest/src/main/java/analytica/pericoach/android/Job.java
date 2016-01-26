@@ -1,5 +1,6 @@
 package analytica.pericoach.android;
 
+@SuppressWarnings("unused")
 public class Job {
 	
 	private long id;

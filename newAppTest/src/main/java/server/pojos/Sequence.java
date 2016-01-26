@@ -16,6 +16,7 @@ public class Sequence {
     
     private boolean log;
 
+    @SuppressWarnings("unused")
     public boolean isLog() {
 		return log;
 	}
@@ -29,6 +30,7 @@ public class Sequence {
      * @return
      *     The error
      */
+    @SuppressWarnings("unused")
     public boolean isError() {
         return error;
     }
@@ -38,6 +40,7 @@ public class Sequence {
      * @param error
      *     The error
      */
+    @SuppressWarnings("unused")
     public void setError(boolean error) {
         this.error = error;
     }

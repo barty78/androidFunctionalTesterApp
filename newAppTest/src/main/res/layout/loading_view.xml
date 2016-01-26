@@ -14,7 +14,9 @@
         android:indeterminate="true" />
 
     <TextView
+        android:layout_centerHorizontal="true"
         android:text="@string/loading"
+        android:textAppearance="?android:textAppearanceLarge"
         android:layout_below="@+id/progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

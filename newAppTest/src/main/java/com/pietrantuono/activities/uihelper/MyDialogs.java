@@ -10,8 +10,7 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 
 public class MyDialogs {
-	
-	private static ProgressDialog dialog;
+
 	public static void createAlertDialog(Activity activity,String title,String message,String positivetext,String negativetext,  MyOnCancelListener oncancellistener,final MyDialogInterface callback){
 		AlertDialog.Builder builder= new Builder(activity);
 		if(title!=null)builder.setTitle(title);
@@ -34,23 +33,6 @@ public class MyDialogs {
 		if(activity.isFinishing())return;
 		builder.create().show();
 	}
-	
-	
 
-	
-	public static void showProgress(Activity activity){
-		if(activity.isFinishing())return;
-		dialog= new ProgressDialog(activity);
-		dialog.setTitle("Checking results");
-		dialog.setMessage("Downloading devices list");
-		dialog.setCancelable(true);
-		dialog.show();
-		
-	}
-	public static void dismisProgress(Activity activity){
-		if(activity.isFinishing())return;
-		if(dialog==null ||!dialog.isShowing())return;
-		try {dialog.dismiss();}catch (RuntimeException e){}
-		
-	}
+
 }

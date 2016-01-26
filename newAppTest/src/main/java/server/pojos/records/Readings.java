@@ -59,6 +59,7 @@ public class Readings extends MyModel{
     
     
 
+	@SuppressWarnings("unused")
 	public TestRecord getForeignkey() {
 		return foreignkey;
 	}

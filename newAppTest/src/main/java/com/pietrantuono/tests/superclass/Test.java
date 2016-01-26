@@ -28,6 +28,7 @@ public abstract class Test {
 
 	//Limits variables
 	public boolean isNominal;
+	@SuppressWarnings("unused")
 	public float limitParam1, limitParam2,limitParam3;
 	public server.pojos.Test testToBeParsed;
 
@@ -41,7 +42,6 @@ public abstract class Test {
 	public boolean isActive() {	return active;}
 	public void setActive(boolean active) {this.active = active;}
 	public void setBlockingTest(boolean isBlockingTest) {this.isBlockingTest = isBlockingTest;}
-
 	public boolean isNominal() {return isNominal;}
 	public void setNominal(boolean isNominal) {this.isNominal = isNominal;}
 

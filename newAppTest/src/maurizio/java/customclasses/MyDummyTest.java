@@ -8,11 +8,6 @@ import ioio.lib.api.IOIO;
 
 public class MyDummyTest extends Test{
 
-    private Activity activity;
-    private IOIO ioio;
-    private String description;
-    private Boolean isSensorTest;
-    private Boolean isBlockingTest;
 
     MyDummyTest(Activity activity, IOIO ioio, String description, Boolean isBlockingTest) {
         super(activity, ioio, description, false, isBlockingTest, 0, 0, 0);
@@ -20,7 +15,7 @@ public class MyDummyTest extends Test{
 
     @Override
     public void execute() {
-        activityListener.addFailOrPass(istest,success,description);
+        activityListener.addFailOrPass(istest,success,"MyDummyTest");
     }
 
     public static class Builder {

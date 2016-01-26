@@ -2,11 +2,9 @@ package com.pietrantuono.activities.fragments;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
@@ -14,7 +12,6 @@ import com.mikepenz.iconics.view.IconicsImageView;
 import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.pericoach.newtestapp.R;
 
-import analytica.pericoach.android.DBManager;
 import server.pojos.Device;
 import server.pojos.Job;
 
@@ -25,7 +22,6 @@ public class Holder extends RecyclerView.ViewHolder {
     private TextView barcode;
     private TextView serial;
     private TextView address;
-    private Context context;
     private Device device;
     private final IconicsImageView result;
 
@@ -39,7 +35,6 @@ public class Holder extends RecyclerView.ViewHolder {
     }
 
     public void setData(Device device, Context context) {
-        this.context = context;
         this.device = device;
         if (device == null) return;
         if (device.getBarcode() != null) barcode.setText(device.getBarcode());

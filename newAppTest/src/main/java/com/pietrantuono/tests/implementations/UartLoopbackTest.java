@@ -14,6 +14,7 @@ import android.util.Log;
 import com.pietrantuono.ioioutils.IOIOUtils;
 import com.pietrantuono.tests.superclass.Test;
 
+@SuppressWarnings("unused")
 public class UartLoopbackTest extends Test {
 	private Uart uart;
 	private InputStream RX;
