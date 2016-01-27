@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,9 +18,11 @@ import com.pietrantuono.constants.NewSequenceInterface;
 import com.pietrantuono.pericoach.newtestapp.R;
 import com.pietrantuono.tests.implementations.upload.UploadTestCallback;
 
+import hugo.weaving.DebugLog;
 import server.pojos.Test;
 
 public class NewSequenceFragment extends Fragment {
+    private static final String TAG = "NewSequenceFragment";
     private SequenceFragmentCallback mListener;
     private NewSequenceInterface sequence;
     private Activity activity;
@@ -71,9 +74,10 @@ public class NewSequenceFragment extends Fragment {
         mListener = null;
         activity = null;
     }
-
+    @DebugLog
     public synchronized void addTest(final Boolean istest, final Boolean success, String reading,
                                      String otherreading, String description, boolean isSensorTest, Test testToBeParsed) {
+        new Exception().printStackTrace();
         adapter.addTest(istest, success, reading, otherreading, description, isSensorTest, testToBeParsed, sequence);
         recyclerView.smoothScrollToPosition(adapter.getItemCount() - 1);
         Handler handler = new Handler(getActivity().getMainLooper());
@@ -84,8 +88,9 @@ public class NewSequenceFragment extends Fragment {
             }
         }, 100);
     }
-
-    public void addSensorTest(NewMSensorResult mSensorResult, Test testToBeParsed) {
+    @DebugLog
+    public synchronized void addSensorTest(NewMSensorResult mSensorResult, Test testToBeParsed) {
+        new Exception().printStackTrace();
         adapter.addSensorTest(mSensorResult, testToBeParsed, sequence);
         recyclerView.smoothScrollToPosition(adapter.getItemCount() - 1);
         Handler handler = new Handler(getActivity().getMainLooper());
@@ -96,8 +101,9 @@ public class NewSequenceFragment extends Fragment {
             }
         }, 100);
     }
-
+    @DebugLog
     public void addUploadRow(final Boolean istest, final Boolean success, String description, UploadTestCallback callback) {
+        new Exception().printStackTrace();
         adapter.addUploadRow(istest, success, description, sequence, callback);
         recyclerView.smoothScrollToPosition(adapter.getItemCount()-1);
     }

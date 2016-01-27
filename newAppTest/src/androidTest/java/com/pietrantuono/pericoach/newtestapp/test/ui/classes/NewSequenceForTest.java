@@ -28,19 +28,6 @@ public class NewSequenceForTest implements NewSequenceInterface {
 	private boolean log = true;
 
 	/* (non-Javadoc)
-	 * @see com.pietrantuono.constants.NewSequenceInterface#Next()
-	 */
-	@Override
-	public synchronized void Next() {
-		try {
-		} catch (Exception e) {
-		}
-		currentStepNumber++;
-		currentStep = sequence.get(currentStepNumber);
-
-	}
-
-	/* (non-Javadoc)
 	 * @see com.pietrantuono.constants.NewSequenceInterface#executeCurrentTest()
 	 */
 	@Override

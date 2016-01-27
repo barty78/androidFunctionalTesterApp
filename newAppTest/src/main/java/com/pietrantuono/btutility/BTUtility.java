@@ -33,10 +33,13 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Handler;
+import android.os.HandlerThread;
 import android.preference.PreferenceManager;
 import android.text.InputType;
 import android.util.Log;
 import android.widget.EditText;
+
+import hugo.weaving.DebugLog;
 import hydrix.pfmat.generic.Device;
 public class BTUtility {
 	private String macaddress = null;
@@ -66,6 +69,7 @@ public class BTUtility {
 
 	private static Activity activity;
 	private class ConnectReceiver extends BroadcastReceiver {
+		@DebugLog
 		public void onReceive(Context context, Intent intent) {
 			if (intent.getAction().equals(INTENT_CONNECT_FAILED)) {
 				onConnectFailed();
@@ -75,6 +79,7 @@ public class BTUtility {
 		}
 	}
 	private class BTBroadcastReceiver extends BroadcastReceiver {
+		@DebugLog
 		public void onReceive(Context context, Intent intent) {
 			if (BluetoothDevice.ACTION_FOUND.equals(intent.getAction())) {
 				BluetoothDevice device = intent
@@ -98,6 +103,7 @@ public class BTUtility {
 			}
 		}
 	}
+	@DebugLog
 	public BTUtility(Activity activity1, String scancode,
 			NewIOIOActivityListener IOIOActivityListener, String macaddress) {
 		if (isstopped)
@@ -119,6 +125,7 @@ public class BTUtility {
 			}
 		});
 	}
+	@DebugLog
 	private void onConnectFailed() {
 		retries++;
 		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(activityRef.get());
@@ -135,7 +142,7 @@ public class BTUtility {
 				false, false, bluetoothConnectTest.getDescription());
 	}
 
-
+	@DebugLog
 	public void connectProbeViaBT(Test bluetoothConnectTest) {
 		if (isstopped)
 			return;
@@ -172,6 +179,7 @@ public class BTUtility {
 		removeDevicesFromList(true, true);
 		startDiscovery();
 	}
+	@DebugLog
 	private void removeDevicesFromList(boolean removeBondedDevices,
 			boolean unpair) {
 		if(mListItems==null || mListItems.size()<=0)return;
@@ -189,6 +197,7 @@ public class BTUtility {
 			}
 		}
 	}
+	@DebugLog
 	private final void startDiscovery() {
 		if (isstopped)
 			return;
@@ -209,6 +218,7 @@ public class BTUtility {
 		}
 		mBTAdapter.startDiscovery();
 	}
+	@DebugLog
 	private final void onDiscoverDevice(BluetoothDevice device) {
 		if (isstopped)
 			return;
@@ -239,7 +249,7 @@ public class BTUtility {
 			}
 		}
 	}
-
+	@DebugLog
 	public void connectUsingMac(){
 		if (isstopped)
 			return;
@@ -269,7 +279,7 @@ public class BTUtility {
 	}
 
 
-
+	@DebugLog
 	private void onConnectSucceeded() {
 		if (isstopped)
 			return;
@@ -307,7 +317,7 @@ public class BTUtility {
 		start();
 	}
 
-
+	@DebugLog
 	private void start() {
 		if (isstopped)
 			return;
@@ -325,6 +335,7 @@ public class BTUtility {
 			}
 		});
 	}
+	@DebugLog
 	private Boolean insertDeviceAndScancode(String devid, String scancode) {
 		if (isstopped)
 			return false;
@@ -375,7 +386,7 @@ public class BTUtility {
 		return -1;
 	}
 
-
+	@DebugLog
 	private void stopBTDiscovery() {
 		if (mBTAdapter != null && mBTAdapter.isDiscovering())
 			mBTAdapter.cancelDiscovery();
@@ -439,6 +450,8 @@ public class BTUtility {
 			}
 		}, 200);
 	}
+
+	@DebugLog
 	public void abort() {
 		Log.d("BTUtility", "abort");
 		if (alertDialog != null && alertDialog.isShowing())
@@ -478,6 +491,8 @@ public class BTUtility {
 		} catch (Exception e) {
 		}
 	}
+
+	@DebugLog
 	public void stop() {
 		isstopped = true;
 		if (NewPFMATDevice.getDevice() != null) {
@@ -487,7 +502,11 @@ public class BTUtility {
 			IOIOUtils.getUtils().getSensor_High().write(true);
 		} catch (Exception e) {
 		}
-		Handler handler = new Handler();
+		HandlerThread handlerThread= new HandlerThread("Sensor test handler thread");
+		handlerThread.start();
+
+		Handler handler = new Handler(handlerThread.getLooper());
+
 		handler.postDelayed(new Runnable() {
 			@Override
 			public void run() {
@@ -536,6 +555,7 @@ public class BTUtility {
 	        }
 	    }
 	};
+	@DebugLog
 	public static void unregisterIOIOAddressREceiver() {
 		if(BTUtility.activity==null)return;
 		try {activity.unregisterReceiver(mReceiver);}catch (Exception e){}

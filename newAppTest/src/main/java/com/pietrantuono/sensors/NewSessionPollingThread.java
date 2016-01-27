@@ -3,6 +3,8 @@ package com.pietrantuono.sensors;
 
 import android.util.Log;
 
+import java.text.SimpleDateFormat;
+
 class NewSessionPollingThread extends Thread
 {
 	// Members
@@ -11,7 +13,8 @@ class NewSessionPollingThread extends Thread
 	private final int mPollFreqMS;
 	private final Object mCancelEvent;
 	private volatile boolean mCancel;
-	
+	SimpleDateFormat simpleDateFormat= new SimpleDateFormat(" HH:mm:ss.SSS");
+
 	// Construction
 	NewSessionPollingThread(NewDevice device, long baseTimeMS, int pollFreqMS)
 	{
@@ -40,7 +43,7 @@ class NewSessionPollingThread extends Thread
 			// Send a request for a sample to the device
 			if (!mDevice.sendGetSensorData(offsetMS))
 				break;
-			Log.d("NewSessionPollingThread","Requesting data to probe, offset="+offsetMS);
+			Log.d("NewSessionPollingThread","Requesting data to probe, offset="+offsetMS+" time ="+simpleDateFormat.format(System.currentTimeMillis()));
 			// Wait for a period of time before polling again (keeping an eye on stop event)
 			try
 			{

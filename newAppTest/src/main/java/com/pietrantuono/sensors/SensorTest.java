@@ -12,6 +12,7 @@ import com.pietrantuono.tests.implementations.SensorTestWrapper;
 
 import android.app.Activity;
 import android.os.Handler;
+import android.os.HandlerThread;
 import android.os.Looper;
 import android.util.Log;
 import android.view.View;
@@ -159,15 +160,15 @@ public class SensorTest {
 			}
 		this.sensorsTestHelper.sendVoltages(voltage, zeroVoltage);
 
+		HandlerThread handlerThread= new HandlerThread("Sensor test handler thread");
+		handlerThread.start();
 
-
-		Handler h = new Handler(Looper.getMainLooper());
+		Handler h = new Handler(handlerThread.getLooper());
 
 
 		h.postDelayed(new Runnable() {
 			@Override
 			public void run() {
-
 				try {
 					NewPFMATDevice.getDevice().getOutputStream().flush();
 				} catch (IOException e) {
@@ -319,8 +320,16 @@ public class SensorTest {
 			mSensorResult.setSensor2stabilitypass(false);
 			mSensorResult.setTestsuccessful(false);
 		}
-		if (activity != null && activity != null)
-			((SensorTestCallback) (activity.get())).onSensorTestCompleted(mSensorResult,testToBeParsed);
+		if (activity != null && activity != null){
+			activity.get().runOnUiThread(new Runnable() {
+				@Override
+				public void run() {
+					((SensorTestCallback) (activity.get())).onSensorTestCompleted(mSensorResult, testToBeParsed);
+				}
+			});
+
+		}
+
 //		if(!isTest)this.sensorsTestHelper.sendVoltage(this.sensorsTestHelper.NORMAL_VOLTAGE);
 		if(!isTest)stop();
 //		try {

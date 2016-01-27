@@ -4,6 +4,8 @@ import hydrix.pfmat.generic.Force;
 import hydrix.pfmat.generic.SessionSamples;
 import ioio.lib.api.IOIO;
 import java.lang.ref.WeakReference;
+import java.text.SimpleDateFormat;
+
 import android.app.Activity;
 import android.os.Handler;
 import android.util.Log;
@@ -37,6 +39,7 @@ public class SensorsTestHelper implements OnSampleCallback {
 	boolean samplingSensor1=true;
 	boolean samplingSensor2=true;
 	private boolean acceptdata;
+	SimpleDateFormat simpleDateFormat= new SimpleDateFormat(" HH:mm:ss.SSS");
 
 	public SensorsTestHelper(Activity activity, BTUtility btUtil, IOIO ioio) {
 		Log.d(TAG, "Constructor");
@@ -64,9 +67,9 @@ public class SensorsTestHelper implements OnSampleCallback {
 	@Override
 	public synchronized void  onSample(int requestTimestampMS, final short sensor0, final short sensor1, final short sensor2) {
 		if(!acceptdata) {
-			Log.d(TAG,"NOT accetping data offset = "+requestTimestampMS+" "+sensor0+" "+sensor1+" "+ " "+sensor2);
+			Log.d(TAG,"NOT accetping data offset = "+requestTimestampMS+" time = "+simpleDateFormat.format(System.currentTimeMillis()) );
 			return;}
-		Log.d(TAG,"YES accepting datta offset = "+requestTimestampMS+" "+sensor0+" "+sensor1+" "+ " "+sensor2);
+		Log.d(TAG,"YES accepting datta offset = "+requestTimestampMS+" time = "+simpleDateFormat.format(System.currentTimeMillis()));
 		Activity activity = activityref.get();
 		SessionSamples samples = samplesref;
 		final TextView sensor0tv = sensor0ref;

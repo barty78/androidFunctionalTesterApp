@@ -20,18 +20,7 @@ public class GenericSequence implements NewSequenceInterface {
 	private long jobNo = 0;
 	private boolean log = true;
 
-	
-	@Override
-	public synchronized void Next() {
-		try {
-		} catch (Exception e) {
-		}
-		currentStepNumber++;
-		currentStep = sequence.get(currentStepNumber);
 
-	}
-
-	
 	@Override
 	public void executeCurrentTest() {
 		currentStep.execute();

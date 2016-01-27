@@ -130,6 +130,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     public synchronized void goAndExecuteNextTest() {
+        new Exception().printStackTrace();
         if (!sequenceStarted) return;
         runOnUiThread(new Runnable() {
             @Override
@@ -147,10 +148,10 @@ public class MainActivity extends AppCompatActivity
                         return;
                     }
                 }
-                newSequence.Next();
-                uiHelper.setCurrentAndNextTaskinUI();
+
+                Log.e(TAG, "goAndExecuteNextTest "+newSequence.getNextTest().getDescription());
                 newSequence.executeCurrentTest();
-                Log.e(TAG, "goAndExecuteNextTest");
+                uiHelper.setCurrentAndNextTaskinUI();
             }
         });
     }
@@ -303,6 +304,11 @@ public class MainActivity extends AppCompatActivity
 //				uiHelper.setOverallFailOrPass(overallresult);// NA
                 uiHelper.setOverallFailOrPass(true);// NA
                 PeriCoachTestApplication.forceSync();
+                try {
+                    Thread.sleep(3*1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 waitForPCBDisconnected();
             }
         });
@@ -414,7 +420,7 @@ public class MainActivity extends AppCompatActivity
         h.postDelayed(new Runnable() {
             @Override
             public void run() {
-                goAndExecuteNextTest();
+                //goAndExecuteNextTest();
             }
         }, 1 * 1000);  //TODO - Why 5 sec delay here? 1 sec works.
 

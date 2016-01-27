@@ -9,8 +9,6 @@ import com.pietrantuono.tests.superclass.Test;
 @SuppressWarnings("unused")
 public interface NewSequenceInterface {
 
-	void Next();
-
 	void executeCurrentTest();
 
 	int getCurrentTestNumber();

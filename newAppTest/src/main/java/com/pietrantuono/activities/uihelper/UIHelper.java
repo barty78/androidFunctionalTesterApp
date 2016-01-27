@@ -38,6 +38,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import hugo.weaving.DebugLog;
 import server.pojos.Test;
 
 public class UIHelper {
@@ -176,7 +177,7 @@ public class UIHelper {
 	public synchronized void addView(final String label, final String text, boolean goAndExecuteNextTest) {
 		addView(label, text, 0, goAndExecuteNextTest);
 	}
-
+	@DebugLog
 	public synchronized void addView(final String label, final String text, final int color, final boolean goAndExecuteNextTest) {
 		activity.runOnUiThread(new Runnable() {
 
