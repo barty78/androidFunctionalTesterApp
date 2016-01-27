@@ -419,12 +419,15 @@ public class NewSequence implements NewSequenceInterface {
         test.setIdTest(2);
         test.setValue(2);
         sequence.add(test);
-        TestUploadFirmwareTest testUploadFirmwareTest = new TestUploadFirmwareTest(activity, ioio, true);
-        sequence.add(testUploadFirmwareTest);
-        //sequence.add(new ListenToUart(activity,ioio));
-        //sequence.add(test);
-        //sequence.add(new UploadFirmwareTest(activity,ioio));
+        sequence.add(new BluetoothConnectTestForTesting(activity));
 
+        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 0, 10, 50,
+                "Sensor Input Test, NO LOAD, GAIN/ZERO @ 127/0"));
+        test = new MyDummyTest.Builder().setActivity(activity).setDescription("second").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
+        test.setSuccess(false);
+        test.setIdTest(2);
+        test.setValue(2);
+        sequence.add(test);
     }
 
 
