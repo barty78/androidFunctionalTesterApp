@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.iconics.view.IconicsImageView;
+import com.mikepenz.ionicons_typeface_library.Ionicons;
 import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.pericoach.newtestapp.R;
 
@@ -23,12 +24,14 @@ public class Holder extends RecyclerView.ViewHolder {
     private TextView serial;
     private TextView address;
     private Device device;
+    private final IconicsImageView barcode_image;
     private final IconicsImageView result;
     private final IconicsImageView bluetooth;
 
 
     public Holder(View itemView) {
         super(itemView);
+        barcode_image = (IconicsImageView) itemView.findViewById(R.id.barcode);
         barcode = (TextView) itemView.findViewById(R.id.barcode_tv);
         serial = (TextView) itemView.findViewById(R.id.serial_tv);
         address = (TextView) itemView.findViewById(R.id.address_tv);
@@ -50,9 +53,9 @@ public class Holder extends RecyclerView.ViewHolder {
 //        analytica.pericoach.android.Job job = DBManager.getJobByJobID((int) device.getJobId(), context);
         Job job = PeriCoachTestApplication.getCurrentJob();
         if (job == null) return;
-
+        barcode_image.setIcon(Ionicons.Icon.ion_ios_barcode_outline);
         if (device.getBt_addr() != null) {
-            bluetooth.setIcon(GoogleMaterial.Icon.gmd_bluetooth);
+            bluetooth.setIcon(Ionicons.Icon.ion_bluetooth);
             bluetooth.setVisibility(View.VISIBLE);
         } else {
             bluetooth.setVisibility(View.INVISIBLE);
