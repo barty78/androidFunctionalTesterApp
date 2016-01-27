@@ -55,7 +55,8 @@
             android:paddingLeft="5dp"
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/icon_margin"
-            app:iiv_color="@color/primary" />
+            app:iiv_color="@color/primary"
+            app:iiv_icon="gmd_bluetooth" />
 
         <TextView
             android:id="@+id/address_tv"

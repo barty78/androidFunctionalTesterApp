@@ -26,6 +26,8 @@ import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.pericoach.newtestapp.R;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -113,6 +115,12 @@ public class DevicesListFragment extends Fragment {
                 devices.add(temp.get(i));
             }
         }
+        Collections.sort(devices, new Comparator<Device>() {
+            @Override
+            public int compare(Device lhs, Device rhs) {
+                return (int) (Long.parseLong(lhs.getBarcode()) - Long.parseLong(rhs.getBarcode()));
+            }
+        });
         if(devices.size()<=0)state.setViewState(MultiStateView.VIEW_STATE_EMPTY);
         else state.setViewState(MultiStateView.VIEW_STATE_CONTENT);
         recyclerView.setAdapter(new RecyclerAdapter(context, devices));
