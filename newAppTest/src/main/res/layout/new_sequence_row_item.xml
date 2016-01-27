@@ -38,12 +38,12 @@
             android:id="@+id/reading"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/result"
-            android:ems="10"
-            android:gravity="left|center"
-            android:paddingLeft="5dp"
-            android:text="" />
+            android:ems="12"
+            android:gravity="start|center"
+            android:paddingRight="5dp"
+            android:text=""
+            android:layout_alignTop="@+id/testName"
+            android:layout_toLeftOf="@+id/result" />
 
 
         <com.mikepenz.iconics.view.IconicsImageView
