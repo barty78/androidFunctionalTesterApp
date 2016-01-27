@@ -43,7 +43,7 @@ public class SetSensorVoltagesStep extends Test implements Step{
         if (isinterrupted) return;
         Log.d(TAG, "Executing: " + description);
         if (getListener().getBtutility() == null) {
-            getListener().addFailOrPass(false, false, "BT ERROR");
+            getListener().addFailOrPass(false, false, "BT ERROR", description);
             return;
         }
 
@@ -99,7 +99,14 @@ public class SetSensorVoltagesStep extends Test implements Step{
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                getListener().addFailOrPass(false, true, "", description);
+                getActivity().runOnUiThread(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    getListener().addFailOrPass(false, true, "", description);
+                                                }
+                                            }
+                );
+
             }
         }, 1500);
 
