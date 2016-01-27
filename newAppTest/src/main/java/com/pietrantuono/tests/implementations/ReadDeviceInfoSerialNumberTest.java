@@ -24,11 +24,11 @@ public class ReadDeviceInfoSerialNumberTest extends Test {
         if (isinterrupted) return;
         BTUtility btUtility = activityListener.getBtutility();
         String serial = (btUtility == null) ? null : btUtility.getSerial();
-        if (serial != null)
-            activityListener.setSerialBT(serial, true);
+//        if (serial != null)
+//            activityListener.setSerialBT(serial, true);
         if (serial == null || activityListener.getSerial() == null
                 || serial.length() != 24) {
-            activityListener.addFailOrPass(serial, true, false, description);
+            activityListener.addFailOrPass(true, false, serial, description);
         } else {
             if (serial.toLowerCase().equalsIgnoreCase(
                     activityListener.getSerial().toLowerCase())) {
@@ -39,17 +39,17 @@ public class ReadDeviceInfoSerialNumberTest extends Test {
                     } catch (Exception e) {
                     }
                     activityListener
-                            .addFailOrPass(serial, true, false, description);
+                            .addFailOrPass(true, false, serial, description);
                     return;
                 }
 
                 Success();
                 ServiceDBHelper.saveSerial(activityListener.getBarcode(), serial);
-                activityListener.addFailOrPass(serial, true, true, description);
+                activityListener.addFailOrPass(true, true, serial, description);
 
             } else {
                 activityListener
-                        .addFailOrPass(serial, true, false, description);
+                        .addFailOrPass(true, false, serial, description);
             }
         }
     }

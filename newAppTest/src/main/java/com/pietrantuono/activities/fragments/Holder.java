@@ -24,6 +24,8 @@ public class Holder extends RecyclerView.ViewHolder {
     private TextView address;
     private Device device;
     private final IconicsImageView result;
+    private final IconicsImageView bluetooth;
+
 
     public Holder(View itemView) {
         super(itemView);
@@ -31,6 +33,7 @@ public class Holder extends RecyclerView.ViewHolder {
         serial = (TextView) itemView.findViewById(R.id.serial_tv);
         address = (TextView) itemView.findViewById(R.id.address_tv);
         result = (IconicsImageView) itemView.findViewById(R.id.result);
+        bluetooth = (IconicsImageView) itemView.findViewById(R.id.bluetooth);
 
     }
 
@@ -48,11 +51,20 @@ public class Holder extends RecyclerView.ViewHolder {
         Job job = PeriCoachTestApplication.getCurrentJob();
         if (job == null) return;
 
+        if (device.getBt_addr() != null) {
+            bluetooth.setIcon(GoogleMaterial.Icon.gmd_bluetooth);
+            bluetooth.setVisibility(View.VISIBLE);
+        } else {
+            bluetooth.setVisibility(View.INVISIBLE);
+        }
         Log.d("HOLDER", "TestType: " + String.valueOf(job.getTesttypeId()) + " | Exec_Tests: " + String.valueOf(device.getExec_Tests()));
         if ((device.getStatus() & job.getTesttypeId()) == job.getTesttypeId()) {
             Log.d("HOLDER", "TestType: " + String.valueOf(job.getTesttypeId()) + " | Status: " + String.valueOf(device.getStatus()));
             result.setIcon(GoogleMaterial.Icon.gmd_check_circle);
             result.setColor(Color.GREEN);
+        } else {
+            result.setIcon(GoogleMaterial.Icon.gmd_cancel);
+            result.setColor(Color.RED);
         }
 
     }

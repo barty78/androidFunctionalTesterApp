@@ -25,7 +25,7 @@ public class LedCheckTest extends Test {
 				dialog.dismiss();
 				if(isinterrupted)return;
 				Success();
-				activityListener.addFailOrPass(true, true, "");
+				activityListener.addFailOrPass(true, true, "", description);
 			}
 		});
 		builder.setNegativeButton("No, it's OFF", new OnClickListener() {
@@ -33,7 +33,7 @@ public class LedCheckTest extends Test {
 			public void onClick(DialogInterface dialog, int which) {
 				dialog.dismiss();
 				if(isinterrupted)return;
-				activityListener.addFailOrPass(true, false, "");
+				activityListener.addFailOrPass(true, false, "", description);
 			}
 		});
 		builder.setCancelable(true);

@@ -34,7 +34,7 @@ public class PeriCoachTestApplication extends  com.activeandroid.app.Application
 	private static final String AUTHORITY = "com.example.android.datasync.provider";
 	private static String IOIOAddress="";
 	private static String android_id="";
-	private static float gradient;
+	private static float gradient = 0;
 	private static float maxBatteryVoltage;
 	private static File dir;
 	private static AssetManager assetManager;

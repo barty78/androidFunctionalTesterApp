@@ -43,7 +43,12 @@ public class SetSensorVoltagesStep extends Test implements Step{
         if (isinterrupted) return;
         Log.d(TAG, "Executing: " + description);
         if (getListener().getBtutility() == null) {
-            getListener().addFailOrPass(false, false, "BT ERROR");
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    getListener().addFailOrPass(false, false, "BT ERROR", description);
+                }
+            });
             return;
         }
 
@@ -53,9 +58,13 @@ public class SetSensorVoltagesStep extends Test implements Step{
             try {
                 getListener().getBtutility().setVoltage(refVoltage);
             } catch (Exception e) {
-                getListener().addFailOrPass(true, false, "ERROR", "Sensor Voltage Set Fault");
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        getListener().addFailOrPass(true, false, "ERROR", "Sensor Voltage Set Fault");
+                    }
+                });
                 return;
-
             }
         }
         if(isinterrupted)return;
@@ -71,9 +80,13 @@ public class SetSensorVoltagesStep extends Test implements Step{
                     }
                 }, 300);
             } catch (Exception e) {
-                getListener().addFailOrPass(true, false, "ERROR", "Sensor zero voltage set Fault");
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        getListener().addFailOrPass(true, false, "ERROR", "Sensor zero voltage set Fault");
+                    }
+                });
                 return;
-
             }
         }
 
@@ -87,7 +100,12 @@ public class SetSensorVoltagesStep extends Test implements Step{
                 try {
                     getListener().getBtutility().pollSensor();
                 } catch (Exception e) {
-                    getListener().addFailOrPass(true, false, "ERROR", "Sensor voltage set Fault");
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            getListener().addFailOrPass(true, false, "ERROR", "Sensor voltage set Fault");
+                        }
+                    });
                     return;
                 }
             }
@@ -99,7 +117,14 @@ public class SetSensorVoltagesStep extends Test implements Step{
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                getListener().addFailOrPass(false, true, "");
+                getActivity().runOnUiThread(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    getListener().addFailOrPass(false, true, "", description);
+                                                }
+                                            }
+                );
+
             }
         }, 1500);
 

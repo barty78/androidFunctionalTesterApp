@@ -62,20 +62,20 @@ public class GetMacAddressTest extends Test {
                 if(ServiceDBHelper.isMacAlreadySeen(activityListener.getBarcode(),mac) && !PeriCoachTestApplication.getIsRetestAllowed()){
                     Toast.makeText((Activity)activityListener,"DEVICE ALRREDY TESTED, ABORTING !",Toast.LENGTH_LONG).show();
                     setSuccess(false);
-                    activityListener.addFailOrPass(true,false,mac);
+                    activityListener.addFailOrPass(true, false, mac, description);
                     return;
                 }
 
                 Success();
-                activityListener.addView("BT ADDR: ", strFileContents, false);
+//                activityListener.addView("BT ADDR: ", strFileContents, false);
 //                activityListener.setSerial(strFileContents);
                 ServiceDBHelper.saveMac(activityListener.getBarcode(),mac);
                 activityListener.setMacAddress(strFileContents);
-                activityListener.addFailOrPass(true, true, "");
+                activityListener.addFailOrPass(true, true, mac, description);
                 return;
 
             } else {
-                activityListener.addFailOrPass(true, false, "");
+                activityListener.addFailOrPass(true, false, "MAC INVALID", description);
                 Log.d("MAC: ", "MAC INVALID.");
             }
             return;

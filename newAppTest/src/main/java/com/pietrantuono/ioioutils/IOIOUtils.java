@@ -561,7 +561,7 @@ public class IOIOUtils implements IOIOUtilsInterface {
         float max=0;
         float precision = 0.001f;
 
-        if (calibrate && PeriCoachTestApplication.getGradient() != 0) {
+        if (PeriCoachTestApplication.getGradient() == 0) {
             setDAC(DAC);      // Set and measure max voltage to work out gradient
             try {
                 max = (Voltage.getVoltage(ioio_, pin, 30, 1) * scaling);

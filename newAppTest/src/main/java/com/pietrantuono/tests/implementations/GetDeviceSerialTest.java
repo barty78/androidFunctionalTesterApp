@@ -74,9 +74,9 @@ public class GetDeviceSerialTest extends Test {
                                 Log.d(TAG, "Retest is " + PeriCoachTestApplication.getIsRetestAllowed());
                                 if (!ServiceDBHelper.isSerialAlreadySeen(activityListener.getBarcode(), serial)) {
                                     Success();
-                                    activityListener.addView("Serial (HW reading):", strFileContents, false);
+//                                    activityListener.addView("Serial (HW reading):", strFileContents, false);
                                     activityListener.setSerial(strFileContents);
-                                    activityListener.addFailOrPass(true, true, serial);
+                                    activityListener.addFailOrPass(true, true, serial, description);
                                     ServiceDBHelper.saveSerial(activityListener.getBarcode(), serial);
                                     return;
                                 } else {
@@ -84,16 +84,16 @@ public class GetDeviceSerialTest extends Test {
                                         Toast.makeText((Activity) activityListener, "Serial number already tested! Aborting test", Toast.LENGTH_LONG).show();
                                     } catch (Exception e) {
                                     }
-                                    activityListener.addFailOrPass(true, false, "");
+                                    activityListener.addFailOrPass(true, false, serial, description);
 
                                     activityListener.onCurrentSequenceEnd();
                                     return;
                                 }
                             } else {
                                 Success();
-                                activityListener.addView("Serial (HW reading):", strFileContents, false);
+//                                activityListener.addView("Serial (HW reading):", strFileContents, false);
                                 activityListener.setSerial(strFileContents);
-                                activityListener.addFailOrPass(true, true, "");
+                                activityListener.addFailOrPass(true, true, serial, description);
                                 return;
                             }
 

@@ -26,6 +26,8 @@ import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.pericoach.newtestapp.R;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -103,13 +105,22 @@ public class DevicesListFragment extends Fragment {
         for (int i = 0; i < temp.size(); i++) {
             Log.d("DevListFrag", String.valueOf(temp.get(i).getJobId()) + " | " + String.valueOf(job.getId()));
             // Check if we only want devices from the current job, if so check job ids match.
-            if (!thisJobOnly || (thisJobOnly && (temp.get(i).getJobId() == job.getId()))) {
+            if ((thisJobOnly && (temp.get(i).getJobId() == job.getId()))) {
                 // Only add devices which have actually executed the current test type
                 if ((temp.get(i).getExec_Tests() & job.getTesttypeId()) == job.getTesttypeId()) {
                     devices.add(temp.get(i));
                 }
+            } else {
+                // We want all devices from all jobs
+                devices.add(temp.get(i));
             }
         }
+        Collections.sort(devices, new Comparator<Device>() {
+            @Override
+            public int compare(Device lhs, Device rhs) {
+                return (int) (Long.parseLong(lhs.getBarcode()) - Long.parseLong(rhs.getBarcode()));
+            }
+        });
         if(devices.size()<=0)state.setViewState(MultiStateView.VIEW_STATE_EMPTY);
         else state.setViewState(MultiStateView.VIEW_STATE_CONTENT);
         recyclerView.setAdapter(new RecyclerAdapter(context, devices));
@@ -121,7 +132,7 @@ public class DevicesListFragment extends Fragment {
         RetrofitRestServices.getRest(getActivity()).getLastDevices(PeriCoachTestApplication.getDeviceid(), PeriCoachTestApplication.getLastId(), new Callback<DevicesList>() {
             @Override
             public void success(DevicesList arg0, Response arg1) {
-                if(swiper!=null)swiper.setRefreshing(false);
+                if (swiper != null) swiper.setRefreshing(false);
                 if (arg0 != null) ServiceDBHelper.addDevices(arg0);
                 else Snackbar.make(state, "Failed devices download", Snackbar.LENGTH_LONG).show();
                 populateList();
@@ -129,7 +140,7 @@ public class DevicesListFragment extends Fragment {
 
             @Override
             public void failure(RetrofitError arg0) {
-                if(swiper!=null)swiper.setRefreshing(false);
+                if (swiper != null) swiper.setRefreshing(false);
                 Snackbar.make(state, "Failed devices download", Snackbar.LENGTH_LONG).show();
                 populateList();
             }

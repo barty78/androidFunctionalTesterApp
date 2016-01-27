@@ -484,10 +484,10 @@ public class MainActivity extends AppCompatActivity
     public void addFailOrPass(Boolean istest, Boolean success, String reading) {
         addFailOrPass(istest,success,reading,null,null,null);
     }
+
     @Override
     public void addFailOrPass(final Boolean istest, final Boolean success, String reading, String description, boolean isSensorTest, Test testToBeParsed){
-        uiHelper.addFailOrPass(istest, success, reading, null, description, true,testToBeParsed);
-
+        uiHelper.addFailOrPass(istest, success, reading, null, description, true, testToBeParsed);
     }
 
     @Override

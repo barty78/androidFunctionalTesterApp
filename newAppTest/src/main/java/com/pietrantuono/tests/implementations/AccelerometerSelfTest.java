@@ -27,13 +27,13 @@ public class AccelerometerSelfTest extends Test {
 		Log.d(TAG, TAG+" "+IOIOUtils.getUtils().getUartLog().toString());
 		if (IOIOUtils.getUtils().getUartLog().indexOf("MPU6500 Self-Test Passed!") != -1) {
 			Success();
-			activityListener.addFailOrPass(true, true, "");
+			activityListener.addFailOrPass(true, true, "", description);
 			return;
 		} else {
 			if (retries >= 3){
 				Log.d(TAG, TAG+" "+IOIOUtils.getUtils().getUartLog().toString());
 				setSuccess(false);
-				activityListener.addFailOrPass(true, false, "");
+				activityListener.addFailOrPass(true, false, "", description);
 				return;
 			}
 			onAttemptFailed();

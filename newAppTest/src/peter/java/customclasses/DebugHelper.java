@@ -8,7 +8,7 @@ import com.pietrantuono.pericoach.newtestapp.BuildConfig;
 public class DebugHelper {
 
     public static boolean isMaurizioDebug(){
-        if(!BuildConfig.DEBUG)return false;
+        if(BuildConfig.DEBUG && BuildConfig.FLAVOR == "maurizio")return true;
         return false;
     }
 }

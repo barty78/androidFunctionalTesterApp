@@ -320,7 +320,7 @@ public class BTUtility {
 			public void run() {
 				insertDeviceAndScancode(mDeviceId, scancode);
 				((NewIOIOActivityListener) activityRef.get()).addFailOrPass(
-						true, true, "Connected");
+						true, true, "Connected", bluetoothConnectTest.getDescription());
 				//((NewIOIOActivityListener) activityRef.get()).goAndExecuteNextTest();
 			}
 		});

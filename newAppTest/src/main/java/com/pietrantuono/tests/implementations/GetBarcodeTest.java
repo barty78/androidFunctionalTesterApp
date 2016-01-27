@@ -63,7 +63,7 @@ public class GetBarcodeTest extends Test {
 
         if (barcode != null && !barcode.isEmpty()) {
             counter = 0;
-            activityListener.addView("Barcode", barcode, false);
+//            activityListener.addView("Barcode", barcode, false);
             if (!checkJob(barcode)) {
                 activityListener.addFailOrPass("", true, false, description + " - Invalid Barcode");
                 return;
@@ -86,7 +86,7 @@ public class GetBarcodeTest extends Test {
                     activityListener.setBarcode(barcode);
                     ServiceDBHelper.saveBarcode(barcode);
                     setSuccess(true);
-                    activityListener.addFailOrPass(true, true, barcode);
+                    activityListener.addFailOrPass(true, true, barcode, description);
                     return;
 
                 }
@@ -94,7 +94,7 @@ public class GetBarcodeTest extends Test {
                 activityListener.setBarcode(barcode);
                 setSuccess(true);
                 ServiceDBHelper.saveBarcode(barcode);
-                activityListener.addFailOrPass(true, true, barcode);
+                activityListener.addFailOrPass(true, true, barcode, description);
                 return;
             }
         } else {
