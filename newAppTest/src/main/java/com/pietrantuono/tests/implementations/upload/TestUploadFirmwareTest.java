@@ -78,7 +78,13 @@ public class TestUploadFirmwareTest extends Test {
                 setPass();
             }
         }, (3 + 3 + 5 + 3) * 1000);
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                activityListener.goAndExecuteNextTest();
 
+            }
+        }, (3 + 3 + 5 + 3+2) * 1000);
     }
 
     public void reset() {
