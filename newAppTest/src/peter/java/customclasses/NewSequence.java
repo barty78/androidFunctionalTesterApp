@@ -4,6 +4,7 @@ package customclasses;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import android.app.Activity;
 
@@ -44,7 +45,7 @@ import server.pojos.Sequence;
 
 public class NewSequence implements NewSequenceInterface {
     private List<Test> sequence = null;
-    private volatile int currentStepNumber = -1;
+    private volatile AtomicInteger currentStepNumber = new AtomicInteger(-1);
     private volatile Test currentStep = null;
     private long starttime = 0;
     private long endtime = 0;
@@ -57,23 +58,18 @@ public class NewSequence implements NewSequenceInterface {
 	 */
 
     @Override
-    public synchronized void Next() {
+    public synchronized void executeCurrentTest() {
         try {
         } catch (Exception e) {
         }
-        currentStepNumber++;
-        currentStep = sequence.get(currentStepNumber);
-
-    }
-
-    @Override
-    public void executeCurrentTest() {
+        currentStepNumber.incrementAndGet();
+        currentStep = sequence.get(currentStepNumber.get());
         currentStep.execute();
     }
 
     @Override
     public Boolean isSequenceStarted() {
-        if (currentStepNumber == -1)
+        if (currentStepNumber.get() == -1)
             return false;
         else
             return true;
@@ -83,26 +79,26 @@ public class NewSequence implements NewSequenceInterface {
         try {
         } catch (Exception e) {
         }
-        return currentStepNumber;
+        return currentStepNumber.get();
     }
 
     @Override
     public synchronized Test getCurrentTest() {
-        currentStep = sequence.get(currentStepNumber);
+        currentStep = sequence.get(currentStepNumber.get());
         return currentStep;
     }
 
     @Override
     public synchronized Test getNextTest() {
-        return sequence.get(currentStepNumber + 1);
+        return sequence.get(currentStepNumber.get() + 1);
     }
 
     private synchronized int getNexttTestNumber() {
-        return currentStepNumber + 1;
+        return currentStepNumber.get() + 1;
     }
 
     public synchronized String getCurrentTestNumberAsString() {
-        if (currentStepNumber >= 0)
+        if (currentStepNumber.get() >= 0)
             return Integer.toString(getCurrentTestNumber());
         else
             return Integer.toString(0);
@@ -110,7 +106,7 @@ public class NewSequence implements NewSequenceInterface {
 
     @Override
     public synchronized String getCurrentTestDescription() {
-        if (currentStepNumber >= 0)
+        if (currentStepNumber.get() >= 0)
             return getCurrentTest().getDescription();
         else
             return sequence.get(0).getDescription();
@@ -118,21 +114,21 @@ public class NewSequence implements NewSequenceInterface {
 
     @Override
     public synchronized String getNextTestDescription() throws Exception {
-        if (currentStepNumber >= 0 && currentStepNumber < sequence.size() - 1)
+        if (currentStepNumber.get() >= 0 && currentStepNumber.get() < sequence.size() - 1)
             return getNextTest().getDescription();
         else
-//			return sequence.get(1).getDescription();
-            return null;
+			return sequence.get(1).getDescription();
+//            return null;
     }
 
     @Override
     public synchronized void reset() {
-        currentStepNumber = -1;
+        currentStepNumber.set(-1);
         // currentStep=sequence.get(currentStepNumber);
     }
 
     public synchronized String getNexttTestNumberAsAString() {
-        if (currentStepNumber >= 0 && currentStepNumber < sequence.size() - 1)
+        if (currentStepNumber.get() >= 0 && currentStepNumber.get() < sequence.size() - 1)
             return Integer.toString(getNexttTestNumber());
         else
             return ("" + 1);
@@ -174,7 +170,7 @@ public class NewSequence implements NewSequenceInterface {
 
     @Override
     public Boolean isSequenceEnded() {
-        return currentStepNumber >= sequence.size() - 1;
+        return currentStepNumber.get() >= sequence.size() - 1;
     }
 
 
