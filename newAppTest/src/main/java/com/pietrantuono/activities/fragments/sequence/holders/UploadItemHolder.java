@@ -31,12 +31,12 @@ public class UploadItemHolder extends SequenceItemHolder {
     }
 
     @Override
-    public void setData(SequenceRowElement.RowElement element) {
+    public void setData(SequenceRowElement.RowElement element, int position) {
         if (!(element instanceof SequenceRowElement.UploadRowElement))
             throw new RuntimeException("Wrong adata " + Log.getStackTraceString(new Exception()));
         SequenceRowElement.UploadRowElement uploadRowElement = (SequenceRowElement.UploadRowElement) element;
         try {
-            testSeqNum.setText("" + (uploadRowElement.getSequence().getCurrentTestNumber() + 1));
+            testSeqNum.setText("" +  (position+ 1));
         } catch (Exception e) {
             Crashlytics.logException(e);
         }

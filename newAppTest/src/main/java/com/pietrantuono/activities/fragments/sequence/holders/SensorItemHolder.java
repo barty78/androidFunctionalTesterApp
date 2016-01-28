@@ -10,7 +10,6 @@ import android.widget.TextView;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.iconics.view.IconicsImageView;
 import com.pietrantuono.activities.fragments.sequence.SequenceRowElement;
-import com.pietrantuono.activities.fragments.sequence.holders.SequenceItemHolder;
 import com.pietrantuono.pericoach.newtestapp.R;
 
 /**
@@ -41,14 +40,14 @@ public class SensorItemHolder extends SequenceItemHolder {
     }
 
     @Override
-    public void setData(SequenceRowElement.RowElement sensorRowElement) {
+    public void setData(SequenceRowElement.RowElement sensorRowElement, int position) {
         if (!(sensorRowElement instanceof SequenceRowElement.SensorTestRowElement))
             throw new RuntimeException("Wrong adata " + Log.getStackTraceString(new Exception()));
         SequenceRowElement.SensorTestRowElement rowElement = (SequenceRowElement.SensorTestRowElement) sensorRowElement;
         if(rowElement.getmSensorResult()==null)return;
         
         testName.setText(rowElement.getmSensorResult().getDescription() != null ? rowElement.getmSensorResult().getDescription() : context.getString(R.string.no_description));
-        testSeqNum.setText("" + (rowElement.getSequence().getCurrentTestNumber() + 1));
+        testSeqNum.setText("" +  (position+ 1));
          
         if (rowElement.getmSensorResult().getSensor0AvgPass())
             avg0.setTextColor(Color.GREEN);

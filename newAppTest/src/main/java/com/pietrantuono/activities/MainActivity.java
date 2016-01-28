@@ -268,6 +268,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void onCurrentSequenceEnd() {
+        if(true)return;
         IOIOUtils.getUtils().stopUartThread();
         sequenceStarted = false;
         newSequence.setEndtime(System.currentTimeMillis());

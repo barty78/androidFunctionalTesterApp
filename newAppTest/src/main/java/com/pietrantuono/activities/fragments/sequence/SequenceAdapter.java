@@ -5,6 +5,7 @@ import android.support.annotation.IntDef;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,12 +21,14 @@ import com.pietrantuono.tests.implementations.upload.UploadTestCallback;
 
 import java.util.ArrayList;
 
+import hugo.weaving.DebugLog;
 import server.pojos.Test;
 
 /**
  * Created by Maurizio Pietrantuono, maurizio.pietrantuono@gmail.com.
  */
 public class SequenceAdapter extends RecyclerView.Adapter<SequenceItemHolder> {
+    private final String TAG = getClass().getSimpleName();
     private ArrayList<SequenceRowElement.RowElement> items;
     private LayoutInflater layoutInflater;
     private Context context;
@@ -53,6 +56,7 @@ public class SequenceAdapter extends RecyclerView.Adapter<SequenceItemHolder> {
         setHasStableIds(true);
     }
 
+    @DebugLog
     @Nullable
     @Override
     public SequenceItemHolder onCreateViewHolder(ViewGroup parent, @Type int viewType) {
@@ -70,10 +74,12 @@ public class SequenceAdapter extends RecyclerView.Adapter<SequenceItemHolder> {
         }
         return null;
     }
-
+    @DebugLog
     @Override
     public void onBindViewHolder(SequenceItemHolder holder, int position) {
-        holder.setData(items.get(position));
+        Log.d(TAG, holder.toString());
+        Log.d(TAG, items.get(position).toString());
+        holder.setData(items.get(position), position);
         if((holder instanceof UploadItemHolder) && callback!=null)
             callback.onViewHolderReady((UploadItemHolder)holder);
     }
@@ -83,6 +89,7 @@ public class SequenceAdapter extends RecyclerView.Adapter<SequenceItemHolder> {
         return items.size();
     }
 
+    @DebugLog
     @Override
     @Type
     public int getItemViewType(int position) {
@@ -112,6 +119,7 @@ public class SequenceAdapter extends RecyclerView.Adapter<SequenceItemHolder> {
         notifyItemInserted(items.size());
     }
 
+    @DebugLog
     @Override
     public long getItemId(int position) {
         return items.get(position).hashCode();

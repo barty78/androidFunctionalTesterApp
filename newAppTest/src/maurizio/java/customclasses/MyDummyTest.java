@@ -15,7 +15,7 @@ public class MyDummyTest extends Test{
 
     @Override
     public void execute() {
-        activityListener.addFailOrPass(istest,success,"MyDummyTest");
+        activityListener.addFailOrPass("",istest,success,description);
     }
 
     public static class Builder {

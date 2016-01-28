@@ -415,15 +415,125 @@ public class NewSequence implements NewSequenceInterface {
         test.setIdTest(2);
         test.setValue(2);
         sequence.add(test);
-        sequence.add(new BluetoothConnectTestForTesting(activity));
-
-        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 0, 10, 50,
-                "Sensor Input Test, NO LOAD, GAIN/ZERO @ 127/0"));
         test = new MyDummyTest.Builder().setActivity(activity).setDescription("fourth dummy").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
         test.setSuccess(false);
         test.setIdTest(2);
         test.setValue(2);
         sequence.add(test);
+        test = new MyDummyTest.Builder().setActivity(activity).setDescription("5 dummy").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
+        test.setSuccess(false);
+        test.setIdTest(2);
+        test.setValue(2);
+        sequence.add(test);
+
+        test = new MyDummyTest.Builder().setActivity(activity).setDescription("6 dummy").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
+        test.setSuccess(false);
+        test.setIdTest(2);
+        test.setValue(2);
+        sequence.add(test);
+
+        test = new MyDummyTest.Builder().setActivity(activity).setDescription("7 dummy").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
+        test.setSuccess(false);
+        test.setIdTest(2);
+        test.setValue(2);
+        sequence.add(test);
+
+        test = new MyDummyTest.Builder().setActivity(activity).setDescription("8 dummy").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
+        test.setSuccess(false);
+        test.setIdTest(2);
+        test.setValue(2);
+        sequence.add(test);
+
+        test = new MyDummyTest.Builder().setActivity(activity).setDescription("9 dummy").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
+        test.setSuccess(false);
+        test.setIdTest(2);
+        test.setValue(2);
+        sequence.add(test);
+
+        test = new MyDummyTest.Builder().setActivity(activity).setDescription("10 dummy").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
+        test.setSuccess(false);
+        test.setIdTest(2);
+        test.setValue(2);
+        sequence.add(test);
+
+        test = new MyDummyTest.Builder().setActivity(activity).setDescription("11 dummy").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
+        test.setSuccess(false);
+        test.setIdTest(2);
+        test.setValue(2);
+        sequence.add(test);
+
+        test = new MyDummyTest.Builder().setActivity(activity).setDescription("12 dummy").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
+        test.setSuccess(false);
+        test.setIdTest(2);
+        test.setValue(2);
+        sequence.add(test);
+
+        test = new MyDummyTest.Builder().setActivity(activity).setDescription("13 dummy").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
+        test.setSuccess(false);
+        test.setIdTest(2);
+        test.setValue(2);
+        sequence.add(test);
+
+        test = new MyDummyTest.Builder().setActivity(activity).setDescription("14 dummy").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
+        test.setSuccess(false);
+        test.setIdTest(2);
+        test.setValue(2);
+        sequence.add(test);
+
+        test = new MyDummyTest.Builder().setActivity(activity).setDescription("15 dummy").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
+        test.setSuccess(false);
+        test.setIdTest(2);
+        test.setValue(2);
+        sequence.add(test);
+
+        test = new MyDummyTest.Builder().setActivity(activity).setDescription("16 dummy").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
+        test.setSuccess(false);
+        test.setIdTest(2);
+        test.setValue(2);
+        sequence.add(test);
+
+        test = new MyDummyTest.Builder().setActivity(activity).setDescription("17 dummy").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
+        test.setSuccess(false);
+        test.setIdTest(2);
+        test.setValue(2);
+        sequence.add(test);
+
+        test = new MyDummyTest.Builder().setActivity(activity).setDescription("18 dummy").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
+        test.setSuccess(false);
+        test.setIdTest(2);
+        test.setValue(2);
+        sequence.add(test);
+
+        test = new MyDummyTest.Builder().setActivity(activity).setDescription("19 dummy").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
+        test.setSuccess(false);
+        test.setIdTest(2);
+        test.setValue(2);
+        sequence.add(test);
+
+        test = new MyDummyTest.Builder().setActivity(activity).setDescription("20 dummy").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
+        test.setSuccess(false);
+        test.setIdTest(2);
+        test.setValue(2);
+        sequence.add(test);
+
+        test = new MyDummyTest.Builder().setActivity(activity).setDescription("21 dummy").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
+        test.setSuccess(false);
+        test.setIdTest(2);
+        test.setValue(2);
+        sequence.add(test);
+
+        test = new MyDummyTest.Builder().setActivity(activity).setDescription("22 dummy").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
+        test.setSuccess(false);
+        test.setIdTest(2);
+        test.setValue(2);
+        sequence.add(test);
+
+        test = new MyDummyTest.Builder().setActivity(activity).setDescription("23 dummy").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
+        test.setSuccess(false);
+        test.setIdTest(2);
+        test.setValue(2);
+        sequence.add(test);
+
     }
 
 

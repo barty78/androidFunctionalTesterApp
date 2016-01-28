@@ -17,7 +17,7 @@ public abstract class SequenceItemHolder extends RecyclerView.ViewHolder {
         this.context = context;
     }
 
-    public abstract void setData(SequenceRowElement.RowElement rowElement);
+    public abstract void setData(SequenceRowElement.RowElement rowElement, int position);
 
 
 }

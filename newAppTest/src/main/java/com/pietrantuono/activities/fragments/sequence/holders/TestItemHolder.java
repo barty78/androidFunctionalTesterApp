@@ -30,12 +30,12 @@ public class TestItemHolder extends SequenceItemHolder {
     }
 
     @Override
-    public void setData(SequenceRowElement.RowElement rowElement) {
+    public void setData(SequenceRowElement.RowElement rowElement, int position) {
         if (!(rowElement instanceof SequenceRowElement.TestRowElement))
             throw new RuntimeException("Wrong adata " + Log.getStackTraceString(new Exception()));
         SequenceRowElement.TestRowElement testRowElement = (SequenceRowElement.TestRowElement) rowElement;
 
-        testSeqNum.setText("" + (testRowElement.getSequence().getCurrentTestNumber() + 1));
+        testSeqNum.setText("" +  (position+ 1));
         testName.setText(testRowElement.getDescription() != null ? testRowElement.getDescription() : context.getString(R.string.no_description));
         reading.setText(testRowElement.getReading() != null ? testRowElement.getReading() : "");
         if (testRowElement.isSuccess()) {
