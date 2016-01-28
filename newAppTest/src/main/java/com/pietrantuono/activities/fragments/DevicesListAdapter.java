@@ -16,13 +16,14 @@ import server.pojos.Device;
 /**
  * Created by Maurizio Pietrantuono, maurizio.pietrantuono@gmail.com.
  */
-public class RecyclerAdapter extends RecyclerView.Adapter<Holder> {
+public class DevicesListAdapter extends RecyclerView.Adapter<Holder> {
     private Context context;
     private ArrayList<Device> devices;
 
-    public RecyclerAdapter(Context context, ArrayList<Device> devices) {
+    public DevicesListAdapter(Context context, ArrayList<Device> devices) {
         this.context = context;
         this.devices = devices;
+        setHasStableIds(true);
     }
 
     @Override
@@ -40,5 +41,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<Holder> {
     @Override
     public int getItemCount() {
         return devices.size();
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return devices.hashCode();
     }
 }

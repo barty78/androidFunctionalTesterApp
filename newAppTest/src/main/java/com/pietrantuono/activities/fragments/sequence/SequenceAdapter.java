@@ -80,8 +80,9 @@ public class SequenceAdapter extends RecyclerView.Adapter<SequenceItemHolder> {
         Log.d(TAG, holder.toString());
         Log.d(TAG, items.get(position).toString());
         holder.setData(items.get(position), position);
-        if((holder instanceof UploadItemHolder) && callback!=null)
-            callback.onViewHolderReady((UploadItemHolder)holder);
+        if((holder instanceof UploadItemHolder) && callback!=null) {
+            callback.onViewHolderReady((UploadItemHolder) holder);
+        }
     }
 
     @Override

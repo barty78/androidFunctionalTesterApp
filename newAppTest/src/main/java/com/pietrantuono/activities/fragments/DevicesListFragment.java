@@ -12,26 +12,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.activeandroid.query.Select;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.kennyc.view.MultiStateView;
-import com.mikepenz.google_material_typeface_library.GoogleMaterial;
-import com.pietrantuono.activities.uihelper.MyDialogs;
 import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.pericoach.newtestapp.R;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.List;
 
-import analytica.pericoach.android.DBManager;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -123,7 +114,7 @@ public class DevicesListFragment extends Fragment {
         });
         if(devices.size()<=0)state.setViewState(MultiStateView.VIEW_STATE_EMPTY);
         else state.setViewState(MultiStateView.VIEW_STATE_CONTENT);
-        recyclerView.setAdapter(new RecyclerAdapter(context, devices));
+        recyclerView.setAdapter(new DevicesListAdapter(context, devices));
     }
 
     private void downloadDevicesList() {

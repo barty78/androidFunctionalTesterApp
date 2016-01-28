@@ -41,15 +41,17 @@ public class TestUploadFirmwareTest extends Test {
         activityListener.createUploadProgress(false, true, description + " (Version: " + version + ")", new UploadTestCallback() {
             @Override
             public void onViewHolderReady(UploadItemHolder holder) {
-                TestUploadFirmwareTest.this.holder = holder;
-                start();
+                if (TestUploadFirmwareTest.this.holder == null) {
+                    TestUploadFirmwareTest.this.holder = holder;
+                    start();
+                }
             }
         });
     }
 
     public void start() {
         holder.setWait();
-        Handler handler= new Handler();
+        Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -61,21 +63,21 @@ public class TestUploadFirmwareTest extends Test {
             public void run() {
                 doProgress();
             }
-        }, (3+3) * 1000);
+        }, (3 + 3) * 1000);
 
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 setFail();
             }
-        }, (3+3+5) * 1000);
+        }, (3 + 3 + 5) * 1000);
 
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 setPass();
             }
-        }, (3+3+5+3) * 1000);
+        }, (3 + 3 + 5 + 3) * 1000);
 
     }
 
@@ -91,7 +93,7 @@ public class TestUploadFirmwareTest extends Test {
         holder.setPass();
     }
 
-    private void doProgress(){
+    private void doProgress() {
         new AsyncTask<Void, Integer, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
@@ -114,8 +116,9 @@ public class TestUploadFirmwareTest extends Test {
             @Override
             protected void onPostExecute(Void aVoid) {
                 try {
-                    Thread.sleep(1*1000);
-                } catch (InterruptedException e) {}
+                    Thread.sleep(1 * 1000);
+                } catch (InterruptedException e) {
+                }
                 holder.setPass();
             }
         }.execute();

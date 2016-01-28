@@ -2,6 +2,7 @@ package com.pietrantuono.activities.fragments.sequence.holders;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.support.annotation.IntDef;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -21,6 +22,7 @@ public class UploadItemHolder extends SequenceItemHolder {
     private final TextView testName;
     private final IconicsImageView result;
     private final DonutProgress donutProgress;
+    private SequenceRowElement.UploadRowElement uploadRowElement;
 
     public UploadItemHolder(View v, Context context) {
         super(v, context);
@@ -34,9 +36,9 @@ public class UploadItemHolder extends SequenceItemHolder {
     public void setData(SequenceRowElement.RowElement element, int position) {
         if (!(element instanceof SequenceRowElement.UploadRowElement))
             throw new RuntimeException("Wrong adata " + Log.getStackTraceString(new Exception()));
-        SequenceRowElement.UploadRowElement uploadRowElement = (SequenceRowElement.UploadRowElement) element;
+        uploadRowElement = (SequenceRowElement.UploadRowElement) element;
         try {
-            testSeqNum.setText("" +  (position+ 1));
+            testSeqNum.setText("" + (position + 1));
         } catch (Exception e) {
             Crashlytics.logException(e);
         }
@@ -49,23 +51,52 @@ public class UploadItemHolder extends SequenceItemHolder {
         }
         result.setVisibility(View.INVISIBLE);
         donutProgress.setVisibility(View.VISIBLE);
+        if (uploadRowElement.getState() != SequenceRowElement.UploadRowElement.NONE) setState();
+    }
+
+    private void setState() {
+        if(uploadRowElement==null)return;
+        int state=uploadRowElement.getState();
+        switch (state) {
+            case SequenceRowElement.UploadRowElement.NONE:
+                return;
+            case SequenceRowElement.UploadRowElement.WAIT:
+                setWait();
+                break;
+            case SequenceRowElement.UploadRowElement.PROGRESS:
+                setProgress(uploadRowElement.getProgressValue());
+                break;
+            case SequenceRowElement.UploadRowElement.PASS:
+                setPass();
+                break;
+            case SequenceRowElement.UploadRowElement.FAIL:
+                setFail(uploadRowElement.getFailReason());
+                break;
+            case SequenceRowElement.UploadRowElement.RESET:
+                reset();
+                break;
+        }
     }
 
     public void reset() {
+        uploadRowElement.setState(SequenceRowElement.UploadRowElement.RESET);
         result.setVisibility(View.INVISIBLE);
         donutProgress.setVisibility(View.INVISIBLE);
         donutProgress.setProgress(0);
     }
 
     public void setFail(String text) {
+        uploadRowElement.setState(SequenceRowElement.UploadRowElement.FAIL);
+        uploadRowElement.setFailReason(text);
         result.setVisibility(View.VISIBLE);
         donutProgress.setVisibility(View.INVISIBLE);
         result.setIcon(GoogleMaterial.Icon.gmd_cancel);
         result.setColor(Color.RED);
-        testName.setText(text);
+        testName.setText(text != null ? text : "");
     }
 
     public void setPass() {
+        uploadRowElement.setState(SequenceRowElement.UploadRowElement.PASS);
         result.setVisibility(View.VISIBLE);
         donutProgress.setVisibility(View.INVISIBLE);
         result.setIcon(GoogleMaterial.Icon.gmd_check_circle);
@@ -73,12 +104,15 @@ public class UploadItemHolder extends SequenceItemHolder {
     }
 
     public void setProgress(int progress) {
+        uploadRowElement.setState(SequenceRowElement.UploadRowElement.PROGRESS);
+        uploadRowElement.setProgressValue(progress);
         result.setVisibility(View.INVISIBLE);
         donutProgress.setVisibility(View.VISIBLE);
         donutProgress.setProgress(progress);
     }
 
     public void setWait() {
+        uploadRowElement.setState(SequenceRowElement.UploadRowElement.WAIT);
         result.setVisibility(View.VISIBLE);
         donutProgress.setVisibility(View.INVISIBLE);
         result.setIcon(GoogleMaterial.Icon.gmd_hourglass_empty);

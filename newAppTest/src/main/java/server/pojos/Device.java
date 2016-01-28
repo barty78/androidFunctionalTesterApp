@@ -215,4 +215,6 @@ public class Device extends Model {
         this.status = status;
     }
 
+
+
 }

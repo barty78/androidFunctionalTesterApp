@@ -51,8 +51,10 @@ public class UploadFirmwareTest extends Test {
         activityListener.createUploadProgress(false, true, description + " (Version: " + version + ")", new UploadTestCallback() {
             @Override
             public void onViewHolderReady(UploadItemHolder holder) {
-                UploadFirmwareTest.this.holder = holder;
-                start();
+                if(UploadFirmwareTest.this.holder==null) {
+                    UploadFirmwareTest.this.holder = holder;
+                    start();
+                }
             }
         });
 

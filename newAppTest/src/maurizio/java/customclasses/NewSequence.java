@@ -16,6 +16,7 @@ import com.pietrantuono.tests.implementations.BluetoothConnectTestForTesting;
 import com.pietrantuono.tests.implementations.GetMacAddressTest;
 import com.pietrantuono.tests.implementations.SensorTestWrapper;
 import com.pietrantuono.tests.implementations.steps.Step;
+import com.pietrantuono.tests.implementations.upload.DummyUploadFirmwareTest;
 import com.pietrantuono.tests.implementations.upload.TestUploadFirmwareTest;
 import com.pietrantuono.tests.superclass.Test;
 
@@ -534,6 +535,8 @@ public class NewSequence implements NewSequenceInterface {
         test.setValue(2);
         sequence.add(test);
 
+        Test test1= new TestUploadFirmwareTest(activity,ioio,false);
+        sequence.add(test1);
     }
 
 
