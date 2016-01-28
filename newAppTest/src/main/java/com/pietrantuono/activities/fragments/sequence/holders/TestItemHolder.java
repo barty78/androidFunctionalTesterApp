@@ -55,6 +55,15 @@ public class TestItemHolder extends SequenceItemHolder {
         }
         if(!testRowElement.isSensorTest())itemView.setOnClickListener((new ListItemClickListener((AppCompatActivity) context,testRowElement.getTestToBeParsed())));
         else{itemView.setOnClickListener((new SensorItemClickListener((AppCompatActivity) context,testRowElement.getTestToBeParsed())));}
+    }
 
+
+    @Override
+    public int hashCode() {
+        int result1 = testSeqNum != null ? testSeqNum.hashCode() : 0;
+        result1 = 31 * result1 + (testName != null ? testName.hashCode() : 0);
+        result1 = 31 * result1 + (reading != null ? reading.hashCode() : 0);
+        result1 = 31 * result1 + (result != null ? result.hashCode() : 0);
+        return result1;
     }
 }

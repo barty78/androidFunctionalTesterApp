@@ -83,7 +83,14 @@ public class UploadItemHolder extends SequenceItemHolder {
         donutProgress.setVisibility(View.INVISIBLE);
         result.setIcon(GoogleMaterial.Icon.gmd_hourglass_empty);
         result.setColor(context.getResources().getColor(R.color.primary));
+    }
 
-
+    @Override
+    public int hashCode() {
+        int result1 = testSeqNum != null ? testSeqNum.hashCode() : 0;
+        result1 = 31 * result1 + (testName != null ? testName.hashCode() : 0);
+        result1 = 31 * result1 + (result != null ? result.hashCode() : 0);
+        result1 = 31 * result1 + (donutProgress != null ? donutProgress.hashCode() : 0);
+        return result1;
     }
 }

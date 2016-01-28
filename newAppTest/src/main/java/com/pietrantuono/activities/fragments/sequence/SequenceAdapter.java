@@ -41,6 +41,7 @@ public class SequenceAdapter extends RecyclerView.Adapter<SequenceItemHolder> {
         this.callback = null;
     }
 
+
     @IntDef({TEST, STEP, FW_UPLOAD, SENSOR_TEST})
     public @interface Type {
     }
@@ -49,6 +50,7 @@ public class SequenceAdapter extends RecyclerView.Adapter<SequenceItemHolder> {
         this.context = context;
         items = new ArrayList<>();
         layoutInflater = activity.getLayoutInflater();
+        setHasStableIds(true);
     }
 
     @Nullable
@@ -110,4 +112,8 @@ public class SequenceAdapter extends RecyclerView.Adapter<SequenceItemHolder> {
         notifyItemInserted(items.size());
     }
 
+    @Override
+    public long getItemId(int position) {
+        return items.get(position).hashCode();
+    }
 }

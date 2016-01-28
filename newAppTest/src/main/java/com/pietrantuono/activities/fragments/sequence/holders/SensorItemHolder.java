@@ -114,6 +114,19 @@ public class SensorItemHolder extends SequenceItemHolder {
             result_stability.setColor(Color.RED);
         }
         itemView.setOnClickListener((new SensorItemClickListener((AppCompatActivity) context,rowElement.getTestToBeParsed())));
+    }
 
+    @Override
+    public int hashCode() {
+        int result = avg1 != null ? avg1.hashCode() : 0;
+        result = 31 * result + (avg2 != null ? avg2.hashCode() : 0);
+        result = 31 * result + (testSeqNum != null ? testSeqNum.hashCode() : 0);
+        result = 31 * result + (testName != null ? testName.hashCode() : 0);
+        result = 31 * result + (result1_avg != null ? result1_avg.hashCode() : 0);
+        result = 31 * result + (result_stability != null ? result_stability.hashCode() : 0);
+        result = 31 * result + (avg0 != null ? avg0.hashCode() : 0);
+        result = 31 * result + (stability0 != null ? stability0.hashCode() : 0);
+        result = 31 * result + (stability2 != null ? stability2.hashCode() : 0);
+        return result;
     }
 }
