@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.pietrantuono.activities.NewIOIOActivityListener;
 import com.pietrantuono.btutility.BTUtility;
 import com.pietrantuono.pericoach.newtestapp.R;
 
@@ -116,47 +117,58 @@ public class SensorsTestHelper implements OnSampleCallback {
 		}
 	}
 
-	void sendVoltages(final Short voltage, final Short zerovoltage) {
-		Handler handler = new Handler();
-		Byte sensor = (byte) (0 & 0xFF);
-		NewPFMATDevice.getDevice().sendRefVoltage(sensor, voltage);
-		handler.postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				Byte sensor = (byte) (1 & 0xFF);
-				NewPFMATDevice.getDevice().sendRefVoltage(sensor, voltage);
-			}
-		}, 50);
-		handler.postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				Byte sensor = (byte) (2 & 0xFF);
-				NewPFMATDevice.getDevice().sendRefVoltage(sensor, voltage);
-			}
-		}, 100);
+	void sendVoltages(final Short voltage, final Short zerovoltage) throws Exception{
+//		Handler handler = new Handler();
+		try {
+			((NewIOIOActivityListener) (activityref.get())).getBtutility().setVoltage(voltage);
+		} catch (Exception e) {
+			throw new Exception("Setting Failed.");
+		}
+		try {
+			((NewIOIOActivityListener) (activityref.get())).getBtutility().setZeroVoltage(zerovoltage);
+		} catch (Exception e) {
+			throw new Exception("Setting Failed.");
+		}
 
-		handler.postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				Byte sensor = (byte) (0 & 0xFF);
-				NewPFMATDevice.getDevice().sendZeroVoltage(sensor, zerovoltage);
-			}
-		}, 150);
-
-		handler.postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				Byte sensor = (byte) (1 & 0xFF);
-				NewPFMATDevice.getDevice().sendZeroVoltage(sensor, zerovoltage);
-			}
-		}, 200);
-		handler.postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				Byte sensor = (byte) (2 & 0xFF);
-				NewPFMATDevice.getDevice().sendZeroVoltage(sensor, zerovoltage);
-			}
-		}, 250);
+//		Byte sensor = (byte) (0 & 0xFF);
+//		NewPFMATDevice.getDevice().sendRefVoltage(sensor, voltage);
+//		handler.postDelayed(new Runnable() {
+//			@Override
+//			public void run() {
+//				Byte sensor = (byte) (1 & 0xFF);
+//				NewPFMATDevice.getDevice().sendRefVoltage(sensor, voltage);
+//			}
+//		}, 50);
+//		handler.postDelayed(new Runnable() {
+//			@Override
+//			public void run() {
+//				Byte sensor = (byte) (2 & 0xFF);
+//				NewPFMATDevice.getDevice().sendRefVoltage(sensor, voltage);
+//			}
+//		}, 100);
+//
+//		handler.postDelayed(new Runnable() {
+//			@Override
+//			public void run() {
+//				Byte sensor = (byte) (0 & 0xFF);
+//				NewPFMATDevice.getDevice().sendZeroVoltage(sensor, zerovoltage);
+//			}
+//		}, 150);
+//
+//		handler.postDelayed(new Runnable() {
+//			@Override
+//			public void run() {
+//				Byte sensor = (byte) (1 & 0xFF);
+//				NewPFMATDevice.getDevice().sendZeroVoltage(sensor, zerovoltage);
+//			}
+//		}, 200);
+//		handler.postDelayed(new Runnable() {
+//			@Override
+//			public void run() {
+//				Byte sensor = (byte) (2 & 0xFF);
+//				NewPFMATDevice.getDevice().sendZeroVoltage(sensor, zerovoltage);
+//			}
+//		}, 250);
 	}
 
 	public void accetpData(boolean accept){

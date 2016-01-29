@@ -269,6 +269,7 @@ public class MainActivity extends AppCompatActivity
 
     public void onCurrentSequenceEnd() {
         IOIOUtils.getUtils().stopUartThread();
+        PeriCoachTestApplication.setLastPos(0);
         sequenceStarted = false;
         newSequence.setEndtime(System.currentTimeMillis());
         final boolean overallresult = newSequence.getOverallResultBool();

@@ -31,6 +31,7 @@ public class PeriCoachTestApplication extends  com.activeandroid.app.Application
 	private static File firmwareCheckFile=null;
 	private static Job job=null;
 	private static Account mAccount;
+	private static int lastPos = 0;
 	private static final String AUTHORITY = "com.example.android.datasync.provider";
 	private static String IOIOAddress="";
 	private static String android_id="";
@@ -78,6 +79,10 @@ public class PeriCoachTestApplication extends  com.activeandroid.app.Application
 	    dir=getFilesDir();
 
 	}
+
+	public static int getLastPos() { return lastPos;}
+
+	public static void setLastPos(int lastPos) {PeriCoachTestApplication.lastPos = lastPos;}
 
 	public static float getMaxBatteryVoltage() {
 		return maxBatteryVoltage;
