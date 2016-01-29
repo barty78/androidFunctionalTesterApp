@@ -409,50 +409,42 @@ public class BTUtility {
 		NewPFMATDevice.getDevice().sendGetSensorData(0);
 	}
 
-	public void setZeroVoltage(final Short voltage) {
+	public void setZeroVoltage(final Short voltage) throws Exception {
 
 		Byte sensor = (byte) (0 & 0xFF);
 		Log.d("SENSOR", "Setting sensor " + sensor + " to " + voltage);
 		NewPFMATDevice.getDevice().sendZeroVoltage(sensor, voltage);
-		if (!getAckOrTimeout(50, "S0 VOLTAGE SET to")) throwException();
+		if (!getAckOrTimeout(50, "S0 VOLTAGE SET to")) throw new Exception("Setting failed.");
 
 		sensor = (byte) (1 & 0xFF);
 		Log.d("SENSOR", "Setting sensor " + sensor + " to " + voltage);
 		NewPFMATDevice.getDevice().sendZeroVoltage(sensor, voltage);
-		if (!getAckOrTimeout(50, "S1 VOLTAGE SET to"))throwException();
+		if (!getAckOrTimeout(50, "S1 VOLTAGE SET to"))throw new Exception("Setting failed.");
 
 		sensor = (byte) (2 & 0xFF);
 		Log.d("SENSOR", "Setting sensor " + sensor + " to " + voltage);
 		NewPFMATDevice.getDevice().sendZeroVoltage(sensor, voltage);
-		if (!getAckOrTimeout(50, "S2 VOLTAGE SET to"))throwException();
+		if (!getAckOrTimeout(50, "S2 VOLTAGE SET to"))throw new Exception("Setting failed.");
 	}
 
-	public void setVoltage(final Short voltage) {
+	public void setVoltage(final Short voltage) throws Exception {
 
 		Byte sensor = (byte) (0 & 0xFF);
 		Log.d("SENSOR", "Setting sensor " + sensor + " to " + voltage);
 		NewPFMATDevice.getDevice().sendRefVoltage(sensor, voltage);
-		if (!getAckOrTimeout(50, "S0 VOLTAGE SET to")) throwException();
+		if (!getAckOrTimeout(50, "S0 VOLTAGE SET to")) throw new Exception("Setting failed.");
 
 		sensor = (byte) (1 & 0xFF);
 		Log.d("SENSOR", "Setting sensor " + sensor + " to " + voltage);
 		NewPFMATDevice.getDevice().sendRefVoltage(sensor, voltage);
-		if (!getAckOrTimeout(50, "S1 VOLTAGE SET to"))throwException();
+		if (!getAckOrTimeout(50, "S1 VOLTAGE SET to"))throw new Exception("Setting failed.");
 
 		sensor = (byte) (2 & 0xFF);
 		Log.d("SENSOR", "Setting sensor " + sensor + " to " + voltage);
 		NewPFMATDevice.getDevice().sendRefVoltage(sensor, voltage);
-		if (!getAckOrTimeout(50, "S2 VOLTAGE SET to"))throwException();
+		if (!getAckOrTimeout(50, "S2 VOLTAGE SET to"))throw new Exception("Setting failed.");
 	}
 
-	private void throwException() {
-
-		try {
-			throw new Exception("Setting failed");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
 	private boolean getAckOrTimeout(int timeout, String msg){
 
@@ -461,8 +453,8 @@ public class BTUtility {
 		final TimerTask readTask = new TimerTask() {
 			@Override
 			public void run() {
-				readThread.interrupt();
 				System.out.printf("Timer expired, interrupt");
+				readThread.interrupt();
 				this.cancel();
 			}
 		};
@@ -470,7 +462,7 @@ public class BTUtility {
 		t.schedule(readTask, timeout);
 		int pos = -1;
 		while (pos == -1){
-			pos = IOIOUtils.getUtils().getUartLog().indexOf(msg);
+			pos = IOIOUtils.getUtils().getUartLog().substring(PeriCoachTestApplication.getLastPos()).indexOf(msg);
 		}
 
 		t.cancel();
@@ -480,6 +472,8 @@ public class BTUtility {
 		if (pos == -1) {
 			return false;
 		} else {
+			Log.d("BTUtility", "Last position in log is " + pos);
+			PeriCoachTestApplication.setLastPos(pos);
 			return true;
 		}
 	}
@@ -496,7 +490,11 @@ public class BTUtility {
 		isstopped = true;
 		stopBTDiscovery();
 		if (NewPFMATDevice.getDevice() != null) {
-			setVoltage((short) 127);
+			try {
+				setVoltage((short) 127);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		if (NewPFMATDevice.getDevice() != null) {
 			NewPFMATDevice.getDevice().disconnect();
@@ -529,7 +527,11 @@ public class BTUtility {
 	public void stop() {
 		isstopped = true;
 		if (NewPFMATDevice.getDevice() != null) {
-			setVoltage((short) 127);
+			try {
+				setVoltage((short) 127);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		try {
 			IOIOUtils.getUtils().getSensor_High().write(true);

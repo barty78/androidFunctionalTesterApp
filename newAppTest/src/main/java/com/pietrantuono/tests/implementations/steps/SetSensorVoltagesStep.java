@@ -76,7 +76,11 @@ public class SetSensorVoltagesStep extends Test implements Step{
                     public void run() {
                         String string = "Setting Zeroing to " + zeroVoltage + " (" + (System.currentTimeMillis() - now) + ")\n";
                         IOIOUtils.getUtils().appendUartLog((Activity) activityListener, string.getBytes(), string.getBytes().length);
-                        getListener().getBtutility().setZeroVoltage(zeroVoltage);
+                        try {
+                            getListener().getBtutility().setZeroVoltage(zeroVoltage);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
                 }, 300);
             } catch (Exception e) {

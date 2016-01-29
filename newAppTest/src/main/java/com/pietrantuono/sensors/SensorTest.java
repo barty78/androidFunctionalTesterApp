@@ -158,7 +158,14 @@ public class SensorTest {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		this.sensorsTestHelper.sendVoltages(voltage, zeroVoltage);
+		try {
+			this.sensorsTestHelper.sendVoltages(voltage, zeroVoltage);
+		} catch (Exception e) {
+			e.printStackTrace();
+			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - Setting Voltages Failed", true, testToBeParsed
+			);
+			return;
+		}
 
 		HandlerThread handlerThread= new HandlerThread("Sensor test handler thread");
 		handlerThread.start();

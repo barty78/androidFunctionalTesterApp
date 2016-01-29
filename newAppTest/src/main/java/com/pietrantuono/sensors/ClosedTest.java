@@ -113,7 +113,14 @@ public class ClosedTest extends SensorTest {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		this.sensorsTestHelper.sendVoltages(voltage, zeroVoltage);
+		try {
+			this.sensorsTestHelper.sendVoltages(voltage, zeroVoltage);
+		} catch (Exception e) {
+			e.printStackTrace();
+			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - Setting Voltages Failed", true, testToBeParsed
+			);
+			return;
+		}
 		this.sensorsTestHelper.samplesref.clear();
 		if (this.sensorsTestHelper.activityref == null || this.sensorsTestHelper.activityref.get() == null)
 			return;
@@ -307,7 +314,12 @@ public class ClosedTest extends SensorTest {
 		}
 		if (activity != null && activity != null && !isTest)
 			((SensorTestCallback) (activity.get())).onSensorTestCompleted(mSensorResult, testToBeParsed);
-		if(!isTest)this.sensorsTestHelper.sendVoltages(this.sensorsTestHelper.NORMAL_VOLTAGE, (short)0);
+		if(!isTest) try {
+			this.sensorsTestHelper.sendVoltages(this.sensorsTestHelper.NORMAL_VOLTAGE, (short)0);
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		}
 		if(!isTest)stop();
 		try {
 			Thread.sleep(200);
