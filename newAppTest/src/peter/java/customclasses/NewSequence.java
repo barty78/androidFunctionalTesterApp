@@ -421,25 +421,25 @@ public class NewSequence implements NewSequenceInterface {
         sequence.add(new BatteryLevelUUTVoltageTest(activity, ioio, 85, 0.15f,
                 "Battery Level - UUT voltage @ 4.0V", 4.0f));
 
-//        sequence.add(new SetSensorVoltagesStep(activity, (short) 0, (short) 0, "Set GAIN -> 0, ZERO -> 0"));
-//        sequence.add(new VoltageTest(activity, ioio, 32, Units.V, false, -2f, false, 0.1f, -0.1f,
-//                "Voltage Measurement(V_REF_AN)"));
-//        sequence.add(new SetSensorVoltagesStep(activity, (short) 30, (short) 0, "Set GAIN -> 30, ZERO -> 0"));
-//        sequence.add(new VoltageTest(activity, ioio, 32, Units.V, false, -2f, true, -0.3f, 0.3f,
-//                "Voltage Measurement(V_REF_AN)"));
-//        sequence.add(new SetSensorVoltagesStep(activity, (short) 0, (short) 30, "Set GAIN -> 0, ZERO -> 30"));
-//        sequence.add(new VoltageTest(activity, ioio, 32, Units.V, false, -2f, true, -0.3f, 0.3f,
-//                "Voltage Measurement(V_REF_AN)"));
-//        sequence.add(new SetSensorVoltagesStep(activity, (short) 255, (short) 0, "Set GAIN -> 255, ZERO -> 0"));
-//        sequence.add(new VoltageTest(activity, ioio, 32, Units.V, false, -2f, true, -3f, 0.1f,
-//                "Voltage Measurement(V_REF_AN)"));
-//        sequence.add(new SetSensorVoltagesStep(activity, (short) 0, (short) 255, "Set GAIN -> 0, ZERO -> 255"));
-//        sequence.add(new VoltageTest(activity, ioio, 32, Units.V, false, -2f, true, -3f, 0.1f,
-//                "Voltage Measurement(V_REF_AN)"));
-//        sequence.add(new SetSensorVoltagesStep(activity, (short) 255, (short) 255, "Set GAIN -> 255, ZERO -> 255"));
-//        sequence.add(new VoltageTest(activity, ioio, 32, Units.V, false, -2f, true, -6f, 0.1f,
-//                "Voltage Measurement(V_REF_AN)"));
-//        sequence.add(new SetSensorVoltagesStep(activity, (short) 127, (short) 0, "Set GAIN -> 127, ZERO -> 0"));
+        sequence.add(new SetSensorVoltagesStep(activity, (short) 0, (short) 0, "Set GAIN -> 0, ZERO -> 0"));
+        sequence.add(new VoltageTest(activity, ioio, 32, Units.V, false, -2f, false, 0.1f, -0.1f,
+                "Voltage Measurement(V_REF_AN)"));
+        sequence.add(new SetSensorVoltagesStep(activity, (short) 30, (short) 0, "Set GAIN -> 30, ZERO -> 0"));
+        sequence.add(new VoltageTest(activity, ioio, 32, Units.V, false, -2f, true, -0.3f, 0.3f,
+                "Voltage Measurement(V_REF_AN)"));
+        sequence.add(new SetSensorVoltagesStep(activity, (short) 0, (short) 30, "Set GAIN -> 0, ZERO -> 30"));
+        sequence.add(new VoltageTest(activity, ioio, 32, Units.V, false, -2f, true, -0.3f, 0.3f,
+                "Voltage Measurement(V_REF_AN)"));
+        sequence.add(new SetSensorVoltagesStep(activity, (short) 255, (short) 0, "Set GAIN -> 255, ZERO -> 0"));
+        sequence.add(new VoltageTest(activity, ioio, 32, Units.V, false, -2f, true, -3f, 0.1f,
+                "Voltage Measurement(V_REF_AN)"));
+        sequence.add(new SetSensorVoltagesStep(activity, (short) 0, (short) 255, "Set GAIN -> 0, ZERO -> 255"));
+        sequence.add(new VoltageTest(activity, ioio, 32, Units.V, false, -2f, true, -3f, 0.1f,
+                "Voltage Measurement(V_REF_AN)"));
+        sequence.add(new SetSensorVoltagesStep(activity, (short) 255, (short) 255, "Set GAIN -> 255, ZERO -> 255"));
+        sequence.add(new VoltageTest(activity, ioio, 32, Units.V, false, -2f, true, -6f, 0.1f,
+                "Voltage Measurement(V_REF_AN)"));
+        sequence.add(new SetSensorVoltagesStep(activity, (short) 127, (short) 0, "Set GAIN -> 127, ZERO -> 0"));
 
 
         sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 0, 10, 50,
