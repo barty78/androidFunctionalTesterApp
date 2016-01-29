@@ -37,7 +37,7 @@ public abstract class Test {
 	public String getDescription(){return description;}
 	public void setDescription(String description){this.description=description;}
 	public Boolean isSensorTest(){return isSensorTest;}
-	public Boolean isTest() {return istest;}
+	public boolean isTest() {return istest;}
 	public void setIsTest(boolean isTest) {this.istest = isTest;}
 	public boolean isActive() {	return active;}
 	public void setActive(boolean active) {this.active = active;}
