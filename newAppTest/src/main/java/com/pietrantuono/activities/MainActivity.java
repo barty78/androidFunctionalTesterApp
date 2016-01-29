@@ -466,7 +466,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void addFailOrPass(Boolean istest, Boolean success, String reading, String otherreading, String description, Test testToBeParsed) {
-        uiHelper.addFailOrPass(istest, success, reading, otherreading, description, false,testToBeParsed);
+        uiHelper.addFailOrPass(istest, success, reading, otherreading, description, false, testToBeParsed);
     }
     @Override
     public void addFailOrPass(Boolean istest, Boolean success, String reading, String description, Test testToBeParsed) {
@@ -480,7 +480,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void addFailOrPass(Boolean istest, Boolean success, String reading, String description) {
-        addFailOrPass(istest, success, reading, null,description, null);
+        addFailOrPass(istest, success, reading, null, description, null);
     }
     @Override
     public synchronized void addFailOrPass(final Boolean istest, final Boolean success, String reading, Test testToBeParsed) {
@@ -488,7 +488,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void addFailOrPass(Boolean istest, Boolean success, String reading) {
-        addFailOrPass(istest,success,reading,null,null,null);
+        addFailOrPass(istest, success, reading, null, null, null);
     }
 
     @Override

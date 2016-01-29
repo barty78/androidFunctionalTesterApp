@@ -2,6 +2,8 @@ package com.pietrantuono.btutility;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Set;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import com.pietrantuono.activities.MyOnCancelListener;
 import com.pietrantuono.activities.NewIOIOActivityListener;
@@ -139,7 +141,7 @@ public class BTUtility {
 			return;
 		}
 		((NewIOIOActivityListener) activityRef.get()).addFailOrPass(
-				false, false, bluetoothConnectTest.getDescription());
+				false, false, "CONNECT FAILED", bluetoothConnectTest.getDescription(), bluetoothConnectTest.testToBeParsed);
 	}
 
 	@DebugLog
@@ -330,7 +332,7 @@ public class BTUtility {
 			public void run() {
 				insertDeviceAndScancode(mDeviceId, scancode);
 				((NewIOIOActivityListener) activityRef.get()).addFailOrPass(
-						true, true, "Connected", bluetoothConnectTest.getDescription());
+						true, true, "Connected", bluetoothConnectTest.getDescription(), bluetoothConnectTest.testToBeParsed);
 				//((NewIOIOActivityListener) activityRef.get()).goAndExecuteNextTest();
 			}
 		});
@@ -408,47 +410,78 @@ public class BTUtility {
 	}
 
 	public void setZeroVoltage(final Short voltage) {
-		Handler handler = new Handler();
+
 		Byte sensor = (byte) (0 & 0xFF);
+		Log.d("SENSOR", "Setting sensor " + sensor + " to " + voltage);
 		NewPFMATDevice.getDevice().sendZeroVoltage(sensor, voltage);
-		handler.postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				Byte sensor = (byte) (1 & 0xFF);
-				NewPFMATDevice.getDevice().sendZeroVoltage(sensor, voltage);
-			}
-		}, 100);
-		handler.postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				Byte sensor = (byte) (2 & 0xFF);
-				NewPFMATDevice.getDevice().sendZeroVoltage(sensor, voltage);
-			}
-		}, 200);
+		if (!getAckOrTimeout(50, "S0 VOLTAGE SET to")) throwException();
+
+		sensor = (byte) (1 & 0xFF);
+		Log.d("SENSOR", "Setting sensor " + sensor + " to " + voltage);
+		NewPFMATDevice.getDevice().sendZeroVoltage(sensor, voltage);
+		if (!getAckOrTimeout(50, "S1 VOLTAGE SET to"))throwException();
+
+		sensor = (byte) (2 & 0xFF);
+		Log.d("SENSOR", "Setting sensor " + sensor + " to " + voltage);
+		NewPFMATDevice.getDevice().sendZeroVoltage(sensor, voltage);
+		if (!getAckOrTimeout(50, "S2 VOLTAGE SET to"))throwException();
 	}
 
-
 	public void setVoltage(final Short voltage) {
-		Handler handler = new Handler();
+
 		Byte sensor = (byte) (0 & 0xFF);
-		NewPFMATDevice.getDevice().sendRefVoltage(sensor, voltage);
 		Log.d("SENSOR", "Setting sensor " + sensor + " to " + voltage);
-		handler.postDelayed(new Runnable() {
+		NewPFMATDevice.getDevice().sendRefVoltage(sensor, voltage);
+		if (!getAckOrTimeout(50, "S0 VOLTAGE SET to")) throwException();
+
+		sensor = (byte) (1 & 0xFF);
+		Log.d("SENSOR", "Setting sensor " + sensor + " to " + voltage);
+		NewPFMATDevice.getDevice().sendRefVoltage(sensor, voltage);
+		if (!getAckOrTimeout(50, "S1 VOLTAGE SET to"))throwException();
+
+		sensor = (byte) (2 & 0xFF);
+		Log.d("SENSOR", "Setting sensor " + sensor + " to " + voltage);
+		NewPFMATDevice.getDevice().sendRefVoltage(sensor, voltage);
+		if (!getAckOrTimeout(50, "S2 VOLTAGE SET to"))throwException();
+	}
+
+	private void throwException() {
+
+		try {
+			throw new Exception("Setting failed");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	private boolean getAckOrTimeout(int timeout, String msg){
+
+		final Thread readThread = Thread.currentThread();
+		Timer t = new Timer();
+		final TimerTask readTask = new TimerTask() {
 			@Override
 			public void run() {
-				Byte sensor = (byte) (1 & 0xFF);
-				Log.d("SENSOR", "Setting sensor " + sensor + " to " + voltage);
-				NewPFMATDevice.getDevice().sendRefVoltage(sensor, voltage);
+				readThread.interrupt();
+				System.out.printf("Timer expired, interrupt");
+				this.cancel();
 			}
-		}, 100);
-		handler.postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				Byte sensor = (byte) (2 & 0xFF);
-				Log.d("SENSOR", "Setting sensor " + sensor + " to " + voltage);
-				NewPFMATDevice.getDevice().sendRefVoltage(sensor, voltage);
-			}
-		}, 200);
+		};
+//                Log.d(TAG, "Schedule readTask timer for " + String.valueOf(timeout) + " ms");
+		t.schedule(readTask, timeout);
+		int pos = -1;
+		while (pos == -1){
+			pos = IOIOUtils.getUtils().getUartLog().indexOf(msg);
+		}
+
+		t.cancel();
+		t.purge();
+		t = null;
+		System.out.printf("Timer Cancelled");
+		if (pos == -1) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	@DebugLog

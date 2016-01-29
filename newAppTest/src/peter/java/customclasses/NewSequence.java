@@ -117,8 +117,8 @@ public class NewSequence implements NewSequenceInterface {
         if (currentStepNumber.get() >= 0 && currentStepNumber.get() < sequence.size() - 1)
             return getNextTest().getDescription();
         else
-			return sequence.get(1).getDescription();
-//            return null;
+//			return sequence.get(1).getDescription();
+            return null;
     }
 
     @Override
@@ -337,32 +337,32 @@ public class NewSequence implements NewSequenceInterface {
                 "Current Measurement - UUT Unprogrammed"));
 
 
-        sequence.add(new VoltageTest(activity, ioio, 44, Units.V, true, true, 3.1f, 0.2f,
-                "Voltage Measurement - V_3V1"));
-        sequence.add(new VoltageTest(activity, ioio, 40, Units.V, true, true, 1.8f, 0.2f,
-                "Voltage Measurement - V_1V8"));
-        sequence.add(new VoltageTest(activity, ioio, 37, Units.V, false, 3f, true, 3.5f, 0.2f,
-                "Voltage Measurement - V_BATT"));
-
-        //		sequence.add(new ChargingTerminationTest(activity, ioio,
-        //				"Battery Charging Termination Test"));
-        sequence.add(new VoltageTest(activity, ioio, 38, Units.V, false, false, 0.1f, -0.1f,
-                "Voltage Measurement - DC_PRES (5V_DC Off)"));
-        sequence.add(new SetDigitalOutputStep(activity, IOIOUtils.Outputs._5V_DC.getValue(), true,
-                "Set 5VDC to On"));
-        sequence.add(new VoltageTest(activity, ioio, 38, Units.V, false, true, 1.8f, 0.1f,
-                "Voltage Measurement - DC_PRES (5V_DC On)"));
-        sequence.add(new SetDigitalOutputStep(activity, IOIOUtils.Outputs._5V_DC.getValue(), false,
-                "Set 5VDC to Off"));
-
-        //		sequence.add(new ChargingTest(activity, ioio,
-        //				"Battery Charging Test"));
-
-        //		sequence.add(new DummyUploadFirmwareTest(activity, ioio, false));
-   		sequence.add(new UploadFirmwareTest(activity, ioio));
+//        sequence.add(new VoltageTest(activity, ioio, 44, Units.V, true, true, 3.1f, 0.2f,
+//                "Voltage Measurement - V_3V1"));
+//        sequence.add(new VoltageTest(activity, ioio, 40, Units.V, true, true, 1.8f, 0.2f,
+//                "Voltage Measurement - V_1V8"));
+//        sequence.add(new VoltageTest(activity, ioio, 37, Units.V, false, 3f, true, 3.5f, 0.2f,
+//                "Voltage Measurement - V_BATT"));
+//
+//        //		sequence.add(new ChargingTerminationTest(activity, ioio,
+//        //				"Battery Charging Termination Test"));
+//        sequence.add(new VoltageTest(activity, ioio, 38, Units.V, false, false, 0.1f, -0.1f,
+//                "Voltage Measurement - DC_PRES (5V_DC Off)"));
+//        sequence.add(new SetDigitalOutputStep(activity, IOIOUtils.Outputs._5V_DC.getValue(), true,
+//                "Set 5VDC to On"));
+//        sequence.add(new VoltageTest(activity, ioio, 38, Units.V, false, true, 1.8f, 0.1f,
+//                "Voltage Measurement - DC_PRES (5V_DC On)"));
+//        sequence.add(new SetDigitalOutputStep(activity, IOIOUtils.Outputs._5V_DC.getValue(), false,
+//                "Set 5VDC to Off"));
+//
+//        //		sequence.add(new ChargingTest(activity, ioio,
+//        //				"Battery Charging Test"));
+//
+//        //		sequence.add(new DummyUploadFirmwareTest(activity, ioio, false));
+//   		sequence.add(new UploadFirmwareTest(activity, ioio));
 
         sequence.add(new GetDeviceSerialTest(activity, ioio));
-        sequence.add(new AccelerometerSelfTest(activity, ioio));
+//        sequence.add(new AccelerometerSelfTest(activity, ioio));
 
         //		sequence.add(new VoltageTest(activity, ioio, 39, 0f, 0.1f,
         //				"Voltage Measurement - Sleep Mode (V_1V8_SW)"));
@@ -372,74 +372,74 @@ public class NewSequence implements NewSequenceInterface {
         sequence.add(new MagnetWakeDeviceTest(activity, ioio));
         sequence.add(new GetMacAddressTest(activity, ioio));
 
-        sequence.add(new CurrentTest(activity, ioio, 42, Units.mA, true, 30f, 0.2f,
-                "Current Measurement - Awake"));
-        sequence.add(new VoltageTest(activity, ioio, 44, Units.V, true, true, 3.1f, 0.1f,
-                "Voltage Measurement - Awake Mode (V_3V1)"));
-        sequence.add(new VoltageTest(activity, ioio, 39, Units.V, false, true, 1.8f, 0.1f,
-                "Voltage Measurement - Awake Mode (V_1V8_SW)"));
-        sequence.add(new VoltageTest(activity, ioio, 33, Units.V, false, true, 3.3f, 0.1f,
-                "Voltage Measurement - Awake Mode (V_BT)"));
-        sequence.add(new VoltageTest(activity, ioio, 32, Units.V, false, -1.95f, true, -1.4f, 0.1f,
-                "Voltage Measurement - Awake Mode (V_REF_AN)"));
-        sequence.add(new VoltageTest(activity, ioio, 41, Units.V, false, -1.95f, false, 0.1f, -0.1f,
-                "Voltage Measurement - Awake Mode (V_ZERO_AN)"));
-
-        //		sequence.add(new VoltageTest(activity, ioio, 31, -6.0f, 0.2f,
-        //				"Voltage Measurement - Awake Mode (-6V_RAIL)"));
-
-        //		sequence.add(new LedCheckTest(activity, "Green", "Green LED Check"));
-        //		sequence.add(new BluetoothConnectTestForTesting(activity));
-
-        //		sequence.add(new CurrentTest(activity, ioio, 42, 50, 2, Scale.mA, false, 35f, 0.1f,
-        //				"Current Measurement - BT Connected"));
-        //		sequence.add(new VoltageTest(activity, ioio, 32, true, -1f, -1.4f, 0.1f,
-        //				"Voltage Measurement - BT Connected Mode (V_REF_AN)"));
-
-
-        //		sequence.add(new SetSensorVoltagesStep(activity, (short)25, "Set Sensor Voltage level to 25"));
-        //		sequence.add(new VoltageTest(activity, ioio, 32, false, true, -1.95f, -0.3f, 1f,
-        //				"Voltage Measurement(V_REF_AN)"));
-        //		sequence.add(new SetSensorVoltagesStep(activity, (short)230, "Set Sensor Voltage level to 230"));
-        //		sequence.add(new VoltageTest(activity, ioio, 32, false, true, -1.95f, -2.7f, 1f,
-        //				"Voltage Measurement(V_REF_AN)"));
-        //		sequence.add(new PauseStep(activity, "Pause Step"));
-        //
-        //		sequence.add(new ChargeLedCheckTest(activity, ioio, "Pink", "Pink LED Check"));
+//        sequence.add(new CurrentTest(activity, ioio, 42, Units.mA, true, 30f, 0.2f,
+//                "Current Measurement - Awake"));
+//        sequence.add(new VoltageTest(activity, ioio, 44, Units.V, true, true, 3.1f, 0.1f,
+//                "Voltage Measurement - Awake Mode (V_3V1)"));
+//        sequence.add(new VoltageTest(activity, ioio, 39, Units.V, false, true, 1.8f, 0.1f,
+//                "Voltage Measurement - Awake Mode (V_1V8_SW)"));
+//        sequence.add(new VoltageTest(activity, ioio, 33, Units.V, false, true, 3.3f, 0.1f,
+//                "Voltage Measurement - Awake Mode (V_BT)"));
+//        sequence.add(new VoltageTest(activity, ioio, 32, Units.V, false, -1.95f, true, -1.4f, 0.1f,
+//                "Voltage Measurement - Awake Mode (V_REF_AN)"));
+//        sequence.add(new VoltageTest(activity, ioio, 41, Units.V, false, -1.95f, false, 0.1f, -0.1f,
+//                "Voltage Measurement - Awake Mode (V_ZERO_AN)"));
+//
+//        //		sequence.add(new VoltageTest(activity, ioio, 31, -6.0f, 0.2f,
+//        //				"Voltage Measurement - Awake Mode (-6V_RAIL)"));
+//
+//        //		sequence.add(new LedCheckTest(activity, "Green", "Green LED Check"));
+//        //		sequence.add(new BluetoothConnectTestForTesting(activity));
+//
+//        //		sequence.add(new CurrentTest(activity, ioio, 42, 50, 2, Scale.mA, false, 35f, 0.1f,
+//        //				"Current Measurement - BT Connected"));
+//        //		sequence.add(new VoltageTest(activity, ioio, 32, true, -1f, -1.4f, 0.1f,
+//        //				"Voltage Measurement - BT Connected Mode (V_REF_AN)"));
+//
+//
+//        //		sequence.add(new SetSensorVoltagesStep(activity, (short)25, "Set Sensor Voltage level to 25"));
+//        //		sequence.add(new VoltageTest(activity, ioio, 32, false, true, -1.95f, -0.3f, 1f,
+//        //				"Voltage Measurement(V_REF_AN)"));
+//        //		sequence.add(new SetSensorVoltagesStep(activity, (short)230, "Set Sensor Voltage level to 230"));
+//        //		sequence.add(new VoltageTest(activity, ioio, 32, false, true, -1.95f, -2.7f, 1f,
+//        //				"Voltage Measurement(V_REF_AN)"));
+//        //		sequence.add(new PauseStep(activity, "Pause Step"));
+//        //
+//        //		sequence.add(new ChargeLedCheckTest(activity, ioio, "Pink", "Pink LED Check"));
 
         sequence.add(new BluetoothConnectTestForTesting(activity));
 
-        sequence.add(new ReadDeviceInfoSerialNumberTest(activity));
-        sequence.add(new ReadModelNumberTest(activity));
-        sequence.add(new ReadFirmwareversionTest(activity));
+//        sequence.add(new ReadDeviceInfoSerialNumberTest(activity));
+//        sequence.add(new ReadModelNumberTest(activity));
+//        sequence.add(new ReadFirmwareversionTest(activity));
+//
+//        sequence.add(new LedCheckTest(activity, "Green", "Green LED Check"));
+//        sequence.add(new LedCheckTest(activity, "Blue", "Blue LED Check"));
 
-        sequence.add(new LedCheckTest(activity, "Green", "Green LED Check"));
-        sequence.add(new LedCheckTest(activity, "Blue", "Blue LED Check"));
-
-        sequence.add(new BatteryLevelUUTVoltageTest(activity, ioio, 15, 0.5f,
-                "Battery Level - UUT voltage @ 3.6V", 3.6f));
+        sequence.add(new BatteryLevelUUTVoltageTest(activity, ioio, 30, 0.3f,
+                "Battery Level - UUT voltage @ 3.7V", 3.7f));
         sequence.add(new BatteryLevelUUTVoltageTest(activity, ioio, 85, 0.15f,
                 "Battery Level - UUT voltage @ 4.0V", 4.0f));
 
-        sequence.add(new SetSensorVoltagesStep(activity, (short) 0, (short) 0, "Set GAIN -> 0, ZERO -> 0"));
-        sequence.add(new VoltageTest(activity, ioio, 32, Units.V, false, -2f, false, 0.1f, -0.1f,
-                "Voltage Measurement(V_REF_AN)"));
-        sequence.add(new SetSensorVoltagesStep(activity, (short) 30, (short) 0, "Set GAIN -> 30, ZERO -> 0"));
-        sequence.add(new VoltageTest(activity, ioio, 32, Units.V, false, -2f, true, -0.3f, 0.3f,
-                "Voltage Measurement(V_REF_AN)"));
-        sequence.add(new SetSensorVoltagesStep(activity, (short) 0, (short) 30, "Set GAIN -> 0, ZERO -> 30"));
-        sequence.add(new VoltageTest(activity, ioio, 32, Units.V, false, -2f, true, -0.3f, 0.3f,
-                "Voltage Measurement(V_REF_AN)"));
-        sequence.add(new SetSensorVoltagesStep(activity, (short) 255, (short) 0, "Set GAIN -> 255, ZERO -> 0"));
-        sequence.add(new VoltageTest(activity, ioio, 32, Units.V, false, -2f, true, -3f, 0.1f,
-                "Voltage Measurement(V_REF_AN)"));
-        sequence.add(new SetSensorVoltagesStep(activity, (short) 0, (short) 255, "Set GAIN -> 0, ZERO -> 255"));
-        sequence.add(new VoltageTest(activity, ioio, 32, Units.V, false, -2f, true, -3f, 0.1f,
-                "Voltage Measurement(V_REF_AN)"));
-        sequence.add(new SetSensorVoltagesStep(activity, (short) 255, (short) 255, "Set GAIN -> 255, ZERO -> 255"));
-        sequence.add(new VoltageTest(activity, ioio, 32, Units.V, false, -2f, true, -6f, 0.1f,
-                "Voltage Measurement(V_REF_AN)"));
-        sequence.add(new SetSensorVoltagesStep(activity, (short) 127, (short) 0, "Set GAIN -> 127, ZERO -> 0"));
+//        sequence.add(new SetSensorVoltagesStep(activity, (short) 0, (short) 0, "Set GAIN -> 0, ZERO -> 0"));
+//        sequence.add(new VoltageTest(activity, ioio, 32, Units.V, false, -2f, false, 0.1f, -0.1f,
+//                "Voltage Measurement(V_REF_AN)"));
+//        sequence.add(new SetSensorVoltagesStep(activity, (short) 30, (short) 0, "Set GAIN -> 30, ZERO -> 0"));
+//        sequence.add(new VoltageTest(activity, ioio, 32, Units.V, false, -2f, true, -0.3f, 0.3f,
+//                "Voltage Measurement(V_REF_AN)"));
+//        sequence.add(new SetSensorVoltagesStep(activity, (short) 0, (short) 30, "Set GAIN -> 0, ZERO -> 30"));
+//        sequence.add(new VoltageTest(activity, ioio, 32, Units.V, false, -2f, true, -0.3f, 0.3f,
+//                "Voltage Measurement(V_REF_AN)"));
+//        sequence.add(new SetSensorVoltagesStep(activity, (short) 255, (short) 0, "Set GAIN -> 255, ZERO -> 0"));
+//        sequence.add(new VoltageTest(activity, ioio, 32, Units.V, false, -2f, true, -3f, 0.1f,
+//                "Voltage Measurement(V_REF_AN)"));
+//        sequence.add(new SetSensorVoltagesStep(activity, (short) 0, (short) 255, "Set GAIN -> 0, ZERO -> 255"));
+//        sequence.add(new VoltageTest(activity, ioio, 32, Units.V, false, -2f, true, -3f, 0.1f,
+//                "Voltage Measurement(V_REF_AN)"));
+//        sequence.add(new SetSensorVoltagesStep(activity, (short) 255, (short) 255, "Set GAIN -> 255, ZERO -> 255"));
+//        sequence.add(new VoltageTest(activity, ioio, 32, Units.V, false, -2f, true, -6f, 0.1f,
+//                "Voltage Measurement(V_REF_AN)"));
+//        sequence.add(new SetSensorVoltagesStep(activity, (short) 127, (short) 0, "Set GAIN -> 127, ZERO -> 0"));
 
 
         sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 0, 10, 50,
@@ -451,7 +451,7 @@ public class NewSequence implements NewSequenceInterface {
         sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 1300, 1400, 50,
                 "Sensor Input Test, LOADED, GAIN/ZERO @ 127/50"));
         sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 4050, 4095, 50,
-                "Sensor Input Test, LOADED, GAIN/ZERO @ 230/0"));
+                "Sensor Input Test, LOADED, GAIN/ZERO @ 210/0"));
 
 //		MyDummyTest test = new MyDummyTest.Builder().setActivity(activity).setDescription("first").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
 //		test.setIdTest(1);test.setValue(1);

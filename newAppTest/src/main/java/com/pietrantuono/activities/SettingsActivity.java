@@ -76,7 +76,7 @@ public class SettingsActivity  extends PreferenceActivity {
         Preference dowloadunprocessed = (Preference) findPreference(getResources().getString(R.string.download_unprocessed));
         List<Model> records = new Select().from(TestRecord.class).where("uploaded = ?", false).execute();
         if(records.size()<=0){
-            Spannable title = new SpannableString("OK no records unprocessed");
+            Spannable title = new SpannableString("UP TO DATE");
             title.setSpan(new ForegroundColorSpan(Color.GREEN), 0, title.length(), 0);
             unprocessed.setTitle(title);
             unprocessed.setSummary("");

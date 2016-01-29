@@ -312,7 +312,7 @@ public class FirmWareUploader {
             error = "get cmd: More bytes than known.";
             return false;
         }
-        if (readWithTimerTimeout(1000) != STM32_ACK) {
+        if (readWithTimerTimeout(2000) != STM32_ACK) {
             System.out.println("No ACK received from the device");
             System.out.printf("Next data: %d\n", readWithTimerTimeout(1000));
             error = "get cmd: No ACK received.";
