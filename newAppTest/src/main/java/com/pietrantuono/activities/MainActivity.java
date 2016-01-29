@@ -386,7 +386,7 @@ public class MainActivity extends AppCompatActivity
         uiHelper.setStatusMSG("TEST \nSTARTED", null);
         results.add(((NewSequenceInterface) newSequence).getEmptyResultsList());
         uiHelper.startChronometer(MainActivity.this);
-        ;
+
         increaseIterationNumber();// NA
         newSequence.reset();
         IOIOUtils.getUtils().initialize(MainActivity.this, myIOIO, MainActivity.this);
