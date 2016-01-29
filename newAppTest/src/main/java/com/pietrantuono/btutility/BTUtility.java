@@ -4,6 +4,12 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.AbstractExecutorService;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 
 import com.pietrantuono.activities.MyOnCancelListener;
 import com.pietrantuono.activities.NewIOIOActivityListener;
@@ -44,6 +50,7 @@ import android.widget.EditText;
 import hugo.weaving.DebugLog;
 import hydrix.pfmat.generic.Device;
 public class BTUtility {
+	private final String TAG = getClass().getSimpleName();
 	private String macaddress = null;
 	private WeakReference<Activity> activityRef;
 	private BluetoothAdapter mBTAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -70,6 +77,9 @@ public class BTUtility {
 	private int retries = 0;
 
 	private static Activity activity;
+	private ExecutorService executor;
+
+
 	private class ConnectReceiver extends BroadcastReceiver {
 		@DebugLog
 		public void onReceive(Context context, Intent intent) {
@@ -126,6 +136,7 @@ public class BTUtility {
 				progressdialog.setMessage("Looking for PCBs, please wait");
 			}
 		});
+		executor = Executors.newFixedThreadPool(1);
 	}
 	@DebugLog
 	private void onConnectFailed() {
@@ -446,29 +457,26 @@ public class BTUtility {
 	}
 
 
-	private boolean getAckOrTimeout(int timeout, String msg){
-
-		final Thread readThread = Thread.currentThread();
-		Timer t = new Timer();
-		final TimerTask readTask = new TimerTask() {
+	private boolean getAckOrTimeout(int timeout, final String msg){
+		Callable<Integer> integerCallable=new Callable<Integer>() {
 			@Override
-			public void run() {
-				System.out.printf("Timer expired, interrupt");
-				readThread.interrupt();
-				this.cancel();
+			public Integer call() throws Exception {
+				int pos = -1;
+				while (pos == -1){
+					pos = IOIOUtils.getUtils().getUartLog().substring(PeriCoachTestApplication.getLastPos()).indexOf(msg);
+				}
+				return pos;
 			}
 		};
-//                Log.d(TAG, "Schedule readTask timer for " + String.valueOf(timeout) + " ms");
-		t.schedule(readTask, timeout);
-		int pos = -1;
-		while (pos == -1){
-			pos = IOIOUtils.getUtils().getUartLog().substring(PeriCoachTestApplication.getLastPos()).indexOf(msg);
+		int pos=-1;
+		Future<Integer> future = executor.submit(integerCallable);
+		try {
+			pos = future.get(timeout, TimeUnit.MILLISECONDS);
+		} catch (Exception e) {
+			Log.d(TAG,"getAckOrTimeout timed out");
+
 		}
 
-		t.cancel();
-		t.purge();
-		t = null;
-		System.out.printf("Timer Cancelled");
 		if (pos == -1) {
 			return false;
 		} else {
