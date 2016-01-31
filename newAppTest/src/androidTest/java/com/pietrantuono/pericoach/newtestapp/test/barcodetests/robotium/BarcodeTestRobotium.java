@@ -91,7 +91,7 @@ public class BarcodeTestRobotium extends ActivityInstrumentationTestCase2<MainAc
 //		job.setBarcodeprefix(1000);
 //		job.setQuantity(1000);
 //		
-//		String barcoderead="foo";
+//		String barcoderead="isSuccess";
 //		InputStream stubInputStream =  IOUtils.toInputStream(barcoderead);
 //		when(uartMock.getInputStream()).thenReturn(stubInputStream);
 //		//activity.setSequence( new NewNewSequence(null,null ));

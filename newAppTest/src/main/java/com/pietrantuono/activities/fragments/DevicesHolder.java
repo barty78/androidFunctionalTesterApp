@@ -19,7 +19,7 @@ import server.pojos.Job;
 /**
  * Created by Maurizio Pietrantuono, maurizio.pietrantuono@gmail.com.
  */
-public class Holder extends RecyclerView.ViewHolder {
+public class DevicesHolder extends RecyclerView.ViewHolder {
     private TextView barcode;
     private TextView serial;
     private TextView address;
@@ -29,7 +29,7 @@ public class Holder extends RecyclerView.ViewHolder {
     private final IconicsImageView bluetooth;
 
 
-    public Holder(View itemView) {
+    public DevicesHolder(View itemView) {
         super(itemView);
         barcode_image = (IconicsImageView) itemView.findViewById(R.id.barcode);
         barcode = (TextView) itemView.findViewById(R.id.barcode_tv);

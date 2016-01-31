@@ -179,7 +179,7 @@ public class UIHelper {
         addView(label, text, 0, goAndExecuteNextTest);
     }
 
-    @DebugLog
+
     public synchronized void addView(final String label, final String text, final int color, final boolean goAndExecuteNextTest) {
         activity.runOnUiThread(new Runnable() {
 

@@ -20,6 +20,7 @@ import com.pietrantuono.pericoach.newtestapp.R;
 public class UploadItemHolder extends SequenceItemHolder {
     private final TextView testSeqNum;
     private final TextView testName;
+    private final TextView reading;
     private final IconicsImageView result;
     private final DonutProgress donutProgress;
     private SequenceRowElement.UploadRowElement uploadRowElement;
@@ -30,6 +31,7 @@ public class UploadItemHolder extends SequenceItemHolder {
         testName = (TextView) itemView.findViewById(R.id.testName);
         result = (IconicsImageView) itemView.findViewById(R.id.result);
         donutProgress = (DonutProgress) itemView.findViewById(R.id.progress);
+        reading = (TextView) itemView.findViewById(R.id.reading);
     }
 
     @Override
@@ -92,7 +94,7 @@ public class UploadItemHolder extends SequenceItemHolder {
         donutProgress.setVisibility(View.INVISIBLE);
         result.setIcon(GoogleMaterial.Icon.gmd_cancel);
         result.setColor(Color.RED);
-        testName.setText(text != null ? text : "");
+        reading.setText(text != null ? text : "");
     }
 
     public void setPass() {
