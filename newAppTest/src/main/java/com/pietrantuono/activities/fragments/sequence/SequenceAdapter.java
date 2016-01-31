@@ -56,7 +56,7 @@ public class SequenceAdapter extends RecyclerView.Adapter<SequenceItemHolder> {
         setHasStableIds(true);
     }
 
-    @DebugLog
+
     @Nullable
     @Override
     public SequenceItemHolder onCreateViewHolder(ViewGroup parent, @Type int viewType) {
@@ -74,7 +74,7 @@ public class SequenceAdapter extends RecyclerView.Adapter<SequenceItemHolder> {
         }
         return null;
     }
-    @DebugLog
+
     @Override
     public void onBindViewHolder(SequenceItemHolder holder, int position) {
         Log.d(TAG, holder.toString());
@@ -90,7 +90,7 @@ public class SequenceAdapter extends RecyclerView.Adapter<SequenceItemHolder> {
         return items.size();
     }
 
-    @DebugLog
+
     @Override
     @Type
     public int getItemViewType(int position) {
@@ -120,7 +120,7 @@ public class SequenceAdapter extends RecyclerView.Adapter<SequenceItemHolder> {
         notifyItemInserted(items.size());
     }
 
-    @DebugLog
+
     @Override
     public long getItemId(int position) {
         return items.get(position).hashCode();
