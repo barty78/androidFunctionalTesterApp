@@ -29,7 +29,8 @@ public class ActionModecallback implements ActionMode.Callback {
     public boolean onCreateActionMode(ActionMode mode, Menu menu) {
         MenuInflater inflater = mode.getMenuInflater();
         inflater.inflate(R.menu.context_menu, menu);
-        Spinner spinner=(Spinner) menu.findItem(R.id.spinner).getActionView();
+        MenuItem item = menu.findItem(R.id.spinner);
+        Spinner spinner=(Spinner) item.getActionView();
         ArrayAdapter<CharSequence> adapter =  new ArrayAdapter<CharSequence>(context,android.R.layout.simple_spinner_item, new String[]{"Sort by result","Sort by barcode"});//ArrayAdapter.createFromResource(this,R.array.planets_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //spinner.setAdapter(adapter);
