@@ -9,10 +9,7 @@
         app:showAsAction="always">
 
     </item>
-    <item android:id="@+id/sort_devices"
-        android:title="Sort devices"
-        app:showAsAction="ifRoom"
-        app:actionProviderClass="android.support.v7.widget.ShareActionProvide"/>
+
 
 
 </menu>

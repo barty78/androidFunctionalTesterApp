@@ -45,6 +45,8 @@ public class DevicesListFragment extends Fragment {
     private Context context;
     private MultiStateView state;
     private SwipeRefreshLayout swiper;
+    private ActionMode mActionMode;
+    private ActionModecallback callback;
 
     public DevicesListFragment() {
     }
@@ -92,7 +94,6 @@ public class DevicesListFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         state.setViewState(MultiStateView.VIEW_STATE_LOADING);
         populateList();
-        ActionMode mActionMode = ((AppCompatActivity) getActivity()).startSupportActionMode(mActionModeCallback);
 
         return v;
 
@@ -151,45 +152,15 @@ public class DevicesListFragment extends Fragment {
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
-        if(isVisibleToUser)downloadDevicesList();
+        if(isVisibleToUser){
+            downloadDevicesList();
+            callback = new ActionModecallback(getActivity(),null);
+            mActionMode = ((AppCompatActivity)getActivity()).startSupportActionMode(callback);
+        }
+        else {
+            if(mActionMode!=null)mActionMode.finish();
+
+        }
     }
 
-
-    private ActionMode.Callback mActionModeCallback = new ActionMode.Callback() {
-
-        // Called when the action mode is created; startActionMode() was called
-        @Override
-        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-            // Inflate a menu resource providing context menu items
-            MenuInflater inflater = mode.getMenuInflater();
-            inflater.inflate(R.menu.context_menu, menu);
-            return true;
-        }
-
-        // Called each time the action mode is shown. Always called after onCreateActionMode, but
-        // may be called multiple times if the mode is invalidated.
-        @Override
-        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
-            return false; // Return false if nothing is done
-        }
-
-        // Called when the user selects a contextual menu item
-        @Override
-        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-//            switch (item.getItemId()) {
-//                case R.id.menu_share:
-//                    mode.finish(); // Action picked, so close the CAB
-//                    return true;
-//                default:
-//                    return false;
-//            }
-            return true;
-        }
-
-        // Called when the user exits the action mode
-        @Override
-        public void onDestroyActionMode(ActionMode mode) {
-            //mActionMode = null;
-        }
-    };
 }
