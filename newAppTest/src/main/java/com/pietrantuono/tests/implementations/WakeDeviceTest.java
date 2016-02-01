@@ -1,6 +1,9 @@
 package com.pietrantuono.tests.implementations;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
+
+import com.pietrantuono.activities.ActivtyWrapper;
+import com.pietrantuono.activities.MainActivity;
 import com.pietrantuono.activities.MyOnCancelListener;
 import com.pietrantuono.ioioutils.IOIOUtils;
 import com.pietrantuono.tests.superclass.Test;
@@ -101,6 +104,7 @@ public class WakeDeviceTest extends Test{
 						report(e);
 					}
 					Success();
+					activityListener.startPCBSleepMonitor();
 					activityListener.addFailOrPass(false, true, description);
 				}
 			}

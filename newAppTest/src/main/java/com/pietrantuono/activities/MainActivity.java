@@ -302,11 +302,12 @@ public class MainActivity extends AppCompatActivity
                 uiHelper.stopChronometer(MainActivity.this);
                 setStatusMSG("TEST FINISHED", true);// OK
                 detectHelper.stopCheckingIfConnectionDrops();// OK
+                detectHelper.stopPCBSleepMonitor();
 //				uiHelper.setOverallFailOrPass(overallresult);// NA
                 uiHelper.setOverallFailOrPass(true);// NA
                 PeriCoachTestApplication.forceSync();
                 try {
-                    Thread.sleep(3*1000);
+                    Thread.sleep(3 * 1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -410,13 +411,20 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
+    public void onPCBSleep() {
+        sequenceStarted = false;
+        uiHelper.setStatusMSG("DEVICE GONE TO SLEEP", false);
+        IOIOUtils.getUtils().closeall(MainActivity.this, MainActivity.this);
+    }
+
+    @Override
     public void onSensorTestCompleted(NewMSensorResult mSensorResult, server.pojos.Test testToBeParsed) {
         try {
             results.get(getIterationNumber()).set(newSequence.getCurrentTestNumber(), mSensorResult);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        uiHelper.addSensorTestCompletedRow(mSensorResult,testToBeParsed);
+        uiHelper.addSensorTestCompletedRow(mSensorResult, testToBeParsed);
         Handler h = new Handler(android.os.Looper.getMainLooper());
         h.postDelayed(new Runnable() {
             @Override
@@ -442,6 +450,10 @@ public class MainActivity extends AppCompatActivity
 
     public String getSerial() {
         return serial;
+    }
+
+    public void startPCBSleepMonitor() {
+        detectHelper.startPCBSleepMonitor();
     }
 
     @Override

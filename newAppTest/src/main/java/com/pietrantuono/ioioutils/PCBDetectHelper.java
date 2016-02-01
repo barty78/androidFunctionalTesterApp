@@ -15,6 +15,10 @@ public class PCBDetectHelper {
 
 public interface PCBDetectHelperInterface {
 
+	void startPCBSleepMonitor();
+
+	void stopPCBSleepMonitor();
+
 	void startCheckingIfConnectionDrops(DigitalInput digitalInput);
 
 	void setPCBDetectCallback(ActivtyWrapper callback);

@@ -2,20 +2,22 @@ package customclasses;
 import java.lang.ref.WeakReference;
 import java.util.Random;
 import com.pietrantuono.activities.ActivtyWrapper;
+import com.pietrantuono.ioioutils.IOIOUtils;
 import com.pietrantuono.ioioutils.PCBConnectedCallback;
 import com.pietrantuono.ioioutils.PCBDetectHelper.PCBDetectHelperInterface;
 import com.pietrantuono.ioioutils.Voltage;
 
 import android.os.AsyncTask;
 import android.util.Log;
-import ioio.lib.api.DigitalInput;
 
+import ioio.lib.api.DigitalInput;
 
 public class PCBDetectHelperImpl implements PCBDetectHelperInterface {
 	@SuppressWarnings("unused")
 	private  DigitalInput _PCB_Detect = null;
 	private  ActivtyWrapper callback = null;
 	private  PCBDisconnectDetectAsyncTask detectAsyncTask = null;
+	private  PCBSleepMonitorAsyncTask sleepMonitorAsyncTask = null;
 	private  static final String TAG = "PCBDetectHelper";
 	private  PCBConnectedDetectAsyncTask connectedDetectAsyncTask = null;
 	private  PCBWaitDisconnectDetectAsyncTask waitDisconnectDetectAsyncTask = null;
@@ -23,12 +25,62 @@ public class PCBDetectHelperImpl implements PCBDetectHelperInterface {
 	public  PCBDetectHelperImpl() {}
 
 	/* (non-Javadoc)
+	 * @see com.pietrantuono.ioioutils.PCBDetectHelper#startCheckingForShutdown(ioio.lib.api.AnalogInput)
+	 */
+	@Override
+	public void startPCBSleepMonitor() {
+		Log.d(TAG, "PCB Sleep Monitor started");
+		sleepMonitorAsyncTask = new PCBSleepMonitorAsyncTask();
+		sleepMonitorAsyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+	}
+
+	@Override
+	public void stopPCBSleepMonitor() {
+
+		if (sleepMonitorAsyncTask != null && !sleepMonitorAsyncTask.isCancelled()) {
+			Log.d(TAG, "PCB Sleep Monitor stopped");
+			sleepMonitorAsyncTask.cancel(true);
+		}
+		sleepMonitorAsyncTask = null;
+	}
+
+	private class PCBSleepMonitorAsyncTask extends
+			AsyncTask<Void, Void, Boolean> {
+		private WeakReference<PCBConnectedCallback> callback;
+
+		@Override
+		protected Boolean doInBackground(Void... params) {
+
+			try {
+				int pos = IOIOUtils.getUtils().getUartLog().length();
+				while (IOIOUtils.getUtils().getUartLog().substring(pos).indexOf("IWDG") == -1  && !isCancelled()) { // TODO put true
+					//!getRandomBoolean(0.97f)
+					// !_PCB_Detect.read()
+					Thread.sleep(1000);
+				}
+			} catch (Exception e) {
+				return false;
+			}
+			Log.d(TAG,"DEVICE ASLEEP!!!");
+			return true;
+		}
+		@Override
+		protected void onPostExecute(Boolean result) {
+				if (result && callback.get() != null)
+					callback.get().onPCBSleep();
+				try {callback.clear();callback=null;}
+				catch (Exception e){}
+
+		}
+	}
+
+	/* (non-Javadoc)
 	 * @see com.pietrantuono.ioioutils.PCBDetectHelper#startCheckingIfConnectionDrops(ioio.lib.api.DigitalInput)
 	 */
 	@Override
 	public void startCheckingIfConnectionDrops(DigitalInput digitalInput) {
 		this._PCB_Detect = digitalInput;
-		Log.e(TAG, "PCBDetectHelper started");
+		Log.d(TAG, "PCB Fixture Connection Detector started");
 		detectAsyncTask = new PCBDisconnectDetectAsyncTask();
 		detectAsyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 	}
@@ -47,6 +99,7 @@ public class PCBDetectHelperImpl implements PCBDetectHelperInterface {
 		//_PCB_Detect = null;
 		//callback.clear();
 		if (detectAsyncTask != null && !detectAsyncTask.isCancelled()) {
+			Log.d(TAG, "PCB Fixture Connection Detector stopped");
 			detectAsyncTask.cancel(true);
 		}
 		detectAsyncTask = null;

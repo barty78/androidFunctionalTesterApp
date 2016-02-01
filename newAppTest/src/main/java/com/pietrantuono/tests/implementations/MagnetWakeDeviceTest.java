@@ -40,6 +40,7 @@ public class MagnetWakeDeviceTest extends Test{
 			Log.d(TAG, "Result isSuccess = " + result.isSuccess());
             if (result.isSuccess()){
 				Success();
+				activityListener.startPCBSleepMonitor();
 				activityListener.addFailOrPass(true, true, "",  description);
 			} else {
 				activityListener.addFailOrPass(true, false, "",  description);

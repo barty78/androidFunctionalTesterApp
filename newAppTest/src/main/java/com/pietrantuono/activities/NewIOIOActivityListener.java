@@ -41,6 +41,8 @@ public interface NewIOIOActivityListener {
 
     public void onCurrentSequenceEnd();
 
+    public void startPCBSleepMonitor();
+
     void setResult(boolean success);
 
     String getMac();
