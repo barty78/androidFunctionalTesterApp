@@ -23,8 +23,9 @@ public class PCBDetectHelperImpl implements PCBDetectHelperInterface {
 	
 	public  PCBDetectHelperImpl() {}
 
+
 	@Override
-	public void startPCBSleepMonitor() {
+	public void startPCBSleepMonitor(PCBConnectedCallback callback) {
 
 	}
 
