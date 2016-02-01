@@ -15,7 +15,7 @@ public class PCBDetectHelper {
 
 public interface PCBDetectHelperInterface {
 
-	void startPCBSleepMonitor();
+	void startPCBSleepMonitor(PCBConnectedCallback callback);
 
 	void stopPCBSleepMonitor();
 
