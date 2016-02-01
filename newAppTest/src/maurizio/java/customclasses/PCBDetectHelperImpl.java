@@ -22,10 +22,20 @@ public class PCBDetectHelperImpl implements PCBDetectHelperInterface {
 	private  PCBWaitDisconnectDetectAsyncTask waitDisconnectDetectAsyncTask = null;
 	
 	public  PCBDetectHelperImpl() {}
-	
+
+	@Override
+	public void startPCBSleepMonitor() {
+
+	}
+
+	@Override
+	public void stopPCBSleepMonitor() {
+
+	}
+
 	/* (non-Javadoc)
-	 * @see com.pietrantuono.ioioutils.PCBDetectHelper#startCheckingIfConnectionDrops(ioio.lib.api.DigitalInput)
-	 */
+         * @see com.pietrantuono.ioioutils.PCBDetectHelper#startCheckingIfConnectionDrops(ioio.lib.api.DigitalInput)
+         */
 	@Override
 	public void startCheckingIfConnectionDrops(DigitalInput digitalInput) {
 		this._PCB_Detect = digitalInput;
