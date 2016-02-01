@@ -111,7 +111,7 @@ public class NewSequence implements NewSequenceInterface {
 
     @Override
     public synchronized void reset() {
-        currentStepNumber.set( -1);
+        currentStepNumber.set(-1);
         // currentStep=sequence.get(currentStepNumber);
     }
 
@@ -403,49 +403,22 @@ public class NewSequence implements NewSequenceInterface {
 //		sequence.add(new SensorTestWrapper(false, activity, ioio, "Sensor Input Test, LOADED, GAIN @ 127", 3, true,
 //				(short) 127));
 
-        MyDummyTest test = new MyDummyTest.Builder().setActivity(activity).setDescription("first dummy").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
-        test.setSuccess(true);
-        test.setIdTest(1);
-        test.setValue(1);
-        sequence.add(test);
 
-        test = new MyDummyTest.Builder().setActivity(activity).setDescription("second dummy").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
-        test.setSuccess(true);
-        test.setIdTest(2);
-        test.setValue(2);
-        sequence.add(test);
+        sequence.add(new BluetoothConnectTestForTesting(activity));
 
-        test = new MyDummyTest.Builder().setActivity(activity).setDescription("third dummy").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
-        test.setSuccess(true);
-        test.setIdTest(2);
-        test.setValue(2);
-        sequence.add(test);
-
-        test = new MyDummyTest.Builder().setActivity(activity).setDescription("fourth dummy").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
-        test.setSuccess(true);
-        test.setIdTest(2);
-        test.setValue(2);
-        sequence.add(test);
-
-        test = new MyDummyTest.Builder().setActivity(activity).setDescription("5 dummy").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
-        test.setSuccess(true);
-        test.setIdTest(2);
-        test.setValue(2);
-        sequence.add(test);
-
-        test = new MyDummyTest.Builder().setActivity(activity).setDescription("6 dummy").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
-        test.setSuccess(true);
-        test.setIdTest(2);
-        test.setValue(2);
-        sequence.add(test);
-
-        DummySensorTestWrapper dummy = new DummySensorTestWrapper(false, activity, ioio, 0, 0, 0, 0, "Dummy sensor test");
-        dummy.shuouldFail(true);
-        sequence.add(dummy);
+        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 0, 10, 50,
+                "Sensor Input Test, NO LOAD, GAIN/ZERO @ 127/0"));
+        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 450, 550, 50,
+                "Sensor Input Test, LOADED, GAIN/ZERO @ 25/0"));
+        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 2600, 2700, 50,
+                "Sensor Input Test, LOADED, GAIN/ZERO @ 127/0"));
+        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 1300, 1400, 50,
+                "Sensor Input Test, LOADED, GAIN/ZERO @ 127/50"));
+        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 4050, 4095, 50,
+                "Sensor Input Test, LOADED, GAIN/ZERO @ 210/0"));
 
 
     }
-
 
 
     @Override
