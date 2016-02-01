@@ -442,16 +442,16 @@ public class NewSequence implements NewSequenceInterface {
         sequence.add(new SetSensorVoltagesStep(activity, (short) 127, (short) 0, "Set GAIN -> 127, ZERO -> 0"));
 
 
-        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 0, 10, 50,
-                "Sensor Input Test, NO LOAD, GAIN/ZERO @ 127/0"));
-        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 450, 550, 50,
-                "Sensor Input Test, LOADED, GAIN/ZERO @ 25/0"));
-        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 2600, 2700, 50,
-                "Sensor Input Test, LOADED, GAIN/ZERO @ 127/0"));
-        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 1300, 1400, 50,
-                "Sensor Input Test, LOADED, GAIN/ZERO @ 127/50"));
-        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 4050, 4095, 50,
-                "Sensor Input Test, LOADED, GAIN/ZERO @ 210/0"));
+//        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 0, 10, 50,
+//                "Sensor Input Test, NO LOAD, GAIN/ZERO @ 127/0"));
+//        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 450, 550, 50,
+//                "Sensor Input Test, LOADED, GAIN/ZERO @ 25/0"));
+//        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 2600, 2700, 50,
+//                "Sensor Input Test, LOADED, GAIN/ZERO @ 127/0"));
+//        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 1300, 1400, 50,
+//                "Sensor Input Test, LOADED, GAIN/ZERO @ 127/50"));
+//        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 4050, 4095, 50,
+//                "Sensor Input Test, LOADED, GAIN/ZERO @ 210/0"));
 
 //		MyDummyTest test = new MyDummyTest.Builder().setActivity(activity).setDescription("first").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
 //		test.setIdTest(1);test.setValue(1);

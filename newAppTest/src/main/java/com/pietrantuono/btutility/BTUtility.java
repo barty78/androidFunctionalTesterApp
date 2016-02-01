@@ -416,56 +416,62 @@ public class BTUtility {
 		}
 	}
 
-	public void pollSensor() {
+	public void pollSensor() throws Exception {
+		int curPos = IOIOUtils.getUtils().getUartLog().length();
 		NewPFMATDevice.getDevice().sendGetSensorData(0);
+		if (!getAckOrTimeout(200, "DAC", curPos))throw new Exception("Polling failed.");
 	}
 
 	public void setZeroVoltage(final Short voltage) throws Exception {
 
 		Byte sensor = (byte) (0 & 0xFF);
-		Log.d("SENSOR", "Setting sensor " + sensor + " to " + voltage);
+		Log.d("SENSOR", "Setting sensor " + sensor + " zero to " + voltage);
+		int curPos = IOIOUtils.getUtils().getUartLog().length();
 		NewPFMATDevice.getDevice().sendZeroVoltage(sensor, voltage);
-		if (!getAckOrTimeout(50, "S0 VOLTAGE SET to")) throw new Exception("Setting failed.");
+		if (!getAckOrTimeout(200, "S0 ZERO SET to", curPos)) throw new Exception("Zero Setting failed.");
 
 		sensor = (byte) (1 & 0xFF);
-		Log.d("SENSOR", "Setting sensor " + sensor + " to " + voltage);
+		Log.d("SENSOR", "Setting sensor " + sensor + " zero to " + voltage);
+		curPos = IOIOUtils.getUtils().getUartLog().length();
 		NewPFMATDevice.getDevice().sendZeroVoltage(sensor, voltage);
-		if (!getAckOrTimeout(50, "S1 VOLTAGE SET to"))throw new Exception("Setting failed.");
+		if (!getAckOrTimeout(200, "S1 ZERO SET to", curPos))throw new Exception("Zero Setting failed.");
 
 		sensor = (byte) (2 & 0xFF);
-		Log.d("SENSOR", "Setting sensor " + sensor + " to " + voltage);
+		Log.d("SENSOR", "Setting sensor " + sensor + " zero to " + voltage);
+		curPos = IOIOUtils.getUtils().getUartLog().length();
 		NewPFMATDevice.getDevice().sendZeroVoltage(sensor, voltage);
-		if (!getAckOrTimeout(50, "S2 VOLTAGE SET to"))throw new Exception("Setting failed.");
+		if (!getAckOrTimeout(200, "S2 ZERO SET to", curPos))throw new Exception("Zero Setting failed.");
 	}
 
 	public void setVoltage(final Short voltage) throws Exception {
 
 		Byte sensor = (byte) (0 & 0xFF);
 		Log.d("SENSOR", "Setting sensor " + sensor + " to " + voltage);
+		int curPos = IOIOUtils.getUtils().getUartLog().length();
 		NewPFMATDevice.getDevice().sendRefVoltage(sensor, voltage);
-		if (!getAckOrTimeout(50, "S0 VOLTAGE SET to")) throw new Exception("Setting failed.");
+		if (!getAckOrTimeout(200, "S0 VOLTAGE SET to", curPos)) throw new Exception("Setting failed.");
 
 		sensor = (byte) (1 & 0xFF);
 		Log.d("SENSOR", "Setting sensor " + sensor + " to " + voltage);
+		curPos = IOIOUtils.getUtils().getUartLog().length();
 		NewPFMATDevice.getDevice().sendRefVoltage(sensor, voltage);
-		if (!getAckOrTimeout(50, "S1 VOLTAGE SET to"))throw new Exception("Setting failed.");
+		if (!getAckOrTimeout(200, "S1 VOLTAGE SET to", curPos))throw new Exception("Setting failed.");
 
 		sensor = (byte) (2 & 0xFF);
 		Log.d("SENSOR", "Setting sensor " + sensor + " to " + voltage);
+		curPos = IOIOUtils.getUtils().getUartLog().length();
 		NewPFMATDevice.getDevice().sendRefVoltage(sensor, voltage);
-		if (!getAckOrTimeout(50, "S2 VOLTAGE SET to"))throw new Exception("Setting failed.");
+		if (!getAckOrTimeout(200, "S2 VOLTAGE SET to", curPos))throw new Exception("Setting failed.");
 	}
 
 
-	private boolean getAckOrTimeout(int timeout, final String msg){
-		Callable<Integer> integerCallable=new Callable<Integer>() {
+	private boolean getAckOrTimeout(int timeout, final String msg, final int curPos){
+		Callable<Integer> integerCallable = new Callable<Integer>() {
 			@Override
 			public Integer call() throws Exception {
-				int pos = -1;
-				while (pos == -1){
-					pos = IOIOUtils.getUtils().getUartLog().substring(PeriCoachTestApplication.getLastPos()).indexOf(msg);
+				while (IOIOUtils.getUtils().getUartLog().substring(curPos).indexOf(msg) == -1){
 				}
-				return pos;
+				return 0;
 			}
 		};
 		int pos=-1;
@@ -474,14 +480,13 @@ public class BTUtility {
 			pos = future.get(timeout, TimeUnit.MILLISECONDS);
 		} catch (Exception e) {
 			Log.d(TAG,"getAckOrTimeout timed out");
-
+			return false;
 		}
 
 		if (pos == -1) {
 			return false;
 		} else {
-			Log.d("BTUtility", "Last position in log is " + pos);
-			PeriCoachTestApplication.setLastPos(pos);
+			Log.d(TAG, "Found - " + msg);
 			return true;
 		}
 	}

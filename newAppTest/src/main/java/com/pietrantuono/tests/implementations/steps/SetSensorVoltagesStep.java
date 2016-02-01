@@ -70,19 +70,10 @@ public class SetSensorVoltagesStep extends Test implements Step{
         if(isinterrupted)return;
 
         if (zeroVoltage != -1) {
+            String string = "Setting Zeroing to " + zeroVoltage + " (" + (System.currentTimeMillis() - now) + ")\n";
+            IOIOUtils.getUtils().appendUartLog((Activity) activityListener, string.getBytes(), string.getBytes().length);
             try {
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        String string = "Setting Zeroing to " + zeroVoltage + " (" + (System.currentTimeMillis() - now) + ")\n";
-                        IOIOUtils.getUtils().appendUartLog((Activity) activityListener, string.getBytes(), string.getBytes().length);
-                        try {
-                            getListener().getBtutility().setZeroVoltage(zeroVoltage);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, 300);
+                getListener().getBtutility().setZeroVoltage(zeroVoltage);
             } catch (Exception e) {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
@@ -96,31 +87,26 @@ public class SetSensorVoltagesStep extends Test implements Step{
 
         if(isinterrupted)return;
 
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                String string = "Poll Sensors to apply voltage setting (" + (System.currentTimeMillis() - now) + ")\n";
-                IOIOUtils.getUtils().appendUartLog((Activity) activityListener, string.getBytes(), string.getBytes().length);
-                try {
-                    getListener().getBtutility().pollSensor();
-                } catch (Exception e) {
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            getListener().addFailOrPass(true, false, "ERROR", "Sensor voltage set Fault");
-                        }
-                    });
-                    return;
+        String string = "Poll Sensors to apply voltage setting (" + (System.currentTimeMillis() - now) + ")\n";
+        IOIOUtils.getUtils().appendUartLog((Activity) activityListener, string.getBytes(), string.getBytes().length);
+        try {
+            getListener().getBtutility().pollSensor();
+        } catch (Exception e) {
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    getListener().addFailOrPass(true, false, "ERROR", "Sensor voltage set Fault");
                 }
-            }
-        }, 1000);
+            });
+            return;
+        }
 
 
         if(isinterrupted)return;
 
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
+//        handler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
                 getActivity().runOnUiThread(new Runnable() {
                                                 @Override
                                                 public void run() {
@@ -129,8 +115,8 @@ public class SetSensorVoltagesStep extends Test implements Step{
                                             }
                 );
 
-            }
-        }, 1500);
+//            }
+//        }, 1500);
 
         handler.postDelayed(new Runnable() {
             @Override

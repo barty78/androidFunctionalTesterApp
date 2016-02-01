@@ -114,7 +114,7 @@ public class DevicesListFragment extends Fragment {
         });
         if(devices.size()<=0)state.setViewState(MultiStateView.VIEW_STATE_EMPTY);
         else state.setViewState(MultiStateView.VIEW_STATE_CONTENT);
-        recyclerView.setAdapter(new DevicesListAdapter(context, devices));
+        recyclerView.setAdapter(new DevicesListAdapter(context, devices, job));
     }
 
     private void downloadDevicesList() {
