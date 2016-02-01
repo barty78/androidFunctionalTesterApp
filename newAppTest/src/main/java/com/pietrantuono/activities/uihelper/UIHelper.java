@@ -24,6 +24,7 @@ import android.net.Uri;
 import android.os.SystemClock;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -57,6 +58,8 @@ public class UIHelper {
         setupViewpager(activity);
         if (sequenceFragment != null)
             sequenceFragment.setSequence(sequence);
+        Toolbar toolbar = (Toolbar) activity.findViewById(R.id.toolbar);
+        ((AppCompatActivity)activity).setSupportActionBar(toolbar);
     }
 
     private void setupViewpager(Activity activity) {

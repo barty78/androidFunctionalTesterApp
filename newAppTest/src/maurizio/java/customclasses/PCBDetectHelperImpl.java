@@ -3,6 +3,7 @@ package customclasses;
 import java.lang.ref.WeakReference;
 import java.util.Random;
 import com.pietrantuono.activities.ActivtyWrapper;
+import com.pietrantuono.ioioutils.IOIOUtils;
 import com.pietrantuono.ioioutils.PCBConnectedCallback;
 import com.pietrantuono.ioioutils.PCBDetectHelper.PCBDetectHelperInterface;
 import com.pietrantuono.ioioutils.Voltage;
@@ -20,17 +21,57 @@ public class PCBDetectHelperImpl implements PCBDetectHelperInterface {
 	private  static final String TAG = "PCBDetectHelper";
 	private  PCBConnectedDetectAsyncTask connectedDetectAsyncTask = null;
 	private  PCBWaitDisconnectDetectAsyncTask waitDisconnectDetectAsyncTask = null;
-	
+	private  PCBSleepMonitorAsyncTask sleepMonitorAsyncTask = null;
+
 	public  PCBDetectHelperImpl() {}
 
 	@Override
 	public void startPCBSleepMonitor() {
-
+		Log.d(TAG, "PCB Sleep Monitor started");
+		sleepMonitorAsyncTask = new PCBSleepMonitorAsyncTask();
+		sleepMonitorAsyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 	}
 
 	@Override
 	public void stopPCBSleepMonitor() {
 
+		if (sleepMonitorAsyncTask != null && !sleepMonitorAsyncTask.isCancelled()) {
+			Log.d(TAG, "PCB Sleep Monitor stopped");
+			sleepMonitorAsyncTask.cancel(true);
+		}
+		sleepMonitorAsyncTask = null;
+	}
+
+	private class PCBSleepMonitorAsyncTask extends
+			AsyncTask<Void, Void, Boolean> {
+		private WeakReference<PCBConnectedCallback> callback;
+
+
+
+		@Override
+		protected Boolean doInBackground(Void... params) {
+
+			try {
+				int pos = IOIOUtils.getUtils().getUartLog().length();
+				while (IOIOUtils.getUtils().getUartLog().substring(pos).indexOf("IWDG") == -1  && !isCancelled()) { // TODO put true
+					//!getRandomBoolean(0.97f)
+					// !_PCB_Detect.read()
+					Thread.sleep(1000);
+				}
+			} catch (Exception e) {
+				return false;
+			}
+			Log.d(TAG,"DEVICE ASLEEP!!!");
+			return true;
+		}
+		@Override
+		protected void onPostExecute(Boolean result) {
+			if (result && callback.get() != null)
+				callback.get().onPCBSleep();
+			try {callback.clear();callback=null;}
+			catch (Exception e){}
+
+		}
 	}
 
 	/* (non-Javadoc)
