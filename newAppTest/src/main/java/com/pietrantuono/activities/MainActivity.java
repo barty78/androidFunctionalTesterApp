@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     public synchronized void goAndExecuteNextTest() {
-        ;
+
         if (!sequenceStarted) return;
         runOnUiThread(new Runnable() {
             @Override

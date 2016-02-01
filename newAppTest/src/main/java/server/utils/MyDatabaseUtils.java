@@ -117,8 +117,8 @@ public class MyDatabaseUtils {
 
         Sensors sensors = new Select().from(Sensors.class).where("Readings = ?", readingss.getId()).executeSingle();
         if (sensors != null && sensors.getId() != null) {
+            //The problem is here
             S0 s0 = new Select().from(S0.class).where("Sensors = ?", sensors.getId()).executeSingle();
-            List<Model> foo = new Select().from(S0.class).execute();
             sensors.setS0(s0);
 
             S1 s1 = new Select().from(S1.class).where("Sensors = ?", sensors.getId()).executeSingle();
