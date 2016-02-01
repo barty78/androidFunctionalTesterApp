@@ -117,7 +117,6 @@ public class MyDatabaseUtils {
 
         Sensors sensors = new Select().from(Sensors.class).where("Readings = ?", readingss.getId()).executeSingle();
         if (sensors != null && sensors.getId() != null) {
-            //The problem is here
             S0 s0 = new Select().from(S0.class).where("Sensors = ?", sensors.getId()).executeSingle();
             sensors.setS0(s0);
 

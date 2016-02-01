@@ -39,7 +39,7 @@ import server.pojos.DevicesList;
 import server.pojos.Job;
 import server.service.ServiceDBHelper;
 
-public class DevicesListFragment extends Fragment {
+public class DevicesListFragment extends Fragment implements ActionModecallback.Callback {
     private final String TAG = getClass().getSimpleName();
     private RecyclerView recyclerView;
     private Context context;
@@ -47,6 +47,7 @@ public class DevicesListFragment extends Fragment {
     private SwipeRefreshLayout swiper;
     private ActionMode mActionMode;
     private ActionModecallback callback;
+    private DevicesListAdapter adapter;
 
     public DevicesListFragment() {
     }
@@ -124,13 +125,14 @@ public class DevicesListFragment extends Fragment {
                 return (int) (Long.parseLong(lhs.getBarcode()) - Long.parseLong(rhs.getBarcode()));
             }
         });
-        if(devices.size()<=0)state.setViewState(MultiStateView.VIEW_STATE_EMPTY);
+        if (devices.size() <= 0) state.setViewState(MultiStateView.VIEW_STATE_EMPTY);
         else state.setViewState(MultiStateView.VIEW_STATE_CONTENT);
-        recyclerView.setAdapter(new DevicesListAdapter(context, devices, job));
+        adapter = new DevicesListAdapter(context, devices, job);
+        recyclerView.setAdapter(adapter);
     }
 
     private void downloadDevicesList() {
-        if(swiper!=null)swiper.setRefreshing(true);
+        if (swiper != null) swiper.setRefreshing(true);
         //state.setViewState(MultiStateView.VIEW_STATE_LOADING);
         RetrofitRestServices.getRest(getActivity()).getLastDevices(PeriCoachTestApplication.getDeviceid(), PeriCoachTestApplication.getLastId(), new Callback<DevicesList>() {
             @Override
@@ -152,15 +154,24 @@ public class DevicesListFragment extends Fragment {
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
-        if(isVisibleToUser){
+        if (isVisibleToUser) {
             downloadDevicesList();
-            callback = new ActionModecallback(getActivity(),null);
-            mActionMode = ((AppCompatActivity)getActivity()).startSupportActionMode(callback);
-        }
-        else {
-            if(mActionMode!=null)mActionMode.finish();
+            callback = new ActionModecallback(getActivity(), DevicesListFragment.this);
+            mActionMode = ((AppCompatActivity) getActivity()).startSupportActionMode(callback);
+        } else {
+            if (mActionMode != null) mActionMode.finish();
 
         }
     }
 
+    @Override
+    public void sortByResult() {
+        adapter.sortByResult();
+    }
+
+    @Override
+    public void sortByBarcode() {
+        adapter.sortByBarcode();
+        ;
+    }
 }
