@@ -125,7 +125,7 @@ public class SensorsTestHelper implements OnSampleCallback {
 			throw new Exception("Setting Failed.");
 		}
 		try {
-			//((NewIOIOActivityListener) (activityref.get())).getBtutility().setZeroVoltage(zerovoltage);
+			((NewIOIOActivityListener) (activityref.get())).getBtutility().setZeroVoltage(zerovoltage);
 		} catch (Exception e) {
 			throw new Exception("Setting Failed.");
 		}

@@ -443,24 +443,25 @@ public class BTUtility {
 		if (!getAckOrTimeout(200, "S2 ZERO SET to", curPos))throw new Exception("Zero Setting failed.");
 	}
 
-	public void setVoltage(final Short voltage) {
-		Handler handler = new Handler();
+	public void setVoltage(final Short voltage) throws Exception {
+
 		Byte sensor = (byte) (0 & 0xFF);
+		Log.d("SENSOR", "Setting sensor " + sensor + " to " + voltage);
+		int curPos = IOIOUtils.getUtils().getUartLog().length();
 		NewPFMATDevice.getDevice().sendRefVoltage(sensor, voltage);
-		handler.postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				Byte sensor = (byte) (1 & 0xFF);
-				NewPFMATDevice.getDevice().sendRefVoltage(sensor, voltage);
-			}
-		}, 20);
-		handler.postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				Byte sensor = (byte) (2 & 0xFF);
-				NewPFMATDevice.getDevice().sendRefVoltage(sensor, voltage);
-			}
-		}, 40);
+		if (!getAckOrTimeout(200, "S0 VOLTAGE SET to", curPos)) throw new Exception("Setting failed.");
+
+		sensor = (byte) (1 & 0xFF);
+		Log.d("SENSOR", "Setting sensor " + sensor + " to " + voltage);
+		curPos = IOIOUtils.getUtils().getUartLog().length();
+		NewPFMATDevice.getDevice().sendRefVoltage(sensor, voltage);
+		if (!getAckOrTimeout(200, "S1 VOLTAGE SET to", curPos))throw new Exception("Setting failed.");
+
+		sensor = (byte) (2 & 0xFF);
+		Log.d("SENSOR", "Setting sensor " + sensor + " to " + voltage);
+		curPos = IOIOUtils.getUtils().getUartLog().length();
+		NewPFMATDevice.getDevice().sendRefVoltage(sensor, voltage);
+		if (!getAckOrTimeout(200, "S2 VOLTAGE SET to", curPos))throw new Exception("Setting failed.");
 	}
 
 
