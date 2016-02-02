@@ -396,6 +396,9 @@ public class MainActivity extends AppCompatActivity
         newSequence.reset();
         IOIOUtils.getUtils().initialize(MainActivity.this, myIOIO, MainActivity.this);
         uiHelper.setCurrentAndNextTaskinUI();
+        uiHelper.addView("Max V: ", String.valueOf(PeriCoachTestApplication.getMaxBatteryVoltage()), true);
+        uiHelper.addView("Min V: ", String.valueOf(PeriCoachTestApplication.getMinBatteryVoltage()), true);
+        uiHelper.addView("Grad: ", String.valueOf(PeriCoachTestApplication.getGradient()), true);
         detectHelper.setPCBDetectCallback(MainActivity.this);
         //TODO - Only do dropped connection testing for open test.
         if (job.getTesttypeId() == 1) {
@@ -421,8 +424,7 @@ public class MainActivity extends AppCompatActivity
         MyDialogs.createAlertDialog(MainActivity.this, "Device Entered Sleep Mode", "Device under test has entered sleep mode unexpectedly", "OK", null, new MyOnCancelListener(MainActivity.this), new MyDialogInterface() {
             @Override
             public void yes() {
-                uiHelper.cleanUI(MainActivity.this);
-                waitForPCBConnected();
+                onCurrentSequenceEnd();
             }
 
             @Override

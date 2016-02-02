@@ -37,6 +37,7 @@ public class PeriCoachTestApplication extends  com.activeandroid.app.Application
 	private static String android_id="";
 	private static float gradient = 0;
 	private static float maxBatteryVoltage;
+	private static float minBatteryVoltage;
 	private static File dir;
 	private static AssetManager assetManager;
 	private static final String LAST_ID="last_id";
@@ -89,6 +90,13 @@ public class PeriCoachTestApplication extends  com.activeandroid.app.Application
 	}
 
 	public static void setMaxBatteryVoltage(float voltage) {PeriCoachTestApplication.maxBatteryVoltage = voltage;}
+
+	public static float getMinBatteryVoltage() {
+		return minBatteryVoltage;
+	}
+
+	public static void setMinBatteryVoltage(float voltage) {PeriCoachTestApplication.minBatteryVoltage = voltage;}
+
 
 	public static float getGradient() {
 		return gradient;}

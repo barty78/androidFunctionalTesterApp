@@ -36,6 +36,7 @@ import com.pietrantuono.activities.MyOnCancelListener;
 import com.pietrantuono.activities.NewIOIOActivityListener;
 import com.pietrantuono.activities.fragments.SerialConsoleFragment;
 import com.pietrantuono.activities.fragments.SerialConsoleFragmentCallback;
+import com.pietrantuono.activities.uihelper.UIHelper;
 import com.pietrantuono.application.PeriCoachTestApplication;
 
 public class IOIOUtils implements IOIOUtilsInterface {
@@ -564,6 +565,11 @@ public class IOIOUtils implements IOIOUtilsInterface {
         if (PeriCoachTestApplication.getGradient() == 0) {
             setDAC(DAC);      // Set and measure max voltage to work out gradient
             try {
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            try {
                 max = (Voltage.getVoltage(ioio_, pin, 30, 1) * scaling);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -571,13 +577,20 @@ public class IOIOUtils implements IOIOUtilsInterface {
             PeriCoachTestApplication.setMaxBatteryVoltage(max);
             Log.d(TAG, "DAC " + DAC + " | Max Voltage " + max);
 
+
             DAC = 255;
             setDAC(DAC);    // Set and measure min voltage to work out gradient
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             try {
                 min = (Voltage.getVoltage(ioio_, pin, 30, 1) * scaling);
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            PeriCoachTestApplication.setMinBatteryVoltage(min);
             Log.d(TAG, "DAC " + DAC + " | Min Voltage " + min);
 
             PeriCoachTestApplication.setGradient((max-min) / 256);
@@ -586,6 +599,7 @@ public class IOIOUtils implements IOIOUtilsInterface {
         }
         //Use linear equation based LT1671 and MCP4706 DAC, to set DAC output based on voltage setpoint
         DAC = (int) ((voltage - PeriCoachTestApplication.getMaxBatteryVoltage()) / -(PeriCoachTestApplication.getGradient()));
+        Log.d(TAG, "Max - " + PeriCoachTestApplication.getMaxBatteryVoltage() + " | Grad - " + PeriCoachTestApplication.getGradient());
         Log.d(TAG, "Corresponding DAC for voltage: " + voltage + " is " + DAC);
         setDAC(DAC);
 
