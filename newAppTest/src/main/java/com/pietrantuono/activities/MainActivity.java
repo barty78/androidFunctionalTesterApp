@@ -212,42 +212,46 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onPCBConnectionLostRestartSequence() {
-        sequenceStarted = false;
-        runOnUiThread(new Runnable() {
+        stopAndResetSequence();
+        setStatusMSG("FIXTURE CONNECTION LOST", false);
+        MyDialogs.createAlertDialog(MainActivity.this, "Fixture connection lost", "Connection lost with fixture, please check and restart test", "OK", null, new MyOnCancelListener(MainActivity.this), new MyDialogInterface() {
             @Override
-            public void run() {
+            public void yes() {
+                if (getIterationNumber() > 1)
+                    results.remove(getIterationNumber() - 1);
+                if (getIterationNumber() >= 0)
+                    decreaseIterationNumber();
+                uiHelper.cleanUI(MainActivity.this);
+                waitForPCBConnected();
+            }
+
+            @Override
+            public void no() {
+            }
+        });
+    }
+
+    private void stopAndResetSequence() {
+        sequenceStarted = false;
+        runOnUiThread(new Runnable(){
+            @Override
+            public void run(){
                 newSequence.stopAll(MainActivity.this);
                 newSequence.reset();
-                try {
+                try{
                     Voltage.interrupt();
-                } catch (Exception e) {
+                }catch(Exception e){
                 }
-                IOIOUtils.getUtils().closeall(MainActivity.this, MainActivity.this);
-                if (btutility != null) {
-                    try {
+                IOIOUtils.getUtils().closeall(MainActivity.this,MainActivity.this);
+                if(btutility!=null){
+                    try{
                         btutility.abort();
-                    } catch (Exception e) {
+                    }catch(Exception e){
                     }
                 }
                 detectHelper.stopCheckingIfConnectionDrops();
                 uiHelper.playSound(MainActivity.this);
-                setStatusMSG("FIXTURE CONNECTION LOST", false);
                 uiHelper.stopChronometer(MainActivity.this);
-                MyDialogs.createAlertDialog(MainActivity.this, "Fixture connection lost", "Connection lost with fixture, please check and restart test", "OK", null, new MyOnCancelListener(MainActivity.this), new MyDialogInterface() {
-                    @Override
-                    public void yes() {
-                        if (getIterationNumber() > 1)
-                            results.remove(getIterationNumber() - 1);
-                        if (getIterationNumber() >= 0)
-                            decreaseIterationNumber();
-                        uiHelper.cleanUI(MainActivity.this);
-                        waitForPCBConnected();
-                    }
-
-                    @Override
-                    public void no() {
-                    }
-                });
             }
         });
     }
@@ -392,6 +396,9 @@ public class MainActivity extends AppCompatActivity
         newSequence.reset();
         IOIOUtils.getUtils().initialize(MainActivity.this, myIOIO, MainActivity.this);
         uiHelper.setCurrentAndNextTaskinUI();
+        uiHelper.addView("Max V: ", String.valueOf(PeriCoachTestApplication.getMaxBatteryVoltage()), true);
+        uiHelper.addView("Min V: ", String.valueOf(PeriCoachTestApplication.getMinBatteryVoltage()), true);
+        uiHelper.addView("Grad: ", String.valueOf(PeriCoachTestApplication.getGradient()), true);
         detectHelper.setPCBDetectCallback(MainActivity.this);
         //TODO - Only do dropped connection testing for open test.
         if (job.getTesttypeId() == 1) {
@@ -412,9 +419,18 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onPCBSleep() {
-        sequenceStarted = false;
+        stopAndResetSequence();
         uiHelper.setStatusMSG("DEVICE GONE TO SLEEP", false);
-        IOIOUtils.getUtils().closeall(MainActivity.this, MainActivity.this);
+        MyDialogs.createAlertDialog(MainActivity.this, "Device Entered Sleep Mode", "Device under test has entered sleep mode unexpectedly", "OK", null, new MyOnCancelListener(MainActivity.this), new MyDialogInterface() {
+            @Override
+            public void yes() {
+                onCurrentSequenceEnd();
+            }
+
+            @Override
+            public void no() {
+            }
+        });
     }
 
     @Override
@@ -453,7 +469,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void startPCBSleepMonitor() {
-        detectHelper.startPCBSleepMonitor();
+        detectHelper.startPCBSleepMonitor(MainActivity.this);
     }
 
     @Override

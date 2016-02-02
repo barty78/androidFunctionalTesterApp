@@ -35,15 +35,15 @@ public class ActionModecallback implements ActionMode.Callback {
         inflater.inflate(R.menu.context_menu, menu);
         MenuItem item = menu.findItem(R.id.spinner);
         Spinner spinner = (Spinner) MenuItemCompat.getActionView(menu.findItem(R.id.spinner));
-        ArrayAdapter<CharSequence> adapter =  new ArrayAdapter<CharSequence>(context,android.R.layout.simple_spinner_item, new String[]{"Sort by result","Sort by barcode"});//ArrayAdapter.createFromResource(this,R.array.planets_array, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter =  new ArrayAdapter<CharSequence>(context,android.R.layout.simple_spinner_item, new String[]{"SELECT SORTING ORDER","Sort by result","Sort by barcode"});//ArrayAdapter.createFromResource(this,R.array.planets_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Log.d(TAG, "Selected " + position);
-                if(position==0)callback.sortByResult();
-                if(position==0)callback.sortByBarcode();
+                if(position==1)callback.sortByResult();
+                if(position==2)callback.sortByBarcode();
             }
 
             @Override

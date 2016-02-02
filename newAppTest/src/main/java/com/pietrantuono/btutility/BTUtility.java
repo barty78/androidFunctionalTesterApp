@@ -424,44 +424,60 @@ public class BTUtility {
 
 	public void setZeroVoltage(final Short voltage) throws Exception {
 
-		Byte sensor = (byte) (0 & 0xFF);
-		Log.d("SENSOR", "Setting sensor " + sensor + " zero to " + voltage);
-		int curPos = IOIOUtils.getUtils().getUartLog().length();
-		NewPFMATDevice.getDevice().sendZeroVoltage(sensor, voltage);
-		if (!getAckOrTimeout(200, "S0 ZERO SET to", curPos)) throw new Exception("Zero Setting failed.");
+		// If job testtype is open, we can use the uart for ACK of packets
+		if (PeriCoachTestApplication.getCurrentJob().getTesttypeId() == 1) {
+			Byte sensor = (byte) (0 & 0xFF);
+			Log.d("SENSOR", "Setting sensor " + sensor + " zero to " + voltage);
+			int curPos = IOIOUtils.getUtils().getUartLog().length();
+			NewPFMATDevice.getDevice().sendZeroVoltage(sensor, voltage);
+			if (!getAckOrTimeout(200, "S0 ZERO SET to", curPos))
+				throw new Exception("Zero Setting failed.");
 
-		sensor = (byte) (1 & 0xFF);
-		Log.d("SENSOR", "Setting sensor " + sensor + " zero to " + voltage);
-		curPos = IOIOUtils.getUtils().getUartLog().length();
-		NewPFMATDevice.getDevice().sendZeroVoltage(sensor, voltage);
-		if (!getAckOrTimeout(200, "S1 ZERO SET to", curPos))throw new Exception("Zero Setting failed.");
+			sensor = (byte) (1 & 0xFF);
+			Log.d("SENSOR", "Setting sensor " + sensor + " zero to " + voltage);
+			curPos = IOIOUtils.getUtils().getUartLog().length();
+			NewPFMATDevice.getDevice().sendZeroVoltage(sensor, voltage);
+			if (!getAckOrTimeout(200, "S1 ZERO SET to", curPos))
+				throw new Exception("Zero Setting failed.");
 
-		sensor = (byte) (2 & 0xFF);
-		Log.d("SENSOR", "Setting sensor " + sensor + " zero to " + voltage);
-		curPos = IOIOUtils.getUtils().getUartLog().length();
-		NewPFMATDevice.getDevice().sendZeroVoltage(sensor, voltage);
-		if (!getAckOrTimeout(200, "S2 ZERO SET to", curPos))throw new Exception("Zero Setting failed.");
+			sensor = (byte) (2 & 0xFF);
+			Log.d("SENSOR", "Setting sensor " + sensor + " zero to " + voltage);
+			curPos = IOIOUtils.getUtils().getUartLog().length();
+			NewPFMATDevice.getDevice().sendZeroVoltage(sensor, voltage);
+			if (!getAckOrTimeout(200, "S2 ZERO SET to", curPos))
+				throw new Exception("Zero Setting failed.");
+		} else {
+			// We need to use another method of ACK for packets..  Perhaps we need a new packet type in probe which does send back ACK
+		}
 	}
 
 	public void setVoltage(final Short voltage) throws Exception {
 
-		Byte sensor = (byte) (0 & 0xFF);
-		Log.d("SENSOR", "Setting sensor " + sensor + " to " + voltage);
-		int curPos = IOIOUtils.getUtils().getUartLog().length();
-		NewPFMATDevice.getDevice().sendRefVoltage(sensor, voltage);
-		if (!getAckOrTimeout(200, "S0 VOLTAGE SET to", curPos)) throw new Exception("Setting failed.");
+		// If job testtype is open, we can use the uart for ACK of packets
+		if (PeriCoachTestApplication.getCurrentJob().getTesttypeId() == 1) {
+			Byte sensor = (byte) (0 & 0xFF);
+			Log.d("SENSOR", "Setting sensor " + sensor + " to " + voltage);
+			int curPos = IOIOUtils.getUtils().getUartLog().length();
+			NewPFMATDevice.getDevice().sendRefVoltage(sensor, voltage);
+			if (!getAckOrTimeout(200, "S0 VOLTAGE SET to", curPos))
+				throw new Exception("Setting failed.");
 
-		sensor = (byte) (1 & 0xFF);
-		Log.d("SENSOR", "Setting sensor " + sensor + " to " + voltage);
-		curPos = IOIOUtils.getUtils().getUartLog().length();
-		NewPFMATDevice.getDevice().sendRefVoltage(sensor, voltage);
-		if (!getAckOrTimeout(200, "S1 VOLTAGE SET to", curPos))throw new Exception("Setting failed.");
+			sensor = (byte) (1 & 0xFF);
+			Log.d("SENSOR", "Setting sensor " + sensor + " to " + voltage);
+			curPos = IOIOUtils.getUtils().getUartLog().length();
+			NewPFMATDevice.getDevice().sendRefVoltage(sensor, voltage);
+			if (!getAckOrTimeout(200, "S1 VOLTAGE SET to", curPos))
+				throw new Exception("Setting failed.");
 
-		sensor = (byte) (2 & 0xFF);
-		Log.d("SENSOR", "Setting sensor " + sensor + " to " + voltage);
-		curPos = IOIOUtils.getUtils().getUartLog().length();
-		NewPFMATDevice.getDevice().sendRefVoltage(sensor, voltage);
-		if (!getAckOrTimeout(200, "S2 VOLTAGE SET to", curPos))throw new Exception("Setting failed.");
+			sensor = (byte) (2 & 0xFF);
+			Log.d("SENSOR", "Setting sensor " + sensor + " to " + voltage);
+			curPos = IOIOUtils.getUtils().getUartLog().length();
+			NewPFMATDevice.getDevice().sendRefVoltage(sensor, voltage);
+			if (!getAckOrTimeout(200, "S2 VOLTAGE SET to", curPos))
+				throw new Exception("Setting failed.");
+		} else {
+			// We need to use another method of ACK for packets..  Perhaps we need a new packet type in probe which does send back ACK
+		}
 	}
 
 
