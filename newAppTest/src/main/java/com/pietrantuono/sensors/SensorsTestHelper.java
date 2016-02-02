@@ -6,6 +6,8 @@ import ioio.lib.api.IOIO;
 import java.lang.ref.WeakReference;
 import java.text.SimpleDateFormat;
 import java.util.concurrent.Callable;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 import android.app.Activity;
 import android.os.Handler;
@@ -176,30 +178,36 @@ public class SensorsTestHelper implements OnSampleCallback {
 		this.acceptdata=accept;
 	}
 
-
-	public void sendAllVoltages(final short[] refVoltages, final short[] zeroVoltages){
+	/**
+	 * Should work, tested in another context, will not work if both sendAllVoltages and callback are executed on the same thread
+	 * but that should not be the case
+	 */
+	public void sendAllVoltages(final short[] refVoltages, final short[] zeroVoltages, int timeOutInMills){
+		final CountDownLatch countDownLatch = new CountDownLatch(1);
 		try {
 			((NewIOIOActivityListener) (activityref.get())).getBtutility().sendAllVoltages(refVoltages, zeroVoltages, new AllSensorsCallback() {
                 @Override
                 public void onAllVoltageResponseReceived() {
-
+					countDownLatch.countDown();
 
                 }
 
                 @Override
                 public void onError() {
-
+					countDownLatch.countDown();
                 }
-            });
+			});
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		try {
-
-		} catch (Exception e) {
-			callback.onError();
+			countDownLatch.await(timeOutInMills, TimeUnit.MICROSECONDS);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+			return;
 		}
+		return;
 
 	}
 
