@@ -19,6 +19,7 @@ import com.pietrantuono.ioioutils.IOIOUtils;
 import com.pietrantuono.pericoach.newtestapp.BuildConfig;
 import com.pietrantuono.pericoach.newtestapp.R;
 import com.pietrantuono.pericoachengineering.util.Utils;
+import com.pietrantuono.sensors.AllSensorsCallback;
 import com.pietrantuono.sensors.NewDevice;
 import com.pietrantuono.sensors.NewPFMATDevice;
 import com.pietrantuono.tests.implementations.BatteryLevelUUTVoltageTest;
@@ -480,6 +481,10 @@ public class BTUtility {
 		}
 	}
 
+
+	public boolean sendAllVoltages(short[] refVoltages, short[] zeroVoltages, AllSensorsCallback callback) throws Exception {
+		return NewPFMATDevice.getDevice().sendAllVoltages(refVoltages,zeroVoltages,callback);
+	}
 
 	private boolean getAckOrTimeout(int timeout, final String msg, final int curPos){
 		Callable<Integer> integerCallable = new Callable<Integer>() {
