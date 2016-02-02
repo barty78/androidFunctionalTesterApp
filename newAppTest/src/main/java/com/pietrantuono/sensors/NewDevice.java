@@ -162,6 +162,9 @@ public abstract class NewDevice
 	
 	public final boolean sendRefVoltage(byte sensorIndex, short refVoltage) {return sendPacket(new PacketTx_SetRefVoltage(sensorIndex, refVoltage));}
 	public final boolean sendZeroVoltage(byte sensorIndex, short zeroVoltage) {return sendPacket(new PacketTx_SetZeroVoltage(sensorIndex, zeroVoltage));}
+//	public final boolean sendAllVoltages(short s0_refVoltage, short s1_refVoltage, short s2_refVoltage, short s0_zeroVoltage, short s1_zeroVoltage, short s2_zeroVoltage) {
+//		return sendPacket(new PacketTx_AllVoltages(s0_refVoltage, s1_refVoltage, s2_refVoltage, s0_zeroVoltage, s1_zeroVoltage, s2_zeroVoltage));
+//	}
 	@SuppressWarnings("ucd")
 	public
 	final boolean sendSleep(short waitTime) {return sendPacket(new PacketTx_Sleep(waitTime));}
@@ -351,6 +354,7 @@ public abstract class NewDevice
 					onRefVoltage(data.getSensorIndex(), data.getRefVoltage());
 					break;
 				}
+
 				default:
 					// Quietly ignore unimplemented packet types at this stage
 					break;
