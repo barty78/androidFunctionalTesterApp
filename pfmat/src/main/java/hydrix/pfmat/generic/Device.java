@@ -1,41 +1,16 @@
-package com.pietrantuono.sensors;
-
-import com.pietrantuono.tests.implementations.BatteryLevelUUTVoltageTest;
-
-import hydrix.pfmat.generic.CalibrationObserver;
-import hydrix.pfmat.generic.DeviceRecvStream;
-import hydrix.pfmat.generic.PFMAT;
-import hydrix.pfmat.generic.Packet;
-import hydrix.pfmat.generic.PacketHandler;
-import hydrix.pfmat.generic.PacketRx_BatteryStatus;
-import hydrix.pfmat.generic.PacketRx_DeviceDetails;
-import hydrix.pfmat.generic.PacketRx_SensorData;
-import hydrix.pfmat.generic.PacketRx_SetAllVoltage;
-import hydrix.pfmat.generic.PacketRx_SetRefVoltage;
-
-import hydrix.pfmat.generic.PacketTx_GetBatteryStatus;
-import hydrix.pfmat.generic.PacketTx_GetDeviceDetails;
-import hydrix.pfmat.generic.PacketTx_GetSensorData;
-import hydrix.pfmat.generic.PacketTx_SetAllVoltage;
-import hydrix.pfmat.generic.PacketTx_SetRefVoltage;
-import hydrix.pfmat.generic.PacketTx_SetZeroVoltage;
-import hydrix.pfmat.generic.PacketTx_Sleep;
-import hydrix.pfmat.generic.RefVoltageObserver;
-
+package hydrix.pfmat.generic;
 
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.lang.ref.WeakReference;
 
 // TODO: Change mDisconnecting to a reference count instead of flag, so there's no race condition between disconnect() and the recv thread checking the flag on the way out
 // Not critical because the implementation of onConnectionLost happens to do nothing, but this needs to be fixed post-trial in conjunction with implementing the user notification
 
-@SuppressWarnings("unused")
-public abstract class NewDevice
+public abstract class Device
 {
-	private final static short BATTERY_UNKNOWN = -1;
-	
-	private final static int FIRMWARE_VERSION_UNKNOWN = -1;
+	public final static short BATTERY_UNKNOWN = -1;
+	public final static short BATTERY_WARNING_THRESHOLD_PERCENT = 20;
+	public final static int FIRMWARE_VERSION_UNKNOWN = -1;
 	private final static int DEVICE_INFORMATION_TIMEOUT = 10000; // We need to see a Device Information packet within 10 seconds of connection or we disconnect
 	private final static int DEVICE_INFORMATION_REQUEST_FREQ_MS = 2000; // Try every 2 seconds
 	private final static int BATTERY_POLL_FREQ_MS = 60000; // Per minute
@@ -51,9 +26,7 @@ public abstract class NewDevice
 	private RefVoltageObserver mRefVoltageObserver = null;
 	private volatile boolean mDisconnecting = false;
 	private volatile boolean mSeenDeviceInformation = false;
-	private WeakReference<OnSampleCallback> weakReference=null;
-	private BatteryLevelUUTVoltageTest.Callback callback;
-
+	
 	public class Information
 	{
 		public String mSerialNumber = "";
@@ -63,11 +36,11 @@ public abstract class NewDevice
 	}
 	
 	// Construction
-	public NewDevice()
+	public Device()
 	{
 	}
 	
-	final boolean connect()
+	public final boolean connect()
 	{
 		// Make sure we start with a clean slate
 		disconnect();
@@ -156,27 +129,14 @@ public abstract class NewDevice
 	}
 
 	// Sending requests/commands to device
-	private final boolean sendGetDeviceDetails() {return sendPacket(new PacketTx_GetDeviceDetails());}
-	public final boolean sendGetBatteryStatus(BatteryLevelUUTVoltageTest.Callback callback) {
-		this.callback=callback;
-		return sendPacket(new PacketTx_GetBatteryStatus());}
+	public final boolean sendGetDeviceDetails() {return sendPacket(new PacketTx_GetDeviceDetails());}
+	public final boolean sendGetBatteryStatus() {return sendPacket(new PacketTx_GetBatteryStatus());}
 	public final boolean sendGetSensorData(int requestTimestamp) {return sendPacket(new PacketTx_GetSensorData(requestTimestamp));}
-	
+	//public final boolean sendCalibrateSensor(byte sensorIndex, byte readOnly, short currentLoad) {return sendPacket(new PacketTx_CalibrateSensor(sensorIndex, readOnly, currentLoad));}
 	public final boolean sendRefVoltage(byte sensorIndex, short refVoltage) {return sendPacket(new PacketTx_SetRefVoltage(sensorIndex, refVoltage));}
-	public final boolean sendZeroVoltage(byte sensorIndex, short zeroVoltage) {return sendPacket(new PacketTx_SetZeroVoltage(sensorIndex, zeroVoltage));}
-	public final boolean sendAllVoltages(short[] refVoltages, short[] zeroVoltages) throws Exception {
-		if (refVoltages.length == 3 && zeroVoltages.length == 3) {
-			return sendPacket(new PacketTx_SetAllVoltage(refVoltages, zeroVoltages));
-		} else {
-			throw new Exception("Invalid voltages");
-		}
-	}
-
-	@SuppressWarnings("ucd")
-	public
-	final boolean sendSleep(short waitTime) {return sendPacket(new PacketTx_Sleep(waitTime));}
+	public final boolean sendSleep(short waitTime) {return sendPacket(new PacketTx_Sleep(waitTime));}
 	
-	private boolean sendPacket(Packet packet)
+	protected boolean sendPacket(Packet packet)
 	{
 		if (mOutputStream == null)
 			return false;
@@ -212,7 +172,7 @@ public abstract class NewDevice
 			DeviceRecvStream recvStream = new DeviceRecvStream(mPacketHandler);
 			byte[] readBuffer = new byte [READ_BUFSIZE];
 			int bytesRead;
-
+			
 			// read() is a blocking call so we just run a simple loop.  When the application closes the underlying socket the read() call
 			// will fail with an IOException, causing this thread to exit gracefully
 			while (true)
@@ -270,8 +230,8 @@ public abstract class NewDevice
 				sendGetDeviceDetails();
 
 				// Wait for a while before resending.. wait will be interrupted by the wake event if we recv information meantime
-				int timeoutRemainingMS = java.lang.Math.max(0, DEVICE_INFORMATION_TIMEOUT - (int)(System.currentTimeMillis() - startTimeMS));
-				int waitMS = java.lang.Math.min(timeoutRemainingMS, DEVICE_INFORMATION_REQUEST_FREQ_MS);
+				int timeoutRemainingMS = Math.max(0, DEVICE_INFORMATION_TIMEOUT - (int)(System.currentTimeMillis() - startTimeMS));
+				int waitMS = Math.min(timeoutRemainingMS, DEVICE_INFORMATION_REQUEST_FREQ_MS);
 				try
 				{
 					synchronized(mWakeEvent) {mWakeEvent.wait(waitMS);}
@@ -294,7 +254,7 @@ public abstract class NewDevice
 			while (!mCancel)
 			{
 				// Send request for battery status
-				sendGetBatteryStatus(callback);
+				sendGetBatteryStatus();
 				
 				// Wait for a period of time before polling again (keeping an eye on stop event)
 				try
@@ -349,6 +309,7 @@ public abstract class NewDevice
 					onDeviceDetails(data.getSerialNumber(), data.getModel(), data.getFirmwareVersion());
 					break;
 				}
+				//Outdated packet
 //				case PFMAT.RX_CALIBRATED_SENSOR:
 //				{
 //					PacketRx_CalibratedSensor data = (PacketRx_CalibratedSensor)packet;
@@ -361,13 +322,6 @@ public abstract class NewDevice
 					onRefVoltage(data.getSensorIndex(), data.getRefVoltage());
 					break;
 				}
-
-					case PFMAT.RX_ALL_VOLTAGE:
-					{
-						PacketRx_SetAllVoltage data = (PacketRx_SetAllVoltage)packet;
-						onAllVoltage();
-						break;
-					}
 				default:
 					// Quietly ignore unimplemented packet types at this stage
 					break;
@@ -376,26 +330,23 @@ public abstract class NewDevice
 		}
 	}
 
-	private final void onSensorData(int requestTimestampMS, short sensor0, short sensor1, short sensor2)
+	protected final void onSensorData(int requestTimestampMS, short sensor0, short sensor1, short sensor2)
 	{
 		// requestTimestampMS is already relative to the start of the session, not an absolute value, so pass it straight through
-		if (weakReference != null && weakReference.get()!=null)
-			weakReference.get().onSample(requestTimestampMS, sensor0, sensor1, sensor2);
+		SessionRunner session = SessionRunnerImpl.getActiveSession();
+		if (session != null)
+			session.onSample(requestTimestampMS, sensor0, sensor1, sensor2);
 	}
 	
-	private final void onBatteryStatus(short batteryPercent)
+	protected final void onBatteryStatus(short batteryPercent)
 	{
 		synchronized(mInfo)
 		{
 			mInfo.mBatteryPercent = batteryPercent;
-			if(callback!=null){
-				callback.onResultReceived(mInfo.mBatteryPercent);
-				callback=null;
-			}
 		}
 	}
 	
-	private final void onDeviceDetails(String serialNumber, String model, int firmwareVersion)
+	protected final void onDeviceDetails(String serialNumber, String model, int firmwareVersion)
 	{
 		synchronized(mInfo)
 		{
@@ -409,26 +360,17 @@ public abstract class NewDevice
 		mMonitorThread.wake();
 	}
 	
-	private final void onCalibratedSensor(byte sensorIndex, boolean calibrationSucceesful, float calibratedOffset)
+	protected final void onCalibratedSensor(byte sensorIndex, boolean calibrationSucceesful, float calibratedOffset)
 	{
 		// We're not particularly interested in this packet type... just dish off the notification to the application
 		if (mCalibrationObserver != null)
 			mCalibrationObserver.onCalibratedSensor(sensorIndex, calibrationSucceesful, calibratedOffset);
 	}
 	
-	private final void onRefVoltage(byte sensorIndex, short refVoltage)
+	protected final void onRefVoltage(byte sensorIndex, short refVoltage)
 	{
 		if (mRefVoltageObserver != null)
 			mRefVoltageObserver.onRefVoltage(sensorIndex, refVoltage);
-	}
-
-	private final void onAllVoltage()
-	{
-
-	}
-	
-	public void setCallback(OnSampleCallback callback){
-		weakReference=new WeakReference<OnSampleCallback>(callback);
 	}
 	
 	// Mandatory overrides
@@ -438,6 +380,4 @@ public abstract class NewDevice
 	protected abstract OutputStream getOutputStream();
 	public abstract String getDeviceId();
 	protected abstract void onConnectionLost();
-	public abstract void stop();
-	
 }

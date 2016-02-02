@@ -82,7 +82,6 @@ dependencies {
     compile 'com.github.ytai.ioio:IOIOLibAndroidBluetooth:5.05'
     compile 'com.github.ytai.ioio:IOIOLibAndroidAccessory:5.05'
     compile 'com.github.ytai.ioio:IOIOLibAndroidDevice:5.05'
-    compile 'com.pietrantuono.pfmat:pfmat:0.0.1'
     compile 'joda-time:joda-time:2.9.1'
     compile 'com.android.support:design:23.1.1'
     compile 'com.android.support:support-annotations:23.1.1'
@@ -94,6 +93,7 @@ dependencies {
     compile 'com.github.lzyzsd:circleprogress:1.1.0@aar'
     compile 'com.kennyc:multistateview:1.1'
     compile 'me.zhanghai.android.materialprogressbar:library:1.1.4'
+    compile project(':pfmat')
 }
 
 
