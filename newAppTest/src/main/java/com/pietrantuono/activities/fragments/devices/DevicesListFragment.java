@@ -5,6 +5,7 @@ import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.IntentFilter;
 import android.content.SyncStatusObserver;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -40,7 +41,7 @@ import server.pojos.DevicesList;
 import server.pojos.Job;
 import server.service.ServiceDBHelper;
 
-public class DevicesListFragment extends Fragment implements ActionModecallback.Callback, SyncStatusObserver {
+public class DevicesListFragment extends Fragment implements ActionModecallback.Callback {
     private final String TAG = getClass().getSimpleName();
     private RecyclerView recyclerView;
     private Context context;
@@ -134,11 +135,17 @@ public class DevicesListFragment extends Fragment implements ActionModecallback.
     }
 
     private void foreceSync(){
+        registerRecieiver();
         swiper.setRefreshing(true);
         Bundle settingsBundle = new Bundle();
         settingsBundle.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);
         settingsBundle.putBoolean(ContentResolver.SYNC_EXTRAS_EXPEDITED, true);
         ContentResolver.requestSync(createAccount(), getResources().getString(R.string.devices_sync_provider_authority), settingsBundle);
+    }
+
+    private void registerRecieiver() {
+        IntentFilter filter;
+        getActivity().registerReceiver(receiver,filter);
     }
 
     private Account createAccount() {
@@ -174,34 +181,6 @@ public class DevicesListFragment extends Fragment implements ActionModecallback.
         adapter.sortByBarcode();
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        getActivity().getContentResolver().removeStatusChangeListener(syncStatusChangeListener);
-    }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        final int mask = ContentResolver.SYNC_OBSERVER_TYPE_PENDING |
-                ContentResolver.SYNC_OBSERVER_TYPE_ACTIVE ;
-        syncStatusChangeListener=getActivity().getContentResolver().addStatusChangeListener(mask,this);
-    }
-    @DebugLog
-    @Override
-    public void onStatusChanged(int which) {
-        AccountManager am = AccountManager.get(getActivity());
-        Account[] acc = am.getAccountsByType(getActivity().getResources().getString(R.string.devices_sync_account_type));
-        Account account;
-        if (acc.length > 0) {
-            account = acc[0];
-            boolean syncActive = ContentResolver.isSyncActive(
-                    account, getActivity().getResources().getString(R.string.devices_sync_provider_authority));
-            Log.d(TAG, "sync active = " + syncActive);
-            boolean syncPending = ContentResolver.isSyncPending(
-                    account, getActivity().getResources().getString(R.string.devices_sync_provider_authority));
-            Log.d(TAG, "sync pending = " + syncPending);
 
-        }
-    }
 }

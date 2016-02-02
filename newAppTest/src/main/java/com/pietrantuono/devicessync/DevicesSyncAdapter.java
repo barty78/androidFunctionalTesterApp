@@ -5,54 +5,51 @@ import android.content.AbstractThreadedSyncAdapter;
 import android.content.ContentProviderClient;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SyncResult;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.pietrantuono.pericoach.newtestapp.R;
+
 import hugo.weaving.DebugLog;
 
 public class DevicesSyncAdapter extends AbstractThreadedSyncAdapter {
-    private final String TAG =getClass().getSimpleName();
-    // Global variables
-    // Define a variable to contain a content resolver instance 
+    private static final java.lang.String PERMISSION = "com.pietrantuono.devices.permssion";
+    private final String TAG = getClass().getSimpleName();
+    private final Context context;
     ContentResolver mContentResolver;
 
-    /**
-     * Set up the sync adapter
-     */
     public DevicesSyncAdapter(Context context, boolean autoInitialize) {
         super(context, autoInitialize);
-        /* 
-         * If your app uses a content resolver, get an instance of it 
-         * from the incoming Context 
-         */
         mContentResolver = context.getContentResolver();
+        this.context = context;
     }
 
-    /**
-     * Set up the sync adapter. This form of the
-     * constructor maintains compatibility with Android 3.0
-     * and later platform versions
-     */
+
     public DevicesSyncAdapter(
             Context context,
             boolean autoInitialize,
             boolean allowParallelSyncs) {
         super(context, autoInitialize, allowParallelSyncs);
-        /* 
-         * If your app uses a content resolver, get an instance of it 
-         * from the incoming Context 
-         */
+        this.context = context;
         mContentResolver = context.getContentResolver();
 
     }
+
     @DebugLog
     @Override
     public void onPerformSync(Account account, Bundle extras, String authority, ContentProviderClient provider, SyncResult syncResult) {
         Log.d(TAG, "start onPerformSync");
-        try { Thread.sleep(5*1000);
-        } catch (InterruptedException e) {}
+        Intent intent= new Intent(context.getResources().getString(R.string.devices_sync_started));
+        context.sendOrderedBroadcast(intent,PERMISSION);
+        try {
+            Thread.sleep(5 * 1000);
+        } catch (InterruptedException e) {
+        }
         Log.d(TAG, "end onPerformSync");
+        intent= new Intent(context.getResources().getString(R.string.devices_sync_finished));
+        context.sendOrderedBroadcast(intent, PERMISSION);
     }
 
 }
