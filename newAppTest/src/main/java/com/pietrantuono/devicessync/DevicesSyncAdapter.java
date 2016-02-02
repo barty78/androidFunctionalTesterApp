@@ -49,7 +49,10 @@ public class DevicesSyncAdapter extends AbstractThreadedSyncAdapter {
     @DebugLog
     @Override
     public void onPerformSync(Account account, Bundle extras, String authority, ContentProviderClient provider, SyncResult syncResult) {
-        Log.d(TAG, "onPerformSync");
+        Log.d(TAG, "start onPerformSync");
+        try { Thread.sleep(5*1000);
+        } catch (InterruptedException e) {}
+        Log.d(TAG, "end onPerformSync");
     }
 
 }

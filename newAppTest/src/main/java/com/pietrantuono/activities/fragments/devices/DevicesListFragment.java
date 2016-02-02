@@ -5,6 +5,7 @@ import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.SyncStatusObserver;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -29,6 +30,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import hugo.weaving.DebugLog;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -38,7 +40,7 @@ import server.pojos.DevicesList;
 import server.pojos.Job;
 import server.service.ServiceDBHelper;
 
-public class DevicesListFragment extends Fragment implements ActionModecallback.Callback {
+public class DevicesListFragment extends Fragment implements ActionModecallback.Callback, SyncStatusObserver {
     private final String TAG = getClass().getSimpleName();
     private RecyclerView recyclerView;
     private Context context;
@@ -47,6 +49,7 @@ public class DevicesListFragment extends Fragment implements ActionModecallback.
     private ActionMode mActionMode;
     private ActionModecallback callback;
     private DevicesListAdapter adapter;
+    private Object syncStatusChangeListener;
 
     public DevicesListFragment() {
     }
@@ -169,6 +172,36 @@ public class DevicesListFragment extends Fragment implements ActionModecallback.
     @Override
     public void sortByBarcode() {
         adapter.sortByBarcode();
-        ;
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        getActivity().getContentResolver().removeStatusChangeListener(syncStatusChangeListener);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        final int mask = ContentResolver.SYNC_OBSERVER_TYPE_PENDING |
+                ContentResolver.SYNC_OBSERVER_TYPE_ACTIVE ;
+        syncStatusChangeListener=getActivity().getContentResolver().addStatusChangeListener(mask,this);
+    }
+    @DebugLog
+    @Override
+    public void onStatusChanged(int which) {
+        AccountManager am = AccountManager.get(getActivity());
+        Account[] acc = am.getAccountsByType(getActivity().getResources().getString(R.string.devices_sync_account_type));
+        Account account;
+        if (acc.length > 0) {
+            account = acc[0];
+            boolean syncActive = ContentResolver.isSyncActive(
+                    account, getActivity().getResources().getString(R.string.devices_sync_provider_authority));
+            Log.d(TAG, "sync active = " + syncActive);
+            boolean syncPending = ContentResolver.isSyncPending(
+                    account, getActivity().getResources().getString(R.string.devices_sync_provider_authority));
+            Log.d(TAG, "sync pending = " + syncPending);
+
+        }
     }
 }
