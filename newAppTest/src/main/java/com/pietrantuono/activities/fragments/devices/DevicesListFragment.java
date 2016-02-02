@@ -1,27 +1,26 @@
-package com.pietrantuono.activities.fragments;
+package com.pietrantuono.activities.fragments.devices;
 
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
+import android.content.ContentResolver;
 import android.content.Context;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ActionMode;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.activeandroid.query.Select;
 import com.kennyc.view.MultiStateView;
+import com.pietrantuono.activities.fragments.ActionModecallback;
 import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.pericoach.newtestapp.R;
 
@@ -66,6 +65,7 @@ public class DevicesListFragment extends Fragment implements ActionModecallback.
 
     }
 
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -88,8 +88,7 @@ public class DevicesListFragment extends Fragment implements ActionModecallback.
         swiper.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                swiper.setRefreshing(true);
-                downloadDevicesList();
+                foreceSync();
             }
         });
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
@@ -131,31 +130,29 @@ public class DevicesListFragment extends Fragment implements ActionModecallback.
         recyclerView.setAdapter(adapter);
     }
 
-    private void downloadDevicesList() {
-        if (swiper != null) swiper.setRefreshing(true);
-        //state.setViewState(MultiStateView.VIEW_STATE_LOADING);
-        RetrofitRestServices.getRest(getActivity()).getLastDevices(PeriCoachTestApplication.getDeviceid(), PeriCoachTestApplication.getLastId(), new Callback<DevicesList>() {
-            @Override
-            public void success(DevicesList arg0, Response arg1) {
-                if (swiper != null) swiper.setRefreshing(false);
-                if (arg0 != null) ServiceDBHelper.addDevices(arg0);
-                else Snackbar.make(state, "Failed devices download", Snackbar.LENGTH_LONG).show();
-                populateList();
-            }
-
-            @Override
-            public void failure(RetrofitError arg0) {
-                if (swiper != null) swiper.setRefreshing(false);
-                Snackbar.make(state, "Failed devices download", Snackbar.LENGTH_LONG).show();
-                populateList();
-            }
-        });
+    private void foreceSync(){
+        swiper.setRefreshing(true);
+        Bundle settingsBundle = new Bundle();
+        settingsBundle.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);
+        settingsBundle.putBoolean(ContentResolver.SYNC_EXTRAS_EXPEDITED, true);
+        ContentResolver.requestSync(createAccount(), getResources().getString(R.string.devices_sync_provider_authority), settingsBundle);
     }
+
+    private Account createAccount() {
+        Account newAccount = new Account(
+                getActivity().getResources().getString(R.string.devices_sync_account), getActivity().getResources().getString(R.string.devices_sync_account_type));
+        AccountManager accountManager =
+                (AccountManager) context.getSystemService(
+                        Context.ACCOUNT_SERVICE);
+        if (accountManager.addAccountExplicitly(newAccount, null, null)) {/*TODO*/} else {/*TODO*/}
+        return newAccount;
+    }
+
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         if (isVisibleToUser) {
-            downloadDevicesList();
+            foreceSync();
             callback = new ActionModecallback(getActivity(), DevicesListFragment.this);
             mActionMode = ((AppCompatActivity) getActivity()).startSupportActionMode(callback);
         } else {

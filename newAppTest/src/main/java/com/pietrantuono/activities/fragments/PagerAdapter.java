@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.pietrantuono.activities.fragments.devices.DevicesListFragment;
 import com.pietrantuono.activities.fragments.sequence.NewSequenceFragment;
 
 public class PagerAdapter extends FragmentPagerAdapter {

@@ -1,4 +1,4 @@
-package com.pietrantuono.activities.fragments;
+package com.pietrantuono.activities.fragments.devices;
 
 import android.content.Context;
 import android.graphics.Color;

@@ -101,6 +101,38 @@
                 android:name="android.content.SyncAdapter"
                 android:resource="@xml/syncadapter" />
         </service>
+
+
+        <service
+            android:name="com.pietrantuono.devicessync.DevicesAuthenticatorService">
+            <intent-filter>
+                <action android:name="android.accounts.AccountAuthenticator"/>
+            </intent-filter>
+            <meta-data
+                android:name="android.accounts.AccountAuthenticator"
+                android:resource="@xml/devicesauthenticator" />
+        </service>
+
+
+        <provider
+            android:name="com.pietrantuono.devicessync.DevicesStubProvider"
+            android:authorities="@string/devices_sync_provider_authority"
+            android:exported="false"
+            android:syncable="true"/>
+
+
+        <service
+            android:name="com.pietrantuono.devicessync.DevicesSyncService"
+            android:exported="true"
+            android:process=":sync">
+            <intent-filter>
+                <action android:name="android.content.SyncAdapter"/>
+            </intent-filter>
+            <meta-data android:name="android.content.SyncAdapter"
+                android:resource="@xml/devices_syncadapter" />
+        </service>
+
+
         <service
             android:name="server.service.DownloadDevicesIntentService"
             android:exported="false" >

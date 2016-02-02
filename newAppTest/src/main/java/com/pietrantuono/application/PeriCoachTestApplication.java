@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import com.cyanogenmod.updater.utils.MD5;
+import com.pietrantuono.pericoach.newtestapp.R;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
@@ -45,6 +46,9 @@ public class PeriCoachTestApplication extends  com.activeandroid.app.Application
 
 	private static boolean isretestallowed;
 
+
+
+
 	public static boolean getIsRetestAllowed() { return isretestallowed;}
 
 	public static void setIsRetestAllowed(boolean isretestallowed) {
@@ -78,6 +82,7 @@ public class PeriCoachTestApplication extends  com.activeandroid.app.Application
 		//forceSync();
 	    assetManager = getAssets();
 	    dir=getFilesDir();
+		addDevicesSyncAccount();
 
 	}
 
@@ -212,6 +217,18 @@ public class PeriCoachTestApplication extends  com.activeandroid.app.Application
 	    while((read = in.read(buffer)) != -1){
 	      out.write(buffer, 0, read);
 	    }
+	}
+
+
+	private void addDevicesSyncAccount() {
+		Account newAccount = new Account(getString(R.string.devices_sync_account)
+				,getResources().getString(R.string.devices_sync_account_type));
+		AccountManager accountManager =
+				(AccountManager) context.getSystemService(
+						Context.ACCOUNT_SERVICE);
+
+		if (accountManager.addAccountExplicitly(newAccount, null, null)) {} else {  }
+
 	}
 	
 }

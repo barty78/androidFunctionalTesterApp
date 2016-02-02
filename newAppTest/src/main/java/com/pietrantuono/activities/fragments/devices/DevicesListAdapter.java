@@ -1,14 +1,12 @@
-package com.pietrantuono.activities.fragments;
+package com.pietrantuono.activities.fragments.devices;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.pietrantuono.pericoach.newtestapp.R;
 
 import java.util.ArrayList;

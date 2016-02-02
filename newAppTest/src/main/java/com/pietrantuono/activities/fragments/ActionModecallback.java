@@ -72,7 +72,7 @@ public class ActionModecallback implements ActionMode.Callback {
     }
 
 
-    interface Callback {
+    public interface Callback {
 
         void sortByResult();
 
