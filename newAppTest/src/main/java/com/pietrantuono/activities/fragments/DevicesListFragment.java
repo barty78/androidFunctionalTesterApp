@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.activeandroid.Model;
 import com.activeandroid.query.Select;
 import com.kennyc.view.MultiStateView;
 import com.pietrantuono.application.PeriCoachTestApplication;
@@ -120,7 +121,9 @@ public class DevicesListFragment extends Fragment {
     private void downloadDevicesList() {
         if(swiper!=null)swiper.setRefreshing(true);
         //state.setViewState(MultiStateView.VIEW_STATE_LOADING);
-        RetrofitRestServices.getRest(getActivity()).getLastDevices(PeriCoachTestApplication.getDeviceid(), PeriCoachTestApplication.getLastId(), new Callback<DevicesList>() {
+        long max = ServiceDBHelper.getMaxDeviceID();
+        List<Model> foo = ServiceDBHelper.foo();
+        RetrofitRestServices.getRest(getActivity()).getLastDevices(PeriCoachTestApplication.getDeviceid(), ""+ServiceDBHelper.getMaxDeviceID(), new Callback<DevicesList>() {
             @Override
             public void success(DevicesList arg0, Response arg1) {
                 if (swiper != null) swiper.setRefreshing(false);

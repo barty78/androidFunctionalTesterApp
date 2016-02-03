@@ -40,7 +40,6 @@ public class PeriCoachTestApplication extends  com.activeandroid.app.Application
 	private static float minBatteryVoltage;
 	private static File dir;
 	private static AssetManager assetManager;
-	private static final String LAST_ID="last_id";
 	private static Sequence sequence;
 
 	private static boolean isretestallowed;
@@ -198,13 +197,6 @@ public class PeriCoachTestApplication extends  com.activeandroid.app.Application
 		return android_id;//TODO put back adnroid_id
 	}
 	
-	
-	
-	
-	public static String getLastId(){
-		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-		return preferences.getString(LAST_ID, "");
-	}
 
 	private static void copyFile(InputStream in, OutputStream out) throws IOException {
 	    byte[] buffer = new byte[1024];
