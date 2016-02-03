@@ -85,7 +85,7 @@ public class DevicesListFragment extends Fragment implements ActionModecallback.
         swiper.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                foreceSync();
+                forceSync();
             }
         });
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
@@ -98,6 +98,7 @@ public class DevicesListFragment extends Fragment implements ActionModecallback.
     }
 
     private void populateList() {
+        swiper.setRefreshing(false);
         Boolean thisJobOnly = true;    //TODO - Make this a configurable option in the UI/App
         Job job = PeriCoachTestApplication.getCurrentJob();
         List<Device> temp = new Select().from(Device.class).execute();
@@ -127,25 +128,25 @@ public class DevicesListFragment extends Fragment implements ActionModecallback.
         recyclerView.setAdapter(adapter);
     }
 
-    private void foreceSync(){
-        registerRecieiver();
+    private void forceSync() {
         swiper.setRefreshing(true);
+        IntentFilter filter = new IntentFilter(getString(R.string.devices_sync_finished));
+        getActivity().registerReceiver(new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                if (intent.getAction().equalsIgnoreCase(getString(R.string.devices_sync_finished))) {
+                    populateList();
+                    getActivity().unregisterReceiver(this);
+                }
+
+            }
+        }, filter);
         Bundle settingsBundle = new Bundle();
         settingsBundle.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);
         settingsBundle.putBoolean(ContentResolver.SYNC_EXTRAS_EXPEDITED, true);
         ContentResolver.requestSync(createAccount(), getResources().getString(R.string.devices_sync_provider_authority), settingsBundle);
     }
 
-    private void registerRecieiver() {
-        IntentFilter filter = new IntentFilter(getString(R.string.devices_sync_started));
-
-        getActivity().registerReceiver(new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                int i=0;
-            }
-        }, filter);
-    }
 
     private Account createAccount() {
         Account newAccount = new Account(
@@ -161,7 +162,7 @@ public class DevicesListFragment extends Fragment implements ActionModecallback.
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         if (isVisibleToUser) {
-            foreceSync();
+            forceSync();
             callback = new ActionModecallback(getActivity(), DevicesListFragment.this);
             mActionMode = ((AppCompatActivity) getActivity()).startSupportActionMode(callback);
         } else {
@@ -179,7 +180,6 @@ public class DevicesListFragment extends Fragment implements ActionModecallback.
     public void sortByBarcode() {
         adapter.sortByBarcode();
     }
-
 
 
 }
