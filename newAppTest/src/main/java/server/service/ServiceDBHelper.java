@@ -127,7 +127,8 @@ public class ServiceDBHelper {
 
 	public static long getMaxDeviceID(){
 		Device max = new Select().from(Device.class).orderBy("deviceId DESC").executeSingle();
-		return max.getDeviceId();
+		if(max!=null)return max.getDeviceId();
+		else return 0;
 	}
 	public static List<Model> foo(){
 		return new Select().from(Device.class).orderBy("deviceId DESC").execute();
