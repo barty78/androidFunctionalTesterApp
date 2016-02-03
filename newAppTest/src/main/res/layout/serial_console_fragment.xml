@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
 
-    tools:context="com.pietrantuono.activities.fragments.SerialConsoleFragment">
+    tools:context="com.pietrantuono.fragments.SerialConsoleFragment">
 
     <ScrollView
         android:id="@+id/scroll"

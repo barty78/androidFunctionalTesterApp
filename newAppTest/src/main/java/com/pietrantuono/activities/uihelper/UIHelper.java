@@ -2,8 +2,8 @@ package com.pietrantuono.activities.uihelper;
 
 import java.util.ArrayList;
 
-import com.pietrantuono.activities.fragments.PagerAdapter;
-import com.pietrantuono.activities.fragments.sequence.NewSequenceFragment;
+import com.pietrantuono.fragments.PagerAdapter;
+import com.pietrantuono.fragments.sequence.NewSequenceFragment;
 import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.constants.NewMResult;
 import com.pietrantuono.constants.NewMSensorResult;
@@ -15,9 +15,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
-import android.content.res.Resources;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -35,11 +33,8 @@ import android.widget.Chronometer;
 import android.widget.Chronometer.OnChronometerTickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import hugo.weaving.DebugLog;
 import server.pojos.Test;
 
 public class UIHelper {

@@ -166,6 +166,8 @@
     <string name="devices_sync_account">devices_sync_account</string>
     <string name="devices_sync_started">devices_sync_started</string>
     <string name="devices_sync_finished">devices_sync_finished</string>
+    <string name="PERMISSION">com.pietrantuono.devices.permssion</string>
+    <string name="perm_label">Permission for listening to syncadapetr</string>
 
 
 </resources>

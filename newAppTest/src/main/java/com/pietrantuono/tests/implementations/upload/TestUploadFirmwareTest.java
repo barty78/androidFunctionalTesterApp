@@ -5,12 +5,11 @@ import android.app.AlertDialog;
 import android.os.AsyncTask;
 import android.os.Handler;
 
-import com.pietrantuono.activities.fragments.sequence.holders.UploadItemHolder;
+import com.pietrantuono.fragments.sequence.holders.UploadItemHolder;
 import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.tests.superclass.Test;
 import com.pietrantuono.uploadfirmware.DummyFirmWareUploader;
 
-import java.io.InputStream;
 import java.io.OutputStream;
 
 import ioio.lib.api.IOIO;

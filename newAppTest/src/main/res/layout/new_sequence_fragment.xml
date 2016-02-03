@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context="com.pietrantuono.activities.fragments.sequence.NewSequenceFragment">
+    tools:context="com.pietrantuono.fragments.sequence.NewSequenceFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"

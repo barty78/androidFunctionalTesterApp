@@ -1,6 +1,6 @@
 package com.pietrantuono.tests.implementations.upload;
 
-import com.pietrantuono.activities.fragments.sequence.holders.UploadItemHolder;
+import com.pietrantuono.fragments.sequence.holders.UploadItemHolder;
 
 /**
  * Created by Maurizio Pietrantuono, maurizio.pietrantuono@gmail.com.

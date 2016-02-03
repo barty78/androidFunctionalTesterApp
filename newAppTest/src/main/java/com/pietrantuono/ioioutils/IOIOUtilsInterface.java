@@ -4,7 +4,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import com.pietrantuono.activities.NewIOIOActivityListener;
-import com.pietrantuono.activities.fragments.SerialConsoleFragmentCallback;
 
 import android.app.Activity;
 

@@ -1,6 +1,5 @@
 package com.pietrantuono.uploadfirmware;
 
-import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -11,28 +10,19 @@ import java.nio.ByteBuffer;
 import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
 
 import android.app.Activity;
-import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
-import android.os.Handler;
 import android.util.Log;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parser.BinaryParser;
 import com.pietrantuono.activities.NewIOIOActivityListener;
-import com.pietrantuono.activities.fragments.sequence.holders.UploadItemHolder;
+import com.pietrantuono.fragments.sequence.holders.UploadItemHolder;
 import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.ioioutils.IOIOUtils;
-import com.pietrantuono.pericoach.newtestapp.R;
 
 import ioio.lib.api.IOIO;
 

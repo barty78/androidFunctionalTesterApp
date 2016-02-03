@@ -1,12 +1,11 @@
 package com.pietrantuono.tests.implementations.upload;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
-import com.pietrantuono.activities.fragments.sequence.holders.UploadItemHolder;
+import com.pietrantuono.fragments.sequence.holders.UploadItemHolder;
 import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.ioioutils.IOIOUtils;
 import com.pietrantuono.tests.superclass.Test;

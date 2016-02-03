@@ -4,6 +4,11 @@
     android:versionCode="9"
     android:versionName="1.9" >
 
+    <permission
+        android:name="com.pietrantuono.devices.permssion"
+        android:protectionLevel="dangerous"
+        android:label="@string/perm_label"
+        android:description="@string/perm_label" />
     <uses-sdk
         android:minSdkVersion="16"
         android:targetSdkVersion="21" />
@@ -20,6 +25,7 @@
     <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
     <uses-permission android:name="android.permission.READ_SYNC_STATS" />
+    <uses-permission android:name="com.pietrantuono.devices.permssion" />
 
     <application
         android:theme="@style/Theme.MyTheme"
@@ -70,7 +76,7 @@
 
 
         <service
-            android:name="com.pietrantuono.pericoach.newtestapp.syncadapter.MyAuthenticatorService"
+            android:name="com.pietrantuono.recordsyncadapeter.MyAuthenticatorService"
             android:exported="false" >
             <intent-filter>
                 <action android:name="android.accounts.AccountAuthenticator" />
@@ -82,13 +88,13 @@
         </service>
 
         <provider
-            android:name="com.pietrantuono.pericoach.newtestapp.syncadapter.MyStubProvider"
+            android:name="com.pietrantuono.recordsyncadapeter.MyStubProvider"
             android:authorities="com.example.android.datasync.provider"
             android:exported="false"
             android:syncable="true" />
 
         <service
-            android:name="com.pietrantuono.pericoach.newtestapp.syncadapter.MySyncService"
+            android:name="com.pietrantuono.recordsyncadapeter.MySyncService"
             android:exported="true"
             android:process=":sync"
             >
@@ -103,7 +109,7 @@
 
 
         <service
-            android:name="com.pietrantuono.devicessync.DevicesAuthenticatorService">
+            android:name="com.pietrantuono.devicesyncadpater.DevicesAuthenticatorService">
             <intent-filter>
                 <action android:name="android.accounts.AccountAuthenticator"/>
             </intent-filter>
@@ -114,14 +120,14 @@
 
 
         <provider
-            android:name="com.pietrantuono.devicessync.DevicesStubProvider"
+            android:name="com.pietrantuono.devicesyncadpater.DevicesStubProvider"
             android:authorities="@string/devices_sync_provider_authority"
             android:exported="false"
             android:syncable="true"/>
 
 
         <service
-            android:name="com.pietrantuono.devicessync.DevicesSyncService"
+            android:name="com.pietrantuono.devicesyncadpater.DevicesSyncService"
             android:exported="true"
             android:process=":sync">
             <intent-filter>
@@ -137,7 +143,7 @@
             android:exported="false" >
         </service>
         <service
-            android:name="com.pietrantuono.pericoach.newtestapp.syncadapter.StartSyncAdapterService"
+            android:name="com.pietrantuono.recordsyncadapeter.StartSyncAdapterService"
             android:exported="false"/>
         <meta-data
             android:name="com.crashlytics.ApiKey"

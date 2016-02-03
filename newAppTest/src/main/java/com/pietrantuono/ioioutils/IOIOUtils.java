@@ -16,27 +16,14 @@ import java.io.OutputStream;
 import java.util.Arrays;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
-import android.graphics.Color;
-import android.os.PowerManager;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
-import com.pietrantuono.activities.MyOnCancelListener;
 import com.pietrantuono.activities.NewIOIOActivityListener;
-import com.pietrantuono.activities.fragments.SerialConsoleFragment;
-import com.pietrantuono.activities.fragments.SerialConsoleFragmentCallback;
-import com.pietrantuono.activities.uihelper.UIHelper;
+import com.pietrantuono.fragments.SerialConsoleFragmentCallback;
 import com.pietrantuono.application.PeriCoachTestApplication;
 
 public class IOIOUtils implements IOIOUtilsInterface {

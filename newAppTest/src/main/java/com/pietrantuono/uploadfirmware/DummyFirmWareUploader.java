@@ -7,7 +7,7 @@ import android.widget.Toast;
 
 import com.parser.BinaryParser;
 import com.pietrantuono.activities.NewIOIOActivityListener;
-import com.pietrantuono.activities.fragments.sequence.holders.UploadItemHolder;
+import com.pietrantuono.fragments.sequence.holders.UploadItemHolder;
 import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.ioioutils.IOIOUtils;
 
