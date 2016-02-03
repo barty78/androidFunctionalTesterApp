@@ -182,33 +182,8 @@ public class SensorsTestHelper implements OnSampleCallback {
 	 * Should work, tested in another context, will not work if both sendAllVoltages and callback are executed on the same thread
 	 * but that should not be the case
 	 */
-	public void sendAllVoltages(final short[] refVoltages, final short[] zeroVoltages, int timeOutInMills){
-		final CountDownLatch countDownLatch = new CountDownLatch(1);
-		try {
-			((NewIOIOActivityListener) (activityref.get())).getBtutility().sendAllVoltages(refVoltages, zeroVoltages, new AllSensorsCallback() {
-                @Override
-                public void onAllVoltageResponseReceived() {
-					countDownLatch.countDown();
-
-                }
-
-                @Override
-                public void onError() {
-					countDownLatch.countDown();
-                }
-			});
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		try {
-			countDownLatch.await(timeOutInMills, TimeUnit.MICROSECONDS);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-			return;
-		}
-		return;
-
+	public void sendAllVoltages(final short[] refVoltages, final short[] zeroVoltages, int timeOutInMills) {
+		((NewIOIOActivityListener) (activityref.get())).getBtutility().sendAllVoltages(refVoltages,zeroVoltages,timeOutInMills);
 	}
 
 

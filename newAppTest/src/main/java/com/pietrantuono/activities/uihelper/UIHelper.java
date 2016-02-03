@@ -242,53 +242,26 @@ public class UIHelper {
 
     public void setOverallFailOrPass(final Boolean show) {
         final ActivityUIHelperCallback callback = (ActivityUIHelperCallback) activity;
-        activity.runOnUiThread(new Runnable() {
-
-            @Override
-            public void run() {
-
-                RelativeLayout resultlayout = (RelativeLayout) activity.findViewById(R.id.result);
-                TextView resulttxt = (TextView) activity.findViewById(R.id.testResultIndText);
-                ProgressBar progress = (ProgressBar) activity.findViewById(R.id.testResultInd);
-
-                Resources res = activity.getResources();
-                Drawable background = null;
-
-                if (show) {
-                    Boolean temp = true;
-                    if (callback.getIterationNumber() >= 0)
-                        for (int i = 0; i <= sequence.getNumberOfSteps() - 1; i++) {
-                            if (!sequence.getSequence().get(i).isTest())continue;
-                            if(sequence.getSequence().get(i).isSensorTest()){
-                                ArrayList<NewMResult> currentResults = callback.getResults().get(callback.getIterationNumber());
-                                if(currentResults==null || currentResults.size()<=0){temp=false;continue;}
-                                NewMResult currentResult = currentResults.get(i);
-                                if(currentResult==null ){temp=false;continue;}
-                                if(!currentResult.isTestsuccessful())temp=false;
-                            }
-                            else {
-                                if(!sequence.getSequence().get(i).isSuccess())temp=false;
-                            }
-                        }
-
-                    final Boolean success = temp;
-                    resultlayout.setVisibility(View.VISIBLE);
-                    if (success) {
-                        resulttxt.setText("PASS");
-                        background = res.getDrawable(R.drawable.greenprogress);
-                        progress.setProgressDrawable(background);
-
-                    } else {
-                        resulttxt.setText("FAIL");
-                        background = res.getDrawable(R.drawable.redprogress);
-                        progress.setProgressDrawable(background);
-                    }
-                } else {
-                    resultlayout.setVisibility(View.GONE);
+        Boolean success = true;
+        if (callback.getIterationNumber() >= 0)
+            for (int i = 0; i <= sequence.getNumberOfSteps() - 1; i++) {
+                if (!sequence.getSequence().get(i).isTest())continue;
+                if(sequence.getSequence().get(i).isSensorTest()){
+                    ArrayList<NewMResult> currentResults = callback.getResults().get(callback.getIterationNumber());
+                    if(currentResults==null || currentResults.size()<=0){success=false;continue;}
+                    NewMResult currentResult = currentResults.get(i);
+                    if(currentResult==null ){success=false;continue;}
+                    if(!currentResult.isTestsuccessful())success=false;
                 }
-
+                else {
+                    if(!sequence.getSequence().get(i).isSuccess())success=false;
+                }
             }
-        });
+
+        if (sequenceFragment != null) {
+            if(show)sequenceFragment.setOverallFailOrPass(success);
+        }
+
     }
 
     public void setCurrentAndNextTaskinUI() {

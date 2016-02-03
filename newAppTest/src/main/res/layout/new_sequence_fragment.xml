@@ -6,10 +6,31 @@
 
     tools:context="com.pietrantuono.activities.fragments.sequence.NewSequenceFragment">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:visibility="gone"
+        android:background="@android:color/holo_red_light"
+        android:gravity="center"
+        android:id="@+id/success_failure_container"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/succes_conteiner_height">
+
+        <TextView
+            android:id="@+id/text"
+            android:textAppearance="?android:textAppearanceLarge"
+            android:textColor="@android:color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
     <android.support.v7.widget.RecyclerView
+        android:layout_below="@+id/success_failure_container"
         android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-
+    </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>
