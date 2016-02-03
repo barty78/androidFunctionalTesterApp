@@ -65,14 +65,13 @@ public class RetrofitRestServices {
             SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
             boolean use_default = sharedPref.getBoolean("use_default_url", false);
 
-            Log.d("REST", String.valueOf(BuildConfig.DEBUG));
             if (BuildConfig.DEBUG) {
 //                if (use_default) ENDPOINT = context.getResources().getString(R.string.default_url);
 //                else
 //                    ENDPOINT = sharedPref.getString("custom_url", "http://peritest.hopto.org/peridev/v1");
-                ENDPOINT = "http://peritest.hopto.org/peridev/v1";
+                ENDPOINT = context.getResources().getString(R.string.default_dev_url);
             } else {
-                if (use_default) ENDPOINT = context.getResources().getString(R.string.default_url);
+                if (use_default) ENDPOINT = context.getResources().getString(R.string.default_prod_url);
                 else
                     ENDPOINT = sharedPref.getString("custom_url", "http://peritest.hopto.org/periprod/v1");
             }

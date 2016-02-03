@@ -34,8 +34,6 @@ public class ServiceDBHelper {
 		finally {
 			ActiveAndroid.endTransaction();
 		}
-
-
 	}
 
 	private static void addNewDevices(List<Device> newDevices) {

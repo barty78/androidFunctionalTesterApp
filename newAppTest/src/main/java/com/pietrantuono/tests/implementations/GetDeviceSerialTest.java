@@ -76,7 +76,7 @@ public class GetDeviceSerialTest extends Test {
                                     Success();
 //                                    activityListener.addView("Serial (HW reading):", strFileContents, false);
                                     activityListener.setSerial(strFileContents);
-                                    activityListener.addFailOrPass(true, true, serial, description);
+                                    activityListener.addFailOrPass(true, true, serial, description, testToBeParsed);
                                     ServiceDBHelper.saveSerial(activityListener.getBarcode(), serial);
                                     return;
                                 } else {
@@ -84,7 +84,7 @@ public class GetDeviceSerialTest extends Test {
                                         Toast.makeText((Activity) activityListener, "Serial number already tested! Aborting test", Toast.LENGTH_LONG).show();
                                     } catch (Exception e) {
                                     }
-                                    activityListener.addFailOrPass(true, false, serial, description);
+                                    activityListener.addFailOrPass(true, false, serial, description, testToBeParsed);
 
                                     activityListener.onCurrentSequenceEnd();
                                     return;
@@ -93,7 +93,7 @@ public class GetDeviceSerialTest extends Test {
                                 Success();
 //                                activityListener.addView("Serial (HW reading):", strFileContents, false);
                                 activityListener.setSerial(strFileContents);
-                                activityListener.addFailOrPass(true, true, serial, description);
+                                activityListener.addFailOrPass(true, true, serial, description, testToBeParsed);
                                 return;
                             }
 
@@ -102,7 +102,7 @@ public class GetDeviceSerialTest extends Test {
                         if (retries > 2) {
                             setSuccess(false);
                             activityListener.addView("Serial (HW reading):", "ERROR", Color.RED, true);
-                            activityListener.addFailOrPass(true, false, "Retries Exceeded");
+                            activityListener.addFailOrPass(true, false, "Retries Exceeded", description, testToBeParsed);
 
                         } else {
                             retries++;
@@ -112,8 +112,8 @@ public class GetDeviceSerialTest extends Test {
                 } else {
                     if (retries > 2) {
                         setSuccess(false);
-                        activityListener.addView("Serial (HW reading):", "ERROR", Color.RED, true);
-                        activityListener.addFailOrPass(true, false, "No Comms");
+//                        activityListener.addView("Serial (HW reading):", "ERROR", Color.RED, true);
+                        activityListener.addFailOrPass(true, false, "No Comms", description, testToBeParsed);
 
                     } else {
                         retries++;

@@ -25,6 +25,7 @@ import com.pietrantuono.ioioutils.PCBConnectedCallback;
 import com.pietrantuono.ioioutils.PCBDetectHelper;
 import com.pietrantuono.ioioutils.PCBDetectHelper.PCBDetectHelperInterface;
 import com.pietrantuono.ioioutils.Voltage;
+import com.pietrantuono.pericoach.newtestapp.BuildConfig;
 import com.pietrantuono.pericoach.newtestapp.R;
 import com.pietrantuono.sensors.SensorTestCallback;
 import com.pietrantuono.tests.implementations.upload.UploadTestCallback;
@@ -87,6 +88,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (BuildConfig.DEBUG) setTitle(getResources().getString(R.string.app_name) + " - DEV BUILD");
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         if (!Fabric.isInitialized()) Fabric.with(this, new Crashlytics());
         detectHelper = PCBDetectHelper.getHelper();
@@ -149,7 +151,7 @@ public class MainActivity extends AppCompatActivity
                     }
                 }
 
-                Log.e(TAG, "goAndExecuteNextTest "+newSequence.getNextTest().getDescription());
+                Log.e(TAG, "goAndExecuteNextTest " + newSequence.getNextTest().getDescription());
                 newSequence.executeCurrentTest();
                 uiHelper.setCurrentAndNextTaskinUI();
             }
@@ -396,9 +398,11 @@ public class MainActivity extends AppCompatActivity
         newSequence.reset();
         IOIOUtils.getUtils().initialize(MainActivity.this, myIOIO, MainActivity.this);
         uiHelper.setCurrentAndNextTaskinUI();
-        uiHelper.addView("Max V: ", String.valueOf(PeriCoachTestApplication.getMaxBatteryVoltage()), false);
-        uiHelper.addView("Min V: ", String.valueOf(PeriCoachTestApplication.getMinBatteryVoltage()), false);
-        uiHelper.addView("Grad: ", String.valueOf(PeriCoachTestApplication.getGradient()), false);
+        if (BuildConfig.DEBUG) {
+            uiHelper.addView("Max V: ", String.valueOf(PeriCoachTestApplication.getMaxBatteryVoltage()), false);
+            uiHelper.addView("Min V: ", String.valueOf(PeriCoachTestApplication.getMinBatteryVoltage()), false);
+            uiHelper.addView("Grad: ", String.valueOf(PeriCoachTestApplication.getGradient()), false);
+        }
         detectHelper.setPCBDetectCallback(MainActivity.this);
         //TODO - Only do dropped connection testing for open test.
         if (job.getTesttypeId() == 1) {

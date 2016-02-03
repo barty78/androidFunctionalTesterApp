@@ -119,7 +119,8 @@
     <string name="menuitem_new_open_test">New Open Test</string>
     <string name="menuitem_experimental_closed_test">Experimental Closed Test</string>
     <string name="menuitem_integrated_oper_test_test">Integrated Open Test</string>
-    <string name="default_url">http://peritest.hopto.org/periprod/v1</string>
+    <string name="default_prod_url">http://peritest.hopto.org/periprod/v1</string>
+    <string name="default_dev_url">http://peritest.hopto.org/peridev/v1</string>
 
     <string name="reverse_orientation">reverse_orientation</string>
     <string name="unprocessed">unporcessed</string>

@@ -5,6 +5,7 @@ import com.activeandroid.query.Select;
 import com.crashlytics.android.Crashlytics;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.pietrantuono.pericoach.newtestapp.BuildConfig;
 import com.pietrantuono.pericoach.newtestapp.R;
 import com.pietrantuono.pericoach.newtestapp.syncadapter.StartSyncAdapterService;
 
@@ -61,9 +62,17 @@ public class SettingsActivity  extends PreferenceActivity {
         addPreferencesFromResource(R.xml.settingsscreen);
         SharedPreferences sp = getPreferenceScreen().getSharedPreferences();
         SwitchPreference switsh = (SwitchPreference) findPreference("use_default_url");
-        switsh.setSummary(getResources().getString(R.string.default_url));
+        if (BuildConfig.DEBUG) {
+            switsh.setSummary(getResources().getString(R.string.default_dev_url));
+        } else {
+            switsh.setSummary(getResources().getString(R.string.default_prod_url));
+        }
         EditTextPreference editTextPreference=(EditTextPreference) findPreference("custom_url");
-        editTextPreference.setSummary(sp.getString("custom_url", getResources().getString(R.string.default_url)));
+        if (BuildConfig.DEBUG) {
+            editTextPreference.setSummary(sp.getString("custom_url", getResources().getString(R.string.default_dev_url)));
+        } else {
+            editTextPreference.setSummary(sp.getString("custom_url", getResources().getString(R.string.default_prod_url)));
+        }
         final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(SettingsActivity.this);
         sharedPref.registerOnSharedPreferenceChangeListener(new OnSharedPreferenceChangeListener() {
             @Override
