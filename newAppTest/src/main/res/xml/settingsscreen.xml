@@ -66,7 +66,7 @@
         android:title="Use default url" />
 	<EditTextPreference
 	    android:dependency="use_default_url"
-	    android:defaultValue="@string/default_url"
+	    android:defaultValue="@string/default_prod_url"
 	    android:key="custom_url" 
         android:summary="Custom url" 
         android:title="Custom url" />

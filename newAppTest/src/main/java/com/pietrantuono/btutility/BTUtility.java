@@ -6,6 +6,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.AbstractExecutorService;
 import java.util.concurrent.Callable;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -19,6 +20,7 @@ import com.pietrantuono.ioioutils.IOIOUtils;
 import com.pietrantuono.pericoach.newtestapp.BuildConfig;
 import com.pietrantuono.pericoach.newtestapp.R;
 import com.pietrantuono.pericoachengineering.util.Utils;
+import com.pietrantuono.sensors.AllSensorsCallback;
 import com.pietrantuono.sensors.NewDevice;
 import com.pietrantuono.sensors.NewPFMATDevice;
 import com.pietrantuono.tests.implementations.BatteryLevelUUTVoltageTest;
@@ -480,6 +482,37 @@ public class BTUtility {
 		}
 	}
 
+
+	public void sendAllVoltages(final short[] refVoltages, final short[] zeroVoltages, int timeOutInMills)  {
+		final CountDownLatch countDownLatch = new CountDownLatch(1);
+		try {
+			NewPFMATDevice.getDevice().sendAllVoltages(refVoltages, zeroVoltages, new AllSensorsCallback() {
+				@Override
+				public void onAllVoltageResponseReceived() {
+					countDownLatch.countDown();
+
+				}
+
+				@Override
+				public void onError() {
+					countDownLatch.countDown();
+				}
+			});
+		} catch (Exception e) {
+			e.printStackTrace();
+			countDownLatch.countDown();
+			return;
+		}
+		try {
+			countDownLatch.await(timeOutInMills, TimeUnit.MICROSECONDS);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+			return;
+		}
+		return;
+
+
+	}
 
 	private boolean getAckOrTimeout(int timeout, final String msg, final int curPos){
 		Callable<Integer> integerCallable = new Callable<Integer>() {

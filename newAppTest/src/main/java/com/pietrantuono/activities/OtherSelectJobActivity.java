@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Locale;
 
 import com.pietrantuono.application.PeriCoachTestApplication;
+import com.pietrantuono.pericoach.newtestapp.BuildConfig;
 import com.pietrantuono.pericoach.newtestapp.R;
 
 import android.app.AlertDialog;
@@ -55,6 +56,7 @@ public class OtherSelectJobActivity extends AppCompatActivity implements MyCallb
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		if (BuildConfig.DEBUG) setTitle(getResources().getString(R.string.app_name) + " - DEV BUILD");
 		Fabric.with(this, new Crashlytics());
 		Intent intent = new Intent("com.pietrantuono.uplaod");
 		sendBroadcast(intent);

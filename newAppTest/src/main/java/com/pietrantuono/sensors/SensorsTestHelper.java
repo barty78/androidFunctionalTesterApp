@@ -5,6 +5,9 @@ import hydrix.pfmat.generic.SessionSamples;
 import ioio.lib.api.IOIO;
 import java.lang.ref.WeakReference;
 import java.text.SimpleDateFormat;
+import java.util.concurrent.Callable;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 import android.app.Activity;
 import android.os.Handler;
@@ -89,9 +92,9 @@ public class SensorsTestHelper implements OnSampleCallback {
 		activity.runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-				if(samplingSensor0)sensor0tv.setText(Short.toString(sensor0));
-				if(samplingSensor1)sensor1tv.setText(Short.toString(sensor1));
-				if(samplingSensor2)sensor2tv.setText(Short.toString(sensor2));
+				if (samplingSensor0) sensor0tv.setText(Short.toString(sensor0));
+				if (samplingSensor1) sensor1tv.setText(Short.toString(sensor1));
+				if (samplingSensor2) sensor2tv.setText(Short.toString(sensor2));
 			}
 		});
 	}
@@ -174,5 +177,14 @@ public class SensorsTestHelper implements OnSampleCallback {
 	public void accetpData(boolean accept){
 		this.acceptdata=accept;
 	}
+
+	/**
+	 * Should work, tested in another context, will not work if both sendAllVoltages and callback are executed on the same thread
+	 * but that should not be the case
+	 */
+	public void sendAllVoltages(final short[] refVoltages, final short[] zeroVoltages, int timeOutInMills) {
+		((NewIOIOActivityListener) (activityref.get())).getBtutility().sendAllVoltages(refVoltages,zeroVoltages,timeOutInMills);
+	}
+
 
 }
