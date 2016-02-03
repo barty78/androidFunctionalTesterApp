@@ -25,9 +25,16 @@ repositories {
 }
 
 android {
+    signingConfigs {
+        Release {
+            keyAlias 'newtestappkey'
+            keyPassword 'barty78'
+            storeFile file('c:/Users/Peter/StudioProjects/KeyStore/android.jks')
+            storePassword 'barty78'
+        }
+    }
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
-
     defaultConfig {
         applicationId "com.pietrantuono.pericoach.newtestapp"
         minSdkVersion 16
@@ -40,12 +47,16 @@ android {
         testApplicationId "com.pietrantuono.pericoach.newtestapp.test"
         testInstrumentationRunner "android.test.InstrumentationTestRunner"
     }
-
     productFlavors {
-        peter {}
+        peter {
+            signingConfig signingConfigs.Release
+            targetSdkVersion 21
+            testApplicationId 'com.pietrantuono.pericoach.newtestapp.test'
+            minSdkVersion 16
+            applicationId 'com.pietrantuono.pericoach.newtestapp'
+        }
         maurizio {}
     }
-
     buildTypes {
         release {
             minifyEnabled false
@@ -64,7 +75,6 @@ android {
         exclude 'META-INF/dependencies.txt'
         exclude 'META-INF/LGPL2.1'
     }
-
 }
 
 dependencies {
