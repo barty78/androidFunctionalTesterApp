@@ -8,9 +8,8 @@
 # For customization when using a Version Control System, please read the
 # header note.
 <<<<<<< HEAD
-#Thu Jan 21 06:59:03 CET 2016
-sdk.dir=/Users/mauriziopietrantuono/Library/Android/sdk
+#Tue Feb 02 05:51:04 CET 2016
 =======
-#Sun Jan 24 12:18:43 EST 2016
-sdk.dir=F\:\\Android\\android-sdk
->>>>>>> develop
+#Wed Feb 03 08:46:24 CET 2016
+>>>>>>> new_packet
+sdk.dir=/Users/mauriziopietrantuono/Library/Android/sdk

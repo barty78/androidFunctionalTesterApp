@@ -1,5 +1,6 @@
 package server.service;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -22,7 +23,19 @@ public class ServiceDBHelper {
 		HashSet<Device> devicesToBeSaved= new HashSet<Device>();
 		for (Device device:updatedDevices) {
 			Device existingdevice = weHaveItAlready(device.getBarcode());
-			if(existingdevice!=null) devicesToBeSaved.add(existingdevice);
+			if(existingdevice!=null) {
+				existingdevice.setBarcode(device.getBarcode() != null ? device.getBarcode() : "");
+				existingdevice.setBt_addr(device.getBt_addr() != null ? device.getBt_addr() : "");
+				existingdevice.setDeviceId(device.getDeviceId());
+				existingdevice.setExec_Tests(device.getExec_Tests());
+				existingdevice.setFwver(device.getFwver() != null ? device.getFwver() : "");
+				existingdevice.setJobId(device.getJobId());
+				existingdevice.setModel(device.getModel() != null ? device.getModel() : "");
+				existingdevice.setSerial(device.getSerial() != null ? device.getSerial() : "");
+				existingdevice.setStatus(device.getStatus());
+				devicesToBeSaved.add(existingdevice);
+			}
+			else devicesToBeSaved.add(device);
 		}
 		ActiveAndroid.beginTransaction();
 		try {
@@ -34,8 +47,6 @@ public class ServiceDBHelper {
 		finally {
 			ActiveAndroid.endTransaction();
 		}
-
-
 	}
 
 	private static void addNewDevices(List<Device> newDevices) {
@@ -112,5 +123,14 @@ public class ServiceDBHelper {
 		args[0]=barcode;
 		args[1]=mac;
 		return new Select().from(Device.class).where("Barcode = ? AND bt_addr = ?", args).execute().size()>0;
+	}
+
+	public static long getMaxDeviceID(){
+		Device max = new Select().from(Device.class).orderBy("deviceId DESC").executeSingle();
+		return max.getDeviceId();
+	}
+	public static List<Model> foo(){
+		return new Select().from(Device.class).orderBy("deviceId DESC").execute();
+
 	}
 }

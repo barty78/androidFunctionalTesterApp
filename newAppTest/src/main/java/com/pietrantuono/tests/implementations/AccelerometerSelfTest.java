@@ -4,6 +4,7 @@ import java.util.concurrent.Executors;
 
 
 import com.pietrantuono.ioioutils.IOIOUtils;
+import com.pietrantuono.pericoach.newtestapp.BuildConfig;
 import com.pietrantuono.tests.superclass.Test;
 
 import android.app.Activity;
@@ -46,8 +47,10 @@ public class AccelerometerSelfTest extends Test {
 		activity.runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-				Toast.makeText(activity, "Accelerometer Self-Test Failed, " + String.valueOf(3 - retries) + " Attempts Remaining",
-						Toast.LENGTH_SHORT).show();
+				if (BuildConfig.DEBUG) {
+					Toast.makeText(activity, "Accelerometer Self-Test Failed, " + String.valueOf(3 - retries) + " Attempts Remaining",
+							Toast.LENGTH_SHORT).show();
+				}
 				retries++;
 				try {
 					Thread.sleep(300);

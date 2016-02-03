@@ -25,9 +25,18 @@ repositories {
 }
 
 android {
+    /*
+    signingConfigs {
+        Release {
+            keyAlias 'newtestappkey'
+            keyPassword 'barty78'
+            storeFile file('c:/Users/Peter/StudioProjects/KeyStore/android.jks')
+            storePassword 'barty78'
+        }
+    }
+    */
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
-
     defaultConfig {
         applicationId "com.pietrantuono.pericoach.newtestapp"
         minSdkVersion 16
@@ -40,12 +49,16 @@ android {
         testApplicationId "com.pietrantuono.pericoach.newtestapp.test"
         testInstrumentationRunner "android.test.InstrumentationTestRunner"
     }
-
     productFlavors {
-        peter {}
+        peter {
+          //  signingConfig signingConfigs.Release
+            targetSdkVersion 21
+            testApplicationId 'com.pietrantuono.pericoach.newtestapp.test'
+            minSdkVersion 16
+            applicationId 'com.pietrantuono.pericoach.newtestapp'
+        }
         maurizio {}
     }
-
     buildTypes {
         release {
             minifyEnabled false
@@ -64,7 +77,6 @@ android {
         exclude 'META-INF/dependencies.txt'
         exclude 'META-INF/LGPL2.1'
     }
-
 }
 
 dependencies {
@@ -82,7 +94,6 @@ dependencies {
     compile 'com.github.ytai.ioio:IOIOLibAndroidBluetooth:5.05'
     compile 'com.github.ytai.ioio:IOIOLibAndroidAccessory:5.05'
     compile 'com.github.ytai.ioio:IOIOLibAndroidDevice:5.05'
-    compile 'com.pietrantuono.pfmat:pfmat:0.0.1'
     compile 'joda-time:joda-time:2.9.1'
     compile 'com.android.support:design:23.1.1'
     compile 'com.android.support:support-annotations:23.1.1'
@@ -94,6 +105,7 @@ dependencies {
     compile 'com.github.lzyzsd:circleprogress:1.1.0@aar'
     compile 'com.kennyc:multistateview:1.1'
     compile 'me.zhanghai.android.materialprogressbar:library:1.1.4'
+    compile project(':pfmat')
 }
 
 
