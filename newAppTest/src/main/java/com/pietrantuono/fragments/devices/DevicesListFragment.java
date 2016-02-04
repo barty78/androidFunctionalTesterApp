@@ -43,7 +43,6 @@ public class DevicesListFragment extends Fragment implements ActionModecallback.
     private ActionMode mActionMode;
     private ActionModecallback callback;
     private DevicesListAdapter adapter;
-    private Object syncStatusChangeListener;
 
     public DevicesListFragment() {
     }

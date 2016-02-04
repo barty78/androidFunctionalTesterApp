@@ -68,7 +68,7 @@ public class MySyncAdapter extends AbstractThreadedSyncAdapter {
 		myuploader.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 		Log.d(TAG, "onPerformSync");
 
-		RetrofitRestServices.getRest(context).getLastDevices(PeriCoachTestApplication.getDeviceid(), ""+ServiceDBHelper.getMaxDeviceID(), new Callback<DevicesList>() {
+		RetrofitRestServices.getRest(context).getLastDevicesAsync(PeriCoachTestApplication.getDeviceid(), "" + ServiceDBHelper.getMaxDeviceID(), new Callback<DevicesList>() {
 			@Override
 			public void success(DevicesList arg0, retrofit.client.Response arg1) {
 				if (arg0 != null) ServiceDBHelper.addDevices(arg0);

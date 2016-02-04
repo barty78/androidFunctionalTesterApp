@@ -37,7 +37,7 @@ public class Contract {
      */
     public static class DevicesColumns implements BaseColumns {
 
-        public static final String DEVICES_TABLE_NAME = "devices";
+        public static final String DEVICES_TABLE_NAME = "devices_table";
         public static final String DEVICES_DEVICES_ID = "device_id";
         public static final String DEVICES_JOB_ID = "job_id";
         public static final String DEVICES_BARCODE = "barcode";
@@ -45,11 +45,12 @@ public class Contract {
         public static final String DEVICES_MODEL = "model";
         public static final String DEVICES_FWVER = "fwver";
         public static final String DEVICES_ADDRESS = "address";
-        public static final String DEVICES_PASSED = "passed";
+        public static final String DEVICES_EXEC_TESTS = "executed_tests";
+        public static final String DEVICES_STATUS    = "status";
 
         public static final String TEXT_TYPE = " TEXT";
         public static final String COMMA_SEP = ",";
-        public static final String INTEGER_TYPE = "INTEGER";
+        public static final String INTEGER_TYPE = " INTEGER";
 
         static final String CREATE_DEVICES_TABLE = "CREATE TABLE " + DevicesColumns.DEVICES_TABLE_NAME +
                 " (" +
@@ -61,11 +62,11 @@ public class Contract {
                 DevicesColumns.DEVICES_MODEL + TEXT_TYPE + COMMA_SEP +
                 DevicesColumns.DEVICES_FWVER + TEXT_TYPE + COMMA_SEP +
                 DevicesColumns.DEVICES_ADDRESS + TEXT_TYPE + COMMA_SEP +
-                DevicesColumns.DEVICES_SERIAL + TEXT_TYPE + COMMA_SEP +
-                DevicesColumns.DEVICES_PASSED + INTEGER_TYPE +
+                DevicesColumns.DEVICES_EXEC_TESTS + INTEGER_TYPE + COMMA_SEP +
+                DevicesColumns.DEVICES_STATUS + INTEGER_TYPE +
                 " )";
     }
-    public static final String DEFAULT_SORT_ORDER = "DESC";
+    public static final String DEFAULT_SORT_ORDER = DevicesColumns.DEVICES_DEVICES_ID + " DESC";
 
 
 }

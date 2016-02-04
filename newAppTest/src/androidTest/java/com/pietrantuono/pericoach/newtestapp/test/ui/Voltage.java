@@ -62,7 +62,7 @@ public class Voltage extends ActivityInstrumentationTestCase2<MainActivity> {
 		//Thread.sleep(7*1000);
 		//REST rest =Mockito.mock(REST.class);
 		//ArgumentCaptor<Callback<List<Device>>> cb = new ArgumentCaptor<Callback<List<Device>>>();
-		//Mockito.verify(rest).getLastDevices(anyString(), anyString(), cb.capture());
+		//Mockito.verify(rest).getLastDevicesAsync(anyString(), anyString(), cb.capture());
 		//RetrofitRestServices.setRest(rest);
 		List<Device> list= new ArrayList<Device>();
 		list.add(new Device());

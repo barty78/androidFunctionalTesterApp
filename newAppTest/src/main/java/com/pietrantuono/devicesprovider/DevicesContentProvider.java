@@ -40,6 +40,7 @@ public class DevicesContentProvider extends ContentProvider {
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
         SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
+        qb.setTables(Contract.DevicesColumns.DEVICES_TABLE_NAME);
         SQLiteDatabase db;
 
         String orderBy;

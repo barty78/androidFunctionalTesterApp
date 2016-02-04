@@ -26,6 +26,8 @@
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
     <uses-permission android:name="android.permission.READ_SYNC_STATS" />
     <uses-permission android:name="com.pietrantuono.devices.permssion" />
+    <uses-permission android:name="com.pietrantuono.devicesprovider.permission.READ_WRITE_PROVIDER" />
+
 
     <application
         android:theme="@style/Theme.MyTheme"
@@ -119,38 +121,34 @@
         </service>
 
 
-        <provider
-            android:name="com.pietrantuono.devicesyncadpater.DevicesStubProvider"
-            android:authorities="@string/devices_sync_provider_authority"
-            android:exported="false"
-            android:syncable="true"/>
-
 
         <service
             android:name="com.pietrantuono.devicesyncadpater.DevicesSyncService"
             android:exported="true"
-            android:process=":sync">
+            >
             <intent-filter>
                 <action android:name="android.content.SyncAdapter"/>
             </intent-filter>
             <meta-data android:name="android.content.SyncAdapter"
                 android:resource="@xml/devices_syncadapter" />
         </service>
-
+        <!--android:process=":sync" TODO-->
 
         <provider android:name="com.pietrantuono.devicesprovider.DevicesContentProvider"
             android:authorities="com.analytica.devicesprovider"
-            android:permission="com.example.app.provider.permission.READ_PROVIDER"
+            android:permission="com.pietrantuono.devicesprovider.permission.READ_WRITE_PROVIDER"
+            android:exported="false"
+            android:syncable="true"
+            android:multiprocess="true"
             />
+        <!--android:process=":devicesprovider" TODO-->
 
 
-        <service
-            android:name="server.service.DownloadDevicesIntentService"
-            android:exported="false" >
-        </service>
+
         <service
             android:name="com.pietrantuono.recordsyncadapeter.StartSyncAdapterService"
             android:exported="false"/>
+
         <meta-data
             android:name="com.crashlytics.ApiKey"
             android:value="bf3ad85cb9b2ebad9587500ee764119e1d5f4fa1" />

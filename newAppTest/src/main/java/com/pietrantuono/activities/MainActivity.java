@@ -3,6 +3,7 @@ package com.pietrantuono.activities;
 import java.util.ArrayList;
 
 import com.crashlytics.android.Crashlytics;
+import com.crashlytics.android.core.CrashlyticsCore;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.pietrantuono.fragments.SerialConsoleFragmentCallback;
@@ -90,7 +91,8 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         if (BuildConfig.DEBUG) setTitle(getResources().getString(R.string.app_name) + " - DEV BUILD");
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        if (!Fabric.isInitialized()) Fabric.with(this, new Crashlytics());
+        if (!Fabric.isInitialized()) Fabric.with(this, new Crashlytics.Builder().core(new CrashlyticsCore.Builder().disabled(BuildConfig.DEBUG).build()).build());
+
         detectHelper = PCBDetectHelper.getHelper();
         setContentView(R.layout.activity_main);
         uiHelper = new UIHelper(MainActivity.this, newSequence);

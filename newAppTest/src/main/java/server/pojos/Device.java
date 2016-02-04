@@ -199,19 +199,19 @@ public class Device extends Model {
         this.bt_addr = bt_addr;
     }
 
-    public Long getExec_Tests() {
+    public long getExec_Tests() {
         return executed_tests;
     }
 
-    public void setExec_Tests(Long exec_tests) {
+    public void setExec_Tests(long exec_tests) {
         this.executed_tests = exec_tests;
     }
 
-    public Long getStatus() {
+    public long getStatus() {
         return status;
     }
 
-    public void setStatus(Long status) {
+    public void setStatus(long status) {
         this.status = status;
     }
 
