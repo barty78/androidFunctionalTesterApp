@@ -376,6 +376,7 @@ public class MainActivity extends AppCompatActivity
         sequenceStarted = false;
         if (isFinishing()) return;
         PeriCoachTestApplication.forceSync();
+        uiHelper.removeOverallFailOrPass();
         start();
     }
 

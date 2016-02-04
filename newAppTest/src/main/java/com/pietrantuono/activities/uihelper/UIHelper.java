@@ -409,7 +409,16 @@ public class UIHelper {
                 activityUIHelperCallback.clearSerialConsole();
             }
         });
+    }
 
+    public void removeOverallFailOrPass(){
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (sequenceFragment != null) sequenceFragment.removeOverallFailOrPass();
+
+            }
+        });
     }
 
     public void playSound(Activity activity) {

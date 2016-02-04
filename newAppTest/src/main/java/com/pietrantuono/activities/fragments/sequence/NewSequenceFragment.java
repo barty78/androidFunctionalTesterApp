@@ -116,9 +116,12 @@ public class NewSequenceFragment extends Fragment {
     }
 
     public void cleanUI() {
-        success_failure_container.setVisibility(View.GONE);
         adapter.clear();
         adapter.notifyDataSetChanged();
+    }
+
+    public void removeOverallFailOrPass(){
+        success_failure_container.setVisibility(View.GONE);
     }
 
     public void setSequence(NewSequenceInterface sequence) {

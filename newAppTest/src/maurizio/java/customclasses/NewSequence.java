@@ -439,9 +439,6 @@ public class NewSequence implements NewSequenceInterface {
         test.setValue(2);
         sequence.add(test);
 
-        DummySensorTestWrapper dummy = new DummySensorTestWrapper(false, activity, ioio, 0, 0, 0, 0, "Dummy sensor test");
-        dummy.shuouldFail(true);
-        sequence.add(dummy);
 
 
     }
