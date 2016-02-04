@@ -138,6 +138,12 @@
         </service>
 
 
+        <provider android:name="com.pietrantuono.devicesprovider.DevicesContentProvider"
+            android:authorities="com.analytica.devicesprovider"
+            android:permission="com.example.app.provider.permission.READ_PROVIDER"
+            />
+
+
         <service
             android:name="server.service.DownloadDevicesIntentService"
             android:exported="false" >

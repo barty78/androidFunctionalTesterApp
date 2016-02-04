@@ -1,10 +1,14 @@
 package analytica.pericoach.android;
 
+import android.net.Uri;
+import android.provider.BaseColumns;
+
 /**
  * Created by Maurizio Pietrantuono, maurizio.pietrantuono@gmail.com.
  */
 @SuppressWarnings("unused")
 public class Contract {
+
     static final String SEPARATOR = ",";
 
     /**
@@ -25,5 +29,43 @@ public class Contract {
     static final String JOBS_ACTIVE_COLUMN = "active";
     static final String JOBS_STAGE_DEP = "stage_dep";
     static final String JOBS_LAST_UPDATED = "LastUpdated";
+    ;
+
+
+    /**
+     * Devices Table
+     */
+    public static class DevicesColumns implements BaseColumns {
+
+        public static final String DEVICES_TABLE_NAME = "devices";
+        public static final String DEVICES_DEVICES_ID = "device_id";
+        public static final String DEVICES_JOB_ID = "job_id";
+        public static final String DEVICES_BARCODE = "barcode";
+        public static final String DEVICES_SERIAL = "serial";
+        public static final String DEVICES_MODEL = "model";
+        public static final String DEVICES_FWVER = "fwver";
+        public static final String DEVICES_ADDRESS = "address";
+        public static final String DEVICES_PASSED = "passed";
+
+        public static final String TEXT_TYPE = " TEXT";
+        public static final String COMMA_SEP = ",";
+        public static final String INTEGER_TYPE = "INTEGER";
+
+        static final String CREATE_DEVICES_TABLE = "CREATE TABLE " + DevicesColumns.DEVICES_TABLE_NAME +
+                " (" +
+                DevicesColumns._ID + " INTEGER PRIMARY KEY," +
+                DevicesColumns.DEVICES_DEVICES_ID + INTEGER_TYPE + COMMA_SEP +
+                DevicesColumns.DEVICES_JOB_ID + INTEGER_TYPE + COMMA_SEP +
+                DevicesColumns.DEVICES_BARCODE + TEXT_TYPE + COMMA_SEP +
+                DevicesColumns.DEVICES_SERIAL + TEXT_TYPE + COMMA_SEP +
+                DevicesColumns.DEVICES_MODEL + TEXT_TYPE + COMMA_SEP +
+                DevicesColumns.DEVICES_FWVER + TEXT_TYPE + COMMA_SEP +
+                DevicesColumns.DEVICES_ADDRESS + TEXT_TYPE + COMMA_SEP +
+                DevicesColumns.DEVICES_SERIAL + TEXT_TYPE + COMMA_SEP +
+                DevicesColumns.DEVICES_PASSED + INTEGER_TYPE +
+                " )";
+    }
+    public static final String DEFAULT_SORT_ORDER = "DESC";
+
 
 }
