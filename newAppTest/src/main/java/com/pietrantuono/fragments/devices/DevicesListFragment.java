@@ -8,8 +8,12 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ActionMode;
@@ -19,9 +23,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CursorAdapter;
 
 import com.activeandroid.query.Select;
 import com.kennyc.view.MultiStateView;
+import com.pietrantuono.devicesprovider.DevicesContentProvider;
 import com.pietrantuono.fragments.ActionModecallback;
 import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.pericoach.newtestapp.R;
@@ -31,10 +37,12 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import analytica.pericoach.android.Contract;
 import server.pojos.Device;
 import server.pojos.Job;
 
-public class DevicesListFragment extends Fragment implements ActionModecallback.Callback {
+public class DevicesListFragment extends Fragment implements ActionModecallback.Callback, LoaderManager.LoaderCallbacks<Cursor> {
+    private static final int LOADER = 1;
     private final String TAG = getClass().getSimpleName();
     private RecyclerView recyclerView;
     private Context context;
@@ -43,6 +51,9 @@ public class DevicesListFragment extends Fragment implements ActionModecallback.
     private ActionMode mActionMode;
     private ActionModecallback callback;
     private DevicesListAdapter adapter;
+    private MyRecyclerCursorAdapter mAdapter;
+    private Boolean thisJobOnly = true;    //TODO - Make this a configurable option in the UI/App
+    private boolean orderbyBarcode=true;
 
     public DevicesListFragment() {
     }
@@ -52,15 +63,12 @@ public class DevicesListFragment extends Fragment implements ActionModecallback.
         return fragment;
     }
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
         }
-
     }
-
 
     @Override
     public void onAttach(Context context) {
@@ -89,11 +97,10 @@ public class DevicesListFragment extends Fragment implements ActionModecallback.
         });
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         state.setViewState(MultiStateView.VIEW_STATE_LOADING);
-        populateList();
-
+        getLoaderManager().initLoader(LOADER, null, this);
+        mAdapter= new MyRecyclerCursorAdapter(getActivity(),null);
+        //populateList();
         return v;
-
-
     }
 
     private void populateList() {
@@ -134,7 +141,8 @@ public class DevicesListFragment extends Fragment implements ActionModecallback.
             @Override
             public void onReceive(Context context, Intent intent) {
                 if (intent.getAction().equalsIgnoreCase(getString(R.string.devices_sync_finished))) {
-                    populateList();
+                    //populateList();
+                    swiper.setRefreshing(false);
                     getActivity().unregisterReceiver(this);
                 }
 
@@ -172,13 +180,67 @@ public class DevicesListFragment extends Fragment implements ActionModecallback.
 
     @Override
     public void sortByResult() {
-        adapter.sortByResult();
+        orderbyBarcode=false;
     }
 
     @Override
     public void sortByBarcode() {
-        adapter.sortByBarcode();
+        orderbyBarcode=true;
     }
 
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        switch (id) {
+            case LOADER:
+                return new CursorLoader(
+                        getActivity(),
+                        DevicesContentProvider.CONTENT_URI,
+                        null,
+                        getSelection(),
+                        getSelectionArgs(),
+                        getSortOrder()
+                );
+            default:
+                return null;
+        }
+    }
+
+    private String getSortOrder() {
+        Job job = PeriCoachTestApplication.getCurrentJob();
+        String sortorder;
+        if(orderbyBarcode){
+            sortorder= Contract.DevicesColumns.DEVICES_BARCODE + " ASC";
+        }
+        else {
+            sortorder="(("+ Contract.DevicesColumns.DEVICES_STATUS+ " & "+job.getTesttypeId()+") = "+job.getTesttypeId()+")";
+        }
+        return sortorder;
+    }
+
+    private String[] getSelectionArgs() {
+        Job job = PeriCoachTestApplication.getCurrentJob();
+        String[] selectionArgs = {"" + job.getId(), "" + job.getTesttypeId(), "" + job.getTesttypeId()};
+        return selectionArgs;
+    }
+
+    private String getSelection() {
+        if (!thisJobOnly) return null;
+        String selection = Contract.DevicesColumns.DEVICES_JOB_ID + "= ? AND " + "(" + Contract.DevicesColumns.DEVICES_EXEC_TESTS + " & ?) =?";
+        return selection;
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        if (data.getCount() <= 0) state.setViewState(MultiStateView.VIEW_STATE_EMPTY);
+        else state.setViewState(MultiStateView.VIEW_STATE_CONTENT);
+        mAdapter.changeCursor(data);
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+
+        mAdapter.changeCursor(null);
+    }
 
 }

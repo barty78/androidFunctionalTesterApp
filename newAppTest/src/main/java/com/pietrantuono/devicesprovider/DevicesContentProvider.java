@@ -137,6 +137,29 @@ public class DevicesContentProvider extends ContentProvider {
         return count;
     }
 
+    @Override
+    public int bulkInsert(Uri uri, ContentValues[] values) {
+        int numInserted = 0;
+        int match = sUriMatcher.match(uri);
+        if(match!=DEVICES) throw new IllegalArgumentException("Invalid URI " + uri+" for bulk insert");
+
+        SQLiteDatabase db = mOpenHelper.getWritableDatabase();
+        db.beginTransaction();
+        try {
+            for (ContentValues cv : values) {
+                long newID = db.insertOrThrow(Contract.DevicesColumns.DEVICES_TABLE_NAME, Contract.DevicesColumns.DEVICES_DEVICES_ID, cv);
+                if (newID <= 0) {
+                    throw new SQLException("Failed to insert row into " + uri);
+                }
+            }
+            db.setTransactionSuccessful();
+            getContext().getContentResolver().notifyChange(uri, null);
+            numInserted = values.length;
+        } finally {
+            db.endTransaction();
+        }
+        return numInserted;
+    }
 
     static {
         sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);

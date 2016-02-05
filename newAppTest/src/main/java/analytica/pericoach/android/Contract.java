@@ -57,7 +57,7 @@ public class Contract {
                 DevicesColumns._ID + " INTEGER PRIMARY KEY," +
                 DevicesColumns.DEVICES_DEVICES_ID + INTEGER_TYPE + COMMA_SEP +
                 DevicesColumns.DEVICES_JOB_ID + INTEGER_TYPE + COMMA_SEP +
-                DevicesColumns.DEVICES_BARCODE + TEXT_TYPE + " not null unique ON CONFLICT REPLACE"+ COMMA_SEP +
+                DevicesColumns.DEVICES_BARCODE + TEXT_TYPE + " unique ON CONFLICT REPLACE"+ COMMA_SEP +
                 DevicesColumns.DEVICES_SERIAL + TEXT_TYPE + COMMA_SEP +
                 DevicesColumns.DEVICES_MODEL + TEXT_TYPE + COMMA_SEP +
                 DevicesColumns.DEVICES_FWVER + TEXT_TYPE + COMMA_SEP +

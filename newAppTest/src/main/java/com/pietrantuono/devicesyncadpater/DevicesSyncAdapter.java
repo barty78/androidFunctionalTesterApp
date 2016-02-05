@@ -10,7 +10,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SyncResult;
 import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -68,17 +67,30 @@ public class DevicesSyncAdapter extends AbstractThreadedSyncAdapter {
 
     private void insertOrUpdate(DevicesList result) {
         if (result == null || (result.getNew() == null && result.getUpdated() == null)) return;
-        if (result.getNew() != null && result.getNew().size() > 0) insert(result.getNew());
+        if (result.getNew() != null && result.getNew().size() > 0) bulkInsert(result.getNew());
         if (result.getUpdated() != null && result.getUpdated().size() > 0)
             insertOrUpdate(result.getUpdated());
     }
 
-    private void insert(List<Device> devices) {
-        for (int i = 0; i < devices.size(); i++) {
-            long id = deviceAlreadyExists(devices.get(i));
-            if (id >= 0) updateDevice(id, devices.get(i));
-            else insertDevice(devices.get(i));
+    private void bulkInsert(List<Device> devices) {
+        if(devices==null || devices.size()<=0)return;
+        ContentValues[] contentvalues= new ContentValues[devices.size()];
+        for(int i=0;i<devices.size();i++){
+            Device device= devices.get(i);
+            ContentValues values= new ContentValues();
+            values.put(Contract.DevicesColumns.DEVICES_DEVICES_ID, device.getDeviceId());
+            values.put(Contract.DevicesColumns.DEVICES_JOB_ID, device.getJobId());
+            values.put(Contract.DevicesColumns.DEVICES_BARCODE, device.getBarcode() != null ? device.getBarcode() : "");
+            values.put(Contract.DevicesColumns.DEVICES_SERIAL, device.getSerial() != null ? device.getSerial() : "");
+            values.put(Contract.DevicesColumns.DEVICES_MODEL, device.getModel() != null ? device.getModel() : "");
+            values.put(Contract.DevicesColumns.DEVICES_FWVER, device.getFwver() != null ? device.getFwver() : "");
+            values.put(Contract.DevicesColumns.DEVICES_ADDRESS, device.getBt_addr() != null ? device.getBt_addr() : "");
+            values.put(Contract.DevicesColumns.DEVICES_EXEC_TESTS, device.getExec_Tests());
+            values.put(Contract.DevicesColumns.DEVICES_STATUS, device.getSerial());
+            contentvalues[i]=values;
         }
+        mContentResolver.bulkInsert(DevicesContentProvider.CONTENT_URI, contentvalues);
+
     }
 
     private void insertOrUpdate(List<Device> devices) {
