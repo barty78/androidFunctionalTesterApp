@@ -10,7 +10,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
 import android.widget.Spinner;
+import android.widget.Switch;
 
 import com.pietrantuono.pericoach.newtestapp.R;
 
@@ -32,7 +34,6 @@ public class ActionModecallback implements ActionMode.Callback {
     public boolean onCreateActionMode(ActionMode mode, Menu menu) {
         MenuInflater inflater = mode.getMenuInflater();
         inflater.inflate(R.menu.context_menu, menu);
-        MenuItem item = menu.findItem(R.id.spinner);
         Spinner spinner = (Spinner) MenuItemCompat.getActionView(menu.findItem(R.id.spinner));
         ArrayAdapter<CharSequence> adapter =  new ArrayAdapter<CharSequence>(context,android.R.layout.simple_spinner_item, new String[]{"SELECT SORTING ORDER","Sort by result","Sort by barcode"});//ArrayAdapter.createFromResource(this,R.array.planets_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -50,6 +51,15 @@ public class ActionModecallback implements ActionMode.Callback {
 
             }
         });
+        Switch aSwitch= (Switch) MenuItemCompat.getActionView(menu.findItem(R.id.currentjobonly));
+        aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked)callback.currentJobOnly(true);
+                else callback.currentJobOnly(false);
+            }
+        });
+
         return true;
     }
 
@@ -76,6 +86,8 @@ public class ActionModecallback implements ActionMode.Callback {
         void sortByResult();
 
         void sortByBarcode();
+
+        void currentJobOnly(boolean onlycurrent);
     }
 
 }

@@ -99,7 +99,6 @@ public class DevicesListFragment extends Fragment implements ActionModecallback.
         state.setViewState(MultiStateView.VIEW_STATE_LOADING);
         getLoaderManager().initLoader(LOADER, null, this);
         mAdapter= new MyRecyclerCursorAdapter(getActivity(),null);
-        //populateList();
         recyclerView.setAdapter(mAdapter);
         return v;
     }
@@ -142,11 +141,9 @@ public class DevicesListFragment extends Fragment implements ActionModecallback.
             @Override
             public void onReceive(Context context, Intent intent) {
                 if (intent.getAction().equalsIgnoreCase(getString(R.string.devices_sync_finished))) {
-                    //populateList();
                     swiper.setRefreshing(false);
                     getActivity().unregisterReceiver(this);
                 }
-
             }
         }, filter);
         Bundle settingsBundle = new Bundle();
@@ -154,7 +151,6 @@ public class DevicesListFragment extends Fragment implements ActionModecallback.
         settingsBundle.putBoolean(ContentResolver.SYNC_EXTRAS_EXPEDITED, true);
         ContentResolver.requestSync(createAccount(), getResources().getString(R.string.devices_sync_provider_authority), settingsBundle);
     }
-
 
     private Account createAccount() {
         Account newAccount = new Account(
@@ -165,7 +161,6 @@ public class DevicesListFragment extends Fragment implements ActionModecallback.
         if (accountManager.addAccountExplicitly(newAccount, null, null)) {/*TODO*/} else {/*TODO*/}
         return newAccount;
     }
-
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
@@ -182,13 +177,20 @@ public class DevicesListFragment extends Fragment implements ActionModecallback.
     @Override
     public void sortByResult() {
         orderbyBarcode=false;
+        getLoaderManager().restartLoader(LOADER, null, this);
     }
 
     @Override
     public void sortByBarcode() {
         orderbyBarcode=true;
+        getLoaderManager().restartLoader(LOADER, null, this);
     }
 
+    @Override
+    public void currentJobOnly(boolean onlycurrent) {
+        thisJobOnly=onlycurrent;
+        getLoaderManager().restartLoader(LOADER, null, this);
+    }
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
@@ -219,13 +221,6 @@ public class DevicesListFragment extends Fragment implements ActionModecallback.
         return sortorder;
     }
 
-    private String[] getSelectionArgs() {
-        if (!thisJobOnly) return null;
-
-        //String[] selectionArgs = {"" + job.getId(), "" + job.getTesttypeId(), "" + job.getTesttypeId()};
-        return null;
-    }
-
     private String getSelection() {
         if (!thisJobOnly) return null;
         Job job = PeriCoachTestApplication.getCurrentJob();
@@ -243,7 +238,6 @@ public class DevicesListFragment extends Fragment implements ActionModecallback.
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
-
         mAdapter.changeCursor(null);
     }
 
