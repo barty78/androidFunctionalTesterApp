@@ -68,9 +68,17 @@ public class DevicesSyncAdapter extends AbstractThreadedSyncAdapter {
 
     private void insertOrUpdate(DevicesList result) {
         if (result == null || (result.getNew() == null && result.getUpdated() == null)) return;
-        if (result.getNew() != null && result.getNew().size() > 0) insertOrUpdate(result.getNew());
+        if (result.getNew() != null && result.getNew().size() > 0) insert(result.getNew());
         if (result.getUpdated() != null && result.getUpdated().size() > 0)
             insertOrUpdate(result.getUpdated());
+    }
+
+    private void insert(List<Device> devices) {
+        for (int i = 0; i < devices.size(); i++) {
+            long id = deviceAlreadyExists(devices.get(i));
+            if (id >= 0) updateDevice(id, devices.get(i));
+            else insertDevice(devices.get(i));
+        }
     }
 
     private void insertOrUpdate(List<Device> devices) {

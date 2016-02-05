@@ -97,6 +97,7 @@ public class CustomSQLiteOpenHelper extends SQLiteOpenHelper {
             db.execSQL(Contract.DevicesColumns.CREATE_DEVICES_TABLE);
             migratedData(db);
         }
+
     }
 
     private void migratedData(SQLiteDatabase db) {
