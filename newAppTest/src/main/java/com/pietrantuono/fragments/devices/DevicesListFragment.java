@@ -100,6 +100,7 @@ public class DevicesListFragment extends Fragment implements ActionModecallback.
         getLoaderManager().initLoader(LOADER, null, this);
         mAdapter= new MyRecyclerCursorAdapter(getActivity(),null);
         //populateList();
+        recyclerView.setAdapter(mAdapter);
         return v;
     }
 
@@ -198,7 +199,7 @@ public class DevicesListFragment extends Fragment implements ActionModecallback.
                         DevicesContentProvider.CONTENT_URI,
                         null,
                         getSelection(),
-                        getSelectionArgs(),
+                        null,
                         getSortOrder()
                 );
             default:
@@ -219,14 +220,17 @@ public class DevicesListFragment extends Fragment implements ActionModecallback.
     }
 
     private String[] getSelectionArgs() {
-        Job job = PeriCoachTestApplication.getCurrentJob();
-        String[] selectionArgs = {"" + job.getId(), "" + job.getTesttypeId(), "" + job.getTesttypeId()};
-        return selectionArgs;
+        if (!thisJobOnly) return null;
+
+        //String[] selectionArgs = {"" + job.getId(), "" + job.getTesttypeId(), "" + job.getTesttypeId()};
+        return null;
     }
 
     private String getSelection() {
         if (!thisJobOnly) return null;
-        String selection = Contract.DevicesColumns.DEVICES_JOB_ID + "= ? AND " + "(" + Contract.DevicesColumns.DEVICES_EXEC_TESTS + " & ?) =?";
+        Job job = PeriCoachTestApplication.getCurrentJob();
+        String selection =Contract.DevicesColumns.DEVICES_JOB_ID + "= "+job.getId()+
+                " AND " + "(" + Contract.DevicesColumns.DEVICES_EXEC_TESTS + " & "+job.getTesttypeId()+") = "+job.getTesttypeId();
         return selection;
     }
 

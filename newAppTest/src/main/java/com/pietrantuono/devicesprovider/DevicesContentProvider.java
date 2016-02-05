@@ -39,10 +39,7 @@ public class DevicesContentProvider extends ContentProvider {
     @Nullable
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
-        SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
-        qb.setTables(Contract.DevicesColumns.DEVICES_TABLE_NAME);
         SQLiteDatabase db;
-
         String orderBy;
         if (TextUtils.isEmpty(sortOrder)) {
             orderBy = Contract.DEFAULT_SORT_ORDER;
@@ -51,9 +48,11 @@ public class DevicesContentProvider extends ContentProvider {
         }
         switch (sUriMatcher.match(uri)){
             case DEVICES:
-                 db= mOpenHelper.getReadableDatabase();
-                return qb.query(db,projection,selection,selectionArgs,null,null,orderBy);
+                db= mOpenHelper.getReadableDatabase();
+                return db.query(Contract.DevicesColumns.DEVICES_TABLE_NAME,projection,selection,selectionArgs,null,null,orderBy);
             case DEVICES_ID:
+                SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
+                qb.setTables(Contract.DevicesColumns.DEVICES_TABLE_NAME);
                 db = mOpenHelper.getReadableDatabase();
                 qb.appendWhere(Contract.DevicesColumns._ID + "=" + uri.getPathSegments().get(1));
                 return qb.query(db,projection,selection,selectionArgs,null,null,orderBy);
