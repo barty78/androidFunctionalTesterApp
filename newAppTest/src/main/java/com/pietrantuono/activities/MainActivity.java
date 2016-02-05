@@ -633,7 +633,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void registerSequenceFragment(NewSequenceFragment sequenceFragment) {
-        uiHelper.registerSequenceFragment(sequenceFragment);
+        if(uiHelper!=null && sequenceFragment!=null)uiHelper.registerSequenceFragment(sequenceFragment);
     }
 
     @Override
