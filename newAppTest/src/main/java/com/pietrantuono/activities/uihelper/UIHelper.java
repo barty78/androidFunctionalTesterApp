@@ -2,6 +2,7 @@ package com.pietrantuono.activities.uihelper;
 
 import java.util.ArrayList;
 
+import com.github.lzyzsd.circleprogress.DonutProgress;
 import com.pietrantuono.activities.MainActivity;
 import com.pietrantuono.devicesprovider.DevicesContentProvider;
 import com.pietrantuono.fragments.PagerAdapter;
@@ -142,7 +143,9 @@ public class UIHelper {
 
         ((TextView)activity.findViewById(R.id.num_of_devices)).setText("" + numberOfDevices);
         ((TextView)activity.findViewById(R.id.devices_passed)).setText(""+numberOfDevicesPassed);
-        ((TextView)activity.findViewById(R.id.devices_failed)).setText(""+numberOfDevicesFailed);
+        ((TextView)activity.findViewById(R.id.devices_failed)).setText("" + numberOfDevicesFailed);
+        float numberOfDevicesFloat=numberOfDevices;
+        ((DonutProgress)activity.findViewById(R.id.progress_stats)).setProgress((int)((numberOfDevicesPassed / numberOfDevicesFloat)*100));
     }
 
 

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:foo="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:weightSum="1"
     tools:context="${relativePackage}.${activityClass}">
@@ -181,10 +182,37 @@
                     </LinearLayout>
                 </LinearLayout>
 
+
                 <LinearLayout
+                    android:gravity="center"
+                    android:id="@+id/percent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/sensorsreading"
+                    android:orientation="vertical"
+                    android:weightSum="1">
+
+                    <com.github.lzyzsd.circleprogress.DonutProgress
+                        foo:donut_unfinished_color="#ffff0000"
+                        foo:donut_finished_color="#ff00ff00"
+                        foo:donut_suffix_text="%"
+                        foo:donut_max="100"
+                        foo:donut_finished_stroke_width="4dp"
+                        foo:donut_unfinished_stroke_width="2dp"
+                        android:id="@+id/progress_stats"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/icon_margin"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/percent"
                     android:orientation="vertical"
                     android:weightSum="1">
 
