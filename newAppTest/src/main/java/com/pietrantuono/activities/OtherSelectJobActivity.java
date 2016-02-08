@@ -96,7 +96,7 @@ public class OtherSelectJobActivity extends AppCompatActivity implements MyCallb
 	}
 
 	private void populateList() {
-		removeInactiveJobsFromList(jobsFromServer);
+//		removeInactiveJobsFromList(jobsFromServer);
 		removeInactiveJobsFromList(jobsFromServer);
 		recyclerView = (RecyclerView) findViewById(R.id.recycler);
 		if (jobsFromServer != null && jobsFromServer.size()>0)

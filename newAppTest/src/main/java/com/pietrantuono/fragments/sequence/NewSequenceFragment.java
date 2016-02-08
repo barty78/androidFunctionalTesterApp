@@ -84,12 +84,16 @@ public class NewSequenceFragment extends Fragment {
         activity = null;
     }
 
-    public synchronized void addTest(final Boolean istest, final Boolean success, String reading,
-                                     String otherreading, String description, boolean isSensorTest, Test testToBeParsed) {
-
-        adapter.addTest(istest, success, reading, otherreading, description, isSensorTest, testToBeParsed, sequence);
-        recyclerView.smoothScrollToPosition(adapter.getItemCount() - 1);
+    public synchronized void addTest(final Boolean istest, final Boolean success, final String reading,
+                                     final String otherreading, final String description, final boolean isSensorTest, final Test testToBeParsed) {
         Handler handler = new Handler(getActivity().getMainLooper());
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                adapter.addTest(istest, success, reading, otherreading, description, isSensorTest, testToBeParsed, sequence);
+                recyclerView.smoothScrollToPosition(adapter.getItemCount() - 1);
+            }
+        });
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -98,10 +102,15 @@ public class NewSequenceFragment extends Fragment {
         }, 100);
     }
 
-    public synchronized void addSensorTest(NewMSensorResult mSensorResult, Test testToBeParsed) {
-        adapter.addSensorTest(mSensorResult, testToBeParsed, sequence);
-        recyclerView.smoothScrollToPosition(adapter.getItemCount() - 1);
+    public synchronized void addSensorTest(final NewMSensorResult mSensorResult, final Test testToBeParsed) {
         Handler handler = new Handler(getActivity().getMainLooper());
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                adapter.addSensorTest(mSensorResult, testToBeParsed, sequence);
+                recyclerView.smoothScrollToPosition(adapter.getItemCount() - 1);
+            }
+        });
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -110,15 +119,36 @@ public class NewSequenceFragment extends Fragment {
         }, 100);
     }
 
-    public void addUploadRow(final Boolean istest, final Boolean success, String description, UploadTestCallback callback) {
-        adapter.addUploadRow(istest, success, description, sequence, callback);
-        recyclerView.smoothScrollToPosition(adapter.getItemCount() - 1);
+    public void addUploadRow(final Boolean istest, final Boolean success, final String description, final UploadTestCallback callback) {
+        Handler handler = new Handler(getActivity().getMainLooper());
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                adapter.addUploadRow(istest, success, description, sequence, callback);
+                recyclerView.smoothScrollToPosition(adapter.getItemCount() - 1);
+            }
+        });
     }
 
     public void cleanUI() {
-        success_failure_container.setVisibility(View.GONE);
-        adapter.clear();
-        adapter.notifyDataSetChanged();
+        Handler handler = new Handler(getActivity().getMainLooper());
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                adapter.clear();
+                adapter.notifyDataSetChanged();
+            }
+        });
+    }
+
+    public void removeOverallFailOrPass() {
+        Handler handler = new Handler(getActivity().getMainLooper());
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                success_failure_container.setVisibility(View.GONE);
+            }
+        });
     }
 
     public void setSequence(NewSequenceInterface sequence) {
@@ -126,15 +156,21 @@ public class NewSequenceFragment extends Fragment {
     }
 
     public void setOverallFailOrPass(final boolean success) {
-        success_failure_container.setVisibility(View.VISIBLE);
-        success_failure_container.requestLayout();
-        if (!success) {
-            success_failure_container.setBackgroundColor(Color.RED);
-            success_failure_text.setText("FAIL!");
-        } else {
-            success_failure_container.setBackgroundColor(Color.GREEN);
-            success_failure_text.setText("PASS");
-        }
+        Handler handler = new Handler(getActivity().getMainLooper());
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                success_failure_container.setVisibility(View.VISIBLE);
+                success_failure_container.requestLayout();
+                if (!success) {
+                    success_failure_container.setBackgroundColor(Color.RED);
+                    success_failure_text.setText("FAIL!");
+                } else {
+                    success_failure_container.setBackgroundColor(Color.GREEN);
+                    success_failure_text.setText("PASS");
+                }
+            }
+        });
     }
 
     private void setContainerVisible(){
@@ -145,19 +181,11 @@ public class NewSequenceFragment extends Fragment {
         animation.setDuration(1000);
         animation.start();
         success_failure_container.getLayoutParams().height = (int) animation.getAnimatedValue();
-
     }
-
-    private void setContainerInvisible(){}
 
     public interface SequenceFragmentCallback {
         void registerSequenceFragment(NewSequenceFragment sequenceFragment);
         void unregisterSequenceFragment();
-    }
-
-    private int dpToPx(int dp){
-        Resources r = getResources();
-        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics());
     }
 }
 

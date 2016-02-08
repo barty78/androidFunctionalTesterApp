@@ -378,6 +378,7 @@ public class MainActivity extends AppCompatActivity
         sequenceStarted = false;
         if (isFinishing()) return;
         PeriCoachTestApplication.forceSync();
+        uiHelper.removeOverallFailOrPass();
         start();
     }
 
@@ -634,7 +635,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void registerSequenceFragment(NewSequenceFragment sequenceFragment) {
-        uiHelper.registerSequenceFragment(sequenceFragment);
+        if(uiHelper!=null && sequenceFragment!=null)uiHelper.registerSequenceFragment(sequenceFragment);
     }
 
     @Override
