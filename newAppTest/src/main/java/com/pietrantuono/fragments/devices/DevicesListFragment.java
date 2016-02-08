@@ -138,9 +138,14 @@ public class DevicesListFragment extends Fragment implements ActionModecallback.
             forceSync();
             callback = new ActionModecallback(getActivity(), DevicesListFragment.this);
             mActionMode = ((AppCompatActivity) getActivity()).startSupportActionMode(callback);
+            Job job = PeriCoachTestApplication.getCurrentJob();
+            if (PeriCoachTestApplication.getIsRetestAllowed()) {
+                mActionMode.setTitle(getActivity().getString(R.string.job_number)+job.getJobno() + " (Retests)");
+            } else {
+                mActionMode.setTitle(getActivity().getString(R.string.job_number)+job.getJobno() + " (No Retests)");
+            }
         } else {
             if (mActionMode != null) mActionMode.finish();
-
         }
     }
 
