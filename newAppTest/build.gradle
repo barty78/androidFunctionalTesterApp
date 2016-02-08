@@ -39,7 +39,7 @@ android {
         Release {
             keyAlias 'newtestappkey'
             keyPassword 'barty78'
-//            storeFile file('c:/Users/Peter/StudioProjects/KeyStore/android.jks')
+            storeFile file('c:/Users/Peter/StudioProjects/KeyStore/android.jks')
             storePassword 'barty78'
         }
     }
