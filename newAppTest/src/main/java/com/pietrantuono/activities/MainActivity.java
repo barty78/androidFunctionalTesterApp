@@ -89,9 +89,11 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (BuildConfig.DEBUG) setTitle(getResources().getString(R.string.app_name) + " - DEV BUILD");
+        if (BuildConfig.DEBUG)
+            setTitle(getResources().getString(R.string.app_name) + " - DEV BUILD");
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        if (!Fabric.isInitialized()) Fabric.with(this, new Crashlytics.Builder().core(new CrashlyticsCore.Builder().disabled(BuildConfig.DEBUG).build()).build());
+        if (!Fabric.isInitialized())
+            Fabric.with(this, new Crashlytics.Builder().core(new CrashlyticsCore.Builder().disabled(BuildConfig.DEBUG).build()).build());
 
         detectHelper = PCBDetectHelper.getHelper();
         setContentView(R.layout.activity_main);
@@ -136,31 +138,26 @@ public class MainActivity extends AppCompatActivity
     public synchronized void goAndExecuteNextTest() {
 
         if (!sequenceStarted) return;
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                if (MainActivity.this.isFinishing()) return;
-                if (newSequence.isSequenceEnded()) {
-                    Log.d(TAG, "Sequence Ended");
-                    onCurrentSequenceEnd();
-                    return;
-                }
-                if (newSequence.isSequenceStarted()) {
-                    if (newSequence.getCurrentTest().isBlockingTest() && !newSequence.getCurrentTest().isSuccess()) {
-                        Log.d(TAG, "Blocking Test Failed - Sequence Ended");
-                        onCurrentSequenceEnd();
-                        return;
-                    }
-                }
 
-                Log.e(TAG, "goAndExecuteNextTest " + newSequence.getNextTest().getDescription());
-                newSequence.executeCurrentTest();
-                uiHelper.setCurrentAndNextTaskinUI();
+        if (MainActivity.this.isFinishing()) return;
+        if (newSequence.isSequenceEnded()) {
+            Log.d(TAG, "Sequence Ended");
+            onCurrentSequenceEnd();
+            return;
+        }
+        if (newSequence.isSequenceStarted()) {
+            if (newSequence.getCurrentTest().isBlockingTest() && !newSequence.getCurrentTest().isSuccess()) {
+                Log.d(TAG, "Blocking Test Failed - Sequence Ended");
+                onCurrentSequenceEnd();
+                return;
             }
-        });
+        }
+
+        Log.e(TAG, "goAndExecuteNextTest " + newSequence.getNextTest().getDescription());
+        newSequence.executeCurrentTest();
+        uiHelper.setCurrentAndNextTaskinUI();
+
     }
-
-
 
 
     @Override
@@ -237,20 +234,20 @@ public class MainActivity extends AppCompatActivity
 
     private void stopAndResetSequence() {
         sequenceStarted = false;
-        runOnUiThread(new Runnable(){
+        runOnUiThread(new Runnable() {
             @Override
-            public void run(){
+            public void run() {
                 newSequence.stopAll(MainActivity.this);
                 newSequence.reset();
-                try{
+                try {
                     Voltage.interrupt();
-                }catch(Exception e){
+                } catch (Exception e) {
                 }
-                IOIOUtils.getUtils().closeall(MainActivity.this,MainActivity.this);
-                if(btutility!=null){
-                    try{
+                IOIOUtils.getUtils().closeall(MainActivity.this, MainActivity.this);
+                if (btutility != null) {
+                    try {
                         btutility.abort();
-                    }catch(Exception e){
+                    } catch (Exception e) {
                     }
                 }
                 detectHelper.stopCheckingIfConnectionDrops();
@@ -504,6 +501,7 @@ public class MainActivity extends AppCompatActivity
     private void addFailOrPass(Boolean istest, Boolean success, String reading, String otherreading, String description, Test testToBeParsed) {
         uiHelper.addFailOrPass(istest, success, reading, otherreading, description, false, testToBeParsed);
     }
+
     @Override
     public void addFailOrPass(Boolean istest, Boolean success, String reading, String description, Test testToBeParsed) {
         addFailOrPass(istest, success, reading, null, description, testToBeParsed);
@@ -518,6 +516,7 @@ public class MainActivity extends AppCompatActivity
     public void addFailOrPass(Boolean istest, Boolean success, String reading, String description) {
         addFailOrPass(istest, success, reading, null, description, null);
     }
+
     @Override
     public synchronized void addFailOrPass(final Boolean istest, final Boolean success, String reading, Test testToBeParsed) {
         addFailOrPass(istest, success, reading, null, null, testToBeParsed);
@@ -528,7 +527,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void addFailOrPass(final Boolean istest, final Boolean success, String reading, String description, boolean isSensorTest, Test testToBeParsed){
+    public void addFailOrPass(final Boolean istest, final Boolean success, String reading, String description, boolean isSensorTest, Test testToBeParsed) {
         uiHelper.addFailOrPass(istest, success, reading, null, description, true, testToBeParsed);
     }
 
@@ -635,7 +634,8 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void registerSequenceFragment(NewSequenceFragment sequenceFragment) {
-        if(uiHelper!=null && sequenceFragment!=null)uiHelper.registerSequenceFragment(sequenceFragment);
+        if (uiHelper != null && sequenceFragment != null)
+            uiHelper.registerSequenceFragment(sequenceFragment);
     }
 
     @Override

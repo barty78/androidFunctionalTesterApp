@@ -9,11 +9,11 @@ import com.pietrantuono.tests.superclass.Test;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 import ioio.lib.api.IOIO;
 public class AccelerometerSelfTest extends Test {
-	private static ExecutorService executor = Executors.newFixedThreadPool(1);
 	private int retries = 0;
 	private String TAG=getClass().getSimpleName();
 	public AccelerometerSelfTest(Activity activity, IOIO ioio) {
@@ -21,26 +21,35 @@ public class AccelerometerSelfTest extends Test {
 	}
 	@Override
 	public void execute() {
-		if (IOIOUtils.getUtils().getUutMode(getActivity()) == IOIOUtils.Mode.bootloader) {
-			IOIOUtils.getUtils().modeApplication((Activity) activityListener);
-		}
-		if(isinterrupted)return;
-		Log.d(TAG, TAG+" "+IOIOUtils.getUtils().getUartLog().toString());
-		if (IOIOUtils.getUtils().getUartLog().indexOf("MPU6500 Self-Test Passed!") != -1) {
-			Success();
-			activityListener.addFailOrPass(true, true, "", description);
-			return;
-		} else {
-			if (retries >= 3){
-				Log.d(TAG, TAG+" "+IOIOUtils.getUtils().getUartLog().toString());
-				setSuccess(false);
-				activityListener.addFailOrPass(true, false, "", description);
-				return;
-			}
-			onAttemptFailed();
-		}
-		return;
+		new AccelerometerSelfTestAsyncTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 	}
+
+	private class AccelerometerSelfTestAsyncTask extends AsyncTask<Void,Void,Void>{
+
+		@Override
+		protected Void doInBackground(Void... params) {
+			if (IOIOUtils.getUtils().getUutMode(getActivity()) == IOIOUtils.Mode.bootloader) {
+				IOIOUtils.getUtils().modeApplication((Activity) activityListener);
+			}
+			if(isinterrupted)return null;
+			Log.d(TAG, TAG+" "+IOIOUtils.getUtils().getUartLog().toString());
+			if (IOIOUtils.getUtils().getUartLog().indexOf("MPU6500 Self-Test Passed!") != -1) {
+				Success();
+				activityListener.addFailOrPass(true, true, "", description);
+				return null;
+			} else {
+				if (retries >= 3){
+					Log.d(TAG, TAG+" "+IOIOUtils.getUtils().getUartLog().toString());
+					setSuccess(false);
+					activityListener.addFailOrPass(true, false, "", description);
+					return null;
+				}
+				onAttemptFailed();
+			}
+			return null;
+		}
+	}
+
 	private void onAttemptFailed() {
 		final Activity activity=(Activity)activityListener;
 		if(activity==null || activity.isFinishing())return;
@@ -64,6 +73,6 @@ public class AccelerometerSelfTest extends Test {
 	@Override
 	public void interrupt() {
 		super.interrupt();
-		try{executor.shutdownNow();}catch (Exception e){e.printStackTrace();}
 	}
+
 }
