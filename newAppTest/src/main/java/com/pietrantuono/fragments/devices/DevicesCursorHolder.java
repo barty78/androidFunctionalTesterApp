@@ -97,7 +97,7 @@ public class DevicesCursorHolder extends RecyclerView.ViewHolder {
 
         device.setJobId(c.getLong(c.getColumnIndexOrThrow(Contract.DevicesColumns.DEVICES_JOB_ID)));
 
-        device.setStatus(c.getColumnIndexOrThrow(Contract.DevicesColumns.DEVICES_STATUS));
+        device.setStatus(c.getLong(c.getColumnIndexOrThrow(Contract.DevicesColumns.DEVICES_STATUS)));
 
         return device;
     }

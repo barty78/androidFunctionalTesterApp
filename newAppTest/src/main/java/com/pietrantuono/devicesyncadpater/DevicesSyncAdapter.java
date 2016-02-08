@@ -86,7 +86,7 @@ public class DevicesSyncAdapter extends AbstractThreadedSyncAdapter {
             values.put(Contract.DevicesColumns.DEVICES_FWVER, device.getFwver() != null ? device.getFwver() : "");
             values.put(Contract.DevicesColumns.DEVICES_ADDRESS, device.getBt_addr() != null ? device.getBt_addr() : "");
             values.put(Contract.DevicesColumns.DEVICES_EXEC_TESTS, device.getExec_Tests());
-            values.put(Contract.DevicesColumns.DEVICES_STATUS, device.getSerial());
+            values.put(Contract.DevicesColumns.DEVICES_STATUS, device.getStatus());
             contentvalues[i]=values;
         }
         mContentResolver.bulkInsert(DevicesContentProvider.CONTENT_URI, contentvalues);
@@ -114,7 +114,7 @@ public class DevicesSyncAdapter extends AbstractThreadedSyncAdapter {
         contentvalues.put(Contract.DevicesColumns.DEVICES_FWVER, device.getFwver() != null ? device.getFwver() : "");
         contentvalues.put(Contract.DevicesColumns.DEVICES_ADDRESS, device.getBt_addr() != null ? device.getBt_addr() : "");
         contentvalues.put(Contract.DevicesColumns.DEVICES_EXEC_TESTS, device.getExec_Tests());
-        contentvalues.put(Contract.DevicesColumns.DEVICES_STATUS, device.getSerial());
+        contentvalues.put(Contract.DevicesColumns.DEVICES_STATUS, device.getStatus());
         mContentResolver.insert(DevicesContentProvider.CONTENT_URI, contentvalues);
     }
 
@@ -131,7 +131,7 @@ public class DevicesSyncAdapter extends AbstractThreadedSyncAdapter {
         contentvalues.put(Contract.DevicesColumns.DEVICES_FWVER, device.getFwver() != null ? device.getFwver() : "");
         contentvalues.put(Contract.DevicesColumns.DEVICES_ADDRESS, device.getBt_addr() != null ? device.getBt_addr() : "");
         contentvalues.put(Contract.DevicesColumns.DEVICES_EXEC_TESTS, device.getExec_Tests());
-        contentvalues.put(Contract.DevicesColumns.DEVICES_STATUS, device.getSerial());
+        contentvalues.put(Contract.DevicesColumns.DEVICES_STATUS, device.getStatus());
         String selection = Contract.DevicesColumns._ID + "=?";
         String[] selectionargs = {"" + device.getId()};
         mContentResolver.update(ContentUris.withAppendedId(DevicesContentProvider.CONTENT_URI, id), contentvalues, selection, selectionargs);
