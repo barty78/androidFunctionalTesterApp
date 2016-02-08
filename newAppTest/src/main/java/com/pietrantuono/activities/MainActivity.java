@@ -89,8 +89,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (BuildConfig.DEBUG)
-            setTitle(getResources().getString(R.string.app_name) + " - DEV BUILD");
+
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         if (!Fabric.isInitialized())
             Fabric.with(this, new Crashlytics.Builder().core(new CrashlyticsCore.Builder().disabled(BuildConfig.DEBUG).build()).build());
@@ -105,8 +104,9 @@ public class MainActivity extends AppCompatActivity
             if (job != null) mJobNo = job.getJobno();
         }
         if (mJobNo != null)
-            uiHelper.setJobId(mJobNo, true);
+            uiHelper.setJobId(MainActivity.this,mJobNo);
         uiHelper.setupChronometer(MainActivity.this);
+        uiHelper.updateStats(job, MainActivity.this);
     }
 
     @Override
@@ -304,6 +304,7 @@ public class MainActivity extends AppCompatActivity
                     btutility.stop();
                     btutility = null;
                 }
+                uiHelper.updateStats(job, MainActivity.this);
                 uiHelper.stopChronometer(MainActivity.this);
                 setStatusMSG("TEST FINISHED", true);// OK
                 detectHelper.stopCheckingIfConnectionDrops();// OK

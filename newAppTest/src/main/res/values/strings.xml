@@ -168,6 +168,7 @@
     <string name="devices_sync_finished">devices_sync_finished</string>
     <string name="PERMISSION">com.pietrantuono.devices.permssion</string>
     <string name="perm_label">Permission for listening to syncadapetr</string>
+    <string name="job_number">"Job number "</string>
 
 
 </resources>
