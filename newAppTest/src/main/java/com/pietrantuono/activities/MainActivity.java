@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity
     private boolean sequenceStarted;
     private String barcode;
     private SerialConsoleFragmentCallback serialConsoleFragmentCallback;
+    private boolean hideRestart;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -177,6 +178,7 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
+        menu.findItem(R.id.restart).setVisible(!hideRestart);
         return true;
     }
 
@@ -186,6 +188,9 @@ public class MainActivity extends AppCompatActivity
             case R.id.settings:
                 Intent in = new Intent(MainActivity.this, SettingsActivity.class);
                 startActivity(in);
+                return true;
+            case R.id.restart:
+                restartSequence();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -277,6 +282,8 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void onCurrentSequenceEnd() {
+        hideRestart=false;
+        invalidateOptionsMenu();
         IOIOUtils.getUtils().stopUartThread();
         PeriCoachTestApplication.setLastPos(0);
         sequenceStarted = false;
@@ -381,6 +388,8 @@ public class MainActivity extends AppCompatActivity
         if (isFinishing()) return;
         PeriCoachTestApplication.forceSync();
         uiHelper.removeOverallFailOrPass();
+        hideRestart=true;
+        invalidateOptionsMenu();
         start();
     }
 

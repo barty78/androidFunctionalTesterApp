@@ -19,26 +19,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ActionMode;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CursorAdapter;
 
-import com.activeandroid.query.Select;
 import com.kennyc.view.MultiStateView;
 import com.pietrantuono.devicesprovider.DevicesContentProvider;
-import com.pietrantuono.fragments.ActionModecallback;
 import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.pericoach.newtestapp.R;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-
 import analytica.pericoach.android.Contract;
-import server.pojos.Device;
 import server.pojos.Job;
 
 public class DevicesListFragment extends Fragment implements ActionModecallback.Callback, LoaderManager.LoaderCallbacks<Cursor> {

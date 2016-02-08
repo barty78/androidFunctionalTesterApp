@@ -1,4 +1,4 @@
-package com.pietrantuono.fragments;
+package com.pietrantuono.fragments.devices;
 
 import android.content.Context;
 import android.support.v4.view.MenuItemCompat;
@@ -35,15 +35,15 @@ public class ActionModecallback implements ActionMode.Callback {
         MenuInflater inflater = mode.getMenuInflater();
         inflater.inflate(R.menu.context_menu, menu);
         Spinner spinner = (Spinner) MenuItemCompat.getActionView(menu.findItem(R.id.spinner));
-        ArrayAdapter<CharSequence> adapter =  new ArrayAdapter<CharSequence>(context,android.R.layout.simple_spinner_item, new String[]{"SELECT SORTING ORDER","Sort by result","Sort by barcode"});//ArrayAdapter.createFromResource(this,R.array.planets_array, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter =  new ArrayAdapter<CharSequence>(context,android.R.layout.simple_spinner_item, new String[]{"Sort by result","Sort by barcode"});
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Log.d(TAG, "Selected " + position);
-                if(position==1)callback.sortByResult();
-                if(position==2)callback.sortByBarcode();
+                if(position==0)callback.sortByResult();
+                if(position==1)callback.sortByBarcode();
             }
 
             @Override

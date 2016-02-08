@@ -169,6 +169,8 @@
     <string name="PERMISSION">com.pietrantuono.devices.permssion</string>
     <string name="perm_label">Permission for listening to syncadapetr</string>
     <string name="job_number">"Job number "</string>
+    <string name="sort_order">Select sort order</string>
+
 
 
 </resources>
