@@ -134,7 +134,7 @@ public class UIHelper {
 
         selection =Contract.DevicesColumns.DEVICES_JOB_ID + "= "+job.getId()+
                 " AND " + "(" + Contract.DevicesColumns.DEVICES_EXEC_TESTS + " & "+job.getTesttypeId()+") = "+job.getTesttypeId()+
-                " AND " + "(" + Contract.DevicesColumns.DEVICES_STATUS + " & "+job.getTesttypeId()+") != "+job.getTesttypeId() ;
+                " AND " + "(" + Contract.DevicesColumns.DEVICES_STATUS + " & "+job.getTesttypeId()+") = 0";
         c=resolver.query(DevicesContentProvider.CONTENT_URI,null,selection,null,null);
 
         int numberOfDevicesFailed=c.getCount();
