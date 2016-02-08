@@ -77,29 +77,6 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="JOB NUMBER:"
-                            android:textAppearance="?android:attr/textAppearanceSmall"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/job_number"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="8dp"
-                            android:singleLine="true"
-                            android:text="NOT AVAILABLE"
-                            android:textAppearance="?android:attr/textAppearanceSmall" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
                         android:gravity="top"
                         android:orientation="vertical">
 
@@ -205,30 +182,84 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/next_and_retry"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/sensorsreading"
-                    android:orientation="horizontal"
+                    android:orientation="vertical"
                     android:weightSum="1">
 
-                    <Button
-                        android:id="@+id/exit"
-                        android:layout_width="0dp"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.5"
-                        android:text="EXIT"
-                        android:textColor="@android:color/white"
-                        android:textSize="@dimen/button_text_size" />
+                        android:gravity="top"
+                        android:orientation="vertical">
 
-                    <Button
-                        android:id="@+id/retry"
-                        android:layout_width="0dp"
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:lines="1"
+                            android:text="NUM OF DEVICES OF JOB:"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/num_of_devices"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:lines="1"
+                            android:maxEms="5"
+                            android:textAppearance="?android:attr/textAppearanceSmall" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.5"
-                        android:text="RESTART"
-                        android:textColor="@android:color/white"
-                        android:textSize="@dimen/button_text_size" />
+                        android:gravity="top"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:lines="1"
+                            android:text="DEVICES PASSED:"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/devices_passed"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:lines="1"
+                            android:maxEms="5"
+                            android:textAppearance="?android:attr/textAppearanceSmall" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="top"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:lines="1"
+                            android:text="DEVICES FAILED:"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/devices_failed"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:lines="1"
+                            android:maxEms="5"
+                            android:textAppearance="?android:attr/textAppearanceSmall" />
+                    </LinearLayout>
+
                 </LinearLayout>
 
                 <LinearLayout

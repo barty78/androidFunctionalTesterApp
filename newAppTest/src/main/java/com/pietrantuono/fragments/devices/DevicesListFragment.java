@@ -50,7 +50,6 @@ public class DevicesListFragment extends Fragment implements ActionModecallback.
     private SwipeRefreshLayout swiper;
     private ActionMode mActionMode;
     private ActionModecallback callback;
-    private DevicesListAdapter adapter;
     private MyRecyclerCursorAdapter mAdapter;
     private Boolean thisJobOnly = true;    //TODO - Make this a configurable option in the UI/App
     private boolean orderbyBarcode=true;
@@ -103,36 +102,7 @@ public class DevicesListFragment extends Fragment implements ActionModecallback.
         return v;
     }
 
-    private void populateList() {
-        swiper.setRefreshing(false);
-        Boolean thisJobOnly = true;    //TODO - Make this a configurable option in the UI/App
-        Job job = PeriCoachTestApplication.getCurrentJob();
-        List<Device> temp = new Select().from(Device.class).execute();
-        ArrayList<Device> devices = new ArrayList<>();
-        for (int i = 0; i < temp.size(); i++) {
-            Log.d("DevListFrag", String.valueOf(temp.get(i).getJobId()) + " | " + String.valueOf(job.getId()));
-            // Check if we only want devices from the current job, if so check job ids match.
-            if ((thisJobOnly && (temp.get(i).getJobId() == job.getId()))) {
-                // Only add devices which have actually executed the current test type
-                if ((temp.get(i).getExec_Tests() & job.getTesttypeId()) == job.getTesttypeId()) {
-                    devices.add(temp.get(i));
-                }
-            } else {
-                // We want all devices from all jobs
-                devices.add(temp.get(i));
-            }
-        }
-        Collections.sort(devices, new Comparator<Device>() {
-            @Override
-            public int compare(Device lhs, Device rhs) {
-                return (int) (Long.parseLong(lhs.getBarcode()) - Long.parseLong(rhs.getBarcode()));
-            }
-        });
-        if (devices.size() <= 0) state.setViewState(MultiStateView.VIEW_STATE_EMPTY);
-        else state.setViewState(MultiStateView.VIEW_STATE_CONTENT);
-        adapter = new DevicesListAdapter(context, devices, job);
-        recyclerView.setAdapter(adapter);
-    }
+
 
     private void forceSync() {
         swiper.setRefreshing(true);

@@ -2,6 +2,8 @@ package com.pietrantuono.activities.uihelper;
 
 import java.util.ArrayList;
 
+import com.pietrantuono.activities.MainActivity;
+import com.pietrantuono.devicesprovider.DevicesContentProvider;
 import com.pietrantuono.fragments.PagerAdapter;
 import com.pietrantuono.fragments.sequence.NewSequenceFragment;
 import com.pietrantuono.application.PeriCoachTestApplication;
@@ -13,8 +15,10 @@ import com.pietrantuono.tests.implementations.upload.UploadTestCallback;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
@@ -35,6 +39,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import analytica.pericoach.android.Contract;
+import server.pojos.Job;
 import server.pojos.Test;
 
 public class UIHelper {
@@ -47,14 +53,12 @@ public class UIHelper {
     public UIHelper(Activity activity, NewSequenceInterface sequence) {
         this.activity = activity;
         this.sequence = sequence;
-        setUpRetryButton();
-        setUpExitButton();
         setOverallFailOrPass(false);
         setupViewpager(activity);
         if (sequenceFragment != null)
             sequenceFragment.setSequence(sequence);
         Toolbar toolbar = (Toolbar) activity.findViewById(R.id.toolbar);
-        ((AppCompatActivity)activity).setSupportActionBar(toolbar);
+        ((AppCompatActivity) activity).setSupportActionBar(toolbar);
     }
 
     private void setupViewpager(Activity activity) {
@@ -112,6 +116,35 @@ public class UIHelper {
         this.sequenceFragment = null;
     }
 
+    public void updateStats(Job job, AppCompatActivity activity) {
+        ContentResolver resolver = activity.getContentResolver();
+
+        String selection =Contract.DevicesColumns.DEVICES_JOB_ID + "= "+job.getId()+
+                " AND " + "(" + Contract.DevicesColumns.DEVICES_EXEC_TESTS + " & "+job.getTesttypeId()+") = "+job.getTesttypeId();
+        Cursor c=resolver.query(DevicesContentProvider.CONTENT_URI,null,selection,null,null);
+        int numberOfDevices=c.getCount();
+        c.close();
+
+        selection =Contract.DevicesColumns.DEVICES_JOB_ID + "= "+job.getId()+
+                " AND " + "(" + Contract.DevicesColumns.DEVICES_EXEC_TESTS + " & "+job.getTesttypeId()+") = "+job.getTesttypeId()+
+                " AND " + "(" + Contract.DevicesColumns.DEVICES_STATUS + " & "+job.getTesttypeId()+") = "+job.getTesttypeId();
+        c=resolver.query(DevicesContentProvider.CONTENT_URI,null,selection,null,null);
+        int numberOfDevicesPassed=c.getCount();
+        c.close();
+
+        selection =Contract.DevicesColumns.DEVICES_JOB_ID + "= "+job.getId()+
+                " AND " + "(" + Contract.DevicesColumns.DEVICES_EXEC_TESTS + " & "+job.getTesttypeId()+") = "+job.getTesttypeId()+
+                " AND " + "(" + Contract.DevicesColumns.DEVICES_STATUS + " & "+job.getTesttypeId()+") != "+job.getTesttypeId() ;
+        c=resolver.query(DevicesContentProvider.CONTENT_URI,null,selection,null,null);
+
+        int numberOfDevicesFailed=c.getCount();
+        c.close();
+
+        ((TextView)activity.findViewById(R.id.num_of_devices)).setText("" + numberOfDevices);
+        ((TextView)activity.findViewById(R.id.devices_passed)).setText(""+numberOfDevicesPassed);
+        ((TextView)activity.findViewById(R.id.devices_failed)).setText(""+numberOfDevicesFailed);
+    }
+
 
     public interface ActivityUIHelperCallback {
         ArrayList<ArrayList<NewMResult>> getResults();
@@ -138,20 +171,12 @@ public class UIHelper {
         }
     }
 
-    public void setJobId(final String jobnumber, final Boolean success) {
-        activity.runOnUiThread(new Runnable() {
-
-            @Override
-            public void run() {
-                TextView job_number = (TextView) activity.findViewById(R.id.job_number);
-                if (PeriCoachTestApplication.getIsRetestAllowed()) {
-                    job_number.setText(jobnumber + " (Retests)");
-                } else {
-                    job_number.setText(jobnumber + " (No Retests)");
-                }
-
-            }
-        });
+    public void setJobId(AppCompatActivity activity, final String jobnumber) {
+        if (PeriCoachTestApplication.getIsRetestAllowed()) {
+            activity.setTitle(activity.getString(R.string.job_number)+jobnumber + " (Retests)");
+        } else {
+            activity.setTitle(activity.getString(R.string.job_number)+jobnumber + " (No Retests)");
+        }
     }
 
     public void setConnected(final boolean conn) {
@@ -243,21 +268,26 @@ public class UIHelper {
         Boolean success = true;
         if (callback.getIterationNumber() >= 0)
             for (int i = 0; i <= sequence.getNumberOfSteps() - 1; i++) {
-                if (!sequence.getSequence().get(i).isTest())continue;
-                if(sequence.getSequence().get(i).isSensorTest()){
+                if (!sequence.getSequence().get(i).isTest()) continue;
+                if (sequence.getSequence().get(i).isSensorTest()) {
                     ArrayList<NewMResult> currentResults = callback.getResults().get(callback.getIterationNumber());
-                    if(currentResults==null || currentResults.size()<=0){success=false;continue;}
+                    if (currentResults == null || currentResults.size() <= 0) {
+                        success = false;
+                        continue;
+                    }
                     NewMResult currentResult = currentResults.get(i);
-                    if(currentResult==null ){success=false;continue;}
-                    if(!currentResult.isTestsuccessful())success=false;
-                }
-                else {
-                    if(!sequence.getSequence().get(i).isSuccess())success=false;
+                    if (currentResult == null) {
+                        success = false;
+                        continue;
+                    }
+                    if (!currentResult.isTestsuccessful()) success = false;
+                } else {
+                    if (!sequence.getSequence().get(i).isSuccess()) success = false;
                 }
             }
 
         if (sequenceFragment != null) {
-            if(show)sequenceFragment.setOverallFailOrPass(success);
+            if (show) sequenceFragment.setOverallFailOrPass(success);
         }
 
     }
@@ -316,58 +346,9 @@ public class UIHelper {
         });
     }
 
-    private void setUpRetryButton() {
-        if (activity == null || activity.isFinishing())
-            return;
-        final ActivityUIHelperCallback activityUIHelperCallback = (ActivityUIHelperCallback) activity;
-        Button retry = (Button) activity.findViewById(R.id.retry);
-        retry.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-                builder.setTitle("Restart Sequence").setMessage("Are sure you want to restart the sequence?");
-                builder.setPositiveButton("Yes, let's try again", new OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-//						activityUIHelperCallback.manuallyRedoCurrentTest();
-                        activityUIHelperCallback.restartSequence();
-                    }
-                });
-                builder.setNegativeButton("NO", new OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                    }
-                });
-                builder.create().show();
-            }
-        });
-    }
 
-    private void setUpExitButton() {
-        if (activity == null || activity.isFinishing())
-            return;
-        final ActivityUIHelperCallback activityUIHelperCallback = (ActivityUIHelperCallback) activity;
-        Button exit = (Button) activity.findViewById(R.id.exit);
-        exit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-                builder.setTitle("Exit").setMessage("Are sure you want to exit?");
-                builder.setPositiveButton("Yes, let's try exit", new OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        activityUIHelperCallback.closeActivity();
-                    }
-                });
-                builder.setNegativeButton("NO", new OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                    }
-                });
-                builder.create().show();
-            }
-        });
-    }
+
+
 
     public void addSensorTestCompletedRow(NewMSensorResult mSensorResult, Test testToBeParsed) {
         sequenceFragment.addSensorTest(mSensorResult, testToBeParsed);
@@ -406,7 +387,7 @@ public class UIHelper {
         });
     }
 
-    public void removeOverallFailOrPass(){
+    public void removeOverallFailOrPass() {
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
