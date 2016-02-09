@@ -7,6 +7,7 @@ import com.crashlytics.android.core.CrashlyticsCore;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.pietrantuono.fragments.SerialConsoleFragmentCallback;
+import com.pietrantuono.fragments.devices.DevicesListFragment;
 import com.pietrantuono.fragments.sequence.NewSequenceFragment;
 import com.pietrantuono.activities.uihelper.ActivityCallback;
 import com.pietrantuono.activities.uihelper.MyDialogInterface;
@@ -31,16 +32,21 @@ import com.pietrantuono.pericoach.newtestapp.R;
 import com.pietrantuono.sensors.SensorTestCallback;
 import com.pietrantuono.tests.implementations.upload.UploadTestCallback;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.PopupMenu;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.WindowManager;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import io.fabric.sdk.android.Fabric;
@@ -63,7 +69,8 @@ import server.utils.RecordFromSequenceCreator;
 public class MainActivity extends AppCompatActivity
         implements ActivtyWrapper, IOIOLooperProvider, NewIOIOActivityListener,
         PCBConnectedCallback, SensorTestCallback, ActivityUIHelperCallback,
-        MyOnCancelListener.Callback, ActivityCallback, NewSequenceFragment.SequenceFragmentCallback, SerialConsoleFragmentCallback {
+        MyOnCancelListener.Callback, ActivityCallback, NewSequenceFragment.SequenceFragmentCallback, SerialConsoleFragmentCallback,
+        DevicesListFragment.CallBack {
     private static IOIO myIOIO;
     private static final String TAG = MainActivity.class.getSimpleName();
     private String mJobNo = null;
@@ -86,13 +93,16 @@ public class MainActivity extends AppCompatActivity
     private String barcode;
     private SerialConsoleFragmentCallback serialConsoleFragmentCallback;
     private boolean hideRestart;
+    private DevicesListFragment devicesListFragment;
+    private boolean isDevicesListActionbar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        if (!Fabric.isInitialized()) Fabric.with(this, new Crashlytics.Builder().core(new CrashlyticsCore.Builder().disabled(BuildConfig.DEBUG).build()).build());
+        if (!Fabric.isInitialized())
+            Fabric.with(this, new Crashlytics.Builder().core(new CrashlyticsCore.Builder().disabled(BuildConfig.DEBUG).build()).build());
 
         detectHelper = PCBDetectHelper.getHelper();
         setContentView(R.layout.activity_main);
@@ -104,7 +114,7 @@ public class MainActivity extends AppCompatActivity
             if (job != null) mJobNo = job.getJobno();
         }
         if (mJobNo != null)
-            uiHelper.setJobId(MainActivity.this,mJobNo);
+            uiHelper.setJobId(MainActivity.this, mJobNo);
         uiHelper.setupChronometer(MainActivity.this);
         uiHelper.updateStats(job, MainActivity.this);
     }
@@ -163,8 +173,6 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-
-
     @Override
     @SuppressWarnings("ucd")
     public IOIOLooper createIOIOLooper(String connectionType, Object extra) {
@@ -177,24 +185,70 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
-        menu.findItem(R.id.restart).setVisible(!hideRestart);
+        if (!isDevicesListActionbar) {
+            inflater.inflate(R.menu.menu, menu);
+            menu.findItem(R.id.restart).setVisible(!hideRestart);
+        } else {
+            inflater.inflate(R.menu.context_menu, menu);
+            final Switch aSwitch = (Switch) MenuItemCompat.getActionView(menu.findItem(R.id.currentjobonly));
+            if(devicesListFragment!=null)aSwitch.setChecked(devicesListFragment.isThisJobOnly());
+            if (aSwitch.isChecked()) aSwitch.setText("Current job only");
+            else aSwitch.setText("All jobs");
+            aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked) {
+                        if (devicesListFragment != null) devicesListFragment.currentJobOnly(true);
+                        aSwitch.setText("Current job only");
+                    } else {
+                        if (devicesListFragment != null) devicesListFragment.currentJobOnly(false);
+                        aSwitch.setText("All jobs");
+                    }
+                }
+            });
+        }
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.settings:
-                Intent in = new Intent(MainActivity.this, SettingsActivity.class);
-                startActivity(in);
+        if (!isDevicesListActionbar) {
+            switch (item.getItemId()) {
+                case R.id.settings:
+                    Intent in = new Intent(MainActivity.this, SettingsActivity.class);
+                    startActivity(in);
+                    return true;
+                case R.id.restart:
+                    restartSequence();
+                    return true;
+                default:
+                    return super.onOptionsItemSelected(item);
+            }
+        } else {
+            if (item.getItemId() == R.id.click) {
+                PopupMenu popup = new PopupMenu(MainActivity.this, findViewById(item.getItemId()));
+                popup.getMenuInflater().inflate(R.menu.popup_menu, popup.getMenu());
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    public boolean onMenuItemClick(MenuItem item) {
+                        int id = item.getItemId();
+                        switch (id) {
+                            case R.id.sort_by_barcode:
+                                if (devicesListFragment != null)
+                                    devicesListFragment.sortByBarcode();
+                                return true;
+                            case R.id.sort_by_result:
+                                if (devicesListFragment != null) devicesListFragment.sortByResult();
+                                return true;
+                        }
+                        return true;
+                    }
+                });
+                popup.show();
                 return true;
-            case R.id.restart:
-                restartSequence();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+            }
         }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -243,20 +297,20 @@ public class MainActivity extends AppCompatActivity
 
     private void stopAndResetSequence() {
         sequenceStarted = false;
-        runOnUiThread(new Runnable(){
+        runOnUiThread(new Runnable() {
             @Override
-            public void run(){
+            public void run() {
                 newSequence.stopAll(MainActivity.this);
                 newSequence.reset();
-                try{
+                try {
                     Voltage.interrupt();
-                }catch(Exception e){
+                } catch (Exception e) {
                 }
-                IOIOUtils.getUtils().closeall(MainActivity.this,MainActivity.this);
-                if(btutility!=null){
-                    try{
+                IOIOUtils.getUtils().closeall(MainActivity.this, MainActivity.this);
+                if (btutility != null) {
+                    try {
                         btutility.abort();
-                    }catch(Exception e){
+                    } catch (Exception e) {
                     }
                 }
                 detectHelper.stopCheckingIfConnectionDrops();
@@ -282,8 +336,8 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void onCurrentSequenceEnd() {
-        hideRestart=false;
-        invalidateOptionsMenu();
+        hideRestart = false;
+        if(!isDevicesListActionbar)invalidateOptionsMenu();
         IOIOUtils.getUtils().stopUartThread();
         PeriCoachTestApplication.setLastPos(0);
         sequenceStarted = false;
@@ -388,8 +442,8 @@ public class MainActivity extends AppCompatActivity
         if (isFinishing()) return;
         PeriCoachTestApplication.forceSync();
         uiHelper.removeOverallFailOrPass();
-        hideRestart=true;
-        invalidateOptionsMenu();
+        hideRestart = true;
+        if(!isDevicesListActionbar)invalidateOptionsMenu();
         start();
     }
 
@@ -515,6 +569,7 @@ public class MainActivity extends AppCompatActivity
     private void addFailOrPass(Boolean istest, Boolean success, String reading, String otherreading, String description, Test testToBeParsed) {
         uiHelper.addFailOrPass(istest, success, reading, otherreading, description, false, testToBeParsed);
     }
+
     @Override
     public void addFailOrPass(Boolean istest, Boolean success, String reading, String description, Test testToBeParsed) {
         addFailOrPass(istest, success, reading, null, description, testToBeParsed);
@@ -529,6 +584,7 @@ public class MainActivity extends AppCompatActivity
     public void addFailOrPass(Boolean istest, Boolean success, String reading, String description) {
         addFailOrPass(istest, success, reading, null, description, null);
     }
+
     @Override
     public synchronized void addFailOrPass(final Boolean istest, final Boolean success, String reading, Test testToBeParsed) {
         addFailOrPass(istest, success, reading, null, null, testToBeParsed);
@@ -539,7 +595,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void addFailOrPass(final Boolean istest, final Boolean success, String reading, String description, boolean isSensorTest, Test testToBeParsed){
+    public void addFailOrPass(final Boolean istest, final Boolean success, String reading, String description, boolean isSensorTest, Test testToBeParsed) {
         uiHelper.addFailOrPass(istest, success, reading, null, description, true, testToBeParsed);
     }
 
@@ -646,7 +702,8 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void registerSequenceFragment(NewSequenceFragment sequenceFragment) {
-        if(uiHelper!=null && sequenceFragment!=null)uiHelper.registerSequenceFragment(sequenceFragment);
+        if (uiHelper != null && sequenceFragment != null)
+            uiHelper.registerSequenceFragment(sequenceFragment);
     }
 
     @Override
@@ -673,5 +730,16 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void removeCallback() {
         this.serialConsoleFragmentCallback = null;
+    }
+
+    @Override
+    public void setDevicesListFragment(DevicesListFragment devicesListFragment) {
+        this.devicesListFragment = devicesListFragment;
+    }
+
+    @Override
+    public void setDevicesFragmentActionBar(boolean isDevicesListActionbar) {
+        this.isDevicesListActionbar = isDevicesListActionbar;
+        invalidateOptionsMenu();
     }
 }

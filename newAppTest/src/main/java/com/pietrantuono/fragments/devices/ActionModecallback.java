@@ -63,7 +63,6 @@ public class ActionModecallback implements ActionMode.Callback {
     @Override
     public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
 
-
         return true;
     }
 
