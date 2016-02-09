@@ -10,6 +10,13 @@
 
     </item>
 
+    <item
+        android:id="@+id/restart"
+        android:icon="@drawable/ic_action_av_replay"
+        android:title="Restart"
+        android:visible="true"
+        app:showAsAction="always">
 
+    </item>
 
 </menu>

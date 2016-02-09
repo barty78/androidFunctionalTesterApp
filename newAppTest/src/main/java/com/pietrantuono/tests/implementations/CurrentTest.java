@@ -1,6 +1,7 @@
 package com.pietrantuono.tests.implementations;
 import ioio.lib.api.IOIO;
 import android.app.Activity;
+import android.os.AsyncTask;
 import android.util.Log;
 
 import com.pietrantuono.ioioutils.Current;
@@ -40,8 +41,19 @@ public class CurrentTest extends Test {
 	}
 	@Override
 	public void execute() {
-		if(isinterrupted)return;
-		Log.d(TAG, "Test Starting: " + description);
+		new CurrentTestAsyncTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+	}
+	@Override
+	public void interrupt() {
+		super.interrupt();
+		try {Current.interrupt();}catch (Exception e){;}
+	}
+
+	class CurrentTestAsyncTask extends AsyncTask<Void,Void,Void>{
+		@Override
+		protected Void doInBackground(Void... params) {
+			if(isinterrupted)return null;
+			Log.d(TAG, "Test Starting: " + description);
 //		if (!IOIOUtils.getUtils().setBattVoltage(ioio, 34, 2f, 3.7f)){
 //			getListener().addFailOrPass(true, false, "Fixture Fault - Battery Voltage Setpoint not reached", testToBeParsed);
 //			return;
@@ -57,50 +69,46 @@ public class CurrentTest extends Test {
 //				activityListener.addFailOrPass(true, false, "ERROR", "Fixture Fault",testToBeParsed);
 //				return;
 //			}
-		Result result = null;
+			Result result = null;
 
-		switch(units){
-			case Units.mA:
-				Rshunt = 2;
+			switch(units){
+				case Units.mA:
+					Rshunt = 2;
 
-				break;
-			case Units.uA:
-				Rshunt = 1002;
-				break;
-		}
+					break;
+				case Units.uA:
+					Rshunt = 1002;
+					break;
+			}
 
-		try {
-			result =
-					checkCurrent(ioio, pinNumber, gain, Rshunt, units, isNominal, limitParam1, limitParam2);
-		} catch (Exception e) {
-			report(e);
+			try {
+				result =
+						checkCurrent(ioio, pinNumber, gain, Rshunt, units, isNominal, limitParam1, limitParam2);
+			} catch (Exception e) {
+				report(e);
+			}
+			setValue(result.getReadingValue());
+			if (activityListener == null
+					|| ((Activity) activityListener).isFinishing())
+				return null;
+			if (result == null) {
+				activityListener.addFailOrPass(true, false, "ERROR", description,testToBeParsed);
+				return null;
+			}
+			if (result.isSuccess()) {
+				Success();
+				activityListener.addFailOrPass(true, true, result.getReading(),description,testToBeParsed);
+			} else {
+				activityListener
+						.addFailOrPass(true, false, result.getReading(),description);
+			}
+
+			// If we are reading uA (Sleep) current, change back to mA range ready for next test step.
+			if (units == Units.uA) {
+				IOIOUtils.getUtils().setIrange((Activity)activityListener, false);
+			}
+			IOIOUtils.getUtils().toggleTrigger((Activity)activityListener);
+			return null;
 		}
-		setValue(result.getReadingValue());
-		if (activityListener == null
-				|| ((Activity) activityListener).isFinishing())
-			return;
-		if (result == null) {
-			activityListener.addFailOrPass(true, false, "ERROR", description,testToBeParsed);
-			return;
-		}
-		if (result.isSuccess()) {
-			Success();
-			activityListener.addFailOrPass(true, true, result.getReading(),description,testToBeParsed);
-		} else {
-			activityListener
-					.addFailOrPass(true, false, result.getReading(),description);
-		}
-		
-		// If we are reading uA (Sleep) current, change back to mA range ready for next test step.
-		if (units == Units.uA) {
-			IOIOUtils.getUtils().setIrange((Activity)activityListener, false);
-		}
-		IOIOUtils.getUtils().toggleTrigger((Activity)activityListener);
 	}
-	@Override
-	public void interrupt() {
-		super.interrupt();
-		try {Current.interrupt();}catch (Exception e){;}
-	}
-
 }

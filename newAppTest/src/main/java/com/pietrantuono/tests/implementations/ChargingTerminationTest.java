@@ -7,6 +7,8 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.os.AsyncTask;
+
 public class ChargingTerminationTest extends Test {
 	private AlertDialog alertDialog;
 	private Boolean CHGPin;
@@ -17,42 +19,8 @@ public class ChargingTerminationTest extends Test {
 	}
 	@Override
 	public void execute() {
-		if(isinterrupted)return;
-		byte[] writebyte;
-		byte[] readbyte;
-		Activity ac= (Activity)activityListener;
-		writebyte = new byte[]{0x00, (byte) 0};		// Set voltage to high (~4.1v)
-		readbyte = new byte[]{};
-
-		if (IOIOUtils.getUtils().getMaster() != null)
-			try {
-				IOIOUtils.getUtils().getMaster().writeRead(0x60, false, writebyte, writebyte.length,
-						readbyte, readbyte.length);
-			} catch (Exception e1) {
-				report(e1);
-				activityListener.addFailOrPass(true, false, "IOIO Fault");
-				return;
-			}
-
-		switch5vDC(true);
-
-		try {
-			CHGPin = IOIOUtils.getUtils().getCHGPinIn().read();
-		} catch (Exception e2) {
-			report(e2);
-			activityListener.addFailOrPass(true, false, "IOIO Read Fault");
-		}
-
-		if (CHGPin) {
-			showAlert(ac, true);
-		} else {
-			setSuccess(true);
-			switch5vDC(false);
-			activityListener.addFailOrPass(false, false, "");
-		}
-
+		new ChargingTerminationTestAsyncTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 	}
-
 
 	private void switch5vDC(Boolean state) {
 		Boolean value;
@@ -123,5 +91,45 @@ public class ChargingTerminationTest extends Test {
 	public void interrupt() {
 		super.interrupt();
 		try{alertDialog.dismiss();}catch(Exception e){}
+	}
+
+	class ChargingTerminationTestAsyncTask extends AsyncTask<Void,Void,Void>{
+		@Override
+		protected Void doInBackground(Void... params) {
+			if(isinterrupted)return null;
+			byte[] writebyte;
+			byte[] readbyte;
+			Activity ac= (Activity)activityListener;
+			writebyte = new byte[]{0x00, (byte) 0};		// Set voltage to high (~4.1v)
+			readbyte = new byte[]{};
+
+			if (IOIOUtils.getUtils().getMaster() != null)
+				try {
+					IOIOUtils.getUtils().getMaster().writeRead(0x60, false, writebyte, writebyte.length,
+							readbyte, readbyte.length);
+				} catch (Exception e1) {
+					report(e1);
+					activityListener.addFailOrPass(true, false, "IOIO Fault");
+					return null;
+				}
+
+			switch5vDC(true);
+
+			try {
+				CHGPin = IOIOUtils.getUtils().getCHGPinIn().read();
+			} catch (Exception e2) {
+				report(e2);
+				activityListener.addFailOrPass(true, false, "IOIO Read Fault");
+			}
+
+			if (CHGPin) {
+				showAlert(ac, true);
+			} else {
+				setSuccess(true);
+				switch5vDC(false);
+				activityListener.addFailOrPass(false, false, "");
+			}
+			return null;
+		}
 	}
 }

@@ -2,6 +2,7 @@ package com.pietrantuono.tests.implementations;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -31,55 +32,7 @@ public class GetMacAddressTest extends Test {
 
     @Override
     public void execute() {
-        if (IOIOUtils.getUtils().getUutMode(getActivity()) == IOIOUtils.Mode.bootloader) {
-            IOIOUtils.getUtils().modeApplication((Activity) activityListener);
-        }
-        if (isinterrupted) return;
-        String strFileContents = "";
-
-        try {
-            Thread.sleep(2 * 1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        if (IOIOUtils.getUtils().getUartLog().length() != 0) {
-            if (IOIOUtils.getUtils().getUartLog().indexOf(key) != -1) {
-                strFileContents = IOIOUtils.getUtils().getUartLog()
-                        .substring(IOIOUtils.getUtils().getUartLog().indexOf(key) + key.length(),
-                                IOIOUtils.getUtils().getUartLog().indexOf(key) + (key.length() + mac_length))
-                        .toString();
-            }
-
-            Log.d(TAG, "BT ADDR " + strFileContents);
-
-            Pattern pattern = Pattern.compile("^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$");
-            Matcher matcher = pattern.matcher(strFileContents);
-            if (matcher.matches()) {
-                Log.d("MAC: ", "MAC VALID.");
-                mac = strFileContents;
-
-                if(ServiceDBHelper.isMacAlreadySeen(activityListener.getBarcode(),mac) && !PeriCoachTestApplication.getIsRetestAllowed()){
-                    Toast.makeText((Activity)activityListener,"DEVICE ALRREDY TESTED, ABORTING !",Toast.LENGTH_LONG).show();
-                    setSuccess(false);
-                    activityListener.addFailOrPass(true, false, mac, description);
-                    return;
-                }
-
-                Success();
-//                activityListener.addView("BT ADDR: ", strFileContents, false);
-//                activityListener.setSerial(strFileContents);
-                ServiceDBHelper.saveMac(activityListener.getBarcode(),mac);
-                activityListener.setMacAddress(strFileContents);
-                activityListener.addFailOrPass(true, true, mac, description);
-                return;
-
-            } else {
-                activityListener.addFailOrPass(true, false, "MAC INVALID", description);
-                Log.d("MAC: ", "MAC INVALID.");
-            }
-            return;
-        }
+        new GetMacAddressTestAsyncTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
 
@@ -97,6 +50,62 @@ public class GetMacAddressTest extends Test {
             executor.shutdownNow();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    class GetMacAddressTestAsyncTask extends AsyncTask<Void,Void,Void>{
+        @Override
+        protected Void doInBackground(Void... params) {
+            if (IOIOUtils.getUtils().getUutMode(getActivity()) == IOIOUtils.Mode.bootloader) {
+                IOIOUtils.getUtils().modeApplication((Activity) activityListener);
+            }
+            if (isinterrupted) return null;
+            String strFileContents = "";
+
+            try {
+                Thread.sleep(2 * 1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            if (IOIOUtils.getUtils().getUartLog().length() != 0) {
+                if (IOIOUtils.getUtils().getUartLog().indexOf(key) != -1) {
+                    strFileContents = IOIOUtils.getUtils().getUartLog()
+                            .substring(IOIOUtils.getUtils().getUartLog().indexOf(key) + key.length(),
+                                    IOIOUtils.getUtils().getUartLog().indexOf(key) + (key.length() + mac_length))
+                            .toString();
+                }
+
+                Log.d(TAG, "BT ADDR " + strFileContents);
+
+                Pattern pattern = Pattern.compile("^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$");
+                Matcher matcher = pattern.matcher(strFileContents);
+                if (matcher.matches()) {
+                    Log.d("MAC: ", "MAC VALID.");
+                    mac = strFileContents;
+
+                    if(ServiceDBHelper.isMacAlreadySeen(activityListener.getBarcode(),mac) && !PeriCoachTestApplication.getIsRetestAllowed()){
+                        Toast.makeText((Activity)activityListener,"DEVICE ALRREDY TESTED, ABORTING !",Toast.LENGTH_LONG).show();
+                        setSuccess(false);
+                        activityListener.addFailOrPass(true, false, mac, description);
+                        return null;
+                    }
+
+                    Success();
+//                activityListener.addView("BT ADDR: ", strFileContents, false);
+//                activityListener.setSerial(strFileContents);
+                    ServiceDBHelper.saveMac(activityListener.getBarcode(),mac);
+                    activityListener.setMacAddress(strFileContents);
+                    activityListener.addFailOrPass(true, true, mac, description);
+                    return null;
+
+                } else {
+                    activityListener.addFailOrPass(true, false, "MAC INVALID", description);
+                    Log.d("MAC: ", "MAC INVALID.");
+                }
+                return null;
+            }
+            return null;
         }
     }
 }

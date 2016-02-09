@@ -19,40 +19,30 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ActionMode;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CursorAdapter;
 
-import com.activeandroid.query.Select;
 import com.kennyc.view.MultiStateView;
 import com.pietrantuono.devicesprovider.DevicesContentProvider;
-import com.pietrantuono.fragments.ActionModecallback;
 import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.pericoach.newtestapp.R;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-
 import analytica.pericoach.android.Contract;
-import server.pojos.Device;
 import server.pojos.Job;
 
 public class DevicesListFragment extends Fragment implements ActionModecallback.Callback, LoaderManager.LoaderCallbacks<Cursor> {
     private static final int LOADER = 1;
-    private final String TAG = getClass().getSimpleName();
     private RecyclerView recyclerView;
     private Context context;
     private MultiStateView state;
     private SwipeRefreshLayout swiper;
     private ActionMode mActionMode;
-    private ActionModecallback callback;
+    private ActionModecallback actionModecallback;
     private MyRecyclerCursorAdapter mAdapter;
     private Boolean thisJobOnly = true;    //TODO - Make this a configurable option in the UI/App
     private boolean orderbyBarcode=true;
+    private CallBack callBack;
 
     public DevicesListFragment() {
     }
@@ -73,12 +63,16 @@ public class DevicesListFragment extends Fragment implements ActionModecallback.
     public void onAttach(Context context) {
         super.onAttach(context);
         this.context = context;
+        this.callBack= (CallBack) context;
+        callBack.setDevicesListFragment(this);
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
         this.context = null;
+        callBack.setDevicesListFragment(null);
+        this.callBack=null;
     }
 
     @Override
@@ -136,11 +130,19 @@ public class DevicesListFragment extends Fragment implements ActionModecallback.
     public void setUserVisibleHint(boolean isVisibleToUser) {
         if (isVisibleToUser) {
             forceSync();
-            callback = new ActionModecallback(getActivity(), DevicesListFragment.this);
+            if(callBack!=null)callBack.setDevicesFragmentActionBar(true);
+            /*callback = new ActionModecallback(getActivity(), DevicesListFragment.this);
             mActionMode = ((AppCompatActivity) getActivity()).startSupportActionMode(callback);
+            Job job = PeriCoachTestApplication.getCurrentJob();
+            if (PeriCoachTestApplication.getIsRetestAllowed()) {
+                mActionMode.setTitle(getActivity().getString(R.string.job_number)+job.getJobno() + " (Retests)");
+            } else {
+                mActionMode.setTitle(getActivity().getString(R.string.job_number)+job.getJobno() + " (No Retests)");
+            }*/
         } else {
-            if (mActionMode != null) mActionMode.finish();
+            if(callBack!=null)callBack.setDevicesFragmentActionBar(false);
 
+            //if (mActionMode != null) mActionMode.finish();
         }
     }
 
@@ -209,6 +211,17 @@ public class DevicesListFragment extends Fragment implements ActionModecallback.
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
         mAdapter.changeCursor(null);
+    }
+
+    public Boolean isThisJobOnly() {
+        return thisJobOnly;
+    }
+
+    public interface CallBack{
+
+        void setDevicesListFragment(DevicesListFragment devicesListFragment);
+
+        void setDevicesFragmentActionBar(boolean isDevicesListActionbar);
     }
 
 }

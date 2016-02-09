@@ -75,6 +75,7 @@ public class OtherSelectJobActivity extends AppCompatActivity implements MyCallb
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.menu, menu);
+		menu.findItem(R.id.restart).setVisible(false);
 		return true;
 	}
 	@Override

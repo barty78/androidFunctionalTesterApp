@@ -2,6 +2,7 @@ package com.pietrantuono.activities.uihelper;
 
 import java.util.ArrayList;
 
+import com.github.lzyzsd.circleprogress.DonutProgress;
 import com.pietrantuono.activities.MainActivity;
 import com.pietrantuono.devicesprovider.DevicesContentProvider;
 import com.pietrantuono.fragments.PagerAdapter;
@@ -134,7 +135,7 @@ public class UIHelper {
 
         selection =Contract.DevicesColumns.DEVICES_JOB_ID + "= "+job.getId()+
                 " AND " + "(" + Contract.DevicesColumns.DEVICES_EXEC_TESTS + " & "+job.getTesttypeId()+") = "+job.getTesttypeId()+
-                " AND " + "(" + Contract.DevicesColumns.DEVICES_STATUS + " & "+job.getTesttypeId()+") != "+job.getTesttypeId() ;
+                " AND " + "(" + Contract.DevicesColumns.DEVICES_STATUS + " & "+job.getTesttypeId()+") = 0";
         c=resolver.query(DevicesContentProvider.CONTENT_URI,null,selection,null,null);
 
         int numberOfDevicesFailed=c.getCount();
@@ -142,7 +143,9 @@ public class UIHelper {
 
         ((TextView)activity.findViewById(R.id.num_of_devices)).setText("" + numberOfDevices);
         ((TextView)activity.findViewById(R.id.devices_passed)).setText(""+numberOfDevicesPassed);
-        ((TextView)activity.findViewById(R.id.devices_failed)).setText(""+numberOfDevicesFailed);
+        ((TextView)activity.findViewById(R.id.devices_failed)).setText("" + numberOfDevicesFailed);
+        float numberOfDevicesFloat=numberOfDevices;
+        ((DonutProgress)activity.findViewById(R.id.progress_stats)).setProgress((int)((numberOfDevicesPassed / numberOfDevicesFloat)*100));
     }
 
 

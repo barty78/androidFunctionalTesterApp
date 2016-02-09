@@ -1,5 +1,7 @@
 package com.pietrantuono.tests.implementations;
 import android.app.Activity;
+import android.os.AsyncTask;
+
 import com.pietrantuono.btutility.BTUtility;
 import com.pietrantuono.tests.superclass.Test;
 public class BluetoothConnectTest extends Test {
@@ -9,18 +11,7 @@ public class BluetoothConnectTest extends Test {
 	}
 	@Override
 	public void execute() {
-		if(isinterrupted)return;
-		btUtility = new BTUtility((Activity)activityListener, activityListener.getSerial(), // TODO
-				// change
-				// serial
-				// goes activityListener.getSerial()
-				// here
-				// ""
-				// for
-				// testing
-				activityListener,activityListener.getMac());
-		activityListener.setBtutility(btUtility);
-		btUtility.connectProbeViaBT(BluetoothConnectTest.this);
+		new BluetoothConnectTestAsyncTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 	}
 	@Override
 	public void interrupt() {
@@ -28,4 +19,25 @@ public class BluetoothConnectTest extends Test {
 		try{btUtility.abort();}
 		catch (Exception e){}
 	}
+
+	class BluetoothConnectTestAsyncTask extends AsyncTask<Void,Void,Void>{
+		@Override
+		protected Void doInBackground(Void... params) {
+			if(isinterrupted)return null;
+			btUtility = new BTUtility((Activity)activityListener, activityListener.getSerial(), // TODO
+					// change
+					// serial
+					// goes activityListener.getSerial()
+					// here
+					// ""
+					// for
+					// testing
+					activityListener,activityListener.getMac());
+			activityListener.setBtutility(btUtility);
+			btUtility.connectProbeViaBT(BluetoothConnectTest.this);
+
+			return null;
+		}
+	}
+
 }
