@@ -8,9 +8,8 @@
         app:actionViewClass="android.widget.Switch"
         app:showAsAction="always" />
     <item
-        android:id="@+id/spinner"
-        android:actionLayout="@layout/spinner_layout"
-        android:title="Order"
-        app:actionViewClass="android.widget.Spinner"
+        android:icon="@drawable/ic_sort_white_48dp"
+        android:id="@+id/click"
+        android:title="Sort"
         app:showAsAction="always" />
 </menu>
