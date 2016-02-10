@@ -1,4 +1,4 @@
-package com.pietrantuono.recordsyncadapeter;
+package com.pietrantuono.recordsyncadapter;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;
@@ -9,7 +9,7 @@ import android.net.Uri;
  * Define an implementation of ContentProvider that stubs out
  * all methods
  */
-public class MyStubProvider extends ContentProvider {
+public class RecordsStubProvider extends ContentProvider {
     /*
      * Always return true, indicating that the
      * provider loaded correctly.

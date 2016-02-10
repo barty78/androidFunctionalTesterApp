@@ -1,16 +1,16 @@
-package com.pietrantuono.recordsyncadapeter;
+package com.pietrantuono.recordsyncadapter;
 
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 
-public class MyAuthenticatorService extends Service {
+public class RecordsAuthenticatorService extends Service {
     // Instance field that stores the authenticator object
-    private MyAuthenticator mAuthenticator;
+    private RecordsAuthenticator mAuthenticator;
     @Override
     public void onCreate() {
         // Create a new authenticator object
-        mAuthenticator = new MyAuthenticator(this);
+        mAuthenticator = new RecordsAuthenticator(this);
     }
     /*
      * When the system binds to this Service to make the RPC call

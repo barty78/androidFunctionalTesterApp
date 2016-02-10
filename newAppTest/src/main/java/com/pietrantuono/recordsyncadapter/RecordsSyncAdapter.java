@@ -1,4 +1,4 @@
-package com.pietrantuono.recordsyncadapeter;
+package com.pietrantuono.recordsyncadapter;
 
 import java.io.File;
 import java.io.RandomAccessFile;
@@ -42,20 +42,20 @@ import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
-public class MySyncAdapter extends AbstractThreadedSyncAdapter {
-	private MyUploader myuploader;
+public class RecordsSyncAdapter extends AbstractThreadedSyncAdapter {
+	private RecordUploader recorduploader;
 	private Context context;
 	int notificationId = 001;
-	private String TAG="MySyncAdapter";
+	private String TAG="RecordsSyncAdapter";
 
-	public MySyncAdapter(Context context, boolean autoInitialize) {
+	public RecordsSyncAdapter(Context context, boolean autoInitialize) {
 		super(context, autoInitialize);
 		this.context = context;
 
 	}
 
 	@SuppressWarnings("unused")
-	public MySyncAdapter(Context context, boolean autoInitialize, boolean allowParallelSyncs) {
+	public RecordsSyncAdapter(Context context, boolean autoInitialize, boolean allowParallelSyncs) {
 		super(context, autoInitialize, allowParallelSyncs);
 		this.context = context;
 
@@ -64,8 +64,8 @@ public class MySyncAdapter extends AbstractThreadedSyncAdapter {
 	@Override
 	public void onPerformSync(Account account, Bundle extras, String authority, ContentProviderClient provider,
 			SyncResult syncResult) {
-		myuploader = new MyUploader();
-		myuploader.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+		recorduploader = new RecordUploader();
+		recorduploader.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 		Log.d(TAG, "onPerformSync");
 
 		RetrofitRestServices.getRest(context).getLastDevicesAsync(PeriCoachTestApplication.getDeviceid(), "" + ServiceDBHelper.getMaxDeviceID(), new Callback<DevicesList>() {
@@ -82,7 +82,7 @@ public class MySyncAdapter extends AbstractThreadedSyncAdapter {
 		return;
 	}
 
-	class MyUploader extends AsyncTask<Void, Void, Void> {
+	class RecordUploader extends AsyncTask<Void, Void, Void> {
 
 		@Override
 		protected void onPostExecute(Void result) {

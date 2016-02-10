@@ -80,7 +80,7 @@
 
 
         <service
-            android:name="com.pietrantuono.recordsyncadapeter.MyAuthenticatorService"
+            android:name="com.pietrantuono.recordsyncadapter.RecordsAuthenticatorService"
             android:exported="false" >
             <intent-filter>
                 <action android:name="android.accounts.AccountAuthenticator" />
@@ -92,13 +92,13 @@
         </service>
 
         <provider
-            android:name="com.pietrantuono.recordsyncadapeter.MyStubProvider"
+            android:name="com.pietrantuono.recordsyncadapter.RecordsStubProvider"
             android:authorities="com.example.android.datasync.provider"
             android:exported="false"
             android:syncable="true" />
 
         <service
-            android:name="com.pietrantuono.recordsyncadapeter.MySyncService"
+            android:name="com.pietrantuono.recordsyncadapter.RecordsSyncService"
             android:exported="true"
             android:process=":sync"
             >
@@ -113,7 +113,7 @@
 
 
         <service
-            android:name="com.pietrantuono.devicesyncadpater.DevicesAuthenticatorService">
+            android:name="com.pietrantuono.devicesyncadapter.DevicesAuthenticatorService">
             <intent-filter>
                 <action android:name="android.accounts.AccountAuthenticator"/>
             </intent-filter>
@@ -125,7 +125,7 @@
 
 
         <service
-            android:name="com.pietrantuono.devicesyncadpater.DevicesSyncService"
+            android:name="com.pietrantuono.devicesyncadapter.DevicesSyncService"
             android:exported="true"
             >
             <intent-filter>
@@ -148,7 +148,7 @@
 
 
         <service
-            android:name="com.pietrantuono.recordsyncadapeter.StartSyncAdapterService"
+            android:name="com.pietrantuono.recordsyncadapter.StartSyncAdapterService"
             android:exported="false"/>
 
         <meta-data

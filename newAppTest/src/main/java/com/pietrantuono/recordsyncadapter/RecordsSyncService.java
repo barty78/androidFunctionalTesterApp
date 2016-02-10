@@ -1,4 +1,4 @@
-package com.pietrantuono.recordsyncadapeter;
+package com.pietrantuono.recordsyncadapter;
 
 import android.app.Service;
 import android.content.Intent;
@@ -9,9 +9,9 @@ import android.os.IBinder;
  * sync adapter class, allowing the sync adapter framework to call
  * onPerformSync().
  */
-public class MySyncService extends Service {
+public class RecordsSyncService extends Service {
     // Storage for an instance of the sync adapter
-    private static MySyncAdapter sSyncAdapter = null;
+    private static RecordsSyncAdapter sSyncAdapter = null;
     // Object to use as a thread-safe lock
     private static final Object sSyncAdapterLock = new Object();
     /*
@@ -26,7 +26,7 @@ public class MySyncService extends Service {
          */
         synchronized (sSyncAdapterLock) {
             if (sSyncAdapter == null) {
-                sSyncAdapter = new MySyncAdapter(getApplicationContext(), true);
+                sSyncAdapter = new RecordsSyncAdapter(getApplicationContext(), true);
             }
         }
     }
