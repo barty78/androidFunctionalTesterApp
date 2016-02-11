@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity
     private boolean sequenceStarted;
     private String barcode;
     private SerialConsoleFragmentCallback serialConsoleFragmentCallback;
-    private boolean hideRestart;
+    private boolean hideRestart = true;
     private DevicesListFragment devicesListFragment;
     private boolean isDevicesListActionbar;
 
@@ -206,12 +206,13 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.settings) {
+            Intent in = new Intent(MainActivity.this, SettingsActivity.class);
+            startActivity(in);
+            return true;
+        }
         if (!isDevicesListActionbar) {
             switch (item.getItemId()) {
-                case R.id.settings:
-                    Intent in = new Intent(MainActivity.this, SettingsActivity.class);
-                    startActivity(in);
-                    return true;
                 case R.id.restart:
                     restartSequence();
                     return true;
@@ -219,7 +220,7 @@ public class MainActivity extends AppCompatActivity
                     return super.onOptionsItemSelected(item);
             }
         } else {
-            if (item.getItemId() == R.id.click) {
+            if(item.getItemId() == R.id.click) {
                 PopupMenu popup = new PopupMenu(MainActivity.this, findViewById(item.getItemId()));
                 popup.getMenuInflater().inflate(R.menu.popup_menu, popup.getMenu());
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -231,7 +232,8 @@ public class MainActivity extends AppCompatActivity
                                     devicesListFragment.sortByBarcode();
                                 return true;
                             case R.id.sort_by_result:
-                                if (devicesListFragment != null) devicesListFragment.sortByResult();
+                                if (devicesListFragment != null)
+                                    devicesListFragment.sortByResult();
                                 return true;
                         }
                         return true;
