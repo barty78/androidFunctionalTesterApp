@@ -17,6 +17,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -56,6 +57,10 @@ public class GetBarcodeTest extends Test {
 
     @Override
     public void execute() {
+        new GetBarcodeTestAsyncTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    }
+
+    public void start(){
         if (isinterrupted)
             return;
 
@@ -104,7 +109,7 @@ public class GetBarcodeTest extends Test {
                 return;
             } else {
                 counter++;
-                execute();
+                start();
             }
         }
     }
@@ -186,6 +191,14 @@ public class GetBarcodeTest extends Test {
             return false;
         }
         return true;
+    }
+
+    class GetBarcodeTestAsyncTask extends AsyncTask<Void,Void,Void>{
+        @Override
+        protected Void doInBackground(Void... params) {
+            start();
+            return null;
+        }
     }
 
 }

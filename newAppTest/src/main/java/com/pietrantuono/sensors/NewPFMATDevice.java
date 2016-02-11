@@ -51,11 +51,20 @@ public class NewPFMATDevice
 		if (mDevice == null)
 		{
 			// Tell the user
-			AlertDialog errorBox = new AlertDialog.Builder(context).create();
+			final AlertDialog errorBox = new AlertDialog.Builder(context).create();
 			errorBox.setCancelable(false);
 			errorBox.setMessage(context.getString(R.string.btinfo_connection_failed_no_device));
-			errorBox.setButton(AlertDialog.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener()	{public void onClick(DialogInterface dialog, int which) {dialog.dismiss();}});
-			errorBox.show();
+			errorBox.setButton(AlertDialog.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int which) {
+					dialog.dismiss();
+				}
+			});
+			((Activity)context).runOnUiThread(new Runnable() {
+				@Override
+				public void run() {
+					errorBox.show();
+				}
+			});
 			
 			// Notify of failed connection
 			context.sendBroadcast(new Intent(failIntent));
@@ -100,12 +109,19 @@ public class NewPFMATDevice
 			if(mContext==null)return;
 			if(isCancelled())return ;
 			// Display an hourglass
-			mHourglass = new ProgressDialog(mContext);
-			mHourglass.setMessage(mContext.getString(R.string.btinfo_connecting));
-			mHourglass.setIndeterminate(true);
-			mHourglass.setCancelable(false);
-			mHourglass.show();
+				((Activity)mContext).runOnUiThread(new Runnable() {
+					@Override
+					public void run() {
+						mHourglass = new ProgressDialog(mContext);
+						mHourglass.setMessage(mContext.getString(R.string.btinfo_connecting));
+						mHourglass.setIndeterminate(true);
+						mHourglass.setCancelable(false);
+						mHourglass.show();
+
+					}
+				});
 		}
+
     	protected Boolean doInBackground(Void... args)
     	{	if(isCancelled())return false;
     		// Connect the device
@@ -146,7 +162,13 @@ public class NewPFMATDevice
     			mHourglass.dismiss();
     			return;
     		}
-    		mHourglass.dismiss();
+			((Activity)mContext).runOnUiThread(new Runnable() {
+				@Override
+				public void run() {
+					mHourglass.dismiss();
+				}
+			});
+
 
     		// Inform the user if we failed
     		if (!result)

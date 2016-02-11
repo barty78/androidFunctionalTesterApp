@@ -4,6 +4,7 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
 import android.app.Activity;
+import android.os.AsyncTask;
 import android.util.Log;
 
 import com.pietrantuono.ioioutils.IOIOUtils;
@@ -37,44 +38,57 @@ public class BatteryLevelUUTVoltageTest extends Test {
 
     @Override
     public void execute() {
-        if(isinterrupted)return;
-        Log.d(TAG, "Test Starting: " + description);
-        if(getListener().getBtutility()==null){report("BU utility is null");return;}
-        DecimalFormat df = new DecimalFormat("##.##");
-        df.setRoundingMode(RoundingMode.DOWN);
-        // Set battery voltage based on parameter
-        if (!IOIOUtils.getUtils().setBattVoltage(ioio, false, 37, 3f, voltage)) {
-            getListener().addFailOrPass(true, false, "Fixture Fault - Battery Voltage Setpoint not reached", testToBeParsed);
-            return;
-        }
-        if(isinterrupted)return;
-        try {
-            Thread.sleep(2 * 1000);
-        } catch (Exception e) {
-            getListener().addFailOrPass(true, false, "ERROR", "App Fault",testToBeParsed);
+        new BatteryLevelUUTVoltageTestAsyncTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    }
 
-        }
+    private class BatteryLevelUUTVoltageTestAsyncTask extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... params) {
+            if (isinterrupted) return null;
+            Log.d(TAG, "Test Starting: " + description);
+            if (getListener().getBtutility() == null) {
+                report("BU utility is null");
+                return null;
+            }
+            DecimalFormat df = new DecimalFormat("##.##");
+            df.setRoundingMode(RoundingMode.DOWN);
+            // Set battery voltage based on parameter
+            if (!IOIOUtils.getUtils().setBattVoltage(ioio, false, 37, 3f, voltage)) {
+                getListener().addFailOrPass(true, false, "Fixture Fault - Battery Voltage Setpoint not reached", testToBeParsed);
+                return null;
+            }
+            if (isinterrupted) return null;
+            try {
+                Thread.sleep(2 * 1000);
+            } catch (Exception e) {
+                getListener().addFailOrPass(true, false, "ERROR", "App Fault", testToBeParsed);
 
-        if(isinterrupted)return;
-        // Need to read battery level via BT from Pericoach PCB, not from
-        // AnalogInput
-        short battlevel = -1;
-        try {
-            battlevel = getListener().getBtutility().requestBatteryLevelAndWait();
-        } catch (Exception e) {
-            getListener().addFailOrPass(true, false, "ERROR", "UUT Comms Fault",testToBeParsed);
-            return;
-        }
-        setValue(battlevel);
-        if (limit + (limit * precision) > battlevel
-                && battlevel > limit - (limit * precision)) {
-            setSuccess(true);
-            getListener().addFailOrPass(true, true, df.format(battlevel) + "%",description,testToBeParsed);
-        } else {
-            setSuccess(false);
-            getListener().addFailOrPass(true, false, df.format(battlevel) + "%",description,testToBeParsed);
+            }
+
+            if (isinterrupted) return null;
+            // Need to read battery level via BT from Pericoach PCB, not from
+            // AnalogInput
+            short battlevel = -1;
+            try {
+                battlevel = getListener().getBtutility().requestBatteryLevelAndWait();
+            } catch (Exception e) {
+                getListener().addFailOrPass(true, false, "ERROR", "UUT Comms Fault", testToBeParsed);
+                return null;
+            }
+            setValue(battlevel);
+            if (limit + (limit * precision) > battlevel
+                    && battlevel > limit - (limit * precision)) {
+                setSuccess(true);
+                getListener().addFailOrPass(true, true, df.format(battlevel) + "%", description, testToBeParsed);
+            } else {
+                setSuccess(false);
+                getListener().addFailOrPass(true, false, df.format(battlevel) + "%", description, testToBeParsed);
+            }
+
+            return null;
         }
     }
+
 
     @SuppressWarnings("unused")
     public interface Callback {

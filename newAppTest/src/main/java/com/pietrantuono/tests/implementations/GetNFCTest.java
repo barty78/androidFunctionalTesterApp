@@ -2,6 +2,7 @@ package com.pietrantuono.tests.implementations;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.os.AsyncTask;
 import android.util.Log;
 
 import com.pietrantuono.application.PeriCoachTestApplication;
@@ -77,82 +78,7 @@ public class GetNFCTest extends Test {
 
     @Override
     public void execute() {
-        if (isinterrupted)
-            return;
-        if (IOIOUtils.getUtils().getIOIOUart() != null) {
-            RX = IOIOUtils.getUtils().getIOIOUart().getInputStream();// Pin 14
-            TX = IOIOUtils.getUtils().getIOIOUart().getOutputStream(); // Pin 13
-        }
-
-        try {
-            TX.write(wake, 0, wake.length);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-        if (!Arrays.equals(ReadwithTimeout(200, wake_res.length), wake_res)) {
-            activityListener.addFailOrPass("", true, false, description + " Read Failed");
-            return;
-        }
-
-        try {
-            TX.write(tag, 0, tag.length);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        byte[] result = ReadwithTimeout(5000, std_ACK.length);
-        byte[] tmp1 = Arrays.copyOfRange(std_ACK, 0, 18);
-        byte[] tmp2 = Arrays.copyOfRange(result, 0, 18);
-
-        printBuffer(tmp1);
-        printBuffer(tmp2);
-        if (!Arrays.equals(tmp1, tmp2)) {
-            activityListener.addFailOrPass("", true, false, description + " Read Failed");
-            return;
-        }
-
-        activityListener.addFailOrPass(true, true, bytesToHex(Arrays.copyOfRange(result,19,result.length)), "");
-
-//        if (barcode != null && !barcode.isEmpty()) {
-//            counter = 0;
-//            activityListener.addView("Barcode", barcode, false);
-//            if (!checkJob(barcode)) {
-//                activityListener.addFailOrPass("", true, false, description + " - Invalid Barcode");
-//                return;
-//            } ;
-//            if (!PeriCoachTestApplication.getIsRetestAllowed()) {
-//                Log.d(TAG, "Retest is " + PeriCoachTestApplication.getIsRetestAllowed());
-//                if (ServiceDBHelper.isBarcodeAlreadySeen(barcode)) {
-//                    activityListener.addFailOrPass("", true, false, description + " - Barcode already tested");
-//                    return;
-//                } else {
-//                    activityListener.setBarcode(barcode);
-//                    ServiceDBHelper.saveBarcode(barcode);
-//                    setSuccess(true);
-//                    activityListener.addFailOrPass(true, true, barcode);
-//                    return;
-//
-//                }
-//            } else {
-//                activityListener.setBarcode(barcode);
-//                setSuccess(true);
-//                ServiceDBHelper.saveBarcode(barcode);
-//                activityListener.addFailOrPass(true, true, barcode);
-//                return;
-//            }
-//        } else {
-//            if (counter >= limitParam1) {
-//                counter = 0;
-//                activityListener.addFailOrPass("", true, false, description + " Read Failed");
-//                return;
-//            } else {
-//                counter++;
-//                execute();
-//            }
-//        }
-
-
+        new GetNFCTestAsyncTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
     public static String bytesToHex(byte[] bytes) {
@@ -218,5 +144,86 @@ public class GetNFCTest extends Test {
         }
     }
 
+    class GetNFCTestAsyncTask extends AsyncTask<Void,Void,Void>{
+        @Override
+        protected Void doInBackground(Void... params) {
+            if (isinterrupted)
+                return null;
+            if (IOIOUtils.getUtils().getIOIOUart() != null) {
+                RX = IOIOUtils.getUtils().getIOIOUart().getInputStream();// Pin 14
+                TX = IOIOUtils.getUtils().getIOIOUart().getOutputStream(); // Pin 13
+            }
+
+            try {
+                TX.write(wake, 0, wake.length);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+            if (!Arrays.equals(ReadwithTimeout(200, wake_res.length), wake_res)) {
+                activityListener.addFailOrPass("", true, false, description + " Read Failed");
+                return null;
+            }
+
+            try {
+                TX.write(tag, 0, tag.length);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            byte[] result = ReadwithTimeout(5000, std_ACK.length);
+            byte[] tmp1 = Arrays.copyOfRange(std_ACK, 0, 18);
+            byte[] tmp2 = Arrays.copyOfRange(result, 0, 18);
+
+            printBuffer(tmp1);
+            printBuffer(tmp2);
+            if (!Arrays.equals(tmp1, tmp2)) {
+                activityListener.addFailOrPass("", true, false, description + " Read Failed");
+                return null;
+            }
+
+            activityListener.addFailOrPass(true, true, bytesToHex(Arrays.copyOfRange(result,19,result.length)), "");
+
+//        if (barcode != null && !barcode.isEmpty()) {
+//            counter = 0;
+//            activityListener.addView("Barcode", barcode, false);
+//            if (!checkJob(barcode)) {
+//                activityListener.addFailOrPass("", true, false, description + " - Invalid Barcode");
+//                return;
+//            } ;
+//            if (!PeriCoachTestApplication.getIsRetestAllowed()) {
+//                Log.d(TAG, "Retest is " + PeriCoachTestApplication.getIsRetestAllowed());
+//                if (ServiceDBHelper.isBarcodeAlreadySeen(barcode)) {
+//                    activityListener.addFailOrPass("", true, false, description + " - Barcode already tested");
+//                    return;
+//                } else {
+//                    activityListener.setBarcode(barcode);
+//                    ServiceDBHelper.saveBarcode(barcode);
+//                    setSuccess(true);
+//                    activityListener.addFailOrPass(true, true, barcode);
+//                    return;
+//
+//                }
+//            } else {
+//                activityListener.setBarcode(barcode);
+//                setSuccess(true);
+//                ServiceDBHelper.saveBarcode(barcode);
+//                activityListener.addFailOrPass(true, true, barcode);
+//                return;
+//            }
+//        } else {
+//            if (counter >= limitParam1) {
+//                counter = 0;
+//                activityListener.addFailOrPass("", true, false, description + " Read Failed");
+//                return;
+//            } else {
+//                counter++;
+//                execute();
+//            }
+//        }
+
+            return null;
+        }
+    }
 
 }

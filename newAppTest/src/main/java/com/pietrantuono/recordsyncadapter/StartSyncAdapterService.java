@@ -1,4 +1,4 @@
-package com.pietrantuono.recordsyncadapeter;
+package com.pietrantuono.recordsyncadapter;
 
 import android.app.IntentService;
 import android.content.Intent;

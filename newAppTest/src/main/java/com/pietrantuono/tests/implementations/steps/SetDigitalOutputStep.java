@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.util.Log;
 
 import com.pietrantuono.ioioutils.IOIOUtils;
+import com.pietrantuono.tests.implementations.AccelerometerSelfTest;
+import com.pietrantuono.tests.superclass.SimpleAsyncTask;
 import com.pietrantuono.tests.superclass.Test;
 
 import ioio.lib.api.exception.ConnectionLostException;
@@ -27,22 +29,29 @@ public class SetDigitalOutputStep extends Test implements Step{
 
     @Override
     public void execute() {
-        if(isinterrupted)return;
-        Log.d(TAG, "Step Executing: " + description);
+        new SetDigitalOutputStepAsyncTask().executeParallel();
+    }
 
-        if(IOIOUtils.getUtils().getDigitalOutput(pinNumber) != null) {
-            try {
-                IOIOUtils.getUtils().getDigitalOutput(pinNumber).write(value ^= true);
-            } catch (ConnectionLostException e) {
-                getListener().addFailOrPass(false, false, "IOIO Error", description);
-                e.printStackTrace();
+    class SetDigitalOutputStepAsyncTask extends SimpleAsyncTask{
+        @Override
+        protected Void doInBackground(Void... params) {
+            if(isinterrupted)return null;
+            Log.d(TAG, "Step Executing: " + description);
+
+            if(IOIOUtils.getUtils().getDigitalOutput(pinNumber) != null) {
+                try {
+                    IOIOUtils.getUtils().getDigitalOutput(pinNumber).write(value ^= true);
+                } catch (ConnectionLostException e) {
+                    getListener().addFailOrPass(false, false, "IOIO Error", description);
+                    e.printStackTrace();
+                }
             }
+
+            getListener().addFailOrPass(false, true, "", description);
+
+            return null;
+
         }
-
-        getListener().addFailOrPass(false, true, "", description);
-
-        if(isinterrupted)return;
-
     }
 
 }

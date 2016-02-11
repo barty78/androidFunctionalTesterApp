@@ -155,7 +155,13 @@ public class NewSequenceFragment extends Fragment {
         this.sequence = sequence;
     }
 
-    public void setOverallFailOrPass(final boolean success) {
+    public void setOverallFailOrPass(final boolean success, final String string) {
+        final String barcode;
+        if(string!=null) {
+            barcode = string;
+        } else {
+            barcode = "";
+        }
         Handler handler = new Handler(getActivity().getMainLooper());
         handler.post(new Runnable() {
             @Override
@@ -164,10 +170,10 @@ public class NewSequenceFragment extends Fragment {
                 success_failure_container.requestLayout();
                 if (!success) {
                     success_failure_container.setBackgroundColor(Color.RED);
-                    success_failure_text.setText("FAIL!");
+                    success_failure_text.setText(barcode + " FAILED!");
                 } else {
                     success_failure_container.setBackgroundColor(Color.GREEN);
-                    success_failure_text.setText("PASS");
+                    success_failure_text.setText(barcode + " PASSED");
                 }
             }
         });

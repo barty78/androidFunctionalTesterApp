@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity
     private boolean sequenceStarted;
     private String barcode;
     private SerialConsoleFragmentCallback serialConsoleFragmentCallback;
-    private boolean hideRestart;
+    private boolean hideRestart = true;
     private DevicesListFragment devicesListFragment;
     private boolean isDevicesListActionbar;
 
@@ -146,32 +146,25 @@ public class MainActivity extends AppCompatActivity
     }
 
     public synchronized void goAndExecuteNextTest() {
-
         if (!sequenceStarted) return;
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                if (MainActivity.this.isFinishing()) return;
-                if (newSequence.isSequenceEnded()) {
-                    Log.d(TAG, "Sequence Ended");
-                    onCurrentSequenceEnd();
-                    return;
-                }
-                if (newSequence.isSequenceStarted()) {
-                    if (newSequence.getCurrentTest().isBlockingTest() && !newSequence.getCurrentTest().isSuccess()) {
-                        Log.d(TAG, "Blocking Test Failed - Sequence Ended");
-                        onCurrentSequenceEnd();
-                        return;
-                    }
-                }
-
-                Log.e(TAG, "goAndExecuteNextTest " + newSequence.getNextTest().getDescription());
-                newSequence.executeCurrentTest();
-                uiHelper.setCurrentAndNextTaskinUI();
+        if (MainActivity.this.isFinishing()) return;
+        if (newSequence.isSequenceEnded()) {
+            Log.d(TAG, "Sequence Ended");
+            onCurrentSequenceEnd();
+            return;
+        }
+        if (newSequence.isSequenceStarted()) {
+            if (newSequence.getCurrentTest().isBlockingTest() && !newSequence.getCurrentTest().isSuccess()) {
+                Log.d(TAG, "Blocking Test Failed - Sequence Ended");
+                onCurrentSequenceEnd();
+                return;
             }
-        });
-    }
+        }
 
+        Log.e(TAG, "goAndExecuteNextTest " + newSequence.getNextTest().getDescription());
+        newSequence.executeCurrentTest();
+        uiHelper.setCurrentAndNextTaskinUI();
+    }
 
     @Override
     @SuppressWarnings("ucd")
@@ -191,7 +184,8 @@ public class MainActivity extends AppCompatActivity
         } else {
             inflater.inflate(R.menu.context_menu, menu);
             final Switch aSwitch = (Switch) MenuItemCompat.getActionView(menu.findItem(R.id.currentjobonly));
-            if(devicesListFragment!=null)aSwitch.setChecked(devicesListFragment.isThisJobOnly());
+            if (devicesListFragment != null)
+                aSwitch.setChecked(devicesListFragment.isThisJobOnly());
             if (aSwitch.isChecked()) aSwitch.setText("Current job only");
             else aSwitch.setText("All jobs");
             aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -212,6 +206,11 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.settings) {
+            Intent in = new Intent(MainActivity.this, SettingsActivity.class);
+            startActivity(in);
+            return true;
+        }
         if (!isDevicesListActionbar) {
             switch (item.getItemId()) {
                 case R.id.settings:
@@ -225,7 +224,7 @@ public class MainActivity extends AppCompatActivity
                     return super.onOptionsItemSelected(item);
             }
         } else {
-            if (item.getItemId() == R.id.click) {
+            if(item.getItemId() == R.id.click) {
                 PopupMenu popup = new PopupMenu(MainActivity.this, findViewById(item.getItemId()));
                 popup.getMenuInflater().inflate(R.menu.popup_menu, popup.getMenu());
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -237,7 +236,8 @@ public class MainActivity extends AppCompatActivity
                                     devicesListFragment.sortByBarcode();
                                 return true;
                             case R.id.sort_by_result:
-                                if (devicesListFragment != null) devicesListFragment.sortByResult();
+                                if (devicesListFragment != null)
+                                    devicesListFragment.sortByResult();
                                 return true;
                         }
                         return true;
@@ -337,7 +337,7 @@ public class MainActivity extends AppCompatActivity
 
     public void onCurrentSequenceEnd() {
         hideRestart = false;
-        if(!isDevicesListActionbar)invalidateOptionsMenu();
+        if (!isDevicesListActionbar) invalidateOptionsMenu();
         IOIOUtils.getUtils().stopUartThread();
         PeriCoachTestApplication.setLastPos(0);
         sequenceStarted = false;
@@ -375,7 +375,7 @@ public class MainActivity extends AppCompatActivity
                 detectHelper.stopCheckingIfConnectionDrops();// OK
                 detectHelper.stopPCBSleepMonitor();
 //				uiHelper.setOverallFailOrPass(overallresult);// NA
-                uiHelper.setOverallFailOrPass(true);// NA
+                uiHelper.setOverallFailOrPass(true, getBarcode());// NA
                 PeriCoachTestApplication.forceSync();
                 try {
                     Thread.sleep(3 * 1000);
@@ -443,7 +443,7 @@ public class MainActivity extends AppCompatActivity
         PeriCoachTestApplication.forceSync();
         uiHelper.removeOverallFailOrPass();
         hideRestart = true;
-        if(!isDevicesListActionbar)invalidateOptionsMenu();
+        if (!isDevicesListActionbar) invalidateOptionsMenu();
         start();
     }
 
