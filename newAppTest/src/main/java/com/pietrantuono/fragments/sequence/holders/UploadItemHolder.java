@@ -1,6 +1,7 @@
 package com.pietrantuono.fragments.sequence.holders;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
@@ -53,6 +54,11 @@ public class UploadItemHolder extends SequenceItemHolder {
         result.setVisibility(View.INVISIBLE);
         donutProgress.setVisibility(View.VISIBLE);
         if (uploadRowElement.getState() != SequenceRowElement.UploadRowElement.NONE) setState();
+    }
+
+    @Override
+    public void setData(Cursor c) {
+
     }
 
     private void setState() {

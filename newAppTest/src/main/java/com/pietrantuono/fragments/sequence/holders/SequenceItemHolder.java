@@ -1,6 +1,7 @@
 package com.pietrantuono.fragments.sequence.holders;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -19,5 +20,6 @@ public abstract class SequenceItemHolder extends RecyclerView.ViewHolder {
 
     public abstract void setData(SequenceRowElement.RowElement rowElement, int position);
 
+    public abstract void setData(Cursor c);
 
 }

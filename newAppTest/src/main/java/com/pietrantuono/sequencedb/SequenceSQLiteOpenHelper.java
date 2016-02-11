@@ -29,7 +29,6 @@ public class SequenceSQLiteOpenHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SequenceContracts.Records.CREATE_TABLES);
         db.execSQL(SequenceContracts.Tests.CREATE_TABLES);
-        db.execSQL(SequenceContracts.SensorResults.CREATE_TABLES);
     }
 
     @Override

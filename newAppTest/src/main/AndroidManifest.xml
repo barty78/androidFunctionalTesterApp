@@ -143,6 +143,13 @@
             android:syncable="true"
             android:multiprocess="true"
             />
+
+        <provider android:name="com.pietrantuono.sequencedb.SequenceProvider"
+            android:authorities="com.analytica.pericoach.sequence"
+            android:exported="false"
+            android:syncable="true"
+            android:multiprocess="true"
+            />
         <!--android:process=":devicesprovider" TODO-->
 
 

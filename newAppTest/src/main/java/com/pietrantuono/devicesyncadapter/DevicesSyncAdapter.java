@@ -58,7 +58,13 @@ public class DevicesSyncAdapter extends AbstractThreadedSyncAdapter {
             Thread.sleep(5 * 1000);
         } catch (InterruptedException e) {
         }
-        DevicesList result = RetrofitRestServices.getRest(context).getLastDevicesSync(PeriCoachTestApplication.getDeviceid(), "0");
+        DevicesList result = null;
+        try {
+            result = RetrofitRestServices.getRest(context).getLastDevicesSync(PeriCoachTestApplication.getDeviceid(), "0");
+        } catch (Exception e) {
+            return;
+        }
+        if(result==null)return;
         insertOrUpdate(result);
         Log.d(TAG, "end onPerformSync");
         intent = new Intent(context.getResources().getString(R.string.devices_sync_finished));
@@ -73,11 +79,11 @@ public class DevicesSyncAdapter extends AbstractThreadedSyncAdapter {
     }
 
     private void bulkInsert(List<Device> devices) {
-        if(devices==null || devices.size()<=0)return;
-        ContentValues[] contentvalues= new ContentValues[devices.size()];
-        for(int i=0;i<devices.size();i++){
-            Device device= devices.get(i);
-            ContentValues values= new ContentValues();
+        if (devices == null || devices.size() <= 0) return;
+        ContentValues[] contentvalues = new ContentValues[devices.size()];
+        for (int i = 0; i < devices.size(); i++) {
+            Device device = devices.get(i);
+            ContentValues values = new ContentValues();
             values.put(Contract.DevicesColumns.DEVICES_DEVICES_ID, device.getDeviceId());
             values.put(Contract.DevicesColumns.DEVICES_JOB_ID, device.getJobId());
             values.put(Contract.DevicesColumns.DEVICES_BARCODE, device.getBarcode() != null ? device.getBarcode() : "");
@@ -87,7 +93,7 @@ public class DevicesSyncAdapter extends AbstractThreadedSyncAdapter {
             values.put(Contract.DevicesColumns.DEVICES_ADDRESS, device.getBt_addr() != null ? device.getBt_addr() : "");
             values.put(Contract.DevicesColumns.DEVICES_EXEC_TESTS, device.getExec_Tests());
             values.put(Contract.DevicesColumns.DEVICES_STATUS, device.getStatus());
-            contentvalues[i]=values;
+            contentvalues[i] = values;
         }
         mContentResolver.bulkInsert(DevicesContentProvider.CONTENT_URI, contentvalues);
 

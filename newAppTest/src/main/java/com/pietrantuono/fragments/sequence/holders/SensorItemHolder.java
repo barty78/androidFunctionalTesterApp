@@ -1,6 +1,7 @@
 package com.pietrantuono.fragments.sequence.holders;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -113,6 +114,11 @@ public class SensorItemHolder extends SequenceItemHolder {
             result_stability.setColor(Color.RED);
         }
         itemView.setOnClickListener((new SensorItemClickListener((AppCompatActivity) context,rowElement.getTestToBeParsed())));
+    }
+
+    @Override
+    public void setData(Cursor c) {
+
     }
 
     @Override

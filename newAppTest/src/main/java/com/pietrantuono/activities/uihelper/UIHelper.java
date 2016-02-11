@@ -3,7 +3,6 @@ package com.pietrantuono.activities.uihelper;
 import java.util.ArrayList;
 
 import com.github.lzyzsd.circleprogress.DonutProgress;
-import com.pietrantuono.activities.MainActivity;
 import com.pietrantuono.devicesprovider.DevicesContentProvider;
 import com.pietrantuono.fragments.PagerAdapter;
 import com.pietrantuono.fragments.sequence.NewSequenceFragment;
@@ -12,13 +11,13 @@ import com.pietrantuono.constants.NewMResult;
 import com.pietrantuono.constants.NewMSensorResult;
 import com.pietrantuono.constants.NewSequenceInterface;
 import com.pietrantuono.pericoach.newtestapp.R;
+import com.pietrantuono.sequencedb.SequenceContracts;
+import com.pietrantuono.sequencedb.SequenceProvider;
 import com.pietrantuono.tests.implementations.upload.UploadTestCallback;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.ContentResolver;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.media.Ringtone;
@@ -33,7 +32,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.ViewTreeObserver.OnPreDrawListener;
-import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.Chronometer.OnChronometerTickListener;
 import android.widget.ImageView;
@@ -148,6 +146,10 @@ public class UIHelper {
         ((DonutProgress)activity.findViewById(R.id.progress_stats)).setProgress((int)((numberOfDevicesPassed / numberOfDevicesFloat)*100));
     }
 
+    public void setRecordId(long recordId) {
+        if(sequenceFragment!=null)sequenceFragment.forceLoaderUpdate(recordId);
+    }
+
 
     public interface ActivityUIHelperCallback {
         ArrayList<ArrayList<NewMResult>> getResults();
@@ -255,14 +257,19 @@ public class UIHelper {
                 }
             }
         });
-
     }
 
     public synchronized void addFailOrPass(final Boolean istest, final Boolean success, String reading,
-                                           String otherreading, String description, boolean issensortest, Test testToBeParsed) {
-        if (sequenceFragment != null) {
-            sequenceFragment.addTest(istest, success, reading, otherreading, description, issensortest, testToBeParsed);
-        }
+                                           String otherreading, String description, boolean issensortest, Test testToBeParsed,long recordId) {
+        ContentValues contentValues= new ContentValues();
+        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_IS_NORMAL_TEST,istest?1:0);
+        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_RESULT,success?1:0);
+        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_READING,reading!=null?reading:"");
+        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_OTHER_READING,otherreading!=null?otherreading:"");
+        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_NAME,description!=null?description:"");
+        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_IS_SENSOR_TEST,issensortest?1:0);
+        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_FOREIGN_KEY_ID_OF_RECORD,recordId);
+        activity.getContentResolver().insert(SequenceProvider.TESTS_CONTENT_URI,contentValues);
 
     }
 
@@ -355,17 +362,18 @@ public class UIHelper {
 
 
     public void addSensorTestCompletedRow(NewMSensorResult mSensorResult, Test testToBeParsed) {
-        sequenceFragment.addSensorTest(mSensorResult, testToBeParsed);
-    }
 
+    }
+    /**
+     * Does nothing
+     */
     public void setSequence(NewSequenceInterface sequence) {
         this.sequence = sequence;
         if (sequenceFragment != null) sequenceFragment.setSequence(sequence);
     }
 
     public void createUploadProgress(final Boolean istest, final Boolean success, String description, UploadTestCallback callback) {
-        if (sequenceFragment != null)
-            sequenceFragment.addUploadRow(istest, success, description, callback);
+            sequenceFragment.setCallback(callback);
     }
 
     public void cleanUI(final Activity activity) {

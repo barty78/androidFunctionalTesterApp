@@ -7,6 +7,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 import com.pietrantuono.fragments.devices.DevicesListFragment;
 import com.pietrantuono.fragments.sequence.NewSequenceFragment;
 
+import customclasses.NewSequence;
+
 public class PagerAdapter extends FragmentPagerAdapter {
 
     public PagerAdapter(FragmentManager fm) {

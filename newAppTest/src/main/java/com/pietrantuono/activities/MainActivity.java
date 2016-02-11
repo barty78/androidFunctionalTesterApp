@@ -30,9 +30,10 @@ import com.pietrantuono.ioioutils.Voltage;
 import com.pietrantuono.pericoach.newtestapp.BuildConfig;
 import com.pietrantuono.pericoach.newtestapp.R;
 import com.pietrantuono.sensors.SensorTestCallback;
+import com.pietrantuono.sequencedb.SequenceProviderHelper;
 import com.pietrantuono.tests.implementations.upload.UploadTestCallback;
 
-import android.app.Activity;
+import android.content.ContentProvider;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -95,6 +96,7 @@ public class MainActivity extends AppCompatActivity
     private boolean hideRestart = true;
     private DevicesListFragment devicesListFragment;
     private boolean isDevicesListActionbar;
+    private long recordId;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -458,6 +460,8 @@ public class MainActivity extends AppCompatActivity
         } catch (Exception e) {
         }
         uiHelper.setSequence(newSequence);
+        recordId = SequenceProviderHelper.createNewRecord(MainActivity.this);
+        uiHelper.setRecordId(recordId);
         uiHelper.setStatusMSG("TEST \nSTARTED", null);
         results.add(((NewSequenceInterface) newSequence).getEmptyResultsList());
         uiHelper.startChronometer(MainActivity.this);
@@ -567,7 +571,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void addFailOrPass(Boolean istest, Boolean success, String reading, String otherreading, String description, Test testToBeParsed) {
-        uiHelper.addFailOrPass(istest, success, reading, otherreading, description, false, testToBeParsed);
+        uiHelper.addFailOrPass(istest, success, reading, otherreading, description, false, testToBeParsed, recordId);
     }
 
     @Override
@@ -596,7 +600,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void addFailOrPass(final Boolean istest, final Boolean success, String reading, String description, boolean isSensorTest, Test testToBeParsed) {
-        uiHelper.addFailOrPass(istest, success, reading, null, description, true, testToBeParsed);
+        uiHelper.addFailOrPass(istest, success, reading, null, description, true, testToBeParsed,recordId);
     }
 
     @Override

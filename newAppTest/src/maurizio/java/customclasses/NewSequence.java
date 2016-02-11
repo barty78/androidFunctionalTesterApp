@@ -409,10 +409,26 @@ public class NewSequence implements NewSequenceInterface {
         test.setValue(1);
         sequence.add(test);
 
-        sequence.add(new BluetoothConnectTestForTesting(activity));
-        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 0, 10, 50,
-                "Sensor Input Test, NO LOAD, GAIN/ZERO @ 127/0"));
-
+        test = new MyDummyTest.Builder().setActivity(activity).setDescription("second dummy").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
+        test.setSuccess(true);
+        test.setIdTest(1);
+        test.setValue(1);
+        sequence.add(test);
+        test = new MyDummyTest.Builder().setActivity(activity).setDescription("third dummy").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
+        test.setSuccess(true);
+        test.setIdTest(1);
+        test.setValue(1);
+        sequence.add(test);
+        test = new MyDummyTest.Builder().setActivity(activity).setDescription("fourth dummy").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
+        test.setSuccess(true);
+        test.setIdTest(1);
+        test.setValue(1);
+        sequence.add(test);
+        test = new MyDummyTest.Builder().setActivity(activity).setDescription("first dummy").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
+        test.setSuccess(true);
+        test.setIdTest(1);
+        test.setValue(1);
+        sequence.add(test);
     }
 
 

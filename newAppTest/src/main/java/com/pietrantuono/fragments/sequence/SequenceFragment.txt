@@ -3,14 +3,10 @@ package com.pietrantuono.fragments.sequence;
 import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
-import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.CursorLoader;
-import android.support.v4.content.Loader;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -23,31 +19,25 @@ import com.pietrantuono.activities.uihelper.ActivityCallback;
 import com.pietrantuono.constants.NewMSensorResult;
 import com.pietrantuono.constants.NewSequenceInterface;
 import com.pietrantuono.pericoach.newtestapp.R;
-import com.pietrantuono.sequencedb.SequenceContracts;
-import com.pietrantuono.sequencedb.SequenceProvider;
 import com.pietrantuono.tests.implementations.upload.UploadTestCallback;
 
 import server.pojos.Test;
 
-
-public class NewSequenceFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
-    private static final String TAG = "NewSequenceFragment";
-    private static final int SEQUENCE_LOADER_MANAGER = 1;
+public class SequenceFragment extends Fragment {
+    private static final String TAG = "SequenceFragment";
     private SequenceFragmentCallback mListener;
+    private NewSequenceInterface sequence;
     private Activity activity;
     private RecyclerView recyclerView;
+    private SequenceAdapter adapter;
     private TextView success_failure_text;
     private LinearLayout success_failure_container;
-    private long recordId = -1;
-    private String RECORD_ID = "record_id";
-    private SequenceCursorRecyclerAdapter mAdapter;
-    private UploadTestCallback callback;
 
-    public NewSequenceFragment() {
+    public SequenceFragment() {
     }
 
-    public static NewSequenceFragment newInstance() {
-        NewSequenceFragment fragment = new NewSequenceFragment();
+    public static SequenceFragment newInstance() {
+        SequenceFragment fragment = new SequenceFragment();
         return fragment;
     }
 
@@ -58,41 +48,16 @@ public class NewSequenceFragment extends Fragment implements LoaderManager.Loade
         }
     }
 
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        if (recordId >= 0) initLoader(recordId);
-    }
-
-    public void initLoader(long recordId) {
-        Bundle bundle = new Bundle();
-        bundle.putLong(RECORD_ID, recordId);
-        getLoaderManager().initLoader(SEQUENCE_LOADER_MANAGER, bundle, NewSequenceFragment.this);
-    }
-
-    public void forceLoaderUpdate(){
-        Bundle bundle = new Bundle();
-        bundle.putLong(RECORD_ID, recordId);
-        getLoaderManager().restartLoader(SEQUENCE_LOADER_MANAGER, bundle, NewSequenceFragment.this);
-    }
-    public void forceLoaderUpdate(long recordId){
-        this.recordId=recordId;
-        Bundle bundle = new Bundle();
-        bundle.putLong(RECORD_ID, recordId);
-        getLoaderManager().restartLoader(SEQUENCE_LOADER_MANAGER, bundle, NewSequenceFragment.this);
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.new_sequence_fragment, container, false);
         recyclerView = (RecyclerView) v.findViewById(R.id.recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mAdapter = new SequenceCursorRecyclerAdapter(null,getActivity(),callback);
-        success_failure_text = (TextView) v.findViewById(R.id.text);
-        success_failure_container = (LinearLayout) v.findViewById(R.id.success_failure_container);
-        recyclerView.setAdapter(mAdapter);
+        adapter = new SequenceAdapter(getActivity(), activity);
+        success_failure_text =(TextView)v.findViewById(R.id.text);
+        success_failure_container=(LinearLayout)v.findViewById(R.id.success_failure_container);
+        recyclerView.setAdapter(adapter);
         setContainerVisible();
         return v;
     }
@@ -103,7 +68,7 @@ public class NewSequenceFragment extends Fragment implements LoaderManager.Loade
         if (context instanceof SequenceFragmentCallback) {
             this.activity = (Activity) context;
             mListener = (SequenceFragmentCallback) context;
-            mListener.registerSequenceFragment(NewSequenceFragment.this);
+            mListener.registerSequenceFragment(SequenceFragment.this);
         } else {
             throw new RuntimeException(context.toString() + " must implement OnFragmentInteractionListener");
         }
@@ -117,8 +82,61 @@ public class NewSequenceFragment extends Fragment implements LoaderManager.Loade
         activity = null;
     }
 
+    public synchronized void addTest(final Boolean istest, final Boolean success, final String reading,
+                                     final String otherreading, final String description, final boolean isSensorTest, final Test testToBeParsed) {
+        Handler handler = new Handler(getActivity().getMainLooper());
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                adapter.addTest(istest, success, reading, otherreading, description, isSensorTest, testToBeParsed, sequence);
+                recyclerView.smoothScrollToPosition(adapter.getItemCount() - 1);
+            }
+        });
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ((ActivityCallback) activity).goAndExecuteNextTest();
+            }
+        }, 100);
+    }
+
+    public synchronized void addSensorTest(final NewMSensorResult mSensorResult, final Test testToBeParsed) {
+        Handler handler = new Handler(getActivity().getMainLooper());
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                adapter.addSensorTest(mSensorResult, testToBeParsed, sequence);
+                recyclerView.smoothScrollToPosition(adapter.getItemCount() - 1);
+            }
+        });
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ((ActivityCallback) activity).goAndExecuteNextTest();
+            }
+        }, 100);
+    }
+
+    public void addUploadRow(final Boolean istest, final Boolean success, final String description, final UploadTestCallback callback) {
+        Handler handler = new Handler(getActivity().getMainLooper());
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                adapter.addUploadRow(istest, success, description, sequence, callback);
+                recyclerView.smoothScrollToPosition(adapter.getItemCount() - 1);
+            }
+        });
+    }
+
     public void cleanUI() {
-        mAdapter.changeCursor(null);
+        Handler handler = new Handler(getActivity().getMainLooper());
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                adapter.clear();
+                adapter.notifyDataSetChanged();
+            }
+        });
     }
 
     public void removeOverallFailOrPass() {
@@ -131,15 +149,13 @@ public class NewSequenceFragment extends Fragment implements LoaderManager.Loade
         });
     }
 
-    /**
-     * Does nothing
-     */
     public void setSequence(NewSequenceInterface sequence) {
+        this.sequence = sequence;
     }
 
     public void setOverallFailOrPass(final boolean success, final String string) {
         final String barcode;
-        if (string != null) {
+        if(string!=null) {
             barcode = string;
         } else {
             barcode = "";
@@ -161,8 +177,8 @@ public class NewSequenceFragment extends Fragment implements LoaderManager.Loade
         });
     }
 
-    private void setContainerVisible() {
-        if (true) return;
+    private void setContainerVisible(){
+        if(true)return;
         success_failure_container.getLayoutParams().height = 1;
         success_failure_container.setVisibility(View.VISIBLE);
         ValueAnimator animation = ValueAnimator.ofInt(0, getActivity().getResources().getDimensionPixelOffset(R.dimen.succes_conteiner_height));
@@ -171,32 +187,9 @@ public class NewSequenceFragment extends Fragment implements LoaderManager.Loade
         success_failure_container.getLayoutParams().height = (int) animation.getAnimatedValue();
     }
 
-    @Override
-    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        long recordid = args.getLong(RECORD_ID);
-        if(recordid<0)return null;
-        String selection = SequenceContracts.Tests.TABLE_TESTS_FOREIGN_KEY_ID_OF_RECORD + " = " + recordid;
-        String orderBy = SequenceContracts.Tests.TABLE_TESTS_TIME_INSERTED + " DESC";
-        return new CursorLoader(getActivity(), SequenceProvider.TESTS_CONTENT_URI, null, selection, null, orderBy);
-    }
-
-    @Override
-    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        mAdapter.changeCursor(data);
-    }
-
-    @Override
-    public void onLoaderReset(Loader<Cursor> loader) {
-        mAdapter.changeCursor(null);
-    }
-
     public interface SequenceFragmentCallback {
-        void registerSequenceFragment(NewSequenceFragment sequenceFragment);
+        void registerSequenceFragment(SequenceFragment sequenceFragment);
         void unregisterSequenceFragment();
-    }
-
-    public void setCallback(UploadTestCallback callback) {
-        this.callback = callback;
     }
 }
 
