@@ -54,7 +54,7 @@ public class UIHelper {
     public UIHelper(Activity activity, NewSequenceInterface sequence) {
         this.activity = activity;
         this.sequence = sequence;
-        setOverallFailOrPass(false);
+        setOverallFailOrPass(false, "");
         setupViewpager(activity);
         if (sequenceFragment != null)
             sequenceFragment.setSequence(sequence);
@@ -266,7 +266,7 @@ public class UIHelper {
 
     }
 
-    public void setOverallFailOrPass(final Boolean show) {
+    public void setOverallFailOrPass(final Boolean show, final String barcode) {
         final ActivityUIHelperCallback callback = (ActivityUIHelperCallback) activity;
         Boolean success = true;
         if (callback.getIterationNumber() >= 0)
@@ -290,7 +290,8 @@ public class UIHelper {
             }
 
         if (sequenceFragment != null) {
-            if (show) sequenceFragment.setOverallFailOrPass(success);
+
+            if (show) sequenceFragment.setOverallFailOrPass(success, barcode);
         }
 
     }
@@ -373,7 +374,7 @@ public class UIHelper {
             @Override
             public void run() {
                 setStatusMSG("", true);
-                setOverallFailOrPass(false);
+                setOverallFailOrPass(false, "");
                 Chronometer cronometer = (Chronometer) activity.findViewById(R.id.chronometer);
                 cronometer.setBase(SystemClock.elapsedRealtime());
                 cronometer.setText("00:00");
