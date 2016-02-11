@@ -109,18 +109,19 @@ public class NewPFMATDevice
 			if(mContext==null)return;
 			if(isCancelled())return ;
 			// Display an hourglass
-			mHourglass = new ProgressDialog(mContext);
-			mHourglass.setMessage(mContext.getString(R.string.btinfo_connecting));
-			mHourglass.setIndeterminate(true);
-			mHourglass.setCancelable(false);
 				((Activity)mContext).runOnUiThread(new Runnable() {
 					@Override
 					public void run() {
+						mHourglass = new ProgressDialog(mContext);
+						mHourglass.setMessage(mContext.getString(R.string.btinfo_connecting));
+						mHourglass.setIndeterminate(true);
+						mHourglass.setCancelable(false);
 						mHourglass.show();
+
 					}
 				});
-
 		}
+
     	protected Boolean doInBackground(Void... args)
     	{	if(isCancelled())return false;
     		// Connect the device

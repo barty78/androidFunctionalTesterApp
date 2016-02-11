@@ -337,32 +337,32 @@ public class NewSequence implements NewSequenceInterface {
                 "Current Measurement - UUT Unprogrammed"));
 
 
-//        sequence.add(new VoltageTest(activity, ioio, 44, Units.V, true, true, 3.1f, 0.2f,
-//                "Voltage Measurement - V_3V1"));
-//        sequence.add(new VoltageTest(activity, ioio, 40, Units.V, true, true, 1.8f, 0.2f,
-//                "Voltage Measurement - V_1V8"));
-//        sequence.add(new VoltageTest(activity, ioio, 37, Units.V, false, 3f, true, 3.5f, 0.2f,
-//                "Voltage Measurement - V_BATT"));
+        sequence.add(new VoltageTest(activity, ioio, 44, Units.V, true, true, 3.1f, 0.2f,
+                "Voltage Measurement - V_3V1"));
+        sequence.add(new VoltageTest(activity, ioio, 40, Units.V, true, true, 1.8f, 0.2f,
+                "Voltage Measurement - V_1V8"));
+        sequence.add(new VoltageTest(activity, ioio, 37, Units.V, false, 3f, true, 3.5f, 0.2f,
+                "Voltage Measurement - V_BATT"));
 //
 //        //		sequence.add(new ChargingTerminationTest(activity, ioio,
 //        //				"Battery Charging Termination Test"));
-//        sequence.add(new VoltageTest(activity, ioio, 38, Units.V, false, false, 0.1f, -0.1f,
-//                "Voltage Measurement - DC_PRES (5V_DC Off)"));
-//        sequence.add(new SetDigitalOutputStep(activity, IOIOUtils.Outputs._5V_DC.getValue(), true,
-//                "Set 5VDC to On"));
-//        sequence.add(new VoltageTest(activity, ioio, 38, Units.V, false, true, 1.8f, 0.1f,
-//                "Voltage Measurement - DC_PRES (5V_DC On)"));
-//        sequence.add(new SetDigitalOutputStep(activity, IOIOUtils.Outputs._5V_DC.getValue(), false,
-//                "Set 5VDC to Off"));
+        sequence.add(new VoltageTest(activity, ioio, 38, Units.V, false, false, 0.1f, -0.1f,
+                "Voltage Measurement - DC_PRES (5V_DC Off)"));
+        sequence.add(new SetDigitalOutputStep(activity, IOIOUtils.Outputs._5V_DC.getValue(), true,
+                "Set 5VDC to On"));
+        sequence.add(new VoltageTest(activity, ioio, 38, Units.V, false, true, 1.8f, 0.1f,
+                "Voltage Measurement - DC_PRES (5V_DC On)"));
+        sequence.add(new SetDigitalOutputStep(activity, IOIOUtils.Outputs._5V_DC.getValue(), false,
+                "Set 5VDC to Off"));
 //
 //        //		sequence.add(new ChargingTest(activity, ioio,
 //        //				"Battery Charging Test"));
 //
 //        //		sequence.add(new DummyUploadFirmwareTest(activity, ioio, false));
-//   		sequence.add(new UploadFirmwareTest(activity, ioio));
+   		sequence.add(new UploadFirmwareTest(activity, ioio));
 
         sequence.add(new GetDeviceSerialTest(activity, ioio));
-//        sequence.add(new AccelerometerSelfTest(activity, ioio));
+        sequence.add(new AccelerometerSelfTest(activity, ioio));
 
         //		sequence.add(new VoltageTest(activity, ioio, 39, 0f, 0.1f,
         //				"Voltage Measurement - Sleep Mode (V_1V8_SW)"));

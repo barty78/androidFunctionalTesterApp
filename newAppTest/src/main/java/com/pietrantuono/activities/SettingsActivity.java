@@ -7,7 +7,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.pietrantuono.pericoach.newtestapp.BuildConfig;
 import com.pietrantuono.pericoach.newtestapp.R;
-import com.pietrantuono.recordsyncadapeter.StartSyncAdapterService;
+import com.pietrantuono.recordsyncadapter.StartSyncAdapterService;
 
 import android.content.Intent;
 import android.content.SharedPreferences;

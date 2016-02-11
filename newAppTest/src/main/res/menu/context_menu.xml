@@ -12,4 +12,11 @@
         android:id="@+id/click"
         android:title="Sort"
         app:showAsAction="always" />
+
+    <item
+        android:id="@+id/settings"
+        android:icon="@drawable/ic_action_settings"
+        android:title="Settings"
+        android:visible="true"
+        app:showAsAction="always" />
 </menu>

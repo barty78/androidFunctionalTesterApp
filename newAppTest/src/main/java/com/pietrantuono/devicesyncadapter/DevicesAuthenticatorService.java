@@ -1,4 +1,4 @@
-package com.pietrantuono.devicesyncadpater;
+package com.pietrantuono.devicesyncadapter;
 
 import android.app.Service;
 import android.content.Intent;
