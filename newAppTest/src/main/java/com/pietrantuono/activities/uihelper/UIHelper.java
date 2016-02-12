@@ -119,36 +119,36 @@ public class UIHelper {
     public void updateStats(Job job, AppCompatActivity activity) {
         ContentResolver resolver = activity.getContentResolver();
 
-        String selection =Contract.DevicesColumns.DEVICES_JOB_ID + "= "+job.getId()+
-                " AND " + "(" + Contract.DevicesColumns.DEVICES_EXEC_TESTS + " & "+job.getTesttypeId()+") = "+job.getTesttypeId();
-        Cursor c=resolver.query(DevicesContentProvider.CONTENT_URI,null,selection,null,null);
-        int numberOfDevices=c.getCount();
+        String selection = Contract.DevicesColumns.DEVICES_JOB_ID + "= " + job.getId() +
+                " AND " + "(" + Contract.DevicesColumns.DEVICES_EXEC_TESTS + " & " + job.getTesttypeId() + ") = " + job.getTesttypeId();
+        Cursor c = resolver.query(DevicesContentProvider.CONTENT_URI, null, selection, null, null);
+        int numberOfDevices = c.getCount();
         c.close();
 
-        selection =Contract.DevicesColumns.DEVICES_JOB_ID + "= "+job.getId()+
-                " AND " + "(" + Contract.DevicesColumns.DEVICES_EXEC_TESTS + " & "+job.getTesttypeId()+") = "+job.getTesttypeId()+
-                " AND " + "(" + Contract.DevicesColumns.DEVICES_STATUS + " & "+job.getTesttypeId()+") = "+job.getTesttypeId();
-        c=resolver.query(DevicesContentProvider.CONTENT_URI,null,selection,null,null);
-        int numberOfDevicesPassed=c.getCount();
+        selection = Contract.DevicesColumns.DEVICES_JOB_ID + "= " + job.getId() +
+                " AND " + "(" + Contract.DevicesColumns.DEVICES_EXEC_TESTS + " & " + job.getTesttypeId() + ") = " + job.getTesttypeId() +
+                " AND " + "(" + Contract.DevicesColumns.DEVICES_STATUS + " & " + job.getTesttypeId() + ") = " + job.getTesttypeId();
+        c = resolver.query(DevicesContentProvider.CONTENT_URI, null, selection, null, null);
+        int numberOfDevicesPassed = c.getCount();
         c.close();
 
-        selection =Contract.DevicesColumns.DEVICES_JOB_ID + "= "+job.getId()+
-                " AND " + "(" + Contract.DevicesColumns.DEVICES_EXEC_TESTS + " & "+job.getTesttypeId()+") = "+job.getTesttypeId()+
-                " AND " + "(" + Contract.DevicesColumns.DEVICES_STATUS + " & "+job.getTesttypeId()+") = 0";
-        c=resolver.query(DevicesContentProvider.CONTENT_URI,null,selection,null,null);
+        selection = Contract.DevicesColumns.DEVICES_JOB_ID + "= " + job.getId() +
+                " AND " + "(" + Contract.DevicesColumns.DEVICES_EXEC_TESTS + " & " + job.getTesttypeId() + ") = " + job.getTesttypeId() +
+                " AND " + "(" + Contract.DevicesColumns.DEVICES_STATUS + " & " + job.getTesttypeId() + ") = 0";
+        c = resolver.query(DevicesContentProvider.CONTENT_URI, null, selection, null, null);
 
-        int numberOfDevicesFailed=c.getCount();
+        int numberOfDevicesFailed = c.getCount();
         c.close();
 
-        ((TextView)activity.findViewById(R.id.num_of_devices)).setText("" + numberOfDevices);
-        ((TextView)activity.findViewById(R.id.devices_passed)).setText(""+numberOfDevicesPassed);
-        ((TextView)activity.findViewById(R.id.devices_failed)).setText("" + numberOfDevicesFailed);
-        float numberOfDevicesFloat=numberOfDevices;
-        ((DonutProgress)activity.findViewById(R.id.progress_stats)).setProgress((int)((numberOfDevicesPassed / numberOfDevicesFloat)*100));
+        ((TextView) activity.findViewById(R.id.num_of_devices)).setText("" + numberOfDevices);
+        ((TextView) activity.findViewById(R.id.devices_passed)).setText("" + numberOfDevicesPassed);
+        ((TextView) activity.findViewById(R.id.devices_failed)).setText("" + numberOfDevicesFailed);
+        float numberOfDevicesFloat = numberOfDevices;
+        ((DonutProgress) activity.findViewById(R.id.progress_stats)).setProgress((int) ((numberOfDevicesPassed / numberOfDevicesFloat) * 100));
     }
 
     public void setRecordId(long recordId) {
-        if(sequenceFragment!=null)sequenceFragment.forceLoaderUpdate(recordId);
+        if (sequenceFragment != null) sequenceFragment.forceLoaderUpdate(recordId);
     }
 
 
@@ -179,9 +179,9 @@ public class UIHelper {
 
     public void setJobId(AppCompatActivity activity, final String jobnumber) {
         if (PeriCoachTestApplication.getIsRetestAllowed()) {
-            activity.setTitle(activity.getString(R.string.job_number)+jobnumber + " (Retests)");
+            activity.setTitle(activity.getString(R.string.job_number) + jobnumber + " (Retests)");
         } else {
-            activity.setTitle(activity.getString(R.string.job_number)+jobnumber + " (No Retests)");
+            activity.setTitle(activity.getString(R.string.job_number) + jobnumber + " (No Retests)");
         }
     }
 
@@ -261,15 +261,15 @@ public class UIHelper {
     }
 
     public synchronized void addFailOrPass(final Boolean istest, final Boolean success, String reading,
-                                           String otherreading, String description, boolean issensortest, Test testToBeParsed,long recordId) {
-        ContentValues contentValues= new ContentValues();
-        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_IS_NORMAL_TEST,istest?1:0);
-        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_RESULT,success?1:0);
-        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_READING,reading!=null?reading:"");
-        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_OTHER_READING,otherreading!=null?otherreading:"");
-        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_NAME,description!=null?description:"");
-        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_IS_SENSOR_TEST,issensortest?1:0);
-        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_FOREIGN_KEY_ID_OF_RECORD,recordId);
+                                           String otherreading, String description, boolean issensortest, Test testToBeParsed, long recordId) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_IS_NORMAL_TEST, istest ? 1 : 0);
+        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_RESULT, success ? 1 : 0);
+        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_READING, reading != null ? reading : "");
+        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_OTHER_READING, otherreading != null ? otherreading : "");
+        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_NAME, description != null ? description : "");
+        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_IS_SENSOR_TEST, issensortest ? 1 : 0);
+        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_FOREIGN_KEY_ID_OF_RECORD, recordId);
         activity.getContentResolver().insert(SequenceProvider.TESTS_CONTENT_URI, contentValues);
 
 
@@ -360,12 +360,10 @@ public class UIHelper {
     }
 
 
-
-
-
     public void addSensorTestCompletedRow(NewMSensorResult mSensorResult, Test testToBeParsed) {
 
     }
+
     /**
      * Does nothing
      */
@@ -374,8 +372,16 @@ public class UIHelper {
         if (sequenceFragment != null) sequenceFragment.setSequence(sequence);
     }
 
-    public void createUploadProgress(final Boolean istest, final Boolean success, String description, UploadTestCallback callback) {
-            sequenceFragment.setCallback(callback);
+    public void createUploadProgress(final Boolean istest, final Boolean success, String description, UploadTestCallback callback, long recordId) {
+        sequenceFragment.setCallback(callback);
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_IS_NORMAL_TEST, 0);
+        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_IS_SENSOR_TEST,  0);
+        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_IS_UPLOAD_TEST,  1);
+        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_RESULT, success ? 1 : 0);
+        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_NAME, description != null ? description : "");
+        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_FOREIGN_KEY_ID_OF_RECORD, recordId);
+        activity.getContentResolver().insert(SequenceProvider.TESTS_CONTENT_URI, contentValues);
     }
 
     public void cleanUI(final Activity activity) {

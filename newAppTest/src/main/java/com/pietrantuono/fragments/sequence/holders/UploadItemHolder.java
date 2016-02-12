@@ -13,6 +13,7 @@ import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.iconics.view.IconicsImageView;
 import com.pietrantuono.fragments.sequence.SequenceRowElement;
 import com.pietrantuono.pericoach.newtestapp.R;
+import com.pietrantuono.sequencedb.SequenceContracts;
 
 /**
  * Created by Maurizio Pietrantuono, maurizio.pietrantuono@gmail.com.
@@ -58,6 +59,10 @@ public class UploadItemHolder extends SequenceItemHolder {
 
     @Override
     public void setData(Cursor c) {
+        String name=c.getString(c.getColumnIndexOrThrow(SequenceContracts.Tests.TABLE_TESTS_NAME));
+        long result=c.getLong(c.getColumnIndexOrThrow(SequenceContracts.Tests.TABLE_TESTS_S2_RESULT));
+        uploadRowElement=new SequenceRowElement.UploadRowElement(name!=null?name:"",true,result==0?false:true,null);
+        setData(uploadRowElement,c.getPosition());
 
     }
 

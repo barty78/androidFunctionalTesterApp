@@ -30,10 +30,13 @@ import com.pietrantuono.ioioutils.Voltage;
 import com.pietrantuono.pericoach.newtestapp.BuildConfig;
 import com.pietrantuono.pericoach.newtestapp.R;
 import com.pietrantuono.sensors.SensorTestCallback;
+import com.pietrantuono.sequencedb.SequenceContracts;
+import com.pietrantuono.sequencedb.SequenceProvider;
 import com.pietrantuono.sequencedb.SequenceProviderHelper;
 import com.pietrantuono.tests.implementations.upload.UploadTestCallback;
 
 import android.content.ContentProvider;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -648,8 +651,10 @@ public class MainActivity extends AppCompatActivity
 
 
     @Override
-    public void createUploadProgress(boolean b, boolean c, String description, UploadTestCallback callback) {
-        uiHelper.createUploadProgress(b, c, description, callback);
+    public void createUploadProgress(boolean istest, boolean success, String description, UploadTestCallback callback) {
+        uiHelper.createUploadProgress(istest, success, description, callback,recordId);
+
+
     }
 
     @Override

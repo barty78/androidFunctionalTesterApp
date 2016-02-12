@@ -118,8 +118,8 @@ public class NewSequenceFragment extends Fragment implements LoaderManager.Loade
     }
 
     public void cleanUI() {
-        //mAdapter = new SequenceCursorRecyclerAdapter(null,getActivity(),callback);
-
+        mAdapter = new SequenceCursorRecyclerAdapter(null,getActivity(),callback);
+        recyclerView.setAdapter(mAdapter);
     }
 
     public void removeOverallFailOrPass() {
@@ -199,6 +199,8 @@ public class NewSequenceFragment extends Fragment implements LoaderManager.Loade
 
     public void setCallback(UploadTestCallback callback) {
         this.callback = callback;
+        if(mAdapter!=null)mAdapter.setCallback(callback);
+
     }
 }
 

@@ -46,7 +46,6 @@ public class SequenceCursorRecyclerAdapter extends CursorRecyclerAdapter<Sequenc
         holder.setIsRecyclable(false);
         holder.setData(cursor);
         if((holder instanceof UploadItemHolder) && callback!=null) {
-
             callback.onViewHolderReady((UploadItemHolder) holder);
         }
     }
@@ -90,5 +89,7 @@ public class SequenceCursorRecyclerAdapter extends CursorRecyclerAdapter<Sequenc
         return TEST;
     }
 
-
+    public void setCallback(UploadTestCallback callback) {
+        this.callback = callback;
+    }
 }

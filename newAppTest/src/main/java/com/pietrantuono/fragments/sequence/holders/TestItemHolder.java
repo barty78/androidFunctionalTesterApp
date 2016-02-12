@@ -12,6 +12,7 @@ import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.iconics.view.IconicsImageView;
 import com.pietrantuono.fragments.sequence.SequenceRowElement;
 import com.pietrantuono.pericoach.newtestapp.R;
+import com.pietrantuono.sequencedb.SequenceContracts;
 
 /**
  * Created by Maurizio Pietrantuono, maurizio.pietrantuono@gmail.com.
@@ -54,15 +55,22 @@ public class TestItemHolder extends SequenceItemHolder {
                 result.setColor(context.getResources().getColor(R.color.primary));
             }
         }
-        if(!testRowElement.isSensorTest())itemView.setOnClickListener((new ListItemClickListener((AppCompatActivity) context,testRowElement.getTestToBeParsed())));
-        else{itemView.setOnClickListener((new SensorItemClickListener((AppCompatActivity) context,testRowElement.getTestToBeParsed())));}
+        //if(!testRowElement.isSensorTest())itemView.setOnClickListener((new ListItemClickListener((AppCompatActivity) context,testRowElement.getTestToBeParsed())));
+        //else{itemView.setOnClickListener((new SensorItemClickListener((AppCompatActivity) context,testRowElement.getTestToBeParsed())));}
     }
 
     @Override
     public void setData(Cursor c) {
+        boolean isNormalTest=c.getLong(c.getColumnIndexOrThrow(SequenceContracts.Tests.TABLE_TESTS_IS_NORMAL_TEST))==0?false:true;
+        boolean result =c.getLong(c.getColumnIndexOrThrow(SequenceContracts.Tests.TABLE_TESTS_RESULT))==0?false:true;
+        String reading=c.getString(c.getColumnIndexOrThrow(SequenceContracts.Tests.TABLE_TESTS_READING))!=null?c.getString(c.getColumnIndexOrThrow(SequenceContracts.Tests.TABLE_TESTS_READING)):"";
+        String otherreading=c.getString(c.getColumnIndexOrThrow(SequenceContracts.Tests.TABLE_TESTS_OTHER_READING))!=null?c.getString(c.getColumnIndexOrThrow(SequenceContracts.Tests.TABLE_TESTS_OTHER_READING)):"";
+        String name=c.getString(c.getColumnIndexOrThrow(SequenceContracts.Tests.TABLE_TESTS_NAME))!=null?c.getString(c.getColumnIndexOrThrow(SequenceContracts.Tests.TABLE_TESTS_NAME)):"";
+        boolean issensorttest=c.getLong(c.getColumnIndexOrThrow(SequenceContracts.Tests.TABLE_TESTS_IS_SENSOR_TEST))==0?false:true;
 
+        SequenceRowElement.TestRowElement testRowElement = new SequenceRowElement.TestRowElement(true,result,reading,otherreading,name,issensorttest,null,null);
+        setData(testRowElement,c.getPosition());
     }
-
 
     @Override
     public int hashCode() {
