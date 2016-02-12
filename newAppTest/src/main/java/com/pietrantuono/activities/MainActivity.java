@@ -572,6 +572,13 @@ public class MainActivity extends AppCompatActivity
 
     private void addFailOrPass(Boolean istest, Boolean success, String reading, String otherreading, String description, Test testToBeParsed) {
         uiHelper.addFailOrPass(istest, success, reading, otherreading, description, false, testToBeParsed, recordId);
+        Handler handler = new Handler(getMainLooper());
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                goAndExecuteNextTest();
+            }
+        }, 100);
     }
 
     @Override
@@ -601,6 +608,13 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void addFailOrPass(final Boolean istest, final Boolean success, String reading, String description, boolean isSensorTest, Test testToBeParsed) {
         uiHelper.addFailOrPass(istest, success, reading, null, description, true, testToBeParsed,recordId);
+        Handler handler = new Handler(getMainLooper());
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                goAndExecuteNextTest();
+            }
+        }, 100);
     }
 
     @Override

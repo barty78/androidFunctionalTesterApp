@@ -424,7 +424,7 @@ public class NewSequence implements NewSequenceInterface {
         test.setIdTest(1);
         test.setValue(1);
         sequence.add(test);
-        test = new MyDummyTest.Builder().setActivity(activity).setDescription("first dummy").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
+        test = new MyDummyTest.Builder().setActivity(activity).setDescription("fifth dummy").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
         test.setSuccess(true);
         test.setIdTest(1);
         test.setValue(1);

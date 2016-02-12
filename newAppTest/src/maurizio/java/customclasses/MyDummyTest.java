@@ -15,6 +15,11 @@ public class MyDummyTest extends Test{
 
     @Override
     public void execute() {
+        try {
+            Thread.sleep(2*1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         activityListener.addFailOrPass("",istest,success,description);
     }
 

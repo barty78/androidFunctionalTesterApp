@@ -118,7 +118,8 @@ public class NewSequenceFragment extends Fragment implements LoaderManager.Loade
     }
 
     public void cleanUI() {
-        mAdapter.changeCursor(null);
+        //mAdapter = new SequenceCursorRecyclerAdapter(null,getActivity(),callback);
+
     }
 
     public void removeOverallFailOrPass() {
@@ -182,6 +183,7 @@ public class NewSequenceFragment extends Fragment implements LoaderManager.Loade
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+
         mAdapter.changeCursor(data);
     }
 

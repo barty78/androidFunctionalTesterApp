@@ -125,9 +125,11 @@ implements Filterable, CursorFilter.CursorFilterClient {
 			return null;
 		}
 		Cursor oldCursor = mCursor;
+		int oldItemNumber=0;
 		if (oldCursor != null) {
 			if (mChangeObserver != null) oldCursor.unregisterContentObserver(mChangeObserver);
 			if (mDataSetObserver != null) oldCursor.unregisterDataSetObserver(mDataSetObserver);
+
 		}
 		mCursor = newCursor;
 		if (newCursor != null) {

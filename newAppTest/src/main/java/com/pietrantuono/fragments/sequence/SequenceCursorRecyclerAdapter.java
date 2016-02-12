@@ -90,14 +90,5 @@ public class SequenceCursorRecyclerAdapter extends CursorRecyclerAdapter<Sequenc
         return TEST;
     }
 
-    @Override
-    public synchronized long getItemId(int position) {
-        Cursor c = getCursor();
-        if(c==null || c.getCount()<=0)return -1;
-        int currentPosition = c.getPosition();
-        c.moveToPosition(position);
-        long id = c.getLong(c.getColumnIndexOrThrow(SequenceContracts.Tests._ID));
-        c.moveToPosition(currentPosition);
-        return id;
-    }
+
 }

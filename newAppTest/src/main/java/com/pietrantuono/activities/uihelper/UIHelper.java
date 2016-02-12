@@ -23,6 +23,7 @@ import android.graphics.Color;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.Handler;
 import android.os.SystemClock;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -269,7 +270,8 @@ public class UIHelper {
         contentValues.put(SequenceContracts.Tests.TABLE_TESTS_NAME,description!=null?description:"");
         contentValues.put(SequenceContracts.Tests.TABLE_TESTS_IS_SENSOR_TEST,issensortest?1:0);
         contentValues.put(SequenceContracts.Tests.TABLE_TESTS_FOREIGN_KEY_ID_OF_RECORD,recordId);
-        activity.getContentResolver().insert(SequenceProvider.TESTS_CONTENT_URI,contentValues);
+        activity.getContentResolver().insert(SequenceProvider.TESTS_CONTENT_URI, contentValues);
+
 
     }
 
