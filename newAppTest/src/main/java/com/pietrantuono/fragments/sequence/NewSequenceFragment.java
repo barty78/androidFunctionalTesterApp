@@ -177,14 +177,15 @@ public class NewSequenceFragment extends Fragment implements LoaderManager.Loade
         long recordid = args.getLong(RECORD_ID);
         if(recordid<0)return null;
         String selection = SequenceContracts.Tests.TABLE_TESTS_FOREIGN_KEY_ID_OF_RECORD + " = " + recordid;
-        String orderBy = SequenceContracts.Tests.TABLE_TESTS_TIME_INSERTED + " DESC";
+        String orderBy = SequenceContracts.Tests.TABLE_TESTS_TIME_INSERTED + " ASC";
         return new CursorLoader(getActivity(), SequenceProvider.TESTS_CONTENT_URI, null, selection, null, orderBy);
     }
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-
         mAdapter.changeCursor(data);
+        if(mAdapter.getItemCount()>0)recyclerView.smoothScrollToPosition(mAdapter.getItemCount()-1);
+
     }
 
     @Override

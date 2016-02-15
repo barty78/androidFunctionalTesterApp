@@ -10,8 +10,10 @@ import android.widget.TextView;
 
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.iconics.view.IconicsImageView;
+import com.pietrantuono.constants.NewMSensorResult;
 import com.pietrantuono.fragments.sequence.SequenceRowElement;
 import com.pietrantuono.pericoach.newtestapp.R;
+import com.pietrantuono.sequencedb.SequenceContracts;
 
 /**
  * Created by Maurizio Pietrantuono, maurizio.pietrantuono@gmail.com.
@@ -118,7 +120,29 @@ public class SensorItemHolder extends SequenceItemHolder {
 
     @Override
     public void setData(Cursor c) {
+        SequenceRowElement.SensorTestRowElement rowElement = new SequenceRowElement.SensorTestRowElement(null);
+        NewMSensorResult result = new NewMSensorResult(null);
+        result.setSensor0avg((short) c.getLong(c.getColumnIndexOrThrow(SequenceContracts.Tests.TABLE_TESTS_S0_AVG)));
+        result.setSensor0min((short) c.getLong(c.getColumnIndexOrThrow(SequenceContracts.Tests.TABLE_TESTS_S0_MIN)));
+        result.setSensor0max((short) c.getLong(c.getColumnIndexOrThrow(SequenceContracts.Tests.TABLE_TESTS_S0_MAX)));
+        result.setSensor0AvgPass(c.getLong(c.getColumnIndexOrThrow(SequenceContracts.Tests.TABLE_TESTS_S0_AVG_PASS)) == 1 ? true : false);
+        result.setSensor0stabilitypass(c.getLong(c.getColumnIndexOrThrow(SequenceContracts.Tests.TABLE_TESTS_S0_STABILITY_PASS)) == 1 ? true : false);
 
+        result.setSensor1avg((short) c.getLong(c.getColumnIndexOrThrow(SequenceContracts.Tests.TABLE_TESTS_S1_AVG)));
+        result.setSensor1min((short) c.getLong(c.getColumnIndexOrThrow(SequenceContracts.Tests.TABLE_TESTS_S1_MIN)));
+        result.setSensor1max((short) c.getLong(c.getColumnIndexOrThrow(SequenceContracts.Tests.TABLE_TESTS_S1_MAX)));
+        result.setSensor1AvgPass(c.getLong(c.getColumnIndexOrThrow(SequenceContracts.Tests.TABLE_TESTS_S1_AVG_PASS)) == 1 ? true : false);
+        result.setSensor1stabilitypass(c.getLong(c.getColumnIndexOrThrow(SequenceContracts.Tests.TABLE_TESTS_S1_STABILITY_PASS)) == 1 ? true : false);
+
+        result.setSensor2avg((short) c.getLong(c.getColumnIndexOrThrow(SequenceContracts.Tests.TABLE_TESTS_S2_AVG)));
+        result.setSensor2min((short) c.getLong(c.getColumnIndexOrThrow(SequenceContracts.Tests.TABLE_TESTS_S2_MIN)));
+        result.setSensor2max((short) c.getLong(c.getColumnIndexOrThrow(SequenceContracts.Tests.TABLE_TESTS_S2_MAX)));
+        result.setSensor2AvgPass(c.getLong(c.getColumnIndexOrThrow(SequenceContracts.Tests.TABLE_TESTS_S2_AVG_PASS)) == 1 ? true : false);
+        result.setSensor2stabilitypass(c.getLong(c.getColumnIndexOrThrow(SequenceContracts.Tests.TABLE_TESTS_S2_STABILITY_PASS)) == 1 ? true : false);
+        result.setDescription(c.getString(c.getColumnIndexOrThrow(SequenceContracts.Tests.TABLE_TESTS_NAME)));
+
+        rowElement.setmSensorResult(result);
+        setData(rowElement,c.getPosition());
     }
 
     @Override

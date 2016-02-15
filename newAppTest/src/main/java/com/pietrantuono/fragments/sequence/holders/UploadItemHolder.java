@@ -60,9 +60,9 @@ public class UploadItemHolder extends SequenceItemHolder {
     @Override
     public void setData(Cursor c) {
         String name=c.getString(c.getColumnIndexOrThrow(SequenceContracts.Tests.TABLE_TESTS_NAME));
-        long result=c.getLong(c.getColumnIndexOrThrow(SequenceContracts.Tests.TABLE_TESTS_S2_RESULT));
+        long result=c.getLong(c.getColumnIndexOrThrow(SequenceContracts.Tests.TABLE_TESTS_S2_AVG_PASS));
         uploadRowElement=new SequenceRowElement.UploadRowElement(name!=null?name:"",true,result==0?false:true,null);
-        setData(uploadRowElement,c.getPosition());
+        setData(uploadRowElement, c.getPosition());
 
     }
 

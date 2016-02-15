@@ -23,7 +23,6 @@ import android.graphics.Color;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
-import android.os.Handler;
 import android.os.SystemClock;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -269,10 +268,9 @@ public class UIHelper {
         contentValues.put(SequenceContracts.Tests.TABLE_TESTS_OTHER_READING, otherreading != null ? otherreading : "");
         contentValues.put(SequenceContracts.Tests.TABLE_TESTS_NAME, description != null ? description : "");
         contentValues.put(SequenceContracts.Tests.TABLE_TESTS_IS_SENSOR_TEST, issensortest ? 1 : 0);
+        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_TIME_INSERTED, System.currentTimeMillis());
         contentValues.put(SequenceContracts.Tests.TABLE_TESTS_FOREIGN_KEY_ID_OF_RECORD, recordId);
         activity.getContentResolver().insert(SequenceProvider.TESTS_CONTENT_URI, contentValues);
-
-
     }
 
     public void setOverallFailOrPass(final Boolean show, final String barcode) {
@@ -359,9 +357,31 @@ public class UIHelper {
         });
     }
 
+    public void addSensorTestCompletedRow(NewMSensorResult mSensorResult, Test testToBeParsed,long recordId) {
+        if(mSensorResult==null)return;
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_IS_NORMAL_TEST, 0);
+        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_NAME, mSensorResult.getDescription() != null ? mSensorResult.getDescription() : "");
+        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_IS_SENSOR_TEST,  1 );
+        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_FOREIGN_KEY_ID_OF_RECORD, recordId);
+        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_TIME_INSERTED, System.currentTimeMillis());
 
-    public void addSensorTestCompletedRow(NewMSensorResult mSensorResult, Test testToBeParsed) {
+        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_S0_AVG, mSensorResult.getSensor0avg());
+        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_S0_MAX, mSensorResult.getSensor0max());
+        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_S0_MIN, mSensorResult.getSensor0min());
+        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_S0_AVG_PASS, mSensorResult.getSensor0AvgPass());
 
+        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_S1_AVG, mSensorResult.getSensor1avg());
+        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_S1_MAX, mSensorResult.getSensor1max());
+        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_S1_MIN, mSensorResult.getSensor1min());
+        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_S1_AVG_PASS, mSensorResult.getSensor1AvgPass());
+
+        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_S2_AVG, mSensorResult.getSensor2avg());
+        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_S2_MAX, mSensorResult.getSensor2max());
+        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_S2_MIN, mSensorResult.getSensor2min());
+        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_S2_AVG_PASS, mSensorResult.getSensor2AvgPass());
+
+        activity.getContentResolver().insert(SequenceProvider.TESTS_CONTENT_URI, contentValues);
     }
 
     /**
@@ -380,6 +400,7 @@ public class UIHelper {
         contentValues.put(SequenceContracts.Tests.TABLE_TESTS_IS_UPLOAD_TEST,  1);
         contentValues.put(SequenceContracts.Tests.TABLE_TESTS_RESULT, success ? 1 : 0);
         contentValues.put(SequenceContracts.Tests.TABLE_TESTS_NAME, description != null ? description : "");
+        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_TIME_INSERTED, System.currentTimeMillis());
         contentValues.put(SequenceContracts.Tests.TABLE_TESTS_FOREIGN_KEY_ID_OF_RECORD, recordId);
         activity.getContentResolver().insert(SequenceProvider.TESTS_CONTENT_URI, contentValues);
     }

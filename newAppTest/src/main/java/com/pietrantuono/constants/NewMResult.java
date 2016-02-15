@@ -6,7 +6,8 @@ import com.pietrantuono.tests.superclass.Test;
 public class NewMResult {
 	private Test test = null;
 	private Boolean issuccesfull=false;
-	
+	private String description;
+
 	public Test getTestype() {
 		return test;
 	}
@@ -20,14 +21,13 @@ public class NewMResult {
 	}
 
 	public String getDescription() {
-		return test.getDescription();
+		return description;
 	}
 
 	public Boolean isTest() {
 		return test.isTest();
 	}
 
-	
 
 	public Boolean isTestsuccessful() {
 		return issuccesfull;
@@ -38,5 +38,9 @@ public class NewMResult {
 	}
 	public Boolean isSensorTest(){
 		return test.isSensorTest();
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 }

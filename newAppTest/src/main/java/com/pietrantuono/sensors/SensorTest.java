@@ -49,6 +49,7 @@ public class SensorTest {
 		Log.d("SensorTest", "constucor");
 		this.activity = new WeakReference<Activity>(activity);
 		this.mSensorResult=new NewMSensorResult(wrapper);
+		this.mSensorResult.setDescription(wrapper.getDescription());
 		this.lowerLimit=lowerLimit;
 		this.upperLimit=upperLimit;
 		this.varLimit=varLimit;
@@ -160,7 +161,7 @@ public class SensorTest {
 				e.printStackTrace();
 			}
 		try {
-			this.sensorsTestHelper.sendVoltages(voltage, zeroVoltage);
+			//this.sensorsTestHelper.sendVoltages(voltage, zeroVoltage);
 		} catch (Exception e) {
 			e.printStackTrace();
 

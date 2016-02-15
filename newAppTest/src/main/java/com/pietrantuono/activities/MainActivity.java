@@ -520,14 +520,15 @@ public class MainActivity extends AppCompatActivity
         } catch (Exception e) {
             e.printStackTrace();
         }
-        uiHelper.addSensorTestCompletedRow(mSensorResult, testToBeParsed);
+        uiHelper.addSensorTestCompletedRow(mSensorResult, testToBeParsed,recordId);
         Handler h = new Handler(android.os.Looper.getMainLooper());
-        h.postDelayed(new Runnable() {
+        Handler handler = new Handler(getMainLooper());
+        handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                //goAndExecuteNextTest();
+                goAndExecuteNextTest();
             }
-        }, 1 * 1000);  //TODO - Why 5 sec delay here? 1 sec works.
+        }, 100);
 
     }
 

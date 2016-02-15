@@ -65,15 +65,20 @@ public class SequenceContracts {
         public static final String TABLE_TESTS_S0_AVG = "sensor_results_s0_avg";
         public static final String TABLE_TESTS_S0_MAX = "sensor_results_s0_max";
         public static final String TABLE_TESTS_S0_MIN = "sensor_results_s0_min";
-        public static final String TABLE_TESTS_S0_RESULT = "sensor_results_s0_result";
+        public static final String TABLE_TESTS_S0_AVG_PASS = "sensor_resul_s0_avg_pass";
+        public static final String TABLE_TESTS_S0_STABILITY_PASS = "sensor_results_s0_result_stability_pass";
+
         public static final String TABLE_TESTS_S1_AVG = "sensor_results_s1_avg";
         public static final String TABLE_TESTS_S1_MAX = "sensor_results_s1_max";
         public static final String TABLE_TESTS_S1_MIN = "sensor_results_s1_min";
-        public static final String TABLE_TESTS_S1_RESULT = "sensor_results_s1_result";
-        public static final String TABLE_TESTS_S2_AVG = "sensor_results_s2_avg ";
+        public static final String TABLE_TESTS_S1_AVG_PASS = "sensor_results_s1_result_avg_pass";
+        public static final String TABLE_TESTS_S1_STABILITY_PASS = "sensor_results_s1_result_stability_pass";
+
+        public static final String TABLE_TESTS_S2_AVG = "sensor_results_s2_avg";
         public static final String TABLE_TESTS_S2_MAX = "sensor_results_s2_max";
         public static final String TABLE_TESTS_S2_MIN = "sensor_results_s2_min";
-        public static final String TABLE_TESTS_S2_RESULT = "sensor_results_s2_result";
+        public static final String TABLE_TESTS_S2_AVG_PASS = "sensor_results_s2_result_avg_pass";
+        public static final String TABLE_TESTS_S2_STABILITY_PASS = "sensor_results_s2_result_stability_pass";
 
         public static String CREATE_TABLES = "CREATE TABLE " + Tests.TABLE_TESTS + " (" +
                 Tests._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -91,17 +96,21 @@ public class SequenceContracts {
                 Tests.TABLE_TESTS_S0_AVG + INTEGER_TYPE + COMMA_SEP +
                 Tests.TABLE_TESTS_S0_MAX + INTEGER_TYPE + COMMA_SEP +
                 Tests.TABLE_TESTS_S0_MIN + INTEGER_TYPE + COMMA_SEP +
-                Tests.TABLE_TESTS_S0_RESULT + INTEGER_TYPE + COMMA_SEP +
+                Tests.TABLE_TESTS_S0_AVG_PASS + INTEGER_TYPE + COMMA_SEP +
+                Tests.TABLE_TESTS_S0_STABILITY_PASS + INTEGER_TYPE + COMMA_SEP +
 
                 Tests.TABLE_TESTS_S1_AVG + INTEGER_TYPE + COMMA_SEP +
                 Tests.TABLE_TESTS_S1_MAX + INTEGER_TYPE + COMMA_SEP +
                 Tests.TABLE_TESTS_S1_MIN + INTEGER_TYPE + COMMA_SEP +
-                Tests.TABLE_TESTS_S1_RESULT + INTEGER_TYPE + COMMA_SEP +
+                Tests.TABLE_TESTS_S1_AVG_PASS + INTEGER_TYPE + COMMA_SEP +
+                Tests.TABLE_TESTS_S1_STABILITY_PASS + INTEGER_TYPE + COMMA_SEP +
 
                 Tests.TABLE_TESTS_S2_AVG + INTEGER_TYPE + COMMA_SEP +
                 Tests.TABLE_TESTS_S2_MAX + INTEGER_TYPE + COMMA_SEP +
                 Tests.TABLE_TESTS_S2_MIN + INTEGER_TYPE + COMMA_SEP +
-                Tests.TABLE_TESTS_S2_RESULT + INTEGER_TYPE + COMMA_SEP +
+                Tests.TABLE_TESTS_S2_AVG_PASS + INTEGER_TYPE + COMMA_SEP +
+                Tests.TABLE_TESTS_S2_STABILITY_PASS + INTEGER_TYPE + COMMA_SEP +
+
                 " FOREIGN KEY ("+Tests.TABLE_TESTS_FOREIGN_KEY_ID_OF_RECORD+") REFERENCES "+Records.TABLE_RECORDS+"("+Records._ID+")"+
                 " )";
     }

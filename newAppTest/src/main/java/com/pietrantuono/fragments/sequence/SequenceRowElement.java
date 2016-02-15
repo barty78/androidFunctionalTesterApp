@@ -92,8 +92,16 @@ public class SequenceRowElement {
 
         }
 
+        public SensorTestRowElement(NewSequenceInterface sequence) {
+            super(sequence);
+        }
+
         public NewMSensorResult getmSensorResult() {
             return mSensorResult;
+        }
+
+        public void setmSensorResult(NewMSensorResult mSensorResult) {
+            this.mSensorResult = mSensorResult;
         }
 
         public Test getTestToBeParsed() {
