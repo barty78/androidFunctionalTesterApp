@@ -22,13 +22,22 @@ public class SingleS2 extends MyModel {
     @Expose
     @Column(name = "Avg")
     private Long Avg;
-    
-    @Column(name = "S2")
+
+	public Long getErrorCode() {
+		return errorCode;
+	}
+
+	@Column(name = "S2")
+
     private S2 foreignkey;
     
     @Expose
     @Column(name = "Result")
     private Long Result;
+
+	@Expose
+	@Column(name = "ErrorCode")
+	private Long errorCode;
 
 
 	public Long getResult() {
@@ -129,6 +138,8 @@ public class SingleS2 extends MyModel {
 		return true;
 	}
 
-	
-	
+
+	public void setErrorCode(Long errorCode) {
+		this.errorCode = errorCode;
+	}
 }

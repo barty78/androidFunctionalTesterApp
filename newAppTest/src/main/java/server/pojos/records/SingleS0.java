@@ -27,8 +27,12 @@ public class SingleS0 extends MyModel {
     @Column(name = "Result")
     private Long Result;
 
-    
-    public Long getResult() {
+	@Expose
+	@Column(name = "ErrorCode")
+	private Long errorCode;
+
+
+	public Long getResult() {
 		return Result;
 	}
 
@@ -128,8 +132,12 @@ public class SingleS0 extends MyModel {
 			return false;
 		return true;
 	}
-    
-    
-    
-	
+
+	public Long getErrorCode() {
+		return errorCode;
+	}
+
+	public void setErrorCode(Long errorCode) {
+		this.errorCode = errorCode;
+	}
 }

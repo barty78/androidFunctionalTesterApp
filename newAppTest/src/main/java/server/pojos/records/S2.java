@@ -10,7 +10,8 @@ import com.google.gson.annotations.Expose;
 @Table(name = "S2")
 public class S2 extends MyModel {
 
-    public S2() {
+
+	public S2() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -34,7 +35,12 @@ public class S2 extends MyModel {
     @Column(name = "Result")
     private List<Long> Result = new ArrayList<Long>();
 
-    @Column(name = "Sensors")
+	@Expose
+	@Column(name = "ErrorCodes")
+	private List<Long> errorCodes= new ArrayList<Long>();
+
+
+	@Column(name = "Sensors")
     private Sensors foreignkey;
     
 	@SuppressWarnings("unused")
@@ -185,4 +191,11 @@ public class S2 extends MyModel {
 		return true;
 	}
 
+	public List<Long> getErrorCodes() {
+		return errorCodes;
+	}
+
+	public void setErrorCodes(List<Long> errorCodes) {
+		this.errorCodes = errorCodes;
+	}
 }

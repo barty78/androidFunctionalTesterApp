@@ -357,6 +357,7 @@ public class MainActivity extends AppCompatActivity
                         .registerTypeAdapter(Long.class, new MyLongTypeAdapter())
                         .registerTypeAdapter(Double.class, new MyDoubleTypeAdapter())
                         .registerTypeAdapter(Integer.class, new MyIntTypeAdapter())
+                        .registerTypeAdapter(Integer.class, new MyIntTypeAdapter())
                         .create();
                 String recordstring = gson.toJson(record, TestRecord.class);
                 Log.d(TAG, "Created record: " + recordstring);

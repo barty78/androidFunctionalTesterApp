@@ -25,7 +25,7 @@ public abstract class Test {
 	public boolean success=false;
 	private long IdTest=0;
 	private double value;
-	private long errorcode;
+	private Long errorcode=0l;//Defalt value
 
 	//Limits variables
 	public boolean isNominal;
@@ -123,8 +123,8 @@ public abstract class Test {
 		this.value = value;
 	}
 
-	public long getErrorCode() { return errorcode;}
-	public void setErrorcode(long errorcode) { this.errorcode = errorcode;}
+	public Long getErrorCode() { return errorcode;}
+	public void setErrorcode(Long errorcode) { this.errorcode = errorcode;}
 
 
 	public void setTestToBeParsed(server.pojos.Test testToBeParsed) {

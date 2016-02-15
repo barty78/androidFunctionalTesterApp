@@ -23,6 +23,10 @@ public class SingleTest extends MyModel {
 	@Expose
 	private Test foreignkey;
 
+	@Column(name = "ErrorCode")
+	@Expose
+	private Long ErrorCode;
+
 	public Long getIDTest() {
 		return IDTest;
 	}
@@ -93,4 +97,11 @@ public class SingleTest extends MyModel {
 		return true;
 	}
 
+	public Long getErrorCode() {
+		return ErrorCode;
+	}
+
+	public void setErrorCode(Long errorCode) {
+		ErrorCode = errorCode;
+	}
 }
