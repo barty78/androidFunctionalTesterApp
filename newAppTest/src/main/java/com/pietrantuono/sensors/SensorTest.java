@@ -163,6 +163,7 @@ public class SensorTest {
 			this.sensorsTestHelper.sendVoltages(voltage, zeroVoltage);
 		} catch (Exception e) {
 			e.printStackTrace();
+
 			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - Setting Voltages Failed", true, testToBeParsed
 			);
 			return;
