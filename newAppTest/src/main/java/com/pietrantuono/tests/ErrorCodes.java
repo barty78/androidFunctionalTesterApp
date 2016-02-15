@@ -5,6 +5,8 @@ package com.pietrantuono.tests;
  */
 public interface ErrorCodes {
 
+    public static final int OUTSIDE_LIMITS = 0;
+
     // Sensor Test Errors
     public static final int SENSORTEST_INSUFFICIENT_SAMPLES = 1;
     public static final int SENSORTEST_VOLTAGE_SETTING_FAILED = 2;
