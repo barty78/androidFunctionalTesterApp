@@ -33,8 +33,13 @@ public class MagnetWakeDeviceTest extends Test{
 			if(isinterrupted)return null;
 			DecimalFormat df = new DecimalFormat("##.##");
 			df.setRoundingMode(RoundingMode.DOWN);
-			if(IOIOUtils.getUtils().getEmag() != null) {
-				IOIOUtils.getUtils().toggleEMag((Activity)activityListener);
+			if (IOIOUtils.getUtils().getUartLog().indexOf("IWDG Wakeup") != -1) {
+
+				if (IOIOUtils.getUtils().getEmag() != null) {
+					IOIOUtils.getUtils().toggleEMag((Activity) activityListener);
+				}
+			} else {
+				Log.d(TAG, "Device not asleep yet.");
 			}
 			if(isinterrupted)return null;
 			try {

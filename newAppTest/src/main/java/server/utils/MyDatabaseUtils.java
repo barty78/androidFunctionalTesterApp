@@ -56,6 +56,7 @@ public class MyDatabaseUtils {
             singleTest.setIDTest(record.getReadings().getTest().getIDTest().get(i));
             singleTest.setResult(record.getReadings().getTest().getResult().get(i));
             singleTest.setValue(record.getReadings().getTest().getValue().get(i));
+            singleTest.setErrorCode(record.getReadings().getTest().getErrorCode().get(i));
             singleTest.setForeignkey(record.getReadings().getTest());
             singleTest.save();
         }
@@ -67,6 +68,7 @@ public class MyDatabaseUtils {
             singleS0.setMax(record.getReadings().getSensors().getS0().getMax().get(j));
             singleS0.setMin(record.getReadings().getSensors().getS0().getMin().get(j));
             singleS0.setResult(record.getReadings().getSensors().getS0().getResult().get(j));
+            singleS0.setErrorCode(record.getReadings().getSensors().getS0().getErrorCodes().get(j));
             singleS0.setForeignkey(record.getReadings().getSensors().getS0());
             singleS0.save();
         }
@@ -79,6 +81,7 @@ public class MyDatabaseUtils {
             singleS1.setMin(record.getReadings().getSensors().getS1().getMin().get(j));
             singleS1.setForeignkey(record.getReadings().getSensors().getS1());
             singleS1.setResult(record.getReadings().getSensors().getS1().getResult().get(j));
+            singleS1.setErrorCode(record.getReadings().getSensors().getS1().getErrorCodes().get(j));
             singleS1.save();
         }
         for (int j = 0; j < record.getReadings().getSensors().getS0().getIDTest().size(); j++) {
@@ -89,6 +92,7 @@ public class MyDatabaseUtils {
             singleS2.setMin(record.getReadings().getSensors().getS2().getMin().get(j));
             singleS2.setForeignkey(record.getReadings().getSensors().getS2());
             singleS2.setResult(record.getReadings().getSensors().getS2().getResult().get(j));
+            singleS2.setErrorCode(record.getReadings().getSensors().getS2().getErrorCodes().get(j));
             singleS2.save();
         }
 
@@ -105,13 +109,16 @@ public class MyDatabaseUtils {
             List<Long> ids = new ArrayList<Long>();
             List<Long> results = new ArrayList<Long>();
             List<Double> values = new ArrayList<Double>();
+            List<Long> errorcodes = new ArrayList<Long>();
             for (int i = 0; i < singleTests.size(); i++) {
                 ids.add(singleTests.get(i).getIDTest());
                 results.add(singleTests.get(i).getResult());
                 values.add(singleTests.get(i).getValue());
+                errorcodes.add((singleTests.get(i).getErrorCode()==null || singleTests.get(i).getErrorCode()==0)?null:singleTests.get(i).getErrorCode());
             }
             test.setIDTest(ids);
             test.setResult(results);
+            test.setErrorCode(errorcodes);
             test.setValue(values);
         }
 
@@ -133,12 +140,14 @@ public class MyDatabaseUtils {
                 List<Long> minS0 = new ArrayList<Long>();
                 List<Long> avgS0 = new ArrayList<Long>();
                 List<Long> resultS0 = new ArrayList<Long>();
+                List<Long> errorcodesS0 = new ArrayList<Long>();
                 for (int i = 0; i < singleS0s.size(); i++) {
                     idstestsS0.add(singleS0s.get(i).getIDTest());
                     maxS0.add(singleS0s.get(i).getMax());
                     minS0.add(singleS0s.get(i).getMin());
                     avgS0.add(singleS0s.get(i).getAvg());
                     resultS0.add(singleS0s.get(i).getResult());
+                    errorcodesS0.add((singleS0s.get(i).getErrorCode()==null || singleS0s.get(i).getErrorCode()==0)?null:singleS0s.get(i).getErrorCode());
                 }
                 s0.setIDTest(idstestsS0);
                 s0.setResult(resultS0);
@@ -146,6 +155,7 @@ public class MyDatabaseUtils {
                 s0.setMax(maxS0);
                 s0.setMin(minS0);
                 s0.setResult(resultS0);
+                s0.setErrorCodes(errorcodesS0);
             }
             if (s1 != null && s1.getId() != null) {
                 List<SingleS1> singleS1s = new Select().from(SingleS1.class).where("S1 = ?", s1.getId()).execute();
@@ -154,12 +164,14 @@ public class MyDatabaseUtils {
                 List<Long> minS1 = new ArrayList<Long>();
                 List<Long> avgS1 = new ArrayList<Long>();
                 List<Long> resultS1 = new ArrayList<Long>();
+                List<Long> errorcodesS1 = new ArrayList<Long>();
                 for (int i = 0; i < singleS1s.size(); i++) {
                     idstestsS1.add(singleS1s.get(i).getIDTest());
                     maxS1.add(singleS1s.get(i).getMax());
                     minS1.add(singleS1s.get(i).getMin());
                     avgS1.add(singleS1s.get(i).getAvg());
                     resultS1.add(singleS1s.get(i).getResult());
+                    errorcodesS1.add((singleS1s.get(i).getErrorCode()==null || singleS1s.get(i).getErrorCode()==0)?null:singleS1s.get(i).getErrorCode());
                 }
                 s1.setIDTest(idstestsS1);
                 s1.setResult(resultS1);
@@ -167,6 +179,7 @@ public class MyDatabaseUtils {
                 s1.setMax(maxS1);
                 s1.setMin(minS1);
                 s1.setResult(resultS1);
+                s1.setErrorCodes(errorcodesS1);
             }
             if (s2 != null && s2.getId() != null) {
                 List<SingleS2> singleS2s = new Select().from(SingleS2.class).where("S2 = ?", s2.getId()).execute();
@@ -175,12 +188,14 @@ public class MyDatabaseUtils {
                 List<Long> minS2 = new ArrayList<Long>();
                 List<Long> avgS2 = new ArrayList<Long>();
                 List<Long> resultS2 = new ArrayList<Long>();
+                List<Long> errorcodesS2 = new ArrayList<Long>();
                 for (int i = 0; i < singleS2s.size(); i++) {
                     idstestsS2.add(singleS2s.get(i).getIDTest());
                     maxS2.add(singleS2s.get(i).getMax());
                     minS2.add(singleS2s.get(i).getMin());
                     avgS2.add(singleS2s.get(i).getAvg());
                     resultS2.add(singleS2s.get(i).getResult());
+                    errorcodesS2.add((singleS2s.get(i).getErrorCode()==null || singleS2s.get(i).getErrorCode()==0)?null:singleS2s.get(i).getErrorCode());
                 }
                 s2.setIDTest(idstestsS2);
                 s2.setResult(resultS2);
@@ -188,6 +203,7 @@ public class MyDatabaseUtils {
                 s2.setMax(maxS2);
                 s2.setMin(minS2);
                 s2.setResult(resultS2);
+                s2.setErrorCodes(errorcodesS2);
             }
             readingss.setSensors(sensors);
         }

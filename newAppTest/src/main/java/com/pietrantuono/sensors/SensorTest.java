@@ -8,6 +8,7 @@ import com.pietrantuono.activities.NewIOIOActivityListener;
 import com.pietrantuono.constants.NewMSensorResult;
 import com.pietrantuono.ioioutils.IOIOUtils;
 import com.pietrantuono.pericoach.newtestapp.R;
+import com.pietrantuono.tests.ErrorCodes;
 import com.pietrantuono.tests.implementations.SensorTestWrapper;
 
 import android.app.Activity;
@@ -162,6 +163,7 @@ public class SensorTest {
 			this.sensorsTestHelper.sendVoltages(voltage, zeroVoltage);
 		} catch (Exception e) {
 			e.printStackTrace();
+
 			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - Setting Voltages Failed", true, testToBeParsed
 			);
 			return;
