@@ -328,6 +328,7 @@ public class RecordFromSequenceCreator {
 		test.setIDTest(getTestIdsOfTests(sequence));
 		test.setResult(getResultOfTests(sequence));
 		test.setValue(getValueOfTests(sequence));
+		test.setErrorCode(getErrorCodeOfTests(sequence));
 		return test;
 	}
 
@@ -356,6 +357,16 @@ public class RecordFromSequenceCreator {
 				result.add(sequence.getSequence().get(i).getIdTest());
 		}
 		return result;
+	}
+
+	private static List<Long> getErrorCodeOfTests(NewSequenceInterface sequence) {
+		List<Long> result = new ArrayList<Long>();
+		for (int i = 0; i < sequence.getSequence().size(); i++) {
+			if (sequence.getSequence().get(i).isSuccess())
+				result.add(1l);
+			else
+				result.add(0l);
+		}		return result;
 	}
 
 	private static boolean containsSensorsTests(NewSequenceInterface sequence){

@@ -27,7 +27,11 @@ public class Test extends MyModel {
     @Column(name = "Result")
     @Expose
     private List<Long> Result = new ArrayList<Long>();
-    
+
+	@Column(name = "ErrorCode")
+	@Expose
+	private List<Long> ErrorCode = new ArrayList<Long>();
+
     @Column(name = "Readings")
     private Readings foreginkey;
     
@@ -94,6 +98,23 @@ public class Test extends MyModel {
         this.Result = Result;
     }
 
+	/**
+	 *
+	 * @return
+	 *     The ErrorCode
+	 */
+	public List<Long> getErrorCode() { return ErrorCode; }
+
+	/**
+	 *
+	 * @param ErrorCode
+	 *     The ErrorCode
+	 */
+	public void setErrorCode(List<Long> ErrorCode) {
+		this.ErrorCode = ErrorCode;
+	}
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -101,6 +122,7 @@ public class Test extends MyModel {
 		result = prime * result + ((IDTest == null) ? 0 : IDTest.hashCode());
 		result = prime * result + ((Result == null) ? 0 : Result.hashCode());
 		result = prime * result + ((Value == null) ? 0 : Value.hashCode());
+		result = prime * result + ((ErrorCode == null) ? 0 : ErrorCode.hashCode());
 		return result;
 	}
 
@@ -127,6 +149,11 @@ public class Test extends MyModel {
 			if (other.Value != null)
 				return false;
 		} else if (!Value.equals(other.Value))
+			return false;
+		if (ErrorCode == null) {
+			if (other.ErrorCode != null)
+				return false;
+		} else if (!Result.equals(other.ErrorCode))
 			return false;
 		return true;
 	}
