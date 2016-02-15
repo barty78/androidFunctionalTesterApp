@@ -362,11 +362,9 @@ public class RecordFromSequenceCreator {
 	private static List<Long> getErrorCodeOfTests(NewSequenceInterface sequence) {
 		List<Long> result = new ArrayList<Long>();
 		for (int i = 0; i < sequence.getSequence().size(); i++) {
-			if (sequence.getSequence().get(i).isSuccess())
-				result.add(1l);
-			else
-				result.add(0l);
-		}		return result;
+			result.add(sequence.getSequence().get(i).getErrorCode());
+		}
+		return result;
 	}
 
 	private static boolean containsSensorsTests(NewSequenceInterface sequence){
