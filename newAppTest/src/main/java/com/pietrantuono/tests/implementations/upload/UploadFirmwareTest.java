@@ -20,6 +20,7 @@ import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.ioioutils.IOIOUtils;
 import com.pietrantuono.pericoach.newtestapp.BuildConfig;
 import com.pietrantuono.pericoach.newtestapp.R;
+import com.pietrantuono.tests.ErrorCodes;
 import com.pietrantuono.tests.superclass.Test;
 import com.pietrantuono.uploadfirmware.FirmWareUploader;
 import com.pietrantuono.uploadfirmware.FirmWareUploader.UploaderListener;
@@ -104,6 +105,7 @@ public class UploadFirmwareTest extends Test {
                             Drawable background = res
                                     .getDrawable(R.drawable.redprogress);
                             holder.setFail(description + "\nERROR: Device Init Failed");
+                            setErrorcode((long) ErrorCodes.FIRMWAREUPLOAD_INIT_FAILED);
                             activityListener.goAndExecuteNextTest();
                         }
                     });
@@ -125,6 +127,7 @@ public class UploadFirmwareTest extends Test {
                             Drawable background = res
                                     .getDrawable(R.drawable.redprogress);
                             holder.setFail(description + "\nERROR: Get Device Info Failed");
+                            setErrorcode((long) ErrorCodes.FIRMWAREUPLOAD_GET_INFO_FAILED);
                             activityListener.goAndExecuteNextTest();
                         }
                     });
@@ -158,8 +161,9 @@ public class UploadFirmwareTest extends Test {
                     }
 
                     @Override
-                    public void onUploadFailure(final String error) {
+                    public void onUploadFailure(final String error, int errorcode) {
                         setSuccess(false);
+                        setErrorcode((long) errorcode);
                         Log.d(TAG, "FW Upload Result is " + success);
                         try {
                             RX.close();

@@ -31,6 +31,7 @@ public class SensorTest {
 	public final float lowerLimit;
 	public final float upperLimit;
 	public final float varLimit;
+	private final SensorTestWrapper wrapper;
 	protected SensorsTestHelper sensorsTestHelper;
 	protected WeakReference<Activity> activity = null;
 	protected short voltage = -1;
@@ -55,6 +56,7 @@ public class SensorTest {
 		this.voltage=wrapper.getVoltage();
 		this.zeroVoltage=wrapper.getZeroVoltage();
 		this.load=wrapper.getLoad();
+		this.wrapper=wrapper;
 
 	}
 
@@ -113,22 +115,26 @@ public class SensorTest {
 		Log.d("SensorTest", "execute");
 		if (this.activity == null || activity == null) {
 			Log.e(SensorsTestHelper.TAG, "You must set the activity");
+			wrapper.setErrorcode((long) ErrorCodes.SENSORTEST_ACTIVITY_ERROR);
 			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - Activity Error",true,testToBeParsed);
 			return;
 		}
 		if (this.voltage == -1) {
 			Log.e(SensorsTestHelper.TAG, "You must set the voltage");
+			wrapper.setErrorcode((long) ErrorCodes.SENSORTEST_NO_DRIVE_VOLTAGE_SET);
 			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - No Set Voltage",true,testToBeParsed);
 			return;
 		}
 		if (this.zeroVoltage == -1) {
 			Log.e(SensorsTestHelper.TAG, "You must set the zeroing voltage");
+			wrapper.setErrorcode((long) ErrorCodes.SENSORTEST_NO_ZERO_VOLTAGE_SET);
 			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - No Set Zeroing Voltage",true,testToBeParsed
 			);
 			return;
 		}
 		if (load == null) {
 			Log.e(SensorsTestHelper.TAG, "load null?!");
+			wrapper.setErrorcode((long) ErrorCodes.SENSORTEST_NO_LOAD_SET);
 			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - No Load Set",true,testToBeParsed);
 			return;
 		}
@@ -163,7 +169,7 @@ public class SensorTest {
 			this.sensorsTestHelper.sendVoltages(voltage, zeroVoltage);
 		} catch (Exception e) {
 			e.printStackTrace();
-
+			wrapper.setErrorcode((long) ErrorCodes.SENSORTEST_VOLTAGE_SETTING_FAILED);
 			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - Setting Voltages Failed", true, testToBeParsed
 			);
 			return;
@@ -215,7 +221,8 @@ public class SensorTest {
 		Log.d("SensorTest", "endTest");
 		if (this.sensorsTestHelper.samplesref == null) {
 			Log.d(SensorsTestHelper.TAG, "samplesref == null " + (this.sensorsTestHelper.samplesref == null));
-			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - No Samples",true,testToBeParsed);
+			wrapper.setErrorcode((long) ErrorCodes.SENSORTEST_INSUFFICIENT_SAMPLES);
+			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - No Samples", true, testToBeParsed);
 			return mSensorResult;
 		}
 
@@ -227,6 +234,7 @@ public class SensorTest {
 
 		if (this.sensorsTestHelper.samplesref.mSamples == null) {
 			Log.d(SensorsTestHelper.TAG, "Samples size = " + this.sensorsTestHelper.samplesref.mSamples.size());
+			wrapper.setErrorcode((long) ErrorCodes.SENSORTEST_INSUFFICIENT_SAMPLES);
 			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - No Samples",true,testToBeParsed);
 			return mSensorResult;
 		}
@@ -236,6 +244,7 @@ public class SensorTest {
 
 			if (activity.get() != null && !activity.get().isFinishing()
 					&& !((MainActivity) (activity.get())).isMainActivityBeingDestroyed()) {
+				wrapper.setErrorcode((long) ErrorCodes.SENSORTEST_INSUFFICIENT_SAMPLES);
 				((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor Test - Insufficient Samples",true,testToBeParsed);
 				return mSensorResult;
 			}

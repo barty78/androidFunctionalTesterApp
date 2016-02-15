@@ -23,6 +23,7 @@ import com.pietrantuono.activities.NewIOIOActivityListener;
 import com.pietrantuono.fragments.sequence.holders.UploadItemHolder;
 import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.ioioutils.IOIOUtils;
+import com.pietrantuono.tests.ErrorCodes;
 
 import ioio.lib.api.IOIO;
 
@@ -118,11 +119,11 @@ public class FirmWareUploader {
         return false;
     }
 
-    private class WriteTask extends AsyncTask<Void, Void, Void> {
+    private class WriteTask extends AsyncTask<Void, Void, Integer> {
         private FileOutputStream fileOutputStream;
         private int prog = 0;
 
-        protected Void doInBackground(Void... v) {
+        protected Integer doInBackground(Void... v) {
 
             if (isCancelled())
                 return null;
@@ -141,7 +142,7 @@ public class FirmWareUploader {
                             .println("File provided larger then available flash space.\n");
 //					error="File provided larger then available flash space.";
                     error = "File too big to flash: (" + String.valueOf(size) + " > " + String.valueOf(fl_end - fl_start) + ")";
-                    return null;
+                    return ErrorCodes.FIRMWAREUPLOAD_FILESIZE_ERROR;
                 }
 
                 //int npages = 0xFF;
@@ -172,7 +173,7 @@ public class FirmWareUploader {
                                 "Failed to write memory at address 0x%08x\n",
                                 addr);
                         error = "Failed to write memory at address " + String.format("0x%08x", addr);
-                        return null;
+                        return ErrorCodes.FIRMWAREUPLOAD_WRITE_MEMORY_ERROR;
                     } else {
                         fileOutputStream.write(buffer, 0, len);
                     }
@@ -242,7 +243,7 @@ public class FirmWareUploader {
 
                     } else {
 
-                        if (listener != null) listener.onUploadFailure(error);
+                        if (listener != null) listener.onUploadFailure(error,ErrorCodes.GENERIC_FAILURE);
                         holder.setFail("");
                     }
                 }
@@ -695,7 +696,7 @@ public class FirmWareUploader {
 
         public void onUploadSuccess();
 
-        public void onUploadFailure(String error);
+        public void onUploadFailure(String error, int errorcode);
     }
 
 
