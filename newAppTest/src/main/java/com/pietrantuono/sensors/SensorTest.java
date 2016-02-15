@@ -8,6 +8,7 @@ import com.pietrantuono.activities.NewIOIOActivityListener;
 import com.pietrantuono.constants.NewMSensorResult;
 import com.pietrantuono.ioioutils.IOIOUtils;
 import com.pietrantuono.pericoach.newtestapp.R;
+import com.pietrantuono.tests.ErrorCodes;
 import com.pietrantuono.tests.implementations.SensorTestWrapper;
 
 import android.app.Activity;
