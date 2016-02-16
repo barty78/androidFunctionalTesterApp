@@ -26,4 +26,5 @@ public interface ErrorCodes {
     public static final int FIRMWAREUPLOAD_ADDR_SEND_ERROR = 15;
     public static final int FIRMWAREUPLOAD_ADDR_ALIGN_ERROR = 16;
 
+    int GENERIC_FAILURE = 100;
 }
