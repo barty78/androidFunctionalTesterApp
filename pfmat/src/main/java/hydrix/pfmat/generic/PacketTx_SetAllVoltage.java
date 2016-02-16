@@ -3,7 +3,7 @@ package hydrix.pfmat.generic;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
-public class PacketTx_SetAllVoltage extends Packet
+public class PacketTx_SetAllVoltage extends BigPacket
 {
 	// Fields
 
