@@ -24,19 +24,19 @@ public class PacketTx_SetAllVoltage extends Packet
 	
 	// Serialization
 	@Override
-	protected byte[] buildPayload()
-	{
-		// Payload is 12 bytes... 6 voltages x 2 bytes each
-		byte[] payload = new byte [12];
-		ByteBuffer buf = ByteBuffer.wrap(payload);
-		buf.order(ByteOrder.LITTLE_ENDIAN);
+		protected byte[] buildPayload()
+		{
+			// Payload is 12 bytes... 6 voltages x 2 bytes each
+			byte[] payload = new byte [12];
+			ByteBuffer buf = ByteBuffer.wrap(payload);
+			buf.order(ByteOrder.LITTLE_ENDIAN);
 
-		buf.putShort(mRefVoltages[0]);
-		buf.putShort(mRefVoltages[1]);
-		buf.putShort(mRefVoltages[2]);
-		buf.putShort(mZeroVoltages[0]);
-		buf.putShort(mZeroVoltages[1]);
-		buf.putShort(mZeroVoltages[2]);
-		return payload;
+			buf.putShort(mRefVoltages[0]);
+			buf.putShort(mRefVoltages[1]);
+			buf.putShort(mRefVoltages[2]);
+			buf.putShort(mZeroVoltages[0]);
+			buf.putShort(mZeroVoltages[1]);
+			buf.putShort(mZeroVoltages[2]);
+			return payload;
 	}
 }

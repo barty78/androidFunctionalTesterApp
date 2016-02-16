@@ -120,6 +120,17 @@ public class SensorsTestHelper implements OnSampleCallback {
 		}
 	}
 
+
+	void sendAllVoltages(final Short voltage, final Short zerovoltage) throws Exception{
+		short[] ref = new short[]{voltage,voltage,voltage};
+		short[] zero = new short[]{zerovoltage,zerovoltage,zerovoltage};
+		try {
+			((NewIOIOActivityListener) (activityref.get())).getBtutility().sendAllVoltages(ref,zero,500);
+		} catch (Exception e) {
+			throw new Exception("Setting Failed.");
+		}
+	}
+
 	void sendVoltages(final Short voltage, final Short zerovoltage) throws Exception{
 //		Handler handler = new Handler();
 		try {

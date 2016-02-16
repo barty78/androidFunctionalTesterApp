@@ -114,7 +114,7 @@ public class ClosedTest extends SensorTest {
 				e.printStackTrace();
 			}
 		try {
-			this.sensorsTestHelper.sendVoltages(voltage, zeroVoltage);
+			this.sensorsTestHelper.sendAllVoltages(voltage, zeroVoltage);
 		} catch (Exception e) {
 			e.printStackTrace();
 			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - Setting Voltages Failed", true, testToBeParsed

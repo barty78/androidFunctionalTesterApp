@@ -161,7 +161,7 @@ public class SensorTest {
 				e.printStackTrace();
 			}
 		try {
-			//this.sensorsTestHelper.sendVoltages(voltage, zeroVoltage);
+			this.sensorsTestHelper.sendAllVoltages(voltage, zeroVoltage);
 		} catch (Exception e) {
 			e.printStackTrace();
 
