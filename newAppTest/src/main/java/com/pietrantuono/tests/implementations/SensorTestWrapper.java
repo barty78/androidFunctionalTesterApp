@@ -5,6 +5,7 @@ import ioio.lib.api.IOIO;
 import android.app.Activity;
 import android.util.Log;
 
+import com.pietrantuono.ioioutils.IOIOUtils;
 import com.pietrantuono.sensors.ClosedTest;
 import com.pietrantuono.sensors.SensorTest;
 import com.pietrantuono.sensors.SensorsTestHelper;

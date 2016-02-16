@@ -127,7 +127,7 @@ public class UploadFirmwareTest extends Test {
                             Drawable background = res
                                     .getDrawable(R.drawable.redprogress);
                             holder.setFail(description + "\nERROR: Get Device Info Failed");
-                            setErrorcode((long) ErrorCodes.FIRMWAREUPLOAD_GET_INFO_FAILED);
+                            setErrorcode((long) firmWareUploader.getERRORCODE());
                             activityListener.goAndExecuteNextTest();
                         }
                     });
@@ -156,8 +156,6 @@ public class UploadFirmwareTest extends Test {
                                 activityListener.goAndExecuteNextTest();
                             }
                         });
-
-
                     }
 
                     @Override
