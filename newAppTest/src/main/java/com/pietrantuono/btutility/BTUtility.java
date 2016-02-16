@@ -504,7 +504,7 @@ public class BTUtility {
 			return;
 		}
 		try {
-			countDownLatch.await(timeOutInMills, TimeUnit.MICROSECONDS);
+			countDownLatch.await(timeOutInMills, TimeUnit.MILLISECONDS);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 			return;

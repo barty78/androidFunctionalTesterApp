@@ -5,6 +5,8 @@ package com.pietrantuono.tests;
  */
 public interface ErrorCodes {
 
+    public static final int NO_ERROR = -1;
+
     public static final int OUTSIDE_LIMITS = 1;
 
     // Sensor Test Errors
@@ -25,5 +27,6 @@ public interface ErrorCodes {
     public static final int FIRMWAREUPLOAD_CMD_SEND_ERROR = 14;
     public static final int FIRMWAREUPLOAD_ADDR_SEND_ERROR = 15;
     public static final int FIRMWAREUPLOAD_ADDR_ALIGN_ERROR = 16;
+    public static final int FIRMWAREUPLOAD_GENERIC_FAILURE =999;
 
 }
