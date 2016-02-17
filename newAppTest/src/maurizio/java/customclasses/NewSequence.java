@@ -404,38 +404,28 @@ public class NewSequence implements NewSequenceInterface {
 //				(short) 127));
 
         MyDummyTest test = new MyDummyTest.Builder().setActivity(activity).setDescription("first dummy").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
+        test.setErrorcode(1l);
         test.setSuccess(true);
         test.setIdTest(1);
         test.setValue(1);
         sequence.add(test);
 
         test = new MyDummyTest.Builder().setActivity(activity).setDescription("second dummy").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
+        test.setErrorcode(2l);
         test.setSuccess(true);
         test.setIdTest(1);
         test.setValue(1);
         sequence.add(test);
+
         test = new MyDummyTest.Builder().setActivity(activity).setDescription("third dummy").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
+        test.setErrorcode(0l);
         test.setSuccess(true);
-        test.setIdTest(1);
-        test.setValue(1);
-        sequence.add(test);
-        test = new MyDummyTest.Builder().setActivity(activity).setDescription("fourth dummy").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
-        test.setSuccess(true);
-        test.setIdTest(1);
-        test.setValue(1);
-        sequence.add(test);
-        test = new MyDummyTest.Builder().setActivity(activity).setDescription("fifth dummy").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
-        test.setSuccess(false);
         test.setIdTest(1);
         test.setValue(1);
         sequence.add(test);
 
         sequence.add(new BluetoothConnectTestForTesting(activity));
 
-<<<<<<< HEAD
-        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 0, 10, 50,
-                "Sensor Input Test, NO LOAD, GAIN/ZERO @ 127/0"));
-=======
 //        SensorTestWrapper sensortest = new SensorTestWrapper(false, activity, ioio, 3, 1300, 1400, 50,
 //                "Sensor Input Test, LOADED, GAIN/ZERO @ 127/50");
 //        sensortest.setErrorcode(6l);
@@ -445,7 +435,6 @@ public class NewSequence implements NewSequenceInterface {
 //                "Sensor Input Test, LOADED, GAIN/ZERO @ 127/50");
 //        sensortest.setErrorcode(0l);
 //        sequence.add(sensortest);
->>>>>>> develop
     }
 
 
