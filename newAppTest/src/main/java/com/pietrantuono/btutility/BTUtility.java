@@ -49,6 +49,7 @@ import android.text.InputType;
 import android.util.Log;
 import android.widget.EditText;
 
+import customclasses.DebugHelper;
 import hugo.weaving.DebugLog;
 import hydrix.pfmat.generic.Device;
 public class BTUtility {
@@ -454,7 +455,7 @@ public class BTUtility {
 	}
 
 	public void setVoltage(final Short voltage) throws Exception {
-
+		if(DebugHelper.isMaurizioDebug())return;
 		// If job testtype is open, we can use the uart for ACK of packets
 		if (PeriCoachTestApplication.getCurrentJob().getTesttypeId() == 1) {
 			Byte sensor = (byte) (0 & 0xFF);
