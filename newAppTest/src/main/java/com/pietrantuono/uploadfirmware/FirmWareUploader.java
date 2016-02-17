@@ -146,10 +146,7 @@ public class FirmWareUploader {
                     return ErrorCodes.FIRMWAREUPLOAD_FILESIZE_ERROR;
                 }
 
-                //int npages = 0xFF;
-//				if (!erase((byte) 0xFF))			// Erase all memory
-//					return null;
-//
+                if(!massErase()) return ErrorCodes.FIRMWAREUPLOAD_ERASE_ERROR;
 
                 int addr = fl_start;
                 int len = 0;
@@ -464,6 +461,26 @@ public class FirmWareUploader {
         }
         return null;
 
+    }
+
+    private boolean massErase() {
+        //TO MASS ERASE
+        //Send readout protect, wait for 2 acks, need to re-init afterward due to system reset
+        //Send readout unprotect, wait for 2 acks
+        //SendCommand includes one ACK
+        // Must reset and re-init device afterwards
+
+        if (!sendCommand(_CMDList.get("rp").byteValue())) return false;
+        if(readWithTimerTimeout(1000)==STM32_NACK)return false;
+
+        if(!deviceInit()) return false;
+
+        if (!sendCommand(_CMDList.get("ur").byteValue())) return false;
+        if(readWithTimerTimeout(1000)==STM32_NACK)return false;
+
+        if(!deviceInit()) return false;
+
+        return true;
     }
 
     private boolean erase(byte pages) {

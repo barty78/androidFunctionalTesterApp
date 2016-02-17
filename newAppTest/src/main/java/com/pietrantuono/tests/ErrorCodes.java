@@ -27,6 +27,9 @@ public interface ErrorCodes {
     public static final int FIRMWAREUPLOAD_CMD_SEND_ERROR = 14;
     public static final int FIRMWAREUPLOAD_ADDR_SEND_ERROR = 15;
     public static final int FIRMWAREUPLOAD_ADDR_ALIGN_ERROR = 16;
+    public static final int FIRMWAREUPLOAD_READ_PROTECT_ERROR = 17;
+    public static final int FIRMWAREUPLOAD_ERASE_ERROR = 18;
+    public static final int GENERIC_FAILURE = 100;
     public static final int FIRMWAREUPLOAD_GENERIC_FAILURE =999;
 
     int GENERIC_FAILURE = 100;

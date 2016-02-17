@@ -1,5 +1,7 @@
 package hydrix.pfmat.generic;
 
+import android.util.Log;
+
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
@@ -31,6 +33,10 @@ public class PacketTx_SetAllVoltage extends BigPacket
 			ByteBuffer buf = ByteBuffer.wrap(payload);
 			buf.order(ByteOrder.LITTLE_ENDIAN);
 
+			for (int i=0; i<mZeroVoltages.length; i++) {
+				Log.d("PACKETS", "Ref V " + String.valueOf(mRefVoltages[i]));
+				Log.d("PACKETS", "Zero V " + String.valueOf(mZeroVoltages[i]));
+			}
 			buf.putShort(mRefVoltages[0]);
 			buf.putShort(mRefVoltages[1]);
 			buf.putShort(mRefVoltages[2]);
