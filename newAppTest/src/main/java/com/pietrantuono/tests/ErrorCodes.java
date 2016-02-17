@@ -32,5 +32,4 @@ public interface ErrorCodes {
     public static final int GENERIC_FAILURE = 100;
     public static final int FIRMWAREUPLOAD_GENERIC_FAILURE =999;
 
-    int GENERIC_FAILURE = 100;
 }
