@@ -404,21 +404,21 @@ public class NewSequence implements NewSequenceInterface {
 //				(short) 127));
 
         MyDummyTest test = new MyDummyTest.Builder().setActivity(activity).setDescription("first dummy").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
-        test.setErrorcode(1l);
+        test.setErrorcode(999l);
         test.setSuccess(true);
         test.setIdTest(1);
         test.setValue(1);
         sequence.add(test);
 
         test = new MyDummyTest.Builder().setActivity(activity).setDescription("second dummy").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
-        test.setErrorcode(2l);
+        test.setErrorcode(666l);
         test.setSuccess(true);
         test.setIdTest(1);
         test.setValue(1);
         sequence.add(test);
 
         test = new MyDummyTest.Builder().setActivity(activity).setDescription("third dummy").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
-        test.setErrorcode(0l);
+        test.setErrorcode(333l);
         test.setSuccess(true);
         test.setIdTest(1);
         test.setValue(1);
@@ -428,12 +428,12 @@ public class NewSequence implements NewSequenceInterface {
 
         SensorTestWrapper sensortest = new SensorTestWrapper(false, activity, ioio, 3, 1300, 1400, 50,
                 "Sensor Input Test, LOADED, GAIN/ZERO @ 127/50");
-        sensortest.setErrorcode(6l);
+        //sensortest.setErrorcode(6l);
         sequence.add(sensortest);
 
         sensortest = new SensorTestWrapper(false, activity, ioio, 3, 1300, 1400, 50,
                 "Sensor Input Test, LOADED, GAIN/ZERO @ 127/50");
-        sensortest.setErrorcode(0l);
+        //sensortest.setErrorcode(0l);
         sequence.add(sensortest);
     }
 

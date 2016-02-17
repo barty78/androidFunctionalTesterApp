@@ -352,7 +352,7 @@ public class RecordFromSequenceCreator {
     private static List<Double> getValueOfTests(NewSequenceInterface sequence) {
         List<Double> result = new ArrayList<Double>();
         for (int i = 0; i < sequence.getSequence().size(); i++) {
-            result.add(sequence.getSequence().get(i).getValue());
+            if(!(sequence.getSequence().get(i) instanceof SensorTestWrapper))result.add(sequence.getSequence().get(i).getValue());
         }
         return result;
     }
@@ -360,6 +360,7 @@ public class RecordFromSequenceCreator {
     private static List<Long> getResultOfTests(NewSequenceInterface sequence) {
         List<Long> result = new ArrayList<Long>();
         for (int i = 0; i < sequence.getSequence().size(); i++) {
+            if((sequence.getSequence().get(i) instanceof SensorTestWrapper))continue;
             if (sequence.getSequence().get(i).isSuccess())
                 result.add(1l);
             else
@@ -371,7 +372,7 @@ public class RecordFromSequenceCreator {
     private static List<Long> getTestIdsOfTests(NewSequenceInterface sequence) {
         List<Long> result = new ArrayList<Long>();
         for (int i = 0; i < sequence.getSequence().size(); i++) {
-            result.add(sequence.getSequence().get(i).getIdTest());
+            if(!(sequence.getSequence().get(i) instanceof SensorTestWrapper))result.add(sequence.getSequence().get(i).getIdTest());
         }
         return result;
     }
@@ -379,6 +380,7 @@ public class RecordFromSequenceCreator {
     private static List<Long> getErrorCodeOfTests(NewSequenceInterface sequence) {
         List<Long> result = new ArrayList<Long>();
         for (int i = 0; i < sequence.getSequence().size(); i++) {
+            if((sequence.getSequence().get(i) instanceof SensorTestWrapper))continue;
             if (sequence.getSequence().get(i).getErrorCode() != 0)
                 result.add(sequence.getSequence().get(i).getErrorCode());
             else result.add(null);
