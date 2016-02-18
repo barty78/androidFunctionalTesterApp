@@ -491,7 +491,6 @@ public class BTUtility {
 				@Override
 				public void onAllVoltageResponseReceived() {
 					countDownLatch.countDown();
-
 				}
 
 				@Override

@@ -170,7 +170,8 @@ public class SensorTest {
             }
         if (!DebugHelper.isMaurizioDebug()) {
             try {
-                this.sensorsTestHelper.sendVoltages(voltage, zeroVoltage);
+//                this.sensorsTestHelper.sendVoltages(voltage, zeroVoltage);
+                  this.sensorsTestHelper.sendAllVoltages(voltage, zeroVoltage);
             } catch (Exception e) {
                 e.printStackTrace();
                 wrapper.setErrorcode((long) ErrorCodes.SENSORTEST_VOLTAGE_SETTING_FAILED);
