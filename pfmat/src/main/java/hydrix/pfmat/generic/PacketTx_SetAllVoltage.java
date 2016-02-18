@@ -5,7 +5,7 @@ import android.util.Log;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
-public class PacketTx_SetAllVoltage extends BigPacket
+public class PacketTx_SetAllVoltage extends Packet
 {
 	// Fields
 
