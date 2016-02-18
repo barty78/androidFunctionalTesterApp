@@ -114,7 +114,7 @@ public class Packet
 	}
 	
 	// Deserialization
-	public final boolean fromStream(byte[] stream, int streamOffset, int packetLength)
+	public boolean fromStream(byte[] stream, int streamOffset, int packetLength)
 	{
 		// Empty payload is valid, but at minimum we need all frame header fields
 		if (packetLength < FRAME_SIZE)
