@@ -591,7 +591,7 @@ public class BTUtility {
 		isstopped = true;
 		if (NewPFMATDevice.getDevice() != null) {
 			try {
-				setVoltage((short) 127);
+				//setVoltage((short) 127);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
