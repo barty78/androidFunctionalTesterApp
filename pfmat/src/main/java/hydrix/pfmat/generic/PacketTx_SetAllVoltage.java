@@ -13,7 +13,7 @@ public class PacketTx_SetAllVoltage extends BigPacket
 	protected short[] mRefVoltages;
 
 	// Construction
-	public PacketTx_SetAllVoltage(short[] zeroVoltages, short[] refVoltages)
+	public PacketTx_SetAllVoltage(short[] refVoltages, short[] zeroVoltages)
 	{
 		super(PFMAT.TX_SET_ALL_VOLTAGE);
 		mRefVoltages = refVoltages;

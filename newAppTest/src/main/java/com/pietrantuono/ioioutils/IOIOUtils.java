@@ -1,6 +1,7 @@
 package com.pietrantuono.ioioutils;
 
 import customclasses.DebugHelper;
+import hugo.weaving.DebugLog;
 import ioio.lib.api.DigitalInput;
 import ioio.lib.api.DigitalOutput;
 import ioio.lib.api.IOIO;
@@ -1028,6 +1029,7 @@ public class IOIOUtils implements IOIOUtilsInterface {
      * @see com.pietrantuono.ioioutils.IOIOUtilsInterface#getUartLog()
      */
     @Override
+    @DebugLog
 //    public StringBuilder getUartLog() {
     public String getUartLog() {
         return new String(log);

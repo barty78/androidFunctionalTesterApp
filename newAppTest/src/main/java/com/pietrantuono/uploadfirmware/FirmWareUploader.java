@@ -25,6 +25,7 @@ import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.ioioutils.IOIOUtils;
 import com.pietrantuono.tests.ErrorCodes;
 
+import hugo.weaving.DebugLog;
 import ioio.lib.api.IOIO;
 
 @SuppressWarnings({"ucd", "unused"})
@@ -41,7 +42,7 @@ public class FirmWareUploader {
     private static final byte STM32_ACK = 0x79;
     private static final byte STM32_NACK = 0x1F;
 
-    private Activity c;
+    private Activity activity;
     private ExecutorService executor = Executors.newFixedThreadPool(1);
     private HashMap<String, Integer> _CMDList = new HashMap<String, Integer>();
     private int pid;
@@ -81,11 +82,11 @@ public class FirmWareUploader {
         return cs;
     }
 
-    public FirmWareUploader(OutputStream TX, InputStream RX, Activity c,
+    public FirmWareUploader(OutputStream TX, InputStream RX, Activity activity,
                             UploadItemHolder holder,
                             NewIOIOActivityListener listner, IOIO ioio_) {
         this.TX = TX;
-        this.c = c;
+        this.activity = activity;
         this.RX = RX;
         this.ioio_ = ioio_;
         this.holder = holder;
@@ -93,11 +94,12 @@ public class FirmWareUploader {
 
     }
 
-    public void write(int c) {
+    @DebugLog
+    public void write(int i) {
         if (isstopped)
             return;
         try {
-            TX.write(c);
+            TX.write(i);
         } catch (Exception e) {
             showToast(String.valueOf(e));
             Log.e(TAG, e.toString());
@@ -130,7 +132,7 @@ public class FirmWareUploader {
                 return null;
             try {
 
-                BinaryParser aParser = new BinaryParser(c);
+                BinaryParser aParser = new BinaryParser(activity);
 
                 int offset = 0;
                 int size = aParser.getData().length;
@@ -201,7 +203,7 @@ public class FirmWareUploader {
             if (isCancelled())
                 return;
             Log.d(TAG, "Upload progress update");
-            c.runOnUiThread(new Runnable() {
+            activity.runOnUiThread(new Runnable() {
 
                 @Override
                 public void run() {
@@ -220,7 +222,7 @@ public class FirmWareUploader {
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
-            c.runOnUiThread(new Runnable() {
+            activity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                    holder.setProgress(0);
@@ -231,7 +233,7 @@ public class FirmWareUploader {
         protected void onPostExecute(final Integer errorcode) {
 
             if (isCancelled()) return;
-            c.runOnUiThread(new Runnable() {
+            activity.runOnUiThread(new Runnable() {
 
                 @Override
                 public void run() {
@@ -253,21 +255,35 @@ public class FirmWareUploader {
     }
 
     public boolean getInfo() {
+        String string;
         ERRORCODE=ErrorCodes.NO_ERROR;
         if (isstopped)
             return false;
         emptyInputStream();
+
+        string = "Sending command " + String.format("%02x",STM32_CMD_GET) + " "
+                + String.format("%02x",(byte) (STM32_CMD_GET ^ XOR_BYTE)) + "\n";
+        IOIOUtils.getUtils().appendUartLog(activity, string.getBytes(), string.getBytes().length);
+
         if (!sendCommand(STM32_CMD_GET)) {
             System.out
                     .println("Failed to send command to the device: reset your device.");
             error = "Failed to send command to the device: reset your device.";
             ERRORCODE=ErrorCodes.FIRMWAREUPLOAD_CMD_SEND_ERROR;
+            string = "ERROR " + ERRORCODE + "\n";
+            IOIOUtils.getUtils().appendUartLog(activity, string.getBytes(), string.getBytes().length);
             return false;
         }
         if (isstopped)
             return false;
         int len = readWithTimerTimeout(1000) + 1;
+
+        string = "GET LEN " + len + "\n";
+        IOIOUtils.getUtils().appendUartLog(activity, string.getBytes(), string.getBytes().length);
+
         System.out.printf("Have to read %d bytes.\n", len);
+//        byte[] bytes = new byte [len];
+
         if (isstopped)
             return false;
         readWithTimerTimeout(1000);
@@ -286,7 +302,6 @@ public class FirmWareUploader {
         _CMDList.put("wm", readWithTimerTimeout(1000));
         --len;
         _CMDList.put("er", readWithTimerTimeout(1000));
-        System.out.printf("Erase Command is %2x\n", _CMDList.get("er"));
         --len;
         _CMDList.put("wp", readWithTimerTimeout(1000));
         --len;
@@ -302,6 +317,10 @@ public class FirmWareUploader {
             System.out.println("Please reset your device. Stopping.");
             error = "get cmd: More bytes than known.";
             ERRORCODE=ErrorCodes.FIRMWAREUPLOAD_DEVICE_INFO_ERROR;
+
+            string = "ERROR " + ERRORCODE + "\n";
+            IOIOUtils.getUtils().appendUartLog(activity, string.getBytes(), string.getBytes().length);
+
             return false;
         }
         if (readWithTimerTimeout(2000) != STM32_ACK) {
@@ -309,14 +328,26 @@ public class FirmWareUploader {
             System.out.printf("Next data: %d\n", readWithTimerTimeout(1000));
             error = "get cmd: No ACK received.";
             ERRORCODE=ErrorCodes.FIRMWAREUPLOAD_NO_ACK_ERROR;
+
+            string = "ERROR " + ERRORCODE + "\n";
+            IOIOUtils.getUtils().appendUartLog(activity, string.getBytes(), string.getBytes().length);
+
             return false;
         }
 
 		/* get the version and read protection status */
+        string = "Sending command " + String.format("%02x",_CMDList.get("gvr").byteValue()) + " "
+                + String.format("%02x",(byte) (_CMDList.get("gvr").byteValue() ^ XOR_BYTE)) + "\n";
+        IOIOUtils.getUtils().appendUartLog(activity, string.getBytes(), string.getBytes().length);
+
         if (!sendCommand(_CMDList.get("gvr").byteValue())) {
             System.out.println("No ACK received from the device");
             error = "gvr cmd: No ACK received.";
             ERRORCODE=ErrorCodes.FIRMWAREUPLOAD_NO_ACK_ERROR;
+
+            string = "ERROR " + ERRORCODE + "\n";
+            IOIOUtils.getUtils().appendUartLog(activity, string.getBytes(), string.getBytes().length);
+
             return false;
         }
         if (isstopped)
@@ -334,15 +365,27 @@ public class FirmWareUploader {
             System.out.println("No ACK received from the device");
             error = "gvr cmd: No ACK received.";
             ERRORCODE=ErrorCodes.FIRMWAREUPLOAD_NO_ACK_ERROR;
+
+            string = "ERROR " + ERRORCODE + "\n";
+            IOIOUtils.getUtils().appendUartLog(activity, string.getBytes(), string.getBytes().length);
+
             return false;
         }
         if (isstopped)
             return false;
 		/* get the device ID */
+        string = "Sending command " + String.format("%02x",_CMDList.get("gid").byteValue()) + " "
+                + String.format("%02x",(byte) (_CMDList.get("gid").byteValue() ^ XOR_BYTE)) + "\n";
+        IOIOUtils.getUtils().appendUartLog(activity, string.getBytes(), string.getBytes().length);
+
         if (!sendCommand(_CMDList.get("gid").byteValue())) {
             System.out.println("No ACK received from the device");
             error = "gid cmd: No ACK received.";
             ERRORCODE=ErrorCodes.FIRMWAREUPLOAD_NO_ACK_ERROR;
+
+            string = "ERROR " + ERRORCODE + "\n";
+            IOIOUtils.getUtils().appendUartLog(activity, string.getBytes(), string.getBytes().length);
+
             return false;
         }
         if (isstopped)
@@ -353,6 +396,10 @@ public class FirmWareUploader {
                     .println("More then two bytes sent in the PID, unknown/unsupported device\n");
             error = "gid cmd: Unsupported device (> 2 bytes).";
             ERRORCODE=ErrorCodes.FIRMWAREUPLOAD_ADDR_ALIGN_ERROR;
+
+            string = "ERROR " + ERRORCODE + "\n";
+            IOIOUtils.getUtils().appendUartLog(activity, string.getBytes(), string.getBytes().length);
+
             return false;
         }
         if (isstopped)
@@ -363,6 +410,10 @@ public class FirmWareUploader {
                     .println("More then two bytes sent in the PID, unknown/unsupported device\n");
             error = "PID: Unsupported device (> 2 bytes).";
             ERRORCODE=ErrorCodes.FIRMWAREUPLOAD_ADDR_ALIGN_ERROR;
+
+            string = "ERROR " + ERRORCODE + "\n";
+            IOIOUtils.getUtils().appendUartLog(activity, string.getBytes(), string.getBytes().length);
+
             return false;
         }
 
@@ -370,6 +421,10 @@ public class FirmWareUploader {
         if (aData == null) {
             error = "ERROR: Device info error";
             ERRORCODE=ErrorCodes.FIRMWAREUPLOAD_GET_INFO_FAILED;
+
+            string = "ERROR " + ERRORCODE + "\n";
+            IOIOUtils.getUtils().appendUartLog(activity, string.getBytes(), string.getBytes().length);
+
             return false;
         }
         fl_start = aData[3];
@@ -378,6 +433,9 @@ public class FirmWareUploader {
         fl_end = aData[4];
         System.out.printf("Flash End Address - %x.\n", fl_end);
         mem_end = aData[8];
+
+        string = "INFO OK...\n";
+        IOIOUtils.getUtils().appendUartLog(activity, string.getBytes(), string.getBytes().length);
 
         return true;
 
@@ -394,31 +452,88 @@ public class FirmWareUploader {
         }
     }
 
+    @DebugLog
     private boolean sendCommand(byte iCmd) {
         if (isstopped)
             return false;
+//        String string = "Sending command " + String.format("%02x",iCmd) + " " + String.format("%02x",(byte) (iCmd ^ XOR_BYTE)) + "\n";
+//        IOIOUtils.getUtils().appendUartLog(c, string.getBytes(), string.getBytes().length);
+
         System.out.printf("Sending command (%2x,%2x)\n", iCmd,
                 (byte) (iCmd ^ XOR_BYTE));
         write(iCmd);
         write((byte) (iCmd ^ XOR_BYTE));
-        byte c = (byte) readWithTimerTimeout(1000);
-        System.out.printf("Returned :%2x\n", c);
+        byte b = (byte) readWithTimerTimeout(1000);
+        System.out.printf("Returned :%2x\n", b);
 
-        if ((c & 0xFF) == STM32_ACK) {
+
+
+        if ((b & 0xFF) == STM32_ACK) {
             System.err.println("OK sending command to the device.");
-            System.err.printf("Received : %2x\n", c);
+            System.err.printf("Received : %2x\n", b);
+
+            String string = "Recv " + String.format("%02x",b) + " " + "\n";
+            IOIOUtils.getUtils().appendUartLog(activity, string.getBytes(), string.getBytes().length);
+
             return true;
         } else {
             System.err.println("Error sending command to the device.");
-            System.err.printf("Received : %2x\n", c);
+            System.err.printf("Received : %2x\n", b);
+
+            String string = "Recv " + String.format("%02x",b) + " " + "\n";
+            IOIOUtils.getUtils().appendUartLog(activity, string.getBytes(), string.getBytes().length);
+
             ERRORCODE=ErrorCodes.FIRMWAREUPLOAD_CMD_SEND_ERROR;
             return false;
         }
     }
 
+
+    @DebugLog
     private int readWithTimerTimeout(int timeout) {
         if (isstopped)
             return -1;
+
+        final Thread readThread = Thread.currentThread();
+        Timer t = new Timer();
+        TimerTask readTask = new TimerTask() {
+            @Override
+            public void run() {
+                System.out.printf("Timer expired, interrupt\n");
+                String string = "READ TIMEOUT!\n";
+                IOIOUtils.getUtils().appendUartLog(activity, string.getBytes(), string.getBytes().length);
+
+                readThread.interrupt();
+
+            }
+        };
+//		Log.d(TAG, "Schedule readTask timer for " + String.valueOf(timeout) + " ms");
+        t.schedule(readTask, timeout);
+
+        Integer readByte = -1;
+        try {
+            readByte = RX.read();
+            if (readByte >= 0) {
+//                String string = "Recv: " + String.format("%02x",readByte) + "\n";
+//                IOIOUtils.getUtils().appendUartLog(c, string.getBytes(), string.getBytes().length);
+//				System.out.printf("Read Call Returned : %2x\n", readByte);
+                t.cancel();
+                t.purge();
+                t = null;
+//				System.out.printf("Timer Cancelled\n");
+            }
+        } catch (Exception e) {
+            Log.d(TAG, e.toString());
+            return readByte;
+        }
+        return readByte;
+    }
+
+    @DebugLog
+    private byte[] readBytesWithTimerTimeout(byte[] bytes, int timeout) {
+        byte[] array = bytes;
+        if (isstopped)
+            return null;
 
         final Thread readThread = Thread.currentThread();
         Timer t = new Timer();
@@ -434,7 +549,7 @@ public class FirmWareUploader {
 
         Integer readByte = -1;
         try {
-            readByte = RX.read();
+            readByte = RX.read(array);
             if (readByte >= 0) {
 //				System.out.printf("Read Call Returned : %2x\n", readByte);
                 t.cancel();
@@ -444,9 +559,9 @@ public class FirmWareUploader {
             }
         } catch (Exception e) {
             Log.d(TAG, e.toString());
-            return readByte;
+            return null;
         }
-        return readByte;
+        return array;
 
     }
 
@@ -470,16 +585,35 @@ public class FirmWareUploader {
         //SendCommand includes one ACK
         // Must reset and re-init device afterwards
 
-        if (!sendCommand(_CMDList.get("rp").byteValue())) return false;
-        if(readWithTimerTimeout(1000)==STM32_NACK)return false;
-
-        if(!deviceInit()) return false;
+        if (sendCommand(_CMDList.get("rp").byteValue())){
+            if(readWithTimerTimeout(1000)==STM32_NACK){
+                // Already in protect mode, no device reset so do nothing
+            } else {
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                // Device just entered protect mode and system resetted, need to re-init
+                if (!deviceInit()) return false;
+            }
+        }
+        //return false;
 
         if (!sendCommand(_CMDList.get("ur").byteValue())) return false;
         if(readWithTimerTimeout(1000)==STM32_NACK)return false;
-
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         if(!deviceInit()) return false;
 
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return true;
     }
 
@@ -525,11 +659,11 @@ public class FirmWareUploader {
     }
 
     private void showToast(final String s) {
-        c.runOnUiThread(new Runnable() {
+        activity.runOnUiThread(new Runnable() {
 
             @Override
             public void run() {
-                Toast.makeText(c, s,
+                Toast.makeText(activity, s,
                         Toast.LENGTH_SHORT).show();
             }
         });
@@ -544,7 +678,7 @@ public class FirmWareUploader {
 
         byte cs;
         int i;
-        int c, extra;
+        int j, extra;
         Log.e(TAG, "len > 0 && len < 257 " + (len > 0 && len < 257));
         if (!(len > 0 && len < 257)) {
             showToast("Data length invalid");
@@ -605,7 +739,7 @@ public class FirmWareUploader {
         //bb.put(data);
 
 		/* write the alignment padding */
-        for (c = 0; c < extra; ++c) {
+        for (j = 0; j < extra; ++j) {
             bb.put((byte) 0xFF);
             cs ^= 0xFF;
         }
@@ -631,7 +765,7 @@ public class FirmWareUploader {
 
         byte cs;
         int i;
-        int c, extra;
+        int j, extra;
 
         cs = (byte) stm32_gen_cs(address);
 
@@ -662,7 +796,7 @@ public class FirmWareUploader {
 //		Log.d("DATA: ", String.valueOf(cs));
 
 		/* write the alignment padding */
-        for (c = 0; c < extra; ++c) {
+        for (j = 0; j < extra; ++j) {
             write(0xFF);
             cs ^= 0xFF;
         }
@@ -698,15 +832,15 @@ public class FirmWareUploader {
         }
     }
 
-    private void write(int c, int length) {
+    private void write(int i, int length) {
 
         if (length == 4) {
 
             byte[] aData = new byte[4];
-            aData[0] = (byte) ((c >> 24) & 0x000000FF);
-            aData[1] = (byte) ((c >> 16) & 0x000000FF);
-            aData[2] = (byte) ((c >> 8) & 0x000000FF);
-            aData[3] = (byte) ((c >> 0) & 0x000000FF);
+            aData[0] = (byte) ((i >> 24) & 0x000000FF);
+            aData[1] = (byte) ((i >> 16) & 0x000000FF);
+            aData[2] = (byte) ((i >> 8) & 0x000000FF);
+            aData[3] = (byte) ((i >> 0) & 0x000000FF);
 
             write(aData, 4);
         }
