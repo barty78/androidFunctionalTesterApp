@@ -1,5 +1,7 @@
 package com.pietrantuono.sensors;
 
+import android.util.Log;
+
 import com.pietrantuono.tests.implementations.BatteryLevelUUTVoltageTest;
 
 import hydrix.pfmat.generic.CalibrationObserver;
@@ -38,6 +40,7 @@ public abstract class NewDevice {
     private final static int DEVICE_INFORMATION_TIMEOUT = 10000; // We need to see a Device Information packet within 10 seconds of connection or we disconnect
     private final static int DEVICE_INFORMATION_REQUEST_FREQ_MS = 2000; // Try every 2 seconds
     private final static int BATTERY_POLL_FREQ_MS = 60000; // Per minute
+    private final String TAG = getClass().getSimpleName();
 
     // Members
     private Information mInfo = new Information();
@@ -312,6 +315,7 @@ public abstract class NewDevice {
         // This function is called in the context of the comms recv thread...
         @Override
         protected void handlePacket(Packet packet) {
+            Log.d(TAG,"handlePacket"+ packet.toStream());
             if (packet != null) {
                 switch (packet.getPacketType()) {
                     case PFMAT.RX_SENSOR_DATA: {
