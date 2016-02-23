@@ -340,6 +340,7 @@ public class BTUtility {
         model = (info == null || info.mModel == null || info.mModel.length() == 0) ? null
                 : info.mModel;
 //		checkDeviceID(mDeviceId);
+
         start();
     }
 
