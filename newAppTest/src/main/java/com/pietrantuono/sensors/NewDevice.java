@@ -356,6 +356,7 @@ public abstract class NewDevice {
                         break;
                     }
                     default:
+                        Log.d(TAG,"handlePacket: we don't know this packet");
                         // Quietly ignore unimplemented packet types at this stage
                         break;
                 }
