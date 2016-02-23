@@ -319,16 +319,19 @@ public abstract class NewDevice {
             if (packet != null) {
                 switch (packet.getPacketType()) {
                     case PFMAT.RX_SENSOR_DATA: {
+                        Log.d(TAG,"handlePacket: got sensors data");
                         PacketRx_SensorData data = (PacketRx_SensorData) packet;
                         onSensorData(data.getRequestTimestamp(), data.getSensor0(), data.getSensor1(), data.getSensor2());
                         break;
                     }
                     case PFMAT.RX_BATTERY_STATUS: {
+                        Log.d(TAG,"handlePacket: got battery data");
                         PacketRx_BatteryStatus data = (PacketRx_BatteryStatus) packet;
                         onBatteryStatus(data.getBatteryPercent());
                         break;
                     }
                     case PFMAT.RX_DEVICE_DETAILS: {
+                        Log.d(TAG,"handlePacket: got device data");
                         PacketRx_DeviceDetails data = (PacketRx_DeviceDetails) packet;
                         onDeviceDetails(data.getSerialNumber(), data.getModel(), data.getFirmwareVersion());
                         break;
@@ -340,12 +343,14 @@ public abstract class NewDevice {
 //					break;
 //				}
                     case PFMAT.RX_REF_VOLTAGE: {
+                        Log.d(TAG,"handlePacket: got voltage data");
                         PacketRx_SetRefVoltage data = (PacketRx_SetRefVoltage) packet;
                         onRefVoltage(data.getSensorIndex(), data.getRefVoltage());
                         break;
                     }
 
                     case PFMAT.RX_ALL_VOLTAGE: {
+                        Log.d(TAG,"handlePacket: got all voltages data");
                         PacketRx_SetAllVoltage data = (PacketRx_SetAllVoltage) packet;
                         onAllVoltage();
                         break;
