@@ -40,6 +40,10 @@ public class FirmWareUploader {
     private static final byte XOR_BYTE = (byte) 0xFF;
     private static final byte STM32_ACK = 0x79;
     private static final byte STM32_NACK = 0x1F;
+    private byte[] optionBytes = {(byte) 0xAA, 0x00, 0x55, (byte) 0xFF, (byte) 0xF8, 0x00, 0x07, (byte) 0xFF,
+                                    0x00, 0x00, (byte) 0xFF, (byte) 0xFF, 0x00, 0x00, (byte) 0xFF, (byte) 0xFF,
+                                    0x00, 0x00, (byte) 0xFF, (byte) 0xFF, 0x00, 0x00, (byte) 0xFF, (byte) 0xFF,
+                                    0x00, 0x00, (byte) 0xFF, (byte) 0xFF, 0x00, 0x00, (byte) 0xFF, (byte) 0xFF};
 
     private Activity activity;
     private ExecutorService executor = Executors.newFixedThreadPool(1);
@@ -62,6 +66,9 @@ public class FirmWareUploader {
                     0x1FF80000, 0x1FF8001F, 0x1FFF0000, 0x1FF01FFF}, {0x0}};
     private int fl_start;
     private int fl_end;
+    private int op_start;
+    private int op_end;
+
     @SuppressWarnings("ucd")
     public int mem_end;
     private Boolean isstopped = false;
@@ -146,7 +153,13 @@ public class FirmWareUploader {
                     return ErrorCodes.FIRMWAREUPLOAD_FILESIZE_ERROR;
                 }
 
-                if(!massErase()) return ErrorCodes.FIRMWAREUPLOAD_ERASE_ERROR;
+//                if(!massErase()) return ErrorCodes.FIRMWAREUPLOAD_ERASE_ERROR;
+
+                //Mass erase also erases option bytes, must write appropriate values back in.
+                // TODO - Option Bytes hardcoded for STM32L151 at this stage, need to build option bytes more systematically
+//                if(!writeOptionBytes()) return ErrorCodes.FIRMWAREUPLOAD_OPTIONBYTES_WRITE_ERROR;
+                //Writing option bytes causes system reset, so must redo device init.
+//                if(!deviceInit()) return ErrorCodes.FIRMWAREUPLOAD_INIT_FAILED;
 
                 int addr = fl_start;
                 int len = 0;
@@ -445,6 +458,8 @@ public class FirmWareUploader {
         fl_end = aData[4];
         System.out.printf("Flash End Address - %x.\n", fl_end);
         mem_end = aData[8];
+        op_start = aData[7];
+        op_end = aData[8];
 
         //TODO - Remove append to uart log before release build
 //        string = "INFO OK...\n";
@@ -548,7 +563,28 @@ public class FirmWareUploader {
         return null;
     }
 
-    private boolean massErase() {
+    private boolean readOptionBytes() {
+
+        return true;
+    }
+
+    public boolean writeOptionBytes() {
+
+        System.out.printf("Writing Option Bytes");
+
+            if (!writeMemory(op_start, optionBytes, optionBytes.length)) {
+                System.err.printf(
+                        "Failed to write memory at address 0x%08x\n",
+                        op_start);
+                error = "Failed to write memory at address " + String.format("0x%08x", op_start);
+                ERRORCODE=ErrorCodes.FIRMWAREUPLOAD_OPTIONBYTES_WRITE_ERROR;
+                return false;
+            }
+
+        return true;
+    }
+
+    public boolean massErase() {
         //TO MASS ERASE
         //Send readout protect, wait for 2 acks, need to re-init afterward due to system reset
         //Send readout unprotect, wait for 2 acks
@@ -567,17 +603,27 @@ public class FirmWareUploader {
                 // Device just entered protect mode and system resetted, need to re-init
                 if (!deviceInit()) return false;
             }
+        } else {
+            ERRORCODE=ErrorCodes.FIRMWAREUPLOAD_CMD_RP_SEND_ERROR;
         }
-        //return false;
 
-        if (!sendCommand(_CMDList.get("ur").byteValue())) return false;
-        if(readWithTimerTimeout(1000)==STM32_NACK)return false;
+        if (!sendCommand(_CMDList.get("ur").byteValue())) {
+            ERRORCODE=ErrorCodes.FIRMWAREUPLOAD_CMD_UR_SEND_ERROR;
+            return false;
+        }
+        if(readWithTimerTimeout(1000)==STM32_NACK){
+            ERRORCODE=ErrorCodes.FIRMWAREUPLOAD_NO_ACK_ERROR;
+            return false;
+        }
         try {
             Thread.sleep(100);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        if(!deviceInit()) return false;
+        if(!deviceInit()) {
+            ERRORCODE=ErrorCodes.FIRMWAREUPLOAD_INIT_FAILED;
+            return false;
+        }
 
         try {
             Thread.sleep(100);
@@ -662,9 +708,10 @@ public class FirmWareUploader {
         Log.e(TAG, "address% 4 == 0 " + (address % 4 == 0));
         if (!(address % 4 == 0)) {
             showToast("Address not 32bit aligned");
-            ERRORCODE=ErrorCodes.FIRMWAREUPLOAD_ADDR_ALIGN_ERROR;
+            ERRORCODE = ErrorCodes.FIRMWAREUPLOAD_ADDR_ALIGN_ERROR;
             return false;
         }
+
 
         cs = (byte) stm32_gen_cs(address);
 

@@ -52,7 +52,7 @@ public class UploadFirmwareTest extends Test {
         activityListener.createUploadProgress(false, true, description + " (Version: " + version + ")", new UploadTestCallback() {
             @Override
             public void onViewHolderReady(UploadItemHolder holder) {
-                if(UploadFirmwareTest.this.holder==null) {
+                if (UploadFirmwareTest.this.holder == null) {
                     UploadFirmwareTest.this.holder = holder;
                     start();
                 }
@@ -97,18 +97,7 @@ public class UploadFirmwareTest extends Test {
                     }
                 }
                 if (retries >= 3) {
-                    setSuccess(false);
-                    ((Activity) activityListener).runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Resources res = ((Activity) activityListener).getResources();
-                            Drawable background = res
-                                    .getDrawable(R.drawable.redprogress);
-                            holder.setFail(description + "\nERROR: Device Init Failed");
-                            setErrorcode((long) ErrorCodes.FIRMWAREUPLOAD_INIT_FAILED);
-                            activityListener.goAndExecuteNextTest();
-                        }
-                    });
+                    onFailure(ErrorCodes.FIRMWAREUPLOAD_INIT_FAILED, "ERROR: Device Init Failed");
                     return;
                 }
                 retries = 0;
@@ -116,23 +105,29 @@ public class UploadFirmwareTest extends Test {
 
                     known = firmWareUploader.getInfo();
                     if (retries <= 2) onGetInfoFailed();
-
                 }
+
                 if (retries >= 3) {
-                    setSuccess(false);
-                    ((Activity) activityListener).runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Resources res = ((Activity) activityListener).getResources();
-                            Drawable background = res
-                                    .getDrawable(R.drawable.redprogress);
-                            holder.setFail(description + "\nERROR: Get Device Info Failed");
-                            setErrorcode((long) firmWareUploader.getERRORCODE());
-                            activityListener.goAndExecuteNextTest();
-                        }
-                    });
+                    onFailure(firmWareUploader.getERRORCODE(), "ERROR: Get Device Info Failed");
                     return;
                 }
+
+                if (!firmWareUploader.massErase()) {
+                    onFailure(firmWareUploader.getERRORCODE(), "ERROR: Erase Failed");
+                    return;
+                }
+
+                if (!firmWareUploader.writeOptionBytes()) {
+                    onFailure(firmWareUploader.getERRORCODE(), "ERROR: Option Bytes Write Failed");
+                    return;
+                }
+
+                firmWareUploader.deviceInit();
+
+//                    if (!firmWareUploader.deviceInit()) {
+//                    onFailure(firmWareUploader.getERRORCODE(), "ERROR: Device Init Failed");
+//                    return;
+//                }
 
                 firmWareUploader.upload(new UploaderListener() {
                     @Override
@@ -222,6 +217,21 @@ public class UploadFirmwareTest extends Test {
             e.printStackTrace();
         }
 
+    }
+
+    private void onFailure(final long error, final String msg) {
+        setSuccess(false);
+        ((Activity) activityListener).runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Resources res = ((Activity) activityListener).getResources();
+                Drawable background = res
+                        .getDrawable(R.drawable.redprogress);
+                holder.setFail(description + "\n" + msg);
+                setErrorcode(error);
+                activityListener.goAndExecuteNextTest();
+            }
+        });
     }
 
     private void onGetInfoFailed() {

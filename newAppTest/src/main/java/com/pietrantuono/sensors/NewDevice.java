@@ -1,7 +1,10 @@
 package com.pietrantuono.sensors;
 
+import android.util.Log;
+
 import com.pietrantuono.tests.implementations.BatteryLevelUUTVoltageTest;
 
+import hydrix.pfmat.generic.AllVoltageObserver;
 import hydrix.pfmat.generic.CalibrationObserver;
 import hydrix.pfmat.generic.DeviceRecvStream;
 import hydrix.pfmat.generic.PFMAT;
@@ -48,8 +51,10 @@ public abstract class NewDevice {
     private DeviceMonitorThread mMonitorThread = null;
     private CalibrationObserver mCalibrationObserver = null;
     private RefVoltageObserver mRefVoltageObserver = null;
+    private AllVoltageObserver mAllVoltageObserver = null;
     private volatile boolean mDisconnecting = false;
     private volatile boolean mSeenDeviceInformation = false;
+    private OnSampleCallback sampleCallback = null;
     private WeakReference<OnSampleCallback> weakReference = null;
     private BatteryLevelUUTVoltageTest.Callback callback;
     private AllSensorsCallback allSensorsCallback;
@@ -94,6 +99,10 @@ public abstract class NewDevice {
     public final void setRefVoltageObserver(RefVoltageObserver refVoltageObserver) {
         // Simply take a reference to refVoltage observer (this can be null)
         mRefVoltageObserver = refVoltageObserver;
+    }
+
+    public final void setAllVoltageObserver(AllVoltageObserver allVoltageObserver) {
+        mAllVoltageObserver = allVoltageObserver;
     }
 
     public final void disconnect() {
@@ -343,7 +352,7 @@ public abstract class NewDevice {
 
                     case PFMAT.RX_ALL_VOLTAGE: {
                         PacketRx_SetAllVoltage data = (PacketRx_SetAllVoltage) packet;
-                        onAllVoltage();
+                        onAllVoltage(data.VoltageFailed());
                         break;
                     }
                     default:
@@ -356,6 +365,7 @@ public abstract class NewDevice {
 
     private final void onSensorData(int requestTimestampMS, short sensor0, short sensor1, short sensor2) {
         // requestTimestampMS is already relative to the start of the session, not an absolute value, so pass it straight through
+        Log.d("DATA", "On Sensor Data");
         if (weakReference != null && weakReference.get() != null)
             weakReference.get().onSample(requestTimestampMS, sensor0, sensor1, sensor2);
     }
@@ -393,12 +403,17 @@ public abstract class NewDevice {
             mRefVoltageObserver.onRefVoltage(sensorIndex, refVoltage);
     }
 
-    private final void onAllVoltage() {
-        if(allSensorsCallback!=null){
-            allSensorsCallback.onAllVoltageResponseReceived();
-            allSensorsCallback=null;
-        }
+    private final void onAllVoltage(boolean ack) {
+        if (mAllVoltageObserver != null)
+            mAllVoltageObserver.onAllVoltage(ack);
     }
+
+//    private final void onAllVoltage() {
+//        if(allSensorsCallback!=null){
+//            allSensorsCallback.onAllVoltageResponseReceived();
+//            allSensorsCallback=null;
+//        }
+//    }
 
     public void setCallback(OnSampleCallback callback) {
         weakReference = new WeakReference<OnSampleCallback>(callback);

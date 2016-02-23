@@ -491,11 +491,12 @@ public class BTUtility {
 				@Override
 				public void onAllVoltageResponseReceived() {
 					countDownLatch.countDown();
+					Log.d(TAG, "sendAllVoltages SUCCESS");
 				}
-
 				@Override
 				public void onError() {
 					countDownLatch.countDown();
+					Log.d(TAG, "sendAllVoltages ERROR");
 				}
 			});
 		} catch (Exception e) {
@@ -504,7 +505,8 @@ public class BTUtility {
 			return;
 		}
 		try {
-			countDownLatch.await(timeOutInMills, TimeUnit.MILLISECONDS);
+			boolean timedout = countDownLatch.await(timeOutInMills, TimeUnit.MILLISECONDS);
+			Log.d(TAG,"Timed out = "+timedout);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 			return;

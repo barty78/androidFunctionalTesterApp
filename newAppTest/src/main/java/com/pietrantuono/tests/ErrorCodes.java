@@ -29,6 +29,18 @@ public interface ErrorCodes {
     public static final int FIRMWAREUPLOAD_ADDR_ALIGN_ERROR = 16;
     public static final int FIRMWAREUPLOAD_READ_PROTECT_ERROR = 17;
     public static final int FIRMWAREUPLOAD_ERASE_ERROR = 18;
+    public static final int FIRMWAREUPLOAD_OPTIONBYTES_WRITE_ERROR = 19;
+    public static final int FIRMWAREUPLOAD_CMD_GET_SEND_ERROR = 20;
+    public static final int FIRMWAREUPLOAD_CMD_GVR_SEND_ERROR = 21;
+    public static final int FIRMWAREUPLOAD_CMD_GID_SEND_ERROR = 22;
+    public static final int FIRMWAREUPLOAD_CMD_RM_SEND_ERROR = 23;
+    public static final int FIRMWAREUPLOAD_CMD_GO_SEND_ERROR = 24;
+    public static final int FIRMWAREUPLOAD_CMD_WM_SEND_ERROR = 25;
+    public static final int FIRMWAREUPLOAD_CMD_ER_SEND_ERROR = 26;
+    public static final int FIRMWAREUPLOAD_CMD_WP_SEND_ERROR = 27;
+    public static final int FIRMWAREUPLOAD_CMD_UW_SEND_ERROR = 28;
+    public static final int FIRMWAREUPLOAD_CMD_RP_SEND_ERROR = 29;
+    public static final int FIRMWAREUPLOAD_CMD_UR_SEND_ERROR = 30;
 
     public static final int GENERIC_FAILURE = 100;
 
