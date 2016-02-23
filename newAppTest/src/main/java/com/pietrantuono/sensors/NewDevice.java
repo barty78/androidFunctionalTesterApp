@@ -41,6 +41,7 @@ public abstract class NewDevice {
     private final static int DEVICE_INFORMATION_TIMEOUT = 10000; // We need to see a Device Information packet within 10 seconds of connection or we disconnect
     private final static int DEVICE_INFORMATION_REQUEST_FREQ_MS = 2000; // Try every 2 seconds
     private final static int BATTERY_POLL_FREQ_MS = 60000; // Per minute
+    private final String TAG = getClass().getSimpleName();
 
     // Members
     private Information mInfo = new Information();
@@ -321,19 +322,23 @@ public abstract class NewDevice {
         // This function is called in the context of the comms recv thread...
         @Override
         protected void handlePacket(Packet packet) {
+            Log.d(TAG,"handlePacket"+ packet.toStream());
             if (packet != null) {
                 switch (packet.getPacketType()) {
                     case PFMAT.RX_SENSOR_DATA: {
+                        Log.d(TAG,"handlePacket: got sensors data");
                         PacketRx_SensorData data = (PacketRx_SensorData) packet;
                         onSensorData(data.getRequestTimestamp(), data.getSensor0(), data.getSensor1(), data.getSensor2());
                         break;
                     }
                     case PFMAT.RX_BATTERY_STATUS: {
+                        Log.d(TAG,"handlePacket: got battery data");
                         PacketRx_BatteryStatus data = (PacketRx_BatteryStatus) packet;
                         onBatteryStatus(data.getBatteryPercent());
                         break;
                     }
                     case PFMAT.RX_DEVICE_DETAILS: {
+                        Log.d(TAG,"handlePacket: got device data");
                         PacketRx_DeviceDetails data = (PacketRx_DeviceDetails) packet;
                         onDeviceDetails(data.getSerialNumber(), data.getModel(), data.getFirmwareVersion());
                         break;
@@ -345,17 +350,20 @@ public abstract class NewDevice {
 //					break;
 //				}
                     case PFMAT.RX_REF_VOLTAGE: {
+                        Log.d(TAG,"handlePacket: got voltage data");
                         PacketRx_SetRefVoltage data = (PacketRx_SetRefVoltage) packet;
                         onRefVoltage(data.getSensorIndex(), data.getRefVoltage());
                         break;
                     }
 
                     case PFMAT.RX_ALL_VOLTAGE: {
+                        Log.d(TAG,"handlePacket: got all voltages data");
                         PacketRx_SetAllVoltage data = (PacketRx_SetAllVoltage) packet;
                         onAllVoltage(data.VoltageFailed());
                         break;
                     }
                     default:
+                        Log.d(TAG,"handlePacket: we don't know this packet");
                         // Quietly ignore unimplemented packet types at this stage
                         break;
                 }
@@ -368,6 +376,7 @@ public abstract class NewDevice {
         Log.d("DATA", "On Sensor Data");
         if (weakReference != null && weakReference.get() != null)
             weakReference.get().onSample(requestTimestampMS, sensor0, sensor1, sensor2);
+        else Log.d(TAG,"weakReference is null!!!");
     }
 
     private final void onBatteryStatus(short batteryPercent) {
