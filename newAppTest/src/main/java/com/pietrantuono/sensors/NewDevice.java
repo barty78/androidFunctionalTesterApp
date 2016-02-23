@@ -215,6 +215,8 @@ public abstract class NewDevice {
 
     private class DeviceRecvThread extends Thread {
         private final int READ_BUFSIZE = 1024;
+        private long now = System.currentTimeMillis();
+
 
         // Thread func
         public void run() {
@@ -225,6 +227,11 @@ public abstract class NewDevice {
             // read() is a blocking call so we just run a simple loop.  When the application closes the underlying socket the read() call
             // will fail with an IOException, causing this thread to exit gracefully
             while (true) {
+                if (System.currentTimeMillis() > (now + 5000)) {
+                    Log.d(TAG, "DeviceRecvThread is running: ");
+                    now = System.currentTimeMillis();
+                }
+
                 try {
                     bytesRead = mInputStream.read(readBuffer);
                     if (bytesRead < 1) {
@@ -376,7 +383,7 @@ public abstract class NewDevice {
         Log.d("DATA", "On Sensor Data");
         if (weakReference != null && weakReference.get() != null)
             weakReference.get().onSample(requestTimestampMS, sensor0, sensor1, sensor2);
-        else Log.d(TAG,"weakReference is null!!!");
+        else Log.d(TAG, "weakReference is null!!!");
     }
 
     private final void onBatteryStatus(short batteryPercent) {
