@@ -367,6 +367,7 @@ public abstract class NewDevice {
         // requestTimestampMS is already relative to the start of the session, not an absolute value, so pass it straight through
         if (weakReference != null && weakReference.get() != null)
             weakReference.get().onSample(requestTimestampMS, sensor0, sensor1, sensor2);
+        else Log.d(TAG,"weakReference is null!!!");
     }
 
     private final void onBatteryStatus(short batteryPercent) {
