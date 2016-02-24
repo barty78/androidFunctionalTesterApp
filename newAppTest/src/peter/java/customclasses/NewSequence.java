@@ -444,13 +444,13 @@ public class NewSequence implements NewSequenceInterface {
 
         sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 0, 10, 50,
                 "Sensor Input Test, NO LOAD, GAIN/ZERO @ 127/0"));
-        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 450, 550, 50,
+        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 200, 300, 50,
                 "Sensor Input Test, LOADED, GAIN/ZERO @ 25/0"));
-        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 2650, 2750, 50,
+        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 1250, 1400, 50,
                 "Sensor Input Test, LOADED, GAIN/ZERO @ 127/0"));
-        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 4050, 4095, 50,
+        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 2150, 2300, 50,
                 "Sensor Input Test, LOADED, GAIN/ZERO @ 210/0"));
-        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 1300, 1400, 50,
+        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 0, 50, 50,
                 "Sensor Input Test, LOADED, GAIN/ZERO @ 127/50"));
 
 

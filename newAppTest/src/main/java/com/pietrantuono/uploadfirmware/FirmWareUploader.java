@@ -121,6 +121,12 @@ public class FirmWareUploader {
 
         write(STM32_CMD_INIT);
 
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         if (readWithTimerTimeout(2000) == STM32_ACK) {
             return true;
         }

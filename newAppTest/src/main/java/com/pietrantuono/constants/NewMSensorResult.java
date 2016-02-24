@@ -19,27 +19,28 @@ public class NewMSensorResult extends NewMResult {
 	private Boolean sensor2avgpass=false;
 	private Boolean sensor2stabilitypass=false;
 	
-	public Boolean getSensor0stabilitypass() {
-		return sensor0stabilitypass;
+	public boolean getSensor0stabilitypass() {
+
+		return sensor0stabilitypass.booleanValue();
 	}
 
-	public void setSensor0stabilitypass(Boolean sensor0stabilitypass) {
+	public void setSensor0stabilitypass(boolean sensor0stabilitypass) {
 		this.sensor0stabilitypass = sensor0stabilitypass;
 	}
 
-	public Boolean getSensor1stabilitypass() {
-		return sensor1stabilitypass;
+	public boolean getSensor1stabilitypass() {
+		return sensor1stabilitypass.booleanValue();
 	}
 
-	public void setSensor1stabilitypass(Boolean sensor1stabilitypass) {
+	public void setSensor1stabilitypass(boolean sensor1stabilitypass) {
 		this.sensor1stabilitypass = sensor1stabilitypass;
 	}
 
-	public Boolean getSensor2stabilitypass() {
-		return sensor2stabilitypass;
+	public boolean getSensor2stabilitypass() {
+		return sensor2stabilitypass.booleanValue();
 	}
 
-	public void setSensor2stabilitypass(Boolean sensor2stabilitypass) {
+	public void setSensor2stabilitypass(boolean sensor2stabilitypass) {
 		this.sensor2stabilitypass = sensor2stabilitypass;
 	}
 
