@@ -369,17 +369,20 @@ public class UIHelper {
         contentValues.put(SequenceContracts.Tests.TABLE_TESTS_S0_AVG, mSensorResult.getSensor0avg());
         contentValues.put(SequenceContracts.Tests.TABLE_TESTS_S0_MAX, mSensorResult.getSensor0max());
         contentValues.put(SequenceContracts.Tests.TABLE_TESTS_S0_MIN, mSensorResult.getSensor0min());
-        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_S0_AVG_PASS, mSensorResult.getSensor0AvgPass());
+        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_S0_AVG_PASS, mSensorResult.getSensor0AvgPass()==true?1:0);
+        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_S0_STABILITY_PASS, mSensorResult.getSensor0stabilitypass()==true?1:0);
 
         contentValues.put(SequenceContracts.Tests.TABLE_TESTS_S1_AVG, mSensorResult.getSensor1avg());
         contentValues.put(SequenceContracts.Tests.TABLE_TESTS_S1_MAX, mSensorResult.getSensor1max());
         contentValues.put(SequenceContracts.Tests.TABLE_TESTS_S1_MIN, mSensorResult.getSensor1min());
-        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_S1_AVG_PASS, mSensorResult.getSensor1AvgPass());
+        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_S1_AVG_PASS, mSensorResult.getSensor1AvgPass()==true?1:0);
+        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_S1_STABILITY_PASS, mSensorResult.getSensor1stabilitypass()==true?1:0);
 
         contentValues.put(SequenceContracts.Tests.TABLE_TESTS_S2_AVG, mSensorResult.getSensor2avg());
         contentValues.put(SequenceContracts.Tests.TABLE_TESTS_S2_MAX, mSensorResult.getSensor2max());
         contentValues.put(SequenceContracts.Tests.TABLE_TESTS_S2_MIN, mSensorResult.getSensor2min());
-        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_S2_AVG_PASS, mSensorResult.getSensor2AvgPass());
+        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_S2_AVG_PASS, mSensorResult.getSensor2AvgPass()==true?1:0);
+        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_S2_STABILITY_PASS, mSensorResult.getSensor2stabilitypass()==true?1:0);
 
         activity.getContentResolver().insert(SequenceProvider.TESTS_CONTENT_URI, contentValues);
     }
