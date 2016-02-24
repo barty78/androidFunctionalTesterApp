@@ -697,11 +697,15 @@ public class FirmWareUploader {
         byte[] bytes = bb.array();
         write(bytes, bytes.length);
 
-        IOIOUtils.getUtils().ioioSync(ioio_);
-
+//        IOIOUtils.getUtils().ioioSync(ioio_);
+        try {
+            Thread.sleep(10);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         System.out.printf("Checksum : %2x\n", ((int) cs) & 0xFF);
         //byte aRes = (byte) readWithTimeout(2 * 1000);
-        byte aRes = (byte) readWithTimerTimeout(1000);
+        byte aRes = (byte) readWithTimerTimeout(2000);
 
         System.out.printf("Result write : %2x\n", ((int) aRes) & 0xFF);
         return aRes == STM32_ACK;

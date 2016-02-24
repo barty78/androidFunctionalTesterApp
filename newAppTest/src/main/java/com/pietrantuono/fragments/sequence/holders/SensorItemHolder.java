@@ -27,6 +27,7 @@ public class SensorItemHolder extends SequenceItemHolder {
     private final IconicsImageView result_stability;
     private final TextView avg0;
     private final TextView stability0;
+    private final TextView stability1;
     private final TextView stability2;
 
     public SensorItemHolder(View itemView, Context context) {
@@ -39,6 +40,7 @@ public class SensorItemHolder extends SequenceItemHolder {
         avg1 = (TextView) itemView.findViewById(R.id.avg1);
         avg2 = (TextView) itemView.findViewById(R.id.avg2);
         stability0 = (TextView) itemView.findViewById(R.id.stability0);
+        stability1 = (TextView) itemView.findViewById(R.id.stability1);
         stability2 = (TextView) itemView.findViewById(R.id.stability2);
     }
 
@@ -90,7 +92,6 @@ public class SensorItemHolder extends SequenceItemHolder {
         stability0.setText("" + (rowElement.getmSensorResult().getSensor0max() - rowElement.getmSensorResult().getSensor0min() > 0
                 ? rowElement.getmSensorResult().getSensor0max() - rowElement.getmSensorResult().getSensor0min() : (short) 0));
 
-        TextView stability1 = (TextView) itemView.findViewById(R.id.stability1);
         if (rowElement.getmSensorResult().getSensor1stabilitypass())
             stability1.setTextColor(Color.GREEN);
         else
