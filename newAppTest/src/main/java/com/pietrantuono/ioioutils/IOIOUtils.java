@@ -446,6 +446,9 @@ public class IOIOUtils implements IOIOUtilsInterface {
             Log.e(TAG, e.toString());
         }
 
+        DigitalOutput.Spec tx = new DigitalOutput.Spec(7, DigitalOutput.Spec.Mode.OPEN_DRAIN);
+
+
         iS = uart1.getInputStream();
 
         InputStreamReader in1 = new InputStreamReader(iS);
@@ -469,7 +472,12 @@ public class IOIOUtils implements IOIOUtilsInterface {
         }
 
         try {
-            uart2 = ioio_.openUart(13, 14, 115200, Uart.Parity.EVEN, // STM32
+            uart2 = ioio_.openUart(
+//                    13,
+                    new DigitalInput.Spec(13, DigitalInput.Spec.Mode.PULL_UP),
+//                    14,
+                    new DigitalOutput.Spec(14, DigitalOutput.Spec.Mode.OPEN_DRAIN),
+                    115200, Uart.Parity.EVEN, // STM32
                     // Bootloader
                     // requires
                     // EVEN
@@ -489,7 +497,12 @@ public class IOIOUtils implements IOIOUtilsInterface {
 
     public void openUart2(final IOIO ioio_, final Activity ac) {
         try {
-            uart2 = ioio_.openUart(13, 14, 115200, Uart.Parity.EVEN, // STM32
+            uart2 = ioio_.openUart(
+//                    13,
+                    new DigitalInput.Spec(13, DigitalInput.Spec.Mode.PULL_UP),
+//                    14,
+                    new DigitalOutput.Spec(14, DigitalOutput.Spec.Mode.OPEN_DRAIN),
+                    115200, Uart.Parity.EVEN, // STM32
                     // Bootloader
                     // requires
                     // EVEN
@@ -503,7 +516,12 @@ public class IOIOUtils implements IOIOUtilsInterface {
     public void openUart2(final IOIO ioio_, final Activity ac,
                           int baud, Uart.Parity parity, Uart.StopBits stop) {
         try {
-            uart2 = ioio_.openUart(13, 14, baud, parity, // STM32
+            uart2 = ioio_.openUart(
+//                    13,
+                    new DigitalInput.Spec(13, DigitalInput.Spec.Mode.PULL_UP),
+//                    14,
+                    new DigitalOutput.Spec(14, DigitalOutput.Spec.Mode.OPEN_DRAIN),
+                    baud, parity, // STM32
                     // Bootloader
                     // requires
                     // EVEN
