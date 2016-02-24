@@ -1,5 +1,7 @@
 package hydrix.pfmat.generic;
 
+import android.util.Log;
+
 abstract public class RecvStream
 {
 	protected byte[] mBuffer;
@@ -40,7 +42,9 @@ abstract public class RecvStream
 		mStreamSize += numNewBytes;
 	
 		// We may now have 1 or more complete packets in the buffer
-		return consumePackets();
+		boolean tmp = consumePackets();
+		Log.d("RecvStream", "ConsumePackets: " + tmp);
+		return tmp;
 	}
 	
 	// Clear the contents

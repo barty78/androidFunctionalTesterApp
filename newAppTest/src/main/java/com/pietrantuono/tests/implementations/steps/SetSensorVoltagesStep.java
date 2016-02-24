@@ -7,12 +7,15 @@ import android.os.Looper;
 import android.util.Log;
 
 import com.pietrantuono.ioioutils.IOIOUtils;
+import com.pietrantuono.tests.ErrorCodes;
 import com.pietrantuono.tests.implementations.BluetoothConnectTest;
 import com.pietrantuono.tests.superclass.Test;
 
 public class SetSensorVoltagesStep extends Test implements Step{
     private short refVoltage;
     private short zeroVoltage;
+
+    private boolean setAll = true;
 
     /**
      * IMPORTANT: Bluetooth must be open using
@@ -52,55 +55,74 @@ public class SetSensorVoltagesStep extends Test implements Step{
             return;
         }
 
-        if (refVoltage != -1) {
-            String string = "Setting Voltage to " + refVoltage + " (" + (System.currentTimeMillis() - now) + ")\n";
-            IOIOUtils.getUtils().appendUartLog((Activity) activityListener, string.getBytes(), string.getBytes().length);
-            try {
-                getListener().getBtutility().setVoltage(refVoltage);
-            } catch (Exception e) {
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        getListener().addFailOrPass(true, false, "ERROR", "Sensor Voltage Set Fault");
-                    }
-                });
-                return;
-            }
-        }
-        if(isinterrupted)return;
+        if (setAll) {
+            short[] ref = new short[]{refVoltage, refVoltage, refVoltage};
+            short[] zero = new short[]{zeroVoltage, zeroVoltage, zeroVoltage};
 
-        if (zeroVoltage != -1) {
-            String string = "Setting Zeroing to " + zeroVoltage + " (" + (System.currentTimeMillis() - now) + ")\n";
-            IOIOUtils.getUtils().appendUartLog((Activity) activityListener, string.getBytes(), string.getBytes().length);
-            try {
-                getListener().getBtutility().setZeroVoltage(zeroVoltage);
-            } catch (Exception e) {
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        getListener().addFailOrPass(true, false, "ERROR", "Sensor zero voltage set Fault");
-                    }
-                });
-                return;
-            }
-        }
-
-        if(isinterrupted)return;
-
-        String string = "Poll Sensors to apply voltage setting (" + (System.currentTimeMillis() - now) + ")\n";
-        IOIOUtils.getUtils().appendUartLog((Activity) activityListener, string.getBytes(), string.getBytes().length);
-        try {
-            getListener().getBtutility().pollSensor();
-        } catch (Exception e) {
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    getListener().addFailOrPass(true, false, "ERROR", "Sensor voltage set Fault");
+            if (refVoltage != -1 && zeroVoltage != -1) {
+                try {
+                    getListener().getBtutility().sendAllVoltages(ref, zero, 500);
+                } catch (Exception e) {
+                    setErrorcode((long) ErrorCodes.SENSOR_STEP_VOLTAGE_SET_ERROR);
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            getListener().addFailOrPass(true, false, "ERROR", "Sensor Voltage Set Fault");
+                        }
+                    });
+                    return;
                 }
-            });
-            return;
-        }
+            }
+        } else {
+            if (refVoltage != -1) {
+                String string = "Setting Voltage to " + refVoltage + " (" + (System.currentTimeMillis() - now) + ")\n";
+                IOIOUtils.getUtils().appendUartLog((Activity) activityListener, string.getBytes(), string.getBytes().length);
+                try {
+                    getListener().getBtutility().setVoltage(refVoltage);
+                } catch (Exception e) {
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            getListener().addFailOrPass(true, false, "ERROR", "Sensor Voltage Set Fault");
+                        }
+                    });
+                    return;
+                }
+            }
+            if (isinterrupted) return;
 
+            if (zeroVoltage != -1) {
+                String string = "Setting Zeroing to " + zeroVoltage + " (" + (System.currentTimeMillis() - now) + ")\n";
+                IOIOUtils.getUtils().appendUartLog((Activity) activityListener, string.getBytes(), string.getBytes().length);
+                try {
+                    getListener().getBtutility().setZeroVoltage(zeroVoltage);
+                } catch (Exception e) {
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            getListener().addFailOrPass(true, false, "ERROR", "Sensor zero voltage set Fault");
+                        }
+                    });
+                    return;
+                }
+            }
+
+            if (isinterrupted) return;
+
+            String string = "Poll Sensors to apply voltage setting (" + (System.currentTimeMillis() - now) + ")\n";
+            IOIOUtils.getUtils().appendUartLog((Activity) activityListener, string.getBytes(), string.getBytes().length);
+            try {
+                getListener().getBtutility().pollSensor();
+            } catch (Exception e) {
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        getListener().addFailOrPass(true, false, "ERROR", "Sensor voltage set Fault");
+                    }
+                });
+                return;
+            }
+        }
 
         if(isinterrupted)return;
 

@@ -630,7 +630,7 @@ public class BTUtility {
             @Override
             public void run() {
                 if (NewPFMATDevice.getDevice() != null) {
-                    NewPFMATDevice.getDevice().sendSleep((short) 100);
+                    NewPFMATDevice.getDevice().sendSleep((byte)0, (short) 100);
                 }
             }
         }, 200);

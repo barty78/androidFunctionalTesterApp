@@ -188,8 +188,8 @@ public abstract class NewDevice {
 
     @SuppressWarnings("ucd")
     public
-    final boolean sendSleep(short waitTime) {
-        return sendPacket(new PacketTx_Sleep(waitTime));
+    final boolean sendSleep(byte mode, short waitTime) {
+        return sendPacket(new PacketTx_Sleep(mode, waitTime));
     }
 
     private boolean sendPacket(Packet packet) {

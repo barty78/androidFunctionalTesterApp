@@ -42,6 +42,8 @@ public interface ErrorCodes {
     public static final int FIRMWAREUPLOAD_CMD_RP_SEND_ERROR = 29;
     public static final int FIRMWAREUPLOAD_CMD_UR_SEND_ERROR = 30;
 
+    public static final int SENSOR_STEP_VOLTAGE_SET_ERROR = 31;
+
     public static final int GENERIC_FAILURE = 100;
 
     public static final int FIRMWAREUPLOAD_GENERIC_FAILURE =999;

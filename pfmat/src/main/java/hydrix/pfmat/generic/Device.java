@@ -134,7 +134,7 @@ public abstract class Device
 	public final boolean sendGetSensorData(int requestTimestamp) {return sendPacket(new PacketTx_GetSensorData(requestTimestamp));}
 	//public final boolean sendCalibrateSensor(byte sensorIndex, byte readOnly, short currentLoad) {return sendPacket(new PacketTx_CalibrateSensor(sensorIndex, readOnly, currentLoad));}
 	public final boolean sendRefVoltage(byte sensorIndex, short refVoltage) {return sendPacket(new PacketTx_SetRefVoltage(sensorIndex, refVoltage));}
-	public final boolean sendSleep(short waitTime) {return sendPacket(new PacketTx_Sleep(waitTime));}
+	public final boolean sendSleep(byte mode, short waitTime) {return sendPacket(new PacketTx_Sleep(mode, waitTime));}
 	
 	protected boolean sendPacket(Packet packet)
 	{

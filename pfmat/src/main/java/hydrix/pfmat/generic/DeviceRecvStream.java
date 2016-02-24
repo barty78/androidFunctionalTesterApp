@@ -37,16 +37,27 @@ public class DeviceRecvStream extends RecvStream
 			case PFMAT.RX_SENSOR_DATA:
 				packet = new PacketRx_SensorData();
 				break;
+			case PFMAT.RX_ACCEL_DATA:
+				packet = new PacketRx_AccelData();
+				break;
 			case PFMAT.RX_DEVICE_DETAILS:
 				packet = new PacketRx_DeviceDetails();
 				break;
 			case PFMAT.RX_BATTERY_STATUS:
 				packet = new PacketRx_BatteryStatus();
 				break;
-			//Outdated packet
-//			case PFMAT.RX_CALIBRATED_SENSOR:
-//				packet = new PacketRx_CalibratedSensor();
-//				break;
+			case PFMAT.RX_ALL_VOLTAGE:
+				packet = new PacketRx_SetAllVoltage();
+				break;
+			case PFMAT.RX_REF_VOLTAGE:
+				packet = new PacketRx_SetRefVoltage();
+				break;
+			case PFMAT.RX_ZERO_VOLTAGE:
+				packet = new PacketRx_SetZeroVoltage();
+				break;
+			case PFMAT.RX_SLEEP:
+				packet = new PacketRx_Sleep();
+				break;
 			default:
 				packet = null;
 				break;

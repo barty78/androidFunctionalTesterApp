@@ -122,7 +122,6 @@ public class UploadFirmwareTest extends Test {
                     return;
                 }
 
-                firmWareUploader.deviceInit();
 
 //                    if (!firmWareUploader.deviceInit()) {
 //                    onFailure(firmWareUploader.getERRORCODE(), "ERROR: Device Init Failed");
@@ -229,6 +228,8 @@ public class UploadFirmwareTest extends Test {
                         .getDrawable(R.drawable.redprogress);
                 holder.setFail(description + "\n" + msg);
                 setErrorcode(error);
+                String string = "ERROR CODE: " + error + "\n";
+                IOIOUtils.getUtils().appendUartLog((Activity) activityListener, string.getBytes(), string.getBytes().length);
                 activityListener.goAndExecuteNextTest();
             }
         });

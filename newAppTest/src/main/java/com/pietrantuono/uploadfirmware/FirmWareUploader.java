@@ -23,6 +23,7 @@ import com.pietrantuono.activities.NewIOIOActivityListener;
 import com.pietrantuono.fragments.sequence.holders.UploadItemHolder;
 import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.ioioutils.IOIOUtils;
+import com.pietrantuono.pericoach.newtestapp.BuildConfig;
 import com.pietrantuono.tests.ErrorCodes;
 
 import ioio.lib.api.IOIO;
@@ -120,10 +121,10 @@ public class FirmWareUploader {
 
         write(STM32_CMD_INIT);
 
-        int tmp = (readWithTimerTimeout(2000) & 0xFF);
-        if (tmp == STM32_ACK) {
+        if (readWithTimerTimeout(2000) == STM32_ACK) {
             return true;
         }
+        ERRORCODE=ErrorCodes.FIRMWAREUPLOAD_INIT_FAILED;
         return false;
     }
 
@@ -152,14 +153,6 @@ public class FirmWareUploader {
                     error = "File too big to flash: (" + String.valueOf(size) + " > " + String.valueOf(fl_end - fl_start) + ")";
                     return ErrorCodes.FIRMWAREUPLOAD_FILESIZE_ERROR;
                 }
-
-//                if(!massErase()) return ErrorCodes.FIRMWAREUPLOAD_ERASE_ERROR;
-
-                //Mass erase also erases option bytes, must write appropriate values back in.
-                // TODO - Option Bytes hardcoded for STM32L151 at this stage, need to build option bytes more systematically
-//                if(!writeOptionBytes()) return ErrorCodes.FIRMWAREUPLOAD_OPTIONBYTES_WRITE_ERROR;
-                //Writing option bytes causes system reset, so must redo device init.
-//                if(!deviceInit()) return ErrorCodes.FIRMWAREUPLOAD_INIT_FAILED;
 
                 int addr = fl_start;
                 int len = 0;
@@ -272,29 +265,17 @@ public class FirmWareUploader {
             return false;
         emptyInputStream();
 
-        string = "Sending command " + String.format("%02x",STM32_CMD_GET) + " "
-                + String.format("%02x",(byte) (STM32_CMD_GET ^ XOR_BYTE)) + "\n";
-        IOIOUtils.getUtils().appendUartLog(activity, string.getBytes(), string.getBytes().length);
-
         if (!sendCommand(STM32_CMD_GET)) {
             System.out
                     .println("Failed to send command to the device: reset your device.");
             error = "Failed to send command to the device: reset your device.";
             ERRORCODE=ErrorCodes.FIRMWAREUPLOAD_CMD_SEND_ERROR;
 
-            //TODO - Remove append to uart log before release build
-//            string = "ERROR " + ERRORCODE + "\n";
-//            IOIOUtils.getUtils().appendUartLog(activity, string.getBytes(), string.getBytes().length);
-
             return false;
         }
         if (isstopped)
             return false;
         int len = readWithTimerTimeout(1000) + 1;
-
-        //TODO - Remove append to uart log before release build
-//        string = "GET LEN " + len + "\n";
-//        IOIOUtils.getUtils().appendUartLog(activity, string.getBytes(), string.getBytes().length);
 
         System.out.printf("Have to read %d bytes.\n", len);
 //        byte[] bytes = new byte [len];
@@ -332,11 +313,6 @@ public class FirmWareUploader {
             System.out.println("Please reset your device. Stopping.");
             error = "get cmd: More bytes than known.";
             ERRORCODE=ErrorCodes.FIRMWAREUPLOAD_DEVICE_INFO_ERROR;
-
-            //TODO - Remove append to uart log before release build
-//            string = "ERROR " + ERRORCODE + "\n";
-//            IOIOUtils.getUtils().appendUartLog(activity, string.getBytes(), string.getBytes().length);
-
             return false;
         }
         if (readWithTimerTimeout(2000) != STM32_ACK) {
@@ -344,28 +320,13 @@ public class FirmWareUploader {
             System.out.printf("Next data: %d\n", readWithTimerTimeout(1000));
             error = "get cmd: No ACK received.";
             ERRORCODE=ErrorCodes.FIRMWAREUPLOAD_NO_ACK_ERROR;
-
-            //TODO - Remove append to uart log before release build
-//            string = "ERROR " + ERRORCODE + "\n";
-//            IOIOUtils.getUtils().appendUartLog(activity, string.getBytes(), string.getBytes().length);
-
             return false;
         }
-
-		/* get the version and read protection status */
-        string = "Sending command " + String.format("%02x",_CMDList.get("gvr").byteValue()) + " "
-                + String.format("%02x",(byte) (_CMDList.get("gvr").byteValue() ^ XOR_BYTE)) + "\n";
-        IOIOUtils.getUtils().appendUartLog(activity, string.getBytes(), string.getBytes().length);
 
         if (!sendCommand(_CMDList.get("gvr").byteValue())) {
             System.out.println("No ACK received from the device");
             error = "gvr cmd: No ACK received.";
-            ERRORCODE=ErrorCodes.FIRMWAREUPLOAD_NO_ACK_ERROR;
-
-            //TODO - Remove append to uart log before release build
-//            string = "ERROR " + ERRORCODE + "\n";
-//            IOIOUtils.getUtils().appendUartLog(activity, string.getBytes(), string.getBytes().length);
-
+            ERRORCODE=ErrorCodes.FIRMWAREUPLOAD_CMD_GVR_SEND_ERROR;
             return false;
         }
         if (isstopped)
@@ -383,31 +344,16 @@ public class FirmWareUploader {
             System.out.println("No ACK received from the device");
             error = "gvr cmd: No ACK received.";
             ERRORCODE=ErrorCodes.FIRMWAREUPLOAD_NO_ACK_ERROR;
-
-            //TODO - Remove append to uart log before release build
-//            string = "ERROR " + ERRORCODE + "\n";
-//            IOIOUtils.getUtils().appendUartLog(activity, string.getBytes(), string.getBytes().length);
-
-            return false;
+           return false;
         }
         if (isstopped)
             return false;
 		/* get the device ID */
 
-        //TODO - Remove append to uart log before release build
-//        string = "Sending command " + String.format("%02x",_CMDList.get("gid").byteValue()) + " "
-//                + String.format("%02x",(byte) (_CMDList.get("gid").byteValue() ^ XOR_BYTE)) + "\n";
-//        IOIOUtils.getUtils().appendUartLog(activity, string.getBytes(), string.getBytes().length);
-
         if (!sendCommand(_CMDList.get("gid").byteValue())) {
             System.out.println("No ACK received from the device");
             error = "gid cmd: No ACK received.";
-            ERRORCODE=ErrorCodes.FIRMWAREUPLOAD_NO_ACK_ERROR;
-
-            //TODO - Remove append to uart log before release build
-//            string = "ERROR " + ERRORCODE + "\n";
-//            IOIOUtils.getUtils().appendUartLog(activity, string.getBytes(), string.getBytes().length);
-
+            ERRORCODE=ErrorCodes.FIRMWAREUPLOAD_CMD_GID_SEND_ERROR;
             return false;
         }
         if (isstopped)
@@ -418,11 +364,6 @@ public class FirmWareUploader {
                     .println("More then two bytes sent in the PID, unknown/unsupported device\n");
             error = "gid cmd: Unsupported device (> 2 bytes).";
             ERRORCODE=ErrorCodes.FIRMWAREUPLOAD_ADDR_ALIGN_ERROR;
-
-            //TODO - Remove append to uart log before release build
-//            string = "ERROR " + ERRORCODE + "\n";
-//            IOIOUtils.getUtils().appendUartLog(activity, string.getBytes(), string.getBytes().length);
-
             return false;
         }
         if (isstopped)
@@ -433,11 +374,6 @@ public class FirmWareUploader {
                     .println("More then two bytes sent in the PID, unknown/unsupported device\n");
             error = "PID: Unsupported device (> 2 bytes).";
             ERRORCODE=ErrorCodes.FIRMWAREUPLOAD_ADDR_ALIGN_ERROR;
-
-            //TODO - Remove append to uart log before release build
-//            string = "ERROR " + ERRORCODE + "\n";
-//            IOIOUtils.getUtils().appendUartLog(activity, string.getBytes(), string.getBytes().length);
-
             return false;
         }
 
@@ -445,11 +381,6 @@ public class FirmWareUploader {
         if (aData == null) {
             error = "ERROR: Device info error";
             ERRORCODE=ErrorCodes.FIRMWAREUPLOAD_GET_INFO_FAILED;
-
-            //TODO - Remove append to uart log before release build
-//            string = "ERROR " + ERRORCODE + "\n";
-//            IOIOUtils.getUtils().appendUartLog(activity, string.getBytes(), string.getBytes().length);
-
             return false;
         }
         fl_start = aData[3];
@@ -460,13 +391,7 @@ public class FirmWareUploader {
         mem_end = aData[8];
         op_start = aData[7];
         op_end = aData[8];
-
-        //TODO - Remove append to uart log before release build
-//        string = "INFO OK...\n";
-//        IOIOUtils.getUtils().appendUartLog(activity, string.getBytes(), string.getBytes().length);
-
         return true;
-
     }
 
     private void emptyInputStream() {
@@ -484,30 +409,21 @@ public class FirmWareUploader {
         if (isstopped)
             return false;
 
-        System.out.printf("Sending command (%2x,%2x)\n", iCmd,
-                (byte) (iCmd ^ XOR_BYTE));
         write(iCmd);
         write((byte) (iCmd ^ XOR_BYTE));
         byte b = (byte) readWithTimerTimeout(1000);
-        System.out.printf("Returned :%2x\n", b);
 
         if ((b & 0xFF) == STM32_ACK) {
-            System.err.println("OK sending command to the device.");
-            System.err.printf("Received : %2x\n", b);
-
-            //TODO - Remove append to uart log before release build
-//            String string = "Recv " + String.format("%02x",b) + " " + "\n";
-//            IOIOUtils.getUtils().appendUartLog(activity, string.getBytes(), string.getBytes().length);
-
+            if (BuildConfig.DEBUG) {
+                System.err.println("OK sending command to the device.");
+                System.err.printf("Recv: %2x\n", b);
+            }
             return true;
         } else {
-            System.err.println("Error sending command to the device.");
-            System.err.printf("Received : %2x\n", b);
-
-            //TODO - Remove append to uart log before release build
-//            String string = "Recv " + String.format("%02x",b) + " " + "\n";
-//            IOIOUtils.getUtils().appendUartLog(activity, string.getBytes(), string.getBytes().length);
-
+            if(BuildConfig.DEBUG) {
+                System.err.println("Error sending command to the device.");
+                System.err.printf("Recv: %2x\n", b);
+            }
             ERRORCODE=ErrorCodes.FIRMWAREUPLOAD_CMD_SEND_ERROR;
             return false;
         }
@@ -524,10 +440,6 @@ public class FirmWareUploader {
             @Override
             public void run() {
                 System.out.printf("Timer expired, interrupt\n");
-                //TODO - Remove append to uart log before release build
-//                String string = "READ TIMEOUT!\n";
-//                IOIOUtils.getUtils().appendUartLog(activity, string.getBytes(), string.getBytes().length);
-
                 readThread.interrupt();
 
             }
@@ -573,14 +485,26 @@ public class FirmWareUploader {
         System.out.printf("Writing Option Bytes");
 
             if (!writeMemory(op_start, optionBytes, optionBytes.length)) {
-                System.err.printf(
-                        "Failed to write memory at address 0x%08x\n",
-                        op_start);
+                if(BuildConfig.DEBUG) {
+                    System.err.printf(
+                            "Failed to write memory at address 0x%08x\n",
+                            op_start);
+                }
                 error = "Failed to write memory at address " + String.format("0x%08x", op_start);
                 ERRORCODE=ErrorCodes.FIRMWAREUPLOAD_OPTIONBYTES_WRITE_ERROR;
                 return false;
             }
 
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        if (!deviceInit()) {
+            ERRORCODE=ErrorCodes.FIRMWAREUPLOAD_INIT_FAILED;
+            return false;
+        }
         return true;
     }
 
@@ -772,7 +696,6 @@ public class FirmWareUploader {
         System.out.printf("Checksum : %2x\n", ((int) cs) & 0xFF);
         //byte aRes = (byte) readWithTimeout(2 * 1000);
         byte aRes = (byte) readWithTimerTimeout(1000);
-
 
         System.out.printf("Result write : %2x\n", ((int) aRes) & 0xFF);
         return aRes == STM32_ACK;
