@@ -446,9 +446,6 @@ public class IOIOUtils implements IOIOUtilsInterface {
             Log.e(TAG, e.toString());
         }
 
-        DigitalOutput.Spec tx = new DigitalOutput.Spec(7, DigitalOutput.Spec.Mode.OPEN_DRAIN);
-
-
         iS = uart1.getInputStream();
 
         InputStreamReader in1 = new InputStreamReader(iS);
@@ -473,9 +470,7 @@ public class IOIOUtils implements IOIOUtilsInterface {
 
         try {
             uart2 = ioio_.openUart(
-//                    13,
                     new DigitalInput.Spec(13, DigitalInput.Spec.Mode.PULL_UP),
-//                    14,
                     new DigitalOutput.Spec(14, DigitalOutput.Spec.Mode.OPEN_DRAIN),
                     115200, Uart.Parity.EVEN, // STM32
                     // Bootloader
@@ -571,12 +566,12 @@ public class IOIOUtils implements IOIOUtilsInterface {
         if (PeriCoachTestApplication.getGradient() == 0) {
             setDAC(DAC);      // Set and measure max voltage to work out gradient
             try {
-                Thread.sleep(200);
+                Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             try {
-                max = (Voltage.getVoltage(ioio_, pin, 30, 1) * scaling);
+                max = (Voltage.getVoltage(ioio_, pin, 20, 1) * scaling);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -587,12 +582,12 @@ public class IOIOUtils implements IOIOUtilsInterface {
             DAC = 255;
             setDAC(DAC);    // Set and measure min voltage to work out gradient
             try {
-                Thread.sleep(200);
+                Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             try {
-                min = (Voltage.getVoltage(ioio_, pin, 30, 1) * scaling);
+                min = (Voltage.getVoltage(ioio_, pin, 20, 1) * scaling);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -610,7 +605,7 @@ public class IOIOUtils implements IOIOUtilsInterface {
         setDAC(DAC);
 
         try {
-            measured = (Voltage.getVoltage(ioio_, pin, 30, 1) * scaling);
+            measured = (Voltage.getVoltage(ioio_, pin, 10, 0) * scaling);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -620,19 +615,20 @@ public class IOIOUtils implements IOIOUtilsInterface {
             if (measured < (voltage - (voltage * precision))) {
                 // Increase set voltage, or decrease DAC setting
                 DAC = DAC - stepsize;
-                setDAC(DAC);
             }
             if (measured > (voltage + (voltage * precision))){
                 // Increase set voltage, or decrease DAC setting
                 DAC = DAC + stepsize;
-                setDAC(DAC);
             }
+            setDAC(DAC);
+
             try {
-                Thread.sleep(10);
+                Thread.sleep(5);
             } catch (Exception e) {
             }
+
             try {
-                measured = (Voltage.getVoltage(ioio_, pin, 30, 1) * scaling);
+                measured = (Voltage.getVoltage(ioio_, pin, 10, 0) * scaling);
             } catch (Exception e) {
                 e.printStackTrace();
             }

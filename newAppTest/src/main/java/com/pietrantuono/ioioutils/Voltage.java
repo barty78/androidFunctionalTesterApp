@@ -81,7 +81,9 @@ public class Voltage {
 			if(isinterrupted)break;
 			System.out.printf("Total = %.2f\n", total);
 			total = total + analogInput.getVoltage();
-			Thread.sleep(sleeptime);
+			if (sleeptime != 0) {
+				Thread.sleep(sleeptime);
+			}
 		}
 		analogInput.close();
 		float average = total / numsamples;

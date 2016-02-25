@@ -416,10 +416,10 @@ public class NewSequence implements NewSequenceInterface {
 //        sequence.add(new LedCheckTest(activity, "Green", "Green LED Check"));
 //        sequence.add(new LedCheckTest(activity, "Blue", "Blue LED Check"));
 
-//        sequence.add(new BatteryLevelUUTVoltageTest(activity, ioio, 30, 0.3f,
-//                "Battery Level - UUT voltage @ 3.7V", 3.7f));
-//        sequence.add(new BatteryLevelUUTVoltageTest(activity, ioio, 85, 0.15f,
-//                "Battery Level - UUT voltage @ 4.0V", 4.0f));
+        sequence.add(new BatteryLevelUUTVoltageTest(activity, ioio, 30, 0.3f,
+                "Battery Level - UUT voltage @ 3.7V", 3.7f));
+        sequence.add(new BatteryLevelUUTVoltageTest(activity, ioio, 85, 0.15f,
+                "Battery Level - UUT voltage @ 4.0V", 4.0f));
 
         sequence.add(new SetSensorVoltagesStep(activity, (short) 0, (short) 0, "Set GAIN -> 0, ZERO -> 0"));
         sequence.add(new VoltageTest(activity, ioio, 32, Units.V, false, -2f, false, 0.1f, -0.1f,

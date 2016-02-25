@@ -653,14 +653,8 @@ public class FirmWareUploader {
             return false;
         }
 
-        ByteBuffer bb = ByteBuffer.allocate(5);
         write(address, 4);
-//		bb.put(addressToByteArray(address));
         write(cs);
-//		bb.put(cs);							// Put the address into buffer
-//		byte[] addrbytes = bb.array();
-
-//		write(addrbytes, 5);
 
         if (readWithTimerTimeout(1000) != STM32_ACK) {
             showToast("Unable to write addressing");
@@ -674,7 +668,7 @@ public class FirmWareUploader {
         extra = len % 4;
         cs = (byte) (len - 1 + extra);
 
-        bb = ByteBuffer.allocate(len + 2 + extra);
+        ByteBuffer bb = ByteBuffer.allocate(len + 2 + extra);
         bb.put(cs);                            // Put the length into buffer
 
 		/* write the data and build the checksum */
@@ -683,7 +677,6 @@ public class FirmWareUploader {
         Log.d("DATA: ", String.valueOf(cs));
 
         bb.put(data, 0, len);
-        //bb.put(data);
 
 		/* write the alignment padding */
         for (j = 0; j < extra; ++j) {
@@ -697,14 +690,7 @@ public class FirmWareUploader {
         byte[] bytes = bb.array();
         write(bytes, bytes.length);
 
-//        IOIOUtils.getUtils().ioioSync(ioio_);
-        try {
-            Thread.sleep(10);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         System.out.printf("Checksum : %2x\n", ((int) cs) & 0xFF);
-        //byte aRes = (byte) readWithTimeout(2 * 1000);
         byte aRes = (byte) readWithTimerTimeout(2000);
 
         System.out.printf("Result write : %2x\n", ((int) aRes) & 0xFF);
