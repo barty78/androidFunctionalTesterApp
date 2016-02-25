@@ -89,7 +89,7 @@ public class NewSequenceFragment extends Fragment implements LoaderManager.Loade
         View v = inflater.inflate(R.layout.new_sequence_fragment, container, false);
         recyclerView = (RecyclerView) v.findViewById(R.id.recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mAdapter = new SequenceCursorRecyclerAdapter(null,getActivity(),callback);
+        mAdapter = new SequenceCursorRecyclerAdapter(null,getActivity());
         success_failure_text = (TextView) v.findViewById(R.id.text);
         success_failure_container = (LinearLayout) v.findViewById(R.id.success_failure_container);
         recyclerView.setAdapter(mAdapter);
@@ -118,7 +118,7 @@ public class NewSequenceFragment extends Fragment implements LoaderManager.Loade
     }
 
     public void cleanUI() {
-        mAdapter = new SequenceCursorRecyclerAdapter(null,getActivity(),callback);
+        mAdapter = new SequenceCursorRecyclerAdapter(null,getActivity());
         recyclerView.setAdapter(mAdapter);
     }
 
@@ -198,10 +198,6 @@ public class NewSequenceFragment extends Fragment implements LoaderManager.Loade
         void unregisterSequenceFragment();
     }
 
-    public void setCallback(UploadTestCallback callback) {
-        this.callback = callback;
-        if(mAdapter!=null)mAdapter.setCallback(callback);
 
-    }
 }
 

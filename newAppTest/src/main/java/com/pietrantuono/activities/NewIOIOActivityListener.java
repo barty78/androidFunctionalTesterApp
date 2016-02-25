@@ -37,13 +37,11 @@ public interface NewIOIOActivityListener {
 
     public void setSerialBT(String serial, Boolean success);
 
-    void createUploadProgress(boolean b, boolean c, String description, UploadTestCallback callback);
+    public void onUploadTestFinished(boolean istest, boolean success, String description);
 
     public void onCurrentSequenceEnd();
 
     public void startPCBSleepMonitor();
-
-    void setResult(boolean success);
 
     String getMac();
 

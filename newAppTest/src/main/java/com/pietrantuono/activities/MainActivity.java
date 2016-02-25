@@ -30,13 +30,8 @@ import com.pietrantuono.ioioutils.Voltage;
 import com.pietrantuono.pericoach.newtestapp.BuildConfig;
 import com.pietrantuono.pericoach.newtestapp.R;
 import com.pietrantuono.sensors.SensorTestCallback;
-import com.pietrantuono.sequencedb.SequenceContracts;
-import com.pietrantuono.sequencedb.SequenceProvider;
 import com.pietrantuono.sequencedb.SequenceProviderHelper;
-import com.pietrantuono.tests.implementations.upload.UploadTestCallback;
 
-import android.content.ContentProvider;
-import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -395,11 +390,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void setResult(boolean success) {
-        uiHelper.setResult(success);
-    }
-
-    @Override
     public String getMac() {
         return newSequence.getBT_Addr();
     }
@@ -653,10 +643,15 @@ public class MainActivity extends AppCompatActivity
 
 
     @Override
-    public void createUploadProgress(boolean istest, boolean success, String description, UploadTestCallback callback) {
-        uiHelper.createUploadProgress(istest, success, description, callback,recordId);
-
-
+    public void onUploadTestFinished(boolean istest, boolean success, String description) {
+        uiHelper.onUploadTestFinished(istest, success, description, recordId);
+        Handler handler = new Handler(getMainLooper());
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                goAndExecuteNextTest();
+            }
+        }, 100);
     }
 
     @Override

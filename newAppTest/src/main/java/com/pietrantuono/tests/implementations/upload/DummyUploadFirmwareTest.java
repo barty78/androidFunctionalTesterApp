@@ -38,13 +38,7 @@ public class DummyUploadFirmwareTest extends Test {
     public void execute() {
         if (isinterrupted) return;
         String version = PeriCoachTestApplication.getGetFirmware().getVersion();
-        activityListener.createUploadProgress(false, true, description + " (Version: " + version + ")", new UploadTestCallback() {
-            @Override
-            public void onViewHolderReady(UploadItemHolder holder) {
-                DummyUploadFirmwareTest.this.holder = holder;
-                start();
-            }
-        });
+        activityListener.onUploadTestFinished(false, true, description + " (Version: " + version + ")");
     }
 
     public void start() {

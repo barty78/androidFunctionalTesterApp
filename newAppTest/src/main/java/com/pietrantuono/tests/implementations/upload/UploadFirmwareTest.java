@@ -11,6 +11,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -27,6 +28,7 @@ import com.pietrantuono.uploadfirmware.FirmWareUploader.UploaderListener;
 
 @SuppressWarnings("ALL")
 public class UploadFirmwareTest extends Test {
+    private final AppCompatActivity activity;
     private InputStream RX;
     private OutputStream TX;
     private BufferedInputStream BRX;
@@ -39,33 +41,30 @@ public class UploadFirmwareTest extends Test {
     boolean fileComparisonPassed = false;
     boolean fileMD5Passed = false;
     private int retries = 0;
-    private UploadItemHolder holder;
+    private UploadDialog uploadDialog;
 
     public UploadFirmwareTest(Activity activity, IOIO ioio) {
         super(activity, ioio, "Upload Firmware", false, true, 0, 0, 0);            // Blocking Test, if fails - STOP
+        this.activity = (AppCompatActivity) activity;
     }
 
     @Override
     public void execute() {
         if (isinterrupted) return;
         String version = PeriCoachTestApplication.getGetFirmware().getVersion();
-        activityListener.createUploadProgress(false, true, description + " (Version: " + version + ")", new UploadTestCallback() {
-            @Override
-            public void onViewHolderReady(UploadItemHolder holder) {
-                if (UploadFirmwareTest.this.holder == null) {
-                    UploadFirmwareTest.this.holder = holder;
-                    start();
-                }
-            }
-        });
-
+        uploadDialog = (UploadDialog) activity.getSupportFragmentManager().findFragmentByTag(UploadDialog.TAG);
+        if (uploadDialog == null) {
+            uploadDialog = new UploadDialog();
+        }
+        uploadDialog.show(activity.getSupportFragmentManager(), UploadDialog.TAG);
+        start();
     }
 
     public void start() {
         ((Activity) activityListener).runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                holder.setWait();
+                uploadDialog.setWait();
             }
         });
         if (IOIOUtils.getUtils().getIOIOUart() != null) {
@@ -74,7 +73,7 @@ public class UploadFirmwareTest extends Test {
             TX = IOIOUtils.getUtils().getIOIOUart().getOutputStream();// Pin 13
         }
         firmWareUploader = new FirmWareUploader(TX, RX, (Activity) activityListener,
-                holder, activityListener, ioio);
+                uploadDialog, activityListener, ioio);
 
         Log.e(TAG, "Initialization loop");
         Thread t = new Thread(new Runnable() {
@@ -146,8 +145,7 @@ public class UploadFirmwareTest extends Test {
                         ((Activity) activityListener).runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                activityListener.setResult(success);
-                                activityListener.goAndExecuteNextTest();
+                                activityListener.onUploadTestFinished(true,success,description);
                             }
                         });
                     }
@@ -174,7 +172,11 @@ public class UploadFirmwareTest extends Test {
                                 Resources res = ((Activity) activityListener).getResources();
                                 Drawable background = res
                                         .getDrawable(R.drawable.redprogress);
-                                holder.setFail(description + "\nERROR: " + error);
+                                if (uploadDialog != null) {
+                                    uploadDialog.setFail(description + "\nERROR: " + error);
+                                    uploadDialog.dismiss();
+
+                                }
                             }
                         });
 
@@ -184,6 +186,7 @@ public class UploadFirmwareTest extends Test {
                             public void run() {
                                 activityListener.setResult(success);
                                 activityListener.goAndExecuteNextTest();
+                                uploadDialog.dismiss();
                             }
                         });
 
