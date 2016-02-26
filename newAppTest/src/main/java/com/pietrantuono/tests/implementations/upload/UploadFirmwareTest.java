@@ -146,6 +146,8 @@ public class UploadFirmwareTest extends Test {
                             @Override
                             public void run() {
                                 activityListener.onUploadTestFinished(true,success,description);
+                                uploadDialog.setPass();
+                                uploadDialog.dismiss();
                             }
                         });
                     }
@@ -175,18 +177,10 @@ public class UploadFirmwareTest extends Test {
                                 if (uploadDialog != null) {
                                     uploadDialog.setFail(description + "\nERROR: " + error);
                                     uploadDialog.dismiss();
+                                    activityListener.onUploadTestFinished(true,success,description);
+
 
                                 }
-                            }
-                        });
-
-
-                        ((Activity) activityListener).runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                activityListener.setResult(success);
-                                activityListener.goAndExecuteNextTest();
-                                uploadDialog.dismiss();
                             }
                         });
 
