@@ -19,6 +19,7 @@ import com.pietrantuono.tests.implementations.dummies.DummySensorTestWrapper;
 import com.pietrantuono.tests.implementations.steps.Step;
 import com.pietrantuono.tests.implementations.upload.DummyUploadFirmwareTest;
 import com.pietrantuono.tests.implementations.upload.TestUploadFirmwareTest;
+import com.pietrantuono.tests.implementations.upload.UploadFirmwareTestTest;
 import com.pietrantuono.tests.superclass.Test;
 
 import org.joda.time.DateTime;
@@ -424,10 +425,7 @@ public class NewSequence implements NewSequenceInterface {
         test.setValue(1);
         sequence.add(test);
 
-        //sequence.add(new BluetoothConnectTestForTesting(activity));
-
-        //sensortest.setErrorcode(0l);
-        sequence.add(new TestUploadFirmwareTest(activity,ioio,false));
+        sequence.add(new UploadFirmwareTestTest(activity,ioio));
     }
 
 

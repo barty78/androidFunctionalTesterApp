@@ -22,9 +22,9 @@ import com.parser.BinaryParser;
 import com.pietrantuono.activities.NewIOIOActivityListener;
 import com.pietrantuono.fragments.sequence.holders.UploadItemHolder;
 import com.pietrantuono.application.PeriCoachTestApplication;
-import com.pietrantuono.ioioutils.IOIOUtils;
 import com.pietrantuono.pericoach.newtestapp.BuildConfig;
 import com.pietrantuono.tests.ErrorCodes;
+import com.pietrantuono.tests.implementations.upload.UploadDialog;
 
 import ioio.lib.api.IOIO;
 
@@ -32,7 +32,7 @@ import ioio.lib.api.IOIO;
 public class FirmWareUploader {
     private static final String TAG = "FirmWareUploader";
     private static  int ERRORCODE = ErrorCodes.NO_ERROR ;
-    private final UploadItemHolder holder;
+    private final UploadDialog uploadDialog;
     private String error = "";
     private OutputStream TX;
     private InputStream RX;
@@ -90,13 +90,13 @@ public class FirmWareUploader {
     }
 
     public FirmWareUploader(OutputStream TX, InputStream RX, Activity activity,
-                            UploadItemHolder holder,
+                            UploadDialog uploadDialog,
                             NewIOIOActivityListener listner, IOIO ioio_) {
         this.TX = TX;
         this.activity = activity;
         this.RX = RX;
         this.ioio_ = ioio_;
-        this.holder = holder;
+        this.uploadDialog = uploadDialog;
         isstopped = false;
 
     }
@@ -217,7 +217,7 @@ public class FirmWareUploader {
 
                 @Override
                 public void run() {
-                    holder.setProgress(prog);
+                    uploadDialog.setProgress(prog);
                 }
             });
 
@@ -235,7 +235,7 @@ public class FirmWareUploader {
             activity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                   holder.setProgress(0);
+                   uploadDialog.setProgress(0);
                 }
             });
         }
@@ -249,12 +249,12 @@ public class FirmWareUploader {
                 public void run() {
                     if (prog >= 100) {
                         if (listener != null) listener.onUploadSuccess();
-                        holder.setPass();
+                        uploadDialog.setPass();
+
 
                     } else {
-
                         if (listener != null) listener.onUploadFailure(error,errorcode!=null?errorcode:ErrorCodes.FIRMWAREUPLOAD_GENERIC_FAILURE);
-                        holder.setFail("");
+
                     }
                 }
             });

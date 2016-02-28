@@ -112,7 +112,7 @@ public class DummyUploadFirmwareTest extends Test {
                                 @Override
                                 public void run() {
                                     holder.setFail("");
-                                    activityListener.goAndExecuteNextTest();
+                                    activityListener.onUploadTestFinished(true,success,description);
                                 }
                             });
                             try {
@@ -124,8 +124,7 @@ public class DummyUploadFirmwareTest extends Test {
                         ((Activity) activityListener).runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                activityListener.setResult(success);
-                                activityListener.goAndExecuteNextTest();
+                                activityListener.onUploadTestFinished(true,success,description);
                             }
                         });
 

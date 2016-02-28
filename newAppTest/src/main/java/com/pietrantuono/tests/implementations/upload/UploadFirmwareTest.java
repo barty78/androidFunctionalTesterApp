@@ -223,11 +223,13 @@ public class UploadFirmwareTest extends Test {
                 Resources res = ((Activity) activityListener).getResources();
                 Drawable background = res
                         .getDrawable(R.drawable.redprogress);
-                holder.setFail(description + "\n" + msg);
+                uploadDialog.setFail(description + "\n" + msg);
+                uploadDialog.dismiss();
                 setErrorcode(error);
                 String string = "ERROR CODE: " + error + "\n";
                 IOIOUtils.getUtils().appendUartLog((Activity) activityListener, string.getBytes(), string.getBytes().length);
-                activityListener.goAndExecuteNextTest();
+                activityListener.onUploadTestFinished(true,success,description);
+
             }
         });
     }

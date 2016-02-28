@@ -2,11 +2,12 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:foo="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:layout_width="200dp"
-    android:layout_height="200dp">
+    android:layout_gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <com.mikepenz.iconics.view.IconicsImageView
+        android:layout_gravity="center"
         android:visibility="invisible"
         android:id="@+id/dialog_fragment_result"
         android:layout_width="200dp"
@@ -18,12 +19,13 @@
 
     <com.github.lzyzsd.circleprogress.DonutProgress
         android:visibility="invisible"
+        android:layout_gravity="center"
         foo:donut_unfinished_color="@color/accent"
         foo:donut_finished_color="#ff00ff00"
         foo:donut_suffix_text="%"
         foo:donut_max="100"
-        foo:donut_finished_stroke_width="2dp"
-        foo:donut_unfinished_stroke_width="2dp"
+        foo:donut_finished_stroke_width="8dp"
+        foo:donut_unfinished_stroke_width="8dp"
         android:id="@+id/dialog_fragment_progress"
         android:layout_width="200dp"
         android:layout_height="200dp"
@@ -31,5 +33,13 @@
         android:layout_centerVertical="true"
         android:layout_marginRight="@dimen/icon_margin"
         />
+
+    <TextView
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </FrameLayout>
