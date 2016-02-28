@@ -40,7 +40,6 @@ public class ReadFirmwareversionTest extends Test {
         protected Void doInBackground(Void... params) {
             if (isinterrupted)
                 return null;
-            final Handler handler = new Handler();
             if (isinterrupted) {
                 activityListener.addFailOrPass("", true, false,
                         description);
