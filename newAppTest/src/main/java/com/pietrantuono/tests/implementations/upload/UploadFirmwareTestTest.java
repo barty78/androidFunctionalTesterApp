@@ -95,7 +95,7 @@ public class UploadFirmwareTestTest extends Test {
             @Override
             public void run() {
                 uploadDialog.dismiss();
-                activityListener.onUploadTestFinished(true,success,description);
+                activityListener.onUploadTestFinished(true,success,description,"Fail reason");
 
             }
         }, (3 + 3 + 5 + 3+2) * 1000);

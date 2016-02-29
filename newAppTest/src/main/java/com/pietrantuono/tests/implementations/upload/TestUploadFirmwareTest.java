@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.os.AsyncTask;
 import android.os.Handler;
+import android.support.v7.app.AppCompatActivity;
 
 import com.pietrantuono.fragments.sequence.holders.UploadItemHolder;
 import com.pietrantuono.application.PeriCoachTestApplication;
@@ -25,11 +26,13 @@ public class TestUploadFirmwareTest extends Test {
     boolean fileComparisonPassed = false;
     boolean fileMD5Passed = false;
     private int retries;
+    private final AppCompatActivity activity;
     private Boolean loopback;
-    public UploadItemHolder holder;
+    private UploadDialog uploadDialog;
 
-    public TestUploadFirmwareTest(Activity activity, IOIO ioio, Boolean loopback) {
+    public TestUploadFirmwareTest(AppCompatActivity activity, IOIO ioio, Boolean loopback) {
         super(activity, ioio, "Dummy Upload Firmware", false, true, 0, 0, 0);            // Blocking Test, if fails - STOP
+        this.activity = activity;
         this.loopback = loopback;
     }
 
@@ -37,11 +40,16 @@ public class TestUploadFirmwareTest extends Test {
     public void execute() {
         if (isinterrupted) return;
         String version = PeriCoachTestApplication.getGetFirmware().getVersion();
-        activityListener.onUploadTestFinished(false, true, description + " (Version: " + version + ")");
+        uploadDialog = (UploadDialog) activity.getSupportFragmentManager().findFragmentByTag(UploadDialog.TAG);
+        if (uploadDialog == null) {
+            uploadDialog = new UploadDialog();
+        }
+        uploadDialog.show(activity.getSupportFragmentManager(), UploadDialog.TAG);
+        start();
     }
 
     public void start() {
-        holder.setWait();
+        uploadDialog.setWait();
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -79,15 +87,15 @@ public class TestUploadFirmwareTest extends Test {
     }
 
     public void reset() {
-        holder.reset();
+        uploadDialog.reset();
     }
 
     public void setFail() {
-        holder.setFail("");
+        uploadDialog.setFail("");
     }
 
     public void setPass() {
-        holder.setPass();
+        uploadDialog.setPass();
     }
 
     private void doProgress() {
@@ -107,7 +115,7 @@ public class TestUploadFirmwareTest extends Test {
 
             @Override
             protected void onProgressUpdate(Integer... values) {
-                holder.setProgress(values[0]);
+                uploadDialog.setProgress(values[0]);
             }
 
             @Override
@@ -116,13 +124,13 @@ public class TestUploadFirmwareTest extends Test {
                     Thread.sleep(1 * 1000);
                 } catch (InterruptedException e) {
                 }
-                holder.setPass();
+                uploadDialog.setPass();
             }
         }.execute();
     }
 
     public void setProgress(int progress) {
-        holder.setProgress(progress);
+        uploadDialog.setProgress(progress);
     }
 
     private void onInitialiseFailed() {

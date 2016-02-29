@@ -1,6 +1,7 @@
 package com.pietrantuono.tests.implementations.upload;
 
 import android.app.Activity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -19,6 +20,7 @@ import java.io.OutputStream;
 import ioio.lib.api.IOIO;
 
 public class DummyUploadFirmwareTest extends Test {
+    private final AppCompatActivity activity;
     private InputStream RX;
     private OutputStream TX;
     private DummyFirmWareUploader dummyFirmWareUploader;
@@ -27,18 +29,25 @@ public class DummyUploadFirmwareTest extends Test {
     private Boolean resetted = true;
     private int retries;
     private Boolean loopback;
-    public UploadItemHolder holder;
+    private UploadDialog uploadDialog;
 
-    public DummyUploadFirmwareTest(Activity activity, IOIO ioio, Boolean loopback) {
+    public DummyUploadFirmwareTest(AppCompatActivity activity, IOIO ioio, Boolean loopback) {
         super(activity, ioio, "Dummy Upload Firmware", false, true, 0, 0, 0);            // Blocking Test, if fails - STOP
         this.loopback = loopback;
+        this.activity=activity;
     }
 
     @Override
     public void execute() {
         if (isinterrupted) return;
         String version = PeriCoachTestApplication.getGetFirmware().getVersion();
-        activityListener.onUploadTestFinished(false, true, description + " (Version: " + version + ")");
+        if (isinterrupted) return;
+        uploadDialog = (UploadDialog) activity.getSupportFragmentManager().findFragmentByTag(UploadDialog.TAG);
+        if (uploadDialog == null) {
+            uploadDialog = new UploadDialog();
+        }
+        uploadDialog.show(activity.getSupportFragmentManager(), UploadDialog.TAG);
+        start();
     }
 
     public void start() {
@@ -46,7 +55,7 @@ public class DummyUploadFirmwareTest extends Test {
         ((Activity) activityListener).runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                holder.reset();
+                uploadDialog.reset();
             }
         });
         if (IOIOUtils.getUtils().getIOIOUart() != null) {
@@ -55,7 +64,7 @@ public class DummyUploadFirmwareTest extends Test {
         }
 
         dummyFirmWareUploader = new DummyFirmWareUploader(TX, RX, (Activity) activityListener,
-                holder, activityListener, ioio, loopback);
+                 activityListener, ioio, loopback,uploadDialog);
 
 
         Log.e(TAG, "Initialization loop");
@@ -85,7 +94,7 @@ public class DummyUploadFirmwareTest extends Test {
                     ((Activity) activityListener).runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            holder.setFail("");
+                            uploadDialog.setFail("");
                             activityListener.goAndExecuteNextTest();
                         }
                     });
@@ -111,8 +120,8 @@ public class DummyUploadFirmwareTest extends Test {
                             ((Activity) activityListener).runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    holder.setFail("");
-                                    activityListener.onUploadTestFinished(true,success,description);
+                                    uploadDialog.setFail("");
+                                    activityListener.onUploadTestFinished(true,success,description,"");
                                 }
                             });
                             try {
@@ -124,7 +133,7 @@ public class DummyUploadFirmwareTest extends Test {
                         ((Activity) activityListener).runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                activityListener.onUploadTestFinished(true,success,description);
+                                activityListener.onUploadTestFinished(true,success,description,"");
                             }
                         });
 

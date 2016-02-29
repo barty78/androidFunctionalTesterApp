@@ -37,7 +37,7 @@ public interface NewIOIOActivityListener {
 
     public void setSerialBT(String serial, Boolean success);
 
-    public void onUploadTestFinished(boolean istest, boolean success, String description);
+    public void onUploadTestFinished(boolean istest, boolean success, String description,String failReason);
 
     public void onCurrentSequenceEnd();
 

@@ -423,9 +423,16 @@ public class NewSequence implements NewSequenceInterface {
         test.setSuccess(true);
         test.setIdTest(1);
         test.setValue(1);
+
         sequence.add(test);
 
-        sequence.add(new UploadFirmwareTestTest(activity,ioio));
+        UploadFirmwareTestTest uploadTest = new UploadFirmwareTestTest(activity, ioio);
+        uploadTest.setSuccess(true);
+        sequence.add(uploadTest);
+
+        uploadTest = new UploadFirmwareTestTest(activity, ioio);
+        uploadTest.setSuccess(false);
+        sequence.add(uploadTest);
     }
 
 

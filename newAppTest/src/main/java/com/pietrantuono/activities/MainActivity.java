@@ -643,8 +643,8 @@ public class MainActivity extends AppCompatActivity
 
 
     @Override
-    public void onUploadTestFinished(boolean istest, boolean success, String description) {
-        uiHelper.onUploadTestFinished(istest, success, description, recordId);
+    public void onUploadTestFinished(boolean istest, boolean success, String description,String failReason) {
+        uiHelper.onUploadTestFinished(success, description, recordId,failReason);
         Handler handler = new Handler(getMainLooper());
         handler.postDelayed(new Runnable() {
             @Override

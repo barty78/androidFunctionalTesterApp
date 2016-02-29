@@ -385,8 +385,9 @@ public class UIHelper {
         if (sequenceFragment != null) sequenceFragment.setSequence(sequence);
     }
 
-    public void onUploadTestFinished(final Boolean istest, final Boolean success, String description, long recordId) {
+    public void onUploadTestFinished(final Boolean success, String description, long recordId, String failReason) {
         ContentValues contentValues = new ContentValues();
+        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_READING, failReason != null ? failReason : "");
         contentValues.put(SequenceContracts.Tests.TABLE_TESTS_IS_NORMAL_TEST, 0);
         contentValues.put(SequenceContracts.Tests.TABLE_TESTS_IS_SENSOR_TEST,  0);
         contentValues.put(SequenceContracts.Tests.TABLE_TESTS_IS_UPLOAD_TEST,  1);
