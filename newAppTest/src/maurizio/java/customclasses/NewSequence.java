@@ -432,6 +432,7 @@ public class NewSequence implements NewSequenceInterface {
 
         uploadTest = new UploadFirmwareTestTest(activity, ioio);
         uploadTest.setSuccess(false);
+        uploadTest.setErrorcode(124567l);
         sequence.add(uploadTest);
     }
 

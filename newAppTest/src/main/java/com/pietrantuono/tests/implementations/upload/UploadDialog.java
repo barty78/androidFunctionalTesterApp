@@ -5,9 +5,11 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.TextView;
 
 import com.github.lzyzsd.circleprogress.DonutProgress;
@@ -33,8 +35,8 @@ public class UploadDialog extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_dialog, container, false);
         result = (IconicsImageView) v.findViewById(R.id.dialog_fragment_result);
-        donutProgress= (DonutProgress) v.findViewById(R.id.dialog_fragment_progress);
-        textView=(TextView)v.findViewById(R.id.text);
+        donutProgress = (DonutProgress) v.findViewById(R.id.dialog_fragment_progress);
+        textView = (TextView) v.findViewById(R.id.text);
         return v;
     }
 
@@ -46,76 +48,90 @@ public class UploadDialog extends DialogFragment {
     }
 
     public void reset() {
-        if(getActivity()==null)return;
+        if (getActivity() == null) return;
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if(textView!=null)textView.setVisibility(View.INVISIBLE);
-                if(result!=null)result.setVisibility(View.INVISIBLE);
-                if(donutProgress!=null)donutProgress.setVisibility(View.INVISIBLE);
-                if(donutProgress!=null)donutProgress.setProgress(0);
+                if (textView != null) textView.setVisibility(View.INVISIBLE);
+                if (result != null) result.setVisibility(View.INVISIBLE);
+                if (donutProgress != null) donutProgress.setVisibility(View.INVISIBLE);
+                if (donutProgress != null) donutProgress.setProgress(0);
             }
         });
 
     }
 
     public void setFail(final String text) {
-        if(getActivity()==null)return;
+        if (getActivity() == null) return;
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if(textView!=null)textView.setVisibility(View.VISIBLE);
-                if(textView!=null) textView.setText(text);
-                if(result!=null)result.setVisibility(View.VISIBLE);
-                if(donutProgress!=null)donutProgress.setVisibility(View.INVISIBLE);
-                if(result!=null)result.setIcon(GoogleMaterial.Icon.gmd_cancel);
-                if(result!=null) result.setColor(Color.RED);
+                if (textView != null) textView.setVisibility(View.VISIBLE);
+                if (textView != null) textView.setText(text);
+                if (result != null) result.setVisibility(View.VISIBLE);
+                if (donutProgress != null) donutProgress.setVisibility(View.INVISIBLE);
+                if (result != null) result.setIcon(GoogleMaterial.Icon.gmd_cancel);
+                if (result != null) result.setColor(Color.RED);
             }
         });
     }
 
     public void setPass() {
-        if(getActivity()==null)return;
+        if (getActivity() == null) return;
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if(textView!=null)textView.setVisibility(View.INVISIBLE);
-                if(result!=null)result.setVisibility(View.VISIBLE);
-                if(donutProgress!=null)donutProgress.setVisibility(View.INVISIBLE);
-                if(result!=null)result.setIcon(GoogleMaterial.Icon.gmd_check_circle);
-                if(result!=null) result.setColor(Color.GREEN);
+                if (textView != null) textView.setVisibility(View.INVISIBLE);
+                if (result != null) result.setVisibility(View.VISIBLE);
+                if (donutProgress != null) donutProgress.setVisibility(View.INVISIBLE);
+                if (result != null) result.setIcon(GoogleMaterial.Icon.gmd_check_circle);
+                if (result != null) result.setColor(Color.GREEN);
             }
         });
 
     }
 
     public void setProgress(final int progress) {
-        if(getActivity()==null)return;
+        if (getActivity() == null) return;
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if(textView!=null)textView.setVisibility(View.INVISIBLE);
-                if(result!=null)result.setVisibility(View.INVISIBLE);
-                if(donutProgress!=null)donutProgress.setVisibility(View.VISIBLE);
-                if(donutProgress!=null)donutProgress.setProgress(progress);
+                if (textView != null) textView.setVisibility(View.INVISIBLE);
+                if (result != null) result.setVisibility(View.INVISIBLE);
+                if (donutProgress != null) donutProgress.setVisibility(View.VISIBLE);
+                if (donutProgress != null) donutProgress.setProgress(progress);
             }
         });
 
     }
 
     public void setWait() {
-        if(getActivity()==null)return;
+        if (getActivity() == null) return;
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if(textView!=null)textView.setVisibility(View.VISIBLE);
-                if(textView!=null) textView.setText("Please wait...");
-                if(result!=null)result.setVisibility(View.VISIBLE);
-                if(donutProgress!=null)donutProgress.setVisibility(View.INVISIBLE);
-                if(result!=null)result.setIcon(GoogleMaterial.Icon.gmd_hourglass_empty);
-                if(result != null) result.setColor(getActivity().getResources().getColor(R.color.primary));
+                if (textView != null) textView.setVisibility(View.VISIBLE);
+                if (textView != null) textView.setText("Please wait...");
+                if (result != null) result.setVisibility(View.VISIBLE);
+                if (donutProgress != null) donutProgress.setVisibility(View.INVISIBLE);
+                if (result != null) result.setIcon(GoogleMaterial.Icon.gmd_hourglass_empty);
+                if (result != null)
+                    result.setColor(getActivity().getResources().getColor(R.color.primary));
             }
         });
 
+    }
+
+    @Override
+    public void show(FragmentManager manager, String tag) {
+        super.show(manager, tag);
+
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+        getDialog().getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
     }
 }

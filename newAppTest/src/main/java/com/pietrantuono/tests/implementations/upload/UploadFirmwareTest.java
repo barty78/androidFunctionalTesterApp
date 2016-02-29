@@ -57,6 +57,7 @@ public class UploadFirmwareTest extends Test {
             uploadDialog = new UploadDialog();
         }
         uploadDialog.show(activity.getSupportFragmentManager(), UploadDialog.TAG);
+        activity.getSupportFragmentManager().executePendingTransactions();
         start();
     }
 
