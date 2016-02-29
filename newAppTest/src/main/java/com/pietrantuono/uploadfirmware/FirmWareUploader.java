@@ -31,7 +31,7 @@ import ioio.lib.api.IOIO;
 @SuppressWarnings({"ucd", "unused"})
 public class FirmWareUploader {
     private static final String TAG = "FirmWareUploader";
-    private static  int ERRORCODE = ErrorCodes.NO_ERROR ;
+    private static int ERRORCODE = ErrorCodes.NO_ERROR;
     private final UploadDialog uploadDialog;
     private String error = "";
     private OutputStream TX;
@@ -42,9 +42,9 @@ public class FirmWareUploader {
     private static final byte STM32_ACK = 0x79;
     private static final byte STM32_NACK = 0x1F;
     private byte[] optionBytes = {(byte) 0xAA, 0x00, 0x55, (byte) 0xFF, (byte) 0xF8, 0x00, 0x07, (byte) 0xFF,
-                                    0x00, 0x00, (byte) 0xFF, (byte) 0xFF, 0x00, 0x00, (byte) 0xFF, (byte) 0xFF,
-                                    0x00, 0x00, (byte) 0xFF, (byte) 0xFF, 0x00, 0x00, (byte) 0xFF, (byte) 0xFF,
-                                    0x00, 0x00, (byte) 0xFF, (byte) 0xFF, 0x00, 0x00, (byte) 0xFF, (byte) 0xFF};
+            0x00, 0x00, (byte) 0xFF, (byte) 0xFF, 0x00, 0x00, (byte) 0xFF, (byte) 0xFF,
+            0x00, 0x00, (byte) 0xFF, (byte) 0xFF, 0x00, 0x00, (byte) 0xFF, (byte) 0xFF,
+            0x00, 0x00, (byte) 0xFF, (byte) 0xFF, 0x00, 0x00, (byte) 0xFF, (byte) 0xFF};
 
     private Activity activity;
     private ExecutorService executor = Executors.newFixedThreadPool(1);
@@ -130,13 +130,14 @@ public class FirmWareUploader {
         if (readWithTimerTimeout(2000) == STM32_ACK) {
             return true;
         }
-        ERRORCODE=ErrorCodes.FIRMWAREUPLOAD_INIT_FAILED;
+        ERRORCODE = ErrorCodes.FIRMWAREUPLOAD_INIT_FAILED;
         return false;
     }
 
     private class WriteTask extends AsyncTask<Void, Void, Integer> {
         private FileOutputStream fileOutputStream;
         private int prog = 0;
+
         @Override
         protected Integer doInBackground(Void... v) {
 
@@ -208,6 +209,7 @@ public class FirmWareUploader {
             return null;
 
         }
+
         @Override
         protected void onProgressUpdate(Void... v) {
             if (isCancelled())
@@ -217,11 +219,14 @@ public class FirmWareUploader {
 
                 @Override
                 public void run() {
-                    uploadDialog.setProgress(prog);
+                    if (uploadDialog != null) {
+                        uploadDialog.setProgress(prog);
+                    }
                 }
             });
 
         }
+
         @Override
         protected void onPreExecute() {
             if (isCancelled())
@@ -235,10 +240,13 @@ public class FirmWareUploader {
             activity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                   uploadDialog.setProgress(0);
+                    if (uploadDialog != null) {
+                        uploadDialog.setProgress(0);
+                    }
                 }
             });
         }
+
         @Override
         protected void onPostExecute(final Integer errorcode) {
 
@@ -249,11 +257,14 @@ public class FirmWareUploader {
                 public void run() {
                     if (prog >= 100) {
                         if (listener != null) listener.onUploadSuccess();
-                        uploadDialog.setPass();
+                        if (uploadDialog != null) {
+                            uploadDialog.setPass();
+                        }
 
 
                     } else {
-                        if (listener != null) listener.onUploadFailure(error,errorcode!=null?errorcode:ErrorCodes.FIRMWAREUPLOAD_GENERIC_FAILURE);
+                        if (listener != null)
+                            listener.onUploadFailure(error, errorcode != null ? errorcode : ErrorCodes.FIRMWAREUPLOAD_GENERIC_FAILURE);
 
                     }
                 }
@@ -266,7 +277,7 @@ public class FirmWareUploader {
 
     public boolean getInfo() {
         String string;
-        ERRORCODE=ErrorCodes.NO_ERROR;
+        ERRORCODE = ErrorCodes.NO_ERROR;
         if (isstopped)
             return false;
         emptyInputStream();
@@ -275,7 +286,7 @@ public class FirmWareUploader {
             System.out
                     .println("Failed to send command to the device: reset your device.");
             error = "Failed to send command to the device: reset your device.";
-            ERRORCODE=ErrorCodes.FIRMWAREUPLOAD_CMD_SEND_ERROR;
+            ERRORCODE = ErrorCodes.FIRMWAREUPLOAD_CMD_SEND_ERROR;
 
             return false;
         }
@@ -318,21 +329,21 @@ public class FirmWareUploader {
                     .println("Seems this bootloader returns more then we understand in the GET command, we will skip the unknown bytes\n");
             System.out.println("Please reset your device. Stopping.");
             error = "get cmd: More bytes than known.";
-            ERRORCODE=ErrorCodes.FIRMWAREUPLOAD_DEVICE_INFO_ERROR;
+            ERRORCODE = ErrorCodes.FIRMWAREUPLOAD_DEVICE_INFO_ERROR;
             return false;
         }
         if (readWithTimerTimeout(2000) != STM32_ACK) {
             System.out.println("No ACK received from the device");
             System.out.printf("Next data: %d\n", readWithTimerTimeout(1000));
             error = "get cmd: No ACK received.";
-            ERRORCODE=ErrorCodes.FIRMWAREUPLOAD_NO_ACK_ERROR;
+            ERRORCODE = ErrorCodes.FIRMWAREUPLOAD_NO_ACK_ERROR;
             return false;
         }
 
         if (!sendCommand(_CMDList.get("gvr").byteValue())) {
             System.out.println("No ACK received from the device");
             error = "gvr cmd: No ACK received.";
-            ERRORCODE=ErrorCodes.FIRMWAREUPLOAD_CMD_GVR_SEND_ERROR;
+            ERRORCODE = ErrorCodes.FIRMWAREUPLOAD_CMD_GVR_SEND_ERROR;
             return false;
         }
         if (isstopped)
@@ -349,17 +360,17 @@ public class FirmWareUploader {
         if (readWithTimerTimeout(1000) != STM32_ACK) {
             System.out.println("No ACK received from the device");
             error = "gvr cmd: No ACK received.";
-            ERRORCODE=ErrorCodes.FIRMWAREUPLOAD_NO_ACK_ERROR;
-           return false;
+            ERRORCODE = ErrorCodes.FIRMWAREUPLOAD_NO_ACK_ERROR;
+            return false;
         }
         if (isstopped)
             return false;
-		/* get the device ID */
+        /* get the device ID */
 
         if (!sendCommand(_CMDList.get("gid").byteValue())) {
             System.out.println("No ACK received from the device");
             error = "gid cmd: No ACK received.";
-            ERRORCODE=ErrorCodes.FIRMWAREUPLOAD_CMD_GID_SEND_ERROR;
+            ERRORCODE = ErrorCodes.FIRMWAREUPLOAD_CMD_GID_SEND_ERROR;
             return false;
         }
         if (isstopped)
@@ -369,7 +380,7 @@ public class FirmWareUploader {
             System.err
                     .println("More then two bytes sent in the PID, unknown/unsupported device\n");
             error = "gid cmd: Unsupported device (> 2 bytes).";
-            ERRORCODE=ErrorCodes.FIRMWAREUPLOAD_ADDR_ALIGN_ERROR;
+            ERRORCODE = ErrorCodes.FIRMWAREUPLOAD_ADDR_ALIGN_ERROR;
             return false;
         }
         if (isstopped)
@@ -379,14 +390,14 @@ public class FirmWareUploader {
             System.err
                     .println("More then two bytes sent in the PID, unknown/unsupported device\n");
             error = "PID: Unsupported device (> 2 bytes).";
-            ERRORCODE=ErrorCodes.FIRMWAREUPLOAD_ADDR_ALIGN_ERROR;
+            ERRORCODE = ErrorCodes.FIRMWAREUPLOAD_ADDR_ALIGN_ERROR;
             return false;
         }
 
         int[] aData = getDeviceSetup();
         if (aData == null) {
             error = "ERROR: Device info error";
-            ERRORCODE=ErrorCodes.FIRMWAREUPLOAD_GET_INFO_FAILED;
+            ERRORCODE = ErrorCodes.FIRMWAREUPLOAD_GET_INFO_FAILED;
             return false;
         }
         fl_start = aData[3];
@@ -426,11 +437,11 @@ public class FirmWareUploader {
             }
             return true;
         } else {
-            if(BuildConfig.DEBUG) {
+            if (BuildConfig.DEBUG) {
                 System.err.println("Error sending command to the device.");
                 System.err.printf("Recv: %2x\n", b);
             }
-            ERRORCODE=ErrorCodes.FIRMWAREUPLOAD_CMD_SEND_ERROR;
+            ERRORCODE = ErrorCodes.FIRMWAREUPLOAD_CMD_SEND_ERROR;
             return false;
         }
     }
@@ -490,16 +501,16 @@ public class FirmWareUploader {
 
         System.out.printf("Writing Option Bytes");
 
-            if (!writeMemory(op_start, optionBytes, optionBytes.length)) {
-                if(BuildConfig.DEBUG) {
-                    System.err.printf(
-                            "Failed to write memory at address 0x%08x\n",
-                            op_start);
-                }
-                error = "Failed to write memory at address " + String.format("0x%08x", op_start);
-                ERRORCODE=ErrorCodes.FIRMWAREUPLOAD_OPTIONBYTES_WRITE_ERROR;
-                return false;
+        if (!writeMemory(op_start, optionBytes, optionBytes.length)) {
+            if (BuildConfig.DEBUG) {
+                System.err.printf(
+                        "Failed to write memory at address 0x%08x\n",
+                        op_start);
             }
+            error = "Failed to write memory at address " + String.format("0x%08x", op_start);
+            ERRORCODE = ErrorCodes.FIRMWAREUPLOAD_OPTIONBYTES_WRITE_ERROR;
+            return false;
+        }
 
         try {
             Thread.sleep(100);
@@ -508,7 +519,7 @@ public class FirmWareUploader {
         }
 
         if (!deviceInit()) {
-            ERRORCODE=ErrorCodes.FIRMWAREUPLOAD_INIT_FAILED;
+            ERRORCODE = ErrorCodes.FIRMWAREUPLOAD_INIT_FAILED;
             return false;
         }
         return true;
@@ -521,8 +532,8 @@ public class FirmWareUploader {
         //SendCommand includes one ACK
         // Must reset and re-init device afterwards
 
-        if (sendCommand(_CMDList.get("rp").byteValue())){
-            if(readWithTimerTimeout(1000)==STM32_NACK){
+        if (sendCommand(_CMDList.get("rp").byteValue())) {
+            if (readWithTimerTimeout(1000) == STM32_NACK) {
                 // Already in protect mode, no device reset so do nothing
             } else {
                 try {
@@ -534,15 +545,15 @@ public class FirmWareUploader {
                 if (!deviceInit()) return false;
             }
         } else {
-            ERRORCODE=ErrorCodes.FIRMWAREUPLOAD_CMD_RP_SEND_ERROR;
+            ERRORCODE = ErrorCodes.FIRMWAREUPLOAD_CMD_RP_SEND_ERROR;
         }
 
         if (!sendCommand(_CMDList.get("ur").byteValue())) {
-            ERRORCODE=ErrorCodes.FIRMWAREUPLOAD_CMD_UR_SEND_ERROR;
+            ERRORCODE = ErrorCodes.FIRMWAREUPLOAD_CMD_UR_SEND_ERROR;
             return false;
         }
-        if(readWithTimerTimeout(1000)==STM32_NACK){
-            ERRORCODE=ErrorCodes.FIRMWAREUPLOAD_NO_ACK_ERROR;
+        if (readWithTimerTimeout(1000) == STM32_NACK) {
+            ERRORCODE = ErrorCodes.FIRMWAREUPLOAD_NO_ACK_ERROR;
             return false;
         }
         try {
@@ -550,8 +561,8 @@ public class FirmWareUploader {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        if(!deviceInit()) {
-            ERRORCODE=ErrorCodes.FIRMWAREUPLOAD_INIT_FAILED;
+        if (!deviceInit()) {
+            ERRORCODE = ErrorCodes.FIRMWAREUPLOAD_INIT_FAILED;
             return false;
         }
 
@@ -628,9 +639,9 @@ public class FirmWareUploader {
         Log.e(TAG, "len > 0 && len < 257 " + (len > 0 && len < 257));
         if (!(len > 0 && len < 257)) {
             showToast("Data length invalid");
-            ERRORCODE=ErrorCodes.FIRMWAREUPLOAD_WRITE_MEMORY_ERROR;
+            ERRORCODE = ErrorCodes.FIRMWAREUPLOAD_WRITE_MEMORY_ERROR;
             return false;
-            }
+        }
 
         flush();
 
@@ -649,7 +660,7 @@ public class FirmWareUploader {
         if (!sendCommand(_CMDList.get("wm").byteValue())) {
             showToast("Unable to send write command");
             System.err.println("Unable to send write command \n");
-            ERRORCODE=ErrorCodes.FIRMWAREUPLOAD_WRITE_MEMORY_ERROR;
+            ERRORCODE = ErrorCodes.FIRMWAREUPLOAD_WRITE_MEMORY_ERROR;
             return false;
         }
 
@@ -659,7 +670,7 @@ public class FirmWareUploader {
         if (readWithTimerTimeout(1000) != STM32_ACK) {
             showToast("Unable to write addressing");
             System.err.println("Unable to write adressing \n");
-            ERRORCODE=ErrorCodes.FIRMWAREUPLOAD_WRITE_MEMORY_ERROR;
+            ERRORCODE = ErrorCodes.FIRMWAREUPLOAD_WRITE_MEMORY_ERROR;
             return false;
         }
         // System.out.println("Address has been written \n");

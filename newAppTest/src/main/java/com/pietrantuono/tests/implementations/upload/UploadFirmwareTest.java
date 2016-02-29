@@ -64,7 +64,9 @@ public class UploadFirmwareTest extends Test {
         ((Activity) activityListener).runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                uploadDialog.setWait();
+                if (uploadDialog != null) {
+                    uploadDialog.setWait();
+                }
             }
         });
         if (IOIOUtils.getUtils().getIOIOUart() != null) {
@@ -145,9 +147,11 @@ public class UploadFirmwareTest extends Test {
                         ((Activity) activityListener).runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                activityListener.onUploadTestFinished(true,success,description);
-                                uploadDialog.setPass();
-                                uploadDialog.dismiss();
+                                activityListener.onUploadTestFinished(true, success, description);
+                                if (uploadDialog != null) {
+                                    uploadDialog.setPass();
+                                    uploadDialog.dismiss();
+                                }
                             }
                         });
                     }
@@ -177,7 +181,7 @@ public class UploadFirmwareTest extends Test {
                                 if (uploadDialog != null) {
                                     uploadDialog.setFail(description + "\nERROR: " + error);
                                     uploadDialog.dismiss();
-                                    activityListener.onUploadTestFinished(true,success,description);
+                                    activityListener.onUploadTestFinished(true, success, description);
 
 
                                 }
@@ -223,12 +227,14 @@ public class UploadFirmwareTest extends Test {
                 Resources res = ((Activity) activityListener).getResources();
                 Drawable background = res
                         .getDrawable(R.drawable.redprogress);
-                uploadDialog.setFail(description + "\n" + msg);
-                uploadDialog.dismiss();
-                setErrorcode(error);
+                if (uploadDialog != null) {
+                    uploadDialog.setFail(description + "\n" + msg);
+                    uploadDialog.dismiss();
+                    setErrorcode(error);
+                }
                 String string = "ERROR CODE: " + error + "\n";
                 IOIOUtils.getUtils().appendUartLog((Activity) activityListener, string.getBytes(), string.getBytes().length);
-                activityListener.onUploadTestFinished(true,success,description);
+                activityListener.onUploadTestFinished(true, success, description);
 
             }
         });
