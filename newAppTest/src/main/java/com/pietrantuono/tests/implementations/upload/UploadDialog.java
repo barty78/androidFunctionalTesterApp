@@ -46,43 +46,42 @@ public class UploadDialog extends DialogFragment {
     }
 
     public void reset() {
-        textView.setVisibility(View.INVISIBLE);
-        result.setVisibility(View.INVISIBLE);
-        donutProgress.setVisibility(View.INVISIBLE);
-        donutProgress.setProgress(0);
+        if(textView!=null)textView.setVisibility(View.INVISIBLE);
+        if(result!=null)result.setVisibility(View.INVISIBLE);
+        if(donutProgress!=null)donutProgress.setVisibility(View.INVISIBLE);
+        if(donutProgress!=null)donutProgress.setProgress(0);
     }
 
     public void setFail(String text) {
-        textView.setVisibility(View.VISIBLE);
-        textView.setText(text);
-        result.setVisibility(View.VISIBLE);
-        donutProgress.setVisibility(View.INVISIBLE);
-        result.setIcon(GoogleMaterial.Icon.gmd_cancel);
-        result.setColor(Color.RED);
+        if(textView!=null)textView.setVisibility(View.VISIBLE);
+        if(textView!=null) textView.setText(text);
+        if(result!=null)result.setVisibility(View.VISIBLE);
+        if(donutProgress!=null)donutProgress.setVisibility(View.INVISIBLE);
+        if(result!=null)result.setIcon(GoogleMaterial.Icon.gmd_cancel);
+        if(result!=null) result.setColor(Color.RED);
     }
 
     public void setPass() {
-        textView.setVisibility(View.INVISIBLE);
-        result.setVisibility(View.VISIBLE);
-        donutProgress.setVisibility(View.INVISIBLE);
-        result.setIcon(GoogleMaterial.Icon.gmd_check_circle);
-        result.setColor(Color.GREEN);
+        if(textView!=null)textView.setVisibility(View.INVISIBLE);
+        if(result!=null)result.setVisibility(View.VISIBLE);
+        if(donutProgress!=null)donutProgress.setVisibility(View.INVISIBLE);
+        if(result!=null)result.setIcon(GoogleMaterial.Icon.gmd_check_circle);
+        if(result!=null) result.setColor(Color.GREEN);
     }
 
     public void setProgress(int progress) {
-        textView.setVisibility(View.INVISIBLE);
-        result.setVisibility(View.INVISIBLE);
-        donutProgress.setVisibility(View.VISIBLE);
-        donutProgress.setProgress(progress);
+        if(textView!=null)textView.setVisibility(View.INVISIBLE);
+        if(result!=null)result.setVisibility(View.INVISIBLE);
+        if(donutProgress!=null)donutProgress.setVisibility(View.VISIBLE);
+        if(donutProgress!=null)donutProgress.setProgress(progress);
     }
 
     public void setWait() {
-        textView.setVisibility(View.VISIBLE);
-        textView.setText("Please wait...");
-        result.setVisibility(View.VISIBLE);
-        donutProgress.setVisibility(View.INVISIBLE);
-        result.setIcon(GoogleMaterial.Icon.gmd_hourglass_empty);
-        result.setColor(getActivity().getResources().getColor(R.color.primary));
+        if(textView!=null)textView.setVisibility(View.VISIBLE);
+        if(textView!=null) textView.setText("Please wait...");
+        if(result!=null)result.setVisibility(View.VISIBLE);
+        if(donutProgress!=null)donutProgress.setVisibility(View.INVISIBLE);
+        if(result!=null)result.setIcon(GoogleMaterial.Icon.gmd_hourglass_empty);
+        if(result != null) result.setColor(getActivity().getResources().getColor(R.color.primary));
     }
-
 }
