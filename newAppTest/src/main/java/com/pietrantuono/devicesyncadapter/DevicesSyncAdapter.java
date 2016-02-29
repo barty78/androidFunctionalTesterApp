@@ -38,16 +38,6 @@ public class DevicesSyncAdapter extends AbstractThreadedSyncAdapter {
     }
 
 
-    public DevicesSyncAdapter(
-            Context context,
-            boolean autoInitialize,
-            boolean allowParallelSyncs) {
-        super(context, autoInitialize, allowParallelSyncs);
-        this.context = context;
-        mContentResolver = context.getContentResolver();
-
-    }
-
     @DebugLog
     @Override
     public void onPerformSync(Account account, Bundle extras, String authority, ContentProviderClient provider, SyncResult syncResult) {

@@ -182,10 +182,6 @@ implements Filterable, CursorFilter.CursorFilterClient {
 	 * @param constraint the constraint with which the query must be filtered
 	 *
 	 * @return a Cursor representing the results of the new query
-	 *
-	 * @see #getFilter()
-	 * @see #getFilterQueryProvider()
-	 * @see #setFilterQueryProvider(android.widget.FilterQueryProvider)
 	 */
 	public Cursor runQueryOnBackgroundThread(CharSequence constraint) {
 		if (mFilterQueryProvider != null) {
@@ -200,35 +196,6 @@ implements Filterable, CursorFilter.CursorFilterClient {
 			mCursorFilter = new CursorFilter(this);
 		}
 		return mCursorFilter;
-	}
-
-	/**
-	 * Returns the query filter provider used for filtering. When the
-	 * provider is null, no filtering occurs.
-	 *
-	 * @return the current filter query provider or null if it does not exist
-	 *
-	 * @see #setFilterQueryProvider(android.widget.FilterQueryProvider)
-	 * @see #runQueryOnBackgroundThread(CharSequence)
-	 */
-	public FilterQueryProvider getFilterQueryProvider() {
-		return mFilterQueryProvider;
-	}
-
-	/**
-	 * Sets the query filter provider used to filter the current Cursor.
-	 * The provider's
-	 * {@link android.widget.FilterQueryProvider#runQuery(CharSequence)}
-	 * method is invoked when filtering is requested by a client of
-	 * this adapter.
-	 *
-	 * @param filterQueryProvider the filter query provider or null to remove it
-	 *
-	 * @see #getFilterQueryProvider()
-	 * @see #runQueryOnBackgroundThread(CharSequence)
-	 */
-	public void setFilterQueryProvider(FilterQueryProvider filterQueryProvider) {
-		mFilterQueryProvider = filterQueryProvider;
 	}
 
 	/**

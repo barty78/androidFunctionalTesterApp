@@ -15,7 +15,6 @@ import com.pietrantuono.fragments.sequence.holders.TestItemHolder;
 import com.pietrantuono.fragments.sequence.holders.UploadItemHolder;
 import com.pietrantuono.pericoach.newtestapp.R;
 import com.pietrantuono.sequencedb.SequenceContracts;
-import com.pietrantuono.tests.implementations.upload.UploadTestCallback;
 
 /**
  * Created by Maurizio Pietrantuono, maurizio.pietrantuono@gmail.com.

@@ -37,7 +37,6 @@ public class DummyFirmWareUploader {
     private static final byte STM32_ACK = 0x79;
     private UploadDialog uploadDialog;
     private Activity c;
-    private ExecutorService executor = Executors.newFixedThreadPool(1);
     private HashMap<String, Integer> _CMDList = new HashMap<String, Integer>();
     private int pid;
     private int[][] devices = {
@@ -427,33 +426,6 @@ public class DummyFirmWareUploader {
         }
     }
 
-
-    private int readWithTimeout(int timeout) {
-        // Read data with timeout
-        if (isstopped)
-            return -1;
-        int readByte = -1;
-        Callable<Integer> readTask = new Callable<Integer>() {
-            @Override
-            public Integer call() throws Exception {
-                Integer tmp = RX.read();
-                System.out.printf("Call returned : %2x\n", tmp);
-                return tmp;
-            }
-        };
-        Future<Integer> future = executor.submit(readTask);
-        try {
-            readByte = future.get(timeout, TimeUnit.MILLISECONDS);
-        } catch (Exception e) {
-            showToast("Read Timeout!");
-            Log.e(TAG, e.toString());
-            return -1;
-        }
-        if (readByte >= 0)
-            System.out.printf("Returned :%2x\n", readByte);
-
-        return readByte;
-    }
 
     public int[] getDeviceSetup() {
 

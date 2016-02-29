@@ -37,8 +37,6 @@ public class DevicesListFragment extends Fragment implements ActionModecallback.
     private Context context;
     private MultiStateView state;
     private SwipeRefreshLayout swiper;
-    private ActionMode mActionMode;
-    private ActionModecallback actionModecallback;
     private MyRecyclerCursorAdapter mAdapter;
     private Boolean thisJobOnly = true;    //TODO - Make this a configurable option in the UI/App
     private boolean orderbyBarcode=true;

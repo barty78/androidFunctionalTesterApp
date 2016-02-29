@@ -1,7 +1,6 @@
 package com.pietrantuono.fragments.sequence;
 
 import android.animation.ValueAnimator;
-import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -19,29 +18,22 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.pietrantuono.activities.uihelper.ActivityCallback;
-import com.pietrantuono.constants.NewMSensorResult;
 import com.pietrantuono.constants.NewSequenceInterface;
 import com.pietrantuono.pericoach.newtestapp.R;
 import com.pietrantuono.sequencedb.SequenceContracts;
 import com.pietrantuono.sequencedb.SequenceProvider;
-import com.pietrantuono.tests.implementations.upload.UploadTestCallback;
-
-import server.pojos.Test;
 
 
 public class NewSequenceFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
     private static final String TAG = "NewSequenceFragment";
     private static final int SEQUENCE_LOADER_MANAGER = 1;
     private SequenceFragmentCallback mListener;
-    private Activity activity;
     private RecyclerView recyclerView;
     private TextView success_failure_text;
     private LinearLayout success_failure_container;
     private long recordId = -1;
     private String RECORD_ID = "record_id";
     private SequenceCursorRecyclerAdapter mAdapter;
-    private UploadTestCallback callback;
 
     public NewSequenceFragment() {
     }
@@ -71,11 +63,7 @@ public class NewSequenceFragment extends Fragment implements LoaderManager.Loade
         getLoaderManager().initLoader(SEQUENCE_LOADER_MANAGER, bundle, NewSequenceFragment.this);
     }
 
-    public void forceLoaderUpdate(){
-        Bundle bundle = new Bundle();
-        bundle.putLong(RECORD_ID, recordId);
-        getLoaderManager().restartLoader(SEQUENCE_LOADER_MANAGER, bundle, NewSequenceFragment.this);
-    }
+
     public void forceLoaderUpdate(long recordId){
         this.recordId=recordId;
         Bundle bundle = new Bundle();
@@ -101,7 +89,6 @@ public class NewSequenceFragment extends Fragment implements LoaderManager.Loade
     public void onAttach(Context context) {
         super.onAttach(context);
         if (context instanceof SequenceFragmentCallback) {
-            this.activity = (Activity) context;
             mListener = (SequenceFragmentCallback) context;
             mListener.registerSequenceFragment(NewSequenceFragment.this);
         } else {
@@ -114,7 +101,6 @@ public class NewSequenceFragment extends Fragment implements LoaderManager.Loade
         super.onDetach();
         mListener.unregisterSequenceFragment();
         mListener = null;
-        activity = null;
     }
 
     public void cleanUI() {

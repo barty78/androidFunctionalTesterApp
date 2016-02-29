@@ -1,14 +1,11 @@
 package com.pietrantuono.activities;
 
 import com.pietrantuono.btutility.BTUtility;
-import com.pietrantuono.tests.implementations.upload.UploadTestCallback;
 
 public interface NewIOIOActivityListener {
 
 
     void goAndExecuteNextTest();
-
-    void addView(String label, String text, boolean goAndExecuteNextTest);
 
     void addView(String label, String text, int color, boolean goAndExecuteNextTest);
 

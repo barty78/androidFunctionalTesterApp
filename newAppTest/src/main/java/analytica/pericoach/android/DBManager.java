@@ -196,42 +196,4 @@ public class DBManager {
         return true;
     }
 
-    public ArrayList<String> getAllScancodes() {
-        CustomSQLiteOpenHelper helper = new CustomSQLiteOpenHelper(context);
-        this.db = helper.getWritableDatabase();
-
-        String strSQL;
-
-        strSQL = "SELECT scancode FROM scancodes";
-
-
-        //String[] values = new String[] { device };
-
-        // create an ArrayList that will hold all of the data collected from
-        // the database.
-        ArrayList<String> entityList = null;
-        Cursor cursor = db.rawQuery("SELECT * from scancodes", null);
-        try {
-            // ask the database object to create the cursor.
-            Cursor c = db.rawQuery(strSQL, null);
-            // Log.d("ALLRESULTSROWS:", Integer.toString(c.getCount()));
-            if (c != null && c.getCount() > 0) {
-                entityList = new ArrayList<String>();
-                while (c.moveToNext()) {
-                    entityList.add(c.getString(0));
-
-                }
-            }
-            db.close();
-            return entityList;
-
-        } catch (SQLException e) {
-            Log.e("DB Error", e.toString());
-            e.printStackTrace();
-        }
-        db.close();
-        return null;
-
-    }
-
 }

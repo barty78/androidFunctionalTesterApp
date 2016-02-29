@@ -13,7 +13,6 @@ import com.pietrantuono.constants.NewSequenceInterface;
 import com.pietrantuono.pericoach.newtestapp.R;
 import com.pietrantuono.sequencedb.SequenceContracts;
 import com.pietrantuono.sequencedb.SequenceProvider;
-import com.pietrantuono.tests.implementations.upload.UploadTestCallback;
 
 import android.app.Activity;
 import android.content.ContentResolver;
@@ -145,10 +144,6 @@ public class UIHelper {
         ArrayList<ArrayList<NewMResult>> getResults();
 
         int getIterationNumber();
-
-        void closeActivity();
-
-        void restartSequence();
 
         void clearSerialConsole();
     }

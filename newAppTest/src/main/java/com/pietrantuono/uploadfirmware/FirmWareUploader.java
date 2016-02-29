@@ -492,11 +492,6 @@ public class FirmWareUploader {
         return null;
     }
 
-    private boolean readOptionBytes() {
-
-        return true;
-    }
-
     public boolean writeOptionBytes() {
 
         System.out.printf("Writing Option Bytes");

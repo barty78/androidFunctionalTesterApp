@@ -39,8 +39,6 @@ public class PeriCoachTestApplication extends  com.activeandroid.app.Application
 	private static float gradient = 0;
 	private static float maxBatteryVoltage;
 	private static float minBatteryVoltage;
-	private static File dir;
-	private static AssetManager assetManager;
 	private static Sequence sequence;
 
 	private static boolean isretestallowed;
@@ -79,13 +77,9 @@ public class PeriCoachTestApplication extends  com.activeandroid.app.Application
 		android_id = AndroidID.getID(PeriCoachTestApplication.this);
 		if(android_id==null)android_id="";
 		//forceSync();
-	    assetManager = getAssets();
-	    dir=getFilesDir();
 		addDevicesSyncAccount();
 
 	}
-
-	public static int getLastPos() { return lastPos;}
 
 	public static void setLastPos(int lastPos) {PeriCoachTestApplication.lastPos = lastPos;}
 
@@ -200,15 +194,6 @@ public class PeriCoachTestApplication extends  com.activeandroid.app.Application
 	}
 	public static String getDeviceid() {
 		return android_id;//TODO put back adnroid_id
-	}
-	
-
-	private static void copyFile(InputStream in, OutputStream out) throws IOException {
-	    byte[] buffer = new byte[1024];
-	    int read;
-	    while((read = in.read(buffer)) != -1){
-	      out.write(buffer, 0, read);
-	    }
 	}
 
 

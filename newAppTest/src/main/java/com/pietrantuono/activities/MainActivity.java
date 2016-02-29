@@ -320,7 +320,7 @@ public class MainActivity extends AppCompatActivity
         });
     }
 
-    public void closeActivity() {
+    private void closeActivity() {
         destroying = true;
         detectHelper.stopCheckingIfConnectionDrops();
         try {
@@ -544,12 +544,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void addView(String label, String text, boolean goAndExecuteNextTest) {
-        uiHelper.addView(label, text, goAndExecuteNextTest);
-
-    }
-
-    @Override
     public void addView(String label, String text, int color, boolean goAndExecuteNextTest) {
         uiHelper.addView(label, text, color, goAndExecuteNextTest);
     }
@@ -612,8 +606,7 @@ public class MainActivity extends AppCompatActivity
         }, 100);
     }
 
-    @Override
-    public void restartSequence() {
+    private void restartSequence() {
         detectHelper.stopCheckingIfConnectionDrops();// OK
         detectHelper.stopWaitingForPCBDisconnected();
         onPCBDisconnected();
