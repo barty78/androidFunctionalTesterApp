@@ -10,6 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class SequenceSQLiteOpenHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "sequence_database";
     private static final int DATABASE_VERSION = 1;
+    @SuppressWarnings("unused")
     private final String TAG = getClass().getSimpleName();
     private static SequenceSQLiteOpenHelper instance;
 

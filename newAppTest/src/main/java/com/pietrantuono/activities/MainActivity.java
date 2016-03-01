@@ -320,7 +320,7 @@ public class MainActivity extends AppCompatActivity
         });
     }
 
-    private void closeActivity() {
+    public void closeActivity() {
         destroying = true;
         detectHelper.stopCheckingIfConnectionDrops();
         try {

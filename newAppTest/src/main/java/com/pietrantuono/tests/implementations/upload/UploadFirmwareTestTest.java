@@ -57,8 +57,10 @@ public class UploadFirmwareTestTest extends Test {
         if (uploadDialog == null) {
             uploadDialog = new UploadDialog();
         }
-        uploadDialog.show(activity.getSupportFragmentManager(), UploadDialog.TAG);
-        activity.getSupportFragmentManager().executePendingTransactions();
+        if (!uploadDialog.isAdded()) {
+            uploadDialog.show(activity.getSupportFragmentManager(), UploadDialog.TAG);
+            activity.getSupportFragmentManager().executePendingTransactions();
+        }
         start();
     }
 
@@ -95,10 +97,10 @@ public class UploadFirmwareTestTest extends Test {
             @Override
             public void run() {
                 uploadDialog.dismiss();
-                activityListener.onUploadTestFinished(true,success,description,"Fail reason");
+                activityListener.onUploadTestFinished(true, success, description, "Fail reason");
 
             }
-        }, (3 + 3 + 5 + 3+2) * 1000);
+        }, (3 + 3 + 5 + 3 + 2) * 1000);
     }
 
     public void reset() {

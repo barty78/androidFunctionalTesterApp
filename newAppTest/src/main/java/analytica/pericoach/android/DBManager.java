@@ -125,7 +125,7 @@ public class DBManager {
 
                 entityList.add(entity);
             }
-
+            c.close();
             db.close();
             return entityList;
 
@@ -133,6 +133,7 @@ public class DBManager {
             Log.e("DB Error", e.toString());
             e.printStackTrace();
         }
+
         db.close();
         return null;
     }

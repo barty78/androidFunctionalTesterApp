@@ -56,8 +56,10 @@ public class UploadFirmwareTest extends Test {
         if (uploadDialog == null) {
             uploadDialog = new UploadDialog();
         }
-        uploadDialog.show(activity.getSupportFragmentManager(), UploadDialog.TAG);
-        activity.getSupportFragmentManager().executePendingTransactions();
+        if (!uploadDialog.isAdded()) {
+            uploadDialog.show(activity.getSupportFragmentManager(), UploadDialog.TAG);
+            activity.getSupportFragmentManager().executePendingTransactions();
+        }
         start();
     }
 

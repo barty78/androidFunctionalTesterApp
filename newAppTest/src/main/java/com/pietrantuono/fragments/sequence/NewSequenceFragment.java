@@ -25,6 +25,7 @@ import com.pietrantuono.sequencedb.SequenceProvider;
 
 
 public class NewSequenceFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
+    @SuppressWarnings("unused")
     private static final String TAG = "NewSequenceFragment";
     private static final int SEQUENCE_LOADER_MANAGER = 1;
     private SequenceFragmentCallback mListener;

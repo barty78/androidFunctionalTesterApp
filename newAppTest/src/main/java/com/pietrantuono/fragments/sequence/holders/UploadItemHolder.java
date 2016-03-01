@@ -33,7 +33,6 @@ public class UploadItemHolder extends SequenceItemHolder {
         reading = (TextView) itemView.findViewById(R.id.reading);
     }
 
-    @Override
     public void setData(SequenceRowElement.RowElement element, int position) {
         if (!(element instanceof SequenceRowElement.UploadRowElement))
             throw new RuntimeException("Wrong adata " + Log.getStackTraceString(new Exception()));
