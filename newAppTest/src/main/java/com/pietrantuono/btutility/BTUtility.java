@@ -53,6 +53,7 @@ import android.widget.EditText;
 
 import customclasses.DebugHelper;
 import hugo.weaving.DebugLog;
+import hydrix.pfmat.generic.AllVoltageObserver;
 import hydrix.pfmat.generic.Device;
 
 public class BTUtility {
@@ -501,20 +502,12 @@ public class BTUtility {
     public void sendAllVoltages(final short[] refVoltages, final short[] zeroVoltages, int timeOutInMills) {
         final CountDownLatch countDownLatch = new CountDownLatch(1);
         try {
-            NewPFMATDevice.getDevice().sendAllVoltages(refVoltages, zeroVoltages, new AllSensorsCallback() {
+            NewPFMATDevice.getDevice().sendAllVoltages(refVoltages, zeroVoltages, new AllVoltageObserver() {
                 @Override
-                public void onAllVoltageResponseReceived() {
+                public void onAllVoltage(boolean ack) {
                     countDownLatch.countDown();
-                    Log.d(TAG,"sendAllVoltages SUCCESS");
-
+                    Log.d(TAG,"onAllVoltage , ACK = "+ack);
                 }
-
-                @Override
-                public void onError() {
-                    Log.d(TAG,"sendAllVoltages ERROR");
-                    countDownLatch.countDown();
-                }
-
             });
         } catch (Exception e) {
             e.printStackTrace();
