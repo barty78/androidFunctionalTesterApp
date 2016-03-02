@@ -12,6 +12,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 import com.pietrantuono.activities.MyOnCancelListener;
 import com.pietrantuono.activities.NewIOIOActivityListener;
@@ -499,7 +500,7 @@ public class BTUtility {
     }
 
 
-    public void sendAllVoltages(final short[] refVoltages, final short[] zeroVoltages, int timeOutInMills) {
+    public void sendAllVoltages(final short[] refVoltages, final short[] zeroVoltages, int timeOutInMills) throws TimeoutException, NewDevice.InvalidVoltageException {
         final CountDownLatch countDownLatch = new CountDownLatch(1);
         try {
             NewPFMATDevice.getDevice().sendAllVoltages(refVoltages, zeroVoltages, new AllVoltageObserver() {
@@ -509,15 +510,16 @@ public class BTUtility {
                     Log.d(TAG,"onAllVoltage , ACK = "+ack);
                 }
             });
-        } catch (Exception e) {
+        } catch (NewDevice.InvalidVoltageException e) {
             e.printStackTrace();
             countDownLatch.countDown();
             Log.d(TAG, "Exception in  sendAllVoltages = " + e.toString());
-            return;
+            throw e;
         }
         try {
-            boolean timeddout = countDownLatch.await(timeOutInMills, TimeUnit.MILLISECONDS);
-            Log.d(TAG,"Timed out = "+timeddout);
+            boolean notTimedout = countDownLatch.await(timeOutInMills, TimeUnit.MILLISECONDS);
+            Log.d(TAG,"Timed out = "+notTimedout);
+            if(!notTimedout)throw new TimeoutException("Set all voltages timed out");
         } catch (InterruptedException e) {
             e.printStackTrace();
             return;
