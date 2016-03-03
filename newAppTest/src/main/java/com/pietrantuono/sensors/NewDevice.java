@@ -58,7 +58,7 @@ public abstract class NewDevice {
     private OnSampleCallback sampleCallback = null;
     private WeakReference<OnSampleCallback> weakReference = null;
     private BatteryLevelUUTVoltageTest.Callback callback;
-    private AllSensorsCallback allSensorsCallback;
+    private AllVoltageObserver allSensorsCallback;
 
     public class Information {
         public String mSerialNumber = "";
@@ -177,12 +177,12 @@ public abstract class NewDevice {
         return sendPacket(new PacketTx_SetZeroVoltage(sensorIndex, zeroVoltage));
     }
 
-    public final boolean sendAllVoltages(short[] refVoltages, short[] zeroVoltages, AllSensorsCallback callback) throws Exception {
+    public final boolean sendAllVoltages(short[] refVoltages, short[] zeroVoltages, AllVoltageObserver callback) throws InvalidVoltageException {
         if (refVoltages.length == 3 && zeroVoltages.length == 3) {
             allSensorsCallback=callback;
             return sendPacket(new PacketTx_SetAllVoltage(refVoltages, zeroVoltages));
         } else {
-            throw new Exception("Invalid voltages");
+            throw new InvalidVoltageException("Invalid voltages");
         }
     }
 
@@ -450,4 +450,10 @@ public abstract class NewDevice {
 
     public abstract void stop();
 
+
+    public class InvalidVoltageException extends Exception{
+        public InvalidVoltageException(String detailMessage) {
+            super(detailMessage);
+        }
+    }
 }
