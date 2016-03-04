@@ -8,8 +8,6 @@ import com.google.gson.annotations.Expose;
 @Table(name = "Readings")
 public class Readings extends MyModel{
 
-   
-	
 	@Expose
 	@Column(name = "Test")
     Test Test;
@@ -18,7 +16,6 @@ public class Readings extends MyModel{
     @Column(name = "Sensors")
     Sensors Sensors;
 
-	  
     @Column(name = "TestRecord")
     private TestRecord foreignkey;
     /**
