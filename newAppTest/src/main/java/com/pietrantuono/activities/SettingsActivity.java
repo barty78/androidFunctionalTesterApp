@@ -124,7 +124,7 @@ public class SettingsActivity extends PreferenceActivity {
         dowloadunprocessed.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                downloadUnprocessed();
+                downloadUnprocessed(SettingsActivity.this);
                 return false;
             }
         });
@@ -138,8 +138,13 @@ public class SettingsActivity extends PreferenceActivity {
 
     }
 
-    private void downloadUnprocessed() {
+    private void downloadUnprocessed(Context context) {
         List<TestRecord> records = new Select().from(TestRecord.class).where("uploaded = ?", false).execute();
+        RecordsHelper recordsHelper = RecordsHelper.get(context);
+        String selection="uploaded = ?";
+        String[] selectionArgs= new String[]{"1"};
+        Cursor testRecordCursor = recordsHelper.getWritableDatabase().query(RecordsContract.TestRecords.TABLE, null, selection, selectionArgs, null, null, null);
+        records=reconstrucRecords(context,testRecordCursor);
         if (records == null || records.size() <= 0) {
             Toast.makeText(SettingsActivity.this, "No records found...", Toast.LENGTH_LONG).show();
             return;
@@ -204,9 +209,140 @@ public class SettingsActivity extends PreferenceActivity {
 
 
     public static void dowloadAll(Context context) {
-        List<TestRecord> records = new ArrayList<>();
+        List<TestRecord> records = getAllRecords(context);
+        if (records == null || records.size() <= 0) {
+            Toast.makeText(context, "No records found...", Toast.LENGTH_LONG).show();
+            return;
+        }
+        String root = Environment.getExternalStorageDirectory().toString();
+        File dir = new File(root + "/records");
+        dir.mkdirs();
+        long time = System.currentTimeMillis();
+        String suffix = "" + time + ".txt";
+        File file = new File(dir, FILE_ALL_RECORDS.concat("" + suffix));
+        OutputStreamWriter outputStreamWriter = null;
+        FileOutputStream fileOutputStream = null;
+        try {
+            fileOutputStream = new FileOutputStream(file);
+            outputStreamWriter = new OutputStreamWriter(fileOutputStream);
+        } catch (Exception e) {
+            Toast.makeText(context, "Unable to create file", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        for (int i = 0; i < records.size(); i++) {
+            TestRecord record = records.get(i);
+            Gson gson = new GsonBuilder()
+                    .excludeFieldsWithoutExposeAnnotation()
+                    .registerTypeAdapter(Long.class, new MyLongTypeAdapter())
+                    .registerTypeAdapter(Double.class, new MyDoubleTypeAdapter())
+                    .registerTypeAdapter(Integer.class, new MyIntTypeAdapter())
+                    .create();
+            String recordstring = gson.toJson(record, TestRecord.class);
+            try {
+                outputStreamWriter.write(recordstring + "\n");
+            } catch (IOException e) {
+                Toast.makeText(context, e.toString(), Toast.LENGTH_LONG).show();
+                Log.e("Exception", "File write failed: " + e.toString());
+                Crashlytics.logException(e);
+            }
+
+        }
+        try {
+            outputStreamWriter.close();
+            fileOutputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(context, e.toString(), Toast.LENGTH_LONG).show();
+            Log.e("Exception", "File close failed: " + e.toString());
+            Crashlytics.logException(e);
+        }
+        File outFile = new File(dir, FILE_ALL_RECORDS.concat("" + suffix));
+        Uri uri = Uri.fromFile(outFile);
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        emailIntent.setType("vnd.android.cursor.dir/email");
+        String to[] = {"pbartlett@analyticamedical.com", "maurizio.pietrantuono@gmail.com"};
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, to);
+        emailIntent.putExtra(Intent.EXTRA_STREAM, uri);
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm dd MMMM yyyy");
+        Date date = new Date(time);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "All records " + sdf.format(date));
+        context.startActivity(Intent.createChooser(emailIntent, "Send data..."));
+    }
+
+
+    private void foo() {
+
+    }
+
+    private void getLogs() {
+        List<TestRecord> records = new Select().from(TestRecord.class).execute();
+        if (records == null || records.size() <= 0) {
+            Toast.makeText(SettingsActivity.this, "No records found...", Toast.LENGTH_LONG).show();
+            return;
+        }
+        String root = Environment.getExternalStorageDirectory().toString();
+        File dir = new File(root + "/logs");
+        dir.mkdirs();
+        long time = System.currentTimeMillis();
+        String suffix = "" + time + ".txt";
+        File file = new File(dir, FILE_LOGS.concat("" + suffix));
+        OutputStreamWriter outputStreamWriter = null;
+        FileOutputStream fileOutputStream = null;
+        try {
+            fileOutputStream = new FileOutputStream(file);
+            outputStreamWriter = new OutputStreamWriter(fileOutputStream);
+        } catch (Exception e) {
+            Toast.makeText(SettingsActivity.this, "Unable to create file", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        try {
+            Process process = Runtime.getRuntime().exec("logcat -d");
+            BufferedReader bufferedReader = new BufferedReader(
+                    new InputStreamReader(process.getInputStream()));
+
+            StringBuilder log = new StringBuilder();
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                log.append(line);
+                outputStreamWriter.write(line + "\n");
+            }
+
+        } catch (IOException e) {
+        }
+        try {
+            outputStreamWriter.close();
+            fileOutputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(SettingsActivity.this, e.toString(), Toast.LENGTH_LONG).show();
+            Log.e("Exception", "File close failed: " + e.toString());
+            Crashlytics.logException(e);
+        }
+        File outFile = new File(dir, FILE_LOGS.concat("" + suffix));
+        Uri uri = Uri.fromFile(outFile);
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        emailIntent.setType("vnd.android.cursor.dir/email");
+        String to[] = {"pbartlett@analyticamedical.com", "maurizio.pietrantuono@gmail.com"};
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, to);
+        emailIntent.putExtra(Intent.EXTRA_STREAM, uri);
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm dd MMMM yyyy");
+        Date date = new Date(time);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "App logs " + sdf.format(date));
+        startActivity(Intent.createChooser(emailIntent, "Send data..."));
+    }
+
+
+    public static List<TestRecord> getAllRecords(Context context) {
         RecordsHelper recordsHelper = RecordsHelper.get(context);
         Cursor testRecordCursor = recordsHelper.getWritableDatabase().query(RecordsContract.TestRecords.TABLE, null, null, null, null, null, null);
+        return reconstrucRecords(context,testRecordCursor);
+    }
+
+    public static List<TestRecord> reconstrucRecords(Context context,Cursor testRecordCursor) {
+        List<TestRecord> records = new ArrayList<>();
+        RecordsHelper recordsHelper = RecordsHelper.get(context);
         while (testRecordCursor.moveToNext()) {
             TestRecord testRecord = new TestRecord();
             TestRecord record = new TestRecord();
@@ -374,128 +510,7 @@ public class SettingsActivity extends PreferenceActivity {
             records.add(record);
         }
 
-        if (records == null || records.size() <= 0) {
-            Toast.makeText(context, "No records found...", Toast.LENGTH_LONG).show();
-            return;
-        }
-        String root = Environment.getExternalStorageDirectory().toString();
-        File dir = new File(root + "/records");
-        dir.mkdirs();
-        long time = System.currentTimeMillis();
-        String suffix = "" + time + ".txt";
-        File file = new File(dir, FILE_ALL_RECORDS.concat("" + suffix));
-        OutputStreamWriter outputStreamWriter = null;
-        FileOutputStream fileOutputStream = null;
-        try {
-            fileOutputStream = new FileOutputStream(file);
-            outputStreamWriter = new OutputStreamWriter(fileOutputStream);
-        } catch (Exception e) {
-            Toast.makeText(context, "Unable to create file", Toast.LENGTH_LONG).show();
-            return;
-        }
-
-        for (int i = 0; i < records.size(); i++) {
-            TestRecord record = records.get(i);
-            Gson gson = new GsonBuilder()
-                    .excludeFieldsWithoutExposeAnnotation()
-                    .registerTypeAdapter(Long.class, new MyLongTypeAdapter())
-                    .registerTypeAdapter(Double.class, new MyDoubleTypeAdapter())
-                    .registerTypeAdapter(Integer.class, new MyIntTypeAdapter())
-                    .create();
-            String recordstring = gson.toJson(record, TestRecord.class);
-            try {
-                outputStreamWriter.write(recordstring + "\n");
-            } catch (IOException e) {
-                Toast.makeText(SettingsActivity.this, e.toString(), Toast.LENGTH_LONG).show();
-                Log.e("Exception", "File write failed: " + e.toString());
-                Crashlytics.logException(e);
-            }
-
-
-        }
-        try {
-            outputStreamWriter.close();
-            fileOutputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-            Toast.makeText(context, e.toString(), Toast.LENGTH_LONG).show();
-            Log.e("Exception", "File close failed: " + e.toString());
-            Crashlytics.logException(e);
-        }
-        File outFile = new File(dir, FILE_ALL_RECORDS.concat("" + suffix));
-        Uri uri = Uri.fromFile(outFile);
-        Intent emailIntent = new Intent(Intent.ACTION_SEND);
-        emailIntent.setType("vnd.android.cursor.dir/email");
-        String to[] = {"pbartlett@analyticamedical.com", "maurizio.pietrantuono@gmail.com"};
-        emailIntent.putExtra(Intent.EXTRA_EMAIL, to);
-        emailIntent.putExtra(Intent.EXTRA_STREAM, uri);
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm dd MMMM yyyy");
-        Date date = new Date(time);
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "All records " + sdf.format(date));
-        startActivity(Intent.createChooser(emailIntent, "Send data..."));
-    }
-
-
-    private void foo() {
-
-    }
-
-    private void getLogs() {
-        List<TestRecord> records = new Select().from(TestRecord.class).execute();
-        if (records == null || records.size() <= 0) {
-            Toast.makeText(SettingsActivity.this, "No records found...", Toast.LENGTH_LONG).show();
-            return;
-        }
-        String root = Environment.getExternalStorageDirectory().toString();
-        File dir = new File(root + "/logs");
-        dir.mkdirs();
-        long time = System.currentTimeMillis();
-        String suffix = "" + time + ".txt";
-        File file = new File(dir, FILE_LOGS.concat("" + suffix));
-        OutputStreamWriter outputStreamWriter = null;
-        FileOutputStream fileOutputStream = null;
-        try {
-            fileOutputStream = new FileOutputStream(file);
-            outputStreamWriter = new OutputStreamWriter(fileOutputStream);
-        } catch (Exception e) {
-            Toast.makeText(SettingsActivity.this, "Unable to create file", Toast.LENGTH_LONG).show();
-            return;
-        }
-
-        try {
-            Process process = Runtime.getRuntime().exec("logcat -d");
-            BufferedReader bufferedReader = new BufferedReader(
-                    new InputStreamReader(process.getInputStream()));
-
-            StringBuilder log = new StringBuilder();
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
-                log.append(line);
-                outputStreamWriter.write(line + "\n");
-            }
-
-        } catch (IOException e) {
-        }
-        try {
-            outputStreamWriter.close();
-            fileOutputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-            Toast.makeText(SettingsActivity.this, e.toString(), Toast.LENGTH_LONG).show();
-            Log.e("Exception", "File close failed: " + e.toString());
-            Crashlytics.logException(e);
-        }
-        File outFile = new File(dir, FILE_LOGS.concat("" + suffix));
-        Uri uri = Uri.fromFile(outFile);
-        Intent emailIntent = new Intent(Intent.ACTION_SEND);
-        emailIntent.setType("vnd.android.cursor.dir/email");
-        String to[] = {"pbartlett@analyticamedical.com", "maurizio.pietrantuono@gmail.com"};
-        emailIntent.putExtra(Intent.EXTRA_EMAIL, to);
-        emailIntent.putExtra(Intent.EXTRA_STREAM, uri);
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm dd MMMM yyyy");
-        Date date = new Date(time);
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "App logs " + sdf.format(date));
-        startActivity(Intent.createChooser(emailIntent, "Send data..."));
+        return records;
     }
 
 }
