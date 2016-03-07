@@ -180,6 +180,7 @@ public class SensorTest {
                 return;
             }
         }
+        sensorsTestHelper.getNewSessionPollingThreadref().start();
         HandlerThread handlerThread = new HandlerThread("Sensor test handler thread");
         handlerThread.start();
 

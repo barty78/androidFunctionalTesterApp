@@ -25,7 +25,7 @@ public class SensorsTestHelper implements OnSampleCallback {
 	TextView sensor0ref = null;
 	TextView sensor1ref = null;
 	TextView sensor2ref = null;
-	private NewSessionPollingThread newSessionPollingThreadref = null;
+	public NewSessionPollingThread newSessionPollingThreadref = null;
 	SessionSamples samplesref = null;
 	SessionSamples closedtestsamplesrefsensor0 = null;
 	SessionSamples closedtestsamplesrefsensor1 = null;
@@ -65,7 +65,10 @@ public class SensorsTestHelper implements OnSampleCallback {
 		NewPFMATDevice.getDevice().setCallback(this);
 		this.newSessionPollingThreadref = new NewSessionPollingThread(NewPFMATDevice.getDevice(),
 				System.currentTimeMillis(), 1000 / SAMPLING_HZ);
-		this.newSessionPollingThreadref.start();
+	}
+
+	public NewSessionPollingThread getNewSessionPollingThreadref() {
+		return newSessionPollingThreadref;
 	}
 
 	@Override
