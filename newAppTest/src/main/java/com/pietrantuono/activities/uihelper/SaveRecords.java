@@ -60,6 +60,31 @@ public class SaveRecords {
                 values.put("Result",sensors.getS0().getResult().get(i));
                 recordsHelper.getWritableDatabase().insert(RecordsContract.SingleS0.TABLE, "ErrorCode", values);
             }
+
+            length = sensors.getS1().getIDTest().size();
+            for(int i=0;i<length;i++){
+                values = new ContentValues();
+                values.put("Avg",sensors.getS1().getAvg().get(i));
+                values.put("IDTest", sensors.getS1().getIDTest().get(i));
+                values.put("Min", sensors.getS1().getMin().get(i));
+                values.put("Max", sensors.getS1().getMax().get(i));
+                values.put("ErrorCode", sensors.getS1().getErrorCodes().get(i));
+                values.put("Result",sensors.getS1().getResult().get(i));
+                recordsHelper.getWritableDatabase().insert(RecordsContract.SingleS1.TABLE, "ErrorCode", values);
+            }
+
+            length = sensors.getS1().getIDTest().size();
+            for(int i=0;i<length;i++){
+                values = new ContentValues();
+                values.put("Avg",sensors.getS2().getAvg().get(i));
+                values.put("IDTest", sensors.getS2().getIDTest().get(i));
+                values.put("Min", sensors.getS2().getMin().get(i));
+                values.put("Max", sensors.getS2().getMax().get(i));
+                values.put("ErrorCode", sensors.getS2().getErrorCodes().get(i));
+                values.put("Result",sensors.getS2().getResult().get(i));
+                recordsHelper.getWritableDatabase().insert(RecordsContract.SingleS2.TABLE, "ErrorCode", values);
+            }
+
             //String selection = RecordsContract.Sensors.COL_READINGS + "=?";
             //String[] selectionArgs = new String[]{"" + recordId};
             //Cursor sensorsCursor = recordsHelper.getWritableDatabase().query(RecordsContract.Sensors.TABLE, null, selection, selectionArgs, null, null, null);

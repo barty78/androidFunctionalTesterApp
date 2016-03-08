@@ -350,7 +350,7 @@ public class SettingsActivity extends PreferenceActivity {
             record.setDuration(testRecordCursor.getString(testRecordCursor.getColumnIndexOrThrow("Duration")));
             record.setFixtureNo(testRecordCursor.getString(testRecordCursor.getColumnIndexOrThrow("FixtureNo")));
             record.setFWVer(testRecordCursor.getString(testRecordCursor.getColumnIndexOrThrow("FWVer")));
-            record.setJobNo(testRecordCursor.getLong(testRecordCursor.getColumnIndexOrThrow("JobNo")));
+            record.setJobNo(testRecordCursor.getLong(testRecordCursor.getColumnInprettydexOrThrow("JobNo")));
             record.setModel(testRecordCursor.getLong(testRecordCursor.getColumnIndexOrThrow("Model")));
             record.setResult(testRecordCursor.getLong(testRecordCursor.getColumnIndexOrThrow("Result")));
             record.setSerial(testRecordCursor.getString(testRecordCursor.getColumnIndexOrThrow("Serial")));
