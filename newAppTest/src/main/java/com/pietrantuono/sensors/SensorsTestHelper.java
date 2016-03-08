@@ -3,11 +3,13 @@ package com.pietrantuono.sensors;
 import hydrix.pfmat.generic.Force;
 import hydrix.pfmat.generic.SessionSamples;
 import ioio.lib.api.IOIO;
+
 import java.lang.ref.WeakReference;
 import java.text.SimpleDateFormat;
 import java.util.concurrent.Callable;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 import android.app.Activity;
 import android.os.Handler;
@@ -25,7 +27,7 @@ public class SensorsTestHelper implements OnSampleCallback {
 	TextView sensor0ref = null;
 	TextView sensor1ref = null;
 	TextView sensor2ref = null;
-	private NewSessionPollingThread newSessionPollingThreadref = null;
+	public NewSessionPollingThread newSessionPollingThreadref = null;
 	SessionSamples samplesref = null;
 	SessionSamples closedtestsamplesrefsensor0 = null;
 	SessionSamples closedtestsamplesrefsensor1 = null;
@@ -65,7 +67,10 @@ public class SensorsTestHelper implements OnSampleCallback {
 		NewPFMATDevice.getDevice().setCallback(this);
 		this.newSessionPollingThreadref = new NewSessionPollingThread(NewPFMATDevice.getDevice(),
 				System.currentTimeMillis(), 1000 / SAMPLING_HZ);
-		this.newSessionPollingThreadref.start();
+	}
+
+	public NewSessionPollingThread getNewSessionPollingThreadref() {
+		return newSessionPollingThreadref;
 	}
 
 	@Override
@@ -120,41 +125,37 @@ public class SensorsTestHelper implements OnSampleCallback {
 		}
 	}
 
+    void sendAllVoltages(final Short voltage, final Short zerovoltage) throws TimeoutException, NewDevice.InvalidVoltageException {
+        short[] ref = new short[]{voltage, voltage, voltage};
+        short[] zero = new short[]{zerovoltage, zerovoltage, zerovoltage};
+        ((NewIOIOActivityListener) (activityref.get())).getBtutility().sendAllVoltages(ref, zero, 500);
 
-	void sendAllVoltages(final Short voltage, final Short zerovoltage) throws Exception{
-		short[] ref = new short[]{voltage,voltage,voltage};
-		short[] zero = new short[]{zerovoltage,zerovoltage,zerovoltage};
-		try {
-			((NewIOIOActivityListener) (activityref.get())).getBtutility().sendAllVoltages(ref,zero,500);
-		} catch (Exception e) {
-			throw new Exception("Setting Failed.");
-		}
-	}
+    }
 
-	void sendVoltages(final Short voltage, final Short zerovoltage) throws Exception{
-		try {
-			((NewIOIOActivityListener) (activityref.get())).getBtutility().setVoltage(voltage);
-		} catch (Exception e) {
-			throw new Exception("Setting Failed.");
-		}
-		try {
-			((NewIOIOActivityListener) (activityref.get())).getBtutility().setZeroVoltage(zerovoltage);
-		} catch (Exception e) {
-			throw new Exception("Setting Failed.");
-		}
-	}
+    void sendVoltages(final Short voltage, final Short zerovoltage) throws Exception {
+        try {
+            ((NewIOIOActivityListener) (activityref.get())).getBtutility().setVoltage(voltage);
+        } catch (Exception e) {
+            throw new Exception("Setting Failed.");
+        }
+        try {
+            ((NewIOIOActivityListener) (activityref.get())).getBtutility().setZeroVoltage(zerovoltage);
+        } catch (Exception e) {
+            throw new Exception("Setting Failed.");
+        }
+    }
 
-	public void accetpData(boolean accept){
-		this.acceptdata=accept;
-	}
+    public void accetpData(boolean accept) {
+        this.acceptdata = accept;
+    }
 
-	/**
-	 * Should work, tested in another context, will not work if both sendAllVoltages and callback are executed on the same thread
-	 * but that should not be the case
-	 */
-	public void sendAllVoltages(final short[] refVoltages, final short[] zeroVoltages, int timeOutInMills) {
-		((NewIOIOActivityListener) (activityref.get())).getBtutility().sendAllVoltages(refVoltages,zeroVoltages,timeOutInMills);
-	}
+    /**
+     * Should work, tested in another context, will not work if both sendAllVoltages and callback are executed on the same thread
+     * but that should not be the case
+     */
+    public void sendAllVoltages(final short[] refVoltages, final short[] zeroVoltages, int timeOutInMills) throws Exception {
+        ((NewIOIOActivityListener) (activityref.get())).getBtutility().sendAllVoltages(refVoltages, zeroVoltages, timeOutInMills);
+    }
 
 
 }

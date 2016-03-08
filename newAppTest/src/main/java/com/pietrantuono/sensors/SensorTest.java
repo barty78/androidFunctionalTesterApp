@@ -2,6 +2,7 @@ package com.pietrantuono.sensors;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;
+import java.util.concurrent.TimeoutException;
 
 import com.pietrantuono.activities.MainActivity;
 import com.pietrantuono.activities.NewIOIOActivityListener;
@@ -172,14 +173,19 @@ public class SensorTest {
             try {
 //                this.sensorsTestHelper.sendVoltages(voltage, zeroVoltage);
                   this.sensorsTestHelper.sendAllVoltages(voltage, zeroVoltage);
-            } catch (Exception e) {
+            } catch (TimeoutException e) {
                 e.printStackTrace();
                 wrapper.setErrorcode((long) ErrorCodes.SENSORTEST_VOLTAGE_SETTING_FAILED);
-                ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - Setting Voltages Failed", true, testToBeParsed
-                );
+                ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - Setting Voltages Failed", true, testToBeParsed);
+                return;
+            } catch (NewDevice.InvalidVoltageException e) {
+                e.printStackTrace();
+                wrapper.setErrorcode((long) ErrorCodes.SENSORTEST_VOLTAGE_SETTING_FAILED);
+                ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - Setting Voltages Failed", true, testToBeParsed);
                 return;
             }
         }
+        sensorsTestHelper.getNewSessionPollingThreadref().start();
         HandlerThread handlerThread = new HandlerThread("Sensor test handler thread");
         handlerThread.start();
 

@@ -15,7 +15,6 @@ import com.pietrantuono.fragments.sequence.holders.TestItemHolder;
 import com.pietrantuono.fragments.sequence.holders.UploadItemHolder;
 import com.pietrantuono.pericoach.newtestapp.R;
 import com.pietrantuono.sequencedb.SequenceContracts;
-import com.pietrantuono.tests.implementations.upload.UploadTestCallback;
 
 /**
  * Created by Maurizio Pietrantuono, maurizio.pietrantuono@gmail.com.
@@ -27,16 +26,15 @@ public class SequenceCursorRecyclerAdapter extends CursorRecyclerAdapter<Sequenc
     public static final int STEP = 1;
     public static final int SENSOR_TEST = 2;
     public static final int FW_UPLOAD = 3;
-    private UploadTestCallback callback;
 
     @IntDef({TEST, STEP, FW_UPLOAD, SENSOR_TEST})
     public @interface Type {
     }
 
-    public SequenceCursorRecyclerAdapter(Cursor cursor, Context context, UploadTestCallback callback) {
+    public SequenceCursorRecyclerAdapter(Cursor cursor, Context context) {
         super(cursor);
         this.context = context;
-        this.callback=callback;
+
         layoutInflater = ((Activity)context).getLayoutInflater();
         setHasStableIds(true);
     }
@@ -45,9 +43,7 @@ public class SequenceCursorRecyclerAdapter extends CursorRecyclerAdapter<Sequenc
     public void onBindViewHolderCursor(SequenceItemHolder holder, Cursor cursor) {
         holder.setIsRecyclable(false);
         holder.setData(cursor);
-        if((holder instanceof UploadItemHolder) && callback!=null) {
-            callback.onViewHolderReady((UploadItemHolder) holder);
-        }
+
     }
 
     @Override
@@ -89,7 +85,5 @@ public class SequenceCursorRecyclerAdapter extends CursorRecyclerAdapter<Sequenc
         return TEST;
     }
 
-    public void setCallback(UploadTestCallback callback) {
-        this.callback = callback;
-    }
+
 }

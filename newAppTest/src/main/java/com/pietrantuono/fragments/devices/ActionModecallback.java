@@ -5,19 +5,11 @@ import android.content.Context;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.view.ActionMode;
 import android.support.v7.widget.PopupMenu;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
-import android.widget.PopupWindow;
-import android.widget.Spinner;
 import android.widget.Switch;
-import android.widget.TextView;
 
 import com.pietrantuono.pericoach.newtestapp.R;
 
@@ -26,14 +18,8 @@ import com.pietrantuono.pericoach.newtestapp.R;
  * Created by Maurizio Pietrantuono, maurizio.pietrantuono@gmail.com.
  */
 public class ActionModecallback implements ActionMode.Callback {
-    private final String TAG = getClass().getSimpleName();
     private Context context;
     private Callback callback;
-
-    public ActionModecallback(Context context, Callback callback) {
-        this.context = context;
-        this.callback = callback;
-    }
 
     @Override
     public boolean onCreateActionMode(final ActionMode mode, final Menu menu) {

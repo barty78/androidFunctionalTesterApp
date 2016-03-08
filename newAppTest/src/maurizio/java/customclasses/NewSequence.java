@@ -424,10 +424,13 @@ public class NewSequence implements NewSequenceInterface {
         test.setValue(1);
         sequence.add(test);
 
-        //sequence.add(new BluetoothConnectTestForTesting(activity));
+        sequence.add(new BluetoothConnectTestForTesting(activity));
 
-        //sensortest.setErrorcode(0l);
-        sequence.add(new TestUploadFirmwareTest(activity,ioio,false));
+        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 2150, 2300, 50,
+                "Sensor Input Test, LOADED, GAIN/ZERO @ 210/0"));
+        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 0, 50, 50,
+                "Sensor Input Test, LOADED, GAIN/ZERO @ 127/50"));
+
     }
 
 

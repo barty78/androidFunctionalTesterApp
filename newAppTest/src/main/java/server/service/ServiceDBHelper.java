@@ -130,8 +130,4 @@ public class ServiceDBHelper {
 		if(max!=null)return max.getDeviceId();
 		else return 0;
 	}
-	public static List<Model> foo(){
-		return new Select().from(Device.class).orderBy("deviceId DESC").execute();
-
-	}
 }

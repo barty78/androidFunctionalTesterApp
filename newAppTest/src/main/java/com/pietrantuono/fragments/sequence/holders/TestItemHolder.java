@@ -31,7 +31,6 @@ public class TestItemHolder extends SequenceItemHolder {
         result = (IconicsImageView) itemView.findViewById(R.id.result);
     }
 
-    @Override
     public void setData(SequenceRowElement.RowElement rowElement, int position) {
         if (!(rowElement instanceof SequenceRowElement.TestRowElement))
             throw new RuntimeException("Wrong adata " + Log.getStackTraceString(new Exception()));

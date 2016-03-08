@@ -117,27 +117,14 @@ public class SequenceRowElement {
     public static class UploadRowElement extends RowElement{
         private boolean istest;
         private boolean success;
-
-        public final static int NONE = 0;
-        public final static int FAIL = 1;
-        public final static int PASS = 2;
-        public final static int WAIT = 3;
-        public final static int RESET = 4;
-        public final static int PROGRESS = 5;
         private String failReason;
 
-        @IntDef({NONE, FAIL, PASS, WAIT, RESET, PROGRESS})
-        public @interface State {
-        }
-        private @State int state;
-
-        private int progressValue;
-
-        public UploadRowElement(String description, boolean istest, boolean success,NewSequenceInterface sequence) {
+        public UploadRowElement(String description, boolean istest, boolean success,NewSequenceInterface sequence, String failReason) {
             super(sequence);
             this.description = description;
             this.istest = istest;
             this.success = success;
+            this.failReason=failReason;
         }
 
         public String getDescription() {
@@ -159,22 +146,6 @@ public class SequenceRowElement {
         @Override
         public NewSequenceInterface getSequence() {
             return sequence;
-        }
-
-        public int getState() {
-            return state;
-        }
-
-        public void setState(int state) {
-            this.state = state;
-        }
-
-        public int getProgressValue() {
-            return progressValue;
-        }
-
-        public void setProgressValue(int progressValue) {
-            this.progressValue = progressValue;
         }
 
         public String getFailReason() {

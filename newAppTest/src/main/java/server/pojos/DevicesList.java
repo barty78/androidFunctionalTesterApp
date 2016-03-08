@@ -46,13 +46,4 @@ public class DevicesList {
         return Updated;
     }
 
-    /**
-     *
-     * @param Updated
-     * The Updated
-     */
-    public void setUpdated(List<Device> Updated) {
-        this.Updated = Updated;
-    }
-
 }

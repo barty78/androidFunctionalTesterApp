@@ -4,6 +4,7 @@ import ioio.lib.api.IOIO;
 import server.pojos.Job;
 
 import android.app.Activity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -157,7 +158,7 @@ public class TestsParser {
             test = new ChargeLedCheckTest(activity, ioio, getDescription(testToBeParsed),
                     getDescription(testToBeParsed));
         } else if (classID == activity.getResources().getInteger(R.integer.DummyUploadFirmwareTest)) {
-            test = new DummyUploadFirmwareTest(activity, ioio, false); //TODO - Get boolean for loopback from db field.
+            test = new DummyUploadFirmwareTest((AppCompatActivity) activity, ioio, false); //TODO - Get boolean for loopback from db field.
         } else if (classID == activity.getResources().getInteger(R.integer.GetMacAddressTest)) {
             test = new GetMacAddressTest(activity, ioio);
         } else if (classID == activity.getResources().getInteger(R.integer.ListenToUart)) {

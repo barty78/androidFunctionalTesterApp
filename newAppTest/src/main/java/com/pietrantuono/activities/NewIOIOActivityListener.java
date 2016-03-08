@@ -1,14 +1,11 @@
 package com.pietrantuono.activities;
 
 import com.pietrantuono.btutility.BTUtility;
-import com.pietrantuono.tests.implementations.upload.UploadTestCallback;
 
 public interface NewIOIOActivityListener {
 
 
     void goAndExecuteNextTest();
-
-    void addView(String label, String text, boolean goAndExecuteNextTest);
 
     void addView(String label, String text, int color, boolean goAndExecuteNextTest);
 
@@ -37,13 +34,11 @@ public interface NewIOIOActivityListener {
 
     public void setSerialBT(String serial, Boolean success);
 
-    void createUploadProgress(boolean b, boolean c, String description, UploadTestCallback callback);
+    public void onUploadTestFinished(boolean istest, boolean success, String description,String failReason);
 
     public void onCurrentSequenceEnd();
 
     public void startPCBSleepMonitor();
-
-    void setResult(boolean success);
 
     String getMac();
 

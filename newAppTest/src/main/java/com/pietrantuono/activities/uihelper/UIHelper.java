@@ -13,7 +13,6 @@ import com.pietrantuono.constants.NewSequenceInterface;
 import com.pietrantuono.pericoach.newtestapp.R;
 import com.pietrantuono.sequencedb.SequenceContracts;
 import com.pietrantuono.sequencedb.SequenceProvider;
-import com.pietrantuono.tests.implementations.upload.UploadTestCallback;
 
 import android.app.Activity;
 import android.content.ContentResolver;
@@ -97,16 +96,6 @@ public class UIHelper {
         Log.d(TAG, "Chronometer stopped");
     }
 
-    public void setResult(boolean success) {
-        ActivityUIHelperCallback callback = (ActivityUIHelperCallback) activity;
-        try {
-            callback.getResults().get(callback.getIterationNumber()).get(sequence.getCurrentTestNumber())
-                    .setTestsuccessful(success);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     public void registerSequenceFragment(NewSequenceFragment sequenceFragment) {
         this.sequenceFragment = sequenceFragment;
     }
@@ -155,10 +144,6 @@ public class UIHelper {
         ArrayList<ArrayList<NewMResult>> getResults();
 
         int getIterationNumber();
-
-        void closeActivity();
-
-        void restartSequence();
 
         void clearSerialConsole();
     }
@@ -395,9 +380,9 @@ public class UIHelper {
         if (sequenceFragment != null) sequenceFragment.setSequence(sequence);
     }
 
-    public void createUploadProgress(final Boolean istest, final Boolean success, String description, UploadTestCallback callback, long recordId) {
-        sequenceFragment.setCallback(callback);
+    public void onUploadTestFinished(final Boolean success, String description, long recordId, String failReason) {
         ContentValues contentValues = new ContentValues();
+        contentValues.put(SequenceContracts.Tests.TABLE_TESTS_READING, failReason != null ? failReason : "");
         contentValues.put(SequenceContracts.Tests.TABLE_TESTS_IS_NORMAL_TEST, 0);
         contentValues.put(SequenceContracts.Tests.TABLE_TESTS_IS_SENSOR_TEST,  0);
         contentValues.put(SequenceContracts.Tests.TABLE_TESTS_IS_UPLOAD_TEST,  1);

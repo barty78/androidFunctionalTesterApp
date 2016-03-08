@@ -2,38 +2,51 @@ package com.pietrantuono.tests.implementations.upload;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.widget.Toast;
 
-import com.pietrantuono.fragments.sequence.holders.UploadItemHolder;
+import com.crashlytics.android.Crashlytics;
 import com.pietrantuono.application.PeriCoachTestApplication;
+import com.pietrantuono.ioioutils.IOIOUtils;
+import com.pietrantuono.pericoach.newtestapp.BuildConfig;
+import com.pietrantuono.pericoach.newtestapp.R;
+import com.pietrantuono.tests.ErrorCodes;
 import com.pietrantuono.tests.superclass.Test;
-import com.pietrantuono.uploadfirmware.DummyFirmWareUploader;
+import com.pietrantuono.uploadfirmware.FirmWareUploader;
+import com.pietrantuono.uploadfirmware.FirmWareUploader.UploaderListener;
 
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 
 import ioio.lib.api.IOIO;
 
-@SuppressWarnings("unused")
-public class TestUploadFirmwareTest extends Test {
+@SuppressWarnings("ALL")
+public class UploadFirmwareTestTest extends Test {
+    private final AppCompatActivity activity;
+    private InputStream RX;
     private OutputStream TX;
-    private DummyFirmWareUploader dummyFirmWareUploader;
-    private Boolean initialised = true;
+    private BufferedInputStream BRX;
+    private FirmWareUploader firmWareUploader;
+    private Boolean initialised = false;
     private Boolean looping = true;
     private Boolean resetted = true;
+    private Boolean known = false;
     private AlertDialog alertDialog;
     boolean fileComparisonPassed = false;
     boolean fileMD5Passed = false;
-    private int retries;
-    private final AppCompatActivity activity;
-    private Boolean loopback;
+    private int retries = 0;
     private UploadDialog uploadDialog;
 
-    public TestUploadFirmwareTest(AppCompatActivity activity, IOIO ioio, Boolean loopback) {
-        super(activity, ioio, "Dummy Upload Firmware", false, true, 0, 0, 0);            // Blocking Test, if fails - STOP
-        this.activity = activity;
-        this.loopback = loopback;
+    public UploadFirmwareTestTest(Activity activity, IOIO ioio) {
+        super(activity, ioio, "Upload Firmware", false, true, 0, 0, 0);            // Blocking Test, if fails - STOP
+        this.activity = (AppCompatActivity) activity;
     }
 
     @Override
@@ -44,7 +57,10 @@ public class TestUploadFirmwareTest extends Test {
         if (uploadDialog == null) {
             uploadDialog = new UploadDialog();
         }
-        uploadDialog.show(activity.getSupportFragmentManager(), UploadDialog.TAG);
+        if (!uploadDialog.isAdded()) {
+            uploadDialog.show(activity.getSupportFragmentManager(), UploadDialog.TAG);
+            activity.getSupportFragmentManager().executePendingTransactions();
+        }
         start();
     }
 
@@ -80,10 +96,11 @@ public class TestUploadFirmwareTest extends Test {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                activityListener.goAndExecuteNextTest();
+                uploadDialog.dismiss();
+                activityListener.onUploadTestFinished(true, success, description, "Fail reason");
 
             }
-        }, (3 + 3 + 5 + 3+2) * 1000);
+        }, (3 + 3 + 5 + 3 + 2) * 1000);
     }
 
     public void reset() {
@@ -133,11 +150,26 @@ public class TestUploadFirmwareTest extends Test {
         uploadDialog.setProgress(progress);
     }
 
-    private void onInitialiseFailed() {
-    }
 
+    private void onGetInfoFailed() {
+        final Activity activity = (Activity) activityListener;
+        if (activity == null || activity.isFinishing()) return;
+        retries++;
+    }
 
     @Override
     public void interrupt() {
+        super.interrupt();
+        try {
+            firmWareUploader.stop();
+        } catch (Exception e) {
+        }
+        ;
+        try {
+            alertDialog.dismiss();
+            ;
+        } catch (Exception e) {
+        }
+        ;
     }
 }
