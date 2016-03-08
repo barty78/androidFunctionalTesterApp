@@ -12,9 +12,13 @@ import com.pietrantuono.activities.MainActivity;
 import com.pietrantuono.constants.NewMResult;
 import com.pietrantuono.constants.NewMSensorResult;
 import com.pietrantuono.constants.NewSequenceInterface;
+import com.pietrantuono.tests.implementations.BluetoothConnectTestForTesting;
 import com.pietrantuono.tests.implementations.GetMacAddressTest;
+import com.pietrantuono.tests.implementations.SensorTestWrapper;
+import com.pietrantuono.tests.implementations.dummies.DummySensorTestWrapper;
 import com.pietrantuono.tests.implementations.steps.Step;
-import com.pietrantuono.tests.implementations.upload.UploadFirmwareTestTest;
+import com.pietrantuono.tests.implementations.upload.DummyUploadFirmwareTest;
+import com.pietrantuono.tests.implementations.upload.TestUploadFirmwareTest;
 import com.pietrantuono.tests.superclass.Test;
 
 import org.joda.time.DateTime;
@@ -418,17 +422,15 @@ public class NewSequence implements NewSequenceInterface {
         test.setSuccess(true);
         test.setIdTest(1);
         test.setValue(1);
-
         sequence.add(test);
 
-        UploadFirmwareTestTest uploadTest = new UploadFirmwareTestTest(activity, ioio);
-        uploadTest.setSuccess(true);
-        sequence.add(uploadTest);
+        sequence.add(new BluetoothConnectTestForTesting(activity));
 
-        uploadTest = new UploadFirmwareTestTest(activity, ioio);
-        uploadTest.setSuccess(false);
-        uploadTest.setErrorcode(124567l);
-        sequence.add(uploadTest);
+        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 2150, 2300, 50,
+                "Sensor Input Test, LOADED, GAIN/ZERO @ 210/0"));
+        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 0, 50, 50,
+                "Sensor Input Test, LOADED, GAIN/ZERO @ 127/50"));
+
     }
 
 
