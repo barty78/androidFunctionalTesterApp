@@ -1,6 +1,7 @@
 package com.pietrantuono.activities;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.core.CrashlyticsCore;
@@ -29,10 +30,13 @@ import com.pietrantuono.ioioutils.PCBDetectHelper.PCBDetectHelperInterface;
 import com.pietrantuono.ioioutils.Voltage;
 import com.pietrantuono.pericoach.newtestapp.BuildConfig;
 import com.pietrantuono.pericoach.newtestapp.R;
+import com.pietrantuono.recordsdb.RecordsContract;
+import com.pietrantuono.recordsdb.RecordsHelper;
 import com.pietrantuono.sensors.SensorTestCallback;
 import com.pietrantuono.sequencedb.SequenceProviderHelper;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -224,7 +228,7 @@ public class MainActivity extends AppCompatActivity
                     return super.onOptionsItemSelected(item);
             }
         } else {
-            if(item.getItemId() == R.id.click) {
+            if (item.getItemId() == R.id.click) {
                 PopupMenu popup = new PopupMenu(MainActivity.this, findViewById(item.getItemId()));
                 popup.getMenuInflater().inflate(R.menu.popup_menu, popup.getMenu());
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -351,16 +355,28 @@ public class MainActivity extends AppCompatActivity
                 // 	TODO - Maybe check if barcode is actually set instead,
                 // if no barcode then no record
                 TestRecord record = RecordFromSequenceCreator.createRecordFromSequence(newSequence);
-                MyDatabaseUtils.RecontructRecord(record);
-                Gson gson = new GsonBuilder()
-                        .excludeFieldsWithoutExposeAnnotation()
-                        .registerTypeAdapter(Long.class, new MyLongTypeAdapter())
-                        .registerTypeAdapter(Double.class, new MyDoubleTypeAdapter())
-                        .registerTypeAdapter(Integer.class, new MyIntTypeAdapter())
-                        .registerTypeAdapter(Integer.class, new MyIntTypeAdapter())
-                        .create();
-                String recordstring = gson.toJson(record, TestRecord.class);
-                Log.d(TAG, "Created record: " + recordstring);
+                //MyDatabaseUtils.RecontructRecord(record);
+                long id = RecordsProcessor.saveRecord(MainActivity.this, record);
+                if (id > 0) {
+                    RecordsHelper recordsHelper = RecordsHelper.get(MainActivity.this);
+                    String selection = "Id = ?";
+                    String[] selectionArgs = new String[]{"" + id};
+                    Cursor c = recordsHelper.getWritableDatabase().query(RecordsContract.TestRecords.TABLE, null, selection, selectionArgs, null, null, null);
+                    if (c.getCount() > 0) {
+                        List<TestRecord> records = RecordsProcessor.reconstructRecords(MainActivity.this, c);
+                        if (records.size() > 0) {
+                            Gson gson = new GsonBuilder()
+                                    .excludeFieldsWithoutExposeAnnotation()
+                                    .registerTypeAdapter(Long.class, new MyLongTypeAdapter())
+                                    .registerTypeAdapter(Double.class, new MyDoubleTypeAdapter())
+                                    .registerTypeAdapter(Integer.class, new MyIntTypeAdapter())
+                                    .registerTypeAdapter(Integer.class, new MyIntTypeAdapter())
+                                    .create();
+                            String recordstring = gson.toJson(records.get(0), TestRecord.class);
+                            Log.d(TAG, "Created record: " + recordstring);
+                        }
+                    }
+                }
             }
         }
         runOnUiThread(new Runnable() {
@@ -510,7 +526,7 @@ public class MainActivity extends AppCompatActivity
         } catch (Exception e) {
             e.printStackTrace();
         }
-        uiHelper.addSensorTestCompletedRow(mSensorResult, testToBeParsed,recordId);
+        uiHelper.addSensorTestCompletedRow(mSensorResult, testToBeParsed, recordId);
         Handler h = new Handler(android.os.Looper.getMainLooper());
         Handler handler = new Handler(getMainLooper());
         handler.postDelayed(new Runnable() {
@@ -596,7 +612,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void addFailOrPass(final Boolean istest, final Boolean success, String reading, String description, boolean isSensorTest, Test testToBeParsed) {
-        uiHelper.addFailOrPass(istest, success, reading, null, description, true, testToBeParsed,recordId);
+        uiHelper.addFailOrPass(istest, success, reading, null, description, true, testToBeParsed, recordId);
         Handler handler = new Handler(getMainLooper());
         handler.postDelayed(new Runnable() {
             @Override
@@ -636,8 +652,8 @@ public class MainActivity extends AppCompatActivity
 
 
     @Override
-    public void onUploadTestFinished(boolean istest, boolean success, String description,String failReason) {
-        uiHelper.onUploadTestFinished(success, description, recordId,failReason);
+    public void onUploadTestFinished(boolean istest, boolean success, String description, String failReason) {
+        uiHelper.onUploadTestFinished(success, description, recordId, failReason);
         Handler handler = new Handler(getMainLooper());
         handler.postDelayed(new Runnable() {
             @Override

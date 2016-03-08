@@ -1,4 +1,4 @@
-package com.pietrantuono.activities.uihelper;
+package com.pietrantuono.activities;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -21,79 +21,117 @@ import server.pojos.records.TestRecord;
 /**
  * Created by Maurizio Pietrantuono, maurizio.pietrantuono@gmail.com.
  */
-public class SaveRecords {
+public class RecordsProcessor {
 
-    public static List<TestRecord> reconstrucRecords(Context context, Cursor testRecordCursor) {
+    public static long saveRecord(Context context, TestRecord testRecord) {
+        RecordsHelper recordsHelper = RecordsHelper.get(context);
+        TestRecord record = new TestRecord();
+        ContentValues values = new ContentValues();
+        values.put("Barcode", testRecord.getBarcode());
+        values.put("Duration", testRecord.getDuration());
+        values.put("FixtureNo", testRecord.getFixtureNo());
+        values.put("FWVer", testRecord.getFWVer());
+        values.put("JobNo", testRecord.getJobNo());
+        values.put("Model", testRecord.getModel());
+        values.put("Result", testRecord.getResult());
+        values.put("Serial", testRecord.getSerial());
+        values.put("StartedAt", testRecord.getStartedAt());
+        values.put("BT_Addr", testRecord.getBT_Addr());
+
+        long recordId = -1;
+        recordId = recordsHelper.getWritableDatabase().insert(RecordsContract.TestRecords.TABLE, "BT_Addr", values);
+
+        Readings readings = testRecord.getReadings();
+
+        Sensors sensors = readings.getSensors();
+        values = new ContentValues();
+        values.put("Readings", recordId);
+        long sensorsId = recordsHelper.getWritableDatabase().insert(RecordsContract.Sensors.TABLE, "S0", values);
+        int length = sensors.getS0().getIDTest().size();
+        for (int i = 0; i < length; i++) {
+            values = new ContentValues();
+            values.put("Avg", sensors.getS0().getAvg().get(i));
+            values.put("IDTest", sensors.getS0().getIDTest().get(i));
+            values.put("Min", sensors.getS0().getMin().get(i));
+            values.put("Max", sensors.getS0().getMax().get(i));
+            values.put("ErrorCode", sensors.getS0().getErrorCodes().get(i));
+            values.put("Result", sensors.getS0().getResult().get(i));
+            values.put("S0", sensorsId);
+            recordsHelper.getWritableDatabase().insert(RecordsContract.SingleS0.TABLE, "ErrorCode", values);
+        }
+
+        length = sensors.getS1().getIDTest().size();
+        for (int i = 0; i < length; i++) {
+            values = new ContentValues();
+            values.put("Avg", sensors.getS1().getAvg().get(i));
+            values.put("IDTest", sensors.getS1().getIDTest().get(i));
+            values.put("Min", sensors.getS1().getMin().get(i));
+            values.put("Max", sensors.getS1().getMax().get(i));
+            values.put("ErrorCode", sensors.getS1().getErrorCodes().get(i));
+            values.put("Result", sensors.getS1().getResult().get(i));
+            values.put("S1", sensorsId);
+            recordsHelper.getWritableDatabase().insert(RecordsContract.SingleS1.TABLE, "ErrorCode", values);
+        }
+
+        length = sensors.getS1().getIDTest().size();
+        for (int i = 0; i < length; i++) {
+            values = new ContentValues();
+            values.put("Avg", sensors.getS2().getAvg().get(i));
+            values.put("IDTest", sensors.getS2().getIDTest().get(i));
+            values.put("Min", sensors.getS2().getMin().get(i));
+            values.put("Max", sensors.getS2().getMax().get(i));
+            values.put("ErrorCode", sensors.getS2().getErrorCodes().get(i));
+            values.put("Result", sensors.getS2().getResult().get(i));
+            values.put("S2", sensorsId);
+            recordsHelper.getWritableDatabase().insert(RecordsContract.SingleS2.TABLE, "ErrorCode", values);
+        }
+
+
+        Test test = testRecord.getReadings().getTest();
+        length = test.getIDTest().size();
+        for (int i = 0; i < length; i++) {
+            values = new ContentValues();
+            values.put("Result", test.getResult().get(i));
+            values.put("ErrorCode", test.getErrorCode().get(i));
+            values.put("IDTest", test.getIDTest().get(i));
+            values.put("Value", test.getValue().get(i));
+            values.put("Test", recordId);
+            recordsHelper.getWritableDatabase().insert(RecordsContract.SingleTest.TABLE, "ErrorCode", values);
+        }
+        return recordId;
+    }
+
+
+    public static List<TestRecord> reconstructRecords(Context context, Cursor testRecordCursor) {
         List<TestRecord> records = new ArrayList<>();
         RecordsHelper recordsHelper = RecordsHelper.get(context);
         while (testRecordCursor.moveToNext()) {
             TestRecord testRecord = new TestRecord();
             TestRecord record = new TestRecord();
-            ContentValues values = new ContentValues();
-            values.put("Barcode", testRecord.getBarcode());
-            values.put("Duration", testRecord.getDuration());
-            values.put("FixtureNo", testRecord.getFixtureNo());
-            values.put("FWVer", testRecord.getFWVer());
-            values.put("JobNo", testRecord.getJobNo());
-            values.put("Model", testRecord.getModel());
-            values.put("Result", testRecord.getResult());
-            values.put("Serial", testRecord.getSerial());
-            values.put("StartedAt", testRecord.getStartedAt());
-            values.put("BT_Addr", testRecord.getBT_Addr());
+            record.setBarcode(testRecordCursor.getLong(testRecordCursor.getColumnIndexOrThrow("Barcode")));
+            record.setDuration(testRecordCursor.getString(testRecordCursor.getColumnIndexOrThrow("Duration")));
+            record.setFixtureNo(testRecordCursor.getString(testRecordCursor.getColumnIndexOrThrow("FixtureNo")));
+            record.setFWVer(testRecordCursor.getString(testRecordCursor.getColumnIndexOrThrow("FWVer")));
+            record.setJobNo(testRecordCursor.getLong(testRecordCursor.getColumnIndexOrThrow("JobNo")));
+            record.setModel(testRecordCursor.getLong(testRecordCursor.getColumnIndexOrThrow("Model")));
+            record.setResult(testRecordCursor.getLong(testRecordCursor.getColumnIndexOrThrow("Result")));
+            record.setSerial(testRecordCursor.getString(testRecordCursor.getColumnIndexOrThrow("Serial")));
+            record.setStartedAt(testRecordCursor.getString(testRecordCursor.getColumnIndexOrThrow("StartedAt")));
+            record.setBT_Addr(testRecordCursor.getString(testRecordCursor.getColumnIndexOrThrow("BT_Addr")));
 
-            long recordId = recordsHelper.getWritableDatabase().insert(RecordsContract.TestRecords.TABLE, "BT_Addr", values);
+            long recordId = testRecordCursor.getLong(testRecordCursor.getColumnIndexOrThrow(RecordsContract.TestRecords.ID));
+            Readings readings = new Readings();
 
-            Readings readings = testRecord.getReadings();
-
-            Sensors sensors = readings.getSensors();
-            values = new ContentValues();
-            values.put("Readings",recordId);
-            long sensorsId = recordsHelper.getWritableDatabase().insert(RecordsContract.Sensors.TABLE, "S0", values);
-            int length = sensors.getS0().getIDTest().size();
-            for(int i=0;i<length;i++){
-                values = new ContentValues();
-                values.put("Avg",sensors.getS0().getAvg().get(i));
-                values.put("IDTest", sensors.getS0().getIDTest().get(i));
-                values.put("Min", sensors.getS0().getMin().get(i));
-                values.put("Max", sensors.getS0().getMax().get(i));
-                values.put("ErrorCode", sensors.getS0().getErrorCodes().get(i));
-                values.put("Result",sensors.getS0().getResult().get(i));
-                recordsHelper.getWritableDatabase().insert(RecordsContract.SingleS0.TABLE, "ErrorCode", values);
-            }
-
-            length = sensors.getS1().getIDTest().size();
-            for(int i=0;i<length;i++){
-                values = new ContentValues();
-                values.put("Avg",sensors.getS1().getAvg().get(i));
-                values.put("IDTest", sensors.getS1().getIDTest().get(i));
-                values.put("Min", sensors.getS1().getMin().get(i));
-                values.put("Max", sensors.getS1().getMax().get(i));
-                values.put("ErrorCode", sensors.getS1().getErrorCodes().get(i));
-                values.put("Result",sensors.getS1().getResult().get(i));
-                recordsHelper.getWritableDatabase().insert(RecordsContract.SingleS1.TABLE, "ErrorCode", values);
-            }
-
-            length = sensors.getS1().getIDTest().size();
-            for(int i=0;i<length;i++){
-                values = new ContentValues();
-                values.put("Avg",sensors.getS2().getAvg().get(i));
-                values.put("IDTest", sensors.getS2().getIDTest().get(i));
-                values.put("Min", sensors.getS2().getMin().get(i));
-                values.put("Max", sensors.getS2().getMax().get(i));
-                values.put("ErrorCode", sensors.getS2().getErrorCodes().get(i));
-                values.put("Result",sensors.getS2().getResult().get(i));
-                recordsHelper.getWritableDatabase().insert(RecordsContract.SingleS2.TABLE, "ErrorCode", values);
-            }
-
-            //String selection = RecordsContract.Sensors.COL_READINGS + "=?";
-            //String[] selectionArgs = new String[]{"" + recordId};
-            //Cursor sensorsCursor = recordsHelper.getWritableDatabase().query(RecordsContract.Sensors.TABLE, null, selection, selectionArgs, null, null, null);
+            Sensors sensors = new Sensors();
+            String selection = RecordsContract.Sensors.COL_READINGS + "=?";
+            String[] selectionArgs = new String[]{"" + recordId};
+            Cursor sensorsCursor = recordsHelper.getWritableDatabase().query(RecordsContract.Sensors.TABLE, null, selection, selectionArgs, null, null, null);
 
             if (sensorsCursor.moveToFirst()) {
                 long sensorsId = sensorsCursor.getLong(sensorsCursor.getColumnIndexOrThrow(RecordsContract.Sensors.ID));
                 sensorsCursor.close();
                 S0 s0 = new S0();
-                selection = RecordsContract.Sensors0.ID + "=?";
+                selection = "S0 = ?";
                 selectionArgs = new String[]{"" + sensorsId};
                 Cursor s0Cursor = recordsHelper.getWritableDatabase().query(RecordsContract.SingleS0.TABLE, null, selection, selectionArgs, null, null, null);
                 if (s0Cursor.moveToFirst()) {
@@ -127,7 +165,7 @@ public class SaveRecords {
 
                 S1 s1 = new S1();
 
-                selection = RecordsContract.Sensors1.ID + "=?";
+                selection = "S1 = ?";
                 selectionArgs = new String[]{"" + sensorsId};
                 Cursor s1Cursor = recordsHelper.getWritableDatabase().query(RecordsContract.SingleS1.TABLE, null, selection, selectionArgs, null, null, null);
                 if (s1Cursor.moveToFirst()) {
@@ -163,7 +201,7 @@ public class SaveRecords {
 
                 S2 s2 = new S2();
 
-                selection = RecordsContract.Sensors2.ID + "=?";
+                selection = "S2 = ?";
                 selectionArgs = new String[]{"" + sensorsId};
                 Cursor s2Cursor = recordsHelper.getWritableDatabase().query(RecordsContract.SingleS2.TABLE, null, selection, selectionArgs, null, null, null);
                 if (s2Cursor.moveToFirst()) {
