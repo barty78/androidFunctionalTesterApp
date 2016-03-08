@@ -8,9 +8,19 @@ import android.provider.BaseColumns;
 public class RecordsContract {
 
     public static class TestRecords implements BaseColumns {
-
         public static final String TABLE = "TestRecord";
         public static final String ID = "Id";
+
+        public static final String BARCODE="Barcode";
+        public static final String DURATION="Duration";
+        public static final String FIXTURE_N="FixtureNo";
+        public static final String FMWVER="FWVer";
+        public static final String JOB_NO="JobNo";
+        public static final String MODEL="Model";
+        public static final String RESULT="Result";
+        public static final String SERIAL="Serial";
+        public static final String STARTED="StartedAt";
+        public static final String BT_ADDR="BT_Addr";
     }
 
     public class Readings implements BaseColumns {
@@ -50,10 +60,12 @@ public class RecordsContract {
 
     public class SingleS2 {
         public static final String TABLE ="SingleS2" ;
+        public static final String ID="Id";
     }
 
     public class SingleTest implements BaseColumns{
         public static final String TABLE = "SingleTest";
         public static final String Test="Test";
+        public static final String ID="Id";
     }
 }
