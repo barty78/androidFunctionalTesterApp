@@ -9,7 +9,7 @@ public interface ErrorCodes {
 
     public static final int OUTSIDE_LIMITS = 1;
 
-    // Sensor Test Errors
+    // Sensor TEST Errors
     public static final int SENSORTEST_INSUFFICIENT_SAMPLES = 2;
     public static final int SENSORTEST_VOLTAGE_SETTING_FAILED = 3;
     public static final int SENSORTEST_ACTIVITY_ERROR = 4;

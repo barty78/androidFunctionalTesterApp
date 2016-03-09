@@ -45,7 +45,7 @@ public class BatteryLevelUUTVoltageTest extends Test {
         @Override
         protected Void doInBackground(Void... params) {
             if (isinterrupted) return null;
-            Log.d(TAG, "Test Starting: " + description);
+            Log.d(TAG, "TEST Starting: " + description);
             if (getListener().getBtutility() == null) {
                 report("BU utility is null");
                 return null;

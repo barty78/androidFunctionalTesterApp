@@ -31,7 +31,7 @@ public class GetDeviceSerialTest extends Test {
     public void execute() {
         if (isinterrupted)
             return;
-        Log.d(TAG, "Get Device Serial Test Starting");
+        Log.d(TAG, "Get Device Serial TEST Starting");
         if (IOIOUtils.getUtils().getUutMode(getActivity()) == IOIOUtils.Mode.bootloader) {
             IOIOUtils.getUtils().modeApplication((Activity) activityListener);
         }

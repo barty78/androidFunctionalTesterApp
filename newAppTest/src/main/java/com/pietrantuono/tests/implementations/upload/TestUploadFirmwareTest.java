@@ -31,7 +31,7 @@ public class TestUploadFirmwareTest extends Test {
     private UploadDialog uploadDialog;
 
     public TestUploadFirmwareTest(AppCompatActivity activity, IOIO ioio, Boolean loopback) {
-        super(activity, ioio, "Dummy Upload Firmware", false, true, 0, 0, 0);            // Blocking Test, if fails - STOP
+        super(activity, ioio, "Dummy Upload Firmware", false, true, 0, 0, 0);            // Blocking TEST, if fails - STOP
         this.activity = activity;
         this.loopback = loopback;
     }

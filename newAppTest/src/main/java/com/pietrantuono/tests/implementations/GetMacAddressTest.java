@@ -27,7 +27,7 @@ public class GetMacAddressTest extends Test {
     private String TAG = getClass().getSimpleName();
 
     public GetMacAddressTest(Activity activity, IOIO ioio) {
-        super(activity, ioio, "Get BT Mac Address Test", false, true, 0, 0, 0);
+        super(activity, ioio, "Get BT Mac Address TEST", false, true, 0, 0, 0);
     }
 
     @Override

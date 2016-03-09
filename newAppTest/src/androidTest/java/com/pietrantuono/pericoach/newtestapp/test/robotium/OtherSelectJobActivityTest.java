@@ -114,7 +114,7 @@ public class OtherSelectJobActivityTest extends ActivityInstrumentationTestCase2
 ////		//Note 1 test should not be found
 ////		boolean noteFound = solo.searchText("Note 1 test");
 ////		//Assert that Note 1 test is not found
-////		assertFalse("Note 1 Test is found", noteFound);  
+////		assertFalse("Note 1 TEST is found", noteFound);
 ////		solo.clickLongOnText("Note 2");
 ////		//Clicks on Delete in the context menu
 ////		solo.clickOnText("Delete");  

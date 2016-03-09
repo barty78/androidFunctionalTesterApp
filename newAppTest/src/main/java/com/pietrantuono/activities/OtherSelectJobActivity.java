@@ -275,7 +275,7 @@ public class OtherSelectJobActivity extends AppCompatActivity implements MyCallb
 				MyDialogs.dismissProgress();
 				if (arg0 == null || arg0.size() <= 0) {
 					MyDialogs.showAlert(OtherSelectJobActivity.this,
-							"Error Downloading", "Empty Test Sequence List");
+							"Error Downloading", "Empty TEST Sequence List");
 				} else {
 					Sequence sequence= new Sequence();
 					sequence.setTests(arg0);

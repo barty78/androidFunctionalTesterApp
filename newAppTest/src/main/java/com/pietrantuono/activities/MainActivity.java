@@ -159,7 +159,7 @@ public class MainActivity extends AppCompatActivity
         }
         if (newSequence.isSequenceStarted()) {
             if (newSequence.getCurrentTest().isBlockingTest() && !newSequence.getCurrentTest().isSuccess()) {
-                Log.d(TAG, "Blocking Test Failed - Sequence Ended");
+                Log.d(TAG, "Blocking TEST Failed - Sequence Ended");
                 onCurrentSequenceEnd();
                 return;
             }
@@ -266,7 +266,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onBackPressed() {
         MyDialogs.
-                createAlertDialog(MainActivity.this, "Close Test", "Are you sure you want to close this test?", "YES, let's close", "NO, let's continue", new MyOnCancelListener(MainActivity.this), new MyDialogInterface() {
+                createAlertDialog(MainActivity.this, "Close TEST", "Are you sure you want to close this test?", "YES, let's close", "NO, let's continue", new MyOnCancelListener(MainActivity.this), new MyDialogInterface() {
                     @Override
                     public void yes() {
                         closeActivity();
@@ -351,7 +351,7 @@ public class MainActivity extends AppCompatActivity
         if (job.getIslogging() == 1) {
             newSequence.deleteUnusedTests();
             if (newSequence.getCurrentTestNumber() != 0) {    //  Don't create a record if the first test failed,
-                // usually Barcode Test.
+                // usually Barcode TEST.
                 // 	TODO - Maybe check if barcode is actually set instead,
                 // if no barcode then no record
                 TestRecord record = RecordFromSequenceCreator.createRecordFromSequence(newSequence);

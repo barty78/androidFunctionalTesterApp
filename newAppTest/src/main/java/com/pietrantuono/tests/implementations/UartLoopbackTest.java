@@ -29,7 +29,7 @@ public class UartLoopbackTest extends Test {
 
 	
 	public UartLoopbackTest(Activity activity, IOIO ioio) {
-		super(activity, ioio, "Simple UART Loopback Test", false, false, 0, 0, 0);
+		super(activity, ioio, "Simple UART Loopback TEST", false, false, 0, 0, 0);
 	}
 
 	@Override

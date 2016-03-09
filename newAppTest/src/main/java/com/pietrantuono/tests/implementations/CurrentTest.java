@@ -20,7 +20,7 @@ public class CurrentTest extends Test {
 	int units;
 
 	/**
-	 * * Current Measurement Test Implementation
+	 * * Current Measurement TEST Implementation
 	 * 
 	 * @param activity			- Activity Instance
 	 * @param ioio				- IOIO Instance
@@ -29,7 +29,7 @@ public class CurrentTest extends Test {
 	 * @param isNominal			- Applied Limits Type (Bounds / Nominal,Precision)
 	 * @param limitParam1		- Limit Parameter 1 (Upper / Nominal)
 	 * @param limitParam2		- Limit Parameter 2 (Lower / Precision)
-	 * @param description		- Test Description
+	 * @param description		- TEST Description
 	 */
 	public CurrentTest(Activity activity, IOIO ioio, int pinNumber, @Units int units, Boolean isNominal, float limitParam1, float limitParam2, String description) {
 		super(activity, ioio, description, false, true, limitParam1, limitParam2, 0);
@@ -53,7 +53,7 @@ public class CurrentTest extends Test {
 		@Override
 		protected Void doInBackground(Void... params) {
 			if(isinterrupted)return null;
-			Log.d(TAG, "Test Starting: " + description);
+			Log.d(TAG, "TEST Starting: " + description);
 //		if (!IOIOUtils.getUtils().setBattVoltage(ioio, 34, 2f, 3.7f)){
 //			getListener().addFailOrPass(true, false, "Fixture Fault - Battery Voltage Setpoint not reached", testToBeParsed);
 //			return;

@@ -19,7 +19,7 @@ public class SingleTest extends MyModel {
 	@Expose
 	private Long Result;
 	
-	@Column(name = "Test")
+	@Column(name = "TEST")
 	@Expose
 	private Test foreignkey;
 

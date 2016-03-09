@@ -17,7 +17,7 @@ public class AccelerometerSelfTest extends Test {
 	private int retries = 0;
 	private String TAG=getClass().getSimpleName();
 	public AccelerometerSelfTest(Activity activity, IOIO ioio) {
-		super(activity, ioio, "Accelerometer Self-Test", false, false, 0, 0, 0);
+		super(activity, ioio, "Accelerometer Self-TEST", false, false, 0, 0, 0);
 	}
 	@Override
 	public void execute() {
@@ -33,7 +33,7 @@ public class AccelerometerSelfTest extends Test {
 			}
 			if(isinterrupted)return null;
 			Log.d(TAG, TAG+" "+IOIOUtils.getUtils().getUartLog().toString());
-			if (IOIOUtils.getUtils().getUartLog().indexOf("MPU6500 Self-Test Passed!") != -1) {
+			if (IOIOUtils.getUtils().getUartLog().indexOf("MPU6500 Self-TEST Passed!") != -1) {
 				Success();
 				activityListener.addFailOrPass(true, true, "", description);
 				return null;
@@ -57,7 +57,7 @@ public class AccelerometerSelfTest extends Test {
 			@Override
 			public void run() {
 				if (BuildConfig.DEBUG) {
-					Toast.makeText(activity, "Accelerometer Self-Test Failed, " + String.valueOf(3 - retries) + " Attempts Remaining",
+					Toast.makeText(activity, "Accelerometer Self-TEST Failed, " + String.valueOf(3 - retries) + " Attempts Remaining",
 							Toast.LENGTH_SHORT).show();
 				}
 				retries++;

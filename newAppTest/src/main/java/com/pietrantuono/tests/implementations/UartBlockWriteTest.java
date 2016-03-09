@@ -31,7 +31,7 @@ public class UartBlockWriteTest extends Test {
 
 
 	public UartBlockWriteTest(Activity activity, IOIO ioio) {
-		super(activity, ioio, "Simple UART Block Write Test", false, false, 0, 0, 0);
+		super(activity, ioio, "Simple UART Block Write TEST", false, false, 0, 0, 0);
 	}
 
 	@Override

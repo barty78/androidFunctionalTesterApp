@@ -66,7 +66,7 @@ public class JobHolder extends RecyclerView.ViewHolder{
             public void onClick(View view) {
                 callback.setJob(job);
                 Log.d("Job#:", String.valueOf(job.getJobno()));
-                Log.d("Test ID:", String.valueOf(job.getTestId()));
+                Log.d("TEST ID:", String.valueOf(job.getTestId()));
                 Log.d("Firmware ID:", String.valueOf(job.getFirmwareId()));
                 Log.d("Logging", String.valueOf(job.getIslogging() != 0));
                 Log.d("Job ID: ", String.valueOf(job.getId()));

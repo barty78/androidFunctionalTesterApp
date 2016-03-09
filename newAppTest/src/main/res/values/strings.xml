@@ -115,7 +115,7 @@
     <string name="no_results_to_review">No Results to Review</string>
     <string name="invalid_number">Invalid number</string>
 
-    <!-- New Open Test -->
+    <!-- New Open TEST -->
     <string name="menuitem_new_open_test">New Open Test</string>
     <string name="menuitem_experimental_closed_test">Experimental Closed Test</string>
     <string name="menuitem_integrated_oper_test_test">Integrated Open Test</string>

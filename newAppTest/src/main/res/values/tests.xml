@@ -4,7 +4,7 @@
     <!-- Register all test and step implementation classes here.
     Ensure that integer values are unique as they are identifiers. -->
 
-    <!-- Test Implementation Classes -->
+    <!-- TEST Implementation Classes -->
 
     <item name="GetBarcodeTest" type="integer">1</item>
     <item name="CurrentTest" type="integer">2</item>

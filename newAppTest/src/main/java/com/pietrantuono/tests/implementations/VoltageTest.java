@@ -22,7 +22,7 @@ public 	class VoltageTest extends Test {
 	 * @param isNominal			- Applied Limits Type (Bounds / Nominal,Precision)
 	 * @param limitParam1		- Limit Parameter 1 (Upper / Nominal)
 	 * @param limitParam2		- Limit Parameter 2 (Lower / Precision)
-	 * @param description		- Test Description
+	 * @param description		- TEST Description
 	 */
 
 	public VoltageTest(Activity activity,IOIO ioio, int pinNumber, @Units int units, boolean isBlocking, boolean isNominal, float limitParam1, float limitParam2, String description) {
@@ -41,7 +41,7 @@ public 	class VoltageTest extends Test {
 	 * @param isNominal			- Applied Limits Type (Bounds / Nominal,Precision)
 	 * @param limitParam1		- Limit Parameter 1 (Upper / Nominal)
 	 * @param limitParam2		- Limit Parameter 2 (Lower / Precision)
-	 * @param description		- Test Description
+	 * @param description		- TEST Description
 	 */
 
 	public VoltageTest(Activity activity,IOIO ioio, int pinNumber, @Units int units, boolean isBlocking, float scaling, boolean isNominal, float limitParam1, float limitParam2, String description) {
@@ -55,9 +55,9 @@ public 	class VoltageTest extends Test {
 	@Override
 	public void execute() {
 		if(isinterrupted)return;
-		Log.d(TAG, "Test Starting: " + description);
+		Log.d(TAG, "TEST Starting: " + description);
 		if(pinNumber == 32) {
-			String string = "V_REF_AN Voltage Test (" + System.currentTimeMillis() + ")\n";
+			String string = "V_REF_AN Voltage TEST (" + System.currentTimeMillis() + ")\n";
 			IOIOUtils.getUtils().appendUartLog((Activity) activityListener, string.getBytes(), string.getBytes().length);
 		}
 		Voltage.Result result = null;

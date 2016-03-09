@@ -55,7 +55,7 @@ public class TestsParser {
                                  final Activity activity, IOIO ioio, Job job) {
         Test test = null;
 
-        Log.d(TAG, "Test ID: " + testToBeParsed.getId());
+        Log.d(TAG, "TEST ID: " + testToBeParsed.getId());
         int classID = (int) testToBeParsed.getTestclassId().intValue();
 
         if (classID == activity.getResources().getInteger(R.integer.GetBarcodeTest)) {
@@ -211,7 +211,7 @@ public class TestsParser {
             return test;
         }
         test.setIdTest(testToBeParsed.getId());
-        test.setIsTest(testToBeParsed.getIstest() != 0);// Default is Test (true)
+        test.setIsTest(testToBeParsed.getIstest() != 0);// Default is TEST (true)
         test.setActive(testToBeParsed.getActive() != 0);// Default is active
         test.setBlockingTest(testToBeParsed.getBlocking() != 0);// Default is non blocking
         return test;

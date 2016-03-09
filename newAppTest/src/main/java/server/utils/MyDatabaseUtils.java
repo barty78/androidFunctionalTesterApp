@@ -105,7 +105,7 @@ public class MyDatabaseUtils {
         readingss.setTest(test);
 
         if (test != null && test.getId() != null) {
-            List<SingleTest> singleTests = new Select().from(SingleTest.class).where("Test = ?", test.getId()).execute();
+            List<SingleTest> singleTests = new Select().from(SingleTest.class).where("TEST = ?", test.getId()).execute();
             List<Long> ids = new ArrayList<Long>();
             List<Long> results = new ArrayList<Long>();
             List<Double> values = new ArrayList<Double>();

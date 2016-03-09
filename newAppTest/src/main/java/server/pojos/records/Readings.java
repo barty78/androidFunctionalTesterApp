@@ -9,7 +9,7 @@ import com.google.gson.annotations.Expose;
 public class Readings extends MyModel{
 
 	@Expose
-	@Column(name = "Test")
+	@Column(name = "TEST")
     Test Test;
     
 	private @Expose  
@@ -21,7 +21,7 @@ public class Readings extends MyModel{
     /**
      * 
      * @return
-     *     The Test
+     *     The TEST
      */
     public Test getTest() {
         return Test;
@@ -30,7 +30,7 @@ public class Readings extends MyModel{
     /**
      * 
      * @param Test
-     *     The Test
+     *     The TEST
      */
     public void setTest(Test Test) {
         this.Test = Test;

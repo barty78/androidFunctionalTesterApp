@@ -71,7 +71,7 @@ public class BarcodeTestRobotium extends ActivityInstrumentationTestCase2<MainAc
 	    assertTrue("Could not find the dialog!", solo.searchText("Unable to read barcode"));
 
 	}
-//	@Test
+//	@TEST
 //	public void testNull() {
 //		job = new Job();
 //		String barcoderead="fff";
@@ -85,7 +85,7 @@ public class BarcodeTestRobotium extends ActivityInstrumentationTestCase2<MainAc
 //
 //	}
 
-//	@Test
+//	@TEST
 //	public void testFoo2() throws InterruptedException {
 //		job = new Job();
 //		job.setBarcodeprefix(1000);

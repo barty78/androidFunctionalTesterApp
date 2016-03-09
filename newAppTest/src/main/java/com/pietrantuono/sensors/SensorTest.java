@@ -256,7 +256,7 @@ public class SensorTest {
             if (activity.get() != null && !activity.get().isFinishing()
                     && !((MainActivity) (activity.get())).isMainActivityBeingDestroyed()) {
                 wrapper.setErrorcode((long) ErrorCodes.SENSORTEST_INSUFFICIENT_SAMPLES);
-                ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor Test - Insufficient Samples", true, testToBeParsed);
+                ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor TEST - Insufficient Samples", true, testToBeParsed);
                 return mSensorResult;
             }
             Toast.makeText(activity.get(),

@@ -45,7 +45,7 @@ public class UploadFirmwareTestTest extends Test {
     private UploadDialog uploadDialog;
 
     public UploadFirmwareTestTest(Activity activity, IOIO ioio) {
-        super(activity, ioio, "Upload Firmware", false, true, 0, 0, 0);            // Blocking Test, if fails - STOP
+        super(activity, ioio, "Upload Firmware", false, true, 0, 0, 0);            // Blocking TEST, if fails - STOP
         this.activity = (AppCompatActivity) activity;
     }
 

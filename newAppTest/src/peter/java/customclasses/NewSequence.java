@@ -281,9 +281,9 @@ public class NewSequence implements NewSequenceInterface {
 
         sequence = new ArrayList<Test>();
 
-        // Dummy Test Setup
+        // Dummy TEST Setup
         for (int i = 0; i < 10; i++) {
-            //sequence.add(new DummyTest(activity, "Dummy Test "+i,  false, true));
+            //sequence.add(new DummyTest(activity, "Dummy TEST "+i,  false, true));
         }
 
 
@@ -295,7 +295,7 @@ public class NewSequence implements NewSequenceInterface {
         // false, false, false, "Voltage Measurement - DC_PRES (5V_DC On)"));
         // sequence.add(new LedCheckTest(activity, "Pink", "Pink LED Check"));
 //		 sequence.add(new Charge_termination_test(activity, ioio, "Battery
-//		 Charge Termination Test"));
+//		 Charge Termination TEST"));
         // sequence.add(new VoltageTest(activity, ioio, 37, 2f, 0.2f, true,
         // true, false, null, "Voltage Measurement - Sleep Mode (BAT_MON)"));
         // //sequence.add(new UploadFirmwareTest(activity, ioio));
@@ -345,7 +345,7 @@ public class NewSequence implements NewSequenceInterface {
                 "Voltage Measurement - V_BATT"));
 //
 //        //		sequence.add(new ChargingTerminationTest(activity, ioio,
-//        //				"Battery Charging Termination Test"));
+//        //				"Battery Charging Termination TEST"));
 //        sequence.add(new VoltageTest(activity, ioio, 38, Units.V, false, false, 0.1f, -0.1f,
 //                "Voltage Measurement - DC_PRES (5V_DC Off)"));
 //        sequence.add(new SetDigitalOutputStep(activity, IOIOUtils.Outputs._5V_DC.getValue(), true,
@@ -356,7 +356,7 @@ public class NewSequence implements NewSequenceInterface {
 //                "Set 5VDC to Off"));
 //
 //        //		sequence.add(new ChargingTest(activity, ioio,
-//        //				"Battery Charging Test"));
+//        //				"Battery Charging TEST"));
 //
 //        //		sequence.add(new DummyUploadFirmwareTest(activity, ioio, false));
    		sequence.add(new UploadFirmwareTest(activity, ioio));
@@ -443,15 +443,15 @@ public class NewSequence implements NewSequenceInterface {
 
 
         sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 0, 10, 50,
-                "Sensor Input Test, NO LOAD, GAIN/ZERO @ 127/0"));
+                "Sensor Input TEST, NO LOAD, GAIN/ZERO @ 127/0"));
         sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 200, 300, 50,
-                "Sensor Input Test, LOADED, GAIN/ZERO @ 25/0"));
+                "Sensor Input TEST, LOADED, GAIN/ZERO @ 25/0"));
         sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 1250, 1400, 50,
-                "Sensor Input Test, LOADED, GAIN/ZERO @ 127/0"));
+                "Sensor Input TEST, LOADED, GAIN/ZERO @ 127/0"));
         sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 2150, 2300, 50,
-                "Sensor Input Test, LOADED, GAIN/ZERO @ 210/0"));
+                "Sensor Input TEST, LOADED, GAIN/ZERO @ 210/0"));
         sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 0, 50, 50,
-                "Sensor Input Test, LOADED, GAIN/ZERO @ 127/50"));
+                "Sensor Input TEST, LOADED, GAIN/ZERO @ 127/50"));
 
 
 //		MyDummyTest test = new MyDummyTest.Builder().setActivity(activity).setDescription("first").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
@@ -466,7 +466,7 @@ public class NewSequence implements NewSequenceInterface {
 //		sequence.add(new BluetoothConnectTestForTesting(activity));
 //
 //		sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 0, 0, 0,
-//				"Sensor Input Test, LOADED, GAIN @ 127"));
+//				"Sensor Input TEST, LOADED, GAIN @ 127"));
 //		test = new MyDummyTest.Builder().setActivity(activity).setDescription("fourth").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
 //		sequence.add(test);
 
