@@ -21,36 +21,19 @@ import com.activeandroid.query.Select;
 public class MyDatabaseUtils {
 
     static void ProcessAndSaveRecords(TestRecord record) {
-        record.save();
         record.getReadings().setForeignkey(record);
-        record.getReadings().save();
         record.getReadings().getTest().setForeginkey(record.getReadings());
-        record.getReadings().getTest().save();
         if (record.getReadings().getSensors() != null) {
             record.getReadings().getSensors().setForeignkey(record.getReadings());
         }
         if (record.getReadings().getSensors() != null) {
-            record.getReadings().getSensors().save();
-        }
-        if (record.getReadings().getSensors() != null) {
             record.getReadings().getSensors().getS0().setForeignkey(record.getReadings().getSensors());
         }
-        if (record.getReadings().getSensors() != null) {
-            record.getReadings().getSensors().getS0().save();
-        }
-
         if (record.getReadings().getSensors() != null)
             record.getReadings().getSensors().getS1().setForeignkey(record.getReadings().getSensors());
-        if (record.getReadings().getSensors() != null)
-            record.getReadings().getSensors().getS1().save();
-
         if (record.getReadings().getSensors() != null) {
             record.getReadings().getSensors().getS2().setForeignkey(record.getReadings().getSensors());
         }
-        if (record.getReadings().getSensors() != null) {
-            record.getReadings().getSensors().getS2().save();
-        }
-
         for (int i = 0; i < record.getReadings().getTest().getIDTest().size(); i++) {
             SingleTest singleTest = new SingleTest();
             singleTest.setIDTest(record.getReadings().getTest().getIDTest().get(i));
@@ -58,7 +41,6 @@ public class MyDatabaseUtils {
             singleTest.setValue(record.getReadings().getTest().getValue().get(i));
             singleTest.setErrorCode(record.getReadings().getTest().getErrorCode().get(i));
             singleTest.setForeignkey(record.getReadings().getTest());
-            singleTest.save();
         }
         if (record.getReadings().getSensors() == null) return;
         for (int j = 0; j < record.getReadings().getSensors().getS0().getIDTest().size(); j++) {
@@ -70,9 +52,7 @@ public class MyDatabaseUtils {
             singleS0.setResult(record.getReadings().getSensors().getS0().getResult().get(j));
             singleS0.setErrorCode(record.getReadings().getSensors().getS0().getErrorCodes().get(j));
             singleS0.setForeignkey(record.getReadings().getSensors().getS0());
-            singleS0.save();
         }
-
         for (int j = 0; j < record.getReadings().getSensors().getS0().getIDTest().size(); j++) {
             SingleS1 singleS1 = new SingleS1();
             singleS1.setAvg(record.getReadings().getSensors().getS1().getAvg().get(j));
@@ -82,7 +62,6 @@ public class MyDatabaseUtils {
             singleS1.setForeignkey(record.getReadings().getSensors().getS1());
             singleS1.setResult(record.getReadings().getSensors().getS1().getResult().get(j));
             singleS1.setErrorCode(record.getReadings().getSensors().getS1().getErrorCodes().get(j));
-            singleS1.save();
         }
         for (int j = 0; j < record.getReadings().getSensors().getS0().getIDTest().size(); j++) {
             SingleS2 singleS2 = new SingleS2();
@@ -93,7 +72,7 @@ public class MyDatabaseUtils {
             singleS2.setForeignkey(record.getReadings().getSensors().getS2());
             singleS2.setResult(record.getReadings().getSensors().getS2().getResult().get(j));
             singleS2.setErrorCode(record.getReadings().getSensors().getS2().getErrorCodes().get(j));
-            singleS2.save();
+
         }
 
     }
@@ -114,7 +93,7 @@ public class MyDatabaseUtils {
                 ids.add(singleTests.get(i).getIDTest());
                 results.add(singleTests.get(i).getResult());
                 values.add(singleTests.get(i).getValue());
-                errorcodes.add((singleTests.get(i).getErrorCode()==null || singleTests.get(i).getErrorCode()==0)?null:singleTests.get(i).getErrorCode());
+                errorcodes.add((singleTests.get(i).getErrorCode() == null || singleTests.get(i).getErrorCode() == 0) ? null : singleTests.get(i).getErrorCode());
             }
             test.setIDTest(ids);
             test.setResult(results);
@@ -147,7 +126,7 @@ public class MyDatabaseUtils {
                     minS0.add(singleS0s.get(i).getMin());
                     avgS0.add(singleS0s.get(i).getAvg());
                     resultS0.add(singleS0s.get(i).getResult());
-                    errorcodesS0.add((singleS0s.get(i).getErrorCode()==null || singleS0s.get(i).getErrorCode()==0)?null:singleS0s.get(i).getErrorCode());
+                    errorcodesS0.add((singleS0s.get(i).getErrorCode() == null || singleS0s.get(i).getErrorCode() == 0) ? null : singleS0s.get(i).getErrorCode());
                 }
                 s0.setIDTest(idstestsS0);
                 s0.setResult(resultS0);
@@ -171,7 +150,7 @@ public class MyDatabaseUtils {
                     minS1.add(singleS1s.get(i).getMin());
                     avgS1.add(singleS1s.get(i).getAvg());
                     resultS1.add(singleS1s.get(i).getResult());
-                    errorcodesS1.add((singleS1s.get(i).getErrorCode()==null || singleS1s.get(i).getErrorCode()==0)?null:singleS1s.get(i).getErrorCode());
+                    errorcodesS1.add((singleS1s.get(i).getErrorCode() == null || singleS1s.get(i).getErrorCode() == 0) ? null : singleS1s.get(i).getErrorCode());
                 }
                 s1.setIDTest(idstestsS1);
                 s1.setResult(resultS1);
@@ -195,7 +174,7 @@ public class MyDatabaseUtils {
                     minS2.add(singleS2s.get(i).getMin());
                     avgS2.add(singleS2s.get(i).getAvg());
                     resultS2.add(singleS2s.get(i).getResult());
-                    errorcodesS2.add((singleS2s.get(i).getErrorCode()==null || singleS2s.get(i).getErrorCode()==0)?null:singleS2s.get(i).getErrorCode());
+                    errorcodesS2.add((singleS2s.get(i).getErrorCode() == null || singleS2s.get(i).getErrorCode() == 0) ? null : singleS2s.get(i).getErrorCode());
                 }
                 s2.setIDTest(idstestsS2);
                 s2.setResult(resultS2);

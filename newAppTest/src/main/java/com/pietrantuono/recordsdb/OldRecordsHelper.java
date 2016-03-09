@@ -7,21 +7,22 @@ import android.database.sqlite.SQLiteOpenHelper;
 /**
  * Created by Maurizio Pietrantuono, maurizio.pietrantuono@gmail.com.
  */
-public class RecordsHelper extends SQLiteOpenHelper {
+@Deprecated
+public class OldRecordsHelper extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "com.pietrantuono.pericoach.newtestapp.containsmac.db";
     private static final int DB_VERSION = 5;
-    private static RecordsHelper recordsHelper;
+    private static OldRecordsHelper oldRecordsHelper;
 
-    private RecordsHelper(Context context) {
+    private OldRecordsHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
 
-    public synchronized static RecordsHelper get(Context context){
-        if(recordsHelper==null){
-            recordsHelper= new RecordsHelper(context);
+    public synchronized static OldRecordsHelper get(Context context){
+        if(oldRecordsHelper ==null){
+            oldRecordsHelper = new OldRecordsHelper(context);
         }
-        return recordsHelper;
+        return oldRecordsHelper;
     }
 
     @Override

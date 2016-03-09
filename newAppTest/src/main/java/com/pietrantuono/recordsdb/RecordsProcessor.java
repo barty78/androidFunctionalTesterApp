@@ -1,11 +1,12 @@
-package com.pietrantuono.activities;
+package com.pietrantuono.recordsdb;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteOpenHelper;
 
 import com.pietrantuono.recordsdb.RecordsContract;
-import com.pietrantuono.recordsdb.RecordsHelper;
+import com.pietrantuono.recordsdb.OldRecordsHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +24,7 @@ import server.pojos.records.TestRecord;
  */
 public class RecordsProcessor {
 
-    public static long saveRecord(Context context, TestRecord testRecord) {
-        RecordsHelper recordsHelper = RecordsHelper.get(context);
+    public static long saveRecord(Context context, TestRecord testRecord, SQLiteOpenHelper helper) {
         TestRecord record = new TestRecord();
         ContentValues values = new ContentValues();
         values.put(RecordsContract.TestRecords.BARCODE, testRecord.getBarcode());
@@ -39,14 +39,14 @@ public class RecordsProcessor {
         values.put(RecordsContract.TestRecords.BT_ADDR, testRecord.getBT_Addr());
 
         long recordId = -1;
-        recordId = recordsHelper.getWritableDatabase().insert(RecordsContract.TestRecords.TABLE, RecordsContract.TestRecords.BT_ADDR, values);
+        recordId = helper.getWritableDatabase().insert(RecordsContract.TestRecords.TABLE, RecordsContract.TestRecords.BT_ADDR, values);
 
         Readings readings = testRecord.getReadings();
 
         Sensors sensors = readings.getSensors();
         values = new ContentValues();
         values.put(RecordsContract.Sensors.COL_READINGS, recordId);
-        long sensorsId = recordsHelper.getWritableDatabase().insert(RecordsContract.Sensors.TABLE,RecordsContract.Sensors.S0, values);
+        long sensorsId = helper.getWritableDatabase().insert(RecordsContract.Sensors.TABLE,RecordsContract.Sensors.S0, values);
         int length = sensors.getS0().getIDTest().size();
         for (int i = 0; i < length; i++) {
             values = new ContentValues();
@@ -57,7 +57,7 @@ public class RecordsProcessor {
             values.put(RecordsContract.SingleS0.ERROR_CODE, sensors.getS0().getErrorCodes().get(i));
             values.put(RecordsContract.SingleS0.RESULT, sensors.getS0().getResult().get(i));
             values.put(RecordsContract.SingleS0.S0, sensorsId);
-            recordsHelper.getWritableDatabase().insert(RecordsContract.SingleS0.TABLE, RecordsContract.SingleS0.ERROR_CODE, values);
+            helper.getWritableDatabase().insert(RecordsContract.SingleS0.TABLE, RecordsContract.SingleS0.ERROR_CODE, values);
         }
 
         length = sensors.getS1().getIDTest().size();
@@ -70,7 +70,7 @@ public class RecordsProcessor {
             values.put(RecordsContract.SingleS1.ERROR_CODE, sensors.getS1().getErrorCodes().get(i));
             values.put(RecordsContract.SingleS1.RESULT, sensors.getS1().getResult().get(i));
             values.put(RecordsContract.SingleS1.S1, sensorsId);
-            recordsHelper.getWritableDatabase().insert(RecordsContract.SingleS1.TABLE, RecordsContract.SingleS1.ERROR_CODE, values);
+            helper.getWritableDatabase().insert(RecordsContract.SingleS1.TABLE, RecordsContract.SingleS1.ERROR_CODE, values);
         }
 
         length = sensors.getS1().getIDTest().size();
@@ -83,7 +83,7 @@ public class RecordsProcessor {
             values.put(RecordsContract.SingleS2.ERROR_CODE, sensors.getS2().getErrorCodes().get(i));
             values.put(RecordsContract.SingleS2.RESULT, sensors.getS2().getResult().get(i));
             values.put(RecordsContract.SingleS2.S2, sensorsId);
-            recordsHelper.getWritableDatabase().insert(RecordsContract.SingleS2.TABLE, RecordsContract.SingleS2.ERROR_CODE, values);
+            helper.getWritableDatabase().insert(RecordsContract.SingleS2.TABLE, RecordsContract.SingleS2.ERROR_CODE, values);
         }
 
         Test test = testRecord.getReadings().getTest();
@@ -95,15 +95,14 @@ public class RecordsProcessor {
             values.put(RecordsContract.SingleTest.IDTEST, test.getIDTest().get(i));
             values.put(RecordsContract.SingleTest.VALUE, test.getValue().get(i));
             values.put(RecordsContract.SingleTest.TEST, recordId);
-            recordsHelper.getWritableDatabase().insert(RecordsContract.SingleTest.TABLE, RecordsContract.SingleTest.ERRORCODE, values);
+            helper.getWritableDatabase().insert(RecordsContract.SingleTest.TABLE, RecordsContract.SingleTest.ERRORCODE, values);
         }
         return recordId;
     }
 
 
-    public static List<TestRecord> reconstructRecords(Context context, Cursor testRecordCursor) {
+    public static List<TestRecord> reconstructRecords(Context context, Cursor testRecordCursor,SQLiteOpenHelper helper) {
         List<TestRecord> records = new ArrayList<>();
-        RecordsHelper recordsHelper = RecordsHelper.get(context);
         while (testRecordCursor.moveToNext()) {
             TestRecord testRecord = new TestRecord();
             TestRecord record = new TestRecord();
@@ -124,7 +123,7 @@ public class RecordsProcessor {
             Sensors sensors = new Sensors();
             String selection = RecordsContract.Sensors.COL_READINGS + "=?";
             String[] selectionArgs = new String[]{"" + recordId};
-            Cursor sensorsCursor = recordsHelper.getWritableDatabase().query(RecordsContract.Sensors.TABLE, null, selection, selectionArgs, null, null, null);
+            Cursor sensorsCursor = helper.getWritableDatabase().query(RecordsContract.Sensors.TABLE, null, selection, selectionArgs, null, null, null);
 
             if (sensorsCursor.moveToFirst()) {
                 long sensorsId = sensorsCursor.getLong(sensorsCursor.getColumnIndexOrThrow(RecordsContract.Sensors.ID));
@@ -132,7 +131,7 @@ public class RecordsProcessor {
                 S0 s0 = new S0();
                 selection =RecordsContract.SingleS0.S0+ " = ?";
                 selectionArgs = new String[]{"" + sensorsId};
-                Cursor s0Cursor = recordsHelper.getWritableDatabase().query(RecordsContract.SingleS0.TABLE, null, selection, selectionArgs, null, null, null);
+                Cursor s0Cursor = helper.getWritableDatabase().query(RecordsContract.SingleS0.TABLE, null, selection, selectionArgs, null, null, null);
                 if (s0Cursor.moveToFirst()) {
                     List<Long> errorcodes = new ArrayList<>();
                     List<Long> avgs = new ArrayList<>();
@@ -166,7 +165,7 @@ public class RecordsProcessor {
 
                 selection = RecordsContract.SingleS1.S1+" = ?";
                 selectionArgs = new String[]{"" + sensorsId};
-                Cursor s1Cursor = recordsHelper.getWritableDatabase().query(RecordsContract.SingleS1.TABLE, null, selection, selectionArgs, null, null, null);
+                Cursor s1Cursor = helper.getWritableDatabase().query(RecordsContract.SingleS1.TABLE, null, selection, selectionArgs, null, null, null);
                 if (s1Cursor.moveToFirst()) {
                     List<Long> errorcodes = new ArrayList<>();
                     List<Long> avgs = new ArrayList<>();
@@ -202,7 +201,7 @@ public class RecordsProcessor {
 
                 selection = RecordsContract.SingleS2.S2+" = ?";
                 selectionArgs = new String[]{"" + sensorsId};
-                Cursor s2Cursor = recordsHelper.getWritableDatabase().query(RecordsContract.SingleS2.TABLE, null, selection, selectionArgs, null, null, null);
+                Cursor s2Cursor = helper.getWritableDatabase().query(RecordsContract.SingleS2.TABLE, null, selection, selectionArgs, null, null, null);
                 if (s2Cursor.moveToFirst()) {
                     List<Long> errorcodes = new ArrayList<>();
                     List<Long> avgs = new ArrayList<>();
@@ -240,7 +239,7 @@ public class RecordsProcessor {
             Test test = new Test();
             selection = RecordsContract.SingleTest.TEST + "=?";
             selectionArgs = new String[]{"" + recordId};
-            Cursor singleTestCursor = recordsHelper.getWritableDatabase().query(RecordsContract.SingleTest.TABLE, null, selection, selectionArgs, null, null, null);
+            Cursor singleTestCursor = helper.getWritableDatabase().query(RecordsContract.SingleTest.TABLE, null, selection, selectionArgs, null, null, null);
 
             if (singleTestCursor.moveToNext()) {
                 List<Long> errorcodes = new ArrayList<>();
@@ -270,7 +269,6 @@ public class RecordsProcessor {
 
             records.add(record);
         }
-
         return records;
     }
 }

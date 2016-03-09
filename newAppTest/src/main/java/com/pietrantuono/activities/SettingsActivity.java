@@ -1,14 +1,14 @@
 package com.pietrantuono.activities;
 
-import com.activeandroid.Model;
 import com.activeandroid.query.Select;
 import com.crashlytics.android.Crashlytics;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.pietrantuono.pericoach.newtestapp.BuildConfig;
 import com.pietrantuono.pericoach.newtestapp.R;
+import com.pietrantuono.recordsdb.NewRecordsSQLiteOpenHelper;
 import com.pietrantuono.recordsdb.RecordsContract;
-import com.pietrantuono.recordsdb.RecordsHelper;
+import com.pietrantuono.recordsdb.RecordsProcessor;
 import com.pietrantuono.recordsyncadapter.StartSyncAdapterService;
 
 import android.content.Context;
@@ -81,8 +81,12 @@ public class SettingsActivity extends PreferenceActivity {
         });
         Preference unprocessed = (Preference) findPreference(getResources().getString(R.string.unprocessed));
         Preference dowloadunprocessed = (Preference) findPreference(getResources().getString(R.string.download_unprocessed));
-        List<Model> records = new Select().from(TestRecord.class).where("uploaded = ?", false).execute();
-        if (records.size() <= 0) {
+        NewRecordsSQLiteOpenHelper newRecordsSQLiteOpenHelper=NewRecordsSQLiteOpenHelper.getInstance(SettingsActivity.this);
+        String selection=RecordsContract.TestRecords.UPLOADED +" = ?";
+        String[] selectionargs= new String[]{"1"};
+        Cursor cursor=newRecordsSQLiteOpenHelper.getReadableDatabase().query(RecordsContract.TestRecords.TABLE,null,selection,selectionargs,null,null,null);
+        //List<Model> records = new Select().from(TestRecord.class).where("uploaded = ?", false).execute();
+        if (cursor.getCount() <= 0) {
             Spannable title = new SpannableString("UP TO DATE");
             title.setSpan(new ForegroundColorSpan(Color.GREEN), 0, title.length(), 0);
             unprocessed.setTitle(title);
@@ -90,7 +94,7 @@ public class SettingsActivity extends PreferenceActivity {
             unprocessed.setIcon(R.drawable.ic_ok);
             dowloadunprocessed.setEnabled(false);
         } else {
-            Spannable title = new SpannableString("WARNING !!! " + records.size() + " RECORDS UNPROCESSED!");
+            Spannable title = new SpannableString("WARNING !!! " + cursor.getCount() + " RECORDS UNPROCESSED!");
             title.setSpan(new ForegroundColorSpan(Color.RED), 0, title.length(), 0);
             unprocessed.setTitle(title);
             unprocessed.setSummary("CLICK TO RETRY");
@@ -131,12 +135,11 @@ public class SettingsActivity extends PreferenceActivity {
     }
 
     private void downloadUnprocessed(Context context) {
-        List<TestRecord> records = new Select().from(TestRecord.class).where("uploaded = ?", false).execute();
-        RecordsHelper recordsHelper = RecordsHelper.get(context);
+        NewRecordsSQLiteOpenHelper newRecordsSQLiteOpenHelper = NewRecordsSQLiteOpenHelper.getInstance(context);
         String selection="uploaded = ?";
         String[] selectionArgs= new String[]{"1"};
-        Cursor testRecordCursor = recordsHelper.getWritableDatabase().query(RecordsContract.TestRecords.TABLE, null, selection, selectionArgs, null, null, null);
-        records= RecordsProcessor.reconstructRecords(context, testRecordCursor);
+        Cursor testRecordCursor = newRecordsSQLiteOpenHelper.getWritableDatabase().query(RecordsContract.TestRecords.TABLE, null, selection, selectionArgs, null, null, null);
+        List<TestRecord> records= RecordsProcessor.reconstructRecords(context, testRecordCursor, newRecordsSQLiteOpenHelper);
         if (records == null || records.size() <= 0) {
             Toast.makeText(SettingsActivity.this, "No records found...", Toast.LENGTH_LONG).show();
             return;
@@ -159,7 +162,6 @@ public class SettingsActivity extends PreferenceActivity {
 
         for (int i = 0; i < records.size(); i++) {
             TestRecord record = records.get(i);
-            MyDatabaseUtils.RecontructRecord(record);
             Gson gson = new GsonBuilder()
                     .excludeFieldsWithoutExposeAnnotation()
                     .registerTypeAdapter(Long.class, new MyLongTypeAdapter())
@@ -327,9 +329,9 @@ public class SettingsActivity extends PreferenceActivity {
 
 
     public static List<TestRecord> getAllRecords(Context context) {
-        RecordsHelper recordsHelper = RecordsHelper.get(context);
-        Cursor testRecordCursor = recordsHelper.getWritableDatabase().query(RecordsContract.TestRecords.TABLE, null, null, null, null, null, null);
-        return RecordsProcessor.reconstructRecords(context, testRecordCursor);
+        NewRecordsSQLiteOpenHelper newRecordsSQLiteOpenHelper = NewRecordsSQLiteOpenHelper.getInstance(context);
+        Cursor testRecordCursor = newRecordsSQLiteOpenHelper.getWritableDatabase().query(RecordsContract.TestRecords.TABLE, null, null, null, null, null, null);
+        return RecordsProcessor.reconstructRecords(context, testRecordCursor,newRecordsSQLiteOpenHelper);
     }
 
 }

@@ -30,8 +30,9 @@ import com.pietrantuono.ioioutils.PCBDetectHelper.PCBDetectHelperInterface;
 import com.pietrantuono.ioioutils.Voltage;
 import com.pietrantuono.pericoach.newtestapp.BuildConfig;
 import com.pietrantuono.pericoach.newtestapp.R;
+import com.pietrantuono.recordsdb.NewRecordsSQLiteOpenHelper;
 import com.pietrantuono.recordsdb.RecordsContract;
-import com.pietrantuono.recordsdb.RecordsHelper;
+import com.pietrantuono.recordsdb.RecordsProcessor;
 import com.pietrantuono.sensors.SensorTestCallback;
 import com.pietrantuono.sequencedb.SequenceProviderHelper;
 
@@ -65,7 +66,6 @@ import server.MyLongTypeAdapter;
 import server.pojos.Job;
 import server.pojos.Test;
 import server.pojos.records.TestRecord;
-import server.utils.MyDatabaseUtils;
 import server.utils.RecordFromSequenceCreator;
 
 @SuppressWarnings("unused")
@@ -354,16 +354,17 @@ public class MainActivity extends AppCompatActivity
                 // usually Barcode TEST.
                 // 	TODO - Maybe check if barcode is actually set instead,
                 // if no barcode then no record
+                NewRecordsSQLiteOpenHelper newRecordsHelper = NewRecordsSQLiteOpenHelper.getInstance(MainActivity.this);
                 TestRecord record = RecordFromSequenceCreator.createRecordFromSequence(newSequence);
                 //MyDatabaseUtils.RecontructRecord(record);
-                long id = RecordsProcessor.saveRecord(MainActivity.this, record);
+                long id = RecordsProcessor.saveRecord(MainActivity.this, record, newRecordsHelper);
                 if (id > 0) {
-                    RecordsHelper recordsHelper = RecordsHelper.get(MainActivity.this);
+
                     String selection = "Id = ?";
                     String[] selectionArgs = new String[]{"" + id};
-                    Cursor c = recordsHelper.getWritableDatabase().query(RecordsContract.TestRecords.TABLE, null, selection, selectionArgs, null, null, null);
+                    Cursor c = newRecordsHelper.getWritableDatabase().query(RecordsContract.TestRecords.TABLE, null, selection, selectionArgs, null, null, null);
                     if (c.getCount() > 0) {
-                        List<TestRecord> records = RecordsProcessor.reconstructRecords(MainActivity.this, c);
+                        List<TestRecord> records = RecordsProcessor.reconstructRecords(MainActivity.this, c,newRecordsHelper);
                         if (records.size() > 0) {
                             Gson gson = new GsonBuilder()
                                     .excludeFieldsWithoutExposeAnnotation()

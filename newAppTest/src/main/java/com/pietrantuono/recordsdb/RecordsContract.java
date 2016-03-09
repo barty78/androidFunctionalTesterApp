@@ -28,7 +28,7 @@ public class RecordsContract {
         public static final String UPLOADED = "uploaded";
 
         public static final String CREATE_TABLE = "CREATE TABLE " + TABLE + " ("
-                + ID + "INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + BT_ADDR + TEXT_TYPE + COMMA_SEP
                 + BARCODE + INTEGER_TYPE + COMMA_SEP
                 + DURATION + TEXT_TYPE + COMMA_SEP
@@ -49,7 +49,7 @@ public class RecordsContract {
         public static final String TABLE = "Readings";
 
         public static final String CREATE_TABLE = "CREATE TABLE " + TABLE + " ("
-                + ID + "INTEGER PRIMARY KEY AUTOINCREMENT "
+                + ID + " INTEGER PRIMARY KEY AUTOINCREMENT "
                 + ")";
     }
 
@@ -60,7 +60,7 @@ public class RecordsContract {
         public static final String S0 = "S0";
 
         public static final String CREATE_TABLE = "CREATE TABLE " + TABLE + " ("
-                + ID + "INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + COL_READINGS + INTEGER_TYPE + COMMA_SEP
                 + S0 + INTEGER_TYPE
                 + ")";
@@ -71,7 +71,7 @@ public class RecordsContract {
         public static final String ID = "Id";
 
         public static final String CREATE_TABLE = "CREATE TABLE " + TABLE + " ("
-                + ID + "INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + ID + " INTEGER PRIMARY KEY AUTOINCREMENT "
                 + ")";
     }
 
@@ -87,14 +87,14 @@ public class RecordsContract {
         public static final String S0 = "S0";
 
         public static final String CREATE_TABLE = "CREATE TABLE " + TABLE + " ("
-                + ID + "INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + AVG + INTEGER_TYPE + COMMA_SEP
                 + IDTEST + INTEGER_TYPE + COMMA_SEP
                 + MIN + INTEGER_TYPE + COMMA_SEP
                 + MAX + INTEGER_TYPE + COMMA_SEP
                 + ERROR_CODE + INTEGER_TYPE + COMMA_SEP
                 + RESULT + INTEGER_TYPE + COMMA_SEP
-                + S0 + INTEGER_TYPE + COMMA_SEP
+                + S0 + INTEGER_TYPE
                 + ")";
     }
 
@@ -110,14 +110,14 @@ public class RecordsContract {
         public static final String S1 = "S1";
 
         public static final String CREATE_TABLE = "CREATE TABLE " + TABLE + " ("
-                + ID + "INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + AVG + INTEGER_TYPE + COMMA_SEP
                 + IDTEST + INTEGER_TYPE + COMMA_SEP
                 + MIN + INTEGER_TYPE + COMMA_SEP
                 + MAX + INTEGER_TYPE + COMMA_SEP
                 + ERROR_CODE + INTEGER_TYPE + COMMA_SEP
                 + RESULT + INTEGER_TYPE + COMMA_SEP
-                + S1 + INTEGER_TYPE + COMMA_SEP
+                + S1 + INTEGER_TYPE
                 + ")";
     }
 
@@ -133,14 +133,14 @@ public class RecordsContract {
         public static final String S2 = "S2";
 
         public static final String CREATE_TABLE = "CREATE TABLE " + TABLE + " ("
-                + ID + "INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + AVG + INTEGER_TYPE + COMMA_SEP
                 + IDTEST + INTEGER_TYPE + COMMA_SEP
                 + MIN + INTEGER_TYPE + COMMA_SEP
                 + MAX + INTEGER_TYPE + COMMA_SEP
                 + ERROR_CODE + INTEGER_TYPE + COMMA_SEP
                 + RESULT + INTEGER_TYPE + COMMA_SEP
-                + S2 + INTEGER_TYPE + COMMA_SEP
+                + S2 + INTEGER_TYPE
                 + ")";
     }
 
@@ -154,12 +154,12 @@ public class RecordsContract {
         public static final String TEST = "TEST";
 
         public static final String CREATE_TABLE = "CREATE TABLE " + TABLE + " ("
-                + ID + "INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + RESULT + INTEGER_TYPE + COMMA_SEP
                 + ERRORCODE + INTEGER_TYPE + COMMA_SEP
                 + IDTEST + INTEGER_TYPE + COMMA_SEP
                 + VALUE + REAL_TYPE + COMMA_SEP
-                + TEST + INTEGER_TYPE + COMMA_SEP
+                + TEST + INTEGER_TYPE
                 + ")";
     }
 }
