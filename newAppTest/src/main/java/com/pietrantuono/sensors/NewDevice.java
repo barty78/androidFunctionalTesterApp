@@ -58,7 +58,7 @@ public abstract class NewDevice {
     private OnSampleCallback sampleCallback = null;
     private WeakReference<OnSampleCallback> weakReference = null;
     private BatteryLevelUUTVoltageTest.Callback callback;
-    private AllVoltageObserver allSensorsCallback;
+    private AllSensorsCallback allSensorsCallback;
 
     public class Information {
         public String mSerialNumber = "";
@@ -177,7 +177,7 @@ public abstract class NewDevice {
         return sendPacket(new PacketTx_SetZeroVoltage(sensorIndex, zeroVoltage));
     }
 
-    public final boolean sendAllVoltages(short[] refVoltages, short[] zeroVoltages, AllVoltageObserver callback) throws InvalidVoltageException {
+    public final boolean sendAllVoltages(short[] refVoltages, short[] zeroVoltages, AllSensorsCallback callback) throws InvalidVoltageException {
         if (refVoltages.length == 3 && zeroVoltages.length == 3) {
             allSensorsCallback=callback;
             return sendPacket(new PacketTx_SetAllVoltage(refVoltages, zeroVoltages));
@@ -366,7 +366,8 @@ public abstract class NewDevice {
                     case PFMAT.RX_ALL_VOLTAGE: {
                         Log.d(TAG,"handlePacket: got all voltages data");
                         PacketRx_SetAllVoltage data = (PacketRx_SetAllVoltage) packet;
-                        onAllVoltage(data.VoltageFailed());
+//                        onAllVoltage(data.VoltageFailed());
+                        onAllVoltage();
                         break;
                     }
                     default:
@@ -419,17 +420,17 @@ public abstract class NewDevice {
             mRefVoltageObserver.onRefVoltage(sensorIndex, refVoltage);
     }
 
-    private final void onAllVoltage(boolean ack) {
-        if (mAllVoltageObserver != null)
-            mAllVoltageObserver.onAllVoltage(ack);
-    }
-
-//    private final void onAllVoltage() {
-//        if(allSensorsCallback!=null){
-//            allSensorsCallback.onAllVoltageResponseReceived();
-//            allSensorsCallback=null;
-//        }
+//    private final void onAllVoltage(boolean ack) {
+//        if (mAllVoltageObserver != null)
+//            mAllVoltageObserver.onAllVoltage(ack);
 //    }
+
+    private final void onAllVoltage() {
+        if(allSensorsCallback!=null){
+            allSensorsCallback.onAllVoltageResponseReceived();
+            allSensorsCallback=null;
+        }
+    }
 
     public void setCallback(OnSampleCallback callback) {
         weakReference = new WeakReference<OnSampleCallback>(callback);
