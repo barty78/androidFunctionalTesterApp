@@ -503,11 +503,17 @@ public class BTUtility {
     public void sendAllVoltages(final short[] refVoltages, final short[] zeroVoltages, int timeOutInMills) throws TimeoutException, NewDevice.InvalidVoltageException {
         final CountDownLatch countDownLatch = new CountDownLatch(1);
         try {
-            NewPFMATDevice.getDevice().sendAllVoltages(refVoltages, zeroVoltages, new AllVoltageObserver() {
+            NewPFMATDevice.getDevice().sendAllVoltages(refVoltages, zeroVoltages, new AllSensorsCallback() {
                 @Override
-                public void onAllVoltage(boolean ack) {
+                public void onAllVoltageResponseReceived() {
                     countDownLatch.countDown();
-                    Log.d(TAG,"onAllVoltage , ACK = "+ack);
+                    Log.d(TAG, "onAllVoltage , ACK");
+                }
+
+                @Override
+                public void onError() {
+                    countDownLatch.countDown();
+                    Log.d(TAG, "onAllVoltage , ERROR ");
                 }
             });
         } catch (NewDevice.InvalidVoltageException e) {

@@ -30,7 +30,6 @@
 
 
     <application
-        android:debuggable="true"
         android:allowBackup="true"
         android:theme="@style/Theme.MyTheme"
         android:name="com.pietrantuono.application.PeriCoachTestApplication"
