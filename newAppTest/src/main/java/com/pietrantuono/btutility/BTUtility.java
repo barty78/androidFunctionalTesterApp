@@ -255,6 +255,7 @@ public class BTUtility {
                     && (device.getName().contains("PeriCoach-" + scancode))) {
                 mListItems.add(new ConnectDeviceItem(Type.DEVICE, device
                         .getName(), device, R.drawable.device));
+                mBTAdapter.cancelDiscovery();
                 // Attempt to connect to specified device. This happens
                 // asynchronously, and we'll end up with onConnectSucceeded or
                 // onConnectFailed called when it's complete
