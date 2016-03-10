@@ -59,7 +59,6 @@ import hydrix.pfmat.generic.Device;
 
 public class BTUtility {
     private final String TAG = getClass().getSimpleName();
-    private String macaddress = null;
     private WeakReference<Activity> activityRef;
     private BluetoothAdapter mBTAdapter = BluetoothAdapter.getDefaultAdapter();
     private ArrayList<ConnectDeviceItem> mListItems = null;
@@ -71,7 +70,8 @@ public class BTUtility {
     private String mFirmwareVer;
     private static final String DISCONNECTED = "disconnected";
     private String mDeviceId;
-    private String scancode;
+    private String macaddress = null;
+    private String scancode = "";
     private Boolean deviceIDOK = false;
     private Boolean scancodeOK = false;
     // private IOIOActivityListener ioioActivityListener;
@@ -106,6 +106,7 @@ public class BTUtility {
             if (BluetoothDevice.ACTION_FOUND.equals(intent.getAction())) {
                 BluetoothDevice device = intent
                         .getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                Log.d(TAG, "BT Device Found - " + device.getAddress());
                 if (device != null) {
                     if (bluetoothCrashResolver != null)
                         bluetoothCrashResolver
@@ -131,8 +132,10 @@ public class BTUtility {
         if (isstopped)
             return;
         this.activityRef = new WeakReference<Activity>(activity1);
-        this.scancode = scancode;
-        this.macaddress = macaddress;
+        if (PeriCoachTestApplication.getCurrentJob().getTesttypeId() == 1) {
+            this.scancode = scancode;
+            this.macaddress = macaddress;
+        }
         final Activity activity = activityRef.get();
         if (activity == null)
             return;
@@ -240,17 +243,19 @@ public class BTUtility {
         if (activityRef.get() != null) {
             bluetoothCrashResolver = new BluetoothCrashResolver(
                     activityRef.get());
-            bluetoothCrashResolver.start();
+//            bluetoothCrashResolver.start();
         }
         mBTAdapter.startDiscovery();
+        Log.d(TAG, "Scancode is " + scancode);
     }
 
     private final void onDiscoverDevice(BluetoothDevice device) {
         if (isstopped)
             return;
+        Log.d("BT ADDR:", device.getAddress());
+        Log.d("BT NAME:", device.getName());
         if (device.getName() != null) {
-            Log.d("BT ADDR:", device.getAddress());
-            Log.d("BT NAME:", device.getName());
+
             if (device.getName() != ""
                     && (device.getName().contains("PeriCoach-" + scancode))) {
                 mListItems.add(new ConnectDeviceItem(Type.DEVICE, device
@@ -262,6 +267,7 @@ public class BTUtility {
                 if (activity == null)
                     return;
                 NewPFMATDevice.specifyDevice(device, activity);
+                mBTAdapter.cancelDiscovery();
                 NewPFMATDevice.connect(activity, INTENT_CONNECT_SUCCEEDED,
                         INTENT_CONNECT_FAILED);
                 if (progressdialog != null) {
