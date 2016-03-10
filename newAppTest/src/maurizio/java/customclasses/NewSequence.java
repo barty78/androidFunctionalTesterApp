@@ -12,10 +12,10 @@ import com.pietrantuono.activities.MainActivity;
 import com.pietrantuono.constants.NewMResult;
 import com.pietrantuono.constants.NewMSensorResult;
 import com.pietrantuono.constants.NewSequenceInterface;
+import com.pietrantuono.tests.implementations.BluetoothConnectTest;
 import com.pietrantuono.tests.implementations.BluetoothConnectTestForTesting;
 import com.pietrantuono.tests.implementations.GetMacAddressTest;
 import com.pietrantuono.tests.implementations.SensorTestWrapper;
-import com.pietrantuono.tests.implementations.dummies.DummySensorTestWrapper;
 import com.pietrantuono.tests.implementations.steps.Step;
 import com.pietrantuono.tests.implementations.upload.DummyUploadFirmwareTest;
 import com.pietrantuono.tests.implementations.upload.TestUploadFirmwareTest;
@@ -424,12 +424,13 @@ public class NewSequence implements NewSequenceInterface {
         test.setValue(1);
         sequence.add(test);
 
-        sequence.add(new BluetoothConnectTestForTesting(activity));
+        sequence.add(new BluetoothConnectTest(activity));
 
-        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 2150, 2300, 50,
+        sequence.add(new SensorTestWrapper(true, activity, ioio, 3, 2150, 2300, 50,
                 "Sensor Input Test, LOADED, GAIN/ZERO @ 210/0"));
-        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 0, 50, 50,
-                "Sensor Input Test, LOADED, GAIN/ZERO @ 127/50"));
+
+        sequence.add(new SensorTestWrapper(true, activity, ioio, 3, 2150, 2300, 50,
+                "Sensor Input Test, LOADED, GAIN/ZERO @ 210/0"));
 
     }
 
