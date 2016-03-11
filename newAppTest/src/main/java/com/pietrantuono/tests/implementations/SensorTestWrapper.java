@@ -58,7 +58,7 @@ public class SensorTestWrapper extends Test {
         Log.d(TAG, "Sensor Gain Voltage is " + this.voltage);
         Log.d(TAG, "Sensor Zero Voltage is " + this.zeroVoltage);
 
-        if (isClosedTest) {
+        if (this.isClosedTest) {
             sensorTest = new ClosedTest(activity, SensorTestWrapper.this, lowerLimit, upperLimit, varLimit);
         } else {
             sensorTest = new SensorTest(activity, SensorTestWrapper.this, lowerLimit, upperLimit, varLimit);
@@ -70,13 +70,15 @@ public class SensorTestWrapper extends Test {
     public void execute() {
         if (!isClosedTest) {
             new SensorTestWrapperAsyncTask().executeParallel();
-        }
-        else {
-            helper = new SensorsTestHelper((Activity) activityListener, activityListener.getBtutility(), ioio);
-            sensorTest.setSensorsTestHelper(helper);
-//		IOIOUtils.getUtils().stopUartThread();
-//		IOIOUtils.getUtils().closeUart((Activity)activityListener);
-            sensorTest.execute();
+        } else {
+            ((Activity) activityListener).runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    helper = new SensorsTestHelper((Activity) activityListener, activityListener.getBtutility(), ioio);
+                    sensorTest.setSensorsTestHelper(helper);
+                    sensorTest.execute();
+                }
+            });
         }
     }
 
