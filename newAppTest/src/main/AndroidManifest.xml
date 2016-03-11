@@ -28,10 +28,9 @@
     <uses-permission android:name="android.permission.READ_SYNC_STATS" />
     <uses-permission android:name="com.pietrantuono.devices.permssion" />
     <uses-permission android:name="com.pietrantuono.devicesprovider.permission.READ_WRITE_PROVIDER" />
-
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
     <application
-        android:debuggable="true"
         android:allowBackup="true"
         android:theme="@style/Theme.MyTheme"
         android:name="com.pietrantuono.application.PeriCoachTestApplication"

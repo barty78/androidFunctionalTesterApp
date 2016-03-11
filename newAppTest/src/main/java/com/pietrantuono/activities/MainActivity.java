@@ -437,6 +437,7 @@ public class MainActivity extends AppCompatActivity
         sequenceStarted = false;
         if (isFinishing()) return;
         PeriCoachTestApplication.forceSync();
+        uiHelper.cleanUI(MainActivity.this);
         uiHelper.removeOverallFailOrPass();
         hideRestart = true;
         if (!isDevicesListActionbar) invalidateOptionsMenu();
@@ -482,7 +483,9 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onPCBDisconnected() {
         sequenceStarted = false;
-        uiHelper.cleanUI(MainActivity.this);
+        if (job.getTesttypeId() == 1) {
+            uiHelper.cleanUI(MainActivity.this);
+        }
         IOIOUtils.getUtils().closeall(MainActivity.this, MainActivity.this);
         waitForPCBConnected();
     }

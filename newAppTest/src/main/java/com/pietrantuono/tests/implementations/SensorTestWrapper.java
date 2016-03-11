@@ -13,6 +13,7 @@ import com.pietrantuono.tests.superclass.SimpleAsyncTask;
 import com.pietrantuono.tests.superclass.Test;
 
 public class SensorTestWrapper extends Test {
+    private boolean isClosedTest;
     @SuppressWarnings("unused")
     private int TestLimitIndex = 0;
     private short voltage;
@@ -38,8 +39,10 @@ public class SensorTestWrapper extends Test {
         this.TestLimitIndex = TestLimitIndex;
         this.load = null;
         if (description.contains("LOADED")) {
+            this.isClosedTest = isClosedTest;
             this.load = true;
         } else if (description.contains("NO LOAD")) {
+            this.isClosedTest = false;
             this.load = false;
         }
         Log.d(TAG, "Sensor Load is " + this.load);
@@ -61,12 +64,20 @@ public class SensorTestWrapper extends Test {
             sensorTest = new SensorTest(activity, SensorTestWrapper.this, lowerLimit, upperLimit, varLimit);
         }
 
-
     }
 
     @Override
     public void execute() {
-        new SensorTestWrapperAsyncTask().executeParallel();
+        if (!isClosedTest) {
+            new SensorTestWrapperAsyncTask().executeParallel();
+        }
+        else {
+            helper = new SensorsTestHelper((Activity) activityListener, activityListener.getBtutility(), ioio);
+            sensorTest.setSensorsTestHelper(helper);
+//		IOIOUtils.getUtils().stopUartThread();
+//		IOIOUtils.getUtils().closeUart((Activity)activityListener);
+            sensorTest.execute();
+        }
     }
 
 

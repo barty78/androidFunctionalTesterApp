@@ -126,40 +126,37 @@ public class SensorsTestHelper implements OnSampleCallback {
 		}
 	}
 
+    void sendAllVoltages(final Short voltage, final Short zerovoltage) throws TimeoutException, NewDevice.InvalidVoltageException {
+        short[] ref = new short[]{voltage, voltage, voltage};
+        short[] zero = new short[]{zerovoltage, zerovoltage, zerovoltage};
+        ((NewIOIOActivityListener) (activityref.get())).getBtutility().sendAllVoltages(ref, zero, 500);
 
-	void sendAllVoltages(final Short voltage, final Short zerovoltage) throws Exception{
-		short[] ref = new short[]{voltage,voltage,voltage};
-		short[] zero = new short[]{zerovoltage,zerovoltage,zerovoltage};
-		try {
-			((NewIOIOActivityListener) (activityref.get())).getBtutility().sendAllVoltages(ref,zero,500);
-		} catch (Exception e) {
-			throw new Exception("Setting Failed.");
-		}
-	}
+    }
 
-	void sendVoltages(final Short voltage, final Short zerovoltage) throws Exception{
-		try {
-			((NewIOIOActivityListener) (activityref.get())).getBtutility().setVoltage(voltage);
-		} catch (Exception e) {
-			throw new Exception("Setting Failed.");
-		}
-		try {
-			((NewIOIOActivityListener) (activityref.get())).getBtutility().setZeroVoltage(zerovoltage);
-		} catch (Exception e) {
-			throw new Exception("Setting Failed.");
-		}
-	}
+    void sendVoltages(final Short voltage, final Short zerovoltage) throws Exception {
+        try {
+            ((NewIOIOActivityListener) (activityref.get())).getBtutility().setVoltage(voltage);
+        } catch (Exception e) {
+            throw new Exception("Setting Failed.");
+        }
+        try {
+            ((NewIOIOActivityListener) (activityref.get())).getBtutility().setZeroVoltage(zerovoltage);
+        } catch (Exception e) {
+            throw new Exception("Setting Failed.");
+        }
+    }
 
-	public void accetpData(boolean accept){
-		this.acceptdata=accept;
-	}
+    public void accetpData(boolean accept) {
+        this.acceptdata = accept;
+    }
 
-	/**
-	 * Should work, tested in another context, will not work if both sendAllVoltages and callback are executed on the same thread
-	 * but that should not be the case
-	 */
-	public void sendAllVoltages(final short[] refVoltages, final short[] zeroVoltages, int timeOutInMills) {
-		((NewIOIOActivityListener) (activityref.get())).getBtutility().sendAllVoltages(refVoltages,zeroVoltages,timeOutInMills);
-	}
+    /**
+     * Should work, tested in another context, will not work if both sendAllVoltages and callback are executed on the same thread
+     * but that should not be the case
+     */
+    public void sendAllVoltages(final short[] refVoltages, final short[] zeroVoltages, int timeOutInMills) throws Exception {
+        ((NewIOIOActivityListener) (activityref.get())).getBtutility().sendAllVoltages(refVoltages, zeroVoltages, timeOutInMills);
+    }
+
 
 }
