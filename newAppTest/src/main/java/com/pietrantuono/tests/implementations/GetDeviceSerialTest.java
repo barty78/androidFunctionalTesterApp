@@ -72,7 +72,7 @@ public class GetDeviceSerialTest extends Test {
 
                             if (!PeriCoachTestApplication.getIsRetestAllowed()) {
                                 Log.d(TAG, "Retest is " + PeriCoachTestApplication.getIsRetestAllowed());
-                                if (!ServiceDBHelper.isSerialAlreadySeen(activityListener.getBarcode(), serial)) {
+                                if (!ServiceDBHelper.isDeviceAlreadySeen(activityListener.getBarcode(), serial)) {
                                     Success();
 //                                    activityListener.addView("Serial (HW reading):", strFileContents, false);
                                     activityListener.setSerial(strFileContents);

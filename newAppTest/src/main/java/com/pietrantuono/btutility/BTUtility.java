@@ -359,6 +359,7 @@ public class BTUtility {
         if (isstopped)
             return;
         if (bluetoothConnectTest != null) bluetoothConnectTest.setSuccess(true);
+
         if ((NewIOIOActivityListener) activityRef.get() == null)
             return;
         Handler handler = new Handler();

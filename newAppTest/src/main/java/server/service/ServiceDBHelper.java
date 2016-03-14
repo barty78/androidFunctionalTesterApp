@@ -22,7 +22,7 @@ public class ServiceDBHelper {
 	private static void updateDevices(List<Device> updatedDevices) {
 		HashSet<Device> devicesToBeSaved= new HashSet<Device>();
 		for (Device device:updatedDevices) {
-			Device existingdevice = weHaveItAlready(device.getBarcode());
+			Device existingdevice = weHaveItAlready(true, device.getBarcode());
 			if(existingdevice!=null) {
 				existingdevice.setBarcode(device.getBarcode() != null ? device.getBarcode() : "");
 				existingdevice.setBt_addr(device.getBt_addr() != null ? device.getBt_addr() : "");
@@ -54,7 +54,7 @@ public class ServiceDBHelper {
 		devicesToBeSaved.addAll(newDevices);
 		Iterator<Device> iterator = devicesToBeSaved.iterator();
 		while (iterator.hasNext()){
-			if(weHaveItAlready(iterator.next().getBarcode())!=null)iterator.remove();
+			if(weHaveItAlready(true, iterator.next().getBarcode())!=null)iterator.remove();
 		}
 		ActiveAndroid.beginTransaction();
 		try {
@@ -70,9 +70,13 @@ public class ServiceDBHelper {
 
 
 
-	private static Device weHaveItAlready(String barcode) {
+	public static Device weHaveItAlready(boolean isBarcode, String info) {
 		Device device=null;
-		device= new Select().from(Device.class).where("Barcode = ?",barcode).executeSingle();
+		if (isBarcode) {
+			device = new Select().from(Device.class).where("Barcode = ?", info).executeSingle();
+		} else {
+			device = new Select().from(Device.class).where("Serial = ?", info).executeSingle();
+		}
 		return device;
 	}
 
@@ -80,7 +84,6 @@ public class ServiceDBHelper {
 	@SuppressWarnings("ucd")
 	public static boolean isBarcodeAlreadySeen(String barcode){
 		return new Select().from(Device.class).where("Barcode = ?",barcode).execute().size()>0;
-
 	}
 
 	public static Long saveBarcode(String barcode){
@@ -107,13 +110,19 @@ public class ServiceDBHelper {
 		return device.save();
 	}
 
-	public static boolean isSerialAlreadySeen(String barcode, String serial){
+	public static boolean isDeviceAlreadySeen(String barcode, String serial){
 		if(barcode==null || barcode.length()<=0)return true;
 		if(serial==null)return true;
 		String args[]= new String[2];
 		args[0]=barcode;
 		args[1]=serial;
 		return new Select().from(Device.class).where("Barcode = ? AND Serial = ?", args).execute().size()>0;
+	}
+
+	public static Device isSerialAlreadySeen(String serial){
+		if(serial==null)return null;
+		Device device = new Select().from(Device.class).where("Serial = ?", serial).executeSingle();
+		return device;
 	}
 
 	public static boolean isMacAlreadySeen(String barcode, String mac){
