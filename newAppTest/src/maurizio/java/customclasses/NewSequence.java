@@ -15,6 +15,7 @@ import com.pietrantuono.constants.NewSequenceInterface;
 import com.pietrantuono.tests.implementations.BluetoothConnectTest;
 import com.pietrantuono.tests.implementations.BluetoothConnectTestForTesting;
 import com.pietrantuono.tests.implementations.GetMacAddressTest;
+import com.pietrantuono.tests.implementations.ReadDeviceInfoSerialNumberTest;
 import com.pietrantuono.tests.implementations.SensorTestWrapper;
 import com.pietrantuono.tests.implementations.steps.Step;
 import com.pietrantuono.tests.implementations.upload.DummyUploadFirmwareTest;
@@ -27,6 +28,7 @@ import org.joda.time.format.PeriodFormatter;
 import org.joda.time.format.PeriodFormatterBuilder;
 
 import server.TestsParser;
+import server.pojos.Device;
 import server.pojos.Job;
 import ioio.lib.api.IOIO;
 import server.pojos.Sequence;
@@ -149,6 +151,16 @@ public class NewSequence implements NewSequenceInterface {
             if (test instanceof GetMacAddressTest) mac = ((GetMacAddressTest) test).getBT_Addr();
         }
         return mac;
+    }
+
+    @Override
+    public Device getDevice() {
+        return null;
+    }
+
+    @Override
+    public void setDevice(Device device) {
+
     }
 
     @Override
@@ -426,14 +438,11 @@ public class NewSequence implements NewSequenceInterface {
 
         sequence.add(new BluetoothConnectTestForTesting(activity));
 
-        sequence.add(new SensorTestWrapper(true, activity, ioio, 3, 0, 10, 50,
-                "Sensor Input Test, NO LOAD, GAIN/ZERO @ 127/0"));
+        sequence.add(new ReadDeviceInfoSerialNumberTest(activity));
 
-        sequence.add(new SensorTestWrapper(true, activity, ioio, 3, 200, 300, 50,
-                "Sensor Input Test, LOADED, GAIN/ZERO @ 25/0"));
+        sequence.add(new SensorTestWrapper(true, activity, ioio, 3, 0, 50, 50,
+                "Sensor Input Test, LOADED, GAIN/ZERO @ 127/50"));
 
-        sequence.add(new SensorTestWrapper(true, activity, ioio, 3, 0, 10, 50,
-                "Sensor Input Test, NO LOAD, GAIN/ZERO @ 127/0"));
     }
 
 

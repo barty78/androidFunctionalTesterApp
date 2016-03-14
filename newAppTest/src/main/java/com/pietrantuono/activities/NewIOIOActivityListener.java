@@ -2,6 +2,8 @@ package com.pietrantuono.activities;
 
 import com.pietrantuono.btutility.BTUtility;
 
+import server.pojos.Device;
+
 public interface NewIOIOActivityListener {
 
 
@@ -46,5 +48,8 @@ public interface NewIOIOActivityListener {
 
     String getBarcode();
 
+    void setSequenceDevice(Device device);
+
+    public Device getSequenceDevice();
 
 }

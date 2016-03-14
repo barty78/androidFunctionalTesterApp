@@ -106,8 +106,9 @@ public class Device extends Model {
      * @param barcode
      *     The barcode
      */
-    public void setBarcode(String barcode) {
+    public Device setBarcode(String barcode) {
         this.barcode = barcode;
+        return this;
     }
 
     //    The web service has already been updated to handle setting these fields, so nothing needs changing in the app to set the fields..  Web service uses the result and sets executed_tests and status accordingly.  You just need to use the fields in the devices list to display.
@@ -132,8 +133,9 @@ public class Device extends Model {
      * @param serial
      *     The serial
      */
-    public void setSerial(String serial) {
+    public Device setSerial(String serial) {
         this.serial = serial;
+        return this;
     }
 
     /**
@@ -150,8 +152,9 @@ public class Device extends Model {
      * @param model
      *     The model
      */
-    public void setModel(String model) {
+    public Device setModel(String model) {
         this.model = model;
+        return this;
     }
 
     /**
@@ -168,8 +171,9 @@ public class Device extends Model {
      * @param fwver
      *     The fwver
      */
-    public void setFwver(String fwver) {
+    public Device setFwver(String fwver) {
         this.fwver = fwver;
+        return this;
     }
 
     @Override

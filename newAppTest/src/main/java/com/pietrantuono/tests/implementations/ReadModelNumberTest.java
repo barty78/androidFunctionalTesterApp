@@ -51,6 +51,7 @@ public class ReadModelNumberTest extends Test {
             } else {
                 if (modelnumber.equals(PeriCoachTestApplication.getGetFirmware().getModel())) {
                     Success();
+                    activityListener.setSequenceDevice(activityListener.getSequenceDevice().setModel(modelnumber));
                     activityListener.addFailOrPass(true, true, modelnumber, description);
                 } else {
                     activityListener.addFailOrPass(true, false, modelnumber, description);

@@ -1,13 +1,16 @@
 package com.pietrantuono.tests.implementations;
 
+import analytica.pericoach.android.Contract;
 import server.pojos.Device;
 import server.service.ServiceDBHelper;
 
 import android.app.Activity;
+import android.database.Cursor;
 import android.widget.Toast;
 
 import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.btutility.BTUtility;
+import com.pietrantuono.devicesprovider.DevicesContentProvider;
 import com.pietrantuono.tests.superclass.SimpleAsyncTask;
 import com.pietrantuono.tests.superclass.Test;
 
@@ -43,16 +46,19 @@ public class ReadDeviceInfoSerialNumberTest extends Test {
                     || serial.length() != 24) {
                 activityListener.addFailOrPass(true, false, serial, description);
             } else {
-
-                //TODO - If testtype is not first stage test, need to check if device is already seen.  Check if it passed first stage testing.
                 if (PeriCoachTestApplication.getCurrentJob().getTesttypeId() == 2) {
-                    Device device = ServiceDBHelper.weHaveItAlready(false, serial);
-                    if (device != null && (device.getExec_Tests() == 1 && (device.getStatus() == device.getExec_Tests()))) {
-                        barcode = device.getBarcode();
-//                        activityListener.setBarcode(device.getBarcode());
-//                        activityListener.setSerial(serial);
-                        Success();
-                        activityListener.addFailOrPass(true, true, serial, description);
+                    Cursor c = ((Activity) activityListener).getContentResolver().query(DevicesContentProvider.CONTENT_URI, null, Contract.DevicesColumns.DEVICES_SERIAL+" = ?", new String[]{serial}, null);
+                    if (c.getCount() > 0) {
+                        c.moveToFirst();
+                        Device device = DevicesContentProvider.reconstructDevice(c);
+                        if (device != null && (device.getExec_Tests() == 1 && (device.getStatus() == device.getExec_Tests()))) {
+                            Success();
+                            activityListener.setSequenceDevice(device);
+                            activityListener.addFailOrPass(true, true, serial, description);
+                        } else {
+                            activityListener
+                                    .addFailOrPass(true, false, serial, description);
+                        }
                     } else {
                         activityListener
                                 .addFailOrPass(true, false, serial, description);
@@ -73,8 +79,8 @@ public class ReadDeviceInfoSerialNumberTest extends Test {
                         }
 
                         Success();
-                        ServiceDBHelper.saveSerial(activityListener.getBarcode(), serial);
                         activityListener.addFailOrPass(true, true, serial, description);
+                        activityListener.setSequenceDevice(activityListener.getSequenceDevice().setSerial(serial));
 
                     } else {
                         activityListener

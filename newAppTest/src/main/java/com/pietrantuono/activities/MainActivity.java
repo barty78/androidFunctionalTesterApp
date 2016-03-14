@@ -58,6 +58,7 @@ import ioio.lib.util.IOIOLooperProvider;
 import server.MyDoubleTypeAdapter;
 import server.MyIntTypeAdapter;
 import server.MyLongTypeAdapter;
+import server.pojos.Device;
 import server.pojos.Job;
 import server.pojos.Test;
 import server.pojos.records.TestRecord;
@@ -95,6 +96,7 @@ public class MainActivity extends AppCompatActivity
     private DevicesListFragment devicesListFragment;
     private boolean isDevicesListActionbar;
     private long recordId;
+    private Device sequenceDevice;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -350,7 +352,7 @@ public class MainActivity extends AppCompatActivity
                 // usually Barcode Test.
                 // 	TODO - Maybe check if barcode is actually set instead,
                 // if no barcode then no record
-                TestRecord record = RecordFromSequenceCreator.createRecordFromSequence(newSequence);
+                TestRecord record = RecordFromSequenceCreator.createRecordFromSequence(newSequence,sequenceDevice);
                 MyDatabaseUtils.RecontructRecord(record);
                 Gson gson = new GsonBuilder()
                         .excludeFieldsWithoutExposeAnnotation()
@@ -449,6 +451,7 @@ public class MainActivity extends AppCompatActivity
         barcode = null;
         newSequence = null;
         newSequence = getNewSequence();
+        sequenceDevice= new Device();
         newSequence.setStarttime(System.currentTimeMillis());
         try {
             newSequence.setJobNo(Long.parseLong(mJobNo));
@@ -757,5 +760,13 @@ public class MainActivity extends AppCompatActivity
     public void setDevicesFragmentActionBar(boolean isDevicesListActionbar) {
         this.isDevicesListActionbar = isDevicesListActionbar;
         invalidateOptionsMenu();
+    }
+
+    public Device getSequenceDevice() {
+        return sequenceDevice;
+    }
+
+    public void setSequenceDevice(Device sequenceDevice) {
+        this.sequenceDevice = sequenceDevice;
     }
 }

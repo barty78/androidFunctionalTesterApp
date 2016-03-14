@@ -6,15 +6,18 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.pietrantuono.application.PeriCoachTestApplication;
+import com.pietrantuono.devicesprovider.DevicesContentProvider;
 import com.pietrantuono.ioioutils.IOIOUtils;
 import com.pietrantuono.tests.superclass.Test;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.util.Log;
 import android.widget.Toast;
 
+import analytica.pericoach.android.Contract;
 import ioio.lib.api.IOIO;
 import server.service.ServiceDBHelper;
 
@@ -72,10 +75,15 @@ public class GetDeviceSerialTest extends Test {
 
                             if (!PeriCoachTestApplication.getIsRetestAllowed()) {
                                 Log.d(TAG, "Retest is " + PeriCoachTestApplication.getIsRetestAllowed());
-                                if (!ServiceDBHelper.isDeviceAlreadySeen(activityListener.getBarcode(), serial)) {
+                                String selection= Contract.DevicesColumns.DEVICES_SERIAL+" = ?";
+
+                                String[] seclectionargs= new String[]{};
+                                Cursor c=((Activity)activityListener).getContentResolver().query(DevicesContentProvider.CONTENT_URI,null,selection,seclectionargs,null);
+                                if (c.getCount()>0) {
                                     Success();
 //                                    activityListener.addView("Serial (HW reading):", strFileContents, false);
                                     activityListener.setSerial(strFileContents);
+                                    activityListener.setSequenceDevice(activityListener.getSequenceDevice().setSerial(strFileContents));
                                     activityListener.addFailOrPass(true, true, serial, description, testToBeParsed);
                                     ServiceDBHelper.saveSerial(activityListener.getBarcode(), serial);
                                     return;
@@ -93,6 +101,7 @@ public class GetDeviceSerialTest extends Test {
                                 Success();
 //                                activityListener.addView("Serial (HW reading):", strFileContents, false);
                                 activityListener.setSerial(strFileContents);
+                                activityListener.setSequenceDevice(activityListener.getSequenceDevice().setSerial(strFileContents));
                                 activityListener.addFailOrPass(true, true, serial, description, testToBeParsed);
                                 return;
                             }
