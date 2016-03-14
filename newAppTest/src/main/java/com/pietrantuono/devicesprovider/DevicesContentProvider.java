@@ -3,6 +3,7 @@ package com.pietrantuono.devicesprovider;
 import android.content.ContentProvider;
 import android.content.ContentUris;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -198,5 +199,24 @@ public class DevicesContentProvider extends ContentProvider {
         device.setStatus(c.getLong(c.getColumnIndexOrThrow(Contract.DevicesColumns.DEVICES_STATUS)));
 
         return device;
+    }
+
+    public static boolean isBarcodeAlreadySeen(String barcode, Context context) {
+        Cursor c=context.getContentResolver().query(CONTENT_URI,null, Contract.DevicesColumns.DEVICES_BARCODE+" = ?", new String[]{barcode},null);
+        return (c!=null && c.getCount()>0);
+    }
+
+    public static boolean isMacAlreadySeen(String barcode, String mac,Context context) {
+        String selection=Contract.DevicesColumns.DEVICES_BARCODE+ " = ? AND "+ Contract.DevicesColumns.DEVICES_ADDRESS+ " = ?";
+        String[] selectionargs= new String[]{barcode,mac};
+        Cursor c=context.getContentResolver().query(CONTENT_URI,null, selection, selectionargs,null);
+        return (c!=null && c.getCount()>0);
+    }
+
+    public static boolean isDeviceAlreadySeen(String barcode, String serial,Context context) {
+        String selection=Contract.DevicesColumns.DEVICES_BARCODE+ " = ? AND "+ Contract.DevicesColumns.DEVICES_SERIAL+ " = ?";
+        String[] selectionargs= new String[]{barcode,serial};
+        Cursor c=context.getContentResolver().query(CONTENT_URI,null, selection, selectionargs,null);
+        return (c!=null && c.getCount()>0);
     }
 }

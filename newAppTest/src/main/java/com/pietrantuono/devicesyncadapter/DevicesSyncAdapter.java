@@ -129,7 +129,7 @@ public class DevicesSyncAdapter extends AbstractThreadedSyncAdapter {
         contentvalues.put(Contract.DevicesColumns.DEVICES_EXEC_TESTS, device.getExec_Tests());
         contentvalues.put(Contract.DevicesColumns.DEVICES_STATUS, device.getStatus());
         String selection = Contract.DevicesColumns._ID + "=?";
-        String[] selectionargs = {"" + device.getId()};
+        String[] selectionargs = {"" + id};
         mContentResolver.update(ContentUris.withAppendedId(DevicesContentProvider.CONTENT_URI, id), contentvalues, selection, selectionargs);
     }
 

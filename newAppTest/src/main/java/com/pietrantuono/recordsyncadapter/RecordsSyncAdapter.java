@@ -16,7 +16,6 @@ import server.RetrofitRestServices;
 import server.pojos.DevicesList;
 import server.pojos.records.TestRecord;
 import server.pojos.records.response.Response;
-import server.service.ServiceDBHelper;
 import server.utils.MyDatabaseUtils;
 
 import com.activeandroid.ActiveAndroid;
@@ -67,17 +66,6 @@ public class RecordsSyncAdapter extends AbstractThreadedSyncAdapter {
 		recorduploader = new RecordUploader();
 		recorduploader.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 		Log.d(TAG, "onPerformSync");
-
-		RetrofitRestServices.getRest(context).getLastDevicesAsync(PeriCoachTestApplication.getDeviceid(), "" + ServiceDBHelper.getMaxDeviceID(), new Callback<DevicesList>() {
-			@Override
-			public void success(DevicesList arg0, retrofit.client.Response arg1) {
-				if (arg0 != null) ServiceDBHelper.addDevices(arg0);
-			}
-
-			@Override
-			public void failure(RetrofitError arg0) {
-			}
-		});
 
 		return;
 	}

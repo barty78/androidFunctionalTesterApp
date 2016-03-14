@@ -319,6 +319,7 @@ public class OtherSelectJobActivity extends AppCompatActivity implements MyCallb
 		if (task != null && !task.isCancelled())
 			task.cancel(true);
 		PeriCoachTestApplication.forceSync();
+		PeriCoachTestApplication.getApplication().forceSyncDevices();
 		super.onDestroy();
 	}
 

@@ -9,51 +9,39 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 @SuppressWarnings("unused")
-@Table(name = "Devices")
-public class Device extends Model {
+public class Device  {
 	
 	 public Device() {
          super();
 	 }
 
-    @Column(name ="DeviceId")
     @SerializedName("id")
     @Expose
     private long deviceId;
     
-    @Column(name ="Barcode", index=true)
     @Expose
     private String barcode;
 
-    @Column(name ="Serial", index=true)
     @Expose
     private String serial;
 
-    @Column(name ="Model")
     @Expose
     private String model;
 
-    @Column(name ="Fwver")
     @Expose
     private String fwver;
 
-    @Column(name ="bt_addr")
     @Expose
     private String bt_addr;
 
-    @Column(name ="passed")
     @Expose
     private int passed;
 
 //    I've also added two new fields to devices...  Executed_Tests and Status..  Let me explain their use..
 
-    @Column(name ="executed_tests")
     @Expose
     private long executed_tests;
 
-
-
-    @Column(name ="status")
     @Expose
     private long status;
 

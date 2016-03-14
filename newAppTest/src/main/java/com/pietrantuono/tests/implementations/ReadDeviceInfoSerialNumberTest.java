@@ -2,7 +2,6 @@ package com.pietrantuono.tests.implementations;
 
 import analytica.pericoach.android.Contract;
 import server.pojos.Device;
-import server.service.ServiceDBHelper;
 
 import android.app.Activity;
 import android.database.Cursor;
@@ -68,7 +67,7 @@ public class ReadDeviceInfoSerialNumberTest extends Test {
                     if (serial.toLowerCase().equalsIgnoreCase(
                             activityListener.getSerial().toLowerCase())) {
 
-                        if (!PeriCoachTestApplication.getIsRetestAllowed() && ServiceDBHelper.isDeviceAlreadySeen(activityListener.getBarcode(), serial)) {
+                        if (!PeriCoachTestApplication.getIsRetestAllowed() && DevicesContentProvider.isDeviceAlreadySeen(activityListener.getBarcode(), serial,(Activity)activityListener)) {
                             try {
                                 Toast.makeText((Activity) activityListener, "Barcode already tested! Aborting test", Toast.LENGTH_LONG).show();
                             } catch (Exception e) {

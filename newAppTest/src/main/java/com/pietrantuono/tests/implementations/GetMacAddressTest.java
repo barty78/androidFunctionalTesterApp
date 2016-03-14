@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.pietrantuono.application.PeriCoachTestApplication;
+import com.pietrantuono.devicesprovider.DevicesContentProvider;
 import com.pietrantuono.ioioutils.IOIOUtils;
 import com.pietrantuono.tests.superclass.Test;
 
@@ -16,7 +17,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import ioio.lib.api.IOIO;
-import server.service.ServiceDBHelper;
 
 public class GetMacAddressTest extends Test {
     private static ExecutorService executor = Executors.newFixedThreadPool(1);
@@ -84,7 +84,7 @@ public class GetMacAddressTest extends Test {
                     Log.d("MAC: ", "MAC VALID.");
                     mac = strFileContents;
 
-                    if(ServiceDBHelper.isMacAlreadySeen(activityListener.getBarcode(),mac) && !PeriCoachTestApplication.getIsRetestAllowed()){
+                    if(DevicesContentProvider.isMacAlreadySeen(activityListener.getBarcode(), mac,(Activity)activityListener) && !PeriCoachTestApplication.getIsRetestAllowed()){
                         Toast.makeText((Activity)activityListener,"DEVICE ALRREDY TESTED, ABORTING !",Toast.LENGTH_LONG).show();
                         setSuccess(false);
                         activityListener.addFailOrPass(true, false, mac, description);
@@ -94,7 +94,6 @@ public class GetMacAddressTest extends Test {
                     Success();
 //                activityListener.addView("BT ADDR: ", strFileContents, false);
 //                activityListener.setSerial(strFileContents);
-                    ServiceDBHelper.saveMac(activityListener.getBarcode(),mac);
                     activityListener.setMacAddress(strFileContents);
                     activityListener.addFailOrPass(true, true, mac, description);
                     return null;

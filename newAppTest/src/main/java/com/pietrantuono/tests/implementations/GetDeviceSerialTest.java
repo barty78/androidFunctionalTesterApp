@@ -19,7 +19,6 @@ import android.widget.Toast;
 
 import analytica.pericoach.android.Contract;
 import ioio.lib.api.IOIO;
-import server.service.ServiceDBHelper;
 
 public class GetDeviceSerialTest extends Test {
     private static ExecutorService executor = Executors.newFixedThreadPool(1);
@@ -85,7 +84,7 @@ public class GetDeviceSerialTest extends Test {
                                     activityListener.setSerial(strFileContents);
                                     activityListener.setSequenceDevice(activityListener.getSequenceDevice().setSerial(strFileContents));
                                     activityListener.addFailOrPass(true, true, serial, description, testToBeParsed);
-                                    ServiceDBHelper.saveSerial(activityListener.getBarcode(), serial);
+
                                     return;
                                 } else {
                                     try {

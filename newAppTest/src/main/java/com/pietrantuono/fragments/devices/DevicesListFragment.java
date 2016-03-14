@@ -108,21 +108,10 @@ public class DevicesListFragment extends Fragment implements ActionModecallback.
                 }
             }
         }, filter);
-        Bundle settingsBundle = new Bundle();
-        settingsBundle.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);
-        settingsBundle.putBoolean(ContentResolver.SYNC_EXTRAS_EXPEDITED, true);
-        ContentResolver.requestSync(createAccount(), getResources().getString(R.string.devices_sync_provider_authority), settingsBundle);
+        PeriCoachTestApplication.getApplication().forceSyncDevices();
     }
 
-    private Account createAccount() {
-        Account newAccount = new Account(
-                getActivity().getResources().getString(R.string.devices_sync_account), getActivity().getResources().getString(R.string.devices_sync_account_type));
-        AccountManager accountManager =
-                (AccountManager) context.getSystemService(
-                        Context.ACCOUNT_SERVICE);
-        if (accountManager.addAccountExplicitly(newAccount, null, null)) {/*TODO*/} else {/*TODO*/}
-        return newAccount;
-    }
+
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {

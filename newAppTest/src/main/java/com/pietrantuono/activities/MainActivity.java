@@ -439,6 +439,7 @@ public class MainActivity extends AppCompatActivity
         sequenceStarted = false;
         if (isFinishing()) return;
         PeriCoachTestApplication.forceSync();
+        PeriCoachTestApplication.getApplication().forceSyncDevices();
         uiHelper.cleanUI(MainActivity.this);
         uiHelper.removeOverallFailOrPass();
         hideRestart = true;
