@@ -5,7 +5,7 @@ import com.activeandroid.annotation.Table;
 import com.google.gson.annotations.Expose;
 
 @Table(name = "SingleS0")
-public class SingleS0 extends MyModel {
+public class SingleS0  {
 
 	@Expose
 	@Column(name = "IDTest")

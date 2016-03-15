@@ -9,7 +9,7 @@ import com.activeandroid.annotation.Table;
 import com.google.gson.annotations.Expose;
 
 @Table(name = "TEST")
-public class Test extends MyModel {
+public class Test  {
 
     public Test() {
 		super();

@@ -5,18 +5,18 @@ import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 import com.google.gson.annotations.Expose;
 
-@Table(name = "Readings")
-public class Readings extends MyModel{
+//@Table(name = "Readings")
+public class Readings {
 
 	@Expose
-	@Column(name = "TEST")
+	//@Column(name = "TEST")
     Test Test;
     
 	private @Expose  
-    @Column(name = "Sensors")
+    //@Column(name = "Sensors")
     Sensors Sensors;
 
-    @Column(name = "TestRecord")
+    //@Column(name = "TestRecord")
     private TestRecord foreignkey;
     /**
      * 

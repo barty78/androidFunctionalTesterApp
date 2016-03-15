@@ -270,11 +270,6 @@ public class SettingsActivity extends PreferenceActivity {
     }
 
     private void getLogs() {
-        List<TestRecord> records = new Select().from(TestRecord.class).execute();
-        if (records == null || records.size() <= 0) {
-            Toast.makeText(SettingsActivity.this, "No records found...", Toast.LENGTH_LONG).show();
-            return;
-        }
         String root = Environment.getExternalStorageDirectory().toString();
         File dir = new File(root + "/logs");
         dir.mkdirs();

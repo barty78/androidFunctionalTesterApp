@@ -190,7 +190,7 @@ public class RecordsSyncAdapter extends AbstractThreadedSyncAdapter {
     private void issuePositiveNotification(TestRecord record) {
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(PeriCoachTestApplication.getContext())
                 .setSmallIcon(R.drawable.ok_icon).setContentTitle("PeriCoach, record uploaded")
-                .setContentText("Record " + record.getId() + " uploaded");
+                .setContentText("Record for job " + record.getJobNo() + " uploaded");
         NotificationManager mNotifyMgr = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         try {
             mNotifyMgr.notify(notificationId, mBuilder.build());

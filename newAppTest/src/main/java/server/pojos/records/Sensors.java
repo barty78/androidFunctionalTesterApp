@@ -5,27 +5,27 @@ import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 import com.google.gson.annotations.Expose;
 
-@Table(name = "Sensors")
-public class Sensors extends MyModel {
+//@Table(name = "Sensors")
+public class Sensors  {
 
     public Sensors() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
     
-    @Column(name = "S0")
+    //@Column(name = "S0")
 	@Expose
     private S0 S0;
     
-    @Column(name = "S1")
+    //@Column(name = "S1")
     @Expose
     private S1 S1;
     
-    @Column(name = "S2")
+    //@Column(name = "S2")
     @Expose
     private S2 S2;
 
-    @Column(name = "Readings")
+    //@Column(name = "Readings")
     private Readings foreignkey;
     
     @SuppressWarnings("unused")

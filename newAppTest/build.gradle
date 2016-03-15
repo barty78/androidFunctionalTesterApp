@@ -91,7 +91,6 @@ android {
 
 dependencies {
     compile files('libs/MyJarCopy.jar')
-    compile files('libs/activeandroid-build.jar')
     compile files('libs/android-async-http-1.4.6 (3).jar')
     compile files('libs/commons-io-2.4.jar')
     compile files('libs/retrofit-1.9.0.jar')

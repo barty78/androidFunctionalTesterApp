@@ -1,64 +1,62 @@
 
 package server.pojos.records;
 
-import com.activeandroid.annotation.Column;
-import com.activeandroid.annotation.Table;
 import com.google.gson.annotations.Expose;
 
 @SuppressWarnings("unused")
-@Table(name = "TestRecord")
-public class TestRecord extends MyModel{
+//@Table(name = "TestRecord")
+public class TestRecord {
 
 	public TestRecord() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-    @Column(name = "uploaded")
+    //@Column(name = "uploaded")
     //@Expose NB: not needed anymore
     private boolean uploaded=false;
 
-    @Column(name = "JobNo")
+    //@Column(name = "JobNo")
 	//@Expose NB: not needed anymore
     private long JobNo;
     
     //@Expose not needed anymore
-    @Column(name = "FixtureNo")
+    //@Column(name = "FixtureNo")
     private String FixtureNo;
     
     @Expose
-    @Column(name = "Barcode")
+    //@Column(name = "Barcode")
     private long Barcode;
     
     @Expose
-    @Column(name = "Serial")
+    //@Column(name = "Serial")
     private String Serial;
     
     @Expose
-    @Column(name = "Model")
+    //@Column(name = "Model")
     private long Model;
     
-    @Column(name = "FWVer")
+    //@Column(name = "FWVer")
     @Expose
     private String FWVer;
     
     @Expose
-    @Column(name = "StartedAt")
+    //@Column(name = "StartedAt")
     private String StartedAt;
     
     @Expose
-    @Column(name = "Duration")
+    //@Column(name = "Duration")
     private String Duration;
     
     @Expose
-    @Column(name = "Readings")
+    //@Column(name = "Readings")
     private Readings Readings;
     
-    @Column(name = "Result")
+    //@Column(name = "Result")
     @Expose
     private long Result;
 
-    @Column(name = "BT_Addr")
+    //@Column(name = "BT_Addr")
     @Expose
     private String BT_Addr;
 

@@ -7,8 +7,8 @@ import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 import com.google.gson.annotations.Expose;
 
-@Table(name = "S2")
-public class S2 extends MyModel {
+//@Table(name = "S2")
+public class S2  {
 
 
 	public S2() {
@@ -17,30 +17,30 @@ public class S2 extends MyModel {
 	}
 
 	@Expose
-	@Column(name = "IDTest")
+	//@Column(name = "IDTest")
     private List<Long> IDTest = new ArrayList<Long>();
     @Expose
-    @Column(name = "Min")
+    //@Column(name = "Min")
     private List<Long> Min = new ArrayList<Long>();
     
-    @Column(name = "Max")
+    //@Column(name = "Max")
     @Expose
     private List<Long> Max = new ArrayList<Long>();
     
-    @Column(name = "Avg")
+    //@Column(name = "Avg")
     @Expose
     private List<Long> Avg = new ArrayList<Long>();
     
     @Expose
-    @Column(name = "Result")
+    //@Column(name = "Result")
     private List<Long> Result = new ArrayList<Long>();
 
 	@Expose
-	@Column(name = "ErrorCodes")
+	//@Column(name = "ErrorCodes")
 	private List<Long> errorCodes= new ArrayList<Long>();
 
 
-	@Column(name = "Sensors")
+	//@Column(name = "Sensors")
     private Sensors foreignkey;
     
 	@SuppressWarnings("unused")
