@@ -50,7 +50,7 @@ public class ReadDeviceInfoSerialNumberTest extends Test {
                     if (c.getCount() > 0) {
                         c.moveToFirst();
                         Device device = DevicesContentProvider.reconstructDevice(c);
-                        if (device != null && (device.getExec_Tests() == 1 && (device.getStatus() == device.getExec_Tests()))) {
+                        if (device != null && ((device.getExec_Tests() & 1) == 1 && (device.getStatus() & 1) == 1)) {
                             Success();
                             activityListener.setSequenceDevice(device);
                             activityListener.addFailOrPass(true, true, serial, description);

@@ -63,7 +63,7 @@ public interface NewSequenceInterface {
 
 	String getBT_Addr();
 
-	Device getDevice();
-
-	void setDevice(Device device);
+//	Device getDevice();
+//
+//	void setDevice(Device device);
 }

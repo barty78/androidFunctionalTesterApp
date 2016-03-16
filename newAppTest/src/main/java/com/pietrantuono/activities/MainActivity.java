@@ -76,8 +76,8 @@ public class MainActivity extends AppCompatActivity
     private String mJobNo = null;
     private final IOIOAndroidApplicationHelperWrapper ioioAndroidApplicationHelperWrapper = new IOIOAndroidApplicationHelperWrapper(this);
     private DigitalInput _PCB_Detect;
-    private String serial = "";
-    private String mac = "";
+//    private String serial = "";
+//    private String mac = "";
     private Boolean destroying = false;
     private PCBDetectHelperInterface detectHelper = null;
     private ArrayList<ArrayList<NewMResult>> results = new ArrayList<ArrayList<NewMResult>>();
@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity
     private Job job = null;
     private BaseIOIOLooper looper;
     private boolean sequenceStarted;
-    private String barcode;
+//    private String barcode;
     private SerialConsoleFragmentCallback serialConsoleFragmentCallback;
     private boolean hideRestart = true;
     private DevicesListFragment devicesListFragment;
@@ -391,19 +391,23 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    public String getSerial() {
+        return sequenceDevice.getSerial();
+    }
+
     @Override
     public String getMac() {
-        return newSequence.getBT_Addr();
+        return sequenceDevice.getBt_addr();
     }
 
     @Override
     public void setBarcode(String barcode) {
-        this.barcode = barcode;
+        sequenceDevice.setBarcode(barcode);
     }
 
     @Override
     public String getBarcode() {
-        return barcode;
+        return sequenceDevice.getBarcode();
     }
 
     private void waitForPCBConnected() {
@@ -449,7 +453,7 @@ public class MainActivity extends AppCompatActivity
 
     private void start() {
         sequenceStarted = true;
-        barcode = null;
+//        barcode = null;
         newSequence = null;
         newSequence = getNewSequence();
         sequenceDevice= new Device();
@@ -542,10 +546,6 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-    public String getSerial() {
-        return serial;
-    }
-
     public void startPCBSleepMonitor() {
         detectHelper.startPCBSleepMonitor(MainActivity.this);
     }
@@ -621,12 +621,12 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void setSerial(String serial) {
-        this.serial = serial;
+        sequenceDevice.setSerial(serial);
     }
 
     @Override
     public void setMacAddress(String mac) {
-        this.mac = mac;
+        sequenceDevice.setBt_addr(mac);
     }
 
     public BTUtility getBtutility() {
