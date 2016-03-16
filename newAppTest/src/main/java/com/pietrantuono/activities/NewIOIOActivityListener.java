@@ -21,7 +21,6 @@ public interface NewIOIOActivityListener {
 
     public void addFailOrPass(final Boolean istest, final Boolean success, String reading, String description);
 
-
     public void addFailOrPass(final Boolean istest, final Boolean success, String reading);
 
     public void setSerial(String serial);

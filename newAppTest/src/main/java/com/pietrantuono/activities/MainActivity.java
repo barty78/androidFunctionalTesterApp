@@ -31,6 +31,7 @@ import com.pietrantuono.pericoach.newtestapp.BuildConfig;
 import com.pietrantuono.pericoach.newtestapp.R;
 import com.pietrantuono.sensors.SensorTestCallback;
 import com.pietrantuono.sequencedb.SequenceProviderHelper;
+import com.pietrantuono.tests.implementations.GetBarcodeTest;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -76,7 +77,7 @@ public class MainActivity extends AppCompatActivity
     private String mJobNo = null;
     private final IOIOAndroidApplicationHelperWrapper ioioAndroidApplicationHelperWrapper = new IOIOAndroidApplicationHelperWrapper(this);
     private DigitalInput _PCB_Detect;
-//    private String serial = "";
+    //    private String serial = "";
 //    private String mac = "";
     private Boolean destroying = false;
     private PCBDetectHelperInterface detectHelper = null;
@@ -90,7 +91,7 @@ public class MainActivity extends AppCompatActivity
     private Job job = null;
     private BaseIOIOLooper looper;
     private boolean sequenceStarted;
-//    private String barcode;
+    //    private String barcode;
     private SerialConsoleFragmentCallback serialConsoleFragmentCallback;
     private boolean hideRestart = true;
     private DevicesListFragment devicesListFragment;
@@ -226,7 +227,7 @@ public class MainActivity extends AppCompatActivity
                     return super.onOptionsItemSelected(item);
             }
         } else {
-            if(item.getItemId() == R.id.click) {
+            if (item.getItemId() == R.id.click) {
                 PopupMenu popup = new PopupMenu(MainActivity.this, findViewById(item.getItemId()));
                 popup.getMenuInflater().inflate(R.menu.popup_menu, popup.getMenu());
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -352,7 +353,7 @@ public class MainActivity extends AppCompatActivity
                 // usually Barcode Test.
                 // 	TODO - Maybe check if barcode is actually set instead,
                 // if no barcode then no record
-                TestRecord record = RecordFromSequenceCreator.createRecordFromSequence(newSequence,sequenceDevice);
+                TestRecord record = RecordFromSequenceCreator.createRecordFromSequence(newSequence, sequenceDevice);
                 MyDatabaseUtils.RecontructRecord(record);
                 Gson gson = new GsonBuilder()
                         .excludeFieldsWithoutExposeAnnotation()
@@ -455,8 +456,8 @@ public class MainActivity extends AppCompatActivity
         sequenceStarted = true;
 //        barcode = null;
         newSequence = null;
+        sequenceDevice = new Device();
         newSequence = getNewSequence();
-        sequenceDevice= new Device();
         newSequence.setStarttime(System.currentTimeMillis());
         try {
             newSequence.setJobNo(Long.parseLong(mJobNo));
@@ -521,7 +522,7 @@ public class MainActivity extends AppCompatActivity
         } catch (Exception e) {
             e.printStackTrace();
         }
-        uiHelper.addSensorTestCompletedRow(mSensorResult, testToBeParsed,recordId);
+        uiHelper.addSensorTestCompletedRow(mSensorResult, testToBeParsed, recordId);
         Handler h = new Handler(android.os.Looper.getMainLooper());
         Handler handler = new Handler(getMainLooper());
         handler.postDelayed(new Runnable() {
@@ -603,7 +604,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void addFailOrPass(final Boolean istest, final Boolean success, String reading, String description, boolean isSensorTest, Test testToBeParsed) {
-        uiHelper.addFailOrPass(istest, success, reading, null, description, true, testToBeParsed,recordId);
+        uiHelper.addFailOrPass(istest, success, reading, null, description, true, testToBeParsed, recordId);
         Handler handler = new Handler(getMainLooper());
         handler.postDelayed(new Runnable() {
             @Override
@@ -643,8 +644,8 @@ public class MainActivity extends AppCompatActivity
 
 
     @Override
-    public void onUploadTestFinished(boolean istest, boolean success, String description,String failReason) {
-        uiHelper.onUploadTestFinished(success, description, recordId,failReason);
+    public void onUploadTestFinished(boolean istest, boolean success, String description, String failReason) {
+        uiHelper.onUploadTestFinished(success, description, recordId, failReason);
         Handler handler = new Handler(getMainLooper());
         handler.postDelayed(new Runnable() {
             @Override
@@ -703,12 +704,25 @@ public class MainActivity extends AppCompatActivity
     }
 
     public NewSequenceInterface getNewSequence() {
-        if (job.getTestId() == 999) return new NewSequence(MainActivity.this, myIOIO, job);
-        Gson gson = new Gson();
-        System.out.println("TESTING: " + gson.toJson(PeriCoachTestApplication.getSequence()));
-        if (sequenceForTests == null)
-            return new NewSequence(MainActivity.this, myIOIO, job, PeriCoachTestApplication.getSequence());
-        else return sequenceForTests;
+        NewSequenceInterface newSequenceInterface = null;
+        if (job.getTestId() == 999) {
+            newSequenceInterface = new NewSequence(MainActivity.this, myIOIO, job);
+        } else {
+            Gson gson = new Gson();
+            System.out.println("TESTING: " + gson.toJson(PeriCoachTestApplication.getSequence()));
+            if (sequenceForTests == null) {
+                newSequenceInterface = new NewSequence(MainActivity.this, myIOIO, job, PeriCoachTestApplication.getSequence());
+            } else {
+                newSequenceInterface = sequenceForTests;
+            }
+        }
+        if (BuildConfig.DEBUG) {
+            for (int i = 0; i < newSequenceInterface.getSequence().size(); i++) {
+                if (newSequenceInterface.getSequence().get(i) instanceof GetBarcodeTest) break;
+                setSequenceDevice(getSequenceDevice().setBarcode(getResources().getString(R.string.barcode_for_test)));
+            }
+        }
+        return newSequenceInterface;
     }
 
     public void setNewSequence(NewSequenceInterface newSequence) {

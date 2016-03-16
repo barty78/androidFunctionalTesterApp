@@ -32,7 +32,11 @@ public class GetMacAddressTest extends Test {
 
     @Override
     public void execute() {
+        if(activityListener.getBarcode()==null){
+            activityListener.addFailOrPass(true, true, "", description);
+        }
         new GetMacAddressTestAsyncTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
     }
 
 

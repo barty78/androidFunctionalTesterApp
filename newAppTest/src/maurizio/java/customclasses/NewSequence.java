@@ -153,15 +153,7 @@ public class NewSequence implements NewSequenceInterface {
         return mac;
     }
 
-    @Override
-    public Device getDevice() {
-        return null;
-    }
 
-    @Override
-    public void setDevice(Device device) {
-
-    }
 
     @Override
     public int getNumberOfSteps() {
