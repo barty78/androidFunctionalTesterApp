@@ -2,58 +2,43 @@
 package server.pojos;
 
 
-import com.activeandroid.Model;
-import com.activeandroid.annotation.Column;
-import com.activeandroid.annotation.Table;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 @SuppressWarnings("unused")
-@Table(name = "Devices")
-public class Device extends Model {
+public class Device  {
 	
 	 public Device() {
          super();
 	 }
 
-    @Column(name ="DeviceId")
     @SerializedName("id")
     @Expose
     private long deviceId;
     
-    @Column(name ="Barcode", index=true)
     @Expose
     private String barcode;
 
-    @Column(name ="Serial", index=true)
     @Expose
     private String serial;
 
-    @Column(name ="Model")
     @Expose
     private String model;
 
-    @Column(name ="Fwver")
     @Expose
     private String fwver;
 
-    @Column(name ="bt_addr")
     @Expose
     private String bt_addr;
 
-    @Column(name ="passed")
     @Expose
     private int passed;
 
 //    I've also added two new fields to devices...  Executed_Tests and Status..  Let me explain their use..
 
-    @Column(name ="executed_tests")
     @Expose
     private long executed_tests;
 
-
-
-    @Column(name ="status")
     @Expose
     private long status;
 
@@ -106,14 +91,15 @@ public class Device extends Model {
      * @param barcode
      *     The barcode
      */
-    public void setBarcode(String barcode) {
+    public Device setBarcode(String barcode) {
         this.barcode = barcode;
+        return this;
     }
 
     //    The web service has already been updated to handle setting these fields, so nothing needs changing in the app to set the fields..  Web service uses the result and sets executed_tests and status accordingly.  You just need to use the fields in the devices list to display.
 //    Executed tests identifies which tests the device has actually been run with.  Status identifies if test have passed or failed..  Since a device will go through more than one test sequence during production, we needed to be able to determine if a device has actually been through a test type, and if it passed/failed.
 //    Both are bitmasked against testtype (ie, open test = 1, closed test = 2, other tests would be 4/8/16 etc.)..
-    @Column(name ="JobId")
+    //@Column(name ="JobId")
     @SerializedName("job_id")
     @Expose
     private long jobId;
@@ -132,8 +118,9 @@ public class Device extends Model {
      * @param serial
      *     The serial
      */
-    public void setSerial(String serial) {
+    public Device setSerial(String serial) {
         this.serial = serial;
+        return this;
     }
 
     /**
@@ -150,8 +137,9 @@ public class Device extends Model {
      * @param model
      *     The model
      */
-    public void setModel(String model) {
+    public Device setModel(String model) {
         this.model = model;
+        return this;
     }
 
     /**
@@ -168,8 +156,9 @@ public class Device extends Model {
      * @param fwver
      *     The fwver
      */
-    public void setFwver(String fwver) {
+    public Device setFwver(String fwver) {
         this.fwver = fwver;
+        return this;
     }
 
     @Override

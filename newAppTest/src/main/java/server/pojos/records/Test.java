@@ -4,11 +4,9 @@ package server.pojos.records;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.activeandroid.annotation.Column;
-import com.activeandroid.annotation.Table;
 import com.google.gson.annotations.Expose;
 
-@Table(name = "TEST")
+//@Table(name = "TEST")
 public class Test  {
 
     public Test() {
@@ -16,23 +14,23 @@ public class Test  {
 		// TODO Auto-generated constructor stub
 	}
     
-    @Column(name = "IDTest")
+    //@Column(name = "IDTest")
 	@Expose
     private List<Long> IDTest = new ArrayList<Long>();
     
-    @Column(name = "Value")
+    //@Column(name = "Value")
     @Expose
     private List<Double> Value = new ArrayList<Double>();
     
-    @Column(name = "Result")
+    //@Column(name = "Result")
     @Expose
     private List<Long> Result = new ArrayList<Long>();
 
-	@Column(name = "ErrorCode")
+	//@Column(name = "ErrorCode")
 	@Expose
 	private List<Long> ErrorCode = new ArrayList<Long>();
 
-    @Column(name = "Readings")
+    //@Column(name = "Readings")
     private Readings foreginkey;
     
     @SuppressWarnings("unused")

@@ -3,8 +3,7 @@ package server.pojos.records;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.activeandroid.annotation.Column;
-import com.activeandroid.annotation.Table;
+
 import com.google.gson.annotations.Expose;
 
 //@Table(name = "S2")

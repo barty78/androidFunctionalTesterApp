@@ -14,13 +14,14 @@ import server.MyIntTypeAdapter;
 import server.MyLongTypeAdapter;
 import server.RetrofitRestServices;
 import server.pojos.DevicesList;
+import server.pojos.records.Readings;
+import server.pojos.records.Sensors;
+import server.pojos.records.Test;
 import server.pojos.records.TestRecord;
 import server.pojos.records.response.Response;
-import server.service.ServiceDBHelper;
 
-import com.activeandroid.ActiveAndroid;
-import com.activeandroid.Model;
-import com.activeandroid.query.Select;
+
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.pietrantuono.recordsdb.RecordsProcessor;
@@ -36,10 +37,12 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.AbstractThreadedSyncAdapter;
 import android.content.ContentProviderClient;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SyncResult;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
@@ -70,19 +73,6 @@ public class RecordsSyncAdapter extends AbstractThreadedSyncAdapter {
         recorduploader = new RecordUploader();
         recorduploader.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         Log.d(TAG, "onPerformSync");
-
-        RetrofitRestServices.getRest(context).getLastDevicesAsync(PeriCoachTestApplication.getDeviceid(), "" + ServiceDBHelper.getMaxDeviceID(), new Callback<DevicesList>() {
-            @Override
-            public void success(DevicesList arg0, retrofit.client.Response arg1) {
-                if (arg0 != null) ServiceDBHelper.addDevices(arg0);
-            }
-
-            @Override
-            public void failure(RetrofitError arg0) {
-            }
-        });
-
-        return;
     }
 
     class RecordUploader extends AsyncTask<Void, Void, Void> {
@@ -101,10 +91,10 @@ public class RecordsSyncAdapter extends AbstractThreadedSyncAdapter {
         @Override
         protected Void doInBackground(Void... params) {
             Log.d(TAG, "doInBackground");
-            NewRecordsSQLiteOpenHelper newRecordsSQLiteOpenHelper=NewRecordsSQLiteOpenHelper.getInstance(context);
-            String selection= RecordsContract.TestRecords.UPLOADED +" = ?";
-            String[] selectionargs= new String[]{"1"};
-            Cursor cursor=newRecordsSQLiteOpenHelper.getReadableDatabase().query(RecordsContract.TestRecords.TABLE, null, selection, selectionargs, null, null, null);
+            NewRecordsSQLiteOpenHelper newRecordsSQLiteOpenHelper = NewRecordsSQLiteOpenHelper.getInstance(context);
+            String selection = RecordsContract.TestRecords.UPLOADED + " = ?";
+            String[] selectionargs = new String[]{"0"};
+            Cursor cursor = newRecordsSQLiteOpenHelper.getReadableDatabase().query(RecordsContract.TestRecords.TABLE, null, selection, selectionargs, null, null, null);
             List<TestRecord> records = RecordsProcessor.reconstructRecords(context, cursor, newRecordsSQLiteOpenHelper);
             Iterator<TestRecord> iterator = records.iterator();
             while (iterator.hasNext()) {
@@ -119,73 +109,23 @@ public class RecordsSyncAdapter extends AbstractThreadedSyncAdapter {
                 String recordstring = gson.toJson(record, TestRecord.class);
 
                 Log.d(TAG, "Posting record: " + recordstring);
-                RetrofitRestServices.getRest(context).postResults(PeriCoachTestApplication.getDeviceid(),
-                        Long.toString(record.getJobNo()), record, new Callback<Response>() {
-
-                            @Override
-                            public void success(Response arg0, retrofit.client.Response arg1) {
-                                Log.d(TAG, "success: " + arg0.getMessage());
-                                issuePositiveNotification(record);
-                                record.setUploaded(true);
-                                //MyDatabaseUtils.deteteRecod(record);
-                                try {
-                                    // Get a file channel for the file
-                                    File dbFile = context.getDatabasePath("containsmac");
-
-                                    //File file = new File(dbFile);
-                                    FileChannel channel = new RandomAccessFile(dbFile, "rw").getChannel();
-
-                                    // Use the file channel to create a lock on the file.
-                                    // This method blocks until it can retrieve the lock.
-                                    FileLock lock = channel.lock();
-                                    ActiveAndroid.beginTransaction();
-                                    try {
-                                        record.save();
-                                        ActiveAndroid.setTransactionSuccessful();
-                                        if (BuildConfig.DEBUG)
-                                            Log.d(TAG, "setTransactionSuccessful");
-                                    } catch (Exception e) {
-                                        if (BuildConfig.DEBUG) Log.e(TAG, e.toString());
-                                    } finally {
-                                        ActiveAndroid.endTransaction();
-                                    }
-                                    // Release the lock
-                                    lock.release();
-                                    // Close the file
-                                    channel.close();
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
-
-                            }
-
-                            @Override
-                            public void failure(RetrofitError arg0) {
-                                Log.d(TAG, "failure");
-                                issueNegativeNotification(record, arg0);
-
-                            }
-
-                        });
+                retrofit.client.Response response=null;
+                try {
+                    response= RetrofitRestServices.getRest(context).postResultsSync(PeriCoachTestApplication.getDeviceid(),
+                            Long.toString(record.getJobNo()), record);
+                } catch(Exception ignored){
+                    Log.d(TAG,ignored.toString());
+                }
+                if (response != null && (response.getStatus() == 200)) {
+                    updateRecordUploaded(record.getID(),newRecordsSQLiteOpenHelper);
+                }
             }
 
             return null;
         }
     }
 
-    private void issueNegativeNotification(TestRecord record, RetrofitError error) {
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(PeriCoachTestApplication.getContext())
-                .setSmallIcon(R.drawable.attention).setContentText("Failed to upload " + error.getMessage() == null ? "No cause description" : error.getMessage())
-                .setContentTitle("PeriCoach: " + getUnprocessedRecords() + " unprocessed records");
 
-        Intent intent = new Intent(context, StartSyncAdapterService.class);
-        PendingIntent pIntent = PendingIntent.getService(context, (int) System.currentTimeMillis(), intent, 0);
-        mBuilder.addAction(R.drawable.ic_av_replay, "Retry sync", pIntent);
-        mBuilder.setContentIntent(pIntent);
-        mBuilder.setPriority(Notification.PRIORITY_MAX);
-        NotificationManager mNotifyMgr = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        mNotifyMgr.notify(notificationId, mBuilder.build());
-    }
 
     private void issuePositiveNotification(TestRecord record) {
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(PeriCoachTestApplication.getContext())
@@ -198,8 +138,14 @@ public class RecordsSyncAdapter extends AbstractThreadedSyncAdapter {
         }
     }
 
-    private int getUnprocessedRecords() {
-        List<Model> records = new Select().from(TestRecord.class).where("uploaded = ?", false).execute();
-        return records.size();
+
+
+    public static void updateRecordUploaded(long id, SQLiteOpenHelper helper) {
+        ContentValues values = new ContentValues();
+        values.put(RecordsContract.TestRecords.UPLOADED, 1);
+        String selection=RecordsContract.TestRecords.ID+" = ?";
+        String[] selectioArgs= new String[]{""+id};
+        helper.getWritableDatabase().update(RecordsContract.TestRecords.TABLE, values, selection,selectioArgs );
     }
+
 }

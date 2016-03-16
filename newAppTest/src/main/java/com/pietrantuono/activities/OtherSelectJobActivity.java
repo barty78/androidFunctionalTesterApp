@@ -69,6 +69,7 @@ public class OtherSelectJobActivity extends AppCompatActivity implements MyCallb
 		OtherSelectJobActivityHelper.postTestsAndSepsXML(OtherSelectJobActivity.this);
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
+
 	}
 
 	@Override
@@ -319,6 +320,7 @@ public class OtherSelectJobActivity extends AppCompatActivity implements MyCallb
 		if (task != null && !task.isCancelled())
 			task.cancel(true);
 		PeriCoachTestApplication.forceSync();
+		PeriCoachTestApplication.getApplication().forceSyncDevices();
 		super.onDestroy();
 	}
 

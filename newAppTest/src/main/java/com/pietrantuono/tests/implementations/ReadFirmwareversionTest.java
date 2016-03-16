@@ -62,6 +62,7 @@ public class ReadFirmwareversionTest extends Test {
             } else {
                 if (firmwarever.equals(PeriCoachTestApplication.getGetFirmware().getVersion())) {
                     Success();
+                    activityListener.setSequenceDevice(activityListener.getSequenceDevice().setFwver(firmwarever));
                     activityListener.addFailOrPass(true, true, firmwarever, description);
                 } else {
                     activityListener.addFailOrPass(true, false, firmwarever, description);

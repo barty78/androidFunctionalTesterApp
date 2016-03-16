@@ -5,25 +5,26 @@ import java.io.InputStream;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import analytica.pericoach.android.Contract;
 import ioio.lib.api.DigitalInput;
 import ioio.lib.api.DigitalOutput;
 import ioio.lib.api.IOIO;
 import ioio.lib.api.Uart;
 import server.pojos.Device;
 import server.pojos.Job;
-import server.service.ServiceDBHelper;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.database.Cursor;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.activeandroid.query.Select;
 import com.pietrantuono.activities.MyOnCancelListener;
 import com.pietrantuono.application.PeriCoachTestApplication;
+import com.pietrantuono.devicesprovider.DevicesContentProvider;
 import com.pietrantuono.ioioutils.IOIOUtils;
 import com.pietrantuono.tests.superclass.Test;
 
@@ -60,7 +61,7 @@ public class GetBarcodeTest extends Test {
         new GetBarcodeTestAsyncTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
-    public void start(){
+    public void start() {
         if (isinterrupted)
             return;
 
@@ -84,21 +85,22 @@ public class GetBarcodeTest extends Test {
             }
             if (!PeriCoachTestApplication.getIsRetestAllowed()) {
                 Log.d(TAG, "Retest is " + PeriCoachTestApplication.getIsRetestAllowed());
-                if (ServiceDBHelper.isBarcodeAlreadySeen(barcode)) {
+                if (DevicesContentProvider.isBarcodeAlreadySeen(barcode, (Activity) activityListener)) {
                     activityListener.addFailOrPass("", true, false, description + " - Barcode already tested");
                     return;
                 } else {
+                    activityListener.setSequenceDevice(activityListener.getSequenceDevice().setBarcode(barcode));
                     activityListener.setBarcode(barcode);
-                    ServiceDBHelper.saveBarcode(barcode);
                     setSuccess(true);
+
                     activityListener.addFailOrPass(true, true, barcode, description, testToBeParsed);
                     return;
 
                 }
             } else {
+                activityListener.setSequenceDevice(activityListener.getSequenceDevice().setBarcode(barcode));
                 activityListener.setBarcode(barcode);
                 setSuccess(true);
-                ServiceDBHelper.saveBarcode(barcode);
                 activityListener.addFailOrPass(true, true, barcode, description, testToBeParsed);
                 return;
             }
@@ -115,9 +117,11 @@ public class GetBarcodeTest extends Test {
     }
 
     private boolean checkDeviceStatus(String barcode) {
-        Device device=new Select().from(Device.class).where("Barcode = ?",barcode).executeSingle();
-        if(device==null)return false;
-        return device.getStatus()==PeriCoachTestApplication.getCurrentJob().getStage_dep();
+        Cursor c = ((Activity) activityListener).getContentResolver().query(DevicesContentProvider.CONTENT_URI, null, Contract.DevicesColumns.DEVICES_BARCODE + " = ?", new String[]{barcode}, null);
+        if (c.getCount() <= 0) return false;
+        c.moveToFirst();
+        int status = c.getInt(c.getColumnIndexOrThrow(Contract.DevicesColumns.DEVICES_STATUS));
+        return status == PeriCoachTestApplication.getCurrentJob().getStage_dep();
     }
 
     @Override
@@ -193,7 +197,7 @@ public class GetBarcodeTest extends Test {
         return true;
     }
 
-    class GetBarcodeTestAsyncTask extends AsyncTask<Void,Void,Void>{
+    class GetBarcodeTestAsyncTask extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... params) {
             start();

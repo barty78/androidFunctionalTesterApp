@@ -1,6 +1,5 @@
 package com.pietrantuono.activities;
 
-import com.activeandroid.query.Select;
 import com.crashlytics.android.Crashlytics;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -45,7 +44,6 @@ import server.MyDoubleTypeAdapter;
 import server.MyIntTypeAdapter;
 import server.MyLongTypeAdapter;
 import server.pojos.records.TestRecord;
-import server.utils.MyDatabaseUtils;
 
 @SuppressWarnings("ucd")
 public class SettingsActivity extends PreferenceActivity {

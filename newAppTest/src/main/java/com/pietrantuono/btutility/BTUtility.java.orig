@@ -1,22 +1,21 @@
 package com.pietrantuono.btutility;
 
-import java.lang.ref.WeakReference;
-import java.util.ArrayList;
-import java.util.Set;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.AbstractExecutorService;
-import java.util.concurrent.Callable;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.SharedPreferences;
+import android.os.Handler;
+import android.os.HandlerThread;
+import android.preference.PreferenceManager;
+import android.util.Log;
 
-import com.pietrantuono.activities.MyOnCancelListener;
 import com.pietrantuono.activities.NewIOIOActivityListener;
-import com.pietrantuono.activities.SettingsActivity;
 import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.ioioutils.IOIOUtils;
 import com.pietrantuono.pericoach.newtestapp.BuildConfig;
@@ -25,62 +24,51 @@ import com.pietrantuono.pericoachengineering.util.Utils;
 import com.pietrantuono.sensors.AllSensorsCallback;
 import com.pietrantuono.sensors.NewDevice;
 import com.pietrantuono.sensors.NewPFMATDevice;
-import com.pietrantuono.tests.implementations.BatteryLevelUUTVoltageTest;
 import com.pietrantuono.tests.superclass.Test;
 import com.radiusnetworks.bluetooth.BluetoothCrashResolver;
+
+import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import java.util.Set;
+import java.util.concurrent.Callable;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 import analytica.pericoach.android.ConnectDeviceItem;
 import analytica.pericoach.android.DBManager;
 import analytica.pericoach.android.Type;
-
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.ProgressDialog;
-import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothDevice;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.SharedPreferences;
-import android.os.Handler;
-import android.os.HandlerThread;
-import android.preference.PreferenceManager;
-import android.text.InputType;
-import android.util.Log;
-import android.widget.EditText;
-
 import customclasses.DebugHelper;
-import hugo.weaving.DebugLog;
-import hydrix.pfmat.generic.AllVoltageObserver;
 import hydrix.pfmat.generic.Device;
 
 public class BTUtility {
     private final String TAG = getClass().getSimpleName();
     private WeakReference<Activity> activityRef;
-    private BluetoothAdapter mBTAdapter = BluetoothAdapter.getDefaultAdapter();
+    private final BluetoothAdapter mBTAdapter = BluetoothAdapter.getDefaultAdapter();
     private ArrayList<ConnectDeviceItem> mListItems = null;
-    private BTBroadcastReceiver mBTReceiver = new BTBroadcastReceiver();
-    private ConnectReceiver mConnectReceiver = new ConnectReceiver();
+    private final BTBroadcastReceiver mBTReceiver = new BTBroadcastReceiver();
+    private final ConnectReceiver mConnectReceiver = new ConnectReceiver();
     private static final String INTENT_CONNECT_FAILED = "INTENT_CONNECT_FAILED";
     private static final String INTENT_CONNECT_SUCCEEDED = "INTENT_CONNECT_SUCCEEDED";
     private ProgressDialog progressdialog;
     private String mFirmwareVer;
     private static final String DISCONNECTED = "disconnected";
     private String mDeviceId;
+<<<<<<< HEAD
     private String macaddress = null;
     private String scancode = "";
     private Boolean deviceIDOK = false;
     private Boolean scancodeOK = false;
+=======
+    private String scancode;
+>>>>>>> cleanup
     // private IOIOActivityListener ioioActivityListener;
     private String model = null;
     private BluetoothCrashResolver bluetoothCrashResolver;
     private Boolean isstopped = false;
-    private AlertDialog alertDialog;
-    private AlertDialog alertDialog2;
-    private AlertDialog alertDialog3;
     private Test bluetoothConnectTest;
     private int retries = 0;
 
@@ -132,10 +120,16 @@ public class BTUtility {
         if (isstopped)
             return;
         this.activityRef = new WeakReference<Activity>(activity1);
+<<<<<<< HEAD
         if (PeriCoachTestApplication.getCurrentJob().getTesttypeId() == 1) {
             this.scancode = scancode;
             this.macaddress = macaddress;
         }
+=======
+        BTUtility.activity=activity1;
+        this.scancode = scancode;
+        this.macaddress = macaddress;
+>>>>>>> cleanup
         final Activity activity = activityRef.get();
         if (activity == null)
             return;
@@ -284,7 +278,7 @@ public class BTUtility {
         }
     }
 
-    public void connectUsingMac() {
+    private void connectUsingMac() {
         if (isstopped)
             return;
 //		mListItems = new ArrayList<ConnectDeviceItem>();
@@ -374,19 +368,18 @@ public class BTUtility {
         });
     }
 
-    private Boolean insertDeviceAndScancode(String devid, String scancode) {
+    private void insertDeviceAndScancode(String devid, String scancode) {
         if (isstopped)
-            return false;
+            return;
         Boolean inserted = false;
         if (scancode == null || scancode.isEmpty())
             scancode = "";
         final Activity activity = activityRef.get();
         if (activity == null)
-            return false;
+            return;
         DBManager db = (new DBManager(activity));
         db.insertDeviceID(devid);
         db.insertScancode(scancode);
-        return inserted;
     }
 
     public String getSerial() {
@@ -518,12 +511,6 @@ public class BTUtility {
                     countDownLatch.countDown();
                     Log.d(TAG, "onAllVoltage , ACK");
                 }
-
-                @Override
-                public void onError() {
-                    countDownLatch.countDown();
-                    Log.d(TAG, "onAllVoltage , ERROR ");
-                }
             });
         } catch (NewDevice.InvalidVoltageException e) {
             e.printStackTrace();
@@ -575,12 +562,6 @@ public class BTUtility {
 
     public void abort() {
         Log.d("BTUtility", "abort");
-        if (alertDialog != null && alertDialog.isShowing())
-            alertDialog.dismiss();
-        if (alertDialog2 != null && alertDialog2.isShowing())
-            alertDialog2.dismiss();
-        if (alertDialog3 != null && alertDialog3.isShowing())
-            alertDialog3.dismiss();
         isstopped = true;
         stopBTDiscovery();
         if (NewPFMATDevice.getDevice() != null) {

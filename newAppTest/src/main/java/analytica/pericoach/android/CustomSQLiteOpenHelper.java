@@ -7,9 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.activeandroid.Model;
-import com.activeandroid.query.From;
-import com.activeandroid.query.Select;
+
 import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.pericoach.newtestapp.R;
 
@@ -95,27 +93,8 @@ public class CustomSQLiteOpenHelper extends SQLiteOpenHelper {
         if (oldVersion < 4) {
             Log.d(TAG, "Upgrading database");
             db.execSQL(Contract.DevicesColumns.CREATE_DEVICES_TABLE);
-            migratedData(db);
         }
 
-    }
-
-    private void migratedData(SQLiteDatabase db) {
-        List<Device> existingData = new Select().from(Device.class).execute();
-        for(int i=0;i<existingData.size();i++){
-            Device device=existingData.get(i);
-            ContentValues contentvalues = new ContentValues();
-            contentvalues.put(Contract.DevicesColumns.DEVICES_DEVICES_ID, device.getDeviceId());
-            contentvalues.put(Contract.DevicesColumns.DEVICES_JOB_ID, device.getJobId());
-            contentvalues.put(Contract.DevicesColumns.DEVICES_BARCODE, device.getBarcode() != null ? device.getBarcode() : "");
-            contentvalues.put(Contract.DevicesColumns.DEVICES_SERIAL, device.getSerial() != null ? device.getSerial() : "");
-            contentvalues.put(Contract.DevicesColumns.DEVICES_MODEL, device.getModel() != null ? device.getModel() : "");
-            contentvalues.put(Contract.DevicesColumns.DEVICES_FWVER, device.getFwver() != null ? device.getFwver() : "");
-            contentvalues.put(Contract.DevicesColumns.DEVICES_ADDRESS, device.getBt_addr() != null ? device.getBt_addr() : "");
-            contentvalues.put(Contract.DevicesColumns.DEVICES_EXEC_TESTS, device.getExec_Tests());
-            contentvalues.put(Contract.DevicesColumns.DEVICES_STATUS, device.getSerial());
-            db.insert(Contract.DevicesColumns.DEVICES_TABLE_NAME,Contract.DevicesColumns.DEVICES_DEVICES_ID,contentvalues);
-        }
     }
 
     private void getAndUpdateJobs(final Context context) {

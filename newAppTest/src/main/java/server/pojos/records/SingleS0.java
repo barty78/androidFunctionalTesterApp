@@ -1,34 +1,32 @@
 package server.pojos.records;
 
-import com.activeandroid.annotation.Column;
-import com.activeandroid.annotation.Table;
 import com.google.gson.annotations.Expose;
 
-@Table(name = "SingleS0")
+//@Table(name = "SingleS0")
 public class SingleS0  {
 
 	@Expose
-	@Column(name = "IDTest")
+	//@Column(name = "IDTest")
     private Long IDTest;
     
 	@Expose
-	@Column(name = "Min")
+	//@Column(name = "Min")
 	private Long Min;
 	
     @Expose
-    @Column(name = "Max")
+    //@Column(name = "Max")
     private Long Max;
     
     @Expose
-    @Column(name = "Avg")
+    //@Column(name = "Avg")
     private Long Avg;
     
     @Expose
-    @Column(name = "Result")
+    //@Column(name = "Result")
     private Long Result;
 
 	@Expose
-	@Column(name = "ErrorCode")
+	//@Column(name = "ErrorCode")
 	private Long errorCode;
 
 
@@ -40,7 +38,7 @@ public class SingleS0  {
 		Result = result;
 	}
 
-	@Column(name = "S0")
+	//@Column(name = "S0")
     private S0 foreignkey;
 
 	public Long getIDTest() {

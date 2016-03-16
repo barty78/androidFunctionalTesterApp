@@ -8,15 +8,11 @@
 # For customization when using a Version Control System, please read the
 # header note.
 <<<<<<< HEAD
-#Thu Feb 11 10:01:32 CET 2016
->>>>>>>=tests_thread
-sdk.dir=/Users/mauriziopietrantuono/Library/Android/sdk
-=\=\=\=\=\=\=
-<<<<<<<=HEAD
+#Wed Mar 09 09:54:37 CET 2016
 =======
-#Mon Feb 15 05:36:47 CET 2016
+#Wed Mar 16 06:06:56 CET 2016
+>>>>>>> develop
 >>>>>>>=tests_thread
 sdk.dir=/Users/mauriziopietrantuono/Library/Android/sdk
-<<<<<<<=HEAD
 =\=\=\=\=\=\=
->>>>>>> develop
+<<<<<<<=HEAD

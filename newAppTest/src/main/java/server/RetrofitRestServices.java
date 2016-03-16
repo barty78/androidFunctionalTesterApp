@@ -47,6 +47,9 @@ public class RetrofitRestServices {
         @POST("/record")
         void postResults(@Header("DeviceId") String DeviceId, @Header("JobNo") String JobNo, @Body TestRecord record, Callback<Response> callback);
 
+        @POST("/record")
+        retrofit.client.Response postResultsSync(@Header("DeviceId") String DeviceId, @Header("JobNo") String JobNo, @Body TestRecord record);
+
         @GET("/devices")
         void getLastDevicesAsync(@Header("DeviceId") String DeviceId, @Header("LastId") String LastId, Callback<DevicesList> callback);
 

@@ -1,42 +1,41 @@
 package server.pojos.records;
 
-import com.activeandroid.annotation.Column;
-import com.activeandroid.annotation.Table;
+
 import com.google.gson.annotations.Expose;
 
-@Table(name = "SingleS2")
+//@Table(name = "SingleS2")
 public class SingleS2  {
 
 	@Expose
-	@Column(name = "IDTest")
+	//@Column(name = "IDTest")
     private Long IDTest;
     
 	@Expose
-	@Column(name = "Min")
+	//@Column(name = "Min")
 	private Long Min;
 	
     @Expose
-    @Column(name = "Max")
+    //@Column(name = "Max")
     private Long Max;
     
     @Expose
-    @Column(name = "Avg")
+    //@Column(name = "Avg")
     private Long Avg;
 
 	public Long getErrorCode() {
 		return errorCode;
 	}
 
-	@Column(name = "S2")
+	//@Column(name = "S2")
 
     private S2 foreignkey;
     
     @Expose
-    @Column(name = "Result")
+    //@Column(name = "Result")
     private Long Result;
 
 	@Expose
-	@Column(name = "ErrorCode")
+	//@Column(name = "ErrorCode")
 	private Long errorCode;
 
 

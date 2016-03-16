@@ -13,6 +13,7 @@ import com.pietrantuono.tests.superclass.SimpleAsyncTask;
 import com.pietrantuono.tests.superclass.Test;
 
 public class SensorTestWrapper extends Test {
+    private boolean isClosedTest;
     @SuppressWarnings("unused")
     private int TestLimitIndex = 0;
     private short voltage;
@@ -38,8 +39,10 @@ public class SensorTestWrapper extends Test {
         this.TestLimitIndex = TestLimitIndex;
         this.load = null;
         if (description.contains("LOADED")) {
+            this.isClosedTest = isClosedTest;
             this.load = true;
         } else if (description.contains("NO LOAD")) {
+            this.isClosedTest = false;
             this.load = false;
         }
         Log.d(TAG, "Sensor Load is " + this.load);
@@ -55,18 +58,28 @@ public class SensorTestWrapper extends Test {
         Log.d(TAG, "Sensor Gain Voltage is " + this.voltage);
         Log.d(TAG, "Sensor Zero Voltage is " + this.zeroVoltage);
 
-        if (isClosedTest) {
+        if (this.isClosedTest) {
             sensorTest = new ClosedTest(activity, SensorTestWrapper.this, lowerLimit, upperLimit, varLimit);
         } else {
             sensorTest = new SensorTest(activity, SensorTestWrapper.this, lowerLimit, upperLimit, varLimit);
         }
 
-
     }
 
     @Override
     public void execute() {
-        new SensorTestWrapperAsyncTask().executeParallel();
+        if (!isClosedTest) {
+            new SensorTestWrapperAsyncTask().executeParallel();
+        } else {
+            ((Activity) activityListener).runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    helper = new SensorsTestHelper((Activity) activityListener, activityListener.getBtutility(), ioio);
+                    sensorTest.setSensorsTestHelper(helper);
+                    sensorTest.execute();
+                }
+            });
+        }
     }
 
 

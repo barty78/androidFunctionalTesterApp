@@ -23,6 +23,7 @@ import com.pietrantuono.btutility.BTUtility;
 import com.pietrantuono.pericoach.newtestapp.R;
 
 public class SensorsTestHelper implements OnSampleCallback {
+
 	WeakReference<Activity> activityref = null;
 	TextView sensor0ref = null;
 	TextView sensor1ref = null;

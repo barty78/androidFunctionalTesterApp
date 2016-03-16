@@ -2,6 +2,8 @@ package com.pietrantuono.activities;
 
 import com.pietrantuono.btutility.BTUtility;
 
+import server.pojos.Device;
+
 public interface NewIOIOActivityListener {
 
 
@@ -18,7 +20,6 @@ public interface NewIOIOActivityListener {
     public void addFailOrPass(String otherreadig, final Boolean istest, final Boolean success, String description);
 
     public void addFailOrPass(final Boolean istest, final Boolean success, String reading, String description);
-
 
     public void addFailOrPass(final Boolean istest, final Boolean success, String reading);
 
@@ -46,5 +47,8 @@ public interface NewIOIOActivityListener {
 
     String getBarcode();
 
+    void setSequenceDevice(Device device);
+
+    public Device getSequenceDevice();
 
 }

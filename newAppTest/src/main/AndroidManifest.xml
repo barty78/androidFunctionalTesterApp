@@ -16,6 +16,7 @@
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -27,7 +28,7 @@
     <uses-permission android:name="android.permission.READ_SYNC_STATS" />
     <uses-permission android:name="com.pietrantuono.devices.permssion" />
     <uses-permission android:name="com.pietrantuono.devicesprovider.permission.READ_WRITE_PROVIDER" />
-
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
     <application
         android:allowBackup="true"
@@ -96,10 +97,11 @@
             android:exported="false"
             android:syncable="true" />
 
+        <!--android:process=":sync" -->
         <service
             android:name="com.pietrantuono.recordsyncadapter.RecordsSyncService"
             android:exported="true"
-            android:process=":sync"
+
             >
             <intent-filter>
                 <action android:name="android.content.SyncAdapter" />

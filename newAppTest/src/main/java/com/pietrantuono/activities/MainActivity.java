@@ -35,6 +35,7 @@ import com.pietrantuono.recordsdb.RecordsContract;
 import com.pietrantuono.recordsdb.RecordsProcessor;
 import com.pietrantuono.sensors.SensorTestCallback;
 import com.pietrantuono.sequencedb.SequenceProviderHelper;
+import com.pietrantuono.tests.implementations.GetBarcodeTest;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -63,6 +64,7 @@ import ioio.lib.util.IOIOLooperProvider;
 import server.MyDoubleTypeAdapter;
 import server.MyIntTypeAdapter;
 import server.MyLongTypeAdapter;
+import server.pojos.Device;
 import server.pojos.Job;
 import server.pojos.Test;
 import server.pojos.records.TestRecord;
@@ -79,8 +81,8 @@ public class MainActivity extends AppCompatActivity
     private String mJobNo = null;
     private final IOIOAndroidApplicationHelperWrapper ioioAndroidApplicationHelperWrapper = new IOIOAndroidApplicationHelperWrapper(this);
     private DigitalInput _PCB_Detect;
-    private String serial = "";
-    private String mac = "";
+    //    private String serial = "";
+//    private String mac = "";
     private Boolean destroying = false;
     private PCBDetectHelperInterface detectHelper = null;
     private ArrayList<ArrayList<NewMResult>> results = new ArrayList<ArrayList<NewMResult>>();
@@ -93,12 +95,13 @@ public class MainActivity extends AppCompatActivity
     private Job job = null;
     private BaseIOIOLooper looper;
     private boolean sequenceStarted;
-    private String barcode;
+    //    private String barcode;
     private SerialConsoleFragmentCallback serialConsoleFragmentCallback;
     private boolean hideRestart = true;
     private DevicesListFragment devicesListFragment;
     private boolean isDevicesListActionbar;
     private long recordId;
+    private Device sequenceDevice;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -347,7 +350,7 @@ public class MainActivity extends AppCompatActivity
         sequenceStarted = false;
         newSequence.setEndtime(System.currentTimeMillis());
         final boolean overallresult = newSequence.getOverallResultBool();
-
+        PeriCoachTestApplication.getApplication().forceSyncDevices();
         if (job.getIslogging() == 1) {
             newSequence.deleteUnusedTests();
             if (newSequence.getCurrentTestNumber() != 0) {    //  Don't create a record if the first test failed,
@@ -355,7 +358,7 @@ public class MainActivity extends AppCompatActivity
                 // 	TODO - Maybe check if barcode is actually set instead,
                 // if no barcode then no record
                 NewRecordsSQLiteOpenHelper newRecordsHelper = NewRecordsSQLiteOpenHelper.getInstance(MainActivity.this);
-                TestRecord record = RecordFromSequenceCreator.createRecordFromSequence(newSequence);
+                TestRecord record = RecordFromSequenceCreator.createRecordFromSequence(newSequence,sequenceDevice);
                 //MyDatabaseUtils.RecontructRecord(record);
                 long id = RecordsProcessor.saveRecord(MainActivity.this, record, newRecordsHelper);
                 if (id > 0) {
@@ -377,6 +380,7 @@ public class MainActivity extends AppCompatActivity
                             Log.d(TAG, "Created record: " + recordstring);
                         }
                     }
+                    PeriCoachTestApplication.forceSync();
                 }
             }
         }
@@ -406,19 +410,23 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    public String getSerial() {
+        return sequenceDevice.getSerial();
+    }
+
     @Override
     public String getMac() {
-        return newSequence.getBT_Addr();
+        return sequenceDevice.getBt_addr();
     }
 
     @Override
     public void setBarcode(String barcode) {
-        this.barcode = barcode;
+        sequenceDevice.setBarcode(barcode);
     }
 
     @Override
     public String getBarcode() {
-        return barcode;
+        return sequenceDevice.getBarcode();
     }
 
     private void waitForPCBConnected() {
@@ -454,6 +462,8 @@ public class MainActivity extends AppCompatActivity
         sequenceStarted = false;
         if (isFinishing()) return;
         PeriCoachTestApplication.forceSync();
+        PeriCoachTestApplication.getApplication().forceSyncDevices();
+        uiHelper.cleanUI(MainActivity.this);
         uiHelper.removeOverallFailOrPass();
         hideRestart = true;
         if (!isDevicesListActionbar) invalidateOptionsMenu();
@@ -462,8 +472,9 @@ public class MainActivity extends AppCompatActivity
 
     private void start() {
         sequenceStarted = true;
-        barcode = null;
+//        barcode = null;
         newSequence = null;
+        sequenceDevice = new Device();
         newSequence = getNewSequence();
         newSequence.setStarttime(System.currentTimeMillis());
         try {
@@ -499,7 +510,9 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onPCBDisconnected() {
         sequenceStarted = false;
-        uiHelper.cleanUI(MainActivity.this);
+        if (job.getTesttypeId() == 1) {
+            uiHelper.cleanUI(MainActivity.this);
+        }
         IOIOUtils.getUtils().closeall(MainActivity.this, MainActivity.this);
         waitForPCBConnected();
     }
@@ -551,10 +564,6 @@ public class MainActivity extends AppCompatActivity
         return CURRENT_ITERATION_NUMBER;
     }
 
-
-    public String getSerial() {
-        return serial;
-    }
 
     public void startPCBSleepMonitor() {
         detectHelper.startPCBSleepMonitor(MainActivity.this);
@@ -631,12 +640,12 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void setSerial(String serial) {
-        this.serial = serial;
+        sequenceDevice.setSerial(serial);
     }
 
     @Override
     public void setMacAddress(String mac) {
-        this.mac = mac;
+        sequenceDevice.setBt_addr(mac);
     }
 
     public BTUtility getBtutility() {
@@ -713,12 +722,25 @@ public class MainActivity extends AppCompatActivity
     }
 
     public NewSequenceInterface getNewSequence() {
-        if (job.getTestId() == 999) return new NewSequence(MainActivity.this, myIOIO, job);
-        Gson gson = new Gson();
-        System.out.println("TESTING: " + gson.toJson(PeriCoachTestApplication.getSequence()));
-        if (sequenceForTests == null)
-            return new NewSequence(MainActivity.this, myIOIO, job, PeriCoachTestApplication.getSequence());
-        else return sequenceForTests;
+        NewSequenceInterface newSequenceInterface = null;
+        if (job.getTestId() == 999) {
+            newSequenceInterface = new NewSequence(MainActivity.this, myIOIO, job);
+        } else {
+            Gson gson = new Gson();
+            System.out.println("TESTING: " + gson.toJson(PeriCoachTestApplication.getSequence()));
+            if (sequenceForTests == null) {
+                newSequenceInterface = new NewSequence(MainActivity.this, myIOIO, job, PeriCoachTestApplication.getSequence());
+            } else {
+                newSequenceInterface = sequenceForTests;
+            }
+        }
+        if (BuildConfig.DEBUG) {
+            for (int i = 0; i < newSequenceInterface.getSequence().size(); i++) {
+                if (newSequenceInterface.getSequence().get(i) instanceof GetBarcodeTest) break;
+                setSequenceDevice(getSequenceDevice().setBarcode(getResources().getString(R.string.barcode_for_test)));
+            }
+        }
+        return newSequenceInterface;
     }
 
     public void setNewSequence(NewSequenceInterface newSequence) {
@@ -771,5 +793,13 @@ public class MainActivity extends AppCompatActivity
     public void setDevicesFragmentActionBar(boolean isDevicesListActionbar) {
         this.isDevicesListActionbar = isDevicesListActionbar;
         invalidateOptionsMenu();
+    }
+
+    public Device getSequenceDevice() {
+        return sequenceDevice;
+    }
+
+    public void setSequenceDevice(Device sequenceDevice) {
+        this.sequenceDevice = sequenceDevice;
     }
 }

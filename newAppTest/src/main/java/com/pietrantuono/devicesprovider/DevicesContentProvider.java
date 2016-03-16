@@ -3,6 +3,7 @@ package com.pietrantuono.devicesprovider;
 import android.content.ContentProvider;
 import android.content.ContentUris;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -14,6 +15,7 @@ import android.text.TextUtils;
 
 import analytica.pericoach.android.Contract;
 import analytica.pericoach.android.CustomSQLiteOpenHelper;
+import server.pojos.Device;
 
 /**
  * Created by Maurizio Pietrantuono, maurizio.pietrantuono@gmail.com.
@@ -30,6 +32,9 @@ public class DevicesContentProvider extends ContentProvider {
 
     public static final String AUTHORITY = "com.analytica.devicesprovider";
     public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/devices");
+
+
+
     @Override
     public boolean onCreate() {
         mOpenHelper= CustomSQLiteOpenHelper.getCustomSQLiteOpenHelper(getContext());
@@ -164,5 +169,54 @@ public class DevicesContentProvider extends ContentProvider {
         sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
         sUriMatcher.addURI(AUTHORITY, "devices", DEVICES);
         sUriMatcher.addURI(AUTHORITY, "devices/#", DEVICES_ID);
+    }
+
+    public static Device reconstructDevice(Cursor c){
+        if(c.getCount()<=0)return null;
+        Device device= new Device();
+        long deviceId=c.getLong(c.getColumnIndexOrThrow(Contract.DevicesColumns.DEVICES_DEVICES_ID));
+        device.setDeviceId(deviceId);
+
+        String barcode=c.getString(c.getColumnIndexOrThrow(Contract.DevicesColumns.DEVICES_BARCODE));
+        device.setBarcode(barcode != null ? barcode : "");
+
+        String serial=c.getString(c.getColumnIndexOrThrow(Contract.DevicesColumns.DEVICES_SERIAL));
+        device.setSerial(serial != null ? serial : "");
+
+        String model=c.getString(c.getColumnIndexOrThrow(Contract.DevicesColumns.DEVICES_SERIAL));
+        device.setModel(model != null ? model : "");
+
+        String fwver=c.getString(c.getColumnIndexOrThrow(Contract.DevicesColumns.DEVICES_FWVER));
+        device.setFwver(fwver != null ? fwver : "");
+
+        String addr=c.getString(c.getColumnIndexOrThrow(Contract.DevicesColumns.DEVICES_ADDRESS));
+        device.setBt_addr(addr != null ? addr : "");
+
+        device.setExec_Tests(c.getLong(c.getColumnIndexOrThrow(Contract.DevicesColumns.DEVICES_EXEC_TESTS)));
+
+        device.setJobId(c.getLong(c.getColumnIndexOrThrow(Contract.DevicesColumns.DEVICES_JOB_ID)));
+
+        device.setStatus(c.getLong(c.getColumnIndexOrThrow(Contract.DevicesColumns.DEVICES_STATUS)));
+
+        return device;
+    }
+
+    public static boolean isBarcodeAlreadySeen(String barcode, Context context) {
+        Cursor c=context.getContentResolver().query(CONTENT_URI,null, Contract.DevicesColumns.DEVICES_BARCODE+" = ?", new String[]{barcode},null);
+        return (c!=null && c.getCount()>0);
+    }
+
+    public static boolean isMacAlreadySeen(String barcode, String mac,Context context) {
+        String selection=Contract.DevicesColumns.DEVICES_BARCODE+ " = ? AND "+ Contract.DevicesColumns.DEVICES_ADDRESS+ " = ?";
+        String[] selectionargs= new String[]{barcode,mac};
+        Cursor c=context.getContentResolver().query(CONTENT_URI,null, selection, selectionargs,null);
+        return (c!=null && c.getCount()>0);
+    }
+
+    public static boolean isDeviceAlreadySeen(String barcode, String serial,Context context) {
+        String selection=Contract.DevicesColumns.DEVICES_BARCODE+ " = ? AND "+ Contract.DevicesColumns.DEVICES_SERIAL+ " = ?";
+        String[] selectionargs= new String[]{barcode,serial};
+        Cursor c=context.getContentResolver().query(CONTENT_URI,null, selection, selectionargs,null);
+        return (c!=null && c.getCount()>0);
     }
 }

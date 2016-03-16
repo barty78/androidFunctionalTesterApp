@@ -423,7 +423,7 @@ public class IOIOUtils implements IOIOUtilsInterface {
             return;
         }
 
-        if(!DebugHelper.isMaurizioDebug())setBattVoltage(ioio_, true, 34, 2f, 3.9f);
+        if(!DebugHelper.isMaurizioDebug() && (PeriCoachTestApplication.getCurrentJob().getTesttypeId() == 1))setBattVoltage(ioio_, true, 34, 2f, 3.9f);
 
         try {
             trigger = ioio_.openDigitalOutput(45,

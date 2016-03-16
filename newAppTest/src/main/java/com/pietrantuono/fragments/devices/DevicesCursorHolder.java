@@ -12,9 +12,9 @@ import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.iconics.view.IconicsImageView;
 import com.mikepenz.ionicons_typeface_library.Ionicons;
 import com.pietrantuono.application.PeriCoachTestApplication;
+import com.pietrantuono.devicesprovider.DevicesContentProvider;
 import com.pietrantuono.pericoach.newtestapp.R;
 
-import analytica.pericoach.android.Contract;
 import server.pojos.Device;
 import server.pojos.Job;
 
@@ -43,7 +43,7 @@ public class DevicesCursorHolder extends RecyclerView.ViewHolder {
     }
 
     public void setData(Cursor c, Context context) {
-        this.device = reconstructDevice(c);
+        this.device = DevicesContentProvider.reconstructDevice(c);
         if (device == null) return;
         if (device.getBarcode() != null) barcode.setText(device.getBarcode());
         if (device.getSerial() != null) serial.setText(device.getSerial());
@@ -73,32 +73,4 @@ public class DevicesCursorHolder extends RecyclerView.ViewHolder {
         }
     }
 
-    private Device reconstructDevice(Cursor c){
-        Device device= new Device();
-        long deviceId=c.getLong(c.getColumnIndexOrThrow(Contract.DevicesColumns.DEVICES_DEVICES_ID));
-        device.setDeviceId(deviceId);
-
-        String barcode=c.getString(c.getColumnIndexOrThrow(Contract.DevicesColumns.DEVICES_BARCODE));
-        device.setBarcode(barcode != null ? barcode : "");
-
-        String serial=c.getString(c.getColumnIndexOrThrow(Contract.DevicesColumns.DEVICES_SERIAL));
-        device.setSerial(serial != null ? serial : "");
-
-        String model=c.getString(c.getColumnIndexOrThrow(Contract.DevicesColumns.DEVICES_SERIAL));
-        device.setModel(model != null ? model : "");
-
-        String fwver=c.getString(c.getColumnIndexOrThrow(Contract.DevicesColumns.DEVICES_FWVER));
-        device.setFwver(fwver != null ? fwver : "");
-
-        String addr=c.getString(c.getColumnIndexOrThrow(Contract.DevicesColumns.DEVICES_ADDRESS));
-        device.setBt_addr(addr != null ? addr : "");
-
-        device.setExec_Tests(c.getLong(c.getColumnIndexOrThrow(Contract.DevicesColumns.DEVICES_EXEC_TESTS)));
-
-        device.setJobId(c.getLong(c.getColumnIndexOrThrow(Contract.DevicesColumns.DEVICES_JOB_ID)));
-
-        device.setStatus(c.getLong(c.getColumnIndexOrThrow(Contract.DevicesColumns.DEVICES_STATUS)));
-
-        return device;
-    }
 }

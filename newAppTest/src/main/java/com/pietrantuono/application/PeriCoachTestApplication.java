@@ -11,6 +11,7 @@ import com.pietrantuono.pericoach.newtestapp.R;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
+import android.app.Application;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -25,7 +26,7 @@ import server.pojos.Firmware;
 import server.pojos.Job;
 import server.pojos.Sequence;
 
-public class PeriCoachTestApplication extends  com.activeandroid.app.Application {
+public class PeriCoachTestApplication extends Application {
 	private static Context context=null;
 	private static Firmware GetFirmware=null;
 	private static File firmware=null;
@@ -42,8 +43,7 @@ public class PeriCoachTestApplication extends  com.activeandroid.app.Application
 	private static Sequence sequence;
 
 	private static boolean isretestallowed;
-
-
+	private static PeriCoachTestApplication application;
 
 
 	public static boolean getIsRetestAllowed() { return isretestallowed;}
@@ -78,7 +78,11 @@ public class PeriCoachTestApplication extends  com.activeandroid.app.Application
 		if(android_id==null)android_id="";
 		//forceSync();
 		addDevicesSyncAccount();
+		application=this;
+	}
 
+	public static PeriCoachTestApplication getApplication(){
+		return application;
 	}
 
 	public static void setLastPos(int lastPos) {PeriCoachTestApplication.lastPos = lastPos;}
@@ -170,12 +174,23 @@ public class PeriCoachTestApplication extends  com.activeandroid.app.Application
 		Bundle settingsBundle = new Bundle();
 		settingsBundle.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);
 		settingsBundle.putBoolean(ContentResolver.SYNC_EXTRAS_EXPEDITED, true);
-		/*
-		 * Request the sync for the default account, authority, and manual sync
-		 * settings
-		 */
 		ContentResolver.requestSync(mAccount, AUTHORITY, settingsBundle);
-		
+	}
+	public void forceSyncDevices() {
+		Bundle settingsBundle = new Bundle();
+		settingsBundle.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);
+		settingsBundle.putBoolean(ContentResolver.SYNC_EXTRAS_EXPEDITED, true);
+		ContentResolver.requestSync(createAccount(), getResources().getString(R.string.devices_sync_provider_authority), settingsBundle);
+	}
+
+	public Account createAccount() {
+		Account newAccount = new Account(
+				getResources().getString(R.string.devices_sync_account),getResources().getString(R.string.devices_sync_account_type));
+		AccountManager accountManager =
+				(AccountManager) context.getSystemService(
+						Context.ACCOUNT_SERVICE);
+		if (accountManager.addAccountExplicitly(newAccount, null, null)) {/*TODO*/} else {/*TODO*/}
+		return newAccount;
 	}
 
 	public static void setIOIOAddress(String address) {

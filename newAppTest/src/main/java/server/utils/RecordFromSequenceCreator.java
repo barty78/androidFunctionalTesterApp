@@ -3,6 +3,7 @@ package server.utils;
 import java.util.ArrayList;
 import java.util.List;
 
+import server.pojos.Device;
 import server.pojos.records.Readings;
 import server.pojos.records.S0;
 import server.pojos.records.S1;
@@ -16,32 +17,32 @@ import com.pietrantuono.constants.NewSequenceInterface;
 import com.pietrantuono.tests.implementations.GetBarcodeTest;
 import com.pietrantuono.tests.implementations.GetDeviceSerialTest;
 import com.pietrantuono.tests.implementations.GetMacAddressTest;
+import com.pietrantuono.tests.implementations.ReadDeviceInfoSerialNumberTest;
 import com.pietrantuono.tests.implementations.ReadFirmwareversionTest;
 import com.pietrantuono.tests.implementations.ReadModelNumberTest;
 import com.pietrantuono.tests.implementations.SensorTestWrapper;
 
 public class RecordFromSequenceCreator {
 
-    public static TestRecord createRecordFromSequence(NewSequenceInterface sequence) {
+    public static TestRecord createRecordFromSequence(NewSequenceInterface sequence, Device device) {
         if (sequence == null)
             return null;
         if (sequence.getSequence() == null
                 || sequence.getSequence().size() <= 0)
             return null;
         TestRecord record = new TestRecord();
-        record.setBarcode(getBarcode(sequence));
+        record.setBarcode(device.getBarcode() != null ? Long.parseLong(device.getBarcode()) : 0);
         record.setDuration("" + sequence.getDuration());
         record.setFixtureNo(PeriCoachTestApplication.getFixtureIdintification());
-        record.setFWVer(getFwVer(sequence));
+        record.setFWVer(device.getFwver() != null ? device.getFwver() : "");
         record.setJobNo(sequence.getJobNo());
-        record.setModel(getModel(sequence));
+        record.setModel(device.getModel() != null ? Long.parseLong(device.getModel()) : 0);
         record.setResult(sequence.getOverallResult());
-        record.setSerial(getSerial(sequence));
+        record.setSerial(device.getSerial() != null ? device.getSerial() : "");
         record.setStartedAt(sequence.getStartTime());
-        record.setBT_Addr(sequence.getBT_Addr());
+        record.setBT_Addr(device.getBt_addr()!=null?device.getBt_addr():"");
         Readings readings = createReadings(sequence);
         record.setReadings(readings);
-        MyDatabaseUtils.ProcessAndSaveRecords(record);
         return record;
     }
 
@@ -116,6 +117,7 @@ public class RecordFromSequenceCreator {
     private static long getBarcode(NewSequenceInterface sequence) {
         long barcode = 0;
         GetBarcodeTest barcodeTest = null;
+
         for (int i = 0; i < sequence.getSequence().size(); i++) {
             if (sequence.getSequence().get(i) instanceof GetBarcodeTest)
                 barcodeTest = (GetBarcodeTest) sequence.getSequence().get(i);
@@ -126,8 +128,8 @@ public class RecordFromSequenceCreator {
             barcode = Long.parseLong(barcodeTest.getBarcode());
         } catch (Exception e) {
         }
-        return barcode;
 
+        return barcode;
     }
 
     private static long getModel(NewSequenceInterface sequence) {

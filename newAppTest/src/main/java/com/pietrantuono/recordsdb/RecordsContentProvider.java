@@ -12,7 +12,7 @@ import android.support.annotation.Nullable;
 public class RecordsContentProvider extends ContentProvider {
     public static final String AUTHORITY="com.analytica.records.provider";
     private NewRecordsSQLiteOpenHelper sqLiteOpenHelper;
-    public static CONTENT_URI
+    //public static CONTENT_URI
 
     @Override
     public boolean onCreate() {

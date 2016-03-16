@@ -25,7 +25,6 @@ import ioio.lib.api.DigitalOutput;
 import ioio.lib.api.IOIO;
 import ioio.lib.api.Uart;
 import server.pojos.Job;
-import server.service.ServiceDBHelper;
 
 @SuppressWarnings("unused")
 public class GetNFCTest extends Test {

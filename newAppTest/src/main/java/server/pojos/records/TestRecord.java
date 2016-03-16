@@ -7,7 +7,9 @@ import com.google.gson.annotations.Expose;
 //@Table(name = "TestRecord")
 public class TestRecord {
 
-	public TestRecord() {
+    private long ID;
+
+    public TestRecord() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -225,5 +227,13 @@ public class TestRecord {
 
     public void setUploaded(boolean uploaded) {
         this.uploaded = uploaded;
+    }
+
+    public void setID(long ID) {
+        this.ID = ID;
+    }
+
+    public long getID() {
+        return ID;
     }
 }
