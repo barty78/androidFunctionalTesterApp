@@ -116,7 +116,7 @@ public class RecordsSyncAdapter extends AbstractThreadedSyncAdapter {
                 } catch(Exception ignored){
                     Log.d(TAG,ignored.toString());
                 }
-                if (response != null && (response.getStatus() == 200)) {
+                if (response != null && 200 <=response.getStatus() && response.getStatus()<300) {
                     updateRecordUploaded(record.getID(),newRecordsSQLiteOpenHelper);
                 }
             }
