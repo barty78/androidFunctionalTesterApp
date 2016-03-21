@@ -1,10 +1,7 @@
 package com.pietrantuono.fragments.devices;
 
 
-import android.accounts.Account;
-import android.accounts.AccountManager;
 import android.content.BroadcastReceiver;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -15,8 +12,6 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.view.ActionMode;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -31,7 +26,7 @@ import com.pietrantuono.pericoach.newtestapp.R;
 import analytica.pericoach.android.Contract;
 import server.pojos.Job;
 
-public class DevicesListFragment extends Fragment implements ActionModecallback.Callback, LoaderManager.LoaderCallbacks<Cursor> {
+public class DevicesListFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
     private static final int LOADER = 1;
     private RecyclerView recyclerView;
     private Context context;
@@ -133,19 +128,16 @@ public class DevicesListFragment extends Fragment implements ActionModecallback.
         }
     }
 
-    @Override
     public void sortByResult() {
         orderbyBarcode=false;
         getLoaderManager().restartLoader(LOADER, null, this);
     }
 
-    @Override
     public void sortByBarcode() {
         orderbyBarcode=true;
         getLoaderManager().restartLoader(LOADER, null, this);
     }
 
-    @Override
     public void currentJobOnly(boolean onlycurrent) {
         thisJobOnly=onlycurrent;
         getLoaderManager().restartLoader(LOADER, null, this);

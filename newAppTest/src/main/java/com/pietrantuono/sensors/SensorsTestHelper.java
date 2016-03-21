@@ -48,7 +48,7 @@ public class SensorsTestHelper implements OnSampleCallback {
 	private boolean acceptdata;
 	SimpleDateFormat simpleDateFormat= new SimpleDateFormat(" HH:mm:ss.SSS");
 
-	public SensorsTestHelper(Activity activity, BTUtility btUtil, IOIO ioio) {
+	public SensorsTestHelper(Activity activity) {
 		Log.d(TAG, "Constructor");
 		final LinearLayout layout = (LinearLayout) activity.findViewById(R.id.sensorsreading);
 		activity.runOnUiThread(new Runnable() {

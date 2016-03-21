@@ -137,7 +137,7 @@ public class SettingsActivity extends PreferenceActivity {
         String selection="uploaded = ?";
         String[] selectionArgs= new String[]{"1"};
         Cursor testRecordCursor = newRecordsSQLiteOpenHelper.getWritableDatabase().query(RecordsContract.TestRecords.TABLE, null, selection, selectionArgs, null, null, null);
-        List<TestRecord> records= RecordsProcessor.reconstructRecords(context, testRecordCursor, newRecordsSQLiteOpenHelper);
+        List<TestRecord> records= RecordsProcessor.reconstructRecords(testRecordCursor, newRecordsSQLiteOpenHelper);
         if (records == null || records.size() <= 0) {
             Toast.makeText(SettingsActivity.this, "No records found...", Toast.LENGTH_LONG).show();
             return;
@@ -262,11 +262,6 @@ public class SettingsActivity extends PreferenceActivity {
         context.startActivity(Intent.createChooser(emailIntent, "Send data..."));
     }
 
-
-    private void foo() {
-
-    }
-
     private void getLogs() {
         String root = Environment.getExternalStorageDirectory().toString();
         File dir = new File(root + "/logs");
@@ -324,7 +319,7 @@ public class SettingsActivity extends PreferenceActivity {
     public static List<TestRecord> getAllRecords(Context context) {
         NewRecordsSQLiteOpenHelper newRecordsSQLiteOpenHelper = NewRecordsSQLiteOpenHelper.getInstance(context);
         Cursor testRecordCursor = newRecordsSQLiteOpenHelper.getWritableDatabase().query(RecordsContract.TestRecords.TABLE, null, null, null, null, null, null);
-        return RecordsProcessor.reconstructRecords(context, testRecordCursor,newRecordsSQLiteOpenHelper);
+        return RecordsProcessor.reconstructRecords(testRecordCursor,newRecordsSQLiteOpenHelper);
     }
 
 }

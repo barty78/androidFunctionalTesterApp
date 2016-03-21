@@ -55,15 +55,14 @@ public class NewRecordsSQLiteOpenHelper extends SQLiteOpenHelper {
     private void migrateOldData(SQLiteDatabase db) {
         OldRecordsHelper oldRecorsdHelper = OldRecordsHelper.get(context);
         Cursor oldRecords = oldRecorsdHelper.getWritableDatabase().query(RecordsContract.TestRecords.TABLE, null, null, null, null, null, null);
-        ArrayList<TestRecord> testRecords = (ArrayList<TestRecord>) RecordsProcessor.reconstructRecords(context, oldRecords, oldRecorsdHelper);
+        ArrayList<TestRecord> testRecords = (ArrayList<TestRecord>) RecordsProcessor.reconstructRecords(oldRecords, oldRecorsdHelper);
         Iterator<TestRecord> iterator = testRecords.iterator();
         while (iterator.hasNext()) {
-            saveRecord(context, iterator.next(), db);
+            saveRecord(iterator.next(), db);
         }
     }
 
-    private long saveRecord(Context context, TestRecord testRecord, SQLiteDatabase db) {
-        TestRecord record = new TestRecord();
+    private long saveRecord(TestRecord testRecord, SQLiteDatabase db) {
         ContentValues values = new ContentValues();
         values.put(RecordsContract.TestRecords.BARCODE, testRecord.getBarcode());
         values.put(RecordsContract.TestRecords.DURATION, testRecord.getDuration());

@@ -17,6 +17,7 @@ implements Filterable, CursorFilter.CursorFilterClient {
 	private ChangeObserver mChangeObserver;
 	private DataSetObserver mDataSetObserver;
 	private CursorFilter mCursorFilter;
+	@SuppressWarnings("unused")
 	private FilterQueryProvider mFilterQueryProvider;
 
 	public CursorRecyclerAdapter( Cursor cursor) {

@@ -38,19 +38,6 @@ public class S2  {
 	//@Column(name = "ErrorCodes")
 	private List<Long> errorCodes= new ArrayList<Long>();
 
-
-	//@Column(name = "Sensors")
-    private Sensors foreignkey;
-    
-	@SuppressWarnings("unused")
-	public Sensors getForeignkey() {
-		return foreignkey;
-	}
-
-	public void setForeignkey(Sensors foreignkey) {
-		this.foreignkey = foreignkey;
-	}
-
 	/**
      * 
      * @return

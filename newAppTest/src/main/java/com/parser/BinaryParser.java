@@ -25,7 +25,7 @@ public class BinaryParser  {
 	//String _filename;
 	private byte[] _data;
 
-	public BinaryParser(Context context) throws IOException{
+	public BinaryParser() throws IOException{
 		//_filename = iFileName;
 		readData();
 

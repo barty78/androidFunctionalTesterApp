@@ -33,8 +33,6 @@ public interface NewIOIOActivityListener {
 
     public void setBtutility(BTUtility btutility);
 
-    public void setSerialBT(String serial, Boolean success);
-
     public void onUploadTestFinished(boolean istest, boolean success, String description,String failReason);
 
     public void onCurrentSequenceEnd();

@@ -24,7 +24,7 @@ public class MyRecyclerCursorAdapter extends CursorRecyclerAdapter<DevicesCursor
 
     @Override
     public void onBindViewHolderCursor(DevicesCursorHolder holder, Cursor cursor) {
-        holder.setData(cursor, context);
+        holder.setData(cursor);
     }
 
     @Override

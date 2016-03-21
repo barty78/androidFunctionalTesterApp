@@ -119,11 +119,6 @@ public class NewSequenceFragment extends Fragment implements LoaderManager.Loade
         });
     }
 
-    /**
-     * Does nothing
-     */
-    public void setSequence(NewSequenceInterface sequence) {
-    }
 
     public void setOverallFailOrPass(final boolean success, final String string) {
         final String barcode;

@@ -20,7 +20,6 @@ import android.widget.Toast;
 
 import com.parser.BinaryParser;
 import com.pietrantuono.activities.NewIOIOActivityListener;
-import com.pietrantuono.fragments.sequence.holders.UploadItemHolder;
 import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.pericoach.newtestapp.BuildConfig;
 import com.pietrantuono.tests.ErrorCodes;
@@ -145,7 +144,7 @@ public class FirmWareUploader {
                 return null;
             try {
 
-                BinaryParser aParser = new BinaryParser(activity);
+                BinaryParser aParser = new BinaryParser();
 
                 int offset = 0;
                 int size = aParser.getData().length;

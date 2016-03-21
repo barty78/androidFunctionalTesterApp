@@ -2,7 +2,6 @@ package com.pietrantuono.tests.implementations;
 
 import android.app.Activity;
 import android.os.AsyncTask;
-import android.view.View;
 
 import com.pietrantuono.btutility.BTUtility;
 import com.pietrantuono.pericoach.newtestapp.BuildConfig;
@@ -50,11 +49,11 @@ public class BluetoothConnectTestForTesting extends Test {
                 }
                 btUtility = new BTUtility((Activity) activityListener,
                         serial,
-                        activityListener, mac);
+                        mac);
 
             } else {
                 btUtility = new BTUtility((Activity) activityListener,
-                        activityListener.getSerial(), activityListener,
+                        activityListener.getSerial(),
                         activityListener.getMac());
 
             }

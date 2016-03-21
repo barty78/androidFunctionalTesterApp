@@ -2,6 +2,7 @@ package hydrix.pfmat.generic;
 
 import android.util.FloatMath;
 
+@SuppressWarnings("unused")
 public class Motion
 {
 	// Members
@@ -10,6 +11,7 @@ public class Motion
 	private Quaternion mQuat;		// Quaternion
 	private float[] mYPR;			// Yaw/Pitch/Roll
 	
+	@SuppressWarnings("unused")
 	static public class VectorFloat
 	{
 		public float mx;
@@ -72,6 +74,7 @@ public class Motion
 	        }
 	}
 	
+	@SuppressWarnings("unused")
 	static public class VectorInt16
 	{
 		public int mx;

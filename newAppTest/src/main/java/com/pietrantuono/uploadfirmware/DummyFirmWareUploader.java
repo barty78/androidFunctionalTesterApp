@@ -7,7 +7,6 @@ import android.widget.Toast;
 
 import com.parser.BinaryParser;
 import com.pietrantuono.activities.NewIOIOActivityListener;
-import com.pietrantuono.fragments.sequence.holders.UploadItemHolder;
 import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.ioioutils.IOIOUtils;
 import com.pietrantuono.tests.implementations.upload.UploadDialog;
@@ -20,11 +19,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.util.HashMap;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
 
 import ioio.lib.api.IOIO;
 
@@ -32,7 +26,6 @@ import ioio.lib.api.IOIO;
 public class DummyFirmWareUploader {
     private static final String TAG = "DummyFirmWareUploader";
     private OutputStream TX;
-    private InputStream RX;
     private static final byte XOR_BYTE = (byte) 0xFF;
     private static final byte STM32_ACK = 0x79;
     private UploadDialog uploadDialog;
@@ -74,7 +67,6 @@ public class DummyFirmWareUploader {
                                  NewIOIOActivityListener listner, IOIO ioio_, Boolean loopback, UploadDialog uploadDialog) {
         this.TX = TX;
         this.c = c;
-        this.RX = RX;
         this.uploadDialog = uploadDialog;
         this.ioio_ = ioio_;
         this.loopback = loopback;
@@ -108,7 +100,7 @@ public class DummyFirmWareUploader {
                 return null;
             try {
 
-                BinaryParser aParser = new BinaryParser(c);
+                BinaryParser aParser = new BinaryParser();
                 showToast(aParser.toString());
 
                 int offset = 0;

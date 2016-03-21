@@ -7,5 +7,6 @@ public interface AllSensorsCallback {
 
     void onAllVoltageResponseReceived();
 
+    @SuppressWarnings("unused")
     void onError();
 }

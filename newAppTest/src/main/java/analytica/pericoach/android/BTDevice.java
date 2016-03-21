@@ -30,8 +30,6 @@ public class BTDevice extends Device
 		mBTDevice = btDevice;
 	}
 
-	public final BluetoothDevice getBluetoothDeviceInfo() {return mBTDevice;}
-	
 	@Override
 	protected boolean connectSpecific()
 	{

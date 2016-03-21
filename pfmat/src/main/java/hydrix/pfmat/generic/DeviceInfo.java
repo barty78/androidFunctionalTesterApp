@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+@SuppressWarnings("unused")
 public class DeviceInfo implements Parcelable {
 	
+	@SuppressWarnings("unused")
 	public class Info
 	{
 		public final String mSerialNumber;

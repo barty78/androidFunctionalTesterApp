@@ -1,5 +1,6 @@
 package hydrix.pfmat.generic;
 
+@SuppressWarnings("unused")
 public class Force
 {
 	// public static final short SENSOR_MAX = 1023; // old 10-bit implementation
@@ -11,6 +12,7 @@ public class Force
 	public short mSensor2;
 	
 	// Dumb structure to represent the three sensors as percentages of the corresponding values in the user's recorded max force 
+	@SuppressWarnings("unused")
 	static public class RelativeForce
 	{
 		public final float mSensor0;

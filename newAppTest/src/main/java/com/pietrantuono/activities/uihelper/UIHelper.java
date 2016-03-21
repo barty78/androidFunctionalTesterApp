@@ -53,8 +53,6 @@ public class UIHelper {
         this.sequence = sequence;
         setOverallFailOrPass(false, "");
         setupViewpager(activity);
-        if (sequenceFragment != null)
-            sequenceFragment.setSequence(sequence);
         Toolbar toolbar = (Toolbar) activity.findViewById(R.id.toolbar);
         ((AppCompatActivity) activity).setSupportActionBar(toolbar);
     }
@@ -245,7 +243,7 @@ public class UIHelper {
     }
 
     public synchronized void addFailOrPass(final Boolean istest, final Boolean success, String reading,
-                                           String otherreading, String description, boolean issensortest, Test testToBeParsed, long recordId) {
+                                           String otherreading, String description, boolean issensortest, long recordId) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(SequenceContracts.Tests.TABLE_TESTS_IS_NORMAL_TEST, istest ? 1 : 0);
         contentValues.put(SequenceContracts.Tests.TABLE_TESTS_RESULT, success ? 1 : 0);
@@ -342,7 +340,7 @@ public class UIHelper {
         });
     }
 
-    public void addSensorTestCompletedRow(NewMSensorResult mSensorResult, Test testToBeParsed,long recordId) {
+    public void addSensorTestCompletedRow(NewMSensorResult mSensorResult, long recordId) {
         if(mSensorResult==null)return;
         ContentValues contentValues = new ContentValues();
         contentValues.put(SequenceContracts.Tests.TABLE_TESTS_IS_NORMAL_TEST, 0);
@@ -377,7 +375,7 @@ public class UIHelper {
      */
     public void setSequence(NewSequenceInterface sequence) {
         this.sequence = sequence;
-        if (sequenceFragment != null) sequenceFragment.setSequence(sequence);
+
     }
 
     public void onUploadTestFinished(final Boolean success, String description, long recordId, String failReason) {

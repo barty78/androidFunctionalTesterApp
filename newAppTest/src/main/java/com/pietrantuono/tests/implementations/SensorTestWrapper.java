@@ -5,7 +5,6 @@ import ioio.lib.api.IOIO;
 import android.app.Activity;
 import android.util.Log;
 
-import com.pietrantuono.ioioutils.IOIOUtils;
 import com.pietrantuono.sensors.ClosedTest;
 import com.pietrantuono.sensors.SensorTest;
 import com.pietrantuono.sensors.SensorsTestHelper;
@@ -74,7 +73,7 @@ public class SensorTestWrapper extends Test {
             ((Activity) activityListener).runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    helper = new SensorsTestHelper((Activity) activityListener, activityListener.getBtutility(), ioio);
+                    helper = new SensorsTestHelper((Activity) activityListener);
                     sensorTest.setSensorsTestHelper(helper);
                     sensorTest.execute();
                 }
@@ -130,7 +129,7 @@ public class SensorTestWrapper extends Test {
         @Override
         protected Void doInBackground(Void... params) {
             if (isinterrupted) return null;
-            helper = new SensorsTestHelper((Activity) activityListener, activityListener.getBtutility(), ioio);
+            helper = new SensorsTestHelper((Activity) activityListener);
             sensorTest.setSensorsTestHelper(helper);
 //		IOIOUtils.getUtils().stopUartThread();
 //		IOIOUtils.getUtils().closeUart((Activity)activityListener);

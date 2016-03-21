@@ -6,6 +6,7 @@ import java.io.OutputStream;
 // TODO: Change mDisconnecting to a reference count instead of flag, so there's no race condition between disconnect() and the recv thread checking the flag on the way out
 // Not critical because the implementation of onConnectionLost happens to do nothing, but this needs to be fixed post-trial in conjunction with implementing the user notification
 
+@SuppressWarnings("ALL")
 public abstract class Device
 {
 	public final static short BATTERY_UNKNOWN = -1;

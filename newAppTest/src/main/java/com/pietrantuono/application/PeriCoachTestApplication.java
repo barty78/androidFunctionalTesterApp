@@ -1,10 +1,6 @@
 package com.pietrantuono.application;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 
 import com.cyanogenmod.updater.utils.MD5;
 import com.pietrantuono.pericoach.newtestapp.R;
@@ -14,11 +10,7 @@ import android.accounts.AccountManager;
 import android.app.Application;
 import android.content.ContentResolver;
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.res.AssetManager;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.provider.Settings.Secure;
 import android.util.Log;
 
 import customclasses.AndroidID;
@@ -74,7 +66,7 @@ public class PeriCoachTestApplication extends Application {
 		context=getApplicationContext();
 		mAccount = CreateSyncAccount(context);
 		setUpSyncApapter();
-		android_id = AndroidID.getID(PeriCoachTestApplication.this);
+		android_id = AndroidID.getID();
 		if(android_id==null)android_id="";
 		//forceSync();
 		addDevicesSyncAccount();

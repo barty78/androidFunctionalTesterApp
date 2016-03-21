@@ -3,9 +3,6 @@ package com.pietrantuono.btutility;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Set;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.AbstractExecutorService;
 import java.util.concurrent.Callable;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
@@ -14,9 +11,7 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
-import com.pietrantuono.activities.MyOnCancelListener;
 import com.pietrantuono.activities.NewIOIOActivityListener;
-import com.pietrantuono.activities.SettingsActivity;
 import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.ioioutils.IOIOUtils;
 import com.pietrantuono.pericoach.newtestapp.BuildConfig;
@@ -25,7 +20,6 @@ import com.pietrantuono.pericoachengineering.util.Utils;
 import com.pietrantuono.sensors.AllSensorsCallback;
 import com.pietrantuono.sensors.NewDevice;
 import com.pietrantuono.sensors.NewPFMATDevice;
-import com.pietrantuono.tests.implementations.BatteryLevelUUTVoltageTest;
 import com.pietrantuono.tests.superclass.Test;
 import com.radiusnetworks.bluetooth.BluetoothCrashResolver;
 
@@ -33,28 +27,21 @@ import analytica.pericoach.android.ConnectDeviceItem;
 import analytica.pericoach.android.DBManager;
 import analytica.pericoach.android.Type;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.preference.PreferenceManager;
-import android.text.InputType;
 import android.util.Log;
-import android.widget.EditText;
 
 import customclasses.DebugHelper;
-import hugo.weaving.DebugLog;
-import hydrix.pfmat.generic.AllVoltageObserver;
 import hydrix.pfmat.generic.Device;
 
 public class BTUtility {
@@ -72,18 +59,14 @@ public class BTUtility {
     private String mDeviceId;
     private String macaddress = null;
     private String scancode = "";
-    private Boolean deviceIDOK = false;
-    private Boolean scancodeOK = false;
     // private IOIOActivityListener ioioActivityListener;
     private String model = null;
     private BluetoothCrashResolver bluetoothCrashResolver;
     private Boolean isstopped = false;
-    private AlertDialog alertDialog;
-    private AlertDialog alertDialog2;
-    private AlertDialog alertDialog3;
     private Test bluetoothConnectTest;
     private int retries = 0;
 
+    @SuppressWarnings("unused")
     private static Activity activity;
     private ExecutorService executor;
     private boolean interrupt = false;
@@ -128,7 +111,7 @@ public class BTUtility {
     }
 
     public BTUtility(Activity activity1, String scancode,
-                     NewIOIOActivityListener IOIOActivityListener, String macaddress) {
+                     String macaddress) {
         if (isstopped)
             return;
         this.activityRef = new WeakReference<Activity>(activity1);
@@ -268,7 +251,7 @@ public class BTUtility {
                 if (activity == null)
                     return;
                 mBTAdapter.cancelDiscovery();
-                NewPFMATDevice.specifyDevice(device, activity);
+                NewPFMATDevice.specifyDevice(device);
                 mBTAdapter.cancelDiscovery();
                 NewPFMATDevice.connect(activity, INTENT_CONNECT_SUCCEEDED,
                         INTENT_CONNECT_FAILED);
@@ -309,7 +292,7 @@ public class BTUtility {
         } else {
             device = mBTAdapter.getRemoteDevice(macaddress);
         }
-        NewPFMATDevice.specifyDevice(device, activityRef.get());
+        NewPFMATDevice.specifyDevice(device);
         NewPFMATDevice.connect(activityRef.get(), INTENT_CONNECT_SUCCEEDED,
                 INTENT_CONNECT_FAILED);
 
@@ -575,12 +558,7 @@ public class BTUtility {
 
     public void abort() {
         Log.d("BTUtility", "abort");
-        if (alertDialog != null && alertDialog.isShowing())
-            alertDialog.dismiss();
-        if (alertDialog2 != null && alertDialog2.isShowing())
-            alertDialog2.dismiss();
-        if (alertDialog3 != null && alertDialog3.isShowing())
-            alertDialog3.dismiss();
+
         isstopped = true;
         stopBTDiscovery();
         if (NewPFMATDevice.getDevice() != null) {

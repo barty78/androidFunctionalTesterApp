@@ -1,5 +1,6 @@
 package hydrix.pfmat.generic;
 
+@SuppressWarnings("unused")
 public class DisplaySample
 {
 	private String mTestDesc;

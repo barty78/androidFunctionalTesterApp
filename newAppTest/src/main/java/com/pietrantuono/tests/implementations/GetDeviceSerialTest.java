@@ -134,10 +134,6 @@ public class GetDeviceSerialTest extends Test {
 
     }
 
-    public String getSerial() {
-        return serial;
-    }
-
     @Override
     public void interrupt() {
 

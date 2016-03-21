@@ -259,14 +259,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    @SuppressWarnings("ucd")
-    public void setSerialBT(final String serial, final Boolean success) {
-        if (serial != null && !serial.isEmpty()) {
-            uiHelper.addView("Serial (BT reading): ", serial, false);
-        }
-    }
-
-    @Override
     public void onBackPressed() {
         MyDialogs.
                 createAlertDialog(MainActivity.this, "Close TEST", "Are you sure you want to close this test?", "YES, let's close", "NO, let's continue", new MyOnCancelListener(MainActivity.this), new MyDialogInterface() {
@@ -360,14 +352,14 @@ public class MainActivity extends AppCompatActivity
                 NewRecordsSQLiteOpenHelper newRecordsHelper = NewRecordsSQLiteOpenHelper.getInstance(MainActivity.this);
                 TestRecord record = RecordFromSequenceCreator.createRecordFromSequence(newSequence,sequenceDevice);
                 //MyDatabaseUtils.RecontructRecord(record);
-                long id = RecordsProcessor.saveRecord(MainActivity.this, record, newRecordsHelper);
+                long id = RecordsProcessor.saveRecord(record, newRecordsHelper);
                 if (id > 0) {
 
                     String selection = "Id = ?";
                     String[] selectionArgs = new String[]{"" + id};
                     Cursor c = newRecordsHelper.getWritableDatabase().query(RecordsContract.TestRecords.TABLE, null, selection, selectionArgs, null, null, null);
                     if (c.getCount() > 0) {
-                        List<TestRecord> records = RecordsProcessor.reconstructRecords(MainActivity.this, c,newRecordsHelper);
+                        List<TestRecord> records = RecordsProcessor.reconstructRecords(c,newRecordsHelper);
                         if (records.size() > 0) {
                             Gson gson = new GsonBuilder()
                                     .excludeFieldsWithoutExposeAnnotation()
@@ -540,7 +532,7 @@ public class MainActivity extends AppCompatActivity
         } catch (Exception e) {
             e.printStackTrace();
         }
-        uiHelper.addSensorTestCompletedRow(mSensorResult, testToBeParsed, recordId);
+        uiHelper.addSensorTestCompletedRow(mSensorResult, recordId);
         Handler h = new Handler(android.os.Looper.getMainLooper());
         Handler handler = new Handler(getMainLooper());
         handler.postDelayed(new Runnable() {
@@ -586,7 +578,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void addFailOrPass(Boolean istest, Boolean success, String reading, String otherreading, String description, Test testToBeParsed) {
-        uiHelper.addFailOrPass(istest, success, reading, otherreading, description, false, testToBeParsed, recordId);
+        uiHelper.addFailOrPass(istest, success, reading, otherreading, description, false, recordId);
         Handler handler = new Handler(getMainLooper());
         handler.postDelayed(new Runnable() {
             @Override
@@ -622,7 +614,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void addFailOrPass(final Boolean istest, final Boolean success, String reading, String description, boolean isSensorTest, Test testToBeParsed) {
-        uiHelper.addFailOrPass(istest, success, reading, null, description, true, testToBeParsed, recordId);
+        uiHelper.addFailOrPass(istest, success, reading, null, description, true, recordId);
         Handler handler = new Handler(getMainLooper());
         handler.postDelayed(new Runnable() {
             @Override

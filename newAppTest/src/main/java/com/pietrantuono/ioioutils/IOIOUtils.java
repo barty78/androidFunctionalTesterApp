@@ -72,6 +72,7 @@ public class IOIOUtils implements IOIOUtilsInterface {
         return instance;
     }
 
+    @SuppressWarnings("unused")
     public enum Mode {
 
         bootloader((int) 0),
@@ -108,9 +109,6 @@ public class IOIOUtils implements IOIOUtilsInterface {
         }
     }
 
-    public static void setIOIOUtilsInterface(IOIOUtilsInterface mockobject) {
-        instance = mockobject;
-    }
 
     private void makeToast(final Activity ac, final String s) {
         ac.runOnUiThread(new Runnable() {
@@ -490,7 +488,7 @@ public class IOIOUtils implements IOIOUtilsInterface {
 
     }
 
-    public void openUart2(final IOIO ioio_, final Activity ac) {
+    public void openUart2(final IOIO ioio_) {
         try {
             uart2 = ioio_.openUart(
 //                    13,
@@ -508,7 +506,7 @@ public class IOIOUtils implements IOIOUtilsInterface {
         }
     }
 
-    public void openUart2(final IOIO ioio_, final Activity ac,
+    public void openUart2(final IOIO ioio_,
                           int baud, Uart.Parity parity, Uart.StopBits stop) {
         try {
             uart2 = ioio_.openUart(

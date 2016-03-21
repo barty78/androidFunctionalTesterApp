@@ -24,8 +24,7 @@ import server.pojos.records.TestRecord;
  */
 public class RecordsProcessor {
 
-    public static long saveRecord(Context context, TestRecord testRecord, SQLiteOpenHelper helper) {
-        TestRecord record = new TestRecord();
+    public static long saveRecord(TestRecord testRecord, SQLiteOpenHelper helper) {
         ContentValues values = new ContentValues();
         values.put(RecordsContract.TestRecords.BARCODE, testRecord.getBarcode());
         values.put(RecordsContract.TestRecords.DURATION, testRecord.getDuration());
@@ -105,10 +104,9 @@ public class RecordsProcessor {
     }
 
 
-    public static List<TestRecord> reconstructRecords(Context context, Cursor testRecordCursor, SQLiteOpenHelper helper) {
+    public static List<TestRecord> reconstructRecords(Cursor testRecordCursor, SQLiteOpenHelper helper) {
         List<TestRecord> records = new ArrayList<>();
         while (testRecordCursor.moveToNext()) {
-            TestRecord testRecord = new TestRecord();
             TestRecord record = new TestRecord();
             record.setBarcode(testRecordCursor.getLong(testRecordCursor.getColumnIndexOrThrow(RecordsContract.TestRecords.BARCODE)));
             record.setDuration(testRecordCursor.getString(testRecordCursor.getColumnIndexOrThrow(RecordsContract.TestRecords.DURATION)));

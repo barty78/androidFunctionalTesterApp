@@ -32,7 +32,7 @@ public class BluetoothConnectTest extends Test {
 					// ""
 					// for
 					// testing
-					activityListener,activityListener.getMac());
+					activityListener.getMac());
 			activityListener.setBtutility(btUtility);
 			btUtility.connectProbeViaBT(BluetoothConnectTest.this);
 

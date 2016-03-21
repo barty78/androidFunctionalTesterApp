@@ -3,6 +3,7 @@ package com.pietrantuono.tests;
 /**
  * Created by Peter on 15/02/2016.
  */
+@SuppressWarnings("unused")
 public interface ErrorCodes {
 
     public static final int NO_ERROR = -1;

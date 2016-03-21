@@ -24,7 +24,7 @@ public class NewPFMATDevice
 	
 
 	// Bluetooth comms
-	public static final void specifyDevice(BluetoothDevice device, Activity activity)
+	public static final void specifyDevice(BluetoothDevice device)
 	{
 		// Clean up any previous device state
 		disconnect();

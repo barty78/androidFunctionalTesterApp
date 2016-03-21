@@ -11,6 +11,7 @@ import server.pojos.Test;
 /**
  * Created by Maurizio Pietrantuono, maurizio.pietrantuono@gmail.com.
  */
+@SuppressWarnings("unused")
 public class DummySensorTest extends SensorTest {
     private boolean shouldFail;
     private Test testToBeParsed;

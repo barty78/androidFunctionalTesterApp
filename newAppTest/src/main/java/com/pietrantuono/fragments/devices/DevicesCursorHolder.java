@@ -42,7 +42,7 @@ public class DevicesCursorHolder extends RecyclerView.ViewHolder {
 
     }
 
-    public void setData(Cursor c, Context context) {
+    public void setData(Cursor c) {
         this.device = DevicesContentProvider.reconstructDevice(c);
         if (device == null) return;
         if (device.getBarcode() != null) barcode.setText(device.getBarcode());
