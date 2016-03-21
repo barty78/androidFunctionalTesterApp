@@ -97,11 +97,11 @@
             android:exported="false"
             android:syncable="true" />
 
-        <!--android:process=":sync" -->
+        <!-- -->
         <service
             android:name="com.pietrantuono.recordsyncadapter.RecordsSyncService"
             android:exported="true"
-
+            android:process=":sync"
             >
             <intent-filter>
                 <action android:name="android.content.SyncAdapter" />

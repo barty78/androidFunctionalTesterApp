@@ -220,7 +220,6 @@ public class PeriCoachTestApplication extends Application {
 						Context.ACCOUNT_SERVICE);
 
 		if (accountManager.addAccountExplicitly(newAccount, null, null)) {} else {  }
-
 	}
 	
 }
