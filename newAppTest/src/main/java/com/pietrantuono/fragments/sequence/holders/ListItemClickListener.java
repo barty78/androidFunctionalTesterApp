@@ -11,7 +11,7 @@ import server.pojos.Test;
 /**
  * Created by Maurizio Pietrantuono, maurizio.pietrantuono@gmail.com.
  */
-public class ListItemClickListener implements View.OnClickListener {
+class ListItemClickListener implements View.OnClickListener {
     private static final String NOMINALTOLERANCE_DIALOG = "nominal_tolerance";
     private static final String UPPER_LOWER_DIALOG = "upper_lower";
     private final AppCompatActivity appCompatActivity;

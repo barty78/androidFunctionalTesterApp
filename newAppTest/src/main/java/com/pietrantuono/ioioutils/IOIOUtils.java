@@ -63,7 +63,7 @@ public class IOIOUtils implements IOIOUtilsInterface {
     private static IOIOUtilsInterface instance;
     private static SerialConsoleFragmentCallback callback;
 
-    public static Mode uutMode;
+    private static Mode uutMode;
 
     public static IOIOUtilsInterface getUtils() {
         if (instance == null) {

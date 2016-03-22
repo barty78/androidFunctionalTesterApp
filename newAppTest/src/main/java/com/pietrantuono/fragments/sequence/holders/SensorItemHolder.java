@@ -44,7 +44,7 @@ public class SensorItemHolder extends SequenceItemHolder {
         stability2 = (TextView) itemView.findViewById(R.id.stability2);
     }
 
-    public void setData(SequenceRowElement.RowElement sensorRowElement, int position) {
+    private void setData(SequenceRowElement.RowElement sensorRowElement, int position) {
         if (!(sensorRowElement instanceof SequenceRowElement.SensorTestRowElement))
             throw new RuntimeException("Wrong adata " + Log.getStackTraceString(new Exception()));
         SequenceRowElement.SensorTestRowElement rowElement = (SequenceRowElement.SensorTestRowElement) sensorRowElement;

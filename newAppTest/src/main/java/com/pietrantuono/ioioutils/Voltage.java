@@ -46,7 +46,7 @@ public class Voltage {
 	 * @param pinNumber
 	 * @throws Exception
 	 */
-	public static float getVoltage(IOIO ioio, int pinNumber) throws Exception {
+	private static float getVoltage(IOIO ioio, int pinNumber) throws Exception {
 		return getVoltage(ioio, pinNumber, 10, 0);
 	}
 		

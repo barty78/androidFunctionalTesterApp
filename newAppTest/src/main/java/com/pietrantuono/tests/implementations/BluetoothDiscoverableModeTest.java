@@ -69,7 +69,7 @@ public class BluetoothDiscoverableModeTest extends Test {
 			((Activity)activityListener).unregisterReceiver(discoverBroadcastReceiver);
 		} catch (Exception e){}
 	}
-	class DiscoveryAsyncTask extends AsyncTask<Void, Void, Boolean> {
+	private class DiscoveryAsyncTask extends AsyncTask<Void, Void, Boolean> {
 		@Override
 		protected Boolean doInBackground(Void... params) {
 			if(isinterrupted)return false;

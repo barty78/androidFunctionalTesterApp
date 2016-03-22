@@ -1,6 +1,6 @@
 package hydrix.pfmat.generic;
 
-public class PollingThread extends Thread
+class PollingThread extends Thread
 {
 	// Members
 	private final Device mDevice;

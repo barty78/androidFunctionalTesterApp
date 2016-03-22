@@ -30,7 +30,7 @@ public class BluetoothConnectTestForTesting extends Test {
         }
     }
 
-    class BluetoothConnectTestForTestingAsyncTask extends AsyncTask<Void, Void, Void> {
+    private class BluetoothConnectTestForTestingAsyncTask extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... params) {
             if (isinterrupted) return null;

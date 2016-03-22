@@ -4,13 +4,13 @@ import android.util.Log;
 
 abstract public class RecvStream
 {
-	protected byte[] mBuffer;
-	protected int mStreamOffset;
-	protected int mStreamSize;
+	byte[] mBuffer;
+	int mStreamOffset;
+	int mStreamSize;
 	private final int MIN_BUFSIZE = 512;
 	
 	// Construction
-	public RecvStream(int bufferSize)
+	RecvStream(int bufferSize)
 	{
 		mBuffer = new byte [Math.max(MIN_BUFSIZE, bufferSize)];
 		mStreamOffset = 0;

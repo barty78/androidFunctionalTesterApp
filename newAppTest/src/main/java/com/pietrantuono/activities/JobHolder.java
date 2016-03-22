@@ -79,7 +79,7 @@ public class JobHolder extends RecyclerView.ViewHolder{
         updateStats(job);
     }
 
-    public void updateStats(Job job) {
+    private void updateStats(Job job) {
         ContentResolver resolver = itemView.getContext().getContentResolver();
 
         String selection = Contract.DevicesColumns.DEVICES_JOB_ID + "= "+job.getId()+

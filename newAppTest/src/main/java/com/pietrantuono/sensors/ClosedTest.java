@@ -335,7 +335,7 @@ public class ClosedTest extends SensorTest {
 		return mSensorResult;
 	}
 
-	public void executeSensor0() {
+	private void executeSensor0() {
 		sensorsTestHelper.accetpData(true);
 		sensorsTestHelper.samplingSensor0 = true;
 		sensorsTestHelper.samplingSensor1 = false;
@@ -399,7 +399,7 @@ public class ClosedTest extends SensorTest {
 
 	}
 
-	protected void executeSensor1() {
+	private void executeSensor1() {
 		sensorsTestHelper.accetpData(true);
 		sensorsTestHelper.samplingSensor0 = false;
 		sensorsTestHelper.samplingSensor1 = true;
@@ -463,7 +463,7 @@ public class ClosedTest extends SensorTest {
 
 	}
 
-	protected void executeSensor2() {
+	private void executeSensor2() {
 		sensorsTestHelper.accetpData(true);
 		sensorsTestHelper.samplingSensor0 = false;
 		sensorsTestHelper.samplingSensor1 = false;

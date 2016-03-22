@@ -8,6 +8,7 @@ import com.google.gson.annotations.Expose;
 public class Readings {
 
     @Expose
+    private
     //@Column(name = "TEST")
             Test Test;
 

@@ -9,7 +9,7 @@ import ioio.lib.api.IOIO;
 public class MyDummyTest extends Test{
 
 
-    MyDummyTest(Activity activity, IOIO ioio, String description, Boolean isBlockingTest) {
+    private MyDummyTest(Activity activity, IOIO ioio, String description, Boolean isBlockingTest) {
         super(activity, ioio, description, false, isBlockingTest, 0, 0, 0);
     }
 

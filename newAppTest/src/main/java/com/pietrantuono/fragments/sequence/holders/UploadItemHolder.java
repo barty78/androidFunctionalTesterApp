@@ -33,7 +33,7 @@ public class UploadItemHolder extends SequenceItemHolder {
         reading = (TextView) itemView.findViewById(R.id.reading);
     }
 
-    public void setData(SequenceRowElement.RowElement element, int position) {
+    private void setData(SequenceRowElement.RowElement element, int position) {
         if (!(element instanceof SequenceRowElement.UploadRowElement))
             throw new RuntimeException("Wrong adata " + Log.getStackTraceString(new Exception()));
         uploadRowElement = (SequenceRowElement.UploadRowElement) element;
@@ -63,14 +63,14 @@ public class UploadItemHolder extends SequenceItemHolder {
 
     }
 
-    public void setFail(String text) {
+    private void setFail(String text) {
         result.setVisibility(View.VISIBLE);
         result.setIcon(GoogleMaterial.Icon.gmd_cancel);
         result.setColor(Color.RED);
         reading.setText(text != null ? text : "");
     }
 
-    public void setPass() {
+    private void setPass() {
         result.setVisibility(View.VISIBLE);
         result.setIcon(GoogleMaterial.Icon.gmd_check_circle);
         result.setColor(Color.GREEN);

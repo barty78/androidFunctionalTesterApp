@@ -37,7 +37,7 @@ class IOIOAndroidApplicationHelperWrapper {
 		
 	}
 	
-	public boolean isStarted() {
+	private boolean isStarted() {
 		return isStarted;
 	}
 

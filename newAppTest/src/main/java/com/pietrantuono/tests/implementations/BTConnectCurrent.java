@@ -22,7 +22,7 @@ public class BTConnectCurrent extends Test {
 		try{Voltage.interrupt();}catch(Exception e){}
 	}
 
-	class BTConnectCurrentAsyncTask extends AsyncTask<Void,Void,Void>{
+	private class BTConnectCurrentAsyncTask extends AsyncTask<Void,Void,Void>{
 		@Override
 		protected Void doInBackground(Void... params) {
 			if(isinterrupted)return null;

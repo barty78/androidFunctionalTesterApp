@@ -79,7 +79,7 @@ public class DummyFirmWareUploader {
         }
     }
 
-    public void write(int c) {
+    private void write(int c) {
         if (isstopped)
             return;
         try {
@@ -419,7 +419,7 @@ public class DummyFirmWareUploader {
     }
 
 
-    public int[] getDeviceSetup() {
+    private int[] getDeviceSetup() {
 
         for (int i = 0; i < devices.length; i++) {
 
@@ -448,7 +448,7 @@ public class DummyFirmWareUploader {
         }
     }
 
-    public boolean writeMemory(int address, byte[] data, int len) {
+    private boolean writeMemory(int address, byte[] data, int len) {
 
         byte cs;
         int i;
@@ -556,7 +556,7 @@ public class DummyFirmWareUploader {
         }
     }
 
-    public byte[] addressToByteArray(int c) {
+    private byte[] addressToByteArray(int c) {
         byte[] aData = new byte[4];
         aData[0] = (byte) ((c >> 24) & 0x000000FF);
         aData[1] = (byte) ((c >> 16) & 0x000000FF);

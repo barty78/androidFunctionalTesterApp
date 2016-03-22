@@ -20,11 +20,11 @@ implements Filterable, CursorFilter.CursorFilterClient {
 	@SuppressWarnings("unused")
 	private FilterQueryProvider mFilterQueryProvider;
 
-	public CursorRecyclerAdapter( Cursor cursor) {
+	protected CursorRecyclerAdapter(Cursor cursor) {
 		init(cursor);
 	}
 
-	void init(Cursor c) {
+	private void init(Cursor c) {
 		boolean cursorPresent = c != null;
 		mCursor = c;
 		mDataValid = cursorPresent;
@@ -67,7 +67,7 @@ implements Filterable, CursorFilter.CursorFilterClient {
 	 * @param cursor The cursor from which to get the data. The cursor is already
 	 * moved to the correct position.
 	 */
-	public abstract void onBindViewHolderCursor(VH holder, Cursor cursor);
+	protected abstract void onBindViewHolderCursor(VH holder, Cursor cursor);
 
 	@Override
 	public int getItemCount() {
@@ -121,7 +121,7 @@ implements Filterable, CursorFilter.CursorFilterClient {
 	 * If the given new Cursor is the same instance is the previously set
 	 * Cursor, null is also returned.
 	 */
-	public Cursor swapCursor(Cursor newCursor) {
+	private Cursor swapCursor(Cursor newCursor) {
 		if (newCursor == mCursor) {
 			return null;
 		}
@@ -205,7 +205,7 @@ implements Filterable, CursorFilter.CursorFilterClient {
 	 *
 	 * @see ContentObserver#onChange(boolean)
 	 */
-	protected void onContentChanged() {
+	private void onContentChanged() {
 
 	}
 
@@ -251,7 +251,7 @@ implements Filterable, CursorFilter.CursorFilterClient {
 
 class CursorFilter extends Filter {
 
-	CursorFilterClient mClient;
+	private CursorFilterClient mClient;
 
 	interface CursorFilterClient {
 		CharSequence convertToString(Cursor cursor);

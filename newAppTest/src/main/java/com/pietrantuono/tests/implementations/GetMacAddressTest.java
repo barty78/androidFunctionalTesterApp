@@ -57,7 +57,7 @@ public class GetMacAddressTest extends Test {
         }
     }
 
-    class GetMacAddressTestAsyncTask extends AsyncTask<Void,Void,Void>{
+    private class GetMacAddressTestAsyncTask extends AsyncTask<Void,Void,Void>{
         @Override
         protected Void doInBackground(Void... params) {
             if (IOIOUtils.getUtils().getUutMode(getActivity()) == IOIOUtils.Mode.bootloader) {

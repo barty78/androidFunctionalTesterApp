@@ -32,7 +32,7 @@ public class SetDigitalOutputStep extends Test implements Step{
         new SetDigitalOutputStepAsyncTask().executeParallel();
     }
 
-    class SetDigitalOutputStepAsyncTask extends SimpleAsyncTask{
+    private class SetDigitalOutputStepAsyncTask extends SimpleAsyncTask{
         @Override
         protected Void doInBackground(Void... params) {
             if(isinterrupted)return null;

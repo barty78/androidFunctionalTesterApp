@@ -22,7 +22,7 @@ import ioio.lib.api.IOIO;
 
 public class GetDeviceSerialTest extends Test {
     private static ExecutorService executor = Executors.newFixedThreadPool(1);
-    public int retries = 0;
+    private int retries = 0;
     private String serial = "";
 
     public GetDeviceSerialTest(Activity activity, IOIO ioio) {

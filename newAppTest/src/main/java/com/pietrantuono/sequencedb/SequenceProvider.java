@@ -20,7 +20,7 @@ public class SequenceProvider extends ContentProvider {
     private static final String TESTS_CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.analytica.tests";
     private SequenceSQLiteOpenHelper mOpenHelper;
     private static final UriMatcher sUriMatcher;
-    public static final String AUTHORITY = "com.analytica.pericoach.sequence";
+    private static final String AUTHORITY = "com.analytica.pericoach.sequence";
     private static final int RECORDS = 1;
     private static final int RECORDS_ID = 2;
     private static final int TESTS = 3;

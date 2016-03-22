@@ -58,7 +58,7 @@ public class NewSequenceFragment extends Fragment implements LoaderManager.Loade
         if (recordId >= 0) initLoader(recordId);
     }
 
-    public void initLoader(long recordId) {
+    private void initLoader(long recordId) {
         Bundle bundle = new Bundle();
         bundle.putLong(RECORD_ID, recordId);
         getLoaderManager().initLoader(SEQUENCE_LOADER_MANAGER, bundle, NewSequenceFragment.this);

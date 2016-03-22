@@ -6,8 +6,8 @@ import java.nio.ByteOrder;
 public class PacketTx_Sleep extends Packet
 {
 	// Fields
-	protected short mWaitTime;
-	protected byte mMode;
+	private short mWaitTime;
+	private byte mMode;
 		
 	// Construction
 	public PacketTx_Sleep(byte mode, short waitTime)

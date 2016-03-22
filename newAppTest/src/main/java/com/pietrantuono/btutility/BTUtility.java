@@ -267,7 +267,7 @@ public class BTUtility {
         }
     }
 
-    public void connectUsingMac() {
+    private void connectUsingMac() {
         if (isstopped)
             return;
 //		mListItems = new ArrayList<ConnectDeviceItem>();

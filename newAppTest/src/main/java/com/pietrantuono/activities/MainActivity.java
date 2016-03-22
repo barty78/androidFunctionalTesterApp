@@ -390,7 +390,6 @@ public class MainActivity extends AppCompatActivity
                 detectHelper.stopPCBSleepMonitor();
 //				uiHelper.setOverallFailOrPass(overallresult);// NA
                 uiHelper.setOverallFailOrPass(true, getBarcode());// NA
-                PeriCoachTestApplication.forceSync();
                 try {
                     Thread.sleep(3 * 1000);
                 } catch (InterruptedException e) {

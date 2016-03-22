@@ -18,7 +18,7 @@ import android.content.Intent;
 import hydrix.pfmat.generic.Device;
 
 @SuppressWarnings("unused")
-public class PFMATDevice
+class PFMATDevice
 {
 	// Members
 	private static Device mDevice = null;

@@ -22,10 +22,10 @@ import com.pietrantuono.sequencedb.SequenceContracts;
 public class SequenceCursorRecyclerAdapter extends CursorRecyclerAdapter<SequenceItemHolder> {
     private final Context context;
     private final LayoutInflater layoutInflater;
-    public static final int TEST = 0;
-    public static final int STEP = 1;
-    public static final int SENSOR_TEST = 2;
-    public static final int FW_UPLOAD = 3;
+    private static final int TEST = 0;
+    private static final int STEP = 1;
+    private static final int SENSOR_TEST = 2;
+    private static final int FW_UPLOAD = 3;
 
     @IntDef({TEST, STEP, FW_UPLOAD, SENSOR_TEST})
     public @interface Type {

@@ -26,10 +26,10 @@ import server.RetrofitRestServices;
 import server.pojos.Device;
 import server.pojos.DevicesList;
 
-public class DevicesSyncAdapter extends AbstractThreadedSyncAdapter {
+class DevicesSyncAdapter extends AbstractThreadedSyncAdapter {
     private final String TAG = getClass().getSimpleName();
     private final Context context;
-    ContentResolver mContentResolver;
+    private ContentResolver mContentResolver;
 
     public DevicesSyncAdapter(Context context, boolean autoInitialize) {
         super(context, autoInitialize);

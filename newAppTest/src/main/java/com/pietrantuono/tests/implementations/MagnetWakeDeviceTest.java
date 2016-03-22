@@ -27,7 +27,7 @@ public class MagnetWakeDeviceTest extends Test{
 		try {V_3V0_SW.close();}catch(Exception e){};
 	}
 
-	class MagnetWakeDeviceTestAsyncTask extends SimpleAsyncTask {
+	private class MagnetWakeDeviceTestAsyncTask extends SimpleAsyncTask {
 		@Override
 		protected Void doInBackground(Void... params) {
 			if(isinterrupted)return null;

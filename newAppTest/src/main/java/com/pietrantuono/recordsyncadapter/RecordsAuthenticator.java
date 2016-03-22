@@ -7,7 +7,7 @@ import android.accounts.NetworkErrorException;
 import android.content.Context;
 import android.os.Bundle;
 
-public class RecordsAuthenticator extends AbstractAccountAuthenticator {
+class RecordsAuthenticator extends AbstractAccountAuthenticator {
     // Simple constructor
     public RecordsAuthenticator(Context context) {
         super(context);

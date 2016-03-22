@@ -26,11 +26,11 @@ public class DevicesContentProvider extends ContentProvider {
     private static final int DEVICES = 1;
     private static final int DEVICES_ID = 2;
 
-    public static final String CONTENT_TYPE ="vnd.android.cursor.dir/vnd.analytica.devices";
-    public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.analytica.devices";
+    private static final String CONTENT_TYPE ="vnd.android.cursor.dir/vnd.analytica.devices";
+    private static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.analytica.devices";
 
 
-    public static final String AUTHORITY = "com.analytica.devicesprovider";
+    private static final String AUTHORITY = "com.analytica.devicesprovider";
     public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/devices");
 
 

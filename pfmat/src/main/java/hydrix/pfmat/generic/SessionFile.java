@@ -7,13 +7,13 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class SessionFile
+class SessionFile
 {
 	// Constants
-	final char DELIMITER = ',';
+	private final char DELIMITER = ',';
 	
 	// Members
-	protected BufferedWriter mFile = null;
+	private BufferedWriter mFile = null;
 	
 	public final boolean create(String directory, String jobNo, Date timestamp)
 	{
@@ -53,7 +53,7 @@ public class SessionFile
 		return true;
 	}
 	
-	public final void close()
+	private void close()
 	{
 		if (mFile != null)
 		{
@@ -129,7 +129,7 @@ public class SessionFile
 		return writeLine(line);
 	}
 	
-	protected final boolean writeLine(String line)
+	private boolean writeLine(String line)
 	{
 		if (mFile == null)
 			return false;

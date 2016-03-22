@@ -200,7 +200,7 @@ public class OtherSelectJobActivity extends AppCompatActivity implements MyCallb
 		}
 	}
 
-	public REST getRest() {
+	private REST getRest() {
 		if (rest != null)
 			return rest;
 		else {
@@ -356,7 +356,7 @@ public class OtherSelectJobActivity extends AppCompatActivity implements MyCallb
 		builder.create().show();
 	}
 
-	protected void sendDeviceID() {
+	private void sendDeviceID() {
 		Intent i = new Intent(Intent.ACTION_SEND);
 		i.setType("message/rfc822");
 		i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"pbartlett@analyticamedical.com"});

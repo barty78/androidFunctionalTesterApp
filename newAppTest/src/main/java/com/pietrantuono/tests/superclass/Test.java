@@ -13,24 +13,28 @@ import customclasses.DebugHelper;
 import ioio.lib.api.IOIO;
 
 public abstract class Test {
-	public String description;
-	public boolean isSensorTest=false;
-	public boolean istest=true;
+	protected String description;
+	private boolean isSensorTest=false;
+	protected boolean istest=true;
 	private boolean isBlockingTest=false;
-	public boolean isinterrupted=false;
-	public NewIOIOActivityListener activityListener;
-	public IOIO ioio;
-	public String TAG=getClass().getSimpleName();
-	public boolean active=true;
-	public boolean success=false;
+	protected boolean isinterrupted=false;
+	protected NewIOIOActivityListener activityListener;
+	protected IOIO ioio;
+	protected String TAG=getClass().getSimpleName();
+	private boolean active=true;
+	protected boolean success=false;
 	private long IdTest=0;
 	private double value;
 	private Long errorcode=0l;//Defalt value
 
 	//Limits variables
-	public boolean isNominal;
+	private boolean isNominal;
 	@SuppressWarnings("unused")
-	public float limitParam1, limitParam2,limitParam3;
+	public float limitParam1;
+	@SuppressWarnings("unused")
+	protected float limitParam2;
+	@SuppressWarnings("unused")
+	private float limitParam3;
 	public server.pojos.Test testToBeParsed;
 
 
@@ -54,8 +58,8 @@ public abstract class Test {
 	 * @param limitParam2
 	 * @param limitParam3
 	 */
-	public Test(Activity activity, IOIO ioio, String description, Boolean isSensorTest,
-				Boolean isBlockingTest, float limitParam1, float limitParam2, float limitParam3) {
+	protected Test(Activity activity, IOIO ioio, String description, Boolean isSensorTest,
+				   Boolean isBlockingTest, float limitParam1, float limitParam2, float limitParam3) {
 		this.description = description;
 		this.isSensorTest = isSensorTest;
 		this.isBlockingTest = isBlockingTest;
@@ -71,9 +75,9 @@ public abstract class Test {
 		isinterrupted=true;
 	}
 		
-	public Boolean isInterupted(){return isinterrupted;}
+	protected Boolean isInterupted(){return isinterrupted;}
 	
-	public void report (final Exception e){
+	protected void report(final Exception e){
 		final Activity activity=(Activity)activityListener;
 		if(activity==null || activity.isFinishing())return;
 		((Activity)activityListener).runOnUiThread(new Runnable() {
@@ -87,7 +91,7 @@ public abstract class Test {
 		});
 		
 	}
-	public void report (String msg){
+	protected void report(String msg){
 		Crashlytics.log(msg);
 		Log.d(TAG,msg);
 		if (activityListener==null) return;
@@ -96,9 +100,9 @@ public abstract class Test {
 		Toast.makeText(activity, msg, Toast.LENGTH_LONG).show();
 		
 	}
-	public Activity getActivity(){return ((Activity)this.activityListener);}
+	protected Activity getActivity(){return ((Activity)this.activityListener);}
 	
-	public NewIOIOActivityListener getListener(){return this.activityListener;}
+	protected NewIOIOActivityListener getListener(){return this.activityListener;}
 	
 	public boolean isSuccess() {
 		return success;
@@ -106,7 +110,7 @@ public abstract class Test {
 	public void setSuccess(boolean success) {
 		this.success = success;
 	}
-	public void Success() {
+	protected void Success() {
 		this.success = true;
 	}
 	public long getIdTest() {

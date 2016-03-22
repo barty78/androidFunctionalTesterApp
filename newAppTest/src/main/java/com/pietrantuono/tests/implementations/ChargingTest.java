@@ -47,7 +47,7 @@ public class ChargingTest extends Test {
 		super.interrupt();
 	}
 
-	class ChargingTestAsyncTask extends AsyncTask<Void,Void,Void>{
+	private class ChargingTestAsyncTask extends AsyncTask<Void,Void,Void>{
 		@Override
 		protected Void doInBackground(Void... params) {
 			int value;

@@ -13,7 +13,7 @@ class NewSessionPollingThread extends Thread
 	private final int mPollFreqMS;
 	private final Object mCancelEvent;
 	private volatile boolean mCancel;
-	SimpleDateFormat simpleDateFormat= new SimpleDateFormat(" HH:mm:ss.SSS");
+	private SimpleDateFormat simpleDateFormat= new SimpleDateFormat(" HH:mm:ss.SSS");
 
 	// Construction
 	NewSessionPollingThread(NewDevice device, long baseTimeMS, int pollFreqMS)

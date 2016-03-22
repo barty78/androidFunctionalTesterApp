@@ -9,7 +9,6 @@ import server.MyLongTypeAdapter;
 import server.RetrofitRestServices;
 import server.pojos.records.TestRecord;
 
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.pietrantuono.recordsdb.RecordsProcessor;
@@ -32,10 +31,10 @@ import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
-class RecordsSyncAdapter extends AbstractThreadedSyncAdapter {
-    private RecordUploader recorduploader;
+public class RecordsSyncAdapter extends AbstractThreadedSyncAdapter {
+    private static RecordUploader recorduploader;
     private Context context;
-    private int notificationId = 001;
+    int notificationId = 001;
     private String TAG = "RecordsSyncAdapter";
 
     public RecordsSyncAdapter(Context context, boolean autoInitialize) {
@@ -54,12 +53,13 @@ class RecordsSyncAdapter extends AbstractThreadedSyncAdapter {
     @Override
     public void onPerformSync(Account account, Bundle extras, String authority, ContentProviderClient provider,
                               SyncResult syncResult) {
+        if(recorduploader!=null && recorduploader.getStatus()!= AsyncTask.Status.FINISHED)return;
         recorduploader = new RecordUploader();
         recorduploader.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         Log.d(TAG, "onPerformSync");
     }
 
-    private class RecordUploader extends AsyncTask<Void, Void, Void> {
+    class RecordUploader extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected void onPostExecute(Void result) {
@@ -93,23 +93,26 @@ class RecordsSyncAdapter extends AbstractThreadedSyncAdapter {
                 String recordstring = gson.toJson(record, TestRecord.class);
 
                 Log.d(TAG, "Posting record: " + recordstring);
-                retrofit.client.Response response=null;
+                retrofit.client.Response response = null;
                 try {
-                    response= RetrofitRestServices.getRest(context).postResultsSync(PeriCoachTestApplication.getDeviceid(),
+                    response = RetrofitRestServices.getRest(context).postResultsSync(PeriCoachTestApplication.getDeviceid(),
                             Long.toString(record.getJobNo()), record);
-                } catch(Exception ignored){
-                    Log.d(TAG,ignored.toString());
+                } catch (Exception ignored) {
+                    Log.d(TAG, ignored.toString());
                 }
+<<<<<<< HEAD
                 if (response != null && 200 <=response.getStatus() && response.getStatus()<300) {
                     updateRecordUploaded(record.getID(),newRecordsSQLiteOpenHelper);
+=======
+                if (response != null && 200 <= response.getStatus() && response.getStatus() < 300) {
+                    updateRecordUploaded(record.getID(), newRecordsSQLiteOpenHelper);
+>>>>>>> delete_active_android
                     issuePositiveNotification(record);
                 }
             }
-
             return null;
         }
     }
-
 
 
     private void issuePositiveNotification(TestRecord record) {
@@ -124,13 +127,12 @@ class RecordsSyncAdapter extends AbstractThreadedSyncAdapter {
     }
 
 
-
-    private static void updateRecordUploaded(long id, SQLiteOpenHelper helper) {
+    public static void updateRecordUploaded(long id, SQLiteOpenHelper helper) {
         ContentValues values = new ContentValues();
         values.put(RecordsContract.TestRecords.UPLOADED, 1);
-        String selection=RecordsContract.TestRecords.ID+" = ?";
-        String[] selectioArgs= new String[]{""+id};
-        helper.getWritableDatabase().update(RecordsContract.TestRecords.TABLE, values, selection,selectioArgs );
+        String selection = RecordsContract.TestRecords.ID + " = ?";
+        String[] selectioArgs = new String[]{"" + id};
+        helper.getWritableDatabase().update(RecordsContract.TestRecords.TABLE, values, selection, selectioArgs);
     }
 
 }

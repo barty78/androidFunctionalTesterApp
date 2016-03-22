@@ -37,7 +37,6 @@ public class PeriCoachTestApplication extends Application {
 	private static boolean isretestallowed;
 	private static PeriCoachTestApplication application;
 
-
 	public static boolean getIsRetestAllowed() { return isretestallowed;}
 
 	public static void setIsRetestAllowed(boolean isretestallowed) {
@@ -175,7 +174,7 @@ public class PeriCoachTestApplication extends Application {
 		ContentResolver.requestSync(createAccount(), getResources().getString(R.string.devices_sync_provider_authority), settingsBundle);
 	}
 
-	public Account createAccount() {
+	private Account createAccount() {
 		Account newAccount = new Account(
 				getResources().getString(R.string.devices_sync_account),getResources().getString(R.string.devices_sync_account_type));
 		AccountManager accountManager =

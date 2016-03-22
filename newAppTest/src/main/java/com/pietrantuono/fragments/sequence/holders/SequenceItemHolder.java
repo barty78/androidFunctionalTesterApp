@@ -11,9 +11,9 @@ import com.pietrantuono.fragments.sequence.SequenceRowElement;
  * Created by Maurizio Pietrantuono, maurizio.pietrantuono@gmail.com.
  */
 public abstract class SequenceItemHolder extends RecyclerView.ViewHolder {
-    public Context context;
+    Context context;
 
-    public SequenceItemHolder(View itemView, Context context) {
+    SequenceItemHolder(View itemView, Context context) {
         super(itemView);
         this.context = context;
     }

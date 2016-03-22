@@ -40,7 +40,7 @@ public class UUTCurrentTest extends Test {
         }
     }
 
-    class UUTCurrentTestAsyncTask extends SimpleAsyncTask {
+    private class UUTCurrentTestAsyncTask extends SimpleAsyncTask {
         @Override
         protected Void doInBackground(Void... params) {
             if (isInterupted()) return null;

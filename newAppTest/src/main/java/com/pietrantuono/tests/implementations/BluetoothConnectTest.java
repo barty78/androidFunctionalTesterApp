@@ -20,7 +20,7 @@ public class BluetoothConnectTest extends Test {
 		catch (Exception e){}
 	}
 
-	class BluetoothConnectTestAsyncTask extends AsyncTask<Void,Void,Void>{
+	private class BluetoothConnectTestAsyncTask extends AsyncTask<Void,Void,Void>{
 		@Override
 		protected Void doInBackground(Void... params) {
 			if(isinterrupted)return null;

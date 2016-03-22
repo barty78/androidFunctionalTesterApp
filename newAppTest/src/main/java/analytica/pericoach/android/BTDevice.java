@@ -13,7 +13,7 @@ import hydrix.pfmat.generic.Device;
 
 public class BTDevice extends Device
 {
-	int currentapiVersion = android.os.Build.VERSION.SDK_INT;
+	private int currentapiVersion = android.os.Build.VERSION.SDK_INT;
 	
 	// Singleton instance for connected device
 	private final static UUID mUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB"); // Well-known SPP UUID

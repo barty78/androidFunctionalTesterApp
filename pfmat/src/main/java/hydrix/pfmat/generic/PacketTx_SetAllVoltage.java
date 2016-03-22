@@ -9,8 +9,8 @@ public class PacketTx_SetAllVoltage extends Packet
 {
 	// Fields
 
-	protected short[] mZeroVoltages;
-	protected short[] mRefVoltages;
+	private short[] mZeroVoltages;
+	private short[] mRefVoltages;
 
 	// Construction
 	public PacketTx_SetAllVoltage(short[] refVoltages, short[] zeroVoltages)

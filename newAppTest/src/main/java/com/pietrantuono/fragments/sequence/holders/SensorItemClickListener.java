@@ -10,7 +10,7 @@ import server.pojos.Test;
 /**
  * Created by Maurizio Pietrantuono, maurizio.pietrantuono@gmail.com.
  */
-public class SensorItemClickListener implements View.OnClickListener {
+class SensorItemClickListener implements View.OnClickListener {
     private static final String SENSOR_LIMITS_DIALOG_FRAGMENT = "sensor_limists_dialog_fragment";
     private final AppCompatActivity activity;
     private final Test testToBeParsed;

@@ -4,7 +4,7 @@ import android.util.FloatMath;
 
 
 public class Quaternion {
-	public float w;
+	private float w;
 	public float x;
 	public float y;
 	public float z;
@@ -41,11 +41,11 @@ public class Quaternion {
          return new Quaternion(w, -x, -y, -z);
      }
      
-     float getMagnitude() {
+     private float getMagnitude() {
          return FloatMath.sqrt(w*w + x*x + y*y + z*z);
      }
      
-     void normalize() {
+     private void normalize() {
          float m = getMagnitude();
          w /= m;
          x /= m;

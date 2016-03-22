@@ -33,7 +33,7 @@ public class ReadDeviceInfoSerialNumberTest extends Test {
         new ReadDeviceInfoSerialNumberTestAsyncTask().executeParallel();
     }
 
-    class ReadDeviceInfoSerialNumberTestAsyncTask extends SimpleAsyncTask {
+    private class ReadDeviceInfoSerialNumberTestAsyncTask extends SimpleAsyncTask {
         @Override
         protected Void doInBackground(Void... params) {
             if (isinterrupted) return null;

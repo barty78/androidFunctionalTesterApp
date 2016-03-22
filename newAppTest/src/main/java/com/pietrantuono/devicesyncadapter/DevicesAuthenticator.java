@@ -10,8 +10,8 @@ import android.os.Bundle;
 /*
  * Implement AbstractAccountAuthenticator and stub out all 
  * of its methods 
- */ 
-public class DevicesAuthenticator extends AbstractAccountAuthenticator {
+ */
+class DevicesAuthenticator extends AbstractAccountAuthenticator {
     // Simple constructor 
     public DevicesAuthenticator(Context context) {
         super(context);

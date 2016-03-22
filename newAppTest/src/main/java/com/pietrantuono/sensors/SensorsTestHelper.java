@@ -28,7 +28,7 @@ public class SensorsTestHelper implements OnSampleCallback {
 	TextView sensor0ref = null;
 	TextView sensor1ref = null;
 	TextView sensor2ref = null;
-	public NewSessionPollingThread newSessionPollingThreadref = null;
+	private NewSessionPollingThread newSessionPollingThreadref = null;
 	SessionSamples samplesref = null;
 	SessionSamples closedtestsamplesrefsensor0 = null;
 	SessionSamples closedtestsamplesrefsensor1 = null;
@@ -46,7 +46,7 @@ public class SensorsTestHelper implements OnSampleCallback {
 	boolean samplingSensor1=true;
 	boolean samplingSensor2=true;
 	private boolean acceptdata;
-	SimpleDateFormat simpleDateFormat= new SimpleDateFormat(" HH:mm:ss.SSS");
+	private SimpleDateFormat simpleDateFormat= new SimpleDateFormat(" HH:mm:ss.SSS");
 
 	public SensorsTestHelper(Activity activity) {
 		Log.d(TAG, "Constructor");

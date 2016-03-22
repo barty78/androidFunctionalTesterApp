@@ -50,7 +50,7 @@ public class DummyUploadFirmwareTest extends Test {
         start();
     }
 
-    public void start() {
+    private void start() {
 
         ((Activity) activityListener).runOnUiThread(new Runnable() {
             @Override

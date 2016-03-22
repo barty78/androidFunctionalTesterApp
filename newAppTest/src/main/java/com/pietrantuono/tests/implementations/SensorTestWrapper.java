@@ -125,7 +125,7 @@ public class SensorTestWrapper extends Test {
         sensorTest.setTestToBeParsed(testToBeParsed);
     }
 
-    class SensorTestWrapperAsyncTask extends SimpleAsyncTask {
+    private class SensorTestWrapperAsyncTask extends SimpleAsyncTask {
         @Override
         protected Void doInBackground(Void... params) {
             if (isinterrupted) return null;

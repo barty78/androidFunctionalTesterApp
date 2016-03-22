@@ -5,10 +5,10 @@ import java.nio.ByteOrder;
 
 public class Packet
 {
-	public static int FRAME_SIZE = 6; // bytes
-	public static final byte MAGIC_PREFIX = (byte)1; // ASCII SOH
-	public static final byte MAGIC_SUFFIX = (byte)26; // ASCII EOF
-	public byte mPacketType;
+	private static int FRAME_SIZE = 6; // bytes
+	private static final byte MAGIC_PREFIX = (byte)1; // ASCII SOH
+	private static final byte MAGIC_SUFFIX = (byte)26; // ASCII EOF
+	private byte mPacketType;
 	
 	// Return value for peekStream
 	public static enum PeekResult {STREAM_CORRUPT, STREAM_INCOMPLETE, STREAM_COMPLETE};
@@ -34,7 +34,7 @@ public class Packet
 	}
 	
 	// Construction
-	protected Packet(byte packetType)
+	Packet(byte packetType)
 	{
 		mPacketType = packetType;
 	}
@@ -43,8 +43,8 @@ public class Packet
 	public final byte getPacketType() {return mPacketType;}
 	
 	// Optional overrides (most packet types will only override one or the other depending on tx vs rx)
-	protected byte[] buildPayload() {return null;}
-	protected boolean parsePayload(byte[] payload) {return true;}
+	byte[] buildPayload() {return null;}
+	boolean parsePayload(byte[] payload) {return true;}
 	
 	// Serialization
 	public byte[] toStream()
@@ -170,7 +170,7 @@ public class Packet
 	}
 	
 	// CCITT CRC-16 calculation
-	public static short crc16CCITT(byte[] bytes, int offset, int count)
+	private static short crc16CCITT(byte[] bytes, int offset, int count)
 	{
         int crc = 0xFFFF;          // initial value
         int polynomial = 0x1021;   // 0001 0000 0010 0001  (0, 5, 12)

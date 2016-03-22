@@ -49,7 +49,7 @@ public class CurrentTest extends Test {
 		try {Current.interrupt();}catch (Exception e){;}
 	}
 
-	class CurrentTestAsyncTask extends AsyncTask<Void,Void,Void>{
+	private class CurrentTestAsyncTask extends AsyncTask<Void,Void,Void>{
 		@Override
 		protected Void doInBackground(Void... params) {
 			if(isinterrupted)return null;

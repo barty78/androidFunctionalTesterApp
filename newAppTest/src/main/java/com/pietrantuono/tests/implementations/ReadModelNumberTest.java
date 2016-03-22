@@ -33,7 +33,7 @@ public class ReadModelNumberTest extends Test {
         super.interrupt();
     }
 
-    class ReadModelNumberTestAsyncTask extends SimpleAsyncTask {
+    private class ReadModelNumberTestAsyncTask extends SimpleAsyncTask {
         @Override
         protected Void doInBackground(Void... params) {
             if (isinterrupted) return null;

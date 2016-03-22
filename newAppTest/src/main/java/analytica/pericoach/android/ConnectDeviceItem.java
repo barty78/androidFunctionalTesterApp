@@ -4,7 +4,7 @@ import android.bluetooth.BluetoothDevice;
 
 	public class ConnectDeviceItem {
 		private String mName;
-		BluetoothDevice mDevice;
+		private BluetoothDevice mDevice;
 
 
 		// Construction for device rows

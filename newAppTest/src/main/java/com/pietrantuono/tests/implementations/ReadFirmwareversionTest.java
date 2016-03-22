@@ -35,7 +35,7 @@ public class ReadFirmwareversionTest extends Test {
         super.interrupt();
     }
 
-    class ReadFirmwareversionTestAsyncTask extends SimpleAsyncTask {
+    private class ReadFirmwareversionTestAsyncTask extends SimpleAsyncTask {
         @Override
         protected Void doInBackground(Void... params) {
             if (isinterrupted)
