@@ -90,7 +90,7 @@ public class DBManager {
     }
 
 
-    public ArrayList<Job> getAllActiveJobsForTest(Integer testType) {
+    public ArrayList<Job> getAllActiveJobsForTest() {
 
         CustomSQLiteOpenHelper helper = new CustomSQLiteOpenHelper(context);
         this.db = helper.getWritableDatabase();
@@ -99,7 +99,7 @@ public class DBManager {
         // the database.
         ArrayList<Job> entityList = new ArrayList<Job>();
 
-        String[] values = new String[]{Integer.toString(testType)};
+        String[] values = new String[]{Integer.toString(hydrix.pfmat.generic.TEST.OPEN_TEST)};
 
         try {
             // ask the database object to create the cursor.

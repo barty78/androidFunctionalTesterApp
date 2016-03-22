@@ -315,8 +315,6 @@ public class OtherSelectJobActivity extends AppCompatActivity implements MyCallb
 
 	@Override
 	protected void onDestroy() {
-		if (task != null)
-			task.setCallback(null);
 		if (task != null && !task.isCancelled())
 			task.cancel(true);
 		PeriCoachTestApplication.forceSync();

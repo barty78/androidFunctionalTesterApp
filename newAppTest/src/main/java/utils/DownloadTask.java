@@ -33,10 +33,6 @@ import android.widget.Toast;
 
         
     }
-    public void setCallback(MyCallback callback) {
-    	this.callback=callback;
-		
-	}
 
     @Override
     protected String doInBackground(Void... bar) {

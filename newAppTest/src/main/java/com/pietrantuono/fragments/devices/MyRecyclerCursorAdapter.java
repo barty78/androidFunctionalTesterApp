@@ -16,6 +16,7 @@ public class MyRecyclerCursorAdapter extends CursorRecyclerAdapter<DevicesCursor
 
 
 
+    @SuppressWarnings("SameParameterValue")
     public MyRecyclerCursorAdapter(Context context,Cursor cursor) {
         super(cursor);
         this.context = context;

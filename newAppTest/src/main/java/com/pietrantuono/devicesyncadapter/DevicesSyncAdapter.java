@@ -31,6 +31,7 @@ class DevicesSyncAdapter extends AbstractThreadedSyncAdapter {
     private final Context context;
     private ContentResolver mContentResolver;
 
+    @SuppressWarnings("SameParameterValue")
     public DevicesSyncAdapter(Context context, boolean autoInitialize) {
         super(context, autoInitialize);
         mContentResolver = context.getContentResolver();

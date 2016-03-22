@@ -1,7 +1,5 @@
 package com.pietrantuono.activities;
 
-import hydrix.pfmat.generic.TEST;
-
 import java.util.ArrayList;
 
 import analytica.pericoach.android.DBManager;
@@ -38,7 +36,7 @@ class DataProvider {
 		ArrayList<server.pojos.Job> jobsFromdb=null;
 		DBManager db = (new DBManager(context));
 		ArrayList<analytica.pericoach.android.Job> jobs= new ArrayList<analytica.pericoach.android.Job>();
-		jobs.addAll(db.getAllActiveJobsForTest(TEST.OPEN_TEST));
+		jobs.addAll(db.getAllActiveJobsForTest());
 		if(jobs!=null && jobs.size()>0){
 			jobsFromdb= new ArrayList<server.pojos.Job>();
 			for(int i=0;i<jobs.size();i++){
