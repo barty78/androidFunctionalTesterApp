@@ -81,7 +81,7 @@ public class SettingsActivity extends PreferenceActivity {
         Preference dowloadunprocessed = (Preference) findPreference(getResources().getString(R.string.download_unprocessed));
         NewRecordsSQLiteOpenHelper newRecordsSQLiteOpenHelper=NewRecordsSQLiteOpenHelper.getInstance(SettingsActivity.this);
         String selection=RecordsContract.TestRecords.UPLOADED +" = ?";
-        String[] selectionargs= new String[]{"1"};
+        String[] selectionargs= new String[]{"0"};
         Cursor cursor=newRecordsSQLiteOpenHelper.getReadableDatabase().query(RecordsContract.TestRecords.TABLE,null,selection,selectionargs,null,null,null);
         //List<Model> records = new Select().from(TestRecord.class).where("uploaded = ?", false).execute();
         if (cursor.getCount() <= 0) {

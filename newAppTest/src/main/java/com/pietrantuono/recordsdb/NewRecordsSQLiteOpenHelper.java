@@ -53,13 +53,16 @@ public class NewRecordsSQLiteOpenHelper extends SQLiteOpenHelper {
     }
 
     private void migrateOldData(SQLiteDatabase db) {
-        OldRecordsHelper oldRecorsdHelper = OldRecordsHelper.get(context);
-        Cursor oldRecords = oldRecorsdHelper.getWritableDatabase().query(RecordsContract.TestRecords.TABLE, null, null, null, null, null, null);
-        ArrayList<TestRecord> testRecords = (ArrayList<TestRecord>) RecordsProcessor.reconstructRecords(context, oldRecords, oldRecorsdHelper);
-        Iterator<TestRecord> iterator = testRecords.iterator();
-        while (iterator.hasNext()) {
-            saveRecord(context, iterator.next(), db);
+        try {
+            OldRecordsHelper oldRecorsdHelper = OldRecordsHelper.get(context);
+            Cursor oldRecords = oldRecorsdHelper.getWritableDatabase().query(RecordsContract.TestRecords.TABLE, null, null, null, null, null, null);
+            ArrayList<TestRecord> testRecords = (ArrayList<TestRecord>) RecordsProcessor.reconstructRecords(context, oldRecords, oldRecorsdHelper);
+            Iterator<TestRecord> iterator = testRecords.iterator();
+            while (iterator.hasNext()) {
+                saveRecord(context, iterator.next(), db);
+            }
         }
+        catch(Exception ignored){}
     }
 
     private long saveRecord(Context context, TestRecord testRecord, SQLiteDatabase db) {
