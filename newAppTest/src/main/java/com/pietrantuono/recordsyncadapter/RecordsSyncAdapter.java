@@ -21,7 +21,6 @@ import server.pojos.records.TestRecord;
 import server.pojos.records.response.Response;
 
 
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.pietrantuono.recordsdb.RecordsProcessor;
@@ -49,7 +48,7 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 public class RecordsSyncAdapter extends AbstractThreadedSyncAdapter {
-    private RecordUploader recorduploader;
+    private static RecordUploader recorduploader;
     private Context context;
     int notificationId = 001;
     private String TAG = "RecordsSyncAdapter";
@@ -70,6 +69,7 @@ public class RecordsSyncAdapter extends AbstractThreadedSyncAdapter {
     @Override
     public void onPerformSync(Account account, Bundle extras, String authority, ContentProviderClient provider,
                               SyncResult syncResult) {
+        if(recorduploader!=null && recorduploader.getStatus()!= AsyncTask.Status.FINISHED)return;
         recorduploader = new RecordUploader();
         recorduploader.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         Log.d(TAG, "onPerformSync");
@@ -109,22 +109,21 @@ public class RecordsSyncAdapter extends AbstractThreadedSyncAdapter {
                 String recordstring = gson.toJson(record, TestRecord.class);
 
                 Log.d(TAG, "Posting record: " + recordstring);
-                retrofit.client.Response response=null;
+                retrofit.client.Response response = null;
                 try {
-                    response= RetrofitRestServices.getRest(context).postResultsSync(PeriCoachTestApplication.getDeviceid(),
+                    response = RetrofitRestServices.getRest(context).postResultsSync(PeriCoachTestApplication.getDeviceid(),
                             Long.toString(record.getJobNo()), record);
-                } catch(Exception ignored){
-                    Log.d(TAG,ignored.toString());
+                } catch (Exception ignored) {
+                    Log.d(TAG, ignored.toString());
                 }
-                if (response != null && 200 <=response.getStatus() && response.getStatus()<300) {
-                    updateRecordUploaded(record.getID(),newRecordsSQLiteOpenHelper);
+                if (response != null && 200 <= response.getStatus() && response.getStatus() < 300) {
+                    updateRecordUploaded(record.getID(), newRecordsSQLiteOpenHelper);
+                    issuePositiveNotification(record);
                 }
             }
-
             return null;
         }
     }
-
 
 
     private void issuePositiveNotification(TestRecord record) {
@@ -139,13 +138,12 @@ public class RecordsSyncAdapter extends AbstractThreadedSyncAdapter {
     }
 
 
-
     public static void updateRecordUploaded(long id, SQLiteOpenHelper helper) {
         ContentValues values = new ContentValues();
         values.put(RecordsContract.TestRecords.UPLOADED, 1);
-        String selection=RecordsContract.TestRecords.ID+" = ?";
-        String[] selectioArgs= new String[]{""+id};
-        helper.getWritableDatabase().update(RecordsContract.TestRecords.TABLE, values, selection,selectioArgs );
+        String selection = RecordsContract.TestRecords.ID + " = ?";
+        String[] selectioArgs = new String[]{"" + id};
+        helper.getWritableDatabase().update(RecordsContract.TestRecords.TABLE, values, selection, selectioArgs);
     }
 
 }

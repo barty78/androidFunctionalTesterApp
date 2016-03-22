@@ -45,7 +45,6 @@ public class PeriCoachTestApplication extends Application {
 	private static boolean isretestallowed;
 	private static PeriCoachTestApplication application;
 
-
 	public static boolean getIsRetestAllowed() { return isretestallowed;}
 
 	public static void setIsRetestAllowed(boolean isretestallowed) {
