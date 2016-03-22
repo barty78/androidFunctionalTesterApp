@@ -33,7 +33,7 @@ public class AccelerometerSelfTest extends Test {
 			}
 			if(isinterrupted)return null;
 			Log.d(TAG, TAG+" "+IOIOUtils.getUtils().getUartLog().toString());
-			if (IOIOUtils.getUtils().getUartLog().indexOf("MPU6500 Self-TEST Passed!") != -1) {
+			if (IOIOUtils.getUtils().getUartLog().indexOf("MPU6500 Self-Test Passed!") != -1) {
 				Success();
 				activityListener.addFailOrPass(true, true, "", description);
 				return null;
