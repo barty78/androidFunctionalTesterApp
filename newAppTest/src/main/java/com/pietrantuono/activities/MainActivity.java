@@ -353,34 +353,36 @@ public class MainActivity extends AppCompatActivity
         PeriCoachTestApplication.getApplication().forceSyncDevices();
         if (job.getIslogging() == 1) {
             newSequence.deleteUnusedTests();
-            if (newSequence.getCurrentTestNumber() != 0) {    //  Don't create a record if the first test failed,
+            if (job.getTesttypeId() == 1 && newSequence.getCurrentTestNumber() != 0) {    //  Don't create a record if the first test failed,
                 // usually Barcode TEST.
                 // 	TODO - Maybe check if barcode is actually set instead,
-                // if no barcode then no record
-                NewRecordsSQLiteOpenHelper newRecordsHelper = NewRecordsSQLiteOpenHelper.getInstance(MainActivity.this);
-                TestRecord record = RecordFromSequenceCreator.createRecordFromSequence(newSequence,sequenceDevice);
-                //MyDatabaseUtils.RecontructRecord(record);
-                long id = RecordsProcessor.saveRecord(MainActivity.this, record, newRecordsHelper);
-                if (id > 0) {
+                if (sequenceDevice.getBarcode() != null) {
+                    // if no barcode then no record
+                    NewRecordsSQLiteOpenHelper newRecordsHelper = NewRecordsSQLiteOpenHelper.getInstance(MainActivity.this);
+                    TestRecord record = RecordFromSequenceCreator.createRecordFromSequence(newSequence, sequenceDevice);
+                    //MyDatabaseUtils.RecontructRecord(record);
+                    long id = RecordsProcessor.saveRecord(MainActivity.this, record, newRecordsHelper);
+                    if (id > 0) {
 
-                    String selection = "Id = ?";
-                    String[] selectionArgs = new String[]{"" + id};
-                    Cursor c = newRecordsHelper.getWritableDatabase().query(RecordsContract.TestRecords.TABLE, null, selection, selectionArgs, null, null, null);
-                    if (c.getCount() > 0) {
-                        List<TestRecord> records = RecordsProcessor.reconstructRecords(MainActivity.this, c,newRecordsHelper);
-                        if (records.size() > 0) {
-                            Gson gson = new GsonBuilder()
-                                    .excludeFieldsWithoutExposeAnnotation()
-                                    .registerTypeAdapter(Long.class, new MyLongTypeAdapter())
-                                    .registerTypeAdapter(Double.class, new MyDoubleTypeAdapter())
-                                    .registerTypeAdapter(Integer.class, new MyIntTypeAdapter())
-                                    .registerTypeAdapter(Integer.class, new MyIntTypeAdapter())
-                                    .create();
-                            String recordstring = gson.toJson(records.get(0), TestRecord.class);
-                            Log.d(TAG, "Created record: " + recordstring);
+                        String selection = "Id = ?";
+                        String[] selectionArgs = new String[]{"" + id};
+                        Cursor c = newRecordsHelper.getWritableDatabase().query(RecordsContract.TestRecords.TABLE, null, selection, selectionArgs, null, null, null);
+                        if (c.getCount() > 0) {
+                            List<TestRecord> records = RecordsProcessor.reconstructRecords(MainActivity.this, c, newRecordsHelper);
+                            if (records.size() > 0) {
+                                Gson gson = new GsonBuilder()
+                                        .excludeFieldsWithoutExposeAnnotation()
+                                        .registerTypeAdapter(Long.class, new MyLongTypeAdapter())
+                                        .registerTypeAdapter(Double.class, new MyDoubleTypeAdapter())
+                                        .registerTypeAdapter(Integer.class, new MyIntTypeAdapter())
+                                        .registerTypeAdapter(Integer.class, new MyIntTypeAdapter())
+                                        .create();
+                                String recordstring = gson.toJson(records.get(0), TestRecord.class);
+                                Log.d(TAG, "Created record: " + recordstring);
+                            }
                         }
+                        PeriCoachTestApplication.forceSync();
                     }
-                    PeriCoachTestApplication.forceSync();
                 }
             }
         }
@@ -734,10 +736,11 @@ public class MainActivity extends AppCompatActivity
             }
         }
         if (BuildConfig.DEBUG) {
+            boolean mockBarcode = true;
             for (int i = 0; i < newSequenceInterface.getSequence().size(); i++) {
-                if (newSequenceInterface.getSequence().get(i) instanceof GetBarcodeTest) break;
-                setSequenceDevice(getSequenceDevice().setBarcode(getResources().getString(R.string.barcode_for_test)));
+                if (newSequenceInterface.getSequence().get(i) instanceof GetBarcodeTest) mockBarcode = false;
             }
+            if (mockBarcode) setSequenceDevice(getSequenceDevice().setBarcode(getResources().getString(R.string.barcode_for_test)));
         }
         return newSequenceInterface;
     }
