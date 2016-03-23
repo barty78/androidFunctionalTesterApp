@@ -131,7 +131,7 @@ public class ClosedTest extends SensorTest {
 			return;
 		AlertDialog.Builder builder = new Builder(this.sensorsTestHelper.activityref.get());
 		builder.setTitle("Closed test");
-		builder.setMessage("When you are ready for testing sensor 0 press OK");
+		builder.setMessage("Place Test Weight on Sensor 0 and press OK");
 		builder.setPositiveButton("OK", new OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
@@ -385,7 +385,7 @@ public class ClosedTest extends SensorTest {
 				sensorsTestHelper.samplingSensor2 = false;
 				AlertDialog.Builder builder = new Builder(ClosedTest.this.sensorsTestHelper.activityref.get());
 				builder.setTitle("Closed test");
-				builder.setMessage("When you are ready for testing sensor 1 press OK");
+				builder.setMessage("Place Test Weight on Sensor 1 and press OK");
 				builder.setPositiveButton("OK", new OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
@@ -449,7 +449,7 @@ public class ClosedTest extends SensorTest {
 				sensorsTestHelper.samplingSensor2 = false;
 				AlertDialog.Builder builder = new Builder(ClosedTest.this.sensorsTestHelper.activityref.get());
 				builder.setTitle("Closed test");
-				builder.setMessage("When you are ready for testing sensor 2 press OK");
+				builder.setMessage("Place Test Weight on Sensor 2 and press OK");
 				builder.setPositiveButton("OK", new OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
