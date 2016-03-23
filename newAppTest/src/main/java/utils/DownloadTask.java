@@ -17,12 +17,12 @@ import android.os.PowerManager;
 import android.widget.Toast;
  public class DownloadTask extends AsyncTask<Void, Integer, String> {
 
-    private Activity context;
+    private final Activity context;
     private PowerManager.WakeLock mWakeLock;
-    private String url;
-    private String filename;
-    private ProgressDialog mProgressDialog;
-    private MyCallback callback;
+    private final String url;
+    private final String filename;
+    private final ProgressDialog mProgressDialog;
+    private final MyCallback callback;
 
     public DownloadTask(Activity context, String url, String filename) {
         this.context = context;

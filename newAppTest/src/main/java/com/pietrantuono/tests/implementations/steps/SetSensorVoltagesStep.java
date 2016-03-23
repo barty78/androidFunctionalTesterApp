@@ -12,10 +12,10 @@ import com.pietrantuono.tests.implementations.BluetoothConnectTest;
 import com.pietrantuono.tests.superclass.Test;
 
 public class SetSensorVoltagesStep extends Test implements Step{
-    private short refVoltage;
-    private short zeroVoltage;
+    private final short refVoltage;
+    private final short zeroVoltage;
 
-    private boolean setAll = true;
+    private final boolean setAll = true;
 
     /**
      * IMPORTANT: Bluetooth must be open using

@@ -5,10 +5,10 @@ import java.nio.ByteOrder;
 
 public class Packet
 {
-	private static int FRAME_SIZE = 6; // bytes
+	private static final int FRAME_SIZE = 6; // bytes
 	private static final byte MAGIC_PREFIX = (byte)1; // ASCII SOH
 	private static final byte MAGIC_SUFFIX = (byte)26; // ASCII EOF
-	private byte mPacketType;
+	private final byte mPacketType;
 	
 	// Return value for peekStream
 	public static enum PeekResult {STREAM_CORRUPT, STREAM_INCOMPLETE, STREAM_COMPLETE};

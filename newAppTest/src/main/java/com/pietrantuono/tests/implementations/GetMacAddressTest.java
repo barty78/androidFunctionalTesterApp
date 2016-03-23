@@ -19,12 +19,12 @@ import java.util.regex.Pattern;
 import ioio.lib.api.IOIO;
 
 public class GetMacAddressTest extends Test {
-    private static ExecutorService executor = Executors.newFixedThreadPool(1);
+    private static final ExecutorService executor = Executors.newFixedThreadPool(1);
     private static final String key = "BT MAC ADDR: ";
     private static final int mac_length = 17;
     private String mac = "";
 
-    private String TAG = getClass().getSimpleName();
+    private final String TAG = getClass().getSimpleName();
 
     public GetMacAddressTest(Activity activity, IOIO ioio) {
         super(activity, ioio, "Get BT Mac Address TEST", false, true, 0, 0, 0);

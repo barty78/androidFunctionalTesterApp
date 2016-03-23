@@ -16,7 +16,7 @@ public class DevicesList {
     private List<Device> New = new ArrayList<Device>();
     @SerializedName("Updated")
     @Expose
-    private List<Device> Updated = new ArrayList<Device>();
+    private final List<Device> Updated = new ArrayList<Device>();
 
     /**
      *

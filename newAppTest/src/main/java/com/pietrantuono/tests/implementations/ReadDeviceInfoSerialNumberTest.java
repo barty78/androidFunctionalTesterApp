@@ -16,7 +16,7 @@ import com.pietrantuono.tests.superclass.Test;
 public class ReadDeviceInfoSerialNumberTest extends Test {
 
     private String serial = "";
-    private String barcode = "";
+    private final String barcode = "";
 
 
     /**

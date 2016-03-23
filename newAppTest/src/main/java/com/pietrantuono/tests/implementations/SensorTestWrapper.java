@@ -17,7 +17,7 @@ public class SensorTestWrapper extends Test {
     private int TestLimitIndex = 0;
     private short voltage;
     private short zeroVoltage;
-    private SensorTest sensorTest;
+    private final SensorTest sensorTest;
     private SensorsTestHelper helper;
     private Boolean load;
 

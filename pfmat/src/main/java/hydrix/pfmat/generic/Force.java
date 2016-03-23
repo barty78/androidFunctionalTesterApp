@@ -7,9 +7,9 @@ public class Force
 	public static final short SENSOR_MAX = 4095; // Now using full 12-bit ADC values
 	
 	// Members
-	public short mSensor0;
-	public short mSensor1;
-	public short mSensor2;
+	public final short mSensor0;
+	public final short mSensor1;
+	public final short mSensor2;
 	
 	// Dumb structure to represent the three sensors as percentages of the corresponding values in the user's recorded max force 
 	@SuppressWarnings("unused")

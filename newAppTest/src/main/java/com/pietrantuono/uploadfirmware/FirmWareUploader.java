@@ -33,23 +33,23 @@ public class FirmWareUploader {
     private static int ERRORCODE = ErrorCodes.NO_ERROR;
     private final UploadDialog uploadDialog;
     private String error = "";
-    private OutputStream TX;
-    private InputStream RX;
+    private final OutputStream TX;
+    private final InputStream RX;
     private static final byte STM32_CMD_INIT = 0x7F;
     private static final byte STM32_CMD_GET = 0x00;
     private static final byte XOR_BYTE = (byte) 0xFF;
     private static final byte STM32_ACK = 0x79;
     private static final byte STM32_NACK = 0x1F;
-    private byte[] optionBytes = {(byte) 0xAA, 0x00, 0x55, (byte) 0xFF, (byte) 0xF8, 0x00, 0x07, (byte) 0xFF,
+    private final byte[] optionBytes = {(byte) 0xAA, 0x00, 0x55, (byte) 0xFF, (byte) 0xF8, 0x00, 0x07, (byte) 0xFF,
             0x00, 0x00, (byte) 0xFF, (byte) 0xFF, 0x00, 0x00, (byte) 0xFF, (byte) 0xFF,
             0x00, 0x00, (byte) 0xFF, (byte) 0xFF, 0x00, 0x00, (byte) 0xFF, (byte) 0xFF,
             0x00, 0x00, (byte) 0xFF, (byte) 0xFF, 0x00, 0x00, (byte) 0xFF, (byte) 0xFF};
 
-    private Activity activity;
+    private final Activity activity;
     private ExecutorService executor = Executors.newFixedThreadPool(1);
-    private HashMap<String, Integer> _CMDList = new HashMap<String, Integer>();
+    private final HashMap<String, Integer> _CMDList = new HashMap<String, Integer>();
     private int pid;
-    private int[][] devices = {
+    private final int[][] devices = {
             {0x412, 0x20000200, 0x20002800, 0x08000000, 0x08008000, 4, 1024,
                     0x1FFFF800, 0x1FFFF80F, 0x1FFFF000, 0x1FFFF800},
             {0x410, 0x20000200, 0x20005000, 0x08000000, 0x08020000, 4, 1024, // F1
@@ -74,7 +74,7 @@ public class FirmWareUploader {
     private Boolean isstopped = false;
     private WriteTask task = null;
     private UploaderListener listener;
-    private IOIO ioio_;
+    private final IOIO ioio_;
 
     private int stm32_gen_cs(int v) {
         return ((v & 0xFF000000) >> 24) ^ ((v & 0x00FF0000) >> 16)

@@ -134,12 +134,7 @@ public class UartLoopbackTest extends Test {
 			});
 		}
 	}
-	
-	@Override
-	public void interrupt() {
-		super.interrupt();
-		
-	}
+
 
 }
 

@@ -18,7 +18,7 @@ import android.util.Log;
 public class DiscoverBroadcastReceiver extends BroadcastReceiver {
 	private String serial;
 	private Boolean found;
-	private static ExecutorService executor = Executors.newFixedThreadPool(1);
+	private static final ExecutorService executor = Executors.newFixedThreadPool(1);
 	private static final String TAG = "DiscoverBroadcastReceiver";
 	private Future<Boolean> future;
 

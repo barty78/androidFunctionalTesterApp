@@ -228,14 +228,6 @@ public class Test {
         return scaling;
     }
 
-    /**
-     *
-     * @param units
-     *     The units
-     */
-    @SuppressWarnings("unused")
-    public void setUnits(@Units int units) {}
-
 
     /**
      *

@@ -32,7 +32,7 @@ import server.pojos.Job;
  */
 public class CustomSQLiteOpenHelper extends SQLiteOpenHelper {
     private static CustomSQLiteOpenHelper customSQLiteOpenHelper;
-    private Context context;
+    private final Context context;
     private static final String DB_NAME = "PeriCoachTest";
     private static final int DB_VERSION = 4;
 

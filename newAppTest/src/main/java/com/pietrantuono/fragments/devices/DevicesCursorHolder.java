@@ -22,9 +22,9 @@ import server.pojos.Job;
  * Created by Maurizio Pietrantuono, maurizio.pietrantuono@gmail.com.
  */
 public class DevicesCursorHolder extends RecyclerView.ViewHolder {
-    private TextView barcode;
-    private TextView serial;
-    private TextView address;
+    private final TextView barcode;
+    private final TextView serial;
+    private final TextView address;
     private Device device;
     private final IconicsImageView barcode_image;
     private final IconicsImageView result;

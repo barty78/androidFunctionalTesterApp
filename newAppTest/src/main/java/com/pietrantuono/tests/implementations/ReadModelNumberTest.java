@@ -28,11 +28,6 @@ public class ReadModelNumberTest extends Test {
         new ReadModelNumberTestAsyncTask().executeParallel();
     }
 
-    @Override
-    public void interrupt() {
-        super.interrupt();
-    }
-
     private class ReadModelNumberTestAsyncTask extends SimpleAsyncTask {
         @Override
         protected Void doInBackground(Void... params) {

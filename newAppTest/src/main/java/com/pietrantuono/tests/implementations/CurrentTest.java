@@ -12,11 +12,12 @@ import com.pietrantuono.tests.superclass.Test;
 import static com.pietrantuono.ioioutils.Current.*;
 
 public class CurrentTest extends Test {
-	private int pinNumber;
-	private Boolean isNominal;
-	private int gain = 50;
+	private final int pinNumber;
+	private final Boolean isNominal;
+	private final int gain = 50;
 	private int Rshunt;
 	private @Units
+	final
 	int units;
 
 	/**

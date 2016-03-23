@@ -78,7 +78,7 @@ public class IOIOUtils implements IOIOUtilsInterface {
         bootloader((int) 0),
         application((int) 1);
 
-        public Integer mode;
+        public final Integer mode;
 
         Mode(int mode) {
             this.mode = mode;
@@ -98,7 +98,7 @@ public class IOIOUtils implements IOIOUtilsInterface {
         Sensor_High((int) 1),
         HallInt((int) 21);
 
-        public int value;
+        public final int value;
 
         public int getValue() {
             return value;
@@ -1092,7 +1092,7 @@ public class IOIOUtils implements IOIOUtilsInterface {
         private long now = System.currentTimeMillis();
         private boolean setup = false;
         private InputStream is;
-        private int timeout = 200;
+        private final int timeout = 200;
 
 
         public Uart2Thread(SerialConsoleFragmentCallback callback) {

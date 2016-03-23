@@ -4,7 +4,7 @@ import android.util.Log;
 
 abstract public class RecvStream
 {
-	byte[] mBuffer;
+	final byte[] mBuffer;
 	int mStreamOffset;
 	int mStreamSize;
 	private final int MIN_BUFSIZE = 512;

@@ -61,11 +61,7 @@ public class OtherSelectJobActivityHelper {
                 Log.e(TAG, retrofitError.toString());
             }
         });
-        foo();
     }
-
-    private static void foo() { }
-
 
 
     @SuppressWarnings("unused")

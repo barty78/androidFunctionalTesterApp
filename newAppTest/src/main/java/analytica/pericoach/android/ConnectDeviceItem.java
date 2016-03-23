@@ -3,8 +3,8 @@ package analytica.pericoach.android;
 import android.bluetooth.BluetoothDevice;
 
 	public class ConnectDeviceItem {
-		private String mName;
-		private BluetoothDevice mDevice;
+		private final String mName;
+		private final BluetoothDevice mDevice;
 
 
 		// Construction for device rows

@@ -37,11 +37,11 @@ public class GetBarcodeTest extends Test {
     private DigitalOutput BarcodeTrgr;
     private DigitalOutput barcodeTRGR;
     public int counter = 0;
-    private int retries;
-    private static ExecutorService executor = Executors.newFixedThreadPool(1);
+    private final int retries;
+    private static final ExecutorService executor = Executors.newFixedThreadPool(1);
     private AlertDialog alertDialog;
     private String barcode = "";
-    private Job job;
+    private final Job job;
 
 
     /**

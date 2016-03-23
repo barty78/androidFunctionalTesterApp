@@ -25,10 +25,10 @@ public class DummyUploadFirmwareTest extends Test {
     private OutputStream TX;
     private DummyFirmWareUploader dummyFirmWareUploader;
     private Boolean initialised = true;
-    private Boolean looping = true;
+    private final Boolean looping = true;
     private Boolean resetted = true;
     private int retries;
-    private Boolean loopback;
+    private final Boolean loopback;
     private UploadDialog uploadDialog;
 
     public DummyUploadFirmwareTest(AppCompatActivity activity, IOIO ioio, Boolean loopback) {

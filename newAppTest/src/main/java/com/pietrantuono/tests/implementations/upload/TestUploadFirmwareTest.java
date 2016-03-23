@@ -27,7 +27,7 @@ public class TestUploadFirmwareTest extends Test {
     boolean fileMD5Passed = false;
     private int retries;
     private final AppCompatActivity activity;
-    private Boolean loopback;
+    private final Boolean loopback;
     private UploadDialog uploadDialog;
 
     public TestUploadFirmwareTest(AppCompatActivity activity, IOIO ioio, Boolean loopback) {
@@ -133,11 +133,6 @@ public class TestUploadFirmwareTest extends Test {
         uploadDialog.setProgress(progress);
     }
 
-    private void onInitialiseFailed() {
-    }
 
 
-    @Override
-    public void interrupt() {
-    }
 }

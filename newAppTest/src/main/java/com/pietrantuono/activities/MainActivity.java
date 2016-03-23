@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity
 //    private String mac = "";
     private Boolean destroying = false;
     private PCBDetectHelperInterface detectHelper = null;
-    private ArrayList<ArrayList<NewMResult>> results = new ArrayList<ArrayList<NewMResult>>();
+    private final ArrayList<ArrayList<NewMResult>> results = new ArrayList<ArrayList<NewMResult>>();
     private int CURRENT_ITERATION_NUMBER = -1;
     private UIHelper uiHelper;
     private static NewSequenceInterface newSequence;

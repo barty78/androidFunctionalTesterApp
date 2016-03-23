@@ -15,7 +15,7 @@ import android.widget.Toast;
 import ioio.lib.api.IOIO;
 public class AccelerometerSelfTest extends Test {
 	private int retries = 0;
-	private String TAG=getClass().getSimpleName();
+	private final String TAG=getClass().getSimpleName();
 	public AccelerometerSelfTest(Activity activity, IOIO ioio) {
 		super(activity, ioio, "Accelerometer Self-TEST", false, false, 0, 0, 0);
 	}

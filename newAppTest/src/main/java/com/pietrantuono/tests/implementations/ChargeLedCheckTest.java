@@ -12,7 +12,7 @@ import com.pietrantuono.tests.superclass.Test;
 import ioio.lib.api.IOIO;
 
 public class ChargeLedCheckTest extends Test {
-	private String nameOfLed;
+	private final String nameOfLed;
 	private AlertDialog alertDialog;
 	public ChargeLedCheckTest(Activity activity, IOIO ioio, String nameOfLed, String description) {
 		super(activity, ioio, description, false, false, 0, 0, 0);

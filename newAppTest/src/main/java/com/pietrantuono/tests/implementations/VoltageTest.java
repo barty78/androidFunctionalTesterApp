@@ -10,9 +10,9 @@ import com.pietrantuono.ioioutils.Units;
 import com.pietrantuono.tests.superclass.Test;
 
 public 	class VoltageTest extends Test {
-	private int pinNumber;
+	private final int pinNumber;
 	private boolean isNominal = true;
-	private float scaling;
+	private final float scaling;
 
 	/**
 	 * @param activity			- Activity Instance

@@ -43,7 +43,7 @@ import server.pojos.Test;
 
 public class UIHelper {
 
-    private Activity activity;
+    private final Activity activity;
     private NewSequenceInterface sequence;
     private static final String TAG = "UIHelper";
     private static NewSequenceFragment sequenceFragment;

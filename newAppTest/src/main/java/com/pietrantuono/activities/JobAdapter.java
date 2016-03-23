@@ -17,8 +17,8 @@ import server.pojos.Job;
  * Created by Maurizio Pietrantuono, maurizio.pietrantuono@gmail.com.
  */
 class JobAdapter extends RecyclerView.Adapter<JobHolder> {
-    private ArrayList<Job> list;
-    private Context context;
+    private final ArrayList<Job> list;
+    private final Context context;
 
 
     public JobAdapter(ArrayList<Job> list, Context context) {

@@ -21,7 +21,7 @@ import analytica.pericoach.android.Contract;
 import ioio.lib.api.IOIO;
 
 public class GetDeviceSerialTest extends Test {
-    private static ExecutorService executor = Executors.newFixedThreadPool(1);
+    private static final ExecutorService executor = Executors.newFixedThreadPool(1);
     private int retries = 0;
     private String serial = "";
 

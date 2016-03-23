@@ -6,8 +6,8 @@ import java.nio.ByteOrder;
 public class PacketTx_SetZeroVoltage extends Packet
 {
 	// Fields
-	private byte mSensorIndex;
-		private short mZeroVoltage;
+	private final byte mSensorIndex;
+		private final short mZeroVoltage;
 	
 	// Construction
 	public PacketTx_SetZeroVoltage(byte sensorIndex, short zeroVoltage)

@@ -63,8 +63,8 @@ public class BluetoothCrashResolver {
 
     private Context context = null;
     private UpdateNotifier updateNotifier;
-    private Set<String> distinctBluetoothAddresses = new HashSet<String>();
-    private DiscoveryCanceller discoveryCanceller = new DiscoveryCanceller();
+    private final Set<String> distinctBluetoothAddresses = new HashSet<String>();
+    private final DiscoveryCanceller discoveryCanceller = new DiscoveryCanceller();
     /**
      // It is very likely a crash if Bluetooth turns off and comes
      // back on in an extremely short interval.  Testing on a Nexus 4 shows

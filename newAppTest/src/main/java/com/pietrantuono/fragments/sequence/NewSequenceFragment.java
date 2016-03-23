@@ -33,7 +33,7 @@ public class NewSequenceFragment extends Fragment implements LoaderManager.Loade
     private TextView success_failure_text;
     private LinearLayout success_failure_container;
     private long recordId = -1;
-    private String RECORD_ID = "record_id";
+    private final String RECORD_ID = "record_id";
     private SequenceCursorRecyclerAdapter mAdapter;
 
     public NewSequenceFragment() {

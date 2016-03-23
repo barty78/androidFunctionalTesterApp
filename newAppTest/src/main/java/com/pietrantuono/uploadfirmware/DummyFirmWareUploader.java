@@ -25,14 +25,14 @@ import ioio.lib.api.IOIO;
 @SuppressWarnings("ucd")
 public class DummyFirmWareUploader {
     private static final String TAG = "DummyFirmWareUploader";
-    private OutputStream TX;
+    private final OutputStream TX;
     private static final byte XOR_BYTE = (byte) 0xFF;
     private static final byte STM32_ACK = 0x79;
-    private UploadDialog uploadDialog;
-    private Activity c;
-    private HashMap<String, Integer> _CMDList = new HashMap<String, Integer>();
+    private final UploadDialog uploadDialog;
+    private final Activity c;
+    private final HashMap<String, Integer> _CMDList = new HashMap<String, Integer>();
     private int pid;
-    private int[][] devices = {
+    private final int[][] devices = {
             {0x412, 0x20000200, 0x20002800, 0x08000000, 0x08008000, 4, 1024,
                     0x1FFFF800, 0x1FFFF80F, 0x1FFFF000, 0x1FFFF800},
             {0x410, 0x20000200, 0x20005000, 0x08000000, 0x08020000, 4, 1024, // F1
@@ -52,8 +52,8 @@ public class DummyFirmWareUploader {
     private Boolean isstopped = false;
     private WriteTask task = null;
     private UploaderListener listener;
-    private IOIO ioio_;
-    private Boolean loopback;
+    private final IOIO ioio_;
+    private final Boolean loopback;
 
     private static ReadThread thread;
 
@@ -587,7 +587,7 @@ public class DummyFirmWareUploader {
     private class ReadThread extends Thread {
 
         @SuppressWarnings("unused")
-        private InputStream RX;
+        private final InputStream RX;
 
 
         public ReadThread(InputStream RX) {

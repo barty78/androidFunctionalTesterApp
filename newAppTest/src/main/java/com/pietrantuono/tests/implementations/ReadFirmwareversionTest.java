@@ -30,11 +30,6 @@ public class ReadFirmwareversionTest extends Test {
         return firmwarever;
     }
 
-    @Override
-    public void interrupt() {
-        super.interrupt();
-    }
-
     private class ReadFirmwareversionTestAsyncTask extends SimpleAsyncTask {
         @Override
         protected Void doInBackground(Void... params) {

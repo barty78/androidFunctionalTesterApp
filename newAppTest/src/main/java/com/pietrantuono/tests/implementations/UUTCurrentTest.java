@@ -14,7 +14,7 @@ import android.util.Log;
 
 public class UUTCurrentTest extends Test {
     private AnalogInput I_UUT = null;
-    private AnalogInput V_TRGT = null;
+    private final AnalogInput V_TRGT = null;
 
     public UUTCurrentTest(Activity activity, IOIO ioio, String description) {
         super(activity, ioio, description, false, false, 0, 0, 0);

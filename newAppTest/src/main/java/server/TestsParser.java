@@ -49,7 +49,7 @@ import com.pietrantuono.tests.superclass.Test;
 
 public class TestsParser {
 
-    private static String TAG = TestsParser.class.getSimpleName();
+    private static final String TAG = TestsParser.class.getSimpleName();
 
     public static Test parseTest(final server.pojos.Test testToBeParsed,
                                  final Activity activity, IOIO ioio, Job job) {

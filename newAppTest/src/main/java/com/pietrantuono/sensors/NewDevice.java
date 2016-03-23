@@ -44,7 +44,7 @@ public abstract class NewDevice {
     private final String TAG = getClass().getSimpleName();
 
     // Members
-    private Information mInfo = new Information();
+    private final Information mInfo = new Information();
     private InputStream mInputStream = null;
     private OutputStream mOutputStream = null;
     private DevicePacketHandler mPacketHandler = null;

@@ -7,8 +7,8 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.*;
 
 public class MyOnCancelListener implements OnCancelListener {
-	private Activity myActivity;
-	private Callback callback;
+	private final Activity myActivity;
+	private final Callback callback;
 
 	public MyOnCancelListener(Activity activity) {
 		this.myActivity = activity;

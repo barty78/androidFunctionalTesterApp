@@ -11,7 +11,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 public class DBManager {
-    private Context context;
+    private final Context context;
     private SQLiteDatabase db;
 
 

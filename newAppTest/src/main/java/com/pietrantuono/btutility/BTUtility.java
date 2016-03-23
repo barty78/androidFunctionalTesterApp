@@ -47,10 +47,10 @@ import hydrix.pfmat.generic.Device;
 public class BTUtility {
     private final String TAG = getClass().getSimpleName();
     private WeakReference<Activity> activityRef;
-    private BluetoothAdapter mBTAdapter = BluetoothAdapter.getDefaultAdapter();
+    private final BluetoothAdapter mBTAdapter = BluetoothAdapter.getDefaultAdapter();
     private ArrayList<ConnectDeviceItem> mListItems = null;
-    private BTBroadcastReceiver mBTReceiver = new BTBroadcastReceiver();
-    private ConnectReceiver mConnectReceiver = new ConnectReceiver();
+    private final BTBroadcastReceiver mBTReceiver = new BTBroadcastReceiver();
+    private final ConnectReceiver mConnectReceiver = new ConnectReceiver();
     private static final String INTENT_CONNECT_FAILED = "INTENT_CONNECT_FAILED";
     private static final String INTENT_CONNECT_SUCCEEDED = "INTENT_CONNECT_SUCCEEDED";
     private ProgressDialog progressdialog;

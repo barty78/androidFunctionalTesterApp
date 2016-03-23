@@ -7,7 +7,7 @@ import java.nio.ByteOrder;
 public class PacketTx_GetSensorData extends Packet
 {
 	// Fields
-	private int mRequestTimestamp;
+	private final int mRequestTimestamp;
 	
 	// Construction
 	public PacketTx_GetSensorData(int requestTimestamp)

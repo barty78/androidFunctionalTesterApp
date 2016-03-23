@@ -16,7 +16,7 @@ import ioio.lib.api.IOIO;
 
 
 public class Voltage {
-	private static DecimalFormat df = new DecimalFormat("##.##");
+	private static final DecimalFormat df = new DecimalFormat("##.##");
 	private static Boolean isinterrupted=false;;
 	private static int currentsleeptime=0;
 
@@ -25,7 +25,7 @@ public class Voltage {
 		V	((double)1),
 		mV	((double)1E3);
 
-		public Double value;
+		public final Double value;
 
 		public Double getValue() {
 			return value;
@@ -145,8 +145,8 @@ public class Voltage {
 	};
 	
 	public static class Result{
-		private float reading;
-		private String readingString;
+		private final float reading;
+		private final String readingString;
 		
 		private Result(Boolean success, float reading) {
 			this.reading=reading;
@@ -165,7 +165,7 @@ public class Voltage {
 		public float getReadingValue() {
 			return reading;
 		}
-		private Boolean success;
+		private final Boolean success;
 		
 	}
 	

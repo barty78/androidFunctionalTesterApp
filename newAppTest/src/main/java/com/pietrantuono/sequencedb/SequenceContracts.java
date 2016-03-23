@@ -28,7 +28,7 @@ public class SequenceContracts {
         public static final String RECORDS_STARTED_AT = "started_at";
         public static final String RECORDS_BT_MAC = "bt_mac";
 
-        public static String CREATE_TABLES = "CREATE TABLE " + Records.TABLE_RECORDS + " (" +
+        public static final String CREATE_TABLES = "CREATE TABLE " + Records.TABLE_RECORDS + " (" +
                 Records._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 Records.RECORDS_BARCODE + TEXT_TYPE + COMMA_SEP +
                 Records.RECORDS_DURATION + TEXT_TYPE + COMMA_SEP +
@@ -80,7 +80,7 @@ public class SequenceContracts {
         public static final String TABLE_TESTS_S2_AVG_PASS = "sensor_results_s2_result_avg_pass";
         public static final String TABLE_TESTS_S2_STABILITY_PASS = "sensor_results_s2_result_stability_pass";
 
-        public static String CREATE_TABLES = "CREATE TABLE " + Tests.TABLE_TESTS + " (" +
+        public static final String CREATE_TABLES = "CREATE TABLE " + Tests.TABLE_TESTS + " (" +
                 Tests._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 Tests.TABLE_TESTS_FOREIGN_KEY_ID_OF_RECORD + INTEGER_TYPE + COMMA_SEP +
                 Tests.TABLE_TESTS_TEST_ID + INTEGER_TYPE + COMMA_SEP +

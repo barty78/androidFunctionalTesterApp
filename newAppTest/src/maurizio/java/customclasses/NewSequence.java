@@ -36,13 +36,13 @@ import server.pojos.Sequence;
 @SuppressWarnings("unused")
 public class NewSequence implements NewSequenceInterface {
     private List<Test> sequence = null;
-    private volatile AtomicInteger currentStepNumber = new AtomicInteger(-1);
+    private final AtomicInteger currentStepNumber = new AtomicInteger(-1);
     private volatile Test currentStep = null;
     private long starttime = 0;
     private long endtime = 0;
     private long jobNo = 0;
     private boolean log = true;
-    private Job job;
+    private final Job job;
 
 	/* (non-Javadoc)
      * @see com.pietrantuono.constants.NewSequenceInterface#Next()

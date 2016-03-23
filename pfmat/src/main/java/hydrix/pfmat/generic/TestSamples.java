@@ -6,13 +6,13 @@ public class TestSamples
 {
 	// Has a growing cost each time the array is grown (implementation dependent, but typically doubled each time according to most doco)
 	// Shouldn't be an issue with data sizes in this application
-	private ArrayList<String> mTestDesc;
+	private final ArrayList<String> mTestDesc;
 	
-	private ArrayList<Force> mMinSamples;
-	private ArrayList<Force> mMaxSamples;
-	private ArrayList<Force> mAvgSamples;
+	private final ArrayList<Force> mMinSamples;
+	private final ArrayList<Force> mMaxSamples;
+	private final ArrayList<Force> mAvgSamples;
 	
-	private ArrayList<Result> mResults;
+	private final ArrayList<Result> mResults;
 	
 	// Construction
 	public TestSamples(int initialCapacity)

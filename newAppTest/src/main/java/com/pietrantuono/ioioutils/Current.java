@@ -11,7 +11,7 @@ import ioio.lib.api.IOIO;
 
 
 public class Current {
-	private static DecimalFormat df = new DecimalFormat("##.##");
+	private static final DecimalFormat df = new DecimalFormat("##.##");
 	private static Boolean isinterrupted=false;;
 	private static int currentsleeptime=0;
 
@@ -142,9 +142,9 @@ public class Current {
 	};
 	
 	public static class Result{
-		private float reading;
+		private final float reading;
 		private String readingString;
-		private Boolean success;
+		private final Boolean success;
 		private Result(Boolean success, float reading, @Units int units) {
 			this.reading=reading;
 			df.setRoundingMode(RoundingMode.DOWN);

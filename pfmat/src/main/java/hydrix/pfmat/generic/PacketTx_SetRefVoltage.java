@@ -6,8 +6,8 @@ import java.nio.ByteOrder;
 public class PacketTx_SetRefVoltage extends Packet
 {
 	// Fields
-	private byte mSensorIndex;
-	private short mRefVoltage;
+	private final byte mSensorIndex;
+	private final short mRefVoltage;
 	
 	// Construction
 	public PacketTx_SetRefVoltage(byte sensorIndex, short refVoltage)

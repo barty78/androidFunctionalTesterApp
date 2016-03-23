@@ -14,7 +14,7 @@ import server.pojos.Test;
 public class SequenceRowElement {
 
     public static abstract class RowElement{
-        NewSequenceInterface sequence;
+        final NewSequenceInterface sequence;
 
         public RowElement(NewSequenceInterface sequence) {
             this.sequence = sequence;
@@ -27,13 +27,13 @@ public class SequenceRowElement {
     }
 
     public static class TestRowElement extends RowElement{
-        private boolean istest;
-        private boolean success;
-        private String reading;
-        private String otherreading;
-        private String description;
-        private boolean isSensorTest;
-        private Test testToBeParsed;
+        private final boolean istest;
+        private final boolean success;
+        private final String reading;
+        private final String otherreading;
+        private final String description;
+        private final boolean isSensorTest;
+        private final Test testToBeParsed;
 
         public TestRowElement(Boolean istest, Boolean success, String reading, String otherreading, String description, boolean isSensorTest, Test testToBeParsed, NewSequenceInterface sequence) {
             super(sequence);
@@ -115,8 +115,8 @@ public class SequenceRowElement {
     }
 
     public static class UploadRowElement extends RowElement{
-        private boolean istest;
-        private boolean success;
+        private final boolean istest;
+        private final boolean success;
         private String failReason;
 
         public UploadRowElement(String description, boolean istest, boolean success,NewSequenceInterface sequence, String failReason) {
@@ -141,7 +141,7 @@ public class SequenceRowElement {
             return success;
         }
 
-        private String description;
+        private final String description;
 
         @Override
         public NewSequenceInterface getSequence() {

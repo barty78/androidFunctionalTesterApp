@@ -38,7 +38,7 @@ public class GetNFCTest extends Test {
     private Boolean ready = false;
     final protected static char[] hexArray = "0123456789ABCDEF".toCharArray();
 
-    private static ExecutorService executor = Executors.newFixedThreadPool(1);
+    private static final ExecutorService executor = Executors.newFixedThreadPool(1);
     private AlertDialog alertDialog;
     private String tagid = "";
 

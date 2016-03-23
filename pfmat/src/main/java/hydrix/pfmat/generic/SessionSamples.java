@@ -18,7 +18,7 @@ public class SessionSamples
 	
 	// Has a growing cost each time the array is grown (implementation dependent, but typically doubled each time according to most doco)
 	// Shouldn't be an issue with data sizes in this application
-	public ArrayList<Sample> mSamples;
+	public final ArrayList<Sample> mSamples;
 	private Force mMaxSampleSeen;
 	private Force mLastSampleSeen;
 	private Force mMinSampleSeen;

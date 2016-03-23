@@ -6,7 +6,7 @@ import java.nio.ByteOrder;
 public class PacketTx_GetCalOffset extends Packet {
 
 	//Fields
-	private Byte mSensorIndex;
+	private final Byte mSensorIndex;
 	
 	//Construction
 	public PacketTx_GetCalOffset(byte sensorIndex)

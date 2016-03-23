@@ -18,9 +18,9 @@ public abstract class Test {
 	protected boolean istest=true;
 	private boolean isBlockingTest=false;
 	protected boolean isinterrupted=false;
-	protected NewIOIOActivityListener activityListener;
-	protected IOIO ioio;
-	protected String TAG=getClass().getSimpleName();
+	protected final NewIOIOActivityListener activityListener;
+	protected final IOIO ioio;
+	protected final String TAG=getClass().getSimpleName();
 	private boolean active=true;
 	protected boolean success=false;
 	private long IdTest=0;
@@ -30,11 +30,11 @@ public abstract class Test {
 	//Limits variables
 	private boolean isNominal;
 	@SuppressWarnings("unused")
-	public float limitParam1;
+	public final float limitParam1;
 	@SuppressWarnings("unused")
-	protected float limitParam2;
+	protected final float limitParam2;
 	@SuppressWarnings("unused")
-	private float limitParam3;
+	private final float limitParam3;
 	public server.pojos.Test testToBeParsed;
 
 

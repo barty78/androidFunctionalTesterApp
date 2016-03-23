@@ -25,7 +25,7 @@ public class DeviceInfo implements Parcelable {
 		}
 	}
 
-	private ArrayList<Info> mInfos;
+	private final ArrayList<Info> mInfos;
 	
 	// Construction
 		public DeviceInfo()

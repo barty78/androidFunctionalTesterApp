@@ -29,7 +29,7 @@ import server.pojos.DevicesList;
 class DevicesSyncAdapter extends AbstractThreadedSyncAdapter {
     private final String TAG = getClass().getSimpleName();
     private final Context context;
-    private ContentResolver mContentResolver;
+    private final ContentResolver mContentResolver;
 
     @SuppressWarnings("SameParameterValue")
     public DevicesSyncAdapter(Context context, boolean autoInitialize) {

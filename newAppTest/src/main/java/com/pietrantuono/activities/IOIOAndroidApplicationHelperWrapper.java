@@ -7,7 +7,7 @@ import ioio.lib.util.android.IOIOAndroidApplicationHelper;
 
 class IOIOAndroidApplicationHelperWrapper {
 	private boolean isStarted;	
-	private IOIOAndroidApplicationHelper applicationHelper;
+	private final IOIOAndroidApplicationHelper applicationHelper;
 
 	@SuppressWarnings("ucd")
 	public IOIOAndroidApplicationHelperWrapper(Activity activity) {

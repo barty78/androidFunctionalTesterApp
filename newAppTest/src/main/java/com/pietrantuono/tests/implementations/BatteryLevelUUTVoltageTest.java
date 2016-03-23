@@ -14,10 +14,10 @@ import com.pietrantuono.tests.superclass.Test;
 import ioio.lib.api.IOIO;
 
 public class BatteryLevelUUTVoltageTest extends Test {
-    private float voltage;
-    private float limit;
-    private IOIO ioio;
-    private float precision;
+    private final float voltage;
+    private final float limit;
+    private final IOIO ioio;
+    private final float precision;
 
     /**
      * IMPORTANT: Bluetooth must be open using

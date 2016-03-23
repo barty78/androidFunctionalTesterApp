@@ -7,7 +7,7 @@ import android.app.Activity;
 import android.content.Context;
 
 class DataProvider {
-	private Context context;
+	private final Context context;
 
 	DataProvider(Activity activity) {
 		this.context=(Context)activity;

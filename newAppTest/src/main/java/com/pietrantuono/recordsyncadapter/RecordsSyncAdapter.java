@@ -34,9 +34,9 @@ import android.util.Log;
 
 class RecordsSyncAdapter extends AbstractThreadedSyncAdapter {
     private RecordUploader recorduploader;
-    private Context context;
-    private int notificationId = 001;
-    private String TAG = "RecordsSyncAdapter";
+    private final Context context;
+    private final int notificationId = 001;
+    private final String TAG = "RecordsSyncAdapter";
 
     public RecordsSyncAdapter(Context context, boolean autoInitialize) {
         super(context, autoInitialize);

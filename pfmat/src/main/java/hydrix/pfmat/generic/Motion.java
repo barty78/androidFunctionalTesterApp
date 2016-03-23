@@ -6,10 +6,10 @@ import android.util.FloatMath;
 public class Motion
 {
 	// Members
-	private Acceleration mAccel;	// Acceleration
-	private Rotation mGyro;			// Gyroscope
-	private Quaternion mQuat;		// Quaternion
-	private float[] mYPR;			// Yaw/Pitch/Roll
+	private final Acceleration mAccel;	// Acceleration
+	private final Rotation mGyro;			// Gyroscope
+	private final Quaternion mQuat;		// Quaternion
+	private final float[] mYPR;			// Yaw/Pitch/Roll
 	
 	@SuppressWarnings("unused")
 	static public class VectorFloat

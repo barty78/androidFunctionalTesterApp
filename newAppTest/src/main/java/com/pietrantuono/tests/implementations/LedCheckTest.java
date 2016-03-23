@@ -6,7 +6,7 @@ import android.content.DialogInterface.OnClickListener;
 import com.pietrantuono.activities.MyOnCancelListener;
 import com.pietrantuono.tests.superclass.Test;
 public class LedCheckTest extends Test {
-	private String nameOfLed;
+	private final String nameOfLed;
 	private AlertDialog alertDialog;
 
 	public LedCheckTest(Activity activity,String nameOfLed ,String description) {

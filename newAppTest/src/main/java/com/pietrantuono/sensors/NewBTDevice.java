@@ -12,7 +12,7 @@ import android.bluetooth.BluetoothSocket;
 
 class NewBTDevice extends NewDevice
 {
-	private int currentapiVersion = android.os.Build.VERSION.SDK_INT;
+	private final int currentapiVersion = android.os.Build.VERSION.SDK_INT;
 	
 	// Singleton instance for connected device
 	private final static UUID mUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB"); // Well-known SPP UUID

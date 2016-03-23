@@ -251,7 +251,7 @@ implements Filterable, CursorFilter.CursorFilterClient {
 
 class CursorFilter extends Filter {
 
-	private CursorFilterClient mClient;
+	private final CursorFilterClient mClient;
 
 	interface CursorFilterClient {
 		CharSequence convertToString(Cursor cursor);

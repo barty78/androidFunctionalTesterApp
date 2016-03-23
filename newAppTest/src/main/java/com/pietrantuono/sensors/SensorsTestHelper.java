@@ -46,7 +46,7 @@ public class SensorsTestHelper implements OnSampleCallback {
 	boolean samplingSensor1=true;
 	boolean samplingSensor2=true;
 	private boolean acceptdata;
-	private SimpleDateFormat simpleDateFormat= new SimpleDateFormat(" HH:mm:ss.SSS");
+	private final SimpleDateFormat simpleDateFormat= new SimpleDateFormat(" HH:mm:ss.SSS");
 
 	public SensorsTestHelper(Activity activity) {
 		Log.d(TAG, "Constructor");

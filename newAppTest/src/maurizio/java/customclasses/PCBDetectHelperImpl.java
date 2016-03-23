@@ -101,7 +101,7 @@ public class PCBDetectHelperImpl implements PCBDetectHelperInterface {
 			
 		}
 	}
-	private  static Random random = new Random();
+	private  static final Random random = new Random();
 	private static  boolean getRandomBoolean(float p) {
 		return random.nextFloat() > p;
 	}
@@ -129,7 +129,7 @@ public class PCBDetectHelperImpl implements PCBDetectHelperInterface {
 			AsyncTask<Void, Void, Boolean> {
 		private WeakReference<PCBConnectedCallback> callback;
 		@SuppressWarnings("unused")
-		private DigitalInput digitalInput;
+		private final DigitalInput digitalInput;
 		public PCBConnectedDetectAsyncTask(PCBConnectedCallback callback,
 				DigitalInput digitalInput) {
 			this.callback = new WeakReference<PCBConnectedCallback>(callback);
@@ -167,7 +167,7 @@ public class PCBDetectHelperImpl implements PCBDetectHelperInterface {
 			AsyncTask<Void, Void, Boolean> {
 		private WeakReference<PCBConnectedCallback> callback;
 		@SuppressWarnings("unused")
-		private DigitalInput digitalInput;
+		private final DigitalInput digitalInput;
 		private PCBWaitDisconnectDetectAsyncTask(PCBConnectedCallback callback,
 				DigitalInput digitalInput) {
 			this.callback = new WeakReference<PCBConnectedCallback>(callback);
