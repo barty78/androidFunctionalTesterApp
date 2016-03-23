@@ -16,7 +16,6 @@ public class BluetoothDiscoverableModeTest extends Test {
 	private BluetoothAdapter adapter;
 	private DiscoverBroadcastReceiver discoverBroadcastReceiver;
 	private ProgressDialog dialog;
-	private BluetoothCrashResolver bluetoothCrashResolver;
 	private DiscoveryAsyncTask asyncTask;
 	public BluetoothDiscoverableModeTest(Activity activity) {
 		super(activity, null, "Check Bluetooth discover", false, false, 0, 0, 0);
@@ -53,7 +52,7 @@ public class BluetoothDiscoverableModeTest extends Test {
 				dialog.show();
 			}
 		});
-		bluetoothCrashResolver = new BluetoothCrashResolver(((Activity)activityListener));
+		BluetoothCrashResolver bluetoothCrashResolver = new BluetoothCrashResolver(((Activity) activityListener));
 		bluetoothCrashResolver.start();
 		adapter.startDiscovery();
 		asyncTask = new DiscoveryAsyncTask();
@@ -73,8 +72,7 @@ public class BluetoothDiscoverableModeTest extends Test {
 		@Override
 		protected Boolean doInBackground(Void... params) {
 			if(isinterrupted)return false;
-			Boolean ok = discoverBroadcastReceiver.containsSerial();
-			return ok;
+			return discoverBroadcastReceiver.containsSerial();
 		}
 		@Override
 		protected void onPostExecute(Boolean result) {

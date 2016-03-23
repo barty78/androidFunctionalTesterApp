@@ -198,8 +198,7 @@ public class BluetoothCrashResolver {
         if (distinctBluetoothAddresses.size() > 0) {
             if (isDebugEnabled()) Log.d(TAG, "Distinct bluetooth devices seen at crash: "+distinctBluetoothAddresses.size());
         }
-        long nowTimestamp = new Date().getTime();
-        lastBluetoothCrashDetectionTime = nowTimestamp;
+        lastBluetoothCrashDetectionTime = new Date().getTime();
         detectedCrashCount++;
 
         if (recoveryInProgress) {
@@ -227,7 +226,7 @@ public class BluetoothCrashResolver {
     public boolean isRecoveryInProgress() { return recoveryInProgress; }
 
     public interface UpdateNotifier {
-        public void dataUpdated();
+        void dataUpdated();
     }
 
     public void setUpdateNotifier(UpdateNotifier updateNotifier) {

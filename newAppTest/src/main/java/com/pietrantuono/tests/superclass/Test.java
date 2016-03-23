@@ -7,8 +7,6 @@ import android.widget.Toast;
 import com.crashlytics.android.Crashlytics;
 import com.pietrantuono.activities.NewIOIOActivityListener;
 
-import java.util.ArrayList;
-
 import customclasses.DebugHelper;
 import ioio.lib.api.IOIO;
 

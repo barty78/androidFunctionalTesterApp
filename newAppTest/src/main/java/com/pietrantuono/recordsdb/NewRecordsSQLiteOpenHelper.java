@@ -57,16 +57,14 @@ public class NewRecordsSQLiteOpenHelper extends SQLiteOpenHelper {
             OldRecordsHelper oldRecorsdHelper = OldRecordsHelper.get(context);
             Cursor oldRecords = oldRecorsdHelper.getWritableDatabase().query(RecordsContract.TestRecords.TABLE, null, null, null, null, null, null);
             ArrayList<TestRecord> testRecords = (ArrayList<TestRecord>) RecordsProcessor.reconstructRecords( oldRecords, oldRecorsdHelper);
-            Iterator<TestRecord> iterator = testRecords.iterator();
-            while (iterator.hasNext()) {
-                saveRecord(context, iterator.next(), db);
+            for (TestRecord testRecord : testRecords) {
+                saveRecord(context, testRecord, db);
             }
         }
         catch(Exception ignored){}
     }
 
     private long saveRecord(Context context, TestRecord testRecord, SQLiteDatabase db) {
-        TestRecord record = new TestRecord();
         ContentValues values = new ContentValues();
         values.put(RecordsContract.TestRecords.BARCODE, testRecord.getBarcode());
         values.put(RecordsContract.TestRecords.DURATION, testRecord.getDuration());

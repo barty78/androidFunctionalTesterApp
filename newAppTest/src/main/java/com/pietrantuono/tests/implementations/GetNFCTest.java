@@ -5,14 +5,12 @@ import android.app.AlertDialog;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.ioioutils.IOIOUtils;
 import com.pietrantuono.tests.superclass.Test;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.Arrays;
 import java.util.Timer;
@@ -20,11 +18,7 @@ import java.util.TimerTask;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import ioio.lib.api.DigitalInput;
-import ioio.lib.api.DigitalOutput;
 import ioio.lib.api.IOIO;
-import ioio.lib.api.Uart;
-import server.pojos.Job;
 
 @SuppressWarnings("unused")
 public class GetNFCTest extends Test {
@@ -121,8 +115,8 @@ public class GetNFCTest extends Test {
     }
 
     private void printBuffer(byte[] buffer){
-        for (int i = 0; i < buffer.length; i++) {
-            Log.d(TAG + " - CALL", String.valueOf(buffer[i]));
+        for (byte aBuffer : buffer) {
+            Log.d(TAG + " - CALL", String.valueOf(aBuffer));
         }
     }
 

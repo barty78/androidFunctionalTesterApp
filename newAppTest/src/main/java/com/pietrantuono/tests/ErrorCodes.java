@@ -6,50 +6,50 @@ package com.pietrantuono.tests;
 @SuppressWarnings("unused")
 public interface ErrorCodes {
 
-    public static final int NO_ERROR = -1;
+    int NO_ERROR = -1;
 
-    public static final int OUTSIDE_LIMITS = 1;
+    int OUTSIDE_LIMITS = 1;
 
     // Sensor TEST Errors
-    public static final int SENSORTEST_INSUFFICIENT_SAMPLES = 2;
-    public static final int SENSORTEST_VOLTAGE_SETTING_FAILED = 3;
-    public static final int SENSORTEST_ACTIVITY_ERROR = 4;
-    public static final int SENSORTEST_NO_DRIVE_VOLTAGE_SET = 5;
-    public static final int SENSORTEST_NO_ZERO_VOLTAGE_SET = 6;
-    public static final int SENSORTEST_NO_LOAD_SET = 7;
+    int SENSORTEST_INSUFFICIENT_SAMPLES = 2;
+    int SENSORTEST_VOLTAGE_SETTING_FAILED = 3;
+    int SENSORTEST_ACTIVITY_ERROR = 4;
+    int SENSORTEST_NO_DRIVE_VOLTAGE_SET = 5;
+    int SENSORTEST_NO_ZERO_VOLTAGE_SET = 6;
+    int SENSORTEST_NO_LOAD_SET = 7;
 
     // Firmware Upload Errors
-    public static final int FIRMWAREUPLOAD_INIT_FAILED = 8;
-    public static final int FIRMWAREUPLOAD_GET_INFO_FAILED = 9;
-    public static final int FIRMWAREUPLOAD_FILESIZE_ERROR = 10;
-    public static final int FIRMWAREUPLOAD_WRITE_MEMORY_ERROR = 11;
-    public static final int FIRMWAREUPLOAD_DEVICE_INFO_ERROR = 12;
-    public static final int FIRMWAREUPLOAD_NO_ACK_ERROR = 13;
-    public static final int FIRMWAREUPLOAD_CMD_SEND_ERROR = 14;
-    public static final int FIRMWAREUPLOAD_ADDR_SEND_ERROR = 15;
-    public static final int FIRMWAREUPLOAD_ADDR_ALIGN_ERROR = 16;
-    public static final int FIRMWAREUPLOAD_READ_PROTECT_ERROR = 17;
-    public static final int FIRMWAREUPLOAD_ERASE_ERROR = 18;
-    public static final int FIRMWAREUPLOAD_OPTIONBYTES_WRITE_ERROR = 19;
-    public static final int FIRMWAREUPLOAD_CMD_GET_SEND_ERROR = 20;
-    public static final int FIRMWAREUPLOAD_CMD_GVR_SEND_ERROR = 21;
-    public static final int FIRMWAREUPLOAD_CMD_GID_SEND_ERROR = 22;
-    public static final int FIRMWAREUPLOAD_CMD_RM_SEND_ERROR = 23;
-    public static final int FIRMWAREUPLOAD_CMD_GO_SEND_ERROR = 24;
-    public static final int FIRMWAREUPLOAD_CMD_WM_SEND_ERROR = 25;
-    public static final int FIRMWAREUPLOAD_CMD_ER_SEND_ERROR = 26;
-    public static final int FIRMWAREUPLOAD_CMD_WP_SEND_ERROR = 27;
-    public static final int FIRMWAREUPLOAD_CMD_UW_SEND_ERROR = 28;
-    public static final int FIRMWAREUPLOAD_CMD_RP_SEND_ERROR = 29;
-    public static final int FIRMWAREUPLOAD_CMD_UR_SEND_ERROR = 30;
+    int FIRMWAREUPLOAD_INIT_FAILED = 8;
+    int FIRMWAREUPLOAD_GET_INFO_FAILED = 9;
+    int FIRMWAREUPLOAD_FILESIZE_ERROR = 10;
+    int FIRMWAREUPLOAD_WRITE_MEMORY_ERROR = 11;
+    int FIRMWAREUPLOAD_DEVICE_INFO_ERROR = 12;
+    int FIRMWAREUPLOAD_NO_ACK_ERROR = 13;
+    int FIRMWAREUPLOAD_CMD_SEND_ERROR = 14;
+    int FIRMWAREUPLOAD_ADDR_SEND_ERROR = 15;
+    int FIRMWAREUPLOAD_ADDR_ALIGN_ERROR = 16;
+    int FIRMWAREUPLOAD_READ_PROTECT_ERROR = 17;
+    int FIRMWAREUPLOAD_ERASE_ERROR = 18;
+    int FIRMWAREUPLOAD_OPTIONBYTES_WRITE_ERROR = 19;
+    int FIRMWAREUPLOAD_CMD_GET_SEND_ERROR = 20;
+    int FIRMWAREUPLOAD_CMD_GVR_SEND_ERROR = 21;
+    int FIRMWAREUPLOAD_CMD_GID_SEND_ERROR = 22;
+    int FIRMWAREUPLOAD_CMD_RM_SEND_ERROR = 23;
+    int FIRMWAREUPLOAD_CMD_GO_SEND_ERROR = 24;
+    int FIRMWAREUPLOAD_CMD_WM_SEND_ERROR = 25;
+    int FIRMWAREUPLOAD_CMD_ER_SEND_ERROR = 26;
+    int FIRMWAREUPLOAD_CMD_WP_SEND_ERROR = 27;
+    int FIRMWAREUPLOAD_CMD_UW_SEND_ERROR = 28;
+    int FIRMWAREUPLOAD_CMD_RP_SEND_ERROR = 29;
+    int FIRMWAREUPLOAD_CMD_UR_SEND_ERROR = 30;
 
-    public static final int ACCELEROMETER_SELF_TEST_ERROR = 50;
-    public static final int ACCELEROMETER_INT_PIN_ERROR = 51;
+    int ACCELEROMETER_SELF_TEST_ERROR = 50;
+    int ACCELEROMETER_INT_PIN_ERROR = 51;
 
-    public static final int SENSOR_STEP_VOLTAGE_SET_ERROR = 31;
+    int SENSOR_STEP_VOLTAGE_SET_ERROR = 31;
 
-    public static final int GENERIC_FAILURE = 100;
+    int GENERIC_FAILURE = 100;
 
-    public static final int FIRMWAREUPLOAD_GENERIC_FAILURE =999;
+    int FIRMWAREUPLOAD_GENERIC_FAILURE =999;
 
 }

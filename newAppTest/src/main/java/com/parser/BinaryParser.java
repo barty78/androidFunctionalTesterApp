@@ -16,7 +16,6 @@ import java.io.InputStream;
 
 import com.pietrantuono.application.PeriCoachTestApplication;
 
-import android.content.Context;
 import android.util.Log;
 
 @SuppressWarnings("ucd")
@@ -47,7 +46,7 @@ public class BinaryParser  {
 			    }
 			//InputStream caInput = new BufferedInputStream(is);
 			//ios = new FileInputStream(new File(_filename));
-			int read = 0;
+			int read;
 			while ((read = ios.read(buffer)) != -1)
 				ous.write(buffer, 0, read);
 		} finally {

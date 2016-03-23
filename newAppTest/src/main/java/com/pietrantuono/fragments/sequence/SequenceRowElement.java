@@ -1,7 +1,5 @@
 package com.pietrantuono.fragments.sequence;
 
-import android.support.annotation.IntDef;
-
 import com.pietrantuono.constants.NewMSensorResult;
 import com.pietrantuono.constants.NewSequenceInterface;
 
@@ -23,7 +21,7 @@ public class SequenceRowElement {
         @SuppressWarnings("unused")
         public NewSequenceInterface getSequence(){
             return sequence;
-        };
+        }
     }
 
     public static class TestRowElement extends RowElement{

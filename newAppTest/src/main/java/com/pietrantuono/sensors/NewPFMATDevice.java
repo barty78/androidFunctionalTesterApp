@@ -92,7 +92,7 @@ public class NewPFMATDevice
 		@Override
 		protected void onCancelled(Boolean result) {
 			super.onCancelled(result);
-			if(mHourglass!=null && mHourglass.isShowing())mHourglass.dismiss();;
+			if(mHourglass!=null && mHourglass.isShowing())mHourglass.dismiss();
 		}
 		private final Context mContext;
 		private final String mSuccessIntent;

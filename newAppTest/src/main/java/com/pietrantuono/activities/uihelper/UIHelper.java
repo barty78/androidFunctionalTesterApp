@@ -39,7 +39,6 @@ import android.widget.TextView;
 
 import analytica.pericoach.android.Contract;
 import server.pojos.Job;
-import server.pojos.Test;
 
 public class UIHelper {
 
@@ -129,8 +128,7 @@ public class UIHelper {
         ((TextView) activity.findViewById(R.id.num_of_devices)).setText("" + numberOfDevices);
         ((TextView) activity.findViewById(R.id.devices_passed)).setText("" + numberOfDevicesPassed);
         ((TextView) activity.findViewById(R.id.devices_failed)).setText("" + numberOfDevicesFailed);
-        float numberOfDevicesFloat = numberOfDevices;
-        ((DonutProgress) activity.findViewById(R.id.progress_stats)).setProgress((int) ((numberOfDevicesPassed / numberOfDevicesFloat) * 100));
+        ((DonutProgress) activity.findViewById(R.id.progress_stats)).setProgress((int) ((numberOfDevicesPassed / (float) numberOfDevices) * 100));
     }
 
     public void setRecordId(long recordId) {

@@ -14,12 +14,6 @@ import server.pojos.records.TestRecord;
 
 import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.constants.NewSequenceInterface;
-import com.pietrantuono.tests.implementations.GetBarcodeTest;
-import com.pietrantuono.tests.implementations.GetDeviceSerialTest;
-import com.pietrantuono.tests.implementations.GetMacAddressTest;
-import com.pietrantuono.tests.implementations.ReadDeviceInfoSerialNumberTest;
-import com.pietrantuono.tests.implementations.ReadFirmwareversionTest;
-import com.pietrantuono.tests.implementations.ReadModelNumberTest;
 import com.pietrantuono.tests.implementations.SensorTestWrapper;
 
 public class RecordFromSequenceCreator {

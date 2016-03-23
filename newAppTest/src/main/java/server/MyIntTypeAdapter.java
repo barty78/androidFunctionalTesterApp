@@ -17,8 +17,7 @@ public class MyIntTypeAdapter extends TypeAdapter<Integer>{
         }
         String stringValue = reader.nextString();
         try {
-        	Integer value = Integer.valueOf(stringValue);
-            return value;
+            return Integer.valueOf(stringValue);
         } catch (NumberFormatException e) {
             return new Integer(0);
         }

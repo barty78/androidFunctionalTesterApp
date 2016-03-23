@@ -49,7 +49,7 @@ class DevicesSyncAdapter extends AbstractThreadedSyncAdapter {
             Thread.sleep(5 * 1000);
         } catch (InterruptedException e) {
         }
-        DevicesList result = null;
+        DevicesList result;
         try {
             result = RetrofitRestServices.getRest(context).getLastDevicesSync(PeriCoachTestApplication.getDeviceid(), "0");
         } catch (Exception e) {
@@ -140,7 +140,7 @@ class DevicesSyncAdapter extends AbstractThreadedSyncAdapter {
         String selection = Contract.DevicesColumns.DEVICES_BARCODE + "=?";
         String[] selectionArgs = {device.getBarcode()};
         Cursor cursor = mContentResolver.query(DevicesContentProvider.CONTENT_URI, null, selection, selectionArgs, null);
-        if (cursor.getCount() <= 0) return result;
+        if (cursor==null || cursor.getCount() <= 0) return result;
         cursor.moveToFirst();
         try {
             result = cursor.getLong(cursor.getColumnIndexOrThrow(Contract.DevicesColumns._ID));

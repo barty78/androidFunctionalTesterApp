@@ -36,7 +36,7 @@ public class MyOnCancelListener implements OnCancelListener {
 		});
 	}
 	
-	static interface Callback{
+	interface Callback{
 		void closeActivity();
 	}
 	

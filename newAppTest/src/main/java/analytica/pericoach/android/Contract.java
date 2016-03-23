@@ -1,6 +1,5 @@
 package analytica.pericoach.android;
 
-import android.net.Uri;
 import android.provider.BaseColumns;
 
 /**
@@ -29,7 +28,6 @@ public class Contract {
     static final String JOBS_ACTIVE_COLUMN = "active";
     static final String JOBS_STAGE_DEP = "stage_dep";
     static final String JOBS_LAST_UPDATED = "LastUpdated";
-    ;
 
 
     /**

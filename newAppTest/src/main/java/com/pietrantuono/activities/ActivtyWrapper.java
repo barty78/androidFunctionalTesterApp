@@ -4,13 +4,13 @@ package com.pietrantuono.activities;
 import ioio.lib.api.IOIO;
 
 public interface ActivtyWrapper {
-	public void onPCBConnectionLostRestartSequence();
+	void onPCBConnectionLostRestartSequence();
 	
-	public boolean isActivityFinishing();
+	boolean isActivityFinishing();
 
-	public void onIOIOLooperSetup(IOIO ioio);
+	void onIOIOLooperSetup(IOIO ioio);
 	
-	public void onIOIOLooperDisconnected();
+	void onIOIOLooperDisconnected();
 
 	
 	

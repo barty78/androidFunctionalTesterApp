@@ -1,6 +1,4 @@
 package com.pietrantuono.tests.implementations;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 
 import com.pietrantuono.ioioutils.IOIOUtils;
@@ -8,7 +6,6 @@ import com.pietrantuono.pericoach.newtestapp.BuildConfig;
 import com.pietrantuono.tests.superclass.Test;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
@@ -69,10 +66,6 @@ public class AccelerometerSelfTest extends Test {
 				execute();
 			}
 		});
-	}
-	@Override
-	public void interrupt() {
-		super.interrupt();
 	}
 
 }

@@ -122,7 +122,7 @@ public class DummyFirmWareUploader {
 
 
                 int addr = fl_start;
-                int len = 0;
+                int len;
                 byte[] buffer = new byte[256];
 
                 ByteArrayInputStream aInput = new ByteArrayInputStream(
@@ -421,10 +421,10 @@ public class DummyFirmWareUploader {
 
     private int[] getDeviceSetup() {
 
-        for (int i = 0; i < devices.length; i++) {
+        for (int[] device : devices) {
 
-            if (devices[i][0] == pid) {
-                return devices[i];
+            if (device[0] == pid) {
+                return device;
             }
 
         }
@@ -581,7 +581,7 @@ public class DummyFirmWareUploader {
 
     public interface UploaderListener {
 
-        public void onUploadCompleted(boolean b);
+        void onUploadCompleted(boolean b);
     }
 
     private class ReadThread extends Thread {

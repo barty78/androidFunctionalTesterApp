@@ -2,11 +2,8 @@ package com.pietrantuono.tests.implementations;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
-import com.pietrantuono.activities.ActivtyWrapper;
-import com.pietrantuono.activities.MainActivity;
 import com.pietrantuono.activities.MyOnCancelListener;
 import com.pietrantuono.ioioutils.IOIOUtils;
-import com.pietrantuono.tests.superclass.SimpleAsyncTask;
 import com.pietrantuono.tests.superclass.Test;
 import ioio.lib.api.AnalogInput;
 import ioio.lib.api.IOIO;
@@ -115,9 +112,9 @@ public class WakeDeviceTest extends Test{
 	@Override
 	public void interrupt() {
 		super.interrupt();
-		try {alertDialog.dismiss();}catch(Exception e){};
-		try {V_3V0_SW.close();}catch(Exception e){};
-		try {t.stop();}catch(Exception e){};
+		try {alertDialog.dismiss();}catch(Exception e){}
+		try {V_3V0_SW.close();}catch(Exception e){}
+		try {t.stop();}catch(Exception e){}
 	}
 
 

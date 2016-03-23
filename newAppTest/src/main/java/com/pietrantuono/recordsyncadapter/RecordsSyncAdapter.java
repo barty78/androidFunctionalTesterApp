@@ -3,6 +3,7 @@ package com.pietrantuono.recordsyncadapter;
 import java.util.Iterator;
 import java.util.List;
 
+import retrofit.client.Response;
 import server.MyDoubleTypeAdapter;
 import server.MyIntTypeAdapter;
 import server.MyLongTypeAdapter;
@@ -80,10 +81,7 @@ class RecordsSyncAdapter extends AbstractThreadedSyncAdapter {
             String[] selectionargs = new String[]{"0"};
             Cursor cursor = newRecordsSQLiteOpenHelper.getReadableDatabase().query(RecordsContract.TestRecords.TABLE, null, selection, selectionargs, null, null, null);
             List<TestRecord> records = RecordsProcessor.reconstructRecords(cursor, newRecordsSQLiteOpenHelper);
-            Iterator<TestRecord> iterator = records.iterator();
-            while (iterator.hasNext()) {
-                final TestRecord record = iterator.next();
-
+            for (TestRecord record : records) {
                 Gson gson = new GsonBuilder()
                         .excludeFieldsWithoutExposeAnnotation()
                         .registerTypeAdapter(Long.class, new MyLongTypeAdapter())
@@ -93,15 +91,15 @@ class RecordsSyncAdapter extends AbstractThreadedSyncAdapter {
                 String recordstring = gson.toJson(record, TestRecord.class);
 
                 Log.d(TAG, "Posting record: " + recordstring);
-                retrofit.client.Response response=null;
+                Response response = null;
                 try {
-                    response= RetrofitRestServices.getRest(context).postResultsSync(PeriCoachTestApplication.getDeviceid(),
+                    response = RetrofitRestServices.getRest(context).postResultsSync(PeriCoachTestApplication.getDeviceid(),
                             Long.toString(record.getJobNo()), record);
-                } catch(Exception ignored){
-                    Log.d(TAG,ignored.toString());
+                } catch (Exception ignored) {
+                    Log.d(TAG, ignored.toString());
                 }
-                if (response != null && 200 <=response.getStatus() && response.getStatus()<300) {
-                    updateRecordUploaded(record.getID(),newRecordsSQLiteOpenHelper);
+                if (response != null && 200 <= response.getStatus() && response.getStatus() < 300) {
+                    updateRecordUploaded(record.getID(), newRecordsSQLiteOpenHelper);
                     issuePositiveNotification(record);
                 }
             }

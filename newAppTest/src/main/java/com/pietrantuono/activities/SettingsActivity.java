@@ -148,8 +148,8 @@ public class SettingsActivity extends PreferenceActivity {
         long time = System.currentTimeMillis();
         String suffix = "" + time + ".txt";
         File file = new File(dir, FILE_UNPROCESSED_RECORDS.concat("" + suffix));
-        OutputStreamWriter outputStreamWriter = null;
-        FileOutputStream fileOutputStream = null;
+        OutputStreamWriter outputStreamWriter;
+        FileOutputStream fileOutputStream;
         try {
             fileOutputStream = new FileOutputStream(file);
             outputStreamWriter = new OutputStreamWriter(fileOutputStream);
@@ -212,8 +212,8 @@ public class SettingsActivity extends PreferenceActivity {
         long time = System.currentTimeMillis();
         String suffix = "" + time + ".txt";
         File file = new File(dir, FILE_ALL_RECORDS.concat("" + suffix));
-        OutputStreamWriter outputStreamWriter = null;
-        FileOutputStream fileOutputStream = null;
+        OutputStreamWriter outputStreamWriter;
+        FileOutputStream fileOutputStream;
         try {
             fileOutputStream = new FileOutputStream(file);
             outputStreamWriter = new OutputStreamWriter(fileOutputStream);
@@ -269,8 +269,8 @@ public class SettingsActivity extends PreferenceActivity {
         long time = System.currentTimeMillis();
         String suffix = "" + time + ".txt";
         File file = new File(dir, FILE_LOGS.concat("" + suffix));
-        OutputStreamWriter outputStreamWriter = null;
-        FileOutputStream fileOutputStream = null;
+        OutputStreamWriter outputStreamWriter;
+        FileOutputStream fileOutputStream;
         try {
             fileOutputStream = new FileOutputStream(file);
             outputStreamWriter = new OutputStreamWriter(fileOutputStream);

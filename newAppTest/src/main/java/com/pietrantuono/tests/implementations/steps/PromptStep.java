@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 
 import com.pietrantuono.activities.MyOnCancelListener;
-import com.pietrantuono.tests.implementations.BluetoothConnectTest;
 import com.pietrantuono.tests.superclass.Test;
 
 public class PromptStep extends Test implements Step{

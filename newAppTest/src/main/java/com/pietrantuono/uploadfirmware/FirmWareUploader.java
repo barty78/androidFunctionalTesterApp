@@ -161,7 +161,7 @@ public class FirmWareUploader {
                 }
 
                 int addr = fl_start;
-                int len = 0;
+                int len;
                 byte[] buffer = new byte[252];
 
                 ByteArrayInputStream aInput = new ByteArrayInputStream(
@@ -803,9 +803,9 @@ public class FirmWareUploader {
 
     public interface UploaderListener {
 
-        public void onUploadSuccess();
+        void onUploadSuccess();
 
-        public void onUploadFailure(String error, int errorcode);
+        void onUploadFailure(String error, int errorcode);
     }
 
 

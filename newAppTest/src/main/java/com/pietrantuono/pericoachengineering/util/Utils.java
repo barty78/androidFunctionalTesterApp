@@ -6,40 +6,7 @@ package com.pietrantuono.pericoachengineering.util;
 import java.lang.reflect.Method;
 
 
-
-
-
-
-
-
-
-
-
-import com.pietrantuono.pericoach.newtestapp.R;
-
-
-
-
-
-
-import analytica.pericoach.android.ClosedTestResult;
-import analytica.pericoach.android.DBManager;
-import android.app.Activity;
-import android.app.AlertDialog;
-
-
-
 import android.bluetooth.BluetoothDevice;
-import android.content.DialogInterface;
-
-
-
-
-
-
-import android.util.Log;
-
-
 
 
 public class Utils {

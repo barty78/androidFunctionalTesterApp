@@ -33,7 +33,7 @@ public class AwakeModeCurrentTest extends Test {
 					activityListener.addFailOrPass(true, true, e1.toString());
 					return null;
 				}
-			float average = 0;
+			float average;
 			try {
 				average = ((Voltage.getVoltage(ioio, 42, 20) / (50 * 2)) * (float) 1e3);
 			} catch (Exception e) {
@@ -68,6 +68,7 @@ public class AwakeModeCurrentTest extends Test {
 	@Override
 	public void interrupt() {
 		super.interrupt();
-		try {Voltage.interrupt();}catch (Exception e){;}
+		try {Voltage.interrupt();}catch (Exception e){
+		}
 	}
 }

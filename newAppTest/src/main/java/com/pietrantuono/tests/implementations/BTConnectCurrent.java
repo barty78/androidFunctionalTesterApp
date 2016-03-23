@@ -8,7 +8,6 @@ import android.os.AsyncTask;
 import com.pietrantuono.ioioutils.Voltage;
 import com.pietrantuono.tests.superclass.Test;
 public class BTConnectCurrent extends Test {
-	private float average = 0;
 	public BTConnectCurrent(Activity activity, IOIO ioio) {
 		super(activity, ioio, "Current Measurement - Bluetooth Connected", false, false, 0, 0, 0);
 	}
@@ -28,6 +27,7 @@ public class BTConnectCurrent extends Test {
 			if(isinterrupted)return null;
 			DecimalFormat df = new DecimalFormat("##.##");
 			df.setRoundingMode(RoundingMode.DOWN);
+			float average = 0;
 			try {
 				average = ((Voltage.getVoltage(ioio, 42, 20,100) / (50 * 2)) * (float) 1e3);
 			} catch (Exception e) {

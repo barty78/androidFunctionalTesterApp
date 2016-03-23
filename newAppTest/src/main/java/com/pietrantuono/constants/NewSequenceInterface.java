@@ -6,8 +6,6 @@ import java.util.List;
 import com.pietrantuono.activities.MainActivity;
 import com.pietrantuono.tests.superclass.Test;
 
-import server.pojos.Device;
-
 @SuppressWarnings("unused")
 public interface NewSequenceInterface {
 

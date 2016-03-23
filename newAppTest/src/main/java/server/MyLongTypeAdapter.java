@@ -17,8 +17,7 @@ public class MyLongTypeAdapter extends TypeAdapter<Long>{
         }
         String stringValue = reader.nextString();
         try {
-        	Long value = Long.valueOf(stringValue);
-            return value;
+            return Long.valueOf(stringValue);
         } catch (NumberFormatException e) {
             return new Long(0);
         }

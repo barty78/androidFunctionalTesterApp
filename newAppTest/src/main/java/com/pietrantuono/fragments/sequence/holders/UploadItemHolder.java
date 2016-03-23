@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.crashlytics.android.Crashlytics;
-import com.github.lzyzsd.circleprogress.DonutProgress;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.iconics.view.IconicsImageView;
 import com.pietrantuono.fragments.sequence.SequenceRowElement;

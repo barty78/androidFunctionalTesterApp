@@ -530,9 +530,7 @@ public class IOIOUtils implements IOIOUtilsInterface {
         try {
             ioio_.sync();
             Log.d(TAG, "IOIO Syncing");
-        } catch (ConnectionLostException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
+        } catch (ConnectionLostException | InterruptedException e) {
             e.printStackTrace();
         }
     }
@@ -543,9 +541,7 @@ public class IOIOUtils implements IOIOUtilsInterface {
         try {
             getMaster().writeRead(0x60, false, writebyte, writebyte.length,
                     readbyte, readbyte.length);
-        } catch (ConnectionLostException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
+        } catch (ConnectionLostException | InterruptedException e) {
             e.printStackTrace();
         }
     }

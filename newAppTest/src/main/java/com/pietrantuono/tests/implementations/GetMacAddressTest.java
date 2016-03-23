@@ -1,7 +1,6 @@
 package com.pietrantuono.tests.implementations;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;

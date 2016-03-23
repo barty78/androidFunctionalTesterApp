@@ -17,8 +17,7 @@ public class MyDoubleTypeAdapter extends TypeAdapter<Double>{
         }
         String stringValue = reader.nextString();
         try {
-        	Double value = Double.valueOf(stringValue);
-            return value;
+            return Double.valueOf(stringValue);
         } catch (NumberFormatException e) {
             return new Double(0);
         }

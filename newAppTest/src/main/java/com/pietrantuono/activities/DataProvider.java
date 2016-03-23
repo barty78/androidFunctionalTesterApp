@@ -33,7 +33,7 @@ class DataProvider {
 	}
 	
 	public ArrayList<server.pojos.Job> getJobsFromDB() {	
-		ArrayList<server.pojos.Job> jobsFromdb=null;
+		ArrayList<server.pojos.Job> jobsFromdb;
 		DBManager db = (new DBManager(context));
 		ArrayList<analytica.pericoach.android.Job> jobs= new ArrayList<analytica.pericoach.android.Job>();
 		jobs.addAll(db.getAllActiveJobsForTest());

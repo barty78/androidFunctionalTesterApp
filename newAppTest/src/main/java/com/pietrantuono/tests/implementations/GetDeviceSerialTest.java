@@ -11,7 +11,6 @@ import com.pietrantuono.ioioutils.IOIOUtils;
 import com.pietrantuono.tests.superclass.Test;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.util.Log;
@@ -56,7 +55,7 @@ public class GetDeviceSerialTest extends Test {
             @Override
             public void run() {
                 activityListener.setSerial("");
-                String strFileContents = "";
+                String strFileContents;
                 if (IOIOUtils.getUtils().getUartLog().length() != 0) {        // Did we receive anything at all
 
                     if (IOIOUtils.getUtils().getUartLog().indexOf("itoa16: ") != -1) {

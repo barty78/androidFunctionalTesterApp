@@ -1,13 +1,9 @@
 package com.pietrantuono.tests.implementations;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.pietrantuono.activities.MyOnCancelListener;
 import com.pietrantuono.ioioutils.IOIOUtils;
 import com.pietrantuono.tests.superclass.Test;
 
@@ -40,11 +36,6 @@ public class ChargingTest extends Test {
 			report(e);
 			activityListener.addFailOrPass(true, false, "IOIO Fault");
 		}
-	}
-
-	@Override
-	public void interrupt() {
-		super.interrupt();
 	}
 
 	private class ChargingTestAsyncTask extends AsyncTask<Void,Void,Void>{

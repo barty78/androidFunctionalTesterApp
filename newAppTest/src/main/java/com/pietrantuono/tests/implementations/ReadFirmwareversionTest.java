@@ -1,7 +1,6 @@
 package com.pietrantuono.tests.implementations;
 
 import android.app.Activity;
-import android.os.Handler;
 
 import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.btutility.BTUtility;

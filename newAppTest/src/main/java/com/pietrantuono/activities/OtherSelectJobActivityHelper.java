@@ -49,7 +49,6 @@ public class OtherSelectJobActivityHelper {
         XMLTestsList xmlTestsList= new XMLTestsList();
         xmlTestsList.setXMLTests(xmlTests);
         Gson gson= new Gson();
-        String json=gson.toJson(xmlTestsList,XMLTestsList.class);
         RetrofitRestServices.getRest(context).postXMLTests(PeriCoachTestApplication.getDeviceid(), xmlTestsList, new Callback<Response>() {
             @Override
             public void success(Response response, retrofit.client.Response response2) {

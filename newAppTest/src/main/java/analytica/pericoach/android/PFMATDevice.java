@@ -1,7 +1,5 @@
 package analytica.pericoach.android;
 
-import java.lang.reflect.Method;
-
 import com.pietrantuono.pericoach.newtestapp.R;
 
 import android.app.AlertDialog;

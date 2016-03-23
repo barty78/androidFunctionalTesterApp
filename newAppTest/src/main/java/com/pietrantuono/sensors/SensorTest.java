@@ -5,7 +5,6 @@ import java.lang.ref.WeakReference;
 import java.util.concurrent.TimeoutException;
 
 import com.pietrantuono.activities.MainActivity;
-import com.pietrantuono.activities.NewIOIOActivityListener;
 import com.pietrantuono.constants.NewMSensorResult;
 import com.pietrantuono.ioioutils.IOIOUtils;
 import com.pietrantuono.pericoach.newtestapp.R;
@@ -15,7 +14,6 @@ import com.pietrantuono.tests.implementations.SensorTestWrapper;
 import android.app.Activity;
 import android.os.Handler;
 import android.os.HandlerThread;
-import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -24,7 +22,6 @@ import android.widget.Toast;
 import customclasses.DebugHelper;
 import hydrix.pfmat.generic.Force;
 import hydrix.pfmat.generic.SessionSamples;
-import hydrix.pfmat.generic.TestLimits;
 import server.pojos.Test;
 
 @SuppressWarnings("unused")
@@ -173,12 +170,7 @@ public class SensorTest {
             try {
 //                this.sensorsTestHelper.sendVoltages(voltage, zeroVoltage);
                   this.sensorsTestHelper.sendAllVoltages(voltage, zeroVoltage);
-            } catch (TimeoutException e) {
-                e.printStackTrace();
-                wrapper.setErrorcode((long) ErrorCodes.SENSORTEST_VOLTAGE_SETTING_FAILED);
-                ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - Setting Voltages Failed", true, testToBeParsed);
-                return;
-            } catch (NewDevice.InvalidVoltageException e) {
+            } catch (TimeoutException | NewDevice.InvalidVoltageException e) {
                 e.printStackTrace();
                 wrapper.setErrorcode((long) ErrorCodes.SENSORTEST_VOLTAGE_SETTING_FAILED);
                 ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - Setting Voltages Failed", true, testToBeParsed);

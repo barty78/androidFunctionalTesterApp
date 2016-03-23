@@ -2,24 +2,18 @@ package com.pietrantuono.sensors;
 
 import hydrix.pfmat.generic.Force;
 import hydrix.pfmat.generic.SessionSamples;
-import ioio.lib.api.IOIO;
 
 import java.lang.ref.WeakReference;
 import java.text.SimpleDateFormat;
-import java.util.concurrent.Callable;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 import android.app.Activity;
-import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.pietrantuono.activities.NewIOIOActivityListener;
-import com.pietrantuono.btutility.BTUtility;
 import com.pietrantuono.pericoach.newtestapp.R;
 
 public class SensorsTestHelper implements OnSampleCallback {

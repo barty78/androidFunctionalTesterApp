@@ -145,16 +145,16 @@ import android.widget.Toast;
             else {
             	if(dialog!=null && dialog.isShowing())dialog.dismiss();
                 Toast.makeText(context,"md5 check failed !!!", Toast.LENGTH_LONG).show();
-            	if(callback!=null)callback.onDownloadFileFailure();;
+            	if(callback!=null)callback.onDownloadFileFailure();
 
-            };
+            }
         }
     }
     
-    public static interface MyCallback{
+    public interface MyCallback{
     	
-    	public void onDownloadFileSuccess();
-    	public void onDownloadFileFailure();
+    	void onDownloadFileSuccess();
+    	void onDownloadFileFailure();
     	
     }
  }

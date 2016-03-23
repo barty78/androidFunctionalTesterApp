@@ -24,7 +24,7 @@ public class MagnetWakeDeviceTest extends Test{
 	@Override
 	public void interrupt() {
 		super.interrupt();
-		try {V_3V0_SW.close();}catch(Exception e){};
+		try {V_3V0_SW.close();}catch(Exception e){}
 	}
 
 	private class MagnetWakeDeviceTestAsyncTask extends SimpleAsyncTask {

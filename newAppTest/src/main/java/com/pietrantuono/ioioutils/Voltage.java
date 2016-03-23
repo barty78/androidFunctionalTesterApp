@@ -1,15 +1,10 @@
 package com.pietrantuono.ioioutils;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
 import android.os.Handler;
 import android.os.Looper;
-import android.support.annotation.IntDef;
-
-import com.pietrantuono.application.PeriCoachTestApplication;
 
 import ioio.lib.api.AnalogInput;
 import ioio.lib.api.IOIO;
@@ -17,7 +12,7 @@ import ioio.lib.api.IOIO;
 
 public class Voltage {
 	private static final DecimalFormat df = new DecimalFormat("##.##");
-	private static Boolean isinterrupted=false;;
+	private static Boolean isinterrupted=false;
 	private static int currentsleeptime=0;
 
 	public enum Units {
@@ -76,8 +71,7 @@ public class Voltage {
 			throw new Exception("Unable to open Analog Input");
 
 		float total = 0;
-		int numsamples = numberofreadings;
-		for (int i = 0; i < numsamples; i++) {
+		for (int i = 0; i < numberofreadings; i++) {
 			if(isinterrupted)break;
 			System.out.printf("Total = %.2f\n", total);
 			total = total + analogInput.getVoltage();
@@ -86,7 +80,7 @@ public class Voltage {
 			}
 		}
 		analogInput.close();
-		float average = total / numsamples;
+		float average = total / numberofreadings;
 		System.out.printf("Average = %.2f\n", average);
 		return average;
 	}
@@ -142,8 +136,8 @@ public class Voltage {
 		}
 		return new Result(success, average);
 		
-	};
-	
+	}
+
 	public static class Result{
 		private final float reading;
 		private final String readingString;

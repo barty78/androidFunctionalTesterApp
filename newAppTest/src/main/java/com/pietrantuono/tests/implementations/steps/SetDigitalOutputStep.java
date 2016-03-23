@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.util.Log;
 
 import com.pietrantuono.ioioutils.IOIOUtils;
-import com.pietrantuono.tests.implementations.AccelerometerSelfTest;
 import com.pietrantuono.tests.superclass.SimpleAsyncTask;
 import com.pietrantuono.tests.superclass.Test;
 

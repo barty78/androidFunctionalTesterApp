@@ -1,12 +1,10 @@
 package com.pietrantuono.recordsdb;
 
 import android.content.ContentValues;
-import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.pietrantuono.recordsdb.RecordsContract;
-import com.pietrantuono.recordsdb.OldRecordsHelper;
 
 import java.util.ArrayList;
 import java.util.List;

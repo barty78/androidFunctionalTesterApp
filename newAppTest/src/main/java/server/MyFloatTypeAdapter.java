@@ -17,8 +17,7 @@ class MyFloatTypeAdapter extends TypeAdapter<Float>{
         }
         String stringValue = reader.nextString();
         try {
-            Float value = Float.valueOf(stringValue);
-            return value;
+            return Float.valueOf(stringValue);
         } catch (NumberFormatException e) {
             return new Float(0);
         }

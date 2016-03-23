@@ -3,9 +3,7 @@ package com.pietrantuono.sequencedb;
 import android.content.ContentProvider;
 import android.content.ContentUris;
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.UriMatcher;
-import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -38,8 +36,8 @@ public class SequenceProvider extends ContentProvider {
     @Nullable
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
-        String table = "";
-        String id = "";
+        String table;
+        String id;
         switch (sUriMatcher.match(uri)) {
             case RECORDS:
                 table = SequenceContracts.Records.TABLE_RECORDS;

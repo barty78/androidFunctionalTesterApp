@@ -5,14 +5,12 @@ import java.util.List;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.pietrantuono.activities.OtherSelectJobActivityHelper;
-import com.pietrantuono.ioioutils.Current;
 import com.pietrantuono.pericoach.newtestapp.BuildConfig;
 import com.pietrantuono.pericoach.newtestapp.R;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.util.Log;
 
 import retrofit.Callback;
 import retrofit.RestAdapter;
@@ -22,7 +20,6 @@ import retrofit.http.Body;
 import retrofit.http.GET;
 import retrofit.http.Header;
 import retrofit.http.POST;
-import server.pojos.Device;
 import server.pojos.DevicesList;
 import server.pojos.Firmware;
 import server.pojos.Job;
@@ -67,7 +64,7 @@ public class RetrofitRestServices {
 
     public synchronized static REST getRest(Context context) {
         if (rest == null) {
-            String ENDPOINT = null;
+            String ENDPOINT;
             SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
             boolean use_default = sharedPref.getBoolean("use_default_url", false);
 

@@ -1,12 +1,10 @@
 package com.pietrantuono.tests.implementations.upload;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
-import com.pietrantuono.fragments.sequence.holders.UploadItemHolder;
 import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.tests.superclass.Test;
 import com.pietrantuono.uploadfirmware.DummyFirmWareUploader;

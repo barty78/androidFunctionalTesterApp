@@ -3,7 +3,6 @@ package com.pietrantuono.activities;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -106,8 +105,7 @@ public class JobHolder extends RecyclerView.ViewHolder{
         num_of_devices.setText("" + numberOfDevices);
         devices_passed.setText(""+numberOfDevicesPassed);
         devices_failed.setText("" + numberOfDevicesFailed);
-        float numberOfDevicesFloat=numberOfDevices;
-        progress_stats.setProgress((int)((numberOfDevicesPassed / numberOfDevicesFloat)*100));
+        progress_stats.setProgress((int)((numberOfDevicesPassed / (float) numberOfDevices)*100));
     }
 
 

@@ -10,19 +10,14 @@ import ioio.lib.api.DigitalInput;
 import ioio.lib.api.DigitalOutput;
 import ioio.lib.api.IOIO;
 import ioio.lib.api.Uart;
-import server.pojos.Device;
 import server.pojos.Job;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.Toast;
 
-import com.pietrantuono.activities.MyOnCancelListener;
 import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.devicesprovider.DevicesContentProvider;
 import com.pietrantuono.ioioutils.IOIOUtils;
@@ -74,7 +69,6 @@ public class GetBarcodeTest extends Test {
                 activityListener.addFailOrPass("", true, false, description + " - Invalid Barcode");
                 return;
             }
-            ;
             if (PeriCoachTestApplication.getCurrentJob().getTesttypeId() == 2) {//OPEN TEST
                 // For open test it doesn't really need anything, but maybe for completeness we should use stage_dep and make sure status is 0
                 // so status == stage_dep
@@ -155,7 +149,7 @@ public class GetBarcodeTest extends Test {
         {
             return true;
         }
-        String barcodeprefix = null;
+        String barcodeprefix;
         try {
             barcodeprefix = code.substring(0, job.getBarcodeprefix().length());
 
@@ -170,7 +164,7 @@ public class GetBarcodeTest extends Test {
         if (!barcodeprefix.equalsIgnoreCase(job.getBarcodeprefix())) {
             return false;
         }
-        String quantityString = null;
+        String quantityString;
         try {
             quantityString = code.substring(job.getBarcodeprefix().length(), code.length());
             Log.d(TAG, "Expected Number is " + job.getQuantity() + " | " +

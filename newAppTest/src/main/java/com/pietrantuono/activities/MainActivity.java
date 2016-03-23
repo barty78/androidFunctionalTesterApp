@@ -534,7 +534,6 @@ public class MainActivity extends AppCompatActivity
             e.printStackTrace();
         }
         uiHelper.addSensorTestCompletedRow(mSensorResult, recordId);
-        Handler h = new Handler(android.os.Looper.getMainLooper());
         Handler handler = new Handler(getMainLooper());
         handler.postDelayed(new Runnable() {
             @Override
@@ -715,7 +714,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     public NewSequenceInterface getNewSequence() {
-        NewSequenceInterface newSequenceInterface = null;
+        NewSequenceInterface newSequenceInterface;
         if (job.getTestId() == 999) {
             newSequenceInterface = new NewSequence(MainActivity.this, myIOIO, job);
         } else {

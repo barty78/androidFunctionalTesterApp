@@ -2,8 +2,8 @@ package com.pietrantuono.ioioutils;
 
 public interface PCBConnectedCallback {
 	
-	public void onPCBConnectedStartNewSequence();
-	public void onPCBDisconnected();
-	public void onPCBSleep();
+	void onPCBConnectedStartNewSequence();
+	void onPCBDisconnected();
+	void onPCBSleep();
 
 }

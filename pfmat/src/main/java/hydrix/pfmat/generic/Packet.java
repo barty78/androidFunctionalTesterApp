@@ -11,7 +11,8 @@ public class Packet
 	private final byte mPacketType;
 	
 	// Return value for peekStream
-	public static enum PeekResult {STREAM_CORRUPT, STREAM_INCOMPLETE, STREAM_COMPLETE};
+	public static enum PeekResult {STREAM_CORRUPT, STREAM_INCOMPLETE, STREAM_COMPLETE}
+
 	public static class PeekInfo
 	{
 		// Members

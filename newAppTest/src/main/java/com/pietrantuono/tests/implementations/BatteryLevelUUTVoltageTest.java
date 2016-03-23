@@ -8,7 +8,6 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.pietrantuono.ioioutils.IOIOUtils;
-import com.pietrantuono.ioioutils.Voltage;
 import com.pietrantuono.tests.superclass.Test;
 
 import ioio.lib.api.IOIO;
@@ -92,6 +91,6 @@ public class BatteryLevelUUTVoltageTest extends Test {
 
     @SuppressWarnings("unused")
     public interface Callback {
-        public void onResultReceived(short battLevel);
+        void onResultReceived(short battLevel);
     }
 }

@@ -14,7 +14,6 @@ import static com.pietrantuono.ioioutils.Current.*;
 public class CurrentTest extends Test {
 	private final int pinNumber;
 	private final Boolean isNominal;
-	private final int gain = 50;
 	private int Rshunt;
 	private @Units
 	final
@@ -47,7 +46,8 @@ public class CurrentTest extends Test {
 	@Override
 	public void interrupt() {
 		super.interrupt();
-		try {Current.interrupt();}catch (Exception e){;}
+		try {Current.interrupt();}catch (Exception e){
+		}
 	}
 
 	private class CurrentTestAsyncTask extends AsyncTask<Void,Void,Void>{
@@ -83,6 +83,7 @@ public class CurrentTest extends Test {
 			}
 
 			try {
+				int gain = 50;
 				result =
 						checkCurrent(ioio, pinNumber, gain, Rshunt, units, isNominal, limitParam1, limitParam2);
 			} catch (Exception e) {

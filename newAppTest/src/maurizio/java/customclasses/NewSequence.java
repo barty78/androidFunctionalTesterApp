@@ -12,14 +12,10 @@ import com.pietrantuono.activities.MainActivity;
 import com.pietrantuono.constants.NewMResult;
 import com.pietrantuono.constants.NewMSensorResult;
 import com.pietrantuono.constants.NewSequenceInterface;
-import com.pietrantuono.tests.implementations.BluetoothConnectTest;
 import com.pietrantuono.tests.implementations.BluetoothConnectTestForTesting;
 import com.pietrantuono.tests.implementations.GetMacAddressTest;
-import com.pietrantuono.tests.implementations.ReadDeviceInfoSerialNumberTest;
 import com.pietrantuono.tests.implementations.SensorTestWrapper;
 import com.pietrantuono.tests.implementations.steps.Step;
-import com.pietrantuono.tests.implementations.upload.DummyUploadFirmwareTest;
-import com.pietrantuono.tests.implementations.upload.TestUploadFirmwareTest;
 import com.pietrantuono.tests.superclass.Test;
 
 import org.joda.time.DateTime;
@@ -28,7 +24,6 @@ import org.joda.time.format.PeriodFormatter;
 import org.joda.time.format.PeriodFormatterBuilder;
 
 import server.TestsParser;
-import server.pojos.Device;
 import server.pojos.Job;
 import ioio.lib.api.IOIO;
 import server.pojos.Sequence;

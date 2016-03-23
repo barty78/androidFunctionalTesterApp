@@ -1,8 +1,5 @@
 package customclasses;
 
-import android.content.Context;
-import android.provider.Settings;
-
 /**
  * Created by mauriziopietrantuono on 04/12/15.
  */

@@ -365,7 +365,6 @@ public abstract class NewDevice {
 
                     case PFMAT.RX_ALL_VOLTAGE: {
                         Log.d(TAG,"handlePacket: got all voltages data");
-                        PacketRx_SetAllVoltage data = (PacketRx_SetAllVoltage) packet;
 //                        onAllVoltage(data.VoltageFailed());
                         onAllVoltage();
                         break;

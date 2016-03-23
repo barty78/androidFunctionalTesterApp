@@ -4,7 +4,6 @@ package server.pojos;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.gson.Gson;
 import com.google.gson.annotations.Expose;
 
 public class Sequence {

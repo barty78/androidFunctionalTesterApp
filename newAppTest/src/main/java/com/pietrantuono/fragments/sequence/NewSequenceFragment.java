@@ -18,7 +18,6 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.pietrantuono.constants.NewSequenceInterface;
 import com.pietrantuono.pericoach.newtestapp.R;
 import com.pietrantuono.sequencedb.SequenceContracts;
 import com.pietrantuono.sequencedb.SequenceProvider;
@@ -40,8 +39,7 @@ public class NewSequenceFragment extends Fragment implements LoaderManager.Loade
     }
 
     public static NewSequenceFragment newInstance() {
-        NewSequenceFragment fragment = new NewSequenceFragment();
-        return fragment;
+        return new NewSequenceFragment();
     }
 
     @Override

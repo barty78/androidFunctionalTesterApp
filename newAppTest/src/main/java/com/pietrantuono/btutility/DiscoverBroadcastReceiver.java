@@ -20,7 +20,6 @@ public class DiscoverBroadcastReceiver extends BroadcastReceiver {
 	private Boolean found;
 	private static final ExecutorService executor = Executors.newFixedThreadPool(1);
 	private static final String TAG = "DiscoverBroadcastReceiver";
-	private Future<Boolean> future;
 
 	public DiscoverBroadcastReceiver(String serial)
 			throws OuuuuuchSerialNotValidException {
@@ -70,10 +69,10 @@ public class DiscoverBroadcastReceiver extends BroadcastReceiver {
 
 		};
 
-		future = executor.submit(getfound);
+		Future<Boolean> future = executor.submit(getfound);
 
 		try {
-			found = future.get( 60 * 1000, TimeUnit.MILLISECONDS);
+			found = future.get(60 * 1000, TimeUnit.MILLISECONDS);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

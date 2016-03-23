@@ -2,8 +2,8 @@ package com.pietrantuono.activities.uihelper;
 
 public interface MyDialogInterface {
 
-	public void yes();
+	void yes();
 	
-	public void no();
+	void no();
 	
 }

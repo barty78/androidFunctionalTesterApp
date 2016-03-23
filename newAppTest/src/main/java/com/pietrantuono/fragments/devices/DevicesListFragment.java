@@ -28,7 +28,6 @@ import server.pojos.Job;
 
 public class DevicesListFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
     private static final int LOADER = 1;
-    private RecyclerView recyclerView;
     private Context context;
     private MultiStateView state;
     private SwipeRefreshLayout swiper;
@@ -41,8 +40,7 @@ public class DevicesListFragment extends Fragment implements LoaderManager.Loade
     }
 
     public static DevicesListFragment newInstance() {
-        DevicesListFragment fragment = new DevicesListFragment();
-        return fragment;
+        return new DevicesListFragment();
     }
 
     @Override
@@ -72,7 +70,7 @@ public class DevicesListFragment extends Fragment implements LoaderManager.Loade
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.devices_list_fragment, container, false);
-        recyclerView = (RecyclerView) v.findViewById(R.id.list);
+        RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.list);
         state = (MultiStateView) v.findViewById(R.id.state);
         swiper = (SwipeRefreshLayout) v.findViewById(R.id.swiper);
         swiper.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -175,9 +173,8 @@ public class DevicesListFragment extends Fragment implements LoaderManager.Loade
     private String getSelection() {
         if (!thisJobOnly) return null;
         Job job = PeriCoachTestApplication.getCurrentJob();
-        String selection =Contract.DevicesColumns.DEVICES_JOB_ID + "= "+job.getId()+
+        return Contract.DevicesColumns.DEVICES_JOB_ID + "= "+job.getId()+
                 " AND " + "(" + Contract.DevicesColumns.DEVICES_EXEC_TESTS + " & "+job.getTesttypeId()+") = "+job.getTesttypeId();
-        return selection;
     }
 
     @Override

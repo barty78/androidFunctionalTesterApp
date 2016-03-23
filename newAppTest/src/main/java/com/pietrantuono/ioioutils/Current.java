@@ -12,7 +12,7 @@ import ioio.lib.api.IOIO;
 
 public class Current {
 	private static final DecimalFormat df = new DecimalFormat("##.##");
-	private static Boolean isinterrupted=false;;
+	private static Boolean isinterrupted=false;
 	private static int currentsleeptime=0;
 
 	//@Units
@@ -86,24 +86,22 @@ public class Current {
 			throw new Exception("IOIO is null!");
 		if (pinNumber == 0)
 			throw new Exception("Pin number is 0");
-		AnalogInput analogInput = null;
-		analogInput = ioio.openAnalogInput(pinNumber);
+		AnalogInput analogInput = ioio.openAnalogInput(pinNumber);
 		if (analogInput == null)
 			throw new Exception("Unable to open Analog Input");
 
 		float total = 0;
-		int numsamples = numberofreadings;
-		for (int i = 0; i < numsamples; i++) {
+		for (int i = 0; i < numberofreadings; i++) {
 			if(isinterrupted)break;
 			total = total + analogInput.getVoltage();
 			Thread.sleep(sleeptime);
 		}
 		analogInput.close();
-		float average = (float) (((total / numsamples) / (gain * Rshunt)) * units);
+		float average = (float) (((total / numberofreadings) / (gain * Rshunt)) * units);
 		Log.d("GAIN", String.valueOf(gain));
 		Log.d("SHUNT", String.valueOf(Rshunt));
 		Log.d("UNITS", String.valueOf(units));
-		Log.d("VOLTAGE", String.valueOf(total/numsamples));
+		Log.d("VOLTAGE", String.valueOf(total/ numberofreadings));
 		Log.d("CURRENT", String.valueOf(average));
 		return average;
 	}
@@ -139,8 +137,8 @@ public class Current {
 			return new Result(success, average, units);
 		}
 		
-	};
-	
+	}
+
 	public static class Result{
 		private final float reading;
 		private String readingString;

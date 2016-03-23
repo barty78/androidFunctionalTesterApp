@@ -5,10 +5,6 @@ import hydrix.pfmat.generic.Result;
 import hydrix.pfmat.generic.TEST;
 import hydrix.pfmat.generic.TestSamples;
 
-import java.util.ArrayList;
-
-import android.util.Log;
-
 @SuppressWarnings("unused")
 public class ClosedTestResult {
 	

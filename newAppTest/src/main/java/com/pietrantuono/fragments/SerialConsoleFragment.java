@@ -23,8 +23,7 @@ public class SerialConsoleFragment extends Fragment implements SerialConsoleFrag
     }
 
     public static SerialConsoleFragment newInstance() {
-        SerialConsoleFragment fragment = new SerialConsoleFragment();
-        return fragment;
+        return new SerialConsoleFragment();
     }
 
     @Override
