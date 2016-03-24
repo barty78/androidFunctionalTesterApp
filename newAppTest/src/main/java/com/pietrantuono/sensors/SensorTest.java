@@ -41,6 +41,7 @@ public class SensorTest {
     protected Boolean stopped = false;
     public boolean isTest = false;
     Test testToBeParsed;
+    private boolean interrupted;
 
     public void setSensorsTestHelper(SensorsTestHelper sensorsTestHelper) {
         this.sensorsTestHelper = sensorsTestHelper;
@@ -208,6 +209,10 @@ public class SensorTest {
 
     public NewMSensorResult endTest() {
         if (stopped) return mSensorResult;
+        if(interrupted){
+
+            return mSensorResult;
+        }
         sensorsTestHelper.accetpData(false);
         sensorsTestHelper.stop();
 
@@ -387,5 +392,10 @@ public class SensorTest {
 
     public void setTestToBeParsed(Test testToBeParsed) {
         this.testToBeParsed = testToBeParsed;
+    }
+
+    public void interrupt() {
+        interrupted = true;
+        stop();
     }
 }

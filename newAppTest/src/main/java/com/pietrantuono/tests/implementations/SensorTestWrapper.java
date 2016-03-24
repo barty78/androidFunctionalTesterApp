@@ -91,7 +91,7 @@ public class SensorTestWrapper extends Test {
     public void interrupt() {
         super.interrupt();
         try {
-            sensorTest.stop();
+            sensorTest.interrupt();
         } catch (Exception e) {
         }
         try {
@@ -137,4 +137,6 @@ public class SensorTestWrapper extends Test {
             return null;
         }
     }
+
+
 }
