@@ -11,6 +11,7 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
+import com.pietrantuono.activities.ActivtyWrapper;
 import com.pietrantuono.activities.NewIOIOActivityListener;
 import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.ioioutils.IOIOUtils;
@@ -46,6 +47,8 @@ import hydrix.pfmat.generic.Device;
 
 public class BTUtility {
     private final String TAG = getClass().getSimpleName();
+    private ActivtyWrapper callback = null;
+
     private WeakReference<Activity> activityRef;
     private final BluetoothAdapter mBTAdapter = BluetoothAdapter.getDefaultAdapter();
     private ArrayList<ConnectDeviceItem> mListItems = null;
@@ -96,6 +99,10 @@ public class BTUtility {
                                 .notifyScannedDevice(device, null);
                     onDiscoverDevice(device);
                 }
+            } else if (BluetoothDevice.ACTION_ACL_DISCONNECTED.equals(intent.getAction())) {
+                Log.d(TAG, "Device Disconnected");
+                //TODO - If test is running, we need to stop.
+                callback.onPCBConnectionLostRestartSequence();
             }
             // If we aren't connected to a device and discovery finished, kick
             // off a new discovery.
