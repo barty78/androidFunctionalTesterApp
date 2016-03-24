@@ -63,7 +63,7 @@ public class ClosedTest extends SensorTest {
     public void execute() {
         if (stopped) return;
         if (interrupted) {
-            ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Test interupted", true, testToBeParsed);
+            ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Test interrupted", true, testToBeParsed);
             return;
         }
         sensorsTestHelper.closedtestsamplesrefsensor0.clear();
@@ -153,7 +153,7 @@ public class ClosedTest extends SensorTest {
     public NewMSensorResult endTest() {
         if (stopped) return mSensorResult;
         if (interrupted) {
-            ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Test interupted", true, testToBeParsed);
+            ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Test interrupted", true, testToBeParsed);
             return mSensorResult;
         }
         sensorsTestHelper.accetpData(false);
@@ -345,7 +345,7 @@ public class ClosedTest extends SensorTest {
     private void executeSensor0() {
         if (stopped) return;
         if (interrupted) {
-            ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Test interupted", true, testToBeParsed);
+            ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Test interrupted", true, testToBeParsed);
             return;
         }
         sensorsTestHelper.accetpData(true);
@@ -414,7 +414,7 @@ public class ClosedTest extends SensorTest {
 
     private void executeSensor1() {
         if (interrupted) {
-            ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Test interupted", true, testToBeParsed);
+            ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Test interrupted", true, testToBeParsed);
             return;
         }
         sensorsTestHelper.accetpData(true);
@@ -483,7 +483,7 @@ public class ClosedTest extends SensorTest {
 
     private void executeSensor2() {
         if (interrupted) {
-            ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Test interupted", true, testToBeParsed);
+            ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Test interrupted", true, testToBeParsed);
             return;
         }
         sensorsTestHelper.accetpData(true);
