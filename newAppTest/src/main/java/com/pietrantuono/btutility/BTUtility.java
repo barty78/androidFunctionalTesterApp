@@ -68,8 +68,6 @@ public class BTUtility {
     private Boolean isstopped = false;
     private Test bluetoothConnectTest;
     private int retries = 0;
-
-    @SuppressWarnings("unused")
     private static Activity activity;
     private ExecutorService executor;
     private boolean interrupt = false;
