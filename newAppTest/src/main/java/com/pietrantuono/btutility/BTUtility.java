@@ -100,7 +100,8 @@ public class BTUtility {
                     onDiscoverDevice(device);
                 }
             } else if (BluetoothDevice.ACTION_ACL_DISCONNECTED.equals(intent.getAction())) {
-                Log.d(TAG, "Device Disconnected");
+                BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                Log.d(TAG, "Device Disconnected - " + device.getName());
                 //TODO - If test is running, we need to stop.
                 callback.onPCBConnectionLostRestartSequence();
             }
@@ -173,6 +174,7 @@ public class BTUtility {
         // Register for BT device discovery broadcast events
         IntentFilter eventFilter = new IntentFilter();
         eventFilter.addAction(BluetoothDevice.ACTION_FOUND);
+        eventFilter.addAction(BluetoothDevice.ACTION_ACL_DISCONNECTED);
         eventFilter.addAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
         eventFilter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
         Activity activity = activityRef.get();
