@@ -17,7 +17,8 @@ public interface ErrorCodes {
     int SENSORTEST_NO_DRIVE_VOLTAGE_SET = 5;
     int SENSORTEST_NO_ZERO_VOLTAGE_SET = 6;
     int SENSORTEST_NO_LOAD_SET = 7;
-
+    int SENSOR_STEP_VOLTAGE_SET_ERROR = 31;
+    int SENSOR_TEST_BT_CONNECTION_LOST = 32;
     // Firmware Upload Errors
     int FIRMWAREUPLOAD_INIT_FAILED = 8;
     int FIRMWAREUPLOAD_GET_INFO_FAILED = 9;
@@ -45,8 +46,6 @@ public interface ErrorCodes {
 
     int ACCELEROMETER_SELF_TEST_ERROR = 50;
     int ACCELEROMETER_INT_PIN_ERROR = 51;
-
-    int SENSOR_STEP_VOLTAGE_SET_ERROR = 31;
 
     int GENERIC_FAILURE = 100;
 

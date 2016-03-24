@@ -31,7 +31,7 @@ public class SensorTest {
     public final float lowerLimit;
     public final float upperLimit;
     public final float varLimit;
-    private final SensorTestWrapper wrapper;
+    public final SensorTestWrapper wrapper;
     protected SensorsTestHelper sensorsTestHelper;
     protected WeakReference<Activity> activity = null;
     protected short voltage = -1;
@@ -101,6 +101,7 @@ public class SensorTest {
     public void execute() {
         if (stopped) return;
         if (interrupted) {
+            wrapper.setErrorcode((long) ErrorCodes.SENSOR_TEST_BT_CONNECTION_LOST);
             ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - BT connection lost", true, testToBeParsed);
             return;
         }
@@ -214,6 +215,7 @@ public class SensorTest {
     public NewMSensorResult endTest() {
         if (stopped) return mSensorResult;
         if (interrupted) {
+            wrapper.setErrorcode((long) ErrorCodes.SENSOR_TEST_BT_CONNECTION_LOST);
             ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - BT connection lost", true, testToBeParsed);
             return mSensorResult;
         }

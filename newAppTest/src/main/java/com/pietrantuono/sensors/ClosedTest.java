@@ -4,6 +4,7 @@ import com.pietrantuono.activities.MainActivity;
 import com.pietrantuono.constants.NewMSensorResult;
 import com.pietrantuono.ioioutils.IOIOUtils;
 import com.pietrantuono.pericoach.newtestapp.R;
+import com.pietrantuono.tests.ErrorCodes;
 import com.pietrantuono.tests.implementations.SensorTestWrapper;
 
 import android.app.Activity;
@@ -63,6 +64,7 @@ public class ClosedTest extends SensorTest {
     public void execute() {
         if (stopped) return;
         if (interrupted) {
+            wrapper.setErrorcode((long) ErrorCodes.SENSOR_TEST_BT_CONNECTION_LOST);
             ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Test interrupted", true, testToBeParsed);
             return;
         }
@@ -153,6 +155,7 @@ public class ClosedTest extends SensorTest {
     public NewMSensorResult endTest() {
         if (stopped) return mSensorResult;
         if (interrupted) {
+            wrapper.setErrorcode((long) ErrorCodes.SENSOR_TEST_BT_CONNECTION_LOST);
             ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Test interrupted", true, testToBeParsed);
             return mSensorResult;
         }
@@ -345,6 +348,7 @@ public class ClosedTest extends SensorTest {
     private void executeSensor0() {
         if (stopped) return;
         if (interrupted) {
+            wrapper.setErrorcode((long) ErrorCodes.SENSOR_TEST_BT_CONNECTION_LOST);
             ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Test interrupted", true, testToBeParsed);
             return;
         }
@@ -414,6 +418,7 @@ public class ClosedTest extends SensorTest {
 
     private void executeSensor1() {
         if (interrupted) {
+            wrapper.setErrorcode((long) ErrorCodes.SENSOR_TEST_BT_CONNECTION_LOST);
             ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Test interrupted", true, testToBeParsed);
             return;
         }
@@ -483,6 +488,7 @@ public class ClosedTest extends SensorTest {
 
     private void executeSensor2() {
         if (interrupted) {
+            wrapper.setErrorcode((long) ErrorCodes.SENSOR_TEST_BT_CONNECTION_LOST);
             ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Test interrupted", true, testToBeParsed);
             return;
         }
@@ -546,12 +552,16 @@ public class ClosedTest extends SensorTest {
     public NewMSensorResult getSensorResult() {
         return mSensorResult;
     }
+
     @Override
     public void interrupt() {
         interrupted = true;
         stop();
-        if(dialog!=null && dialog.isShowing()){
-            try {dialog.dismiss();}catch(Exception ignored){}
+        if (dialog != null && dialog.isShowing()) {
+            try {
+                dialog.dismiss();
+            } catch (Exception ignored) {
+            }
         }
     }
 }
