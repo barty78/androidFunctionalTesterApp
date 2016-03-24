@@ -68,8 +68,6 @@ public class BTUtility {
     private Boolean isstopped = false;
     private Test bluetoothConnectTest;
     private int retries = 0;
-
-    @SuppressWarnings("unused")
     private static Activity activity;
     private ExecutorService executor;
     private boolean interrupt = false;
@@ -102,8 +100,10 @@ public class BTUtility {
             } else if (BluetoothDevice.ACTION_ACL_DISCONNECTED.equals(intent.getAction())) {
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 Log.d(TAG, "Device Disconnected - " + device.getName());
-                //TODO - If test is running, we need to stop.
-                callback.onPCBConnectionLostRestartSequence();
+                if (device.getName() != ""
+                        && (device.getName().contains("PeriCoach-" + scancode))) {
+                    callback.onPCBConnectionLostRestartSequence();
+                }
             }
             // If we aren't connected to a device and discovery finished, kick
             // off a new discovery.
@@ -141,7 +141,7 @@ public class BTUtility {
             }
         });
         executor = Executors.newFixedThreadPool(1);
-        callback= (ActivtyWrapper) activity1;
+        callback = (ActivtyWrapper) activity1;
     }
 
     private void onConnectFailed() {
@@ -526,8 +526,8 @@ public class BTUtility {
         }
         try {
             boolean notTimedout = countDownLatch.await(timeOutInMills, TimeUnit.MILLISECONDS);
-            Log.d(TAG,"Timed out = "+notTimedout);
-            if(!notTimedout)throw new TimeoutException("Set all voltages timed out");
+            Log.d(TAG, "Timed out = " + notTimedout);
+            if (!notTimedout) throw new TimeoutException("Set all voltages timed out");
         } catch (InterruptedException e) {
             e.printStackTrace();
             return;
@@ -628,7 +628,7 @@ public class BTUtility {
             @Override
             public void run() {
                 if (NewPFMATDevice.getDevice() != null) {
-                    NewPFMATDevice.getDevice().sendSleep((byte)0, (short) 100);
+                    NewPFMATDevice.getDevice().sendSleep((byte) 0, (short) 100);
                 }
             }
         }, 200);
