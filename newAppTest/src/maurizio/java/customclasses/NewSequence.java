@@ -428,6 +428,8 @@ public class NewSequence implements NewSequenceInterface {
         sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 0, 50, 50,
                 "Sensor Input TEST, LOADED, GAIN/ZERO @ 127/50"));
 
+        sequence.add(new SensorTestWrapper(true, activity, ioio, 3, 0, 50, 50,
+                "Sensor Input TEST, LOADED, GAIN/ZERO @ 127/50"));
     }
 
 

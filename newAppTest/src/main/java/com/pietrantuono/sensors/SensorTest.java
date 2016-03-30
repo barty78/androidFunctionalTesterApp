@@ -31,7 +31,7 @@ public class SensorTest {
     public final float lowerLimit;
     public final float upperLimit;
     public final float varLimit;
-    private final SensorTestWrapper wrapper;
+    public final SensorTestWrapper wrapper;
     protected SensorsTestHelper sensorsTestHelper;
     protected WeakReference<Activity> activity = null;
     protected short voltage = -1;
@@ -41,23 +41,24 @@ public class SensorTest {
     protected Boolean stopped = false;
     public boolean isTest = false;
     Test testToBeParsed;
+    private boolean interrupted;
 
     public void setSensorsTestHelper(SensorsTestHelper sensorsTestHelper) {
         this.sensorsTestHelper = sensorsTestHelper;
     }
 
-	public SensorTest(Activity activity, SensorTestWrapper wrapper, float lowerLimit, float upperLimit, float varLimit) {
-		Log.d("SensorTest", "constucor");
-		this.activity = new WeakReference<Activity>(activity);
-		this.mSensorResult=new NewMSensorResult(wrapper);
-		this.mSensorResult.setDescription(wrapper.getDescription());
-		this.lowerLimit=lowerLimit;
-		this.upperLimit=upperLimit;
-		this.varLimit=varLimit;
-		this.voltage=wrapper.getVoltage();
-		this.zeroVoltage=wrapper.getZeroVoltage();
-		this.load=wrapper.getLoad();
-		this.wrapper=wrapper;
+    public SensorTest(Activity activity, SensorTestWrapper wrapper, float lowerLimit, float upperLimit, float varLimit) {
+        Log.d("SensorTest", "constucor");
+        this.activity = new WeakReference<Activity>(activity);
+        this.mSensorResult = new NewMSensorResult(wrapper);
+        this.mSensorResult.setDescription(wrapper.getDescription());
+        this.lowerLimit = lowerLimit;
+        this.upperLimit = upperLimit;
+        this.varLimit = varLimit;
+        this.voltage = wrapper.getVoltage();
+        this.zeroVoltage = wrapper.getZeroVoltage();
+        this.load = wrapper.getLoad();
+        this.wrapper = wrapper;
 
     }
 
@@ -99,6 +100,11 @@ public class SensorTest {
 
     public void execute() {
         if (stopped) return;
+        if (interrupted) {
+            wrapper.setErrorcode((long) ErrorCodes.SENSOR_TEST_BT_CONNECTION_LOST);
+            ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - BT connection lost", true, testToBeParsed);
+            return;
+        }
         sensorsTestHelper.samplesref.clear();
         sensorsTestHelper.samplingSensor0 = true;
         sensorsTestHelper.samplingSensor1 = true;
@@ -169,7 +175,7 @@ public class SensorTest {
         if (!DebugHelper.isMaurizioDebug()) {
             try {
 //                this.sensorsTestHelper.sendVoltages(voltage, zeroVoltage);
-                  this.sensorsTestHelper.sendAllVoltages(voltage, zeroVoltage);
+                this.sensorsTestHelper.sendAllVoltages(voltage, zeroVoltage);
             } catch (TimeoutException | NewDevice.InvalidVoltageException e) {
                 e.printStackTrace();
                 wrapper.setErrorcode((long) ErrorCodes.SENSORTEST_VOLTAGE_SETTING_FAILED);
@@ -208,6 +214,11 @@ public class SensorTest {
 
     public NewMSensorResult endTest() {
         if (stopped) return mSensorResult;
+        if (interrupted) {
+            wrapper.setErrorcode((long) ErrorCodes.SENSOR_TEST_BT_CONNECTION_LOST);
+            ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - BT connection lost", true, testToBeParsed);
+            return mSensorResult;
+        }
         sensorsTestHelper.accetpData(false);
         sensorsTestHelper.stop();
 
@@ -387,5 +398,10 @@ public class SensorTest {
 
     public void setTestToBeParsed(Test testToBeParsed) {
         this.testToBeParsed = testToBeParsed;
+    }
+
+    public void interrupt() {
+        interrupted = true;
+        stop();
     }
 }

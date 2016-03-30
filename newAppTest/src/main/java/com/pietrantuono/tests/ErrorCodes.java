@@ -47,6 +47,7 @@ public interface ErrorCodes {
     int ACCELEROMETER_INT_PIN_ERROR = 51;
 
     int SENSOR_STEP_VOLTAGE_SET_ERROR = 31;
+    int SENSOR_TEST_BT_CONNECTION_LOST = 32;
 
     int WAKE_NO_BLE_RECORDS = 40;
     int WAKE_NO_POST_EMAG_RECORDS = 41;
