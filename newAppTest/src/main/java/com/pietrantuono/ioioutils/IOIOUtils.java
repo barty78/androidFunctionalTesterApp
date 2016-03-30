@@ -327,8 +327,24 @@ public class IOIOUtils implements IOIOUtilsInterface {
     public void initialize(final NewIOIOActivityListener listner,
                            final IOIO ioio_, final Activity ac) {
         isinterrupted = false;
+        boolean stateBoot0 = true;
+        boolean stateBoot1 = false;
+        boolean range = false;
+        boolean stateEmag = true;
+        DigitalOutput.Spec.Mode eMagMode = DigitalOutput.Spec.Mode.OPEN_DRAIN;
 
-        uutMode = Mode.bootloader;
+        if (PeriCoachTestApplication.getCurrentJob().getTesttypeId() != 1) {
+            stateBoot0 = false;
+            stateBoot1 = true;
+            stateEmag = false;
+            eMagMode = DigitalOutput.Spec.Mode.NORMAL;
+            range = true;
+            uutMode = Mode.application;
+
+        } else {
+            uutMode = Mode.bootloader;
+        }
+
 //        ac.runOnUiThread(new Runnable() {
 //            @Override
 //            public void run() {
@@ -352,21 +368,22 @@ public class IOIOUtils implements IOIOUtilsInterface {
             report(e, ac);
             return;
         }
-        try {
-            boot0 = ioio_.openDigitalOutput(24, DigitalOutput.Spec.Mode.OPEN_DRAIN,
-                    true);
-        } catch (Exception e) {
-            report(e, ac);
-            return;
+        if (PeriCoachTestApplication.getCurrentJob().getTesttypeId() == 1) {
+            try {
+                boot0 = ioio_.openDigitalOutput(24, DigitalOutput.Spec.Mode.OPEN_DRAIN,
+                        stateBoot0);
+            } catch (Exception e) {
+                report(e, ac);
+                return;
+            }
+            try {
+                boot1 = ioio_.openDigitalOutput(23, DigitalOutput.Spec.Mode.OPEN_DRAIN,
+                        stateBoot1);
+            } catch (Exception e) {
+                report(e, ac);
+                return;
+            }
         }
-        try {
-            boot1 = ioio_.openDigitalOutput(23, DigitalOutput.Spec.Mode.OPEN_DRAIN,
-                    false);
-        } catch (Exception e) {
-            report(e, ac);
-            return;
-        }
-
         try {
             _5V_DC = ioio_.openDigitalOutput(18,
                     DigitalOutput.Spec.Mode.OPEN_DRAIN, true);
@@ -376,9 +393,10 @@ public class IOIOUtils implements IOIOUtilsInterface {
         }
 
         //Irange (uA Range) = true, (mA Range) = false.
+
         try {
             Irange = ioio_.openDigitalOutput(9,
-                    DigitalOutput.Spec.Mode.OPEN_DRAIN, true);
+                    DigitalOutput.Spec.Mode.OPEN_DRAIN, range);
 
         } catch (Exception e) {
             report(e, ac);
@@ -408,7 +426,7 @@ public class IOIOUtils implements IOIOUtilsInterface {
 
         try {
             EMag = ioio_.openDigitalOutput(3,
-                    DigitalOutput.Spec.Mode.OPEN_DRAIN, true);
+                    eMagMode, stateEmag);
         } catch (Exception e) {
             report(e, ac);
             return;
@@ -466,25 +484,40 @@ public class IOIOUtils implements IOIOUtilsInterface {
 
         }
 
-        try {
-            uart2 = ioio_.openUart(
-                    new DigitalInput.Spec(13, DigitalInput.Spec.Mode.PULL_UP),
-                    new DigitalOutput.Spec(14, DigitalOutput.Spec.Mode.OPEN_DRAIN),
-                    115200, Uart.Parity.EVEN, // STM32
-                    // Bootloader
-                    // requires
-                    // EVEN
-                    // Parity..
-                    Uart.StopBits.ONE);
-        } catch (ConnectionLostException e) {
-            Log.e(TAG, e.toString());
+        if (PeriCoachTestApplication.getCurrentJob().getTesttypeId() == 1) {
+            try {
+                uart2 = ioio_.openUart(
+                        new DigitalInput.Spec(13, DigitalInput.Spec.Mode.PULL_UP),
+                        new DigitalOutput.Spec(14, DigitalOutput.Spec.Mode.OPEN_DRAIN),
+                        115200, Uart.Parity.EVEN, // STM32
+                        // Bootloader
+                        // requires
+                        // EVEN
+                        // Parity..
+                        Uart.StopBits.ONE);
+            } catch (ConnectionLostException e) {
+                Log.e(TAG, e.toString());
+            }
+
+            inputStream = uart2.getInputStream();
+            outputStream = uart2.getOutputStream();
         }
 
-        inputStream = uart2.getInputStream();
-        outputStream = uart2.getOutputStream();
-
-
         toggle5VDC(ac);
+
+        if (PeriCoachTestApplication.getCurrentJob().getTesttypeId() != 1) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            resetDevice(ac);
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
 
     }
 
@@ -896,8 +929,12 @@ public class IOIOUtils implements IOIOUtilsInterface {
     public void toggleEMag(Activity activity) {
         if (isinterrupted) return;
         Log.d(TAG, "Toggling Electromagnet");
+        boolean stateEmag = true;
+        if (PeriCoachTestApplication.getCurrentJob().getTesttypeId() == 1) {
+            stateEmag = false;
+        }
         try {
-            getEmag().write(false);
+            getEmag().write(stateEmag);
         } catch (ConnectionLostException e) {
             report(e, activity);
         }
@@ -907,7 +944,7 @@ public class IOIOUtils implements IOIOUtilsInterface {
             report(e, activity);
         }
         try {
-            getEmag().write(true);
+            getEmag().write(!stateEmag);
         } catch (ConnectionLostException e) {
             report(e, activity);
         }

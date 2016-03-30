@@ -141,6 +141,7 @@ public class BTUtility {
             }
         });
         executor = Executors.newFixedThreadPool(1);
+        callback = (ActivtyWrapper) activity1;
     }
 
     private void onConnectFailed() {

@@ -481,11 +481,11 @@ public class MainActivity extends AppCompatActivity
         newSequence.reset();
         IOIOUtils.getUtils().initialize(MainActivity.this, myIOIO, MainActivity.this);
         uiHelper.setCurrentAndNextTaskinUI();
-        if (BuildConfig.DEBUG) {
-            uiHelper.addView("Max V: ", String.valueOf(PeriCoachTestApplication.getMaxBatteryVoltage()), false);
-            uiHelper.addView("Min V: ", String.valueOf(PeriCoachTestApplication.getMinBatteryVoltage()), false);
-            uiHelper.addView("Grad: ", String.valueOf(PeriCoachTestApplication.getGradient()), false);
-        }
+//        if (BuildConfig.DEBUG) {
+//            uiHelper.addView("Max V: ", String.valueOf(PeriCoachTestApplication.getMaxBatteryVoltage()), false);
+//            uiHelper.addView("Min V: ", String.valueOf(PeriCoachTestApplication.getMinBatteryVoltage()), false);
+//            uiHelper.addView("Grad: ", String.valueOf(PeriCoachTestApplication.getGradient()), false);
+//        }
         detectHelper.setPCBDetectCallback(MainActivity.this);
         //TODO - Only do dropped connection testing for open test.
         if (job.getTesttypeId() == 1) {
