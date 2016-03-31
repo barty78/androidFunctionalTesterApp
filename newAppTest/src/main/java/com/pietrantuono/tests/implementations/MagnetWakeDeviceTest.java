@@ -124,6 +124,31 @@ public class MagnetWakeDeviceTest extends Test implements BluetoothAdapter.LeSca
 		return true;
 	}
 
+	private int isNewDeviceSeenAfterWake(Collection<ScanResult> results, long scanStartMillis, long scanEndMillis) {
+
+		List<BluetoothDevice> preWakeDevices = null;
+		List<BluetoothDevice> postWakeDevices = null;
+
+		for (ScanResult result : results) {
+			if ((TimeUnit.NANOSECONDS.toMillis(result.getTimestampNanos()) < scanStartMillis)) {
+				if (!preWakeDevices.contains(result.getDevice())) {
+					preWakeDevices.add(result.getDevice());
+				}
+			} else {
+				if (!preWakeDevices.contains(result.getDevice())) {
+					if ((TimeUnit.NANOSECONDS.toMillis(result.getTimestampNanos()) < scanEndMillis)) {
+						if (!postWakeDevices.contains(result.getDevice())) {
+							postWakeDevices.add(result.getDevice());
+						}
+					}
+				}
+			}
+		}
+		Log.d(TAG, "preWake Devices: " + preWakeDevices.size());
+		Log.d(TAG, "postWake Devices: " + postWakeDevices.size());
+		return postWakeDevices.size();
+	}
+
 	// Put the current thread to sleep.
 	private void sleep(int sleepMillis) {
 		try {
@@ -175,7 +200,8 @@ public class MagnetWakeDeviceTest extends Test implements BluetoothAdapter.LeSca
 					return null;
 				}
 
-				if (verifyTimestamp(scanResults, deviceWakeMillis, scanEndMillis)) {
+//				if (verifyTimestamp(scanResults, deviceWakeMillis, scanEndMillis)) {
+				if (isNewDeviceSeenAfterWake(scanResults, deviceWakeMillis, scanEndMillis) >= 1) {
 					Success();
 					activityListener.startPCBSleepMonitor();						// Device woke, start monitoring incase it drops back to sleep
 					activityListener.addFailOrPass(true, true, "",  description);

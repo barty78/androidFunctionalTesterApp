@@ -34,7 +34,7 @@ public class RecordFromSequenceCreator {
         record.setResult(sequence.getOverallResult());
         record.setSerial(device.getSerial() != null ? device.getSerial() : "");
         record.setStartedAt(sequence.getStartTime());
-        record.setBT_Addr(device.getBt_addr()!=null?device.getBt_addr():"");
+        record.setBT_Addr(device.getBt_addr() != null ? device.getBt_addr() : "");
         Readings readings = createReadings(sequence);
         record.setReadings(readings);
         return record;
@@ -70,20 +70,6 @@ public class RecordFromSequenceCreator {
         return s0;
     }
 
-    private static List<Long> getErrorCodes(NewSequenceInterface sequence) {
-        List<Long> result = new ArrayList<Long>();
-        for (int i = 0; i < sequence.getSequence().size(); i++) {
-            if (sequence.getSequence().get(i) instanceof SensorTestWrapper) {
-                SensorTestWrapper sensorTestWrapper = (SensorTestWrapper) sequence
-                        .getSequence().get(i);
-                result.add(sensorTestWrapper.getErrorCode());
-            }
-        }
-        return result;
-
-
-    }
-
     private static S1 createS1(NewSequenceInterface sequence) {
         if (!containsSensorsTests(sequence)) return null;
         S1 s1 = new S1();
@@ -110,6 +96,18 @@ public class RecordFromSequenceCreator {
 
     static enum SensorNumber {
         ZERO, ONE, TWO
+    }
+
+    private static List<Long> getErrorCodes(NewSequenceInterface sequence) {
+        List<Long> result = new ArrayList<Long>();
+        for (int i = 0; i < sequence.getSequence().size(); i++) {
+            if (sequence.getSequence().get(i) instanceof SensorTestWrapper) {
+                SensorTestWrapper sensorTestWrapper = (SensorTestWrapper) sequence
+                        .getSequence().get(i);
+                result.add(sensorTestWrapper.getErrorCode());
+            }
+        }
+        return result;
     }
 
     private static List<Long> getAverage(NewSequenceInterface sequence,

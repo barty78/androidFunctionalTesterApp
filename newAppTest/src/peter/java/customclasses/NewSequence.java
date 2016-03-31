@@ -14,10 +14,15 @@ import com.pietrantuono.constants.NewMSensorResult;
 import com.pietrantuono.constants.NewSequenceInterface;
 import com.pietrantuono.ioioutils.Units;
 import com.pietrantuono.tests.implementations.AccelerometerSelfTest;
+import com.pietrantuono.tests.implementations.BluetoothConnectTestForTesting;
 import com.pietrantuono.tests.implementations.CurrentTest;
 import com.pietrantuono.tests.implementations.GetDeviceSerialTest;
 import com.pietrantuono.tests.implementations.GetMacAddressTest;
 import com.pietrantuono.tests.implementations.MagnetWakeDeviceTest;
+import com.pietrantuono.tests.implementations.ReadDeviceInfoSerialNumberTest;
+import com.pietrantuono.tests.implementations.ReadFirmwareversionTest;
+import com.pietrantuono.tests.implementations.ReadModelNumberTest;
+import com.pietrantuono.tests.implementations.SensorTestWrapper;
 import com.pietrantuono.tests.implementations.VoltageTest;
 import com.pietrantuono.tests.implementations.steps.Step;
 import com.pietrantuono.tests.superclass.Test;
@@ -360,7 +365,7 @@ public class NewSequence implements NewSequenceInterface {
 
 //        sequence.add(new MagnetWakeDeviceTest(activity, ioio));
         sequence.add(new MagnetWakeDeviceTest(activity, ioio));
-//        sequence.add(new GetMacAddressTest(activity, ioio));
+        sequence.add(new GetMacAddressTest(activity, ioio));
 
 //        sequence.add(new CurrentTest(activity, ioio, 42, Units.mA, true, 30f, 0.2f,
 //                "Current Measurement - Awake"));
@@ -397,11 +402,11 @@ public class NewSequence implements NewSequenceInterface {
 //        //
 //        //		sequence.add(new ChargeLedCheckTest(activity, ioio, "Pink", "Pink LED Check"));
 
-//        sequence.add(new BluetoothConnectTestForTesting(activity));
+        sequence.add(new BluetoothConnectTestForTesting(activity));
 
-//        sequence.add(new ReadDeviceInfoSerialNumberTest(activity));
-//        sequence.add(new ReadModelNumberTest(activity));
-//        sequence.add(new ReadFirmwareversionTest(activity));
+        sequence.add(new ReadDeviceInfoSerialNumberTest(activity));
+        sequence.add(new ReadModelNumberTest(activity));
+        sequence.add(new ReadFirmwareversionTest(activity));
 //
 //        sequence.add(new LedCheckTest(activity, "Green", "Green LED Check"));
 //        sequence.add(new LedCheckTest(activity, "Blue", "Blue LED Check"));
@@ -432,16 +437,16 @@ public class NewSequence implements NewSequenceInterface {
 //        sequence.add(new SetSensorVoltagesStep(activity, (short) 127, (short) 0, "Set GAIN -> 127, ZERO -> 0"));
 //
 //
-//        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 0, 10, 50,
-//                "Sensor Input TEST, NO LOAD, GAIN/ZERO @ 127/0"));
-//        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 200, 300, 50,
-//                "Sensor Input TEST, LOADED, GAIN/ZERO @ 25/0"));
-//        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 1250, 1400, 50,
-//                "Sensor Input TEST, LOADED, GAIN/ZERO @ 127/0"));
-//        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 2150, 2300, 50,
-//                "Sensor Input TEST, LOADED, GAIN/ZERO @ 210/0"));
-//        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 0, 50, 50,
-//                "Sensor Input TEST, LOADED, GAIN/ZERO @ 127/50"));
+        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 0, 10, 50,
+                "Sensor Input TEST, NO LOAD, GAIN/ZERO @ 127/0"));
+        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 200, 300, 50,
+                "Sensor Input TEST, LOADED, GAIN/ZERO @ 25/0"));
+        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 1250, 1400, 50,
+                "Sensor Input TEST, LOADED, GAIN/ZERO @ 127/0"));
+        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 2150, 2300, 50,
+                "Sensor Input TEST, LOADED, GAIN/ZERO @ 210/0"));
+        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 0, 50, 50,
+                "Sensor Input TEST, LOADED, GAIN/ZERO @ 127/50"));
 
 
 //		MyDummyTest test = new MyDummyTest.Builder().setActivity(activity).setDescription("first").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
