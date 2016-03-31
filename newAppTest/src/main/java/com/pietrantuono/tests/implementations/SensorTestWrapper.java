@@ -20,6 +20,7 @@ public class SensorTestWrapper extends Test {
     private final SensorTest sensorTest;
     private SensorsTestHelper helper;
     private Boolean load;
+    public boolean executed =false;
 
     /**
      * Creates a sensor test.
@@ -67,6 +68,7 @@ public class SensorTestWrapper extends Test {
 
     @Override
     public void execute() {
+        executed=true;
         if (!isClosedTest) {
             new SensorTestWrapperAsyncTask().executeParallel();
         } else {

@@ -65,7 +65,7 @@ public class PeriCoachTestApplication extends Application {
 		context=getApplicationContext();
 		mAccount = CreateSyncAccount(context);
 		setUpSyncApapter();
-		android_id = AndroidID.getID(context);
+		android_id = AndroidID.getID();
 		if(android_id==null)android_id="";
 		//forceSync();
 		addDevicesSyncAccount();
