@@ -131,13 +131,13 @@ public class MagnetWakeDeviceTest extends Test implements BluetoothAdapter.LeSca
 
 		for (ScanResult result : results) {
 			if ((TimeUnit.NANOSECONDS.toMillis(result.getTimestampNanos()) < scanStartMillis)) {
-				if (!preWakeDevices.contains(result.getDevice())) {
+				if (preWakeDevices == null || !preWakeDevices.contains(result.getDevice())) {
 					preWakeDevices.add(result.getDevice());
 				}
 			} else {
 				if (!preWakeDevices.contains(result.getDevice())) {
 					if ((TimeUnit.NANOSECONDS.toMillis(result.getTimestampNanos()) < scanEndMillis)) {
-						if (!postWakeDevices.contains(result.getDevice())) {
+						if (postWakeDevices == null || !postWakeDevices.contains(result.getDevice())) {
 							postWakeDevices.add(result.getDevice());
 						}
 					}
