@@ -81,14 +81,14 @@ public class MagnetWakeDeviceTest extends Test implements BluetoothAdapter.LeSca
 
         private Set<ScanResult> mResults = new HashSet<ScanResult>();
         private List<ScanResult> mBatchScanResults = new ArrayList<ScanResult>();
-        private boolean add = true;
 
         @Override
         public void onScanResult(int callbackType, ScanResult result) {
+            boolean add = true;
             if (callbackType == ScanSettings.CALLBACK_TYPE_ALL_MATCHES) {
                 if (result.getDevice().getAddress().contains(OUI)) {
                     for (ScanResult res : mResults) {
-                        if (result.getDevice() == res.getDevice()) add = false;
+                        if (result.getDevice().getAddress().equalsIgnoreCase(res.getDevice().getAddress())) add = false;
                     }
                     if (add) {
                         mResults.add(result);
