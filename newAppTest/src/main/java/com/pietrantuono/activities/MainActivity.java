@@ -356,7 +356,7 @@ public class MainActivity extends AppCompatActivity
                     String[] selectionArgs = new String[]{"" + id};
                     Cursor c = newRecordsHelper.getWritableDatabase().query(RecordsContract.TestRecords.TABLE, null, selection, selectionArgs, null, null, null);
                     if (c.getCount() > 0) {
-                        List<TestRecord> records = RecordsProcessor.reconstructRecords( c, newRecordsHelper);
+                        List<TestRecord> records = RecordsProcessor.reconstructRecords(c, newRecordsHelper);
                         if (records.size() > 0) {
                             Gson gson = new GsonBuilder()
                                     .excludeFieldsWithoutExposeAnnotation()
@@ -405,6 +405,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public String getMac() {
+        Log.d(TAG, "Get Address: " + sequenceDevice.getBt_addr());
         return sequenceDevice.getBt_addr();
     }
 
@@ -633,6 +634,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void setMacAddress(String mac) {
+        Log.d(TAG, "Set Address: " + mac);
         sequenceDevice.setBt_addr(mac);
     }
 
@@ -722,7 +724,7 @@ public class MainActivity extends AppCompatActivity
                 newSequenceInterface = sequenceForTests;
             }
         }
-        if (BuildConfig.DEBUG) {
+        if (BuildConfig.DEBUG && PeriCoachTestApplication.getCurrentJob().getTesttypeId() == 1) {
             boolean mockBarcode = true;
             for (int i = 0; i < newSequenceInterface.getSequence().size(); i++) {
                 if (newSequenceInterface.getSequence().get(i) instanceof GetBarcodeTest) mockBarcode = false;

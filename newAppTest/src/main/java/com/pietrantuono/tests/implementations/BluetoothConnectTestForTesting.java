@@ -2,6 +2,7 @@ package com.pietrantuono.tests.implementations;
 
 import android.app.Activity;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.pietrantuono.btutility.BTUtility;
 import com.pietrantuono.pericoach.newtestapp.BuildConfig;
@@ -40,6 +41,7 @@ public class BluetoothConnectTestForTesting extends Test {
                     case "peter":
                         serial = activityListener.getSerial();
                         mac = activityListener.getMac();
+                        Log.d(TAG, "Address: " + mac);
 //					mac = "00:17:E9:C2:D9:94";
                         break;
                     case "maurizio":

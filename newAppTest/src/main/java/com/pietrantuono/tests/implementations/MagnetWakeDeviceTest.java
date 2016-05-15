@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -33,7 +34,7 @@ import android.content.Context;
 import android.os.SystemClock;
 import android.util.Log;
 
-public class MagnetWakeDeviceTest extends Test implements BluetoothAdapter.LeScanCallback {
+public class MagnetWakeDeviceTest extends Test {
     private AnalogInput V_3V0_SW;
 
     private BluetoothAdapter mBluetoothAdapter;
@@ -41,8 +42,9 @@ public class MagnetWakeDeviceTest extends Test implements BluetoothAdapter.LeSca
             new ScanFilter.Builder().setManufacturerData(0x004C, new byte[0], new byte[0]).build();
     private BluetoothLeScanner mScanner;
 
-    private static final int PRE_SCAN_DURATION_MILLIS = 5000;
+    private static final int PRE_WAKE_SCAN_DURATION_MILLIS = 5000;
     private static final int SCAN_DURATION_MILLIS = 5000;
+    private static final int BATCH_SCAN_REPORT_DELAY_MILLIS = 0;
     private static final String OUI = "B0:B4:48";
 
     public MagnetWakeDeviceTest(Activity activity, IOIO ioio) {
@@ -67,39 +69,33 @@ public class MagnetWakeDeviceTest extends Test implements BluetoothAdapter.LeSca
         }
     }
 
-    @Override
-    public void onLeScan(BluetoothDevice device, int rssi, byte[] scanRecord) {
-        Log.d(TAG, "Device found");
-        try {
-            mBluetoothAdapter.stopLeScan(MagnetWakeDeviceTest.this);
-        } catch (Exception ignored) {
-        }
-    }
+//    @Override
+//    public void onLeScan(BluetoothDevice device, int rssi, byte[] scanRecord) {
+//        Log.d(TAG, "Device found");
+//        try {
+//            mBluetoothAdapter.stopLeScan(MagnetWakeDeviceTest.this);
+//        } catch (Exception ignored) {
+//        }
+//    }
 
     // Helper class for BLE scan callback.
     private class BleScanCallback extends ScanCallback {
 
-        private Set<ScanResult> mResults = new HashSet<ScanResult>();
+        private Set<ScanResult> mResults = new LinkedHashSet<ScanResult>();
         private List<ScanResult> mBatchScanResults = new ArrayList<ScanResult>();
         private boolean add = true;
 
         @Override
         public void onScanResult(int callbackType, ScanResult result) {
             if (callbackType == ScanSettings.CALLBACK_TYPE_ALL_MATCHES) {
-                if (result.getDevice().getAddress().contains(OUI)) {
-                    for (ScanResult res : mResults) {
-                        if (result.getDevice() == res.getDevice()) add = false;
-                    }
-                    if (add) {
-                        mResults.add(result);
-                        Log.d(TAG, result.toString());
-                    }
-                }
+                Log.d(TAG, result.toString());
+                mResults.add(result);
             }
         }
 
         @Override
         public void onBatchScanResults(List<ScanResult> results) {
+            Log.d(TAG, "Batch " + results.toString());
             mBatchScanResults = results;
         }
 
@@ -135,26 +131,30 @@ public class MagnetWakeDeviceTest extends Test implements BluetoothAdapter.LeSca
         return true;
     }
 
-    private int isNewDeviceSeenAfterWake(Collection<ScanResult> results, long scanStartMillis, long scanEndMillis) {
+    private int isNewDeviceSeenAfterWake(Collection<ScanResult> results, long scanStartNanos, long scanEndNanos) {
 
         List<BluetoothDevice> preWakeDevices = new ArrayList<>();
         List<BluetoothDevice> postWakeDevices = new ArrayList<>();
 
         for (ScanResult result : results) {
-            if ((TimeUnit.NANOSECONDS.toMillis(result.getTimestampNanos()) < scanStartMillis)) {
+            Log.d(TAG, "result " + result);
+            if (preWakeDevices == null || result.getTimestampNanos() < scanStartNanos) {
                 if (!preWakeDevices.contains(result.getDevice())) {
+                    Log.d(TAG, "PreWake Adding Device: " + result.getDevice());
                     preWakeDevices.add(result.getDevice());
                 }
             } else {
-                if (!preWakeDevices.contains(result.getDevice())) {
-                    if ((TimeUnit.NANOSECONDS.toMillis(result.getTimestampNanos()) < scanEndMillis)) {
+                if (!(preWakeDevices.contains(result.getDevice()))) {
+                    if (result.getTimestampNanos() < scanEndNanos) {
                         if (!postWakeDevices.contains(result.getDevice())) {
+                            Log.d(TAG, "PostWake Adding Device: " + result.getDevice());
                             postWakeDevices.add(result.getDevice());
                         }
                     }
                 }
             }
         }
+        if(postWakeDevices.size() == 1)activityListener.setMacAddress(postWakeDevices.get(0).getAddress());
         Log.d(TAG, "preWake Devices: " + preWakeDevices.size());
         Log.d(TAG, "postWake Devices: " + postWakeDevices.size());
         return postWakeDevices.size();
@@ -176,29 +176,38 @@ public class MagnetWakeDeviceTest extends Test implements BluetoothAdapter.LeSca
             if (isinterrupted) return null;
 
             if (PeriCoachTestApplication.getCurrentJob().getTesttypeId() != 1) {
+                ScanSettings batchScanSettings = new ScanSettings.Builder()
+                        .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY)
+                        .setReportDelay(BATCH_SCAN_REPORT_DELAY_MILLIS).build();
                 BleScanCallback regularLeScanCallback = new BleScanCallback();
-                long scanStartMillis = SystemClock.elapsedRealtime();
+                BleScanCallback batchScanCallback = new BleScanCallback();
+                long scanStartNanos = SystemClock.elapsedRealtimeNanos();
                 mScanner.startScan(regularLeScanCallback);
-                sleep(PRE_SCAN_DURATION_MILLIS);
+
+//                mScanner.startScan(Collections.<ScanFilter>emptyList(), batchScanSettings, batchScanCallback);
+
+                sleep(PRE_WAKE_SCAN_DURATION_MILLIS);
+
                 int preCount = regularLeScanCallback.getScanResults().size();
-                Log.d(TAG, "PRE_WAKE Count: " + preCount);
+//                int preCount = batchScanCallback.getBatchScanResults().size();
 
                 if (IOIOUtils.getUtils().getEmag() != null) {
                     IOIOUtils.getUtils().toggleEMag((Activity) activityListener);
                 }
                 if (isinterrupted) return null;
 
-                long deviceWakeMillis = SystemClock.elapsedRealtime();
-                Log.d(TAG, "Device Wake Millis: " + (deviceWakeMillis - scanStartMillis));
+                long deviceWakeNanos = SystemClock.elapsedRealtimeNanos();
                 if (isinterrupted) return null;
                 sleep(SCAN_DURATION_MILLIS);
                 mScanner.stopScan(regularLeScanCallback);
-                long scanEndMillis = SystemClock.elapsedRealtime();
-                Log.d(TAG, "End Scan Millis: " + (scanEndMillis - scanStartMillis));
+//                mScanner.flushPendingScanResults(batchScanCallback);
+//                mScanner.stopScan(batchScanCallback);
+                long scanEndNanos = SystemClock.elapsedRealtimeNanos();
                 Collection<ScanResult> scanResults = regularLeScanCallback.getScanResults();
-                int postCount = regularLeScanCallback.getScanResults().size();
-                Log.d(TAG, "POST_WAKE Count: " + postCount);
 
+//                List<ScanResult> results = batchScanCallback.getBatchScanResults();
+                int postCount = regularLeScanCallback.getScanResults().size();
+//                int postCount = batchScanCallback.getScanResults().size();
                 if (scanResults.isEmpty()) {
                     setErrorcode((long) ErrorCodes.WAKE_NO_BLE_RECORDS);
                     activityListener.addFailOrPass(true, false, "", description);
@@ -211,8 +220,14 @@ public class MagnetWakeDeviceTest extends Test implements BluetoothAdapter.LeSca
                     return null;
                 }
 
+                Log.d(TAG, "Start Scan Nanos: " + scanStartNanos);
+                Log.d(TAG, "Device Wake Nanos: " + deviceWakeNanos);
+                Log.d(TAG, "End Scan Nanos: " + scanEndNanos);
+                Log.d(TAG, "PRE_WAKE Count: " + preCount);
+                Log.d(TAG, "POST_WAKE Count: " + postCount);
+
 //				if (verifyTimestamp(scanResults, deviceWakeMillis, scanEndMillis)) {
-                if (isNewDeviceSeenAfterWake(scanResults, deviceWakeMillis, scanEndMillis) >= 1) {
+                if (isNewDeviceSeenAfterWake(scanResults, deviceWakeNanos, scanEndNanos) >= 1) {
                     Success();
                     activityListener.startPCBSleepMonitor();                        // Device woke, start monitoring incase it drops back to sleep
                     activityListener.addFailOrPass(true, true, "", description);
@@ -230,7 +245,7 @@ public class MagnetWakeDeviceTest extends Test implements BluetoothAdapter.LeSca
                 }
                 if (isinterrupted) return null;
                 try {
-                    Thread.sleep(1 * 1000);
+                    Thread.sleep(1 * 3000);
                 } catch (Exception e) {
                     getListener().addFailOrPass(true, false, "ERROR", "App Fault");
 
@@ -239,7 +254,7 @@ public class MagnetWakeDeviceTest extends Test implements BluetoothAdapter.LeSca
                 if (isinterrupted) return null;
 
                 try {
-                    Voltage.Result result = Voltage.checkVoltage(ioio, 39, 1f, true, 1.8f, 0.1f);
+                    Voltage.Result result = Voltage.checkVoltage(ioio, 33, 1f, true, 3.3f, 0.1f);
                     setValue(result.getReadingValue());
                     Log.d(TAG, "Result isSuccess = " + result.isSuccess());
                     if (result.isSuccess()) {

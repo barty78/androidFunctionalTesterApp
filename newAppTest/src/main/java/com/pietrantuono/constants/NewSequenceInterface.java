@@ -11,6 +11,8 @@ public interface NewSequenceInterface {
 
 	void executeCurrentTest();
 
+	void executeLastTest();
+
 	int getCurrentTestNumber();
 
 	Test getCurrentTest();

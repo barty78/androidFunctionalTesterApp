@@ -939,7 +939,7 @@ public class IOIOUtils implements IOIOUtilsInterface {
             report(e, activity);
         }
         try {
-            Thread.sleep(3000);
+            Thread.sleep(6000);
         } catch (InterruptedException e) {
             report(e, activity);
         }

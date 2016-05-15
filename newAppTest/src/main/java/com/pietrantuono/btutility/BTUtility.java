@@ -123,10 +123,10 @@ public class BTUtility {
         if (isstopped)
             return;
         this.activityRef = new WeakReference<Activity>(activity1);
-        if (PeriCoachTestApplication.getCurrentJob().getTesttypeId() == 1) {
+//        if (PeriCoachTestApplication.getCurrentJob().getTesttypeId() == 1) {
             this.scancode = scancode;
             this.macaddress = macaddress;
-        }
+//        }
         final Activity activity = activityRef.get();
         if (activity == null)
             return;
@@ -300,6 +300,7 @@ public class BTUtility {
         if (BuildConfig.FLAVOR.equalsIgnoreCase("maurizio")) {
             device = mBTAdapter.getRemoteDevice("00:17:E9:C0:82:EE");
         } else {
+            Log.d(TAG, "Remote Device Addr: " + macaddress);
             device = mBTAdapter.getRemoteDevice(macaddress);
         }
         NewPFMATDevice.specifyDevice(device);
@@ -628,7 +629,7 @@ public class BTUtility {
             @Override
             public void run() {
                 if (NewPFMATDevice.getDevice() != null) {
-                    NewPFMATDevice.getDevice().sendSleep((byte) 0, (short) 100);
+                    NewPFMATDevice.getDevice().sendSleep((byte) 1, (short) 100);
                 }
             }
         }, 200);
