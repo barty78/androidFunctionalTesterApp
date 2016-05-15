@@ -83,13 +83,20 @@ public class MagnetWakeDeviceTest extends Test {
 
         private Set<ScanResult> mResults = new LinkedHashSet<ScanResult>();
         private List<ScanResult> mBatchScanResults = new ArrayList<ScanResult>();
-        private boolean add = true;
 
         @Override
         public void onScanResult(int callbackType, ScanResult result) {
+            boolean add = true;
             if (callbackType == ScanSettings.CALLBACK_TYPE_ALL_MATCHES) {
-                Log.d(TAG, result.toString());
-                mResults.add(result);
+                if (result.getDevice().getAddress().contains(OUI)) {
+                    for (ScanResult res : mResults) {
+                        if (result.getDevice().getAddress().equalsIgnoreCase(res.getDevice().getAddress())) add = false;
+                    }
+                    if (add) {
+                        mResults.add(result);
+                        Log.d(TAG, result.toString());
+                    }
+                }
             }
         }
 
