@@ -337,7 +337,7 @@ public class OtherSelectJobActivity extends AppCompatActivity implements MyCallb
 		});
         try {
             builder.create().show();
-        }catch (Exception ingored){}
+        }catch (Exception ignored){}
 	}
 
 	private void showAlertWrongFixture() {
