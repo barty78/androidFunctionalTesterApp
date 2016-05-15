@@ -168,7 +168,7 @@ public class IOIOUtils implements IOIOUtilsInterface {
 
             }
 
-            Log.d("Barcode: ", tmp);
+            Log.d("Barcode: ", tmp!=null?tmp:"null!");
             // updateUiText("Barcode - " + tmp + "\n");
             // gotBarcode = true;
 
@@ -574,8 +574,8 @@ public class IOIOUtils implements IOIOUtilsInterface {
         try {
             getMaster().writeRead(0x60, false, writebyte, writebyte.length,
                     readbyte, readbyte.length);
-        } catch (ConnectionLostException | InterruptedException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            Crashlytics.logException(e);
         }
     }
 

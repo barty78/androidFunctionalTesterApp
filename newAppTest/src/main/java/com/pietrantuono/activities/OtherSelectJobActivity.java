@@ -335,7 +335,9 @@ public class OtherSelectJobActivity extends AppCompatActivity implements MyCallb
 			@Override
 			public void onClick(DialogInterface dialog, int which) {/* NOOP*/}
 		});
-		builder.create().show();
+        try {
+            builder.create().show();
+        }catch (Exception ingored){}
 	}
 
 	private void showAlertWrongFixture() {
