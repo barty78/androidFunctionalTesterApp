@@ -54,6 +54,11 @@ public class NewSequence implements NewSequenceInterface {
     }
 
     @Override
+    public void executeLastTest() {
+
+    }
+
+    @Override
     public Boolean isSequenceStarted() {
         if (currentStepNumber.get() == -1)
             return false;
@@ -402,26 +407,7 @@ public class NewSequence implements NewSequenceInterface {
 //		sequence.add(new SensorTestWrapper(false, activity, ioio, "Sensor Input Test, LOADED, GAIN @ 127", 3, true,
 //				(short) 127));
 
-        MyDummyTest test = new MyDummyTest.Builder().setActivity(activity).setDescription("first dummy").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
-        test.setErrorcode(999l);
-        test.setSuccess(true);
-        test.setIdTest(1);
-        test.setValue(1);
-        sequence.add(test);
 
-        test = new MyDummyTest.Builder().setActivity(activity).setDescription("second dummy").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
-        test.setErrorcode(666l);
-        test.setSuccess(true);
-        test.setIdTest(1);
-        test.setValue(1);
-        sequence.add(test);
-
-        test = new MyDummyTest.Builder().setActivity(activity).setDescription("third dummy").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();
-        test.setErrorcode(333l);
-        test.setSuccess(true);
-        test.setIdTest(1);
-        test.setValue(1);
-        sequence.add(test);
 
         sequence.add(new BluetoothConnectTestForTesting(activity));
 
