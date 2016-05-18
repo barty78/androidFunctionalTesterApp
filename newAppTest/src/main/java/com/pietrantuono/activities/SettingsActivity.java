@@ -32,10 +32,12 @@ import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.nio.channels.FileChannel;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -79,6 +81,7 @@ public class SettingsActivity extends PreferenceActivity {
         });
         Preference unprocessed = (Preference) findPreference(getResources().getString(R.string.unprocessed));
         Preference dowloadunprocessed = (Preference) findPreference(getResources().getString(R.string.download_unprocessed));
+        Preference copytosd = (Preference) findPreference("copy_to_sd");
         NewRecordsSQLiteOpenHelper newRecordsSQLiteOpenHelper=NewRecordsSQLiteOpenHelper.getInstance(SettingsActivity.this);
         String selection=RecordsContract.TestRecords.UPLOADED +" = ?";
         String[] selectionargs= new String[]{"0"};
@@ -129,7 +132,44 @@ public class SettingsActivity extends PreferenceActivity {
                 return false;
             }
         });
+        copytosd.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                copyToSD(SettingsActivity.this);
+                return false;
+            }
+        });
+    }
 
+    private void copyToSD(Context context) {
+        try {
+            File sd = Environment.getExternalStorageDirectory();
+            File data = Environment.getDataDirectory();
+
+            if (sd.canWrite()) {
+                String currentDBPath = "/data/data/" + getPackageName() + "/databases/records";
+                Log.d("Settings", "DB Path: " + currentDBPath);
+                String backupDBPath = "records.db";
+                Log.d("Settings", "Backup Path: " + backupDBPath);
+                File currentDB = new File(currentDBPath);
+                File backupDB = new File(sd, backupDBPath);
+
+                if (currentDB.exists()) {
+                    FileChannel src = new FileInputStream(currentDB).getChannel();
+                    FileChannel dst = new FileOutputStream(backupDB).getChannel();
+                    dst.transferFrom(src, 0, src.size());
+                    src.close();
+                    dst.close();
+                } else {
+                    Log.d("DB BACKUP", "Cant find DB");
+
+                }
+            } else {
+                Log.d("DB BACKUP", "Cant write to location");
+            }
+        } catch (Exception e) {
+            Log.d("DB BACKUP", "Backup Failed");
+        }
     }
 
     private void downloadUnprocessed(Context context) {

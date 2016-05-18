@@ -128,6 +128,7 @@
     <string name="download_unprocessed">download_unprocessed</string>
     <string name="BT_Addr">BT MAC ADDR: </string>
     <string name="use_mac">use_mac</string>
+    <string name="copy_to_sd">copy_to_sd</string>
 
     <string-array name="action_list">
         <item>Manual</item>

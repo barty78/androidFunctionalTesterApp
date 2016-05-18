@@ -30,6 +30,16 @@
         android:visible="true"
         android:showAsAction="always">
     </Preference>
+
+    <Preference
+        android:key="@string/copy_to_sd"
+        android:title="Copy DB to SDCard"
+        android:summary="Copy records database to SD Card"
+        android:icon="@drawable/ic_action_file_file_download"
+        android:visible="true"
+        android:showAsAction="always">
+    </Preference>
+
     <SwitchPreference
         android:defaultValue="false"
         android:key="@string/use_mac"
