@@ -160,7 +160,7 @@ public class RecordsProcessor {
                     sensors.setS0(s0);
                     s0Cursor.close();
                 }
-                sensors.setS1(s0);
+                sensors.setS0(s0);
 
                 S1 s1 = new S1();
 
