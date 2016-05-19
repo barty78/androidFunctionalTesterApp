@@ -41,7 +41,7 @@ android {
             keyPassword 'barty78'
 //            storeFile file('c:/Users/Peter/StudioProjects/KeyStore/android.jks')
             storePassword 'barty78'
-//            storeFile file('C:/Users/Peter/Keystore/android.jks')
+            storeFile file('C:/Users/Peter/Keystore/android.jks')
         }
     }
     compileSdkVersion 23

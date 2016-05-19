@@ -88,15 +88,18 @@ public class MagnetWakeDeviceTest extends Test {
         public void onScanResult(int callbackType, ScanResult result) {
             boolean add = true;
             if (callbackType == ScanSettings.CALLBACK_TYPE_ALL_MATCHES) {
-                if (result.getDevice().getAddress().contains(OUI)) {
-                    for (ScanResult res : mResults) {
-                        if (result.getDevice().getAddress().equalsIgnoreCase(res.getDevice().getAddress())) add = false;
-                    }
-                    if (add) {
-                        mResults.add(result);
-                        Log.d(TAG, result.toString());
-                    }
-                }
+//                if (result.getDevice().getAddress().contains(OUI)) {
+//                    for (ScanResult res : mResults) {
+//                        if (result.getDevice().getAddress().equalsIgnoreCase(res.getDevice().getAddress())) add = false;
+//                    }
+//                    if (add) {
+//                        mResults.add(result);
+//                        Log.d(TAG, result.toString());
+//                    }
+//                }
+
+                mResults.add(result);
+                Log.d(TAG, result.toString());
             }
         }
 
