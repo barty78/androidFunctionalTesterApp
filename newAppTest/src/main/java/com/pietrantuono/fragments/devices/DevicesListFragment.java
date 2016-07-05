@@ -33,7 +33,7 @@ public class DevicesListFragment extends Fragment implements LoaderManager.Loade
     private SwipeRefreshLayout swiper;
     private MyRecyclerCursorAdapter mAdapter;
     private Boolean thisJobOnly = true;    //TODO - Make this a configurable option in the UI/App
-    private boolean orderbyBarcode=true;
+    private boolean orderbyBarcode = true;
     private CallBack callBack;
 
     public DevicesListFragment() {
@@ -54,7 +54,7 @@ public class DevicesListFragment extends Fragment implements LoaderManager.Loade
     public void onAttach(Context context) {
         super.onAttach(context);
         this.context = context;
-        this.callBack= (CallBack) context;
+        this.callBack = (CallBack) context;
         callBack.setDevicesListFragment(this);
     }
 
@@ -63,7 +63,7 @@ public class DevicesListFragment extends Fragment implements LoaderManager.Loade
         super.onDetach();
         this.context = null;
         callBack.setDevicesListFragment(null);
-        this.callBack=null;
+        this.callBack = null;
     }
 
     @Override
@@ -82,11 +82,10 @@ public class DevicesListFragment extends Fragment implements LoaderManager.Loade
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         state.setViewState(MultiStateView.VIEW_STATE_LOADING);
         getLoaderManager().initLoader(LOADER, null, this);
-        mAdapter= new MyRecyclerCursorAdapter(getActivity(),null);
+        mAdapter = new MyRecyclerCursorAdapter(getActivity(), null);
         recyclerView.setAdapter(mAdapter);
         return v;
     }
-
 
 
     private void forceSync() {
@@ -105,12 +104,11 @@ public class DevicesListFragment extends Fragment implements LoaderManager.Loade
     }
 
 
-
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         if (isVisibleToUser) {
             forceSync();
-            if(callBack!=null)callBack.setDevicesFragmentActionBar(true);
+            if (callBack != null) callBack.setDevicesFragmentActionBar(true);
             /*callback = new ActionModecallback(getActivity(), DevicesListFragment.this);
             mActionMode = ((AppCompatActivity) getActivity()).startSupportActionMode(callback);
             Job job = PeriCoachTestApplication.getCurrentJob();
@@ -120,24 +118,24 @@ public class DevicesListFragment extends Fragment implements LoaderManager.Loade
                 mActionMode.setTitle(getActivity().getString(R.string.job_number)+job.getJobno() + " (No Retests)");
             }*/
         } else {
-            if(callBack!=null)callBack.setDevicesFragmentActionBar(false);
+            if (callBack != null) callBack.setDevicesFragmentActionBar(false);
 
             //if (mActionMode != null) mActionMode.finish();
         }
     }
 
     public void sortByResult() {
-        orderbyBarcode=false;
+        orderbyBarcode = false;
         getLoaderManager().restartLoader(LOADER, null, this);
     }
 
     public void sortByBarcode() {
-        orderbyBarcode=true;
+        orderbyBarcode = true;
         getLoaderManager().restartLoader(LOADER, null, this);
     }
 
     public void currentJobOnly(boolean onlycurrent) {
-        thisJobOnly=onlycurrent;
+        thisJobOnly = onlycurrent;
         getLoaderManager().restartLoader(LOADER, null, this);
     }
 
@@ -145,6 +143,7 @@ public class DevicesListFragment extends Fragment implements LoaderManager.Loade
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         switch (id) {
             case LOADER:
+                if(getSelection()==null)return null;
                 return new CursorLoader(
                         getActivity(),
                         DevicesContentProvider.CONTENT_URI,
@@ -161,20 +160,19 @@ public class DevicesListFragment extends Fragment implements LoaderManager.Loade
     private String getSortOrder() {
         Job job = PeriCoachTestApplication.getCurrentJob();
         String sortorder;
-        if(orderbyBarcode){
-            sortorder= Contract.DevicesColumns.DEVICES_BARCODE + " ASC";
-        }
-        else {
-            sortorder="(("+ Contract.DevicesColumns.DEVICES_STATUS+ " & "+job.getTesttypeId()+") = "+job.getTesttypeId()+")";
+        if (orderbyBarcode) {
+            sortorder = Contract.DevicesColumns.DEVICES_BARCODE + " ASC";
+        } else {
+            sortorder = "((" + Contract.DevicesColumns.DEVICES_STATUS + " & " + job.getTesttypeId() + ") = " + job.getTesttypeId() + ")";
         }
         return sortorder;
     }
 
     private String getSelection() {
-        if (!thisJobOnly) return null;
         Job job = PeriCoachTestApplication.getCurrentJob();
-        return Contract.DevicesColumns.DEVICES_JOB_ID + "= "+job.getId()+
-                " AND " + "(" + Contract.DevicesColumns.DEVICES_EXEC_TESTS + " & "+job.getTesttypeId()+") = "+job.getTesttypeId();
+        if (!thisJobOnly || job == null) return null;
+        return Contract.DevicesColumns.DEVICES_JOB_ID + "= " + job.getId() +
+                " AND " + "(" + Contract.DevicesColumns.DEVICES_EXEC_TESTS + " & " + job.getTesttypeId() + ") = " + job.getTesttypeId();
     }
 
     @Override
@@ -193,7 +191,7 @@ public class DevicesListFragment extends Fragment implements LoaderManager.Loade
         return thisJobOnly;
     }
 
-    public interface CallBack{
+    public interface CallBack {
 
         void setDevicesListFragment(DevicesListFragment devicesListFragment);
 
