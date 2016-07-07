@@ -82,10 +82,16 @@ public class SettingsActivity extends PreferenceActivity {
         Preference unprocessed = (Preference) findPreference(getResources().getString(R.string.unprocessed));
         Preference dowloadunprocessed = (Preference) findPreference(getResources().getString(R.string.download_unprocessed));
         Preference copytosd = (Preference) findPreference("copy_to_sd");
-        NewRecordsSQLiteOpenHelper newRecordsSQLiteOpenHelper=NewRecordsSQLiteOpenHelper.getInstance(SettingsActivity.this);
-        String selection=RecordsContract.TestRecords.UPLOADED +" = ?";
-        String[] selectionargs= new String[]{"0"};
-        Cursor cursor=newRecordsSQLiteOpenHelper.getReadableDatabase().query(RecordsContract.TestRecords.TABLE,null,selection,selectionargs,null,null,null);
+        NewRecordsSQLiteOpenHelper newRecordsSQLiteOpenHelper = NewRecordsSQLiteOpenHelper.getInstance(SettingsActivity.this);
+        String selection = RecordsContract.TestRecords.UPLOADED + " = ?";
+        String[] selectionargs = new String[]{"0"};
+        Cursor cursor = null;
+        try {
+            cursor = newRecordsSQLiteOpenHelper.getReadableDatabase().query(RecordsContract.TestRecords.TABLE, null, selection, selectionargs, null, null, null);
+        } catch (Exception e) {
+            Crashlytics.logException(e);
+        }
+        if(cursor==null)return;
         //List<Model> records = new Select().from(TestRecord.class).where("uploaded = ?", false).execute();
         if (cursor.getCount() <= 0) {
             Spannable title = new SpannableString("UP TO DATE");
@@ -174,10 +180,10 @@ public class SettingsActivity extends PreferenceActivity {
 
     private void downloadUnprocessed(Context context) {
         NewRecordsSQLiteOpenHelper newRecordsSQLiteOpenHelper = NewRecordsSQLiteOpenHelper.getInstance(context);
-        String selection="uploaded = ?";
-        String[] selectionArgs= new String[]{"1"};
+        String selection = "uploaded = ?";
+        String[] selectionArgs = new String[]{"1"};
         Cursor testRecordCursor = newRecordsSQLiteOpenHelper.getWritableDatabase().query(RecordsContract.TestRecords.TABLE, null, selection, selectionArgs, null, null, null);
-        List<TestRecord> records= RecordsProcessor.reconstructRecords(testRecordCursor, newRecordsSQLiteOpenHelper);
+        List<TestRecord> records = RecordsProcessor.reconstructRecords(testRecordCursor, newRecordsSQLiteOpenHelper);
         if (records == null || records.size() <= 0) {
             Toast.makeText(SettingsActivity.this, "No records found...", Toast.LENGTH_LONG).show();
             return;
@@ -359,7 +365,7 @@ public class SettingsActivity extends PreferenceActivity {
     private static List<TestRecord> getAllRecords(Context context) {
         NewRecordsSQLiteOpenHelper newRecordsSQLiteOpenHelper = NewRecordsSQLiteOpenHelper.getInstance(context);
         Cursor testRecordCursor = newRecordsSQLiteOpenHelper.getWritableDatabase().query(RecordsContract.TestRecords.TABLE, null, null, null, null, null, null);
-        return RecordsProcessor.reconstructRecords(testRecordCursor,newRecordsSQLiteOpenHelper);
+        return RecordsProcessor.reconstructRecords(testRecordCursor, newRecordsSQLiteOpenHelper);
     }
 
 }
