@@ -42,8 +42,8 @@ public class MagnetWakeDeviceTest extends Test {
             new ScanFilter.Builder().setManufacturerData(0x004C, new byte[0], new byte[0]).build();
     private BluetoothLeScanner mScanner;
 
-    private static final int PRE_WAKE_SCAN_DURATION_MILLIS = 5000;
-    private static final int SCAN_DURATION_MILLIS = 5000;
+    private static final int PRE_WAKE_SCAN_DURATION_MILLIS = 3000;
+    private static final int SCAN_DURATION_MILLIS = 3000;
     private static final int BATCH_SCAN_REPORT_DELAY_MILLIS = 0;
     private static final String OUI = "B0:B4:48";
 
@@ -185,6 +185,10 @@ public class MagnetWakeDeviceTest extends Test {
         protected Void doInBackground(Void... params) {
             if (isinterrupted) return null;
 
+            if (IOIOUtils.getUtils().getEmag() != null) {
+                IOIOUtils.getUtils().setEMag((Activity) activityListener, true);
+            }
+
             if (PeriCoachTestApplication.getCurrentJob().getTesttypeId() != 1) {
                 ScanSettings batchScanSettings = new ScanSettings.Builder()
                         .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY)
@@ -201,8 +205,11 @@ public class MagnetWakeDeviceTest extends Test {
                 int preCount = regularLeScanCallback.getScanResults().size();
 //                int preCount = batchScanCallback.getBatchScanResults().size();
 
+//                if (IOIOUtils.getUtils().getEmag() != null) {
+//                    IOIOUtils.getUtils().toggleEMag((Activity) activityListener);
+//                }
                 if (IOIOUtils.getUtils().getEmag() != null) {
-                    IOIOUtils.getUtils().toggleEMag((Activity) activityListener);
+                    IOIOUtils.getUtils().setEMag((Activity) activityListener, false);
                 }
                 if (isinterrupted) return null;
 

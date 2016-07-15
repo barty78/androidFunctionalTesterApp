@@ -65,6 +65,8 @@ public interface IOIOUtilsInterface {
 	void toggleHall(Activity activity);
 	
 	void toggleEMag(Activity activity);
+
+	void setEMag(Activity activity, Boolean state);
 	
 	void modeApplication(Activity activity);
 

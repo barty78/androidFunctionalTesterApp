@@ -46,6 +46,7 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.PopupMenu;
 import android.util.Log;
+import android.util.TimingLogger;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -78,6 +79,7 @@ public class MainActivity extends AppCompatActivity
         DevicesListFragment.CallBack {
     private static IOIO myIOIO;
     private static final String TAG = MainActivity.class.getSimpleName();
+    private static final String TimingTag = "ExecTimings";
     private String mJobNo = null;
     private final IOIOAndroidApplicationHelperWrapper ioioAndroidApplicationHelperWrapper = new IOIOAndroidApplicationHelperWrapper(this);
     private DigitalInput _PCB_Detect;
@@ -102,6 +104,7 @@ public class MainActivity extends AppCompatActivity
     private boolean isDevicesListActionbar;
     private long recordId;
     private Device sequenceDevice;
+    private TimingLogger timings;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -124,6 +127,9 @@ public class MainActivity extends AppCompatActivity
             uiHelper.setJobId(MainActivity.this, mJobNo);
         uiHelper.setupChronometer(MainActivity.this);
         uiHelper.updateStats(job, MainActivity.this);
+        System.setProperty(TimingTag, String.valueOf(Log.VERBOSE));
+        System.out.println("Loggable Tag - " + Log.isLoggable(TimingTag, Log.VERBOSE));
+        timings = new TimingLogger(TimingTag, "Execution Timings");
     }
 
     @Override
@@ -157,6 +163,7 @@ public class MainActivity extends AppCompatActivity
         if (MainActivity.this.isFinishing()) return;
         if (newSequence.isSequenceEnded()) {
             Log.d(TAG, "Sequence Ended");
+            timings.addSplit("Sequence End");
             onCurrentSequenceEnd();
             return;
         }
@@ -169,6 +176,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         Log.e(TAG, "goAndExecuteNextTest " + newSequence.getNextTest().getDescription());
+        timings.addSplit(newSequence.getNextTest().getDescription());
         newSequence.executeCurrentTest();
         uiHelper.setCurrentAndNextTaskinUI();
     }
@@ -393,6 +401,7 @@ public class MainActivity extends AppCompatActivity
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                timings.addSplit("Stopped");
                 waitForPCBDisconnected();
             }
         });
@@ -422,6 +431,7 @@ public class MainActivity extends AppCompatActivity
     private void waitForPCBConnected() {
         sequenceStarted = false;
         Log.d(TAG, "Wait for PCB to connect");
+        timings.addSplit("Waiting");
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -449,6 +459,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onPCBConnectedStartNewSequence() {
+        timings.addSplit("Button Pressed");
         sequenceStarted = false;
         if (isFinishing()) return;
         PeriCoachTestApplication.getApplication().forceSyncDevices();
@@ -460,6 +471,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void start() {
+        timings.addSplit("Starting");
         sequenceStarted = true;
 //        barcode = null;
         newSequence = null;
@@ -480,6 +492,7 @@ public class MainActivity extends AppCompatActivity
         increaseIterationNumber();// NA
         newSequence.reset();
         IOIOUtils.getUtils().initialize(MainActivity.this, myIOIO, MainActivity.this);
+        timings.addSplit("IOIO Inited");
         uiHelper.setCurrentAndNextTaskinUI();
 //        if (BuildConfig.DEBUG) {
 //            uiHelper.addView("Max V: ", String.valueOf(PeriCoachTestApplication.getMaxBatteryVoltage()), false);
@@ -503,6 +516,10 @@ public class MainActivity extends AppCompatActivity
             uiHelper.cleanUI(MainActivity.this);
         }
         IOIOUtils.getUtils().closeall(MainActivity.this, MainActivity.this);
+        timings.addSplit("Done");
+        updateUI(timings.toString());
+        timings.dumpToLog();
+        timings.reset();
         waitForPCBConnected();
     }
 

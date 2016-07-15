@@ -914,12 +914,23 @@ public class IOIOUtils implements IOIOUtilsInterface {
             report(e, activity);
         }
         try {
-            Thread.sleep(1000);
+            Thread.sleep(3000); // Note, 3secs to ensure device goes back to sleep
         } catch (InterruptedException e) {
             report(e, activity);
         }
         try {
             get_5V_DC().write(true);
+        } catch (ConnectionLostException e) {
+            report(e, activity);
+        }
+    }
+
+    @Override
+    public void setEMag(Activity activity, Boolean state) {
+        if (isinterrupted) return;
+        Log.d(TAG, "Setting Electromagnet" + state);
+        try {
+            getEmag().write(state);
         } catch (ConnectionLostException e) {
             report(e, activity);
         }
