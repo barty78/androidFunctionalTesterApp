@@ -154,7 +154,6 @@ public class NewSequence implements NewSequenceInterface {
     }
 
 
-
     @Override
     public int getNumberOfSteps() {
         return sequence.size();
@@ -255,9 +254,11 @@ public class NewSequence implements NewSequenceInterface {
         this.job = job;
 
         this.sequence = new ArrayList<Test>();
-        for (server.pojos.Test test : sequence.getTests()) {
-            Test result = TestsParser.parseTest(test, activity, ioio, job);
-            if (result != null) this.sequence.add(result);
+        if (sequence != null) {
+            for (server.pojos.Test test : sequence.getTests()) {
+                Test result = TestsParser.parseTest(test, activity, ioio, job);
+                if (result != null) this.sequence.add(result);
+            }
         }
     }
 
@@ -406,7 +407,6 @@ public class NewSequence implements NewSequenceInterface {
 //				(short) 127));
 //		sequence.add(new SensorTestWrapper(false, activity, ioio, "Sensor Input Test, LOADED, GAIN @ 127", 3, true,
 //				(short) 127));
-
 
 
         sequence.add(new BluetoothConnectTestForTesting(activity));
