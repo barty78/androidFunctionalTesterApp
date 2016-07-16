@@ -48,7 +48,4 @@ public interface NewIOIOActivityListener {
     void setSequenceDevice(Device device);
 
     Device getSequenceDevice();
-
-    void timingLog(String label);
-
 }

@@ -301,7 +301,12 @@ public class BTUtility {
             device = mBTAdapter.getRemoteDevice("00:17:E9:C0:82:EE");
         } else {
             Log.d(TAG, "Remote Device Addr: " + macaddress);
-            device = mBTAdapter.getRemoteDevice(macaddress);
+            try{
+            device = mBTAdapter.getRemoteDevice(macaddress);}
+            catch(IllegalArgumentException e){
+                Log.e("","Invalid address!");
+                e.printStackTrace();
+            }
         }
         NewPFMATDevice.specifyDevice(device);
         NewPFMATDevice.connect(activityRef.get(), INTENT_CONNECT_SUCCEEDED,
