@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.pietrantuono.activities.NewIOIOActivityListener;
 import com.pietrantuono.btutility.BTUtility;
 import com.pietrantuono.pericoach.newtestapp.BuildConfig;
 import com.pietrantuono.tests.superclass.Test;
@@ -60,7 +61,10 @@ public class BluetoothConnectTestForTesting extends Test {
 
             }
             activityListener.setBtutility(btUtility);
-            btUtility.connectProbeViaBT(BluetoothConnectTestForTesting.this);
+            if (!btUtility.connectProbeViaBT(BluetoothConnectTestForTesting.this)) {
+                ((NewIOIOActivityListener) getActivity()).addFailOrPass(
+                        false, false, "CONNECT FAILED", getDescription(), testToBeParsed);
+            }
             return null;
         }
     }

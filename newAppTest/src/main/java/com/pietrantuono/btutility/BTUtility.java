@@ -144,32 +144,32 @@ public class BTUtility {
         callback = (ActivtyWrapper) activity1;
     }
 
-    private void onConnectFailed() {
+    private boolean onConnectFailed() {
         retries++;
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(activityRef.get());
         boolean usemac = sharedPref.getBoolean(activityRef.get().getResources().getString(R.string.use_mac), false);
         if (!usemac && retries < 3) {
             startDiscovery();
-            return;
+            return true;
         }
         if (usemac && retries < 3) {
-            connectUsingMac();
-            return;
+            return connectUsingMac();
+
         }
         ((NewIOIOActivityListener) activityRef.get()).addFailOrPass(
                 false, false, "CONNECT FAILED", bluetoothConnectTest.getDescription(), bluetoothConnectTest.testToBeParsed);
+        return true;
     }
 
 
-    public void connectProbeViaBT(Test bluetoothConnectTest) {
+    public boolean connectProbeViaBT(Test bluetoothConnectTest) {
         if (isstopped)
-            return;
+            return false;
         this.bluetoothConnectTest = bluetoothConnectTest;
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(activityRef.get());
         boolean usemac = sharedPref.getBoolean(activityRef.get().getResources().getString(R.string.use_mac), false);
         if (usemac) {
-            connectUsingMac();
-            return;
+            return connectUsingMac();
         }
         mListItems = new ArrayList<ConnectDeviceItem>();
         // Register for BT device discovery broadcast events
@@ -180,7 +180,7 @@ public class BTUtility {
         eventFilter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
         Activity activity = activityRef.get();
         if (activity == null)
-            return;
+            return false;
         activity.registerReceiver(mBTReceiver, eventFilter);
         // Register for connection results
         IntentFilter connectFilter = new IntentFilter();
@@ -200,6 +200,7 @@ public class BTUtility {
                 }
         removeDevicesFromList(true, true);
         startDiscovery();
+        return true;
     }
 
     private void removeDevicesFromList(boolean removeBondedDevices,
@@ -246,7 +247,7 @@ public class BTUtility {
         if (isstopped)
             return;
         Log.d("BT ADDR:", device.getAddress());
-        Log.d("BT NAME:", device.getName());
+        Log.d("BT NAME:", device.getName()!=null?device.getName():"No device name available");
         if (device.getName() != null) {
 
             if (device.getName() != ""
@@ -277,9 +278,9 @@ public class BTUtility {
         }
     }
 
-    private void connectUsingMac() {
+    private boolean connectUsingMac() {
         if (isstopped)
-            return;
+            return false;
 //		mListItems = new ArrayList<ConnectDeviceItem>();
 //
 //		Set<BluetoothDevice> pairedDevices = mBTAdapter.getBondedDevices();
@@ -303,15 +304,16 @@ public class BTUtility {
             Log.d(TAG, "Remote Device Addr: " + macaddress);
             try{
             device = mBTAdapter.getRemoteDevice(macaddress);}
-            catch(IllegalArgumentException e){
+            catch(Exception e){
                 Log.e("","Invalid address!");
                 e.printStackTrace();
+                return false;
             }
         }
         NewPFMATDevice.specifyDevice(device);
         NewPFMATDevice.connect(activityRef.get(), INTENT_CONNECT_SUCCEEDED,
                 INTENT_CONNECT_FAILED);
-
+        return true;
     }
 
 
