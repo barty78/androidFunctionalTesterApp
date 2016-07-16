@@ -3,6 +3,8 @@ package com.pietrantuono.fragments;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
@@ -12,6 +14,12 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.pietrantuono.pericoach.newtestapp.R;
+import com.pietrantuono.timelogger.LogEntry;
+import com.pietrantuono.timelogger.TimeLogger;
+
+import rx.Observer;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 public class SerialConsoleFragment extends Fragment implements SerialConsoleFragmentCallback {
     private TextView textView;
@@ -53,7 +61,36 @@ public class SerialConsoleFragment extends Fragment implements SerialConsoleFrag
         textView = (TextView) v.findViewById(R.id.text);
         scrollView = (ScrollView) v.findViewById(R.id.scroll);
         card=(CardView) v.findViewById(R.id.card);
+        TimeLogger.getObservable().subscribeOn(AndroidSchedulers.mainThread()).subscribe(new Observer<LogEntry>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(LogEntry entry) {
+                updateUI(entry.toString());
+            }
+        });
+        TimeLogger.start();
+        logTest();
         return v;
+    }
+
+    private void logTest(){  //
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                TimeLogger.log("Foo");
+                logTest();
+            }
+        }, 1 * 1000);
+
     }
 
 

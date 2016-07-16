@@ -8,9 +8,13 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
+import rx.Observable;
+import rx.subjects.BehaviorSubject;
+
 public class TimeLogger {
     public static List<LogEntry> entries;
     public static AtomicLong startTime = null;
+    private static BehaviorSubject<LogEntry> subject= BehaviorSubject.create();
 
     /**
      * Call TimeLogger.start() to start the timer
@@ -25,7 +29,7 @@ public class TimeLogger {
         if (entries == null) {
             entries = Collections.synchronizedList(new ArrayList<LogEntry>());
         }
-        entries.add(logEntry);
+        addEntry(logEntry);
     }
 
     /**
@@ -38,7 +42,7 @@ public class TimeLogger {
         if (entries == null) {
             entries = Collections.synchronizedList(new ArrayList<LogEntry>());
         }
-        entries.add(logEntry);
+        addEntry(logEntry);
         String out = getEntries();
         entries.clear();
         startTime = null;
@@ -62,7 +66,7 @@ public class TimeLogger {
         if (entries == null) {
             entries = Collections.synchronizedList(new ArrayList<LogEntry>());
         }
-        entries.add(logEntry);
+        addEntry(logEntry);
     }
 
     /**
@@ -81,7 +85,7 @@ public class TimeLogger {
         if (entries == null) {
             entries = Collections.synchronizedList(new ArrayList<LogEntry>());
         }
-        entries.add(logEntry);
+        addEntry(logEntry);
     }
 
 
@@ -91,9 +95,7 @@ public class TimeLogger {
         }
         StringBuilder stringBuilder = new StringBuilder();
         for (LogEntry a : entries) {
-            stringBuilder.append("MESSAGE: " + (a.getMessage() != null ? a.getMessage() : ""));
-            stringBuilder.append(" - TIME: " + a.getTime());
-            stringBuilder.append("\n");
+           stringBuilder.append(a.toString());
         }
         return stringBuilder.toString();
     }
@@ -105,6 +107,17 @@ public class TimeLogger {
         } else return "TIMER WAS NOT STARTED";
     }
 
+    private synchronized static void addEntry(LogEntry entry){
+        subject.onNext(entry);
+        entries.add(entry);
+    }
+
+    /**
+     * Get your observable here
+     */
+    public static synchronized Observable<LogEntry> getObservable(){
+        return subject.asObservable();
+    }
 }
 
 

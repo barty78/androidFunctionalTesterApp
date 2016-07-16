@@ -3,7 +3,7 @@ package com.pietrantuono.timelogger;
 /**
  * Created by Maurizio Pietrantuono, maurizio.pietrantuono@gmail.com.
  */
-class LogEntry {
+public class LogEntry {
     public String time;
     public String message;
 
@@ -26,5 +26,14 @@ class LogEntry {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("MESSAGE: " + (getMessage() != null ? getMessage() : ""));
+        stringBuilder.append(" - TIME: " + getTime());
+        stringBuilder.append("\n");
+        return stringBuilder.toString();
     }
 }

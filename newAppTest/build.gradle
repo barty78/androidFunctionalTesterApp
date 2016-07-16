@@ -9,23 +9,25 @@ buildscript {
     dependencies {
         classpath 'io.fabric.tools:gradle:1.+'
         classpath 'com.jakewharton.hugo:hugo-plugin:1.2.1'
+        classpath 'me.tatarka:gradle-retrolambda:3.2.5'
 
     }
 }
 apply plugin: 'com.android.application'
 apply plugin: 'io.fabric'
 apply plugin: 'com.jakewharton.hugo'
-
+apply plugin: 'me.tatarka.retrolambda'
 
 repositories {
     maven { url 'https://maven.fabric.io/public' }
     maven { url 'https://dl.bintray.com/pietmau/maven/' }
     maven { url 'https://dl.bintray.com/kennyc1012/maven' }
+    mavenCentral()
 
 }
 
 android {
-    /*
+
     signingConfigs {
         Release {
             keyAlias 'newtestappkey'
@@ -34,12 +36,12 @@ android {
             storePassword 'barty78'
         }
     }
-    */
+
     signingConfigs {
         Release {
             keyAlias 'android'
             keyPassword 'barty78'
-//            storeFile file('c:/Users/Peter/StudioProjects/KeyStore/android.jks')
+            storeFile file('c:/Users/Peter/StudioProjects/KeyStore/android.jks')
             storePassword 'barty78'
             storeFile file('C:/Users/Peter/Keystore/android.jks')
         }
@@ -116,6 +118,11 @@ dependencies {
     compile 'com.kennyc:multistateview:1.1'
     compile 'me.zhanghai.android.materialprogressbar:library:1.1.4'
     compile project(':pfmat')
+    // RX Android
+    compile 'io.reactivex:rxandroid:1.2.1'
+    // Because RxAndroid releases are few and far between, it is recommended you also
+    // explicitly depend on RxJava's latest version for bug fixes and new features.
+    compile 'io.reactivex:rxjava:1.1.6'
 }
 
 
