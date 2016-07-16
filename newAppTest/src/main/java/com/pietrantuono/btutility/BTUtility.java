@@ -302,12 +302,14 @@ public class BTUtility {
             device = mBTAdapter.getRemoteDevice("00:17:E9:C0:82:EE");
         } else {
             Log.d(TAG, "Remote Device Addr: " + macaddress);
-            try{
-            device = mBTAdapter.getRemoteDevice(macaddress);}
-            catch(Exception e){
-                Log.e("","Invalid address!");
-                e.printStackTrace();
-                return false;
+            if (BluetoothAdapter.checkBluetoothAddress(macaddress)) {
+                try {
+                    device = mBTAdapter.getRemoteDevice(macaddress);
+                } catch (Exception e) {
+                    Log.e("", "Invalid address!");
+                    e.printStackTrace();
+                    return false;
+                }
             }
         }
         NewPFMATDevice.specifyDevice(device);

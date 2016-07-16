@@ -164,7 +164,10 @@ public class MagnetWakeDeviceTest extends Test {
                 }
             }
         }
+        if (!BluetoothAdapter.checkBluetoothAddress(postWakeDevices.get(0).getAddress()))return 0;
+
         if(postWakeDevices.size() == 1)activityListener.setMacAddress(postWakeDevices.get(0).getAddress());
+
         Log.d(TAG, "preWake Devices: " + preWakeDevices.size());
         Log.d(TAG, "postWake Devices: " + postWakeDevices.size());
         return postWakeDevices.size();
