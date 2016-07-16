@@ -195,7 +195,7 @@ public class SensorTest {
             public void run() {
                 try {
                     NewPFMATDevice.getDevice().getOutputStream().flush();
-                } catch (IOException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
                 sensorsTestHelper.accetpData(true);
