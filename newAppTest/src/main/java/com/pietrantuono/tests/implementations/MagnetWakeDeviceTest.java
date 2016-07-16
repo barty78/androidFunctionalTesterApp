@@ -174,6 +174,7 @@ public class MagnetWakeDeviceTest extends Test {
             Log.d(TAG, "postWake Devices: " + postWakeDevices.size());
             return postWakeDevices.size();
         }
+        return 0;
     }
 
     // Put the current thread to sleep.
