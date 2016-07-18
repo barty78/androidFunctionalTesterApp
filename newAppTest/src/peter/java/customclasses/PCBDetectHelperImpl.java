@@ -7,6 +7,8 @@ import com.pietrantuono.ioioutils.PCBConnectedCallback;
 import com.pietrantuono.ioioutils.PCBDetectHelper.PCBDetectHelperInterface;
 import com.pietrantuono.ioioutils.Voltage;
 
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
 import android.os.AsyncTask;
 import android.util.Log;
 

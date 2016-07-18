@@ -77,8 +77,8 @@ public class SerialConsoleFragment extends Fragment implements SerialConsoleFrag
                 updateUI(entry.toString());
             }
         });
-        TimeLogger.start();
-        logTest();
+//        TimeLogger.start();
+//        logTest();
         return v;
     }
 

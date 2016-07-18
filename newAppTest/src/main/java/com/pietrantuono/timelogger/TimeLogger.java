@@ -1,7 +1,9 @@
 package com.pietrantuono.timelogger;
 
 
+import android.os.SystemClock;
 import android.util.Log;
+import android.util.TimingLogger;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,7 +15,7 @@ import rx.subjects.BehaviorSubject;
 
 public class TimeLogger {
     public static List<LogEntry> entries;
-    public static AtomicLong startTime = null;
+    public static Long startTime = null;
     private static BehaviorSubject<LogEntry> subject= BehaviorSubject.create();
 
     /**
@@ -24,7 +26,8 @@ public class TimeLogger {
         if (startTime != null) {
             Log.e("TimeLogger", "Restarting an already started timer, are you sure?");
         }
-        startTime = new AtomicLong(System.nanoTime());
+//        startTime = new AtomicLong(System.currentTimeMillis());
+        startTime = SystemClock.elapsedRealtime();
         LogEntry logEntry = new LogEntry("Start (absolute time)", "" + startTime);
         if (entries == null) {
             entries = Collections.synchronizedList(new ArrayList<LogEntry>());
@@ -69,6 +72,14 @@ public class TimeLogger {
         addEntry(logEntry);
     }
 
+    public synchronized static void addSplit(String message) {
+       LogEntry logEntry = new LogEntry(message, getTimeSplit());
+        if (entries == null) {
+            entries = Collections.synchronizedList(new ArrayList<LogEntry>());
+        }
+        addEntry(logEntry);
+    }
+
     /**
      * TimeLogger.logStackTrace()
      * logs the stack trace at the point of execution
@@ -100,10 +111,17 @@ public class TimeLogger {
         return stringBuilder.toString();
     }
 
-    private synchronized static String getTimeDelta() {
-        long now = System.nanoTime();
+    private synchronized static String getTimeSplit() {
+        long now = SystemClock.elapsedRealtime();
         if (startTime != null) {
-            return "" + (now - startTime.get());
+            return "" + (now - Long.valueOf(entries.get(entries.size() - 1).getTime()));
+        } else return "TIMER WAS NOT STARTED";
+    }
+
+    private synchronized static String getTimeDelta() {
+        long now = SystemClock.elapsedRealtime();
+        if (startTime != null) {
+            return "" + (now - startTime);
         } else return "TIMER WAS NOT STARTED";
     }
 

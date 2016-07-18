@@ -17,6 +17,7 @@ import com.pietrantuono.ioioutils.Voltage;
 import com.pietrantuono.tests.ErrorCodes;
 import com.pietrantuono.tests.superclass.SimpleAsyncTask;
 import com.pietrantuono.tests.superclass.Test;
+import com.pietrantuono.timelogger.TimeLogger;
 
 import ioio.lib.api.AnalogInput;
 import ioio.lib.api.IOIO;
@@ -42,8 +43,8 @@ public class MagnetWakeDeviceTest extends Test {
             new ScanFilter.Builder().setManufacturerData(0x004C, new byte[0], new byte[0]).build();
     private BluetoothLeScanner mScanner;
 
-    private static final int PRE_WAKE_SCAN_DURATION_MILLIS = 3000;
-    private static final int SCAN_DURATION_MILLIS = 3000;
+    private static final int PRE_WAKE_SCAN_DURATION_MILLIS = 5000;
+    private static final int SCAN_DURATION_MILLIS = 7000;
     private static final int BATCH_SCAN_REPORT_DELAY_MILLIS = 0;
     private static final String OUI = "B0:B4:48";
 
@@ -166,7 +167,12 @@ public class MagnetWakeDeviceTest extends Test {
         }
 
         if(postWakeDevices.size() == 1) {
-            if (!BluetoothAdapter.checkBluetoothAddress(postWakeDevices.get(0).getAddress()))return 0;
+            TimeLogger.log("Found Device" + postWakeDevices.get(0).getAddress());
+
+            if (!BluetoothAdapter.checkBluetoothAddress(postWakeDevices.get(0).getAddress())) {
+                TimeLogger.log("Found Device" + postWakeDevices.get(0).getAddress());
+                return 0;
+            }
 
             activityListener.setMacAddress(postWakeDevices.get(0).getAddress());
 

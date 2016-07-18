@@ -505,7 +505,7 @@ public class IOIOUtils implements IOIOUtilsInterface {
 
         toggle5VDC(ac);
 
-        if (PeriCoachTestApplication.getCurrentJob().getTesttypeId() != 1) {
+        if (PeriCoachTestApplication.getCurrentJob().getTesttypeId() == 1) {
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
