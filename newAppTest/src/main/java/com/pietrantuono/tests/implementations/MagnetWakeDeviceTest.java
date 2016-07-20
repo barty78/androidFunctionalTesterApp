@@ -144,28 +144,48 @@ public class MagnetWakeDeviceTest extends Test {
         ScanSettings batchScanSettings = new ScanSettings.Builder()
                 .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY)
                 .setReportDelay(BATCH_SCAN_REPORT_DELAY_MILLIS).build();
-        ScanSettings scanSettings = new ScanSettings.Builder()
+        final ScanSettings scanSettings = new ScanSettings.Builder()
                 .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY)
                 .setReportDelay(BATCH_SCAN_REPORT_DELAY_MILLIS).build();
         final BleScanCallback regularLeScanCallback = new BleScanCallback();
         final long scanStartNanos = SystemClock.elapsedRealtimeNanos();
         mScanner.startScan(null, scanSettings, regularLeScanCallback);
-//        mScanner.
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
-                countPreWake(regularLeScanCallback, scanStartNanos);
+                stopAndRestartScan(scanSettings, regularLeScanCallback);
+            }
+        }, PRE_WAKE_SCAN_DURATION_MILLIS / 2);
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                flushPreScan(scanSettings, regularLeScanCallback, scanStartNanos);
             }
         }, PRE_WAKE_SCAN_DURATION_MILLIS);
     }
 
-    private void countPreWake(final BleScanCallback regularLeScanCallback, final long scanStartNanos) {
+    private void stopAndRestartScan(ScanSettings scanSettings, BleScanCallback scanCallback) {
+        mScanner.stopScan(scanCallback);
+        mScanner.startScan(null, scanSettings, scanCallback);
+    }
+
+    private void flushPreScan(final ScanSettings scanSettings, final BleScanCallback regularLeScanCallback, final long scanStartNanos) {
         mScanner.flushPendingScanResults(regularLeScanCallback);
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                countPreWake(scanSettings, regularLeScanCallback, scanStartNanos);
+
+            }
+        }, 1000);
+    }
+
+    private void countPreWake(final ScanSettings scanSettings, final BleScanCallback regularLeScanCallback, final long scanStartNanos) {
+//        try {
+//            Thread.sleep(1000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
         final int preCount = regularLeScanCallback.getScanResults().size();
         TimeLogger.log("Prewake Count - " + preCount + " ");
         if (IOIOUtils.getUtils().getEmag() != null) {
@@ -175,13 +195,29 @@ public class MagnetWakeDeviceTest extends Test {
 
         final long deviceWakeNanos = SystemClock.elapsedRealtimeNanos();
         if (isinterrupted) return;
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                stopAndRestartScan(scanSettings, regularLeScanCallback);
+            }
+        }, SCAN_DURATION_MILLIS / 2);
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                flushPostScan(regularLeScanCallback, scanStartNanos, preCount, deviceWakeNanos);
+            }
+        }, SCAN_DURATION_MILLIS);
+    }
 
+    private void flushPostScan(final BleScanCallback regularLeScanCallback, final long scanStartNanos, final int preCount, final long deviceWakeNanos) {
+        mScanner.flushPendingScanResults(regularLeScanCallback);
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
                 stopScan(regularLeScanCallback, scanStartNanos, preCount, deviceWakeNanos);
+
             }
-        }, SCAN_DURATION_MILLIS);
+        }, 1000);
     }
 
     private void stopScan(BleScanCallback regularLeScanCallback, long scanStartNanos, int preCount, long deviceWakeNanos) {
