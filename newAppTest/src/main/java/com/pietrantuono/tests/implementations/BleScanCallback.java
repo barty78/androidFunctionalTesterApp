@@ -29,6 +29,7 @@ public class BleScanCallback extends ScanCallback {
     @Override
     public void onScanResult(int callbackType, ScanResult result) {
         boolean add = true;
+        TimeLogger.log("Device Seen - " + result.getDevice().getAddress());
         if (callbackType == ScanSettings.CALLBACK_TYPE_ALL_MATCHES) {
             mResults.add(result);
             TimeLogger.log("Device Added - " + result.getDevice().getAddress());

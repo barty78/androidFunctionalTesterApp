@@ -2,6 +2,7 @@ package com.pietrantuono.tests.implementations;
 import ioio.lib.api.IOIO;
 
 import android.app.Activity;
+import android.os.AsyncTask;
 import android.util.Log;
 
 import com.pietrantuono.ioioutils.IOIOUtils;
@@ -54,48 +55,58 @@ public 	class VoltageTest extends Test {
 
 	@Override
 	public void execute() {
-		if(isinterrupted)return;
-		Log.d(TAG, "TEST Starting: " + description);
-		if(pinNumber == 32) {
-			String string = "V_REF_AN Voltage TEST (" + System.currentTimeMillis() + ")\n";
-			IOIOUtils.getUtils().appendUartLog((Activity) activityListener, string.getBytes(), string.getBytes().length);
-		}
-		Voltage.Result result = null;
-		try {
-			Thread.sleep(1 * 1000);
-		} catch (Exception e) {
-			activityListener.addFailOrPass(true,false, description,testToBeParsed);
-			report(e);
-		}
-
-		try {
-			result = Voltage
-					.checkVoltage(ioio, pinNumber, scaling, isNominal, limitParam1, limitParam2);
-		} catch (Exception e) {
-			report(e);
-		}
-		setValue(result.getReadingValue());
-		if (activityListener == null
-				|| ((Activity) activityListener).isFinishing())
-			return;
-		if (result == null) {
-			activityListener.addFailOrPass(true, false, "ERROR", description,testToBeParsed);
-			return;
-		}
-		if(pinNumber == 32) {
-			String string = "V_REF_AN Measurement: " + result.getReadingValue() + "V\n";
-			IOIOUtils.getUtils().appendUartLog((Activity) activityListener, string.getBytes(), string.getBytes().length);
-		}
-		if (result.isSuccess()) {
-			Success();
-			activityListener.addFailOrPass(true, true, result.getReading(), description,testToBeParsed);
-		} else {
-			activityListener.addFailOrPass(true, false, result.getReading(), description,testToBeParsed);
-		}
+		new VoltageTestAsyncTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 	}
+
 	@Override
 	public void interrupt() {
 		super.interrupt();
-		try {Voltage.interrupt();}catch(Exception e){}
+		try {Voltage.interrupt();}catch (Exception e){
+		}
+	}
+
+	private class VoltageTestAsyncTask extends AsyncTask<Void,Void,Void> {
+		@Override
+		protected Void doInBackground(Void... params) {
+			if (isinterrupted) return null;
+			Log.d(TAG, "TEST Starting: " + description);
+			if (pinNumber == 32) {
+				String string = "V_REF_AN Voltage TEST (" + System.currentTimeMillis() + ")\n";
+				IOIOUtils.getUtils().appendUartLog((Activity) activityListener, string.getBytes(), string.getBytes().length);
+			}
+			Voltage.Result result = null;
+			try {
+				Thread.sleep(1 * 1000);
+			} catch (Exception e) {
+				activityListener.addFailOrPass(true, false, description, testToBeParsed);
+				report(e);
+			}
+
+			try {
+				result = Voltage
+						.checkVoltage(ioio, pinNumber, scaling, isNominal, limitParam1, limitParam2);
+			} catch (Exception e) {
+				report(e);
+			}
+			setValue(result.getReadingValue());
+			if (activityListener == null
+					|| ((Activity) activityListener).isFinishing())
+				return null;
+			if (result == null) {
+				activityListener.addFailOrPass(true, false, "ERROR", description, testToBeParsed);
+				return null;
+			}
+			if (pinNumber == 32) {
+				String string = "V_REF_AN Measurement: " + result.getReadingValue() + "V\n";
+				IOIOUtils.getUtils().appendUartLog((Activity) activityListener, string.getBytes(), string.getBytes().length);
+			}
+			if (result.isSuccess()) {
+				Success();
+				activityListener.addFailOrPass(true, true, result.getReading(), description, testToBeParsed);
+			} else {
+				activityListener.addFailOrPass(true, false, result.getReading(), description, testToBeParsed);
+			}
+			return null;
+		}
 	}
 }

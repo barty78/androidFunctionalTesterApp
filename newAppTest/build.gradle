@@ -65,7 +65,7 @@ android {
             //  signingConfig signingConfigs.Release
             targetSdkVersion 21
             testApplicationId 'com.pietrantuono.pericoach.newtestapp.test'
-            minSdkVersion 16
+            minSdkVersion 18
             applicationId 'com.pietrantuono.pericoach.newtestapp'
             signingConfig signingConfigs.Release
         }
@@ -90,6 +90,7 @@ android {
         exclude 'META-INF/dependencies.txt'
         exclude 'META-INF/LGPL2.1'
     }
+
 }
 
 dependencies {
@@ -123,6 +124,7 @@ dependencies {
     // Because RxAndroid releases are few and far between, it is recommended you also
     // explicitly depend on RxJava's latest version for bug fixes and new features.
     compile 'io.reactivex:rxjava:1.1.6'
+    compile "com.polidea.rxandroidble:rxandroidble:1.0.1"
 }
 
 retrolambda {
