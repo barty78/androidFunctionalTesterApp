@@ -7,6 +7,8 @@ import android.bluetooth.le.ScanSettings;
 import android.os.Build;
 import android.util.Log;
 
+import com.pietrantuono.timelogger.TimeLogger;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -18,7 +20,7 @@ import java.util.Set;
  * Created by Maurizio Pietrantuono, maurizio.pietrantuono@gmail.com.
  */
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-class BleScanCallback extends ScanCallback {
+public class BleScanCallback extends ScanCallback {
 
     private static final String TAG = "BleScanCallback";
     private Set<ScanResult> mResults = new LinkedHashSet<ScanResult>();
@@ -27,8 +29,10 @@ class BleScanCallback extends ScanCallback {
     @Override
     public void onScanResult(int callbackType, ScanResult result) {
         boolean add = true;
+        TimeLogger.log("Device Seen - " + result.getDevice().getAddress());
         if (callbackType == ScanSettings.CALLBACK_TYPE_ALL_MATCHES) {
             mResults.add(result);
+            TimeLogger.log("Device Added - " + result.getDevice().getAddress());
             Log.d(TAG, result.toString());
         }
     }
@@ -48,5 +52,10 @@ class BleScanCallback extends ScanCallback {
     // Return regular BLE scan results accumulated so far.
     synchronized Collection<ScanResult> getScanResults() {
         return Collections.unmodifiableCollection(mResults);
+    }
+
+    // Return batch scan results.
+    synchronized List<ScanResult> getBatchScanResults() {
+        return Collections.unmodifiableList(mBatchScanResults);
     }
 }

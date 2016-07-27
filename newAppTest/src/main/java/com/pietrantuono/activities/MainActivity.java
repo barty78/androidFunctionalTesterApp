@@ -36,6 +36,7 @@ import com.pietrantuono.recordsdb.RecordsProcessor;
 import com.pietrantuono.sensors.SensorTestCallback;
 import com.pietrantuono.sequencedb.SequenceProviderHelper;
 import com.pietrantuono.tests.implementations.GetBarcodeTest;
+import com.pietrantuono.timelogger.TimeLogger;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -127,9 +128,7 @@ public class MainActivity extends AppCompatActivity
             uiHelper.setJobId(MainActivity.this, mJobNo);
         uiHelper.setupChronometer(MainActivity.this);
         uiHelper.updateStats(job, MainActivity.this);
-        System.setProperty(TimingTag, String.valueOf(Log.VERBOSE));
-        System.out.println("Loggable Tag - " + Log.isLoggable(TimingTag, Log.VERBOSE));
-        timings = new TimingLogger(TimingTag, "Execution Timings");
+        TimeLogger.start();
     }
 
     @Override
@@ -163,7 +162,7 @@ public class MainActivity extends AppCompatActivity
         if (MainActivity.this.isFinishing()) return;
         if (newSequence.isSequenceEnded()) {
             Log.d(TAG, "Sequence Ended");
-            timings.addSplit("Sequence End");
+            TimeLogger.addSplit("Sequence End");
             onCurrentSequenceEnd();
             return;
         }
@@ -176,7 +175,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         Log.e(TAG, "goAndExecuteNextTest " + newSequence.getNextTest().getDescription());
-        timings.addSplit(newSequence.getNextTest().getDescription());
+        TimeLogger.addSplit(newSequence.getNextTest().getDescription());
         newSequence.executeCurrentTest();
         uiHelper.setCurrentAndNextTaskinUI();
     }
@@ -401,7 +400,7 @@ public class MainActivity extends AppCompatActivity
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                timings.addSplit("Stopped");
+                TimeLogger.addSplit("Stopped");
                 waitForPCBDisconnected();
             }
         });
@@ -431,7 +430,7 @@ public class MainActivity extends AppCompatActivity
     private void waitForPCBConnected() {
         sequenceStarted = false;
         Log.d(TAG, "Wait for PCB to connect");
-        timings.addSplit("Waiting");
+        TimeLogger.addSplit("Waiting");
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -459,7 +458,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onPCBConnectedStartNewSequence() {
-        timings.addSplit("Button Pressed");
+        TimeLogger.addSplit("Button Pressed");
         sequenceStarted = false;
         if (isFinishing()) return;
         PeriCoachTestApplication.getApplication().forceSyncDevices();
@@ -471,7 +470,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void start() {
-        timings.addSplit("Starting");
+        TimeLogger.addSplit("Starting");
         sequenceStarted = true;
 //        barcode = null;
         newSequence = null;
@@ -492,7 +491,7 @@ public class MainActivity extends AppCompatActivity
         increaseIterationNumber();// NA
         newSequence.reset();
         IOIOUtils.getUtils().initialize(MainActivity.this, myIOIO, MainActivity.this);
-        timings.addSplit("IOIO Inited");
+        TimeLogger.addSplit("IOIO Inited");
         uiHelper.setCurrentAndNextTaskinUI();
 //        if (BuildConfig.DEBUG) {
 //            uiHelper.addView("Max V: ", String.valueOf(PeriCoachTestApplication.getMaxBatteryVoltage()), false);
@@ -516,10 +515,7 @@ public class MainActivity extends AppCompatActivity
             uiHelper.cleanUI(MainActivity.this);
         }
         IOIOUtils.getUtils().closeall(MainActivity.this, MainActivity.this);
-        timings.addSplit("Done");
-        updateUI(timings.toString());
-        timings.dumpToLog();
-        timings.reset();
+        TimeLogger.addSplit("Done");
         waitForPCBConnected();
     }
 
