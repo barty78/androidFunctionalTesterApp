@@ -14,7 +14,6 @@ import com.pietrantuono.timelogger.TimeLogger;
 import com.polidea.rxandroidble.RxBleClient;
 import com.polidea.rxandroidble.RxBleDevice;
 import com.polidea.rxandroidble.RxBleScanResult;
-import com.polidea.rxandroidble.exceptions.BleScanException;
 
 import ioio.lib.api.AnalogInput;
 import ioio.lib.api.IOIO;
@@ -29,7 +28,6 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.SystemClock;
 import android.util.Log;
-import android.widget.Toast;
 
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public class MagnetWakeDeviceTest extends Test {
@@ -42,12 +40,12 @@ public class MagnetWakeDeviceTest extends Test {
     private boolean scanning = false;
     private Subscription scanSubscription;
     private RxBleClient rxBleBlient;
-    private ArrayList<RxBleScanResult> preResults;
-    private ArrayList<RxBleScanResult> postResults;
+    private ArrayList<AnalyticaRxBleScanResult> preResults;
+    private ArrayList<AnalyticaRxBleScanResult> postResults;
     private int postCount;
     private int preCount;
     private long scanStartNanos;
-    private Object scanEndNanos;
+    private long scanEndNanos;
 
     public MagnetWakeDeviceTest(Activity activity, IOIO ioio) {
         super(activity, ioio, "Wake Device", false, true, 0, 0, 0);
@@ -120,7 +118,8 @@ public class MagnetWakeDeviceTest extends Test {
                     @Override
                     public void onNext(RxBleScanResult rxBleScanResult) {
                         // You get the results here
-                        preResults.add(rxBleScanResult);
+                        AnalyticaRxBleScanResult result = new AnalyticaRxBleScanResult(rxBleScanResult, System.nanoTime());
+                        preResults.add(result);
                     }
                 });
         /**
@@ -150,6 +149,7 @@ public class MagnetWakeDeviceTest extends Test {
         /**
          * We restart the scan
          */
+        postResults = new ArrayList<>();
         scanSubscription = rxBleBlient.scanBleDevices()
                 .subscribe(new Observer<RxBleScanResult>() {
                     @Override
@@ -165,7 +165,8 @@ public class MagnetWakeDeviceTest extends Test {
                     @Override
                     public void onNext(RxBleScanResult rxBleScanResult) {
                         // You get the results here
-                        postResults.add(rxBleScanResult);
+                        AnalyticaRxBleScanResult result = new AnalyticaRxBleScanResult(rxBleScanResult, System.nanoTime());
+                        postResults.add(result);
                     }
                 });
 
@@ -213,19 +214,19 @@ public class MagnetWakeDeviceTest extends Test {
     private int isNewDeviceSeenAfterWake() {
         List<RxBleDevice> preWakeDevices = new ArrayList<>();
         List<RxBleDevice> postWakeDevices = new ArrayList<>();
-        ArrayList<RxBleScanResult> results = new ArrayList<>();
+        ArrayList<AnalyticaRxBleScanResult> results = new ArrayList<>();
         results.addAll(preResults);
         results.addAll(postResults);
-        for (RxBleScanResult result : results) {
+        for (AnalyticaRxBleScanResult result : results) {
             Log.d(TAG, "result " + result);
-            if (preWakeDevices == null || result.getTimestampNanos() < scanStartNanos) {
+            if (preWakeDevices == null || result.getTimeStamp() < scanStartNanos) {
                 if (!preWakeDevices.contains(result.getBleDevice())) {
                     Log.d(TAG, "PreWake Adding Device: " + result.getBleDevice());
                     preWakeDevices.add(result.getBleDevice());
                 }
             } else {
                 if (!(preWakeDevices.contains(result.getBleDevice()))) {
-                    if (result.getTimestampNanos() < scanEndNanos) {
+                    if (result.getTimeStamp() < scanEndNanos) {
                         if (!postWakeDevices.contains(result.getBleDevice())) {
                             Log.d(TAG, "PostWake Adding Device: " + result.getBleDevice());
                             postWakeDevices.add(result.getBleDevice());
