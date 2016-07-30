@@ -20,6 +20,8 @@ import com.polidea.rxandroidble.exceptions.BleScanException;
 import ioio.lib.api.AnalogInput;
 import ioio.lib.api.IOIO;
 import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -45,9 +47,9 @@ public class MagnetWakeDeviceTest extends Test {
     private BluetoothAdapter mBluetoothAdapter;
     private BluetoothLeScanner mScanner;
 
-    private static final int PRE_WAKE_SCAN_DURATION_MILLIS = 5000;
-    private static final int SCAN_DURATION_MILLIS = 5000;
-    private static final int SCAN_RESTART_DURATION_MILLIS = SCAN_DURATION_MILLIS / 5;
+    private static final int PRE_WAKE_SCAN_DURATION_MILLIS = 2000;
+    private static final int SCAN_DURATION_MILLIS = 2000;
+    private static final int SCAN_RESTART_DURATION_MILLIS = SCAN_DURATION_MILLIS / 3;
     private static final int BATCH_SCAN_REPORT_DELAY_MILLIS = 0;
     private static final String OUI = "B0:B4:48";
     private boolean scanning = false;
@@ -83,16 +85,24 @@ public class MagnetWakeDeviceTest extends Test {
         @Override
         protected Void doInBackground(Void... params) {
             if (isinterrupted) return null;
-            RxBleClient rxBleBlient = RxBleClient.create(PeriCoachTestApplication.getContext());
-            List<RxBleScanResult> rxBleScanResult = new ArrayList<>();
-            scanSubscription = rxBleBlient.scanBleDevices()
-                    .subscribe();
+
+//            RxBleClient rxBleBlient = RxBleClient.create(PeriCoachTestApplication.getContext());
+//            List<RxBleScanResult> rxBleScanResult = new ArrayList<>();
+//            scanSubscription = rxBleBlient.scanBleDevices()
+//                    .observeOn(AndroidSchedulers.mainThread())
+//                    .subscribe(this::onScanResult);
+
             final BluetoothManager bluetoothManager =
                     (BluetoothManager) getActivity().getSystemService(Context.BLUETOOTH_SERVICE);
             mBluetoothAdapter = bluetoothManager.getAdapter();
             mScanner = mBluetoothAdapter.getBluetoothLeScanner();
             startScan();
             return null;
+        }
+
+        private void onScanResult(RxBleScanResult scanResult){
+            TimeLogger.log("Found Device" + scanResult.getBleDevice().getMacAddress());
+
         }
 
         private void handleBleScanException(BleScanException bleScanException) {
@@ -212,16 +222,17 @@ public class MagnetWakeDeviceTest extends Test {
             final long scanStartNanos = SystemClock.elapsedRealtimeNanos();
             mScanner.startScan(null, scanSettings, regularLeScanCallback);
             scanning = true;
+//            new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+//                @Override
+//                public void run() {
+//                    stopAndRestartScan(scanSettings, regularLeScanCallback);
+//                }
+//            }, SCAN_RESTART_DURATION_MILLIS);
             new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    stopAndRestartScan(scanSettings, regularLeScanCallback);
-                }
-            }, SCAN_RESTART_DURATION_MILLIS);
-            new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    flushPreScan(scanSettings, regularLeScanCallback, scanStartNanos);
+//                    flushPreScan(scanSettings, regularLeScanCallback, scanStartNanos);
+                    countPreWake(scanSettings, regularLeScanCallback, scanStartNanos);
                 }
             }, PRE_WAKE_SCAN_DURATION_MILLIS);
         }
@@ -267,16 +278,17 @@ public class MagnetWakeDeviceTest extends Test {
 
             final long deviceWakeNanos = SystemClock.elapsedRealtimeNanos();
             if (isinterrupted) return;
+//            new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+//                @Override
+//                public void run() {
+//                    stopAndRestartScan(scanSettings, regularLeScanCallback);
+//                }
+//            }, SCAN_RESTART_DURATION_MILLIS);
             new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    stopAndRestartScan(scanSettings, regularLeScanCallback);
-                }
-            }, SCAN_RESTART_DURATION_MILLIS);
-            new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    flushPostScan(regularLeScanCallback, scanStartNanos, preCount, deviceWakeNanos);
+//                    flushPostScan(regularLeScanCallback, scanStartNanos, preCount, deviceWakeNanos);
+                    stopScan(regularLeScanCallback, scanStartNanos, preCount, deviceWakeNanos);
                 }
             }, SCAN_DURATION_MILLIS);
         }
@@ -294,21 +306,22 @@ public class MagnetWakeDeviceTest extends Test {
 
         private void stopScan(final BleScanCallback regularLeScanCallback, long scanStartNanos, final int preCount, final long deviceWakeNanos) {
             mScanner.flushPendingScanResults(regularLeScanCallback);
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+//            try {
+//                Thread.sleep(1000);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
             mScanner.stopScan(regularLeScanCallback);
-            scanSubscription.unsubscribe();
+//            scanSubscription.unsubscribe();
             scanning = false;
             TimeLogger.log("Scan Stopped");
-            new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    checkResults(regularLeScanCallback, preCount, deviceWakeNanos);
-                }
-            }, 1000);
+//            new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+//                @Override
+//                public void run() {
+//                    checkResults(regularLeScanCallback, preCount, deviceWakeNanos);
+//                }
+//            }, 1000);
+            checkResults(regularLeScanCallback, preCount, deviceWakeNanos);
 
         }
 
