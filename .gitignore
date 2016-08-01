@@ -1,3 +1,7 @@
+local.properties
+newAppTest/build.gradle
+newAppTest/src/maurizio/java/customclasses/NewSequence.java
+
 #built application files
 *.apk
 *.ap_
