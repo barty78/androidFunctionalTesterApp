@@ -159,6 +159,7 @@ public class DevicesListFragment extends Fragment implements LoaderManager.Loade
 
     private String getSortOrder() {
         Job job = PeriCoachTestApplication.getCurrentJob();
+        Job primaryJob = PeriCoachTestApplication.getPrimaryJob();
         String sortorder;
         if (orderbyBarcode) {
             sortorder = Contract.DevicesColumns.DEVICES_BARCODE + " ASC";
@@ -170,8 +171,9 @@ public class DevicesListFragment extends Fragment implements LoaderManager.Loade
 
     private String getSelection() {
         Job job = PeriCoachTestApplication.getCurrentJob();
-        if (!thisJobOnly || job == null) return null;
-        return Contract.DevicesColumns.DEVICES_JOB_ID + "= " + job.getId() +
+        Job primaryJob = PeriCoachTestApplication.getPrimaryJob();
+        if (!thisJobOnly || primaryJob == null) return null;
+        return Contract.DevicesColumns.DEVICES_JOB_ID + "= " + primaryJob.getId() +
                 " AND " + "(" + Contract.DevicesColumns.DEVICES_EXEC_TESTS + " & " + job.getTesttypeId() + ") = " + job.getTesttypeId();
     }
 

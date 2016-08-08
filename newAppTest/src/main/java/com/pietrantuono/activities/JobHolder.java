@@ -71,6 +71,7 @@ public class JobHolder extends RecyclerView.ViewHolder{
                 Log.d("Job ID: ", String.valueOf(job.getId()));
                 PeriCoachTestApplication.setCurrentJob(job);
                 PeriCoachTestApplication.setIsRetestAllowed(job.getIsretestallowed() != 0);
+                callback.getPrimaryJobForSelectedJob(job.getPrimaryJobId());
                 callback.getFirmwareListFromServer(job.getFirmwareId());
             }
 
@@ -114,6 +115,8 @@ public class JobHolder extends RecyclerView.ViewHolder{
         void setJob(Job job);
 
         void getFirmwareListFromServer(long firmwareId);
+
+        void getPrimaryJobForSelectedJob(long primaryJobId);
     }
 
 }

@@ -4,6 +4,7 @@ package analytica.pericoach.android;
 public class Job {
 	
 	private long id;
+	private long primaryjob_id;
 	private Integer test_id;
 	private int testtype_id;
 	private int job_id;
@@ -25,7 +26,11 @@ public class Job {
 	public void setId(long id) {
 		this.id = id;
 	}
-	
+
+	public long getPrimaryJobId() {return primaryjob_id;}
+
+	public void setPrimaryjob_id(long id) { this.primaryjob_id = id;}
+
 	public Integer getTestID() {
 		return test_id;
 	}

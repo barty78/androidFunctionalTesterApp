@@ -12,6 +12,10 @@ public class Job implements Parcelable {
     @Expose
     private long id;
 
+    @SerializedName("primaryjob_id")
+    @Expose
+    private long primaryJobId;
+
     @SerializedName("testtype_id")
     @Expose
     private long testtypeId;
@@ -87,6 +91,21 @@ public class Job implements Parcelable {
     public void setId(long id) {
         this.id = id;
     }
+
+
+    /**
+     *
+     * @return
+     *     The primary job id
+     */
+    public long getPrimaryJobId() { return primaryJobId;}
+
+    /**
+     *
+     * @param id
+     *     The primary job id
+     */
+    public void setPrimaryJobId(long id) { this.primaryJobId = id;}
 
     /**
      *
@@ -300,6 +319,7 @@ public class Job implements Parcelable {
 
     protected Job(Parcel in) {
         id = in.readLong();
+        primaryJobId = in.readLong();
         testtypeId = in.readLong();
         testId = in.readLong();
         firmwareId = in.readLong();
@@ -323,6 +343,7 @@ public class Job implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeLong(id);
+        dest.writeLong(primaryJobId);
         dest.writeLong(testtypeId);
         dest.writeLong(testId);
         dest.writeLong(firmwareId);

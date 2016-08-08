@@ -35,6 +35,9 @@ public class RetrofitRestServices {
         @GET("/jobs/active")
         void getJobListActiveJobs(@Header("DeviceId") String DeviceId, Callback<List<Job>> callback);
 
+        @GET("/jobs/all/active")
+        void getJobListAllActiveJobs(@Header("DeviceId") String DeviceId, Callback<List<Job>> callback);
+
         @GET("/firmware")
         void getFirmware(@Header("DeviceId") String DeviceId, @Header("FirmwareId") String FirmwareId, Callback<Firmware> callback);
 

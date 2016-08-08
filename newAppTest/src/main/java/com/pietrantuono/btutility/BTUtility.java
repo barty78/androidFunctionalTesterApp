@@ -22,6 +22,7 @@ import com.pietrantuono.sensors.AllSensorsCallback;
 import com.pietrantuono.sensors.NewDevice;
 import com.pietrantuono.sensors.NewPFMATDevice;
 import com.pietrantuono.tests.superclass.Test;
+import com.pietrantuono.timelogger.TimeLogger;
 import com.radiusnetworks.bluetooth.BluetoothCrashResolver;
 
 import analytica.pericoach.android.ConnectDeviceItem;
@@ -246,12 +247,15 @@ public class BTUtility {
     private final void onDiscoverDevice(BluetoothDevice device) {
         if (isstopped)
             return;
+        TimeLogger.log(device.getAddress() + " - " + device.getName());
         Log.d("BT ADDR:", device.getAddress());
         Log.d("BT NAME:", device.getName()!=null?device.getName():"No device name available");
         if (device.getName() != null) {
 
             if (device.getName() != ""
-                    && (device.getName().contains("PeriCoach-" + scancode))) {
+//                    && (device.getName().contains("PeriCoach-" + scancode))) {
+                    && (device.getName().contains("PeriCoach-"))) {
+
                 mListItems.add(new ConnectDeviceItem(Type.DEVICE, device
                         .getName(), device, R.drawable.device));
                 mBTAdapter.cancelDiscovery();

@@ -1,6 +1,7 @@
 package com.pietrantuono.application;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import com.cyanogenmod.updater.utils.MD5;
 import com.pietrantuono.pericoach.newtestapp.R;
@@ -24,6 +25,7 @@ public class PeriCoachTestApplication extends Application {
 	private static File firmware=null;
 	private static File firmwareCheckFile=null;
 	private static Job job=null;
+	private static Job primaryJob=null;
 	private static Account mAccount;
 	private static int lastPos = 0;
 	private static final String AUTHORITY = "com.example.android.datasync.provider";
@@ -33,6 +35,8 @@ public class PeriCoachTestApplication extends Application {
 	private static float maxBatteryVoltage;
 	private static float minBatteryVoltage;
 	private static Sequence sequence;
+	private static int testType=0;
+	private static ArrayList<server.pojos.Job> allJobs=null;
 
 	private static boolean isretestallowed;
 	private static PeriCoachTestApplication application;
@@ -104,6 +108,10 @@ public class PeriCoachTestApplication extends Application {
 
 	public static void setCurrentJob(Job job) {PeriCoachTestApplication.job = job;}
 
+	public static Job getPrimaryJob() {return primaryJob;}
+
+	public static void setPrimaryJob(Job job) {PeriCoachTestApplication.primaryJob = job;}
+
 	public static Firmware getGetFirmware() {
 		return GetFirmware;
 	}
@@ -111,7 +119,10 @@ public class PeriCoachTestApplication extends Application {
 	public static void setGetFirmware(Firmware getFirmware) {
 		GetFirmware = getFirmware;
 	}
-	
+
+	public static int getTestType() {return testType;}
+
+	public static void setTestType(int testType) {PeriCoachTestApplication.testType = testType;}
 
 	public static void setSequence(Sequence sequence) {
 		PeriCoachTestApplication.sequence=sequence;

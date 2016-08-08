@@ -31,6 +31,7 @@ import android.widget.Toast;
 
 import retrofit.Callback;
 import retrofit.RetrofitError;
+import retrofit.client.Header;
 import retrofit.client.Response;
 //import server.Job;
 import server.RetrofitRestServices;
@@ -47,6 +48,7 @@ import utils.DownloadTask.MyCallback;
 @SuppressWarnings("ucd")
 public class OtherSelectJobActivity extends AppCompatActivity implements MyCallback, JobHolder.Callback {
 	private RecyclerView recyclerView;
+	private ArrayList<server.pojos.Job> allJobsFromServer;
 	private ArrayList<server.pojos.Job> jobsFromServer;
 	private ArrayList<server.pojos.Job> jobsFromdb;
 	private static server.pojos.Job job;
@@ -123,18 +125,39 @@ public class OtherSelectJobActivity extends AppCompatActivity implements MyCallb
 	private void getJobsFromServer() {
 		MyDialogs.showIndeterminateProgress(OtherSelectJobActivity.this,
 				"Downloading jobs list", "Please wait...");
-		getRest().getJobListActiveJobs( PeriCoachTestApplication.getDeviceid(), new Callback<List<Job>>() {
+//		getRest().getJobListActiveJobs( PeriCoachTestApplication.getDeviceid(), new Callback<List<Job>>() {
+		getRest().getJobListAllActiveJobs( PeriCoachTestApplication.getDeviceid(), new Callback<List<Job>>() {
 			@Override
 			public void success(List<Job> arg0, Response arg1) {
 				MyDialogs.dismissProgress();
 				if (arg0 == null || arg0.size() <= 0) {
 					showAlert("Empty list");
 					jobsFromServer = null;
+					allJobsFromServer = null;
 					//populateList();
 					//getFirmwareListFromServer();
 				} else {
+					List<Header> headerList = arg1.getHeaders();
+					for (Header header : headerList) {
+						if (header.getName() !=null)Log.d("Header", header.getName());
+						if (header.getName() != null && header.getName().equalsIgnoreCase("testtype")) {
+							PeriCoachTestApplication.setTestType(Integer.valueOf(header.getValue()));
+							Log.d("TestType", String.valueOf(PeriCoachTestApplication.getTestType()));
+						}
+
+					}
 					jobsFromServer = new ArrayList<server.pojos.Job>();
-					jobsFromServer.addAll(arg0);
+					allJobsFromServer = new ArrayList<server.pojos.Job>();
+
+					// Only add jobs of the same test type.
+					allJobsFromServer.addAll(arg0);
+
+					for (Job job : allJobsFromServer) {
+						if (job.getTesttypeId() == PeriCoachTestApplication.getTestType()) jobsFromServer.add(job);
+						Log.d("JOB", job.getId() + " | " + job.getJobno());
+
+					}
+//					jobsFromServer.addAll(arg0);
 					for (int i = 0; i < jobsFromServer.size(); i++) {
 						Log.d("JOB", jobsFromServer.get(i).getId() + " | " + jobsFromServer.get(i).getJobno());
 					}
@@ -207,6 +230,18 @@ public class OtherSelectJobActivity extends AppCompatActivity implements MyCallb
 			rest = RetrofitRestServices.getRest(OtherSelectJobActivity.this);
 			return rest;
 
+		}
+	}
+
+	public void getPrimaryJobForSelectedJob(long primaryJobId) {
+		Log.d("PrimaryJob", String.valueOf(primaryJobId));
+		if (primaryJobId == job.getId()) {
+			PeriCoachTestApplication.setPrimaryJob(job);
+			Log.d("PrimaryJobNo", job.getJobno());
+		} else {
+			for (Job j : allJobsFromServer) {
+				if (j.getId() == primaryJobId) PeriCoachTestApplication.setPrimaryJob(j);
+			}
 		}
 	}
 
@@ -373,5 +408,6 @@ public class OtherSelectJobActivity extends AppCompatActivity implements MyCallb
 	@Override
 	public void setJob(Job job) {
 		OtherSelectJobActivity.job=job;
+//		OtherSelectJobActivity.primaryJob =
 	}
 }
