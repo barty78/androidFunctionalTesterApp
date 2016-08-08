@@ -104,20 +104,23 @@ public class UIHelper {
     public void updateStats(Job job, AppCompatActivity activity) {
         ContentResolver resolver = activity.getContentResolver();
 
-        String selection = Contract.DevicesColumns.DEVICES_JOB_ID + "= " + job.getId() +
+        Job primaryJob = PeriCoachTestApplication.getPrimaryJob();
+
+        String selection = Contract.DevicesColumns.DEVICES_JOB_ID + "= " + primaryJob.getId() +
                 " AND " + "(" + Contract.DevicesColumns.DEVICES_EXEC_TESTS + " & " + job.getTesttypeId() + ") = " + job.getTesttypeId();
         Cursor c = resolver.query(DevicesContentProvider.CONTENT_URI, null, selection, null, null);
-        int numberOfDevices = c.getCount();
+//        int numberOfDevices = c.getCount();
+        long numberOfDevices = job.getQuantity();
         c.close();
 
-        selection = Contract.DevicesColumns.DEVICES_JOB_ID + "= " + job.getId() +
+        selection = Contract.DevicesColumns.DEVICES_JOB_ID + "= " + primaryJob.getId() +
                 " AND " + "(" + Contract.DevicesColumns.DEVICES_EXEC_TESTS + " & " + job.getTesttypeId() + ") = " + job.getTesttypeId() +
                 " AND " + "(" + Contract.DevicesColumns.DEVICES_STATUS + " & " + job.getTesttypeId() + ") = " + job.getTesttypeId();
         c = resolver.query(DevicesContentProvider.CONTENT_URI, null, selection, null, null);
         int numberOfDevicesPassed = c.getCount();
         c.close();
 
-        selection = Contract.DevicesColumns.DEVICES_JOB_ID + "= " + job.getId() +
+        selection = Contract.DevicesColumns.DEVICES_JOB_ID + "= " + primaryJob.getId() +
                 " AND " + "(" + Contract.DevicesColumns.DEVICES_EXEC_TESTS + " & " + job.getTesttypeId() + ") = " + job.getTesttypeId() +
                 " AND " + "(" + Contract.DevicesColumns.DEVICES_STATUS + " & " + job.getTesttypeId() + ") = 0";
         c = resolver.query(DevicesContentProvider.CONTENT_URI, null, selection, null, null);
