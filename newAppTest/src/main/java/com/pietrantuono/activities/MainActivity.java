@@ -351,34 +351,12 @@ public class MainActivity extends AppCompatActivity
         final boolean overallresult = newSequence.getOverallResultBool();
         PeriCoachTestApplication.getApplication().forceSyncDevices();
         if (job.getIslogging() == 1) {
-            newSequence.deleteUnusedTests();
-            if (sequenceDevice.getBarcode() != null) { // If No barcode then don't create/upload record
-                NewRecordsSQLiteOpenHelper newRecordsHelper = NewRecordsSQLiteOpenHelper.getInstance(MainActivity.this);
-                TestRecord record = RecordFromSequenceCreator.createRecordFromSequence(newSequence, sequenceDevice);
-                //MyDatabaseUtils.RecontructRecord(record);
-                long id = RecordsProcessor.saveRecord(record, newRecordsHelper);
-                if (id > 0) {
-
-                    String selection = "Id = ?";
-                    String[] selectionArgs = new String[]{"" + id};
-                    Cursor c = newRecordsHelper.getWritableDatabase().query(RecordsContract.TestRecords.TABLE, null, selection, selectionArgs, null, null, null);
-                    if (c.getCount() > 0) {
-                        List<TestRecord> records = RecordsProcessor.reconstructRecords(c, newRecordsHelper);
-                        if (records.size() > 0) {
-                            Gson gson = new GsonBuilder()
-                                    .excludeFieldsWithoutExposeAnnotation()
-                                    .registerTypeAdapter(Long.class, new MyLongTypeAdapter())
-                                    .registerTypeAdapter(Double.class, new MyDoubleTypeAdapter())
-                                    .registerTypeAdapter(Integer.class, new MyIntTypeAdapter())
-                                    .registerTypeAdapter(Integer.class, new MyIntTypeAdapter())
-                                    .create();
-                            String recordstring = gson.toJson(records.get(0), TestRecord.class);
-                            Log.d(TAG, "Created record: " + recordstring);
-                        }
-                    }
-                    PeriCoachTestApplication.forceSync();
+            if (job.getLogWithoutId() == 1) {
+                createRecordAndSync();
+            } else {
+                if (sequenceDevice.getBarcode() != null) { // If No barcode then don't create/upload record
+                    createRecordAndSync();
                 }
-
             }
         }
         runOnUiThread(new Runnable() {
@@ -405,6 +383,35 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+    }
+
+    private void createRecordAndSync() {
+        newSequence.deleteUnusedTests();
+        NewRecordsSQLiteOpenHelper newRecordsHelper = NewRecordsSQLiteOpenHelper.getInstance(MainActivity.this);
+        TestRecord record = RecordFromSequenceCreator.createRecordFromSequence(newSequence, sequenceDevice);
+        //MyDatabaseUtils.RecontructRecord(record);
+        long id = RecordsProcessor.saveRecord(record, newRecordsHelper);
+        if (id > 0) {
+
+            String selection = "Id = ?";
+            String[] selectionArgs = new String[]{"" + id};
+            Cursor c = newRecordsHelper.getWritableDatabase().query(RecordsContract.TestRecords.TABLE, null, selection, selectionArgs, null, null, null);
+            if (c.getCount() > 0) {
+                List<TestRecord> records = RecordsProcessor.reconstructRecords(c, newRecordsHelper);
+                if (records.size() > 0) {
+                    Gson gson = new GsonBuilder()
+                            .excludeFieldsWithoutExposeAnnotation()
+                            .registerTypeAdapter(Long.class, new MyLongTypeAdapter())
+                            .registerTypeAdapter(Double.class, new MyDoubleTypeAdapter())
+                            .registerTypeAdapter(Integer.class, new MyIntTypeAdapter())
+                            .registerTypeAdapter(Integer.class, new MyIntTypeAdapter())
+                            .create();
+                    String recordstring = gson.toJson(records.get(0), TestRecord.class);
+                    Log.d(TAG, "Created record: " + recordstring);
+                }
+            }
+            PeriCoachTestApplication.forceSync();
+        }
     }
 
     public String getSerial() {

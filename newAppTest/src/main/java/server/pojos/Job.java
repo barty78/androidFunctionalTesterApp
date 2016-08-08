@@ -52,6 +52,9 @@ public class Job implements Parcelable {
     private long islogging;
 
     @Expose
+    private long logwithoutid;
+
+    @Expose
     private long isretestallowed;
 
     @Expose
@@ -252,6 +255,11 @@ public class Job implements Parcelable {
         this.islogging = islogging;
     }
 
+    public long getLogWithoutId() { return logwithoutid;}
+
+    public void setLogWithoutId(long logWithoutId) { this.logwithoutid = logWithoutId;}
+
+
     /**
      * @param isretestallowed
      */
@@ -329,6 +337,7 @@ public class Job implements Parcelable {
         createdAt = in.readString();
         updatedAt = in.readString();
         islogging = in.readLong();
+        logwithoutid = in.readLong();
         isretestallowed = in.readLong();
         active = in.readLong();
         description = in.readString();
@@ -353,6 +362,7 @@ public class Job implements Parcelable {
         dest.writeString(createdAt);
         dest.writeString(updatedAt);
         dest.writeLong(islogging);
+        dest.writeLong(logwithoutid);
         dest.writeLong(isretestallowed);
         dest.writeLong(active);
         dest.writeString(description);
