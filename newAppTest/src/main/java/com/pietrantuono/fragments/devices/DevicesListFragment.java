@@ -141,9 +141,10 @@ public class DevicesListFragment extends Fragment implements LoaderManager.Loade
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        if (getSelection() == null) return null;
         switch (id) {
             case LOADER:
-                if(getSelection()==null)return null;
+                if (getSelection() == null) return null;
                 return new CursorLoader(
                         getActivity(),
                         DevicesContentProvider.CONTENT_URI,
@@ -155,11 +156,11 @@ public class DevicesListFragment extends Fragment implements LoaderManager.Loade
             default:
                 return null;
         }
+
     }
 
     private String getSortOrder() {
         Job job = PeriCoachTestApplication.getCurrentJob();
-        Job primaryJob = PeriCoachTestApplication.getPrimaryJob();
         String sortorder;
         if (orderbyBarcode) {
             sortorder = Contract.DevicesColumns.DEVICES_BARCODE + " ASC";
@@ -172,9 +173,16 @@ public class DevicesListFragment extends Fragment implements LoaderManager.Loade
     private String getSelection() {
         Job job = PeriCoachTestApplication.getCurrentJob();
         Job primaryJob = PeriCoachTestApplication.getPrimaryJob();
-        if (!thisJobOnly || primaryJob == null) return null;
-        return Contract.DevicesColumns.DEVICES_JOB_ID + "= " + primaryJob.getId() +
-                " AND " + "(" + Contract.DevicesColumns.DEVICES_EXEC_TESTS + " & " + job.getTesttypeId() + ") = " + job.getTesttypeId();
+
+        if (!thisJobOnly) {
+            return "";
+        } else {
+            if (primaryJob != null && job.getId() != 0) {
+                return Contract.DevicesColumns.DEVICES_JOB_ID + "= " + primaryJob.getId() +
+                        " AND " + "(" + Contract.DevicesColumns.DEVICES_EXEC_TESTS + " & " + job.getTesttypeId() + ") = " + job.getTesttypeId();
+            }
+        }
+        return null;
     }
 
     @Override

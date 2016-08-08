@@ -106,32 +106,35 @@ public class UIHelper {
 
         Job primaryJob = PeriCoachTestApplication.getPrimaryJob();
 
-        String selection = Contract.DevicesColumns.DEVICES_JOB_ID + "= " + primaryJob.getId() +
-                " AND " + "(" + Contract.DevicesColumns.DEVICES_EXEC_TESTS + " & " + job.getTesttypeId() + ") = " + job.getTesttypeId();
-        Cursor c = resolver.query(DevicesContentProvider.CONTENT_URI, null, selection, null, null);
-//        int numberOfDevices = c.getCount();
         long numberOfDevices = job.getQuantity();
-        c.close();
 
-        selection = Contract.DevicesColumns.DEVICES_JOB_ID + "= " + primaryJob.getId() +
-                " AND " + "(" + Contract.DevicesColumns.DEVICES_EXEC_TESTS + " & " + job.getTesttypeId() + ") = " + job.getTesttypeId() +
-                " AND " + "(" + Contract.DevicesColumns.DEVICES_STATUS + " & " + job.getTesttypeId() + ") = " + job.getTesttypeId();
-        c = resolver.query(DevicesContentProvider.CONTENT_URI, null, selection, null, null);
-        int numberOfDevicesPassed = c.getCount();
-        c.close();
+        if (primaryJob != null || job.getPrimaryJobId() != 0) {
+//        String selection = Contract.DevicesColumns.DEVICES_JOB_ID + "= " + primaryJob.getId() +
+//                " AND " + "(" + Contract.DevicesColumns.DEVICES_EXEC_TESTS + " & " + job.getTesttypeId() + ") = " + job.getTesttypeId();
+//        Cursor c = resolver.query(DevicesContentProvider.CONTENT_URI, null, selection, null, null);
+//        int numberOfDevices = c.getCount();
+//        c.close();
 
-        selection = Contract.DevicesColumns.DEVICES_JOB_ID + "= " + primaryJob.getId() +
-                " AND " + "(" + Contract.DevicesColumns.DEVICES_EXEC_TESTS + " & " + job.getTesttypeId() + ") = " + job.getTesttypeId() +
-                " AND " + "(" + Contract.DevicesColumns.DEVICES_STATUS + " & " + job.getTesttypeId() + ") = 0";
-        c = resolver.query(DevicesContentProvider.CONTENT_URI, null, selection, null, null);
+            String selection = Contract.DevicesColumns.DEVICES_JOB_ID + "= " + primaryJob.getId() +
+                    " AND " + "(" + Contract.DevicesColumns.DEVICES_EXEC_TESTS + " & " + job.getTesttypeId() + ") = " + job.getTesttypeId() +
+                    " AND " + "(" + Contract.DevicesColumns.DEVICES_STATUS + " & " + job.getTesttypeId() + ") = " + job.getTesttypeId();
+            Cursor c = resolver.query(DevicesContentProvider.CONTENT_URI, null, selection, null, null);
+            int numberOfDevicesPassed = c.getCount();
+            c.close();
 
-        int numberOfDevicesFailed = c.getCount();
-        c.close();
+            selection = Contract.DevicesColumns.DEVICES_JOB_ID + "= " + primaryJob.getId() +
+                    " AND " + "(" + Contract.DevicesColumns.DEVICES_EXEC_TESTS + " & " + job.getTesttypeId() + ") = " + job.getTesttypeId() +
+                    " AND " + "(" + Contract.DevicesColumns.DEVICES_STATUS + " & " + job.getTesttypeId() + ") = 0";
+            c = resolver.query(DevicesContentProvider.CONTENT_URI, null, selection, null, null);
 
-        ((TextView) activity.findViewById(R.id.num_of_devices)).setText("" + numberOfDevices);
-        ((TextView) activity.findViewById(R.id.devices_passed)).setText("" + numberOfDevicesPassed);
-        ((TextView) activity.findViewById(R.id.devices_failed)).setText("" + numberOfDevicesFailed);
-        ((DonutProgress) activity.findViewById(R.id.progress_stats)).setProgress((int) ((numberOfDevicesPassed / (float) numberOfDevices) * 100));
+            int numberOfDevicesFailed = c.getCount();
+            c.close();
+
+            ((TextView) activity.findViewById(R.id.num_of_devices)).setText("" + numberOfDevices);
+            ((TextView) activity.findViewById(R.id.devices_passed)).setText("" + numberOfDevicesPassed);
+            ((TextView) activity.findViewById(R.id.devices_failed)).setText("" + numberOfDevicesFailed);
+            ((DonutProgress) activity.findViewById(R.id.progress_stats)).setProgress((int) ((numberOfDevicesPassed / (float) numberOfDevices) * 100));
+        }
     }
 
     public void setRecordId(long recordId) {
