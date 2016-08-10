@@ -136,10 +136,10 @@ public class UIHelper {
             int numberOfDevicesFailed = c.getCount();
             c.close();
 
+            selection = RecordsContract.TestRecords.JOB_NO + "= " + job.getJobno();
             c = newRecordsSQLiteOpenHelper.getReadableDatabase().query(RecordsContract.TestRecords.TABLE,
                     new String[]{RecordsContract.TestRecords.DURATION},
-                    null, null, null, null, null);
-//            float avgTestTime = (float) 0.0;
+                    selection, null, null, null, null);
 
             long sum = 0L;
             long count = c.getCount();
@@ -153,12 +153,13 @@ public class UIHelper {
                 Log.d("TESTTIME", String.valueOf(c.getString(0)));
             }
 
-//            if (c.moveToFirst()) {
-//                Log.d("TESTTIME", String.valueOf(c.getColumnCount()));
-//                Log.d("TESTTIME", String.valueOf(c.getFloat(0)));
-//                avgTestTime = c.getFloat(0);
-//            }
-            Date avgTestTime = new Date(sum / count);
+            if (count > 0) {
+                Date avgTestTime = new Date(sum / count);
+                ((TextView) activity.findViewById(R.id.avg_time)).setText("" + sdf.format(avgTestTime));
+            } else {
+                ((TextView) activity.findViewById(R.id.avg_time)).setText("00:00:00");
+
+            }
             c.close();
 
             c = newRecordsSQLiteOpenHelper.getReadableDatabase().query(RecordsContract.TestRecords.TABLE, null, null, null, null, null, null);
@@ -168,7 +169,6 @@ public class UIHelper {
             ((TextView) activity.findViewById(R.id.num_of_devices)).setText("" + numberOfDevices);
             ((TextView) activity.findViewById(R.id.devices_passed)).setText("" + numberOfDevicesPassed);
             ((TextView) activity.findViewById(R.id.devices_failed)).setText("" + numberOfDevicesFailed);
-            ((TextView) activity.findViewById(R.id.avg_time)).setText("" + sdf.format(avgTestTime));
             ((TextView) activity.findViewById(R.id.test_count)).setText("" + testCount);
             ((DonutProgress) activity.findViewById(R.id.progress_stats)).setProgress((int) ((numberOfDevicesPassed / (float) numberOfDevices) * 100));
         }
