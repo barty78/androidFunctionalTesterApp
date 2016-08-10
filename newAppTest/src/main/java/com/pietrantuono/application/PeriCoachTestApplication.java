@@ -36,7 +36,8 @@ public class PeriCoachTestApplication extends Application {
 	private static float minBatteryVoltage;
 	private static Sequence sequence;
 	private static int testType=0;
-	private static ArrayList<server.pojos.Job> allJobs=null;
+	private static int testCount=0;
+	private static float jobAvgTestTime;
 
 	private static boolean isretestallowed;
 	private static PeriCoachTestApplication application;
@@ -123,6 +124,10 @@ public class PeriCoachTestApplication extends Application {
 	public static int getTestType() {return testType;}
 
 	public static void setTestType(int testType) {PeriCoachTestApplication.testType = testType;}
+
+	public static int getTestCount() { return testCount;}
+
+	public static void setTestCount(int testCount) {PeriCoachTestApplication.testCount = testCount;}
 
 	public static void setSequence(Sequence sequence) {
 		PeriCoachTestApplication.sequence=sequence;

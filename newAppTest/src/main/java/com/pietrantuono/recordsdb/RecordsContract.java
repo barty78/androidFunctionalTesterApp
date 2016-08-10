@@ -27,6 +27,8 @@ public class RecordsContract {
         public static final String BT_ADDR = "BT_Addr";
         public static final String UPLOADED = "uploaded";
 
+        public static final String AVG_DURATION = "AVG(Duration)";
+
         public static final String CREATE_TABLE = "CREATE TABLE " + TABLE + " ("
                 + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + BT_ADDR + TEXT_TYPE + COMMA_SEP

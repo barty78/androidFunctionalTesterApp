@@ -1,6 +1,10 @@
 package com.pietrantuono.activities.uihelper;
 
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.github.lzyzsd.circleprogress.DonutProgress;
 import com.pietrantuono.devicesprovider.DevicesContentProvider;
@@ -11,6 +15,8 @@ import com.pietrantuono.constants.NewMResult;
 import com.pietrantuono.constants.NewMSensorResult;
 import com.pietrantuono.constants.NewSequenceInterface;
 import com.pietrantuono.pericoach.newtestapp.R;
+import com.pietrantuono.recordsdb.NewRecordsSQLiteOpenHelper;
+import com.pietrantuono.recordsdb.RecordsContract;
 import com.pietrantuono.sequencedb.SequenceContracts;
 import com.pietrantuono.sequencedb.SequenceProvider;
 
@@ -103,7 +109,7 @@ public class UIHelper {
 
     public void updateStats(Job job, AppCompatActivity activity) {
         ContentResolver resolver = activity.getContentResolver();
-
+        NewRecordsSQLiteOpenHelper newRecordsSQLiteOpenHelper = NewRecordsSQLiteOpenHelper.getInstance(PeriCoachTestApplication.getContext());
         Job primaryJob = PeriCoachTestApplication.getPrimaryJob();
 
         long numberOfDevices = job.getQuantity();
@@ -130,9 +136,40 @@ public class UIHelper {
             int numberOfDevicesFailed = c.getCount();
             c.close();
 
+            c = newRecordsSQLiteOpenHelper.getReadableDatabase().query(RecordsContract.TestRecords.TABLE,
+                    new String[]{RecordsContract.TestRecords.DURATION},
+                    null, null, null, null, null);
+//            float avgTestTime = (float) 0.0;
+
+            long sum = 0L;
+            long count = c.getCount();
+            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+            while(c.moveToNext()) {
+                try {
+                    sum += sdf.parse(c.getString(0)).getTime();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                Log.d("TESTTIME", String.valueOf(c.getString(0)));
+            }
+
+//            if (c.moveToFirst()) {
+//                Log.d("TESTTIME", String.valueOf(c.getColumnCount()));
+//                Log.d("TESTTIME", String.valueOf(c.getFloat(0)));
+//                avgTestTime = c.getFloat(0);
+//            }
+            Date avgTestTime = new Date(sum / count);
+            c.close();
+
+            c = newRecordsSQLiteOpenHelper.getReadableDatabase().query(RecordsContract.TestRecords.TABLE, null, null, null, null, null, null);
+            int testCount = c.getCount();
+            c.close();
+
             ((TextView) activity.findViewById(R.id.num_of_devices)).setText("" + numberOfDevices);
             ((TextView) activity.findViewById(R.id.devices_passed)).setText("" + numberOfDevicesPassed);
             ((TextView) activity.findViewById(R.id.devices_failed)).setText("" + numberOfDevicesFailed);
+            ((TextView) activity.findViewById(R.id.avg_time)).setText("" + sdf.format(avgTestTime));
+            ((TextView) activity.findViewById(R.id.test_count)).setText("" + testCount);
             ((DonutProgress) activity.findViewById(R.id.progress_stats)).setProgress((int) ((numberOfDevicesPassed / (float) numberOfDevices) * 100));
         }
     }
@@ -140,7 +177,6 @@ public class UIHelper {
     public void setRecordId(long recordId) {
         if (sequenceFragment != null) sequenceFragment.forceLoaderUpdate(recordId);
     }
-
 
     public interface ActivityUIHelperCallback {
         ArrayList<ArrayList<NewMResult>> getResults();
