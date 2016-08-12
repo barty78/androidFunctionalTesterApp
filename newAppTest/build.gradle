@@ -108,6 +108,11 @@ dependencies {
     compile('com.crashlytics.sdk.android:crashlytics:2.5.3@aar') {
         transitive = true;
     }
+    compile project(':pfmat')
+    // RX Android
+    // Because RxAndroid releases are few and far between, it is recommended you also
+
+    // explicitly depend on RxJava's latest version for bug fixes and new features.
     compile 'com.android.support:support-v4:23.1.1'
     compile 'com.google.code.gson:gson:2.3.1'
     compile 'com.github.ytai.ioio:IOIOLibAndroid:5.05'
@@ -125,12 +130,7 @@ dependencies {
     compile 'com.github.lzyzsd:circleprogress:1.1.0@aar'
     compile 'com.kennyc:multistateview:1.1'
     compile 'me.zhanghai.android.materialprogressbar:library:1.1.4'
-    compile project(':pfmat')
-    // RX Android
     compile 'io.reactivex:rxandroid:1.2.1'
-    // Because RxAndroid releases are few and far between, it is recommended you also
-
-    // explicitly depend on RxJava's latest version for bug fixes and new features.
     compile 'io.reactivex:rxjava:1.1.6'
     compile 'com.polidea.rxandroidble:rxandroidble:1.0.1'
 }

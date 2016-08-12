@@ -14,6 +14,7 @@ import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.constants.NewMResult;
 import com.pietrantuono.constants.NewMSensorResult;
 import com.pietrantuono.constants.NewSequenceInterface;
+import com.pietrantuono.fragments.sidePanel.SidePanelFragment;
 import com.pietrantuono.pericoach.newtestapp.R;
 import com.pietrantuono.recordsdb.NewRecordsSQLiteOpenHelper;
 import com.pietrantuono.recordsdb.RecordsContract;
@@ -52,6 +53,7 @@ public class UIHelper {
     private NewSequenceInterface sequence;
     private static final String TAG = "UIHelper";
     private static NewSequenceFragment sequenceFragment;
+    private static SidePanelFragment sidePanelFragment;
 
     public UIHelper(Activity activity, NewSequenceInterface sequence) {
         this.activity = activity;
@@ -60,6 +62,7 @@ public class UIHelper {
         setupViewpager(activity);
         Toolbar toolbar = (Toolbar) activity.findViewById(R.id.toolbar);
         ((AppCompatActivity) activity).setSupportActionBar(toolbar);
+        sidePanelFragment.newInstance();
     }
 
     private void setupViewpager(Activity activity) {
@@ -107,6 +110,12 @@ public class UIHelper {
         this.sequenceFragment = null;
     }
 
+    public void registerSidePanelFragment(SidePanelFragment sidePanelFragment) {
+        this.sidePanelFragment = sidePanelFragment;
+    }
+
+    public void unregisterSidePanelFragment() { this.sidePanelFragment = null; }
+
     public void updateStats(Job job, AppCompatActivity activity) {
         ContentResolver resolver = activity.getContentResolver();
         NewRecordsSQLiteOpenHelper newRecordsSQLiteOpenHelper = NewRecordsSQLiteOpenHelper.getInstance(PeriCoachTestApplication.getContext());
@@ -150,14 +159,15 @@ public class UIHelper {
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                Log.d("TESTTIME", String.valueOf(c.getString(0)));
             }
 
+
             if (count > 0) {
+                sdf = new SimpleDateFormat("mm:ss");
                 Date avgTestTime = new Date(sum / count);
                 ((TextView) activity.findViewById(R.id.avg_time)).setText("" + sdf.format(avgTestTime));
             } else {
-                ((TextView) activity.findViewById(R.id.avg_time)).setText("00:00:00");
+                ((TextView) activity.findViewById(R.id.avg_time)).setText("00:00");
 
             }
             c.close();
@@ -201,26 +211,28 @@ public class UIHelper {
 
     public void setJobId(AppCompatActivity activity, final String jobnumber) {
         if (PeriCoachTestApplication.getIsRetestAllowed()) {
-            activity.setTitle(activity.getString(R.string.job_number) + jobnumber + " (Retests)");
+            activity.setTitle("Job " + jobnumber + " (Retests)");
         } else {
-            activity.setTitle(activity.getString(R.string.job_number) + jobnumber + " (No Retests)");
+            activity.setTitle("Job " + jobnumber + " (No Retests)");
         }
     }
 
     public void setConnected(final boolean conn) {
-        final TextView connected = (TextView) activity.findViewById(R.id.connected);
-        final ImageView connectedicon = (ImageView) activity.findViewById(R.id.image);
+//        final TextView connected = (TextView) activity.findViewById(R.id.connected);
+//        final ImageView connectedicon = (ImageView) activity.findViewById(R.id.image);
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 if (conn) {
-                    connected.setText("FIXTURE CONNECTED");
-                    connected.setTextColor(activity.getResources().getColor(R.color.dark_green));
-                    connectedicon.setImageResource(R.drawable.ic_action_connected);
+//                    connected.setText("FIXTURE CONNECTED");
+//                    connected.setTextColor(activity.getResources().getColor(R.color.dark_green));
+//                    connectedicon.setImageResource(R.drawable.ic_action_connected);
+                    setStatusMSG("READY\n LOAD UUT", true);
                 } else {
-                    connected.setText("CONNECTING TO FIXTURE");
-                    connected.setTextColor(Color.RED);
-                    connectedicon.setImageResource(R.drawable.ic_action_disconnected);
+//                    connected.setText("CONNECTING TO FIXTURE");
+//                    connected.setTextColor(Color.RED);
+//                    connectedicon.setImageResource(R.drawable.ic_action_disconnected);
+                    setStatusMSG("FIXTURE\n NOT READY", false);
                 }
             }
         });

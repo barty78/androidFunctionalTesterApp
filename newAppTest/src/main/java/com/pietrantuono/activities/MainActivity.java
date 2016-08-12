@@ -23,6 +23,7 @@ import com.pietrantuono.constants.NewMSensorResult;
 import customclasses.NewSequence;
 
 import com.pietrantuono.constants.NewSequenceInterface;
+import com.pietrantuono.fragments.sidePanel.SidePanelFragment;
 import com.pietrantuono.ioioutils.IOIOUtils;
 import com.pietrantuono.ioioutils.PCBConnectedCallback;
 import com.pietrantuono.ioioutils.PCBDetectHelper;
@@ -76,8 +77,10 @@ import server.utils.RecordFromSequenceCreator;
 public class MainActivity extends AppCompatActivity
         implements ActivtyWrapper, IOIOLooperProvider, NewIOIOActivityListener,
         PCBConnectedCallback, SensorTestCallback, ActivityUIHelperCallback,
-        MyOnCancelListener.Callback, ActivityCallback, NewSequenceFragment.SequenceFragmentCallback, SerialConsoleFragmentCallback,
+        MyOnCancelListener.Callback, ActivityCallback, SidePanelFragment.SidePanelFragmentCallback,
+        NewSequenceFragment.SequenceFragmentCallback, SerialConsoleFragmentCallback,
         DevicesListFragment.CallBack {
+
     private static IOIO myIOIO;
     private static final String TAG = MainActivity.class.getSimpleName();
     private static final String TimingTag = "ExecTimings";
@@ -283,8 +286,8 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onPCBConnectionLostRestartSequence() {
         stopAndResetSequence();
-        setStatusMSG("FIXTURE CONNECTION LOST", false);
-        MyDialogs.createAlertDialog(MainActivity.this, "Fixture connection lost", "Connection lost with fixture, please check and restart test", "OK", null, new MyOnCancelListener(MainActivity.this), new MyDialogInterface() {
+        setStatusMSG("UUT DISCONNECTED", false);
+        MyDialogs.createAlertDialog(MainActivity.this, "UUT connection lost", "Connection lost with UUT, please check and restart test", "OK", null, new MyOnCancelListener(MainActivity.this), new MyDialogInterface() {
             @Override
             public void yes() {
                 if (getIterationNumber() > 1)
@@ -368,7 +371,7 @@ public class MainActivity extends AppCompatActivity
                 }
                 uiHelper.updateStats(job, MainActivity.this);
                 uiHelper.stopChronometer(MainActivity.this);
-                setStatusMSG("TEST FINISHED", true);// OK
+                setStatusMSG("TEST COMPLETED", true);// OK
                 detectHelper.stopCheckingIfConnectionDrops();// OK
                 detectHelper.stopPCBSleepMonitor();
 //				uiHelper.setOverallFailOrPass(overallresult);// NA
@@ -442,7 +445,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void run() {
                 if (_PCB_Detect != null) {
-                    setStatusMSG("LOAD FIXTURE", null);
+//                    setStatusMSG("LOAD FIXTURE", null);
                     detectHelper.waitForPCBDetect(MainActivity.this, _PCB_Detect);
                 }
             }
@@ -456,7 +459,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void run() {
                 if (_PCB_Detect != null) {
-                    setStatusMSG("UNLOAD FIXTURE", null);
+                    setStatusMSG("REMOVE UUT", null);
                     detectHelper.waitForPCBDisconneted(MainActivity.this, _PCB_Detect);
                 }
             }
@@ -761,6 +764,16 @@ public class MainActivity extends AppCompatActivity
         this.btutility = btUtility;
     }
 
+    @Override
+    public void registerSidePanelFragment(SidePanelFragment sidePanelFragment) {
+        if (uiHelper != null && sidePanelFragment != null)
+            uiHelper.registerSidePanelFragment(sidePanelFragment);
+    }
+
+    @Override
+    public void unregisterSidePanelFragment() {
+        uiHelper.unregisterSidePanelFragment();
+    }
 
     @Override
     public void registerSequenceFragment(NewSequenceFragment sequenceFragment) {
