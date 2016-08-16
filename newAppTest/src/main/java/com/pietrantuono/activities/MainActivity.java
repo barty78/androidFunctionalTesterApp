@@ -23,7 +23,6 @@ import com.pietrantuono.constants.NewMSensorResult;
 import customclasses.NewSequence;
 
 import com.pietrantuono.constants.NewSequenceInterface;
-import com.pietrantuono.fragments.sidePanel.SidePanelFragment;
 import com.pietrantuono.ioioutils.IOIOUtils;
 import com.pietrantuono.ioioutils.PCBConnectedCallback;
 import com.pietrantuono.ioioutils.PCBDetectHelper;
@@ -77,8 +76,7 @@ import server.utils.RecordFromSequenceCreator;
 public class MainActivity extends AppCompatActivity
         implements ActivtyWrapper, IOIOLooperProvider, NewIOIOActivityListener,
         PCBConnectedCallback, SensorTestCallback, ActivityUIHelperCallback,
-        MyOnCancelListener.Callback, ActivityCallback, SidePanelFragment.SidePanelFragmentCallback,
-        NewSequenceFragment.SequenceFragmentCallback, SerialConsoleFragmentCallback,
+        MyOnCancelListener.Callback, ActivityCallback, NewSequenceFragment.SequenceFragmentCallback, SerialConsoleFragmentCallback,
         DevicesListFragment.CallBack {
 
     private static IOIO myIOIO;
@@ -762,17 +760,6 @@ public class MainActivity extends AppCompatActivity
 
     public void setBTUtility(BTUtility btUtility) {
         this.btutility = btUtility;
-    }
-
-    @Override
-    public void registerSidePanelFragment(SidePanelFragment sidePanelFragment) {
-        if (uiHelper != null && sidePanelFragment != null)
-            uiHelper.registerSidePanelFragment(sidePanelFragment);
-    }
-
-    @Override
-    public void unregisterSidePanelFragment() {
-        uiHelper.unregisterSidePanelFragment();
     }
 
     @Override

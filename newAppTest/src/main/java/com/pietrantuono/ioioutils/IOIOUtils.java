@@ -5,6 +5,7 @@ import hugo.weaving.DebugLog;
 import ioio.lib.api.DigitalInput;
 import ioio.lib.api.DigitalOutput;
 import ioio.lib.api.IOIO;
+import ioio.lib.api.SpiMaster;
 import ioio.lib.api.TwiMaster;
 import ioio.lib.api.Uart;
 import ioio.lib.api.exception.ConnectionLostException;
@@ -14,6 +15,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.util.Arrays;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -51,6 +54,7 @@ public class IOIOUtils implements IOIOUtilsInterface {
     private static DigitalOutput CHGPinOut;
 
     private static TwiMaster master = null;
+    private static SpiMaster spiMaster = null;
     private static Boolean isinterrupted = false;
     private static Boolean stopthread = false;
     private static Boolean triggervalue = true;
@@ -278,6 +282,12 @@ public class IOIOUtils implements IOIOUtilsInterface {
         }
 
         try {
+            if (spiMaster != null) master.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
             if (HallInt != null) HallInt.close();
         } catch (Exception e) {
             e.printStackTrace();
@@ -439,6 +449,13 @@ public class IOIOUtils implements IOIOUtilsInterface {
             return;
         }
 
+        try {
+            spiMaster = ioio_.openSpiMaster(4, 5, 10, 28, SpiMaster.Rate.RATE_1M);
+        } catch (ConnectionLostException e2) {
+            report(e2, ac);
+            return;
+        }
+
         if(!DebugHelper.isMaurizioDebug() && (PeriCoachTestApplication.getCurrentJob().getTesttypeId() == 1))setBattVoltage(ioio_, true, 34, 2f, 3.9f);
 
         try {
@@ -574,6 +591,26 @@ public class IOIOUtils implements IOIOUtilsInterface {
         try {
             getMaster().writeRead(0x60, false, writebyte, writebyte.length,
                     readbyte, readbyte.length);
+        } catch (Exception e) {
+            Crashlytics.logException(e);
+        }
+    }
+
+    private static byte[] int_to_bb_be(int value) {
+        return ByteBuffer.allocate(2).order(ByteOrder.BIG_ENDIAN).putInt(value).array();
+    }
+
+    private void set420(int value) {
+        final int multiplier = 1000;
+        final float minCurrent = 4 * multiplier;
+        final float maxCurrent = 20 * multiplier;
+        final float minScaledCurrent = 800;
+        final float maxScaledCurrent = 4095;
+
+        float setting = ((value - minCurrent) / (maxCurrent - minCurrent) * (maxScaledCurrent - minScaledCurrent) + minScaledCurrent);
+        byte[] writebyte = int_to_bb_be((int)setting);
+        try {
+            getSpiMaster().writeRead(0, writebyte, 2, 2, null, 0);
         } catch (Exception e) {
             Crashlytics.logException(e);
         }
@@ -818,6 +855,11 @@ public class IOIOUtils implements IOIOUtilsInterface {
     @Override
     public TwiMaster getMaster() {
         return master;
+    }
+
+    @Override
+    public SpiMaster getSpiMaster() {
+        return spiMaster;
     }
 
     /* (non-Javadoc)

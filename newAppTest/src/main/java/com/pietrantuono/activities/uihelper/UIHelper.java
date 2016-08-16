@@ -14,7 +14,6 @@ import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.constants.NewMResult;
 import com.pietrantuono.constants.NewMSensorResult;
 import com.pietrantuono.constants.NewSequenceInterface;
-import com.pietrantuono.fragments.sidePanel.SidePanelFragment;
 import com.pietrantuono.pericoach.newtestapp.R;
 import com.pietrantuono.recordsdb.NewRecordsSQLiteOpenHelper;
 import com.pietrantuono.recordsdb.RecordsContract;
@@ -53,7 +52,6 @@ public class UIHelper {
     private NewSequenceInterface sequence;
     private static final String TAG = "UIHelper";
     private static NewSequenceFragment sequenceFragment;
-    private static SidePanelFragment sidePanelFragment;
 
     public UIHelper(Activity activity, NewSequenceInterface sequence) {
         this.activity = activity;
@@ -62,7 +60,6 @@ public class UIHelper {
         setupViewpager(activity);
         Toolbar toolbar = (Toolbar) activity.findViewById(R.id.toolbar);
         ((AppCompatActivity) activity).setSupportActionBar(toolbar);
-        sidePanelFragment.newInstance();
     }
 
     private void setupViewpager(Activity activity) {
@@ -110,13 +107,7 @@ public class UIHelper {
         this.sequenceFragment = null;
     }
 
-    public void registerSidePanelFragment(SidePanelFragment sidePanelFragment) {
-        this.sidePanelFragment = sidePanelFragment;
-    }
-
-    public void unregisterSidePanelFragment() { this.sidePanelFragment = null; }
-
-    public void updateStats(Job job, AppCompatActivity activity) {
+       public void updateStats(Job job, AppCompatActivity activity) {
         ContentResolver resolver = activity.getContentResolver();
         NewRecordsSQLiteOpenHelper newRecordsSQLiteOpenHelper = NewRecordsSQLiteOpenHelper.getInstance(PeriCoachTestApplication.getContext());
         Job primaryJob = PeriCoachTestApplication.getPrimaryJob();
@@ -160,7 +151,6 @@ public class UIHelper {
                     e.printStackTrace();
                 }
             }
-
 
             if (count > 0) {
                 sdf = new SimpleDateFormat("mm:ss");
@@ -248,7 +238,7 @@ public class UIHelper {
 
             @Override
             public void run() {
-                final LinearLayout layout = (LinearLayout) activity.findViewById(R.id.barcode_adn_serial);
+                final LinearLayout layout = (LinearLayout) activity.findViewById(R.id.SidePanel);
                 LayoutInflater inflater = activity.getLayoutInflater();
                 View view = inflater.inflate(R.layout.add_view, null);
                 TextView labeltv = (TextView) view.findViewById(R.id.label);
@@ -453,7 +443,7 @@ public class UIHelper {
                 Chronometer cronometer = (Chronometer) activity.findViewById(R.id.chronometer);
                 cronometer.setBase(SystemClock.elapsedRealtime());
                 cronometer.setText("00:00");
-                LinearLayout layout = (LinearLayout) activity.findViewById(R.id.barcode_adn_serial);
+                LinearLayout layout = (LinearLayout) activity.findViewById(R.id.SidePanelColumns);
                 layout.removeAllViews();
                 if (sequenceFragment != null) sequenceFragment.cleanUI();
                 TextView currenttask = (TextView) activity.findViewById(R.id.currenttask);

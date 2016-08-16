@@ -10,6 +10,7 @@ import android.app.Activity;
 import ioio.lib.api.DigitalInput;
 import ioio.lib.api.DigitalOutput;
 import ioio.lib.api.IOIO;
+import ioio.lib.api.SpiMaster;
 import ioio.lib.api.TwiMaster;
 import ioio.lib.api.Uart;
 
@@ -42,6 +43,8 @@ public interface IOIOUtilsInterface {
 	void driveChargeLed(IOIO ioio_, Activity ac);
 
 	TwiMaster getMaster();
+
+	SpiMaster getSpiMaster();
 
 	@SuppressWarnings("ucd")
 	DigitalOutput getPOWER();
