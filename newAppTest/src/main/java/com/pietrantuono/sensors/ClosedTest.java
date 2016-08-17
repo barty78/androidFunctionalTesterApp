@@ -14,6 +14,7 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.os.Handler;
 import android.os.Looper;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -35,8 +36,8 @@ public class ClosedTest extends SensorTest {
     public void stop() {
         stopped = true;
         try {
-            final LinearLayout layout = (LinearLayout) this.sensorsTestHelper.activityref.get()
-                    .findViewById(R.id.sensorsreading);
+            final CardView layout = (CardView) this.sensorsTestHelper.activityref.get()
+                    .findViewById(R.id.sensors);
             this.sensorsTestHelper.activityref.get().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -163,8 +164,8 @@ public class ClosedTest extends SensorTest {
         sensorsTestHelper.samplingSensor0 = false;
         sensorsTestHelper.samplingSensor1 = false;
         sensorsTestHelper.samplingSensor2 = false;
-        final LinearLayout layout = (LinearLayout) this.sensorsTestHelper.activityref.get()
-                .findViewById(R.id.sensorsreading);
+        final CardView layout = (CardView) this.sensorsTestHelper.activityref.get()
+                .findViewById(R.id.sensors);
         this.sensorsTestHelper.activityref.get().runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -356,8 +357,8 @@ public class ClosedTest extends SensorTest {
         sensorsTestHelper.samplingSensor0 = true;
         sensorsTestHelper.samplingSensor1 = false;
         sensorsTestHelper.samplingSensor2 = false;
-        final LinearLayout layout = (LinearLayout) this.sensorsTestHelper.activityref.get()
-                .findViewById(R.id.sensorsreading);
+        final CardView layout = (CardView) this.sensorsTestHelper.activityref.get()
+                .findViewById(R.id.sensors);
         this.sensorsTestHelper.activityref.get().runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -426,8 +427,8 @@ public class ClosedTest extends SensorTest {
         sensorsTestHelper.samplingSensor0 = false;
         sensorsTestHelper.samplingSensor1 = true;
         sensorsTestHelper.samplingSensor2 = false;
-        final LinearLayout layout = (LinearLayout) this.sensorsTestHelper.activityref.get()
-                .findViewById(R.id.sensorsreading);
+        final CardView layout = (CardView) this.sensorsTestHelper.activityref.get()
+                .findViewById(R.id.sensors);
         this.sensorsTestHelper.activityref.get().runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -496,8 +497,8 @@ public class ClosedTest extends SensorTest {
         sensorsTestHelper.samplingSensor0 = false;
         sensorsTestHelper.samplingSensor1 = false;
         sensorsTestHelper.samplingSensor2 = true;
-        final LinearLayout layout = (LinearLayout) this.sensorsTestHelper.activityref.get()
-                .findViewById(R.id.sensorsreading);
+        final CardView layout = (CardView) this.sensorsTestHelper.activityref.get()
+                .findViewById(R.id.sensors);
         this.sensorsTestHelper.activityref.get().runOnUiThread(new Runnable() {
             @Override
             public void run() {

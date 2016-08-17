@@ -18,6 +18,7 @@ import com.pietrantuono.tests.implementations.BluetoothConnectTest;
 import com.pietrantuono.tests.implementations.BluetoothConnectTestForTesting;
 import com.pietrantuono.tests.implementations.BluetoothDiscoverableModeTest;
 import com.pietrantuono.tests.implementations.BluetoothDiscoverableModeTestForTesting;
+import com.pietrantuono.tests.implementations.BluetoothRFLevelTest;
 import com.pietrantuono.tests.implementations.ChargeLedCheckTest;
 import com.pietrantuono.tests.implementations.ChargingTest;
 import com.pietrantuono.tests.implementations.ChargingTerminationTest;
@@ -130,8 +131,7 @@ public class TestsParser {
             test = new ReadModelNumberTest(activity);
         } else if (classID == activity.getResources().getInteger(R.integer.ReadFirmwareversionTest)) {
             test = new ReadFirmwareversionTest(activity);
-        }
-        else if (classID == activity.getResources().getInteger(R.integer.BatteryLevelUUTVoltageTest)) {
+        } else if (classID == activity.getResources().getInteger(R.integer.BatteryLevelUUTVoltageTest)) {
             test = new BatteryLevelUUTVoltageTest(activity, ioio,
                     testToBeParsed.getLimitParam1(),
                     testToBeParsed.getLimitParam2(),
@@ -144,7 +144,7 @@ public class TestsParser {
             Long limitParam2 = testToBeParsed.getLimitParam2().longValue();
             Long limitParam3 = testToBeParsed.getLimitParam3().longValue();
             Log.d(TAG, getDescription(testToBeParsed) + " - LIMITS: (" + limitParam1 + "|" + limitParam2 + "-" + limitParam3 + ")");
-            test = new SensorTestWrapper(job.getTesttypeId()==2, activity, ioio, (int) ((long) testToBeParsed.getLimitId()),
+            test = new SensorTestWrapper(job.getTesttypeId() == 2, activity, ioio, (int) ((long) testToBeParsed.getLimitId()),
                     limitParam2, limitParam1, limitParam3, getDescription(testToBeParsed));
             test.setTestToBeParsed(testToBeParsed);
         } else if (classID == activity.getResources().getInteger(R.integer.DummyTest)) {
@@ -174,6 +174,9 @@ public class TestsParser {
                     getDescription(testToBeParsed));
         } else if (classID == activity.getResources().getInteger(R.integer.GetNFCTest)) {
             test = new GetNFCTest(activity, ioio, 0);
+        } else if (classID == activity.getResources().getInteger(R.integer.BluetoothRFLevelTest)) {
+            Integer limit = testToBeParsed.getLimitParam1().intValue();
+            test = new BluetoothRFLevelTest(activity, ioio, limit);
         } else if (classID == activity.getResources().getInteger(R.integer.PauseStep)) {
             test = new PauseStep(activity, "Pause Step");
         } else if (classID == activity.getResources().getInteger(R.integer.PromptStep)) {

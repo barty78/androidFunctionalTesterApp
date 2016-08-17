@@ -282,7 +282,7 @@ public class IOIOUtils implements IOIOUtilsInterface {
         }
 
         try {
-            if (spiMaster != null) master.close();
+            if (spiMaster != null) spiMaster.close();
         } catch (Exception e) {
             e.printStackTrace();
         }

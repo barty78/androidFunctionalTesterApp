@@ -37,6 +37,7 @@
     <item name="ListenToUart" type="integer">29</item>
     <item name="UartLoopbackTest" type="integer">30</item>
     <item name="GetNFCTest" type="integer">31</item>
+    <item name="BluetoothRFLevelTest" type="integer">32</item>
 
     <!-- Step Implementation Classes -->
     <item name="PauseStep" type="integer">1001</item>

@@ -8,6 +8,8 @@ import java.text.SimpleDateFormat;
 import java.util.concurrent.TimeoutException;
 
 import android.app.Activity;
+import android.support.v7.widget.CardView;
+import android.text.style.TtsSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -44,7 +46,8 @@ public class SensorsTestHelper implements OnSampleCallback {
 
 	public SensorsTestHelper(Activity activity) {
 		Log.d(TAG, "Constructor");
-		final LinearLayout layout = (LinearLayout) activity.findViewById(R.id.sensorsreading);
+		final CardView layout = (CardView) activity.findViewById(R.id.sensors);
+//		final LinearLayout layout = (LinearLayout) activity.findViewById(R.id.sensors);
 		activity.runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
@@ -102,7 +105,8 @@ public class SensorsTestHelper implements OnSampleCallback {
 	public void stop() {
 		Log.d(TAG, "stop");
 		try {
-			final LinearLayout layout = (LinearLayout) activityref.get().findViewById(R.id.sensorsreading);
+//			final LinearLayout layout = (LinearLayout) activityref.get().findViewById(R.id.sensors);
+			final CardView layout = (CardView) activityref.get().findViewById(R.id.sensors);
 			activityref.get().runOnUiThread(new Runnable() {
 				@Override
 				public void run() {

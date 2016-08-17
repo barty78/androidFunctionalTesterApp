@@ -205,23 +205,17 @@ public class UIHelper {
         } else {
             activity.setTitle("Job " + jobnumber + " (No Retests)");
         }
+        TextView textView = (TextView) activity.findViewById(R.id.jobNum);
+        textView.setText(jobnumber);
     }
 
     public void setConnected(final boolean conn) {
-//        final TextView connected = (TextView) activity.findViewById(R.id.connected);
-//        final ImageView connectedicon = (ImageView) activity.findViewById(R.id.image);
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 if (conn) {
-//                    connected.setText("FIXTURE CONNECTED");
-//                    connected.setTextColor(activity.getResources().getColor(R.color.dark_green));
-//                    connectedicon.setImageResource(R.drawable.ic_action_connected);
                     setStatusMSG("READY\n LOAD UUT", true);
                 } else {
-//                    connected.setText("CONNECTING TO FIXTURE");
-//                    connected.setTextColor(Color.RED);
-//                    connectedicon.setImageResource(R.drawable.ic_action_disconnected);
                     setStatusMSG("FIXTURE\n NOT READY", false);
                 }
             }
@@ -238,7 +232,7 @@ public class UIHelper {
 
             @Override
             public void run() {
-                final LinearLayout layout = (LinearLayout) activity.findViewById(R.id.SidePanel);
+                final LinearLayout layout = (LinearLayout) activity.findViewById(R.id.barcode_and_serial);
                 LayoutInflater inflater = activity.getLayoutInflater();
                 View view = inflater.inflate(R.layout.add_view, null);
                 TextView labeltv = (TextView) view.findViewById(R.id.label);
@@ -443,7 +437,7 @@ public class UIHelper {
                 Chronometer cronometer = (Chronometer) activity.findViewById(R.id.chronometer);
                 cronometer.setBase(SystemClock.elapsedRealtime());
                 cronometer.setText("00:00");
-                LinearLayout layout = (LinearLayout) activity.findViewById(R.id.SidePanelColumns);
+                LinearLayout layout = (LinearLayout) activity.findViewById(R.id.barcode_and_serial);
                 layout.removeAllViews();
                 if (sequenceFragment != null) sequenceFragment.cleanUI();
                 TextView currenttask = (TextView) activity.findViewById(R.id.currenttask);

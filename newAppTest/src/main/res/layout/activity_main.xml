@@ -56,7 +56,8 @@
                         android:layout_alignParentTop="true"
                         android:layout_centerHorizontal="true"
                         android:text="12345"
-                        android:textIsSelectable="false" />
+                        android:textIsSelectable="false"
+                        android:layout_alignParentLeft="true" />
 
                     <LinearLayout
                         android:id="@+id/percent"
@@ -92,7 +93,7 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="8"
+                android:layout_weight="6"
                 android:id="@+id/SidePanelColumns"
                 android:baselineAligned="false">
 
@@ -105,12 +106,13 @@
 
                     <android.support.v7.widget.CardView
                         android:layout_width="match_parent"
-                        android:layout_height="45dp"
+                        android:layout_height="60dp"
                         android:id="@+id/now"
                         android:padding="@dimen/card_margin"
                         android:layout_marginLeft="@dimen/card_margin"
                         android:layout_marginTop="@dimen/card_margin"
-                        android:layout_marginRight="@dimen/card_margin">
+                        android:layout_marginRight="@dimen/card_margin"
+                        android:transitionGroup="true">
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -291,7 +293,7 @@
 
                     <android.support.v7.widget.CardView
                         android:layout_width="match_parent"
-                        android:layout_height="45dp"
+                        android:layout_height="60dp"
                         android:id="@+id/next"
                         android:padding="@dimen/card_margin"
                         android:layout_marginLeft="@dimen/card_margin"
@@ -322,6 +324,62 @@
                                 android:textAppearance="?android:attr/textAppearanceSmall"
                                 android:textStyle="bold"
                                 android:textColor="@android:color/secondary_text_dark"
+                                android:layout_alignParentBottom="true"
+                                android:layout_centerHorizontal="true" />
+
+                        </RelativeLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:id="@+id/spare"
+                        android:padding="@dimen/card_margin"
+                        android:layout_marginLeft="@dimen/card_margin"
+                        android:layout_marginTop="@dimen/card_margin"
+                        android:layout_marginRight="@dimen/card_margin">
+
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:id="@+id/avgtime"
+                        android:padding="@dimen/card_margin"
+                        android:layout_marginLeft="@dimen/card_margin"
+                        android:layout_marginTop="@dimen/card_margin"
+                        android:layout_marginRight="@dimen/card_margin">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:id="@+id/relAvgLayout">
+
+                            <TextView
+                                android:id="@+id/avg_time"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="8dp"
+                                android:lines="1"
+                                android:maxEms="5"
+                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                android:textColor="@color/primary"
+                                android:textSize="36dp"
+                                android:gravity="center_horizontal"
+                                android:layout_alignParentTop="true"
+                                android:layout_centerHorizontal="true" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:lines="1"
+                                android:text="AVG TIME (JOB)"
+                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                android:textStyle="bold"
+                                android:textColor="@android:color/secondary_text_dark"
+                                android:layout_gravity="center_horizontal"
+                                android:gravity="bottom"
                                 android:layout_alignParentBottom="true"
                                 android:layout_centerHorizontal="true" />
 
@@ -374,22 +432,174 @@
 
                     </android.support.v7.widget.CardView>
 
-                    <android.support.v7.widget.CardView
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:id="@+id/avgtime"
-                        android:padding="@dimen/card_margin"
-                        android:layout_marginLeft="@dimen/card_margin"
-                        android:layout_marginTop="@dimen/card_margin"
-                        android:layout_marginRight="@dimen/card_margin">
+
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/device"
+                android:layout_margin="@dimen/card_margin"
+                android:layout_weight=".5"
+                android:visibility="invisible">
+
+                <LinearLayout
+                    android:id="@+id/barcode_and_serial"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:visibility="invisible">
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/firmware"
+                android:layout_margin="@dimen/card_margin"
+                android:layout_weight=".5"
+                android:visibility="invisible">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/relFWLayout">
+
+                    <TextView
+                        android:id="@+id/firmwareinfo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:lines="1"
+                        android:maxEms="5"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textColor="@color/primary"
+                        android:textSize="36dp"
+                        android:gravity="center_horizontal"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:lines="1"
+                        android:text="FIRMWARE"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/secondary_text_dark"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="bottom"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true" />
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/sensors"
+                android:layout_margin="@dimen/card_margin"
+                android:layout_weight="1"
+                android:visibility="invisible">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/relSensorLayout">
+
+                    <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_above="@+id/textView">
 
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:id="@+id/relAvgLayout">
+                            android:id="@+id/relS0Layout"
+                            android:layout_weight="1">
 
                             <TextView
-                                android:id="@+id/avg_time"
+                            android:id="@+id/sensor0"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:lines="1"
+                            android:maxEms="5"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="@color/primary"
+                            android:textSize="36dp"
+                            android:gravity="center_horizontal"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:lines="1"
+                                android:text="S0"
+                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                android:textStyle="bold"
+                                android:textColor="@android:color/secondary_text_dark"
+                                android:layout_gravity="center_horizontal"
+                                android:gravity="bottom"
+                                android:layout_alignParentBottom="true"
+                                android:layout_centerHorizontal="true" />
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:id="@+id/relS1Layout"
+                            android:layout_weight="1">
+
+                            <TextView
+                            android:id="@+id/sensor1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:lines="1"
+                            android:maxEms="5"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="@color/primary"
+                            android:textSize="36dp"
+                            android:gravity="center_horizontal"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:lines="1"
+                                android:text="S1"
+                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                android:textStyle="bold"
+                                android:textColor="@android:color/secondary_text_dark"
+                                android:layout_gravity="left"
+                                android:gravity="bottom"
+                                android:layout_alignParentBottom="true"
+                                android:layout_centerHorizontal="true" />
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:id="@+id/relS2Layout"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:id="@+id/sensor2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="8dp"
@@ -406,85 +616,100 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:lines="1"
-                                android:text="AVG TIME (JOB)"
+                                android:text="S2"
                                 android:textAppearance="?android:attr/textAppearanceSmall"
                                 android:textStyle="bold"
                                 android:textColor="@android:color/secondary_text_dark"
-                                android:layout_gravity="center_horizontal"
+                                android:layout_gravity="right"
                                 android:gravity="bottom"
                                 android:layout_alignParentBottom="true"
                                 android:layout_centerHorizontal="true" />
 
                         </RelativeLayout>
 
-                    </android.support.v7.widget.CardView>
-
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:id="@+id/sensors"
-                android:layout_margin="@dimen/card_margin">
-
-                <LinearLayout
-                    android:id="@+id/sensorsreading"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="vertical"
-                    android:visibility="invisible">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/sensor0"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:text="0"
-                            android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:textColor="@color/primary" />
-
-                        <TextView
-                            android:id="@+id/sensor1"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:text="0"
-                            android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:textColor="@color/primary" />
-
-                        <TextView
-                            android:id="@+id/sensor2"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:text="0"
-                            android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:textColor="@color/primary" />
                     </LinearLayout>
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="LIVE SENSOR READINGS"
+                        android:lines="1"
+                        android:text="SENSOR READINGS"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:textStyle="bold"
-                        android:textColor="@android:color/secondary_text_dark" />
+                        android:textColor="@android:color/secondary_text_dark"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="bottom"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:id="@+id/textView" />
 
-                </LinearLayout>
+                </RelativeLayout>
+                <!--<LinearLayout-->
+                    <!--android:id="@+id/sensorsreading"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="vertical"-->
+                    <!--android:visibility="visible">-->
+
+                    <!--<LinearLayout-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:gravity="center_vertical"-->
+                        <!--android:orientation="horizontal">-->
+
+                        <!--<TextView-->
+                            <!--android:id="@+id/sensor0"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_marginLeft="8dp"-->
+                            <!--android:lines="1"-->
+                            <!--android:maxEms="5"-->
+                            <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                            <!--android:textColor="@color/primary"-->
+                            <!--android:textSize="36dp"-->
+                            <!--android:gravity="center_horizontal"-->
+                            <!--android:layout_alignParentTop="true"-->
+                            <!--android:layout_centerHorizontal="true" />-->
+
+                        <!--<TextView-->
+                            <!--android:id="@+id/sensor1"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_marginLeft="8dp"-->
+                            <!--android:lines="1"-->
+                            <!--android:maxEms="5"-->
+                            <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                            <!--android:textColor="@color/primary"-->
+                            <!--android:textSize="36dp"-->
+                            <!--android:gravity="center_horizontal"-->
+                            <!--android:layout_alignParentTop="true"-->
+                            <!--android:layout_centerHorizontal="true" />-->
+
+                        <!--<TextView-->
+                            <!--android:id="@+id/sensor2"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_marginLeft="8dp"-->
+                            <!--android:lines="1"-->
+                            <!--android:maxEms="5"-->
+                            <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                            <!--android:textColor="@color/primary"-->
+                            <!--android:textSize="36dp"-->
+                            <!--android:gravity="center_horizontal"-->
+                            <!--android:layout_alignParentTop="true"-->
+                            <!--android:layout_centerHorizontal="true" />-->
+                    <!--</LinearLayout>-->
+
+                    <!--<TextView-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:gravity="center"-->
+                        <!--android:text="SENSOR READINGS"-->
+                        <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                        <!--android:textStyle="bold"-->
+                        <!--android:textColor="@android:color/secondary_text_dark" />-->
+
+                <!--</LinearLayout>-->
 
             </android.support.v7.widget.CardView>
 
@@ -522,7 +747,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:id="@+id/chrono"
-                android:layout_weight="1"
+                android:layout_weight="1.5"
                 android:layout_margin="@dimen/card_margin">
 
                 <RelativeLayout
@@ -590,9 +815,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginStart="138dp"
-                    android:layout_marginTop="22dp">
+                    android:layout_alignParentStart="true">
 
                 </android.support.v4.view.ViewPager>
 
