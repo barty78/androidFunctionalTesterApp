@@ -51,6 +51,7 @@ public class MagnetWakeDeviceTest extends Test {
         if (IOIOUtils.getUtils().getEmag() != null) {
             IOIOUtils.getUtils().setEMag((Activity) activityListener, true);
         }
+        IOIOUtils.getUtils().setServo(ioio, 1500);
         if (PeriCoachTestApplication.getCurrentJob().getTesttypeId() != 1) {
             rxBleClient = RxBleClient.create(PeriCoachTestApplication.getContext());
             /**
@@ -102,6 +103,7 @@ public class MagnetWakeDeviceTest extends Test {
                     if (IOIOUtils.getUtils().getEmag() != null) {
                         IOIOUtils.getUtils().setEMag((Activity) activityListener, false);
                     }
+                    IOIOUtils.getUtils().setServo(ioio, 500);
                     awake = true;
                     if (isinterrupted) return;
                     wakeScanTimeoutHandler = new Handler();

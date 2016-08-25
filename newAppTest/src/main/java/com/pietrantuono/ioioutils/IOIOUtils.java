@@ -5,6 +5,7 @@ import hugo.weaving.DebugLog;
 import ioio.lib.api.DigitalInput;
 import ioio.lib.api.DigitalOutput;
 import ioio.lib.api.IOIO;
+import ioio.lib.api.PwmOutput;
 import ioio.lib.api.SpiMaster;
 import ioio.lib.api.TwiMaster;
 import ioio.lib.api.Uart;
@@ -55,6 +56,9 @@ public class IOIOUtils implements IOIOUtilsInterface {
 
     private static TwiMaster master = null;
     private static SpiMaster spiMaster = null;
+    private static PwmOutput servo_pwm = null;
+    private static PwmOutput airReg_pwm = null;
+
     private static Boolean isinterrupted = false;
     private static Boolean stopthread = false;
     private static Boolean triggervalue = true;
@@ -90,25 +94,43 @@ public class IOIOUtils implements IOIOUtilsInterface {
     }
 
     @SuppressWarnings("unused")
-    public enum Outputs {
+    public enum Pin {
 
-        boot0((int) 24),
-        boot1((int) 23),
+        Sensor_High((int) 1),
+        Sensor_Low((int) 2),
+        twiMaster((int) 2),     // Not pin number, I2C peripheral number (pins25, 26)
+        EMag((int) 3),
+        spiMaster_miso((int) 4),
+        spiMaster_mosi((int) 5),
+        uart1_rx((int) 6),
+        uart1_tx((int) 7),
+        Irange((int) 9),
+        spiMaster_clk((int) 10),
+        uart2_rx((int) 13),
+        uart2_tx((int) 14),
+        barcodeOk((int) 15),
+        barcodeTrigger((int) 17),
+        _5V_DC((int) 18),
         POWER((int) 19),
         reset((int) 20),
-        Irange((int) 9),
-        _5V_DC((int) 18),
-        Sensor_Low((int) 2),
-        Sensor_High((int) 1),
-        HallInt((int) 21);
+        HallInt((int) 21),
+        boot1((int) 23),
+        boot0((int) 24),
+        i2c_scl((int) 25),
+        i2c_sda((int) 25),
+        ChgPin((int) 27),
+        spiMaster_ss((int) 28),
+        servo_pwm((int) 30),
+        airReg_pwm((int) 31),
+        debugTrigger((int) 45);
 
-        public final int value;
+        public final Integer value;
 
         public int getValue() {
             return value;
         }
 
-        Outputs(int value) {
+        Pin(int value) {
             this.value = value;
         }
     }
@@ -328,6 +350,21 @@ public class IOIOUtils implements IOIOUtilsInterface {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        try {
+            if (servo_pwm != null) {
+                servo_pwm.close();
+                servo_pwm = null;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            if (airReg_pwm != null) airReg_pwm.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /* (non-Javadoc)
@@ -355,47 +392,93 @@ public class IOIOUtils implements IOIOUtilsInterface {
             uutMode = Mode.bootloader;
         }
 
-//        ac.runOnUiThread(new Runnable() {
-//            @Override
-//            public void run() {
-//                Toast.makeText(ac, "INITING ALL IOIO",
-//                        Toast.LENGTH_SHORT).show();
-//            }
-//        });
-
-        try {
-            POWER = ioio_.openDigitalOutput(19,
-                    DigitalOutput.Spec.Mode.OPEN_DRAIN, false);
-        } catch (Exception e) {
-            report(e, ac);
-            return;
-        }
-
-        try {
-            reset = ioio_.openDigitalOutput(20, DigitalOutput.Spec.Mode.OPEN_DRAIN,
-                    true);
-        } catch (Exception e) {
-            report(e, ac);
-            return;
-        }
+        // Only open the required ioio pins for PCB fixture test.
         if (PeriCoachTestApplication.getCurrentJob().getTesttypeId() == 1) {
+
             try {
-                boot0 = ioio_.openDigitalOutput(24, DigitalOutput.Spec.Mode.OPEN_DRAIN,
+                POWER = ioio_.openDigitalOutput(Pin.POWER.getValue(),
+                        DigitalOutput.Spec.Mode.OPEN_DRAIN, false);
+            } catch (Exception e) {
+                report(e, ac);
+                return;
+            }
+
+            try {
+                reset = ioio_.openDigitalOutput(Pin.reset.getValue(),
+                        DigitalOutput.Spec.Mode.OPEN_DRAIN,
+                        true);
+            } catch (Exception e) {
+                report(e, ac);
+                return;
+            }
+
+            try {
+                boot0 = ioio_.openDigitalOutput(Pin.boot0.getValue(),
+                        DigitalOutput.Spec.Mode.OPEN_DRAIN,
                         stateBoot0);
             } catch (Exception e) {
                 report(e, ac);
                 return;
             }
+
             try {
-                boot1 = ioio_.openDigitalOutput(23, DigitalOutput.Spec.Mode.OPEN_DRAIN,
+                boot1 = ioio_.openDigitalOutput(Pin.boot1.getValue(),
+                        DigitalOutput.Spec.Mode.OPEN_DRAIN,
                         stateBoot1);
             } catch (Exception e) {
                 report(e, ac);
                 return;
             }
+
+            try {
+                Irange = ioio_.openDigitalOutput(Pin.Irange.getValue(),
+                        DigitalOutput.Spec.Mode.OPEN_DRAIN, range);
+
+            } catch (Exception e) {
+                report(e, ac);
+                return;
+            }
+
+            try {
+                Sensor_Low = ioio_.openDigitalOutput(Pin.Sensor_Low.getValue(),
+                        DigitalOutput.Spec.Mode.OPEN_DRAIN, true);
+            } catch (Exception e) {
+                report(e, ac);
+                return;
+            }
+
+            try {
+                Sensor_High = ioio_.openDigitalOutput(Pin.Sensor_High.getValue(),
+                        DigitalOutput.Spec.Mode.OPEN_DRAIN, true);
+            } catch (Exception e) {
+                report(e, ac);
+                return;
+            }
+
+            try {
+                HallInt = ioio_.openDigitalOutput(Pin.HallInt.getValue(),
+                        DigitalOutput.Spec.Mode.OPEN_DRAIN, true);
+            } catch (Exception e) {
+                report(e, ac);
+                return;
+            }
         }
+
+        if (PeriCoachTestApplication.getCurrentJob().getTesttypeId() != 1) {
+
+            setServo(ioio_, 500);
+
+            try {
+                airReg_pwm = ioio_.openPwmOutput(Pin.airReg_pwm.getValue(), 200);
+                airReg_pwm.setDutyCycle((float) 0.5);
+            } catch (Exception e) {
+                report(e, ac);
+                return;
+            }
+        }
+
         try {
-            _5V_DC = ioio_.openDigitalOutput(18,
+            _5V_DC = ioio_.openDigitalOutput(Pin._5V_DC.getValue(),
                     DigitalOutput.Spec.Mode.OPEN_DRAIN, true);
         } catch (Exception e) {
             report(e, ac);
@@ -404,38 +487,10 @@ public class IOIOUtils implements IOIOUtilsInterface {
 
         //Irange (uA Range) = true, (mA Range) = false.
 
-        try {
-            Irange = ioio_.openDigitalOutput(9,
-                    DigitalOutput.Spec.Mode.OPEN_DRAIN, range);
 
-        } catch (Exception e) {
-            report(e, ac);
-            return;
-        }
-        try {
-            Sensor_Low = ioio_.openDigitalOutput(2,
-                    DigitalOutput.Spec.Mode.OPEN_DRAIN, true);
-        } catch (Exception e) {
-            report(e, ac);
-            return;
-        }
-        try {
-            Sensor_High = ioio_.openDigitalOutput(1,
-                    DigitalOutput.Spec.Mode.OPEN_DRAIN, true);
-        } catch (Exception e) {
-            report(e, ac);
-            return;
-        }
-        try {
-            HallInt = ioio_.openDigitalOutput(21,
-                    DigitalOutput.Spec.Mode.OPEN_DRAIN, true);
-        } catch (Exception e) {
-            report(e, ac);
-            return;
-        }
 
         try {
-            EMag = ioio_.openDigitalOutput(3,
+            EMag = ioio_.openDigitalOutput(Pin.EMag.getValue(),
                     eMagMode, stateEmag);
         } catch (Exception e) {
             report(e, ac);
@@ -443,14 +498,19 @@ public class IOIOUtils implements IOIOUtilsInterface {
         }
 
         try {
-            master = ioio_.openTwiMaster(2, TwiMaster.Rate.RATE_100KHz, false);
+            master = ioio_.openTwiMaster(Pin.twiMaster.getValue(),
+                    TwiMaster.Rate.RATE_100KHz, false);
         } catch (ConnectionLostException e1) {
             report(e1, ac);
             return;
         }
 
         try {
-            spiMaster = ioio_.openSpiMaster(4, 5, 10, 28, SpiMaster.Rate.RATE_1M);
+            spiMaster = ioio_.openSpiMaster(Pin.spiMaster_miso.getValue(),
+                    Pin.spiMaster_mosi.getValue(),
+                    Pin.spiMaster_clk.getValue(),
+                    Pin.spiMaster_ss.getValue(),
+                    SpiMaster.Rate.RATE_1M);
         } catch (ConnectionLostException e2) {
             report(e2, ac);
             return;
@@ -459,7 +519,7 @@ public class IOIOUtils implements IOIOUtilsInterface {
         if(!DebugHelper.isMaurizioDebug() && (PeriCoachTestApplication.getCurrentJob().getTesttypeId() == 1))setBattVoltage(ioio_, true, 34, 2f, 3.9f);
 
         try {
-            trigger = ioio_.openDigitalOutput(45,
+            trigger = ioio_.openDigitalOutput(Pin.debugTrigger.getValue(),
                     DigitalOutput.Spec.Mode.NORMAL, true);
         } catch (Exception e) {
             report(e, ac);
@@ -467,14 +527,17 @@ public class IOIOUtils implements IOIOUtilsInterface {
         }
 
         try {
-            CHGPinIn = ioio_.openDigitalInput(27, DigitalInput.Spec.Mode.FLOATING);
+            CHGPinIn = ioio_.openDigitalInput(Pin.ChgPin.getValue(),
+                    DigitalInput.Spec.Mode.FLOATING);
         } catch (Exception e) {
             report(e, ac);
             return;
         }
 
         try {
-            uart1 = ioio_.openUart(6, 7, 115200, Uart.Parity.NONE, Uart.StopBits.ONE);
+            uart1 = ioio_.openUart(Pin.uart1_rx.getValue(),
+                    Pin.uart1_tx.getValue(),
+                    115200, Uart.Parity.NONE, Uart.StopBits.ONE);
         } catch (ConnectionLostException e) {
             Log.e(TAG, e.toString());
         }
@@ -486,14 +549,14 @@ public class IOIOUtils implements IOIOUtilsInterface {
         RD1 = new BufferedReader(in1);
 
         try {
-            barcodeOK = ioio_.openDigitalInput(15,
+            barcodeOK = ioio_.openDigitalInput(Pin.barcodeOk.getValue(),
                     DigitalInput.Spec.Mode.PULL_UP);
         } catch (Exception e) {
 
         }
 
         try {
-            barcodeTRGR = ioio_.openDigitalOutput(17,
+            barcodeTRGR = ioio_.openDigitalOutput(Pin.barcodeTrigger.getValue(),
                     DigitalOutput.Spec.Mode.NORMAL,
 
                     true);
@@ -504,8 +567,8 @@ public class IOIOUtils implements IOIOUtilsInterface {
         if (PeriCoachTestApplication.getCurrentJob().getTesttypeId() == 1) {
             try {
                 uart2 = ioio_.openUart(
-                        new DigitalInput.Spec(13, DigitalInput.Spec.Mode.PULL_UP),
-                        new DigitalOutput.Spec(14, DigitalOutput.Spec.Mode.OPEN_DRAIN),
+                        new DigitalInput.Spec(Pin.uart2_rx.getValue(), DigitalInput.Spec.Mode.PULL_UP),
+                        new DigitalOutput.Spec(Pin.uart2_tx.getValue(), DigitalOutput.Spec.Mode.OPEN_DRAIN),
                         115200, Uart.Parity.EVEN, // STM32
                         // Bootloader
                         // requires
@@ -542,9 +605,9 @@ public class IOIOUtils implements IOIOUtilsInterface {
         try {
             uart2 = ioio_.openUart(
 //                    13,
-                    new DigitalInput.Spec(13, DigitalInput.Spec.Mode.PULL_UP),
+                    new DigitalInput.Spec(Pin.uart2_rx.getValue(), DigitalInput.Spec.Mode.PULL_UP),
 //                    14,
-                    new DigitalOutput.Spec(14, DigitalOutput.Spec.Mode.OPEN_DRAIN),
+                    new DigitalOutput.Spec(Pin.uart2_tx.getValue(), DigitalOutput.Spec.Mode.OPEN_DRAIN),
                     115200, Uart.Parity.EVEN, // STM32
                     // Bootloader
                     // requires
@@ -561,9 +624,9 @@ public class IOIOUtils implements IOIOUtilsInterface {
         try {
             uart2 = ioio_.openUart(
 //                    13,
-                    new DigitalInput.Spec(13, DigitalInput.Spec.Mode.PULL_UP),
+                    new DigitalInput.Spec(Pin.uart2_rx.getValue(), DigitalInput.Spec.Mode.PULL_UP),
 //                    14,
-                    new DigitalOutput.Spec(14, DigitalOutput.Spec.Mode.OPEN_DRAIN),
+                    new DigitalOutput.Spec(Pin.uart2_tx.getValue(), DigitalOutput.Spec.Mode.OPEN_DRAIN),
                     baud, parity, // STM32
                     // Bootloader
                     // requires
@@ -598,6 +661,32 @@ public class IOIOUtils implements IOIOUtilsInterface {
 
     private static byte[] int_to_bb_be(int value) {
         return ByteBuffer.allocate(2).order(ByteOrder.BIG_ENDIAN).putInt(value).array();
+    }
+
+    @Override
+    public void setServo(final IOIO ioio_, int value) {
+        if (servo_pwm == null) {
+            try {
+                servo_pwm = ioio_.openPwmOutput(Pin.servo_pwm.getValue(), 150);
+            } catch (Exception e) {
+                Crashlytics.logException(e);
+            }
+        }
+
+        try {
+            getServo_pwm().setPulseWidth(value);
+        } catch (Exception e) {
+            Crashlytics.logException(e);
+        }
+
+//        try {
+//            if (servo_pwm != null) {
+//                servo_pwm.close();
+//                servo_pwm = null;
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }
 
     private void set420(int value) {
@@ -857,9 +946,20 @@ public class IOIOUtils implements IOIOUtilsInterface {
         return master;
     }
 
+    /* (non-Javadoc)
+    * @see com.pietrantuono.ioioutils.IOIOUtilsInterface#getSpiMaster()
+    */
     @Override
     public SpiMaster getSpiMaster() {
         return spiMaster;
+    }
+
+    /* (non-Javadoc)
+    * @see com.pietrantuono.ioioutils.IOIOUtilsInterface#getServo_pwm()
+    */
+    @Override
+    public PwmOutput getServo_pwm() {
+        return servo_pwm;
     }
 
     /* (non-Javadoc)

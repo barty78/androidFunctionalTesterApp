@@ -10,6 +10,7 @@ import android.app.Activity;
 import ioio.lib.api.DigitalInput;
 import ioio.lib.api.DigitalOutput;
 import ioio.lib.api.IOIO;
+import ioio.lib.api.PwmOutput;
 import ioio.lib.api.SpiMaster;
 import ioio.lib.api.TwiMaster;
 import ioio.lib.api.Uart;
@@ -23,6 +24,8 @@ public interface IOIOUtilsInterface {
 	void initialize(NewIOIOActivityListener listner, IOIO ioio_, Activity ac);
 
 	void ioioSync(IOIO ioio_);
+
+	void setServo(IOIO ioio_, int value);
 
 	boolean setBattVoltage(IOIO ioio_, boolean calibrate, int pin, float scaling, float voltage);
 
@@ -45,6 +48,8 @@ public interface IOIOUtilsInterface {
 	TwiMaster getMaster();
 
 	SpiMaster getSpiMaster();
+
+	PwmOutput getServo_pwm();
 
 	@SuppressWarnings("ucd")
 	DigitalOutput getPOWER();

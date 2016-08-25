@@ -2,26 +2,18 @@ package com.pietrantuono.tests.implementations;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.bluetooth.BluetoothAdapter;
 import android.os.Build;
 import android.os.Handler;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.pietrantuono.application.PeriCoachTestApplication;
-import com.pietrantuono.ioioutils.IOIOUtils;
-import com.pietrantuono.ioioutils.Voltage;
+
 import com.pietrantuono.tests.superclass.Test;
 import com.pietrantuono.timelogger.TimeLogger;
 import com.polidea.rxandroidble.RxBleClient;
 import com.polidea.rxandroidble.RxBleScanResult;
 import com.polidea.rxandroidble.exceptions.BleScanException;
 
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
-import java.util.ArrayList;
-
-import ioio.lib.api.AnalogInput;
 import ioio.lib.api.IOIO;
 import rx.Observer;
 import rx.Subscription;
@@ -85,13 +77,16 @@ public class BluetoothRFLevelTest extends Test {
                 TimeLogger.log("Scanning Stopped" + " | Sum = " + sum + " | Count = " + scanCount + " | Limit = " + limit);
                 scanSubscription.unsubscribe();
                 if (scanCount > 0 && (sum/scanCount) >= limit) {
+                    setValue(sum/scanCount);
                     Success();
-                    activityListener.addFailOrPass(true, true, String.valueOf(sum/scanCount) + "dB", description);
+                    activityListener.addFailOrPass(true, true, String.valueOf(sum/scanCount) + "dB", description, testToBeParsed);
                 } else {
                     if (scanCount > 0) {
-                        activityListener.addFailOrPass(true, false, String.valueOf(sum/scanCount) + "dB", description);
+                        setValue(sum/scanCount);
+                        activityListener.addFailOrPass(true, false, String.valueOf(sum/scanCount) + "dB", description, testToBeParsed);
                     } else {
-                        activityListener.addFailOrPass(true, false, "No Records", description);
+                        setValue(0);
+                        activityListener.addFailOrPass(true, false, "No Records", description, testToBeParsed);
                     }
                 }
                 return;
