@@ -24,6 +24,7 @@ import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteException;
 import android.graphics.Color;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
@@ -136,22 +137,27 @@ public class UIHelper {
             int numberOfDevicesFailed = c.getCount();
             c.close();
 
-            selection = RecordsContract.TestRecords.JOB_NO + "= " + job.getJobno();
-            c = newRecordsSQLiteOpenHelper.getReadableDatabase().query(RecordsContract.TestRecords.TABLE,
-                    new String[]{RecordsContract.TestRecords.DURATION},
-                    selection, null, null, null, null);
-
+            long count = 0;
             long sum = 0L;
-            long count = c.getCount();
             SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-            while(c.moveToNext()) {
-                try {
-                    sum += sdf.parse(c.getString(0)).getTime();
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-            }
 
+            selection = RecordsContract.TestRecords.JOB_NO + "= " + job.getJobno();
+            try {
+                c = newRecordsSQLiteOpenHelper.getReadableDatabase().query(RecordsContract.TestRecords.TABLE,
+                        new String[]{RecordsContract.TestRecords.DURATION},
+                        selection, null, null, null, null);
+
+                count = c.getCount();
+                while(c.moveToNext()) {
+                    try {
+                        sum += sdf.parse(c.getString(0)).getTime();
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                }
+            } catch (SQLiteException e) {
+            }
+            
             if (count > 0) {
                 sdf = new SimpleDateFormat("mm:ss");
                 Date avgTestTime = new Date(sum / count);
