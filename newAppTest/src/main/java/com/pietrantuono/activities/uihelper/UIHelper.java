@@ -157,7 +157,8 @@ public class UIHelper {
                 }
             } catch (SQLiteException e) {
             }
-            
+            c.close();
+
             if (count > 0) {
                 sdf = new SimpleDateFormat("mm:ss");
                 Date avgTestTime = new Date(sum / count);
@@ -166,10 +167,13 @@ public class UIHelper {
                 ((TextView) activity.findViewById(R.id.avg_time)).setText("00:00");
 
             }
-            c.close();
 
-            c = newRecordsSQLiteOpenHelper.getReadableDatabase().query(RecordsContract.TestRecords.TABLE, null, null, null, null, null, null);
-            int testCount = c.getCount();
+            int testCount = 0;
+            try {
+                c = newRecordsSQLiteOpenHelper.getReadableDatabase().query(RecordsContract.TestRecords.TABLE, null, null, null, null, null, null);
+                testCount = c.getCount();
+            } catch (SQLiteException e) {
+            }
             c.close();
 
             ((TextView) activity.findViewById(R.id.num_of_devices)).setText("" + numberOfDevices);
