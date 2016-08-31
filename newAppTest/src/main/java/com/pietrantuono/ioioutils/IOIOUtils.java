@@ -30,6 +30,7 @@ import com.crashlytics.android.Crashlytics;
 import com.pietrantuono.activities.NewIOIOActivityListener;
 import com.pietrantuono.fragments.SerialConsoleFragmentCallback;
 import com.pietrantuono.application.PeriCoachTestApplication;
+import com.pietrantuono.timelogger.TimeLogger;
 
 public class IOIOUtils implements IOIOUtilsInterface {
     private Uart uart1;
@@ -235,10 +236,25 @@ public class IOIOUtils implements IOIOUtilsInterface {
     }
 
     /* (non-Javadoc)
-     * @see com.pietrantuono.ioioutils.IOIOUtilsInterface#closeall(com.pietrantuono.activities.NewIOIOActivityListener, android.app.Activity)
+     * @see com.pietrantuono.ioioutils.IOIOUtilsInterface#appcloseall(com.pietrantuono.activities.NewIOIOActivityListener, android.app.Activity)
      */
     @Override
-    public void closeall(final NewIOIOActivityListener listener,
+    public void appcloseall(final NewIOIOActivityListener listener,
+                            final Activity ac) {
+
+        try {
+            if (airReg_pwm != null) airReg_pwm.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    /* (non-Javadoc)
+     * @see com.pietrantuono.ioioutils.IOIOUtilsInterface#seqcloseall(com.pietrantuono.activities.NewIOIOActivityListener, android.app.Activity)
+     */
+    @Override
+    public void seqcloseall(final NewIOIOActivityListener listener,
                          final Activity ac) {
 
         stopUartThread();
@@ -360,19 +376,38 @@ public class IOIOUtils implements IOIOUtilsInterface {
             e.printStackTrace();
         }
 
-        try {
-            if (airReg_pwm != null) airReg_pwm.close();
-        } catch (Exception e) {
-            e.printStackTrace();
+    }
+
+    /* (non-Javadoc)
+     * @see com.pietrantuono.ioioutils.IOIOUtilsInterface#configure(com.pietrantuono.activities.NewIOIOActivityListener, ioio.lib.api.IOIO, android.app.Activity)
+     * Configure is called when IOIO is connected, only setup IOIO pins here that a relevant to application context.
+     */
+    @Override
+    public void configure(final NewIOIOActivityListener listner,
+                           final IOIO ioio_, final Activity ac) {
+
+        if (PeriCoachTestApplication.getCurrentJob().getTesttypeId() != 1) {
+
+            try {
+                TimeLogger.log("Setup AirReg PWM");
+                airReg_pwm = ioio_.openPwmOutput(Pin.airReg_pwm.getValue(), 100000);
+                airReg_pwm.setDutyCycle((float) 0.9);
+            } catch (Exception e) {
+                report(e, ac);
+                return;
+            }
         }
+
     }
 
     /* (non-Javadoc)
      * @see com.pietrantuono.ioioutils.IOIOUtilsInterface#initialize(com.pietrantuono.activities.NewIOIOActivityListener, ioio.lib.api.IOIO, android.app.Activity)
+     * Initialize is called at the start of each sequence, only setup IOIO pins here that a relevant to each sequence
      */
     @Override
     public void initialize(final NewIOIOActivityListener listner,
                            final IOIO ioio_, final Activity ac) {
+
         isinterrupted = false;
         boolean stateBoot0 = true;
         boolean stateBoot1 = false;
@@ -464,19 +499,6 @@ public class IOIOUtils implements IOIOUtilsInterface {
             }
         }
 
-        if (PeriCoachTestApplication.getCurrentJob().getTesttypeId() != 1) {
-
-            setServo(ioio_, 500);
-
-            try {
-                airReg_pwm = ioio_.openPwmOutput(Pin.airReg_pwm.getValue(), 200);
-                airReg_pwm.setDutyCycle((float) 0.5);
-            } catch (Exception e) {
-                report(e, ac);
-                return;
-            }
-        }
-
         try {
             _5V_DC = ioio_.openDigitalOutput(Pin._5V_DC.getValue(),
                     DigitalOutput.Spec.Mode.OPEN_DRAIN, true);
@@ -561,6 +583,12 @@ public class IOIOUtils implements IOIOUtilsInterface {
 
                     true);
         } catch (Exception e) {
+
+        }
+
+        if (PeriCoachTestApplication.getCurrentJob().getTesttypeId() != 1) {
+
+            setServo(ioio_, 500);
 
         }
 

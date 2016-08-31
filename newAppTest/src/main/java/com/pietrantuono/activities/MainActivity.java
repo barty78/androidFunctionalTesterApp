@@ -142,7 +142,7 @@ public class MainActivity extends AppCompatActivity
         } catch (Exception e) {
         }
         try {
-            IOIOUtils.getUtils().closeall(MainActivity.this, MainActivity.this);
+            IOIOUtils.getUtils().appcloseall(MainActivity.this, MainActivity.this);
 
         } catch (Exception e) {
         }
@@ -313,7 +313,7 @@ public class MainActivity extends AppCompatActivity
                     Voltage.interrupt();
                 } catch (Exception e) {
                 }
-                IOIOUtils.getUtils().closeall(MainActivity.this, MainActivity.this);
+                IOIOUtils.getUtils().seqcloseall(MainActivity.this, MainActivity.this);
                 if (btutility != null) {
                     try {
                         btutility.abort();
@@ -522,7 +522,7 @@ public class MainActivity extends AppCompatActivity
         if (job.getTesttypeId() == 1) {
             uiHelper.cleanUI(MainActivity.this);
         }
-        IOIOUtils.getUtils().closeall(MainActivity.this, MainActivity.this);
+        IOIOUtils.getUtils().seqcloseall(MainActivity.this, MainActivity.this);
         TimeLogger.addSplit("Done");
         waitForPCBConnected();
     }
@@ -709,6 +709,7 @@ public class MainActivity extends AppCompatActivity
                 waitForPCBConnected();
             }
         });
+        IOIOUtils.getUtils().configure(MainActivity.this, myIOIO, MainActivity.this);
     }
 
 

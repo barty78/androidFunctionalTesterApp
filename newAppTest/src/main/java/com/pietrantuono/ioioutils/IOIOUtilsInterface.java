@@ -19,7 +19,11 @@ public interface IOIOUtilsInterface {
 
 	//String getBarcode(NewIOIOActivityListener listner, IOIO ioio_, Activity activity);
 
-	void closeall(NewIOIOActivityListener listener, Activity ac);
+	void seqcloseall(NewIOIOActivityListener listener, Activity ac);
+
+	void appcloseall(NewIOIOActivityListener listener, Activity ac);
+
+	void configure(NewIOIOActivityListener listner, IOIO ioio_, Activity ac);
 
 	void initialize(NewIOIOActivityListener listner, IOIO ioio_, Activity ac);
 
