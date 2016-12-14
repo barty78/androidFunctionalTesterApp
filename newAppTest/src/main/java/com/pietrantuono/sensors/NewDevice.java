@@ -7,10 +7,14 @@ import com.pietrantuono.tests.implementations.BatteryLevelUUTVoltageTest;
 import hydrix.pfmat.generic.AllVoltageObserver;
 import hydrix.pfmat.generic.CalibrationObserver;
 import hydrix.pfmat.generic.DeviceRecvStream;
+import hydrix.pfmat.generic.Motion;
 import hydrix.pfmat.generic.PFMAT;
 import hydrix.pfmat.generic.Packet;
 import hydrix.pfmat.generic.PacketHandler;
+import hydrix.pfmat.generic.PacketRx_AccelData;
 import hydrix.pfmat.generic.PacketRx_BatteryStatus;
+import hydrix.pfmat.generic.PacketRx_ConfigData;
+import hydrix.pfmat.generic.PacketRx_Data;
 import hydrix.pfmat.generic.PacketRx_DeviceDetails;
 import hydrix.pfmat.generic.PacketRx_SensorData;
 import hydrix.pfmat.generic.PacketRx_SetAllVoltage;
@@ -19,10 +23,13 @@ import hydrix.pfmat.generic.PacketRx_SetRefVoltage;
 import hydrix.pfmat.generic.PacketTx_GetBatteryStatus;
 import hydrix.pfmat.generic.PacketTx_GetDeviceDetails;
 import hydrix.pfmat.generic.PacketTx_GetSensorData;
+import hydrix.pfmat.generic.PacketTx_SetAccelConfig;
 import hydrix.pfmat.generic.PacketTx_SetAllVoltage;
+import hydrix.pfmat.generic.PacketTx_SetConfig;
 import hydrix.pfmat.generic.PacketTx_SetRefVoltage;
 import hydrix.pfmat.generic.PacketTx_SetZeroVoltage;
 import hydrix.pfmat.generic.PacketTx_Sleep;
+import hydrix.pfmat.generic.Quaternion;
 import hydrix.pfmat.generic.RefVoltageObserver;
 
 
@@ -177,6 +184,14 @@ public abstract class NewDevice {
         return sendPacket(new PacketTx_SetZeroVoltage(sensorIndex, zeroVoltage));
     }
 
+    public final boolean sendGetData(byte config, byte sampleRate, byte sensorTestFlag) {
+        return sendPacket(new PacketTx_SetConfig(config, sampleRate, sensorTestFlag));
+    }
+
+    public final boolean sendAccelConfig(byte accelFSR, short gyroFSR) {
+        return sendPacket(new PacketTx_SetAccelConfig(accelFSR, gyroFSR));
+    }
+
     public final boolean sendAllVoltages(short[] refVoltages, short[] zeroVoltages, AllSensorsCallback callback) throws InvalidVoltageException {
         if (refVoltages.length == 3 && zeroVoltages.length == 3) {
             allSensorsCallback=callback;
@@ -187,9 +202,12 @@ public abstract class NewDevice {
     }
 
     @SuppressWarnings("ucd")
-    public
-    final boolean sendSleep(byte mode, short waitTime) {
+    public final boolean sendSleep(byte mode, short waitTime) {
         return sendPacket(new PacketTx_Sleep(mode, waitTime));
+    }
+
+    public final boolean sendConfig(byte dataConfig, byte sampleRate, byte sensorTestModeFlag) {
+        return sendPacket(new PacketTx_SetConfig(dataConfig, sampleRate, sensorTestModeFlag));
     }
 
     private boolean sendPacket(Packet packet) {
@@ -338,6 +356,21 @@ public abstract class NewDevice {
                         onSensorData(data.getRequestTimestamp(), data.getSensor0(), data.getSensor1(), data.getSensor2());
                         break;
                     }
+
+                    case PFMAT.RX_ACCEL_DATA: {
+//                        Log.d(TAG,"handlePacket: got sensors data");
+                        PacketRx_AccelData data = (PacketRx_AccelData) packet;
+                        onSensorData(data.getRequestTimestamp(), data.getmSensor0(), data.getmSensor1(), data.getmSensor2());
+                        onMotionData(data.getRequestTimestamp(), data.getAccel(), data.getGyro(), data.getQuat());
+                        break;
+                    }
+
+                    case PFMAT.RX_CONFIG_DATA: {
+//                        Log.d(TAG, "handlePacket: got config data");
+                        PacketRx_ConfigData data = (PacketRx_ConfigData) packet;
+                        break;
+                    }
+
                     case PFMAT.RX_BATTERY_STATUS: {
                         Log.d(TAG,"handlePacket: got battery data");
                         PacketRx_BatteryStatus data = (PacketRx_BatteryStatus) packet;
@@ -369,6 +402,15 @@ public abstract class NewDevice {
                         onAllVoltage();
                         break;
                     }
+                    case PFMAT.RX_DATA: {
+//                        Log.d(TAG, "handlePacket: got data packet");
+                        PacketRx_Data data = (PacketRx_Data) packet;
+                        handleData(data);
+//                        onData(data.getmSensor0(), data.getmSensor1(), data.getmSensor2(), data.getBattery());
+//                        onSensorData(0, data.getmSensor0(), data.getmSensor1(), data.getmSensor2());
+//                        onMotionData(0, data.getAccel(), data.getGyro(), data.getmQuat());
+                        break;
+                    }
                     default:
                         Log.d(TAG,"handlePacket: we don't know this packet");
                         // Quietly ignore unimplemented packet types at this stage
@@ -376,6 +418,55 @@ public abstract class NewDevice {
                 }
             }
         }
+    }
+
+    private final void handleData(PacketRx_Data data) {
+        Motion.Acceleration acc = new Motion.Acceleration(0,0,0);
+        Motion.Rotation gy = new Motion.Rotation(0,0,0);
+        Quaternion qt = new Quaternion(0,0,0,0);
+        Short s0 = 0;
+        Short s1 = 0;
+        Short s2 = 0;
+        Byte rssi = 0;
+        Byte batt = 0;
+        if ((data.getConfig() & PFMAT.BATTERY) != 0) {
+            batt = data.getBattery();
+        }
+        if ((data.getConfig() & PFMAT.RSSI) != 0) {
+            rssi = data.getRssi();
+        }
+        if ((data.getConfig() & PFMAT.SENSORS) != 0) {
+            s0 = data.getmSensor0();
+            s1 = data.getmSensor1();
+            s2 = data.getmSensor2();
+        }
+        if ((data.getConfig() & PFMAT.ACCEL) != 0) {
+            acc = data.getAccel();
+        }
+        if ((data.getConfig() & PFMAT.GYRO) != 0) {
+            gy = data.getGyro();
+        }
+        if ((data.getConfig() & PFMAT.QUAT) != 0) {
+            qt = data.getmQuat();
+        }
+        onData(s0, s1, s2, (batt.intValue()));
+        onMotionData(0, acc, gy, qt);
+    }
+
+    private final void onData(short sensor0, short sensor1, short sensor2, int batteryLevel) {
+
+        if (weakReference != null && weakReference.get() != null) {
+            weakReference.get().onDataSample(0, sensor0, sensor1, sensor2, batteryLevel);
+        } else {
+            Log.d(TAG, "weakReference is null!!!");
+        }
+    }
+
+    protected final void onMotionData(int requestTimestampMS, Motion.Acceleration accel, Motion.Rotation gyro, Quaternion quat)
+    {
+        if (weakReference != null && weakReference.get() != null)
+            weakReference.get().onAccelSample(requestTimestampMS, accel, gyro, quat);
+        else Log.d(TAG, "weakReference is null!!!");
     }
 
     private final void onSensorData(int requestTimestampMS, short sensor0, short sensor1, short sensor2) {

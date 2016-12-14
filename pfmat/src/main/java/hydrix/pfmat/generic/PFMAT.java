@@ -16,8 +16,8 @@ public class PFMAT
 	public static final byte TX_GET_ACCEL_DATA = 0x04;
 	public static final byte RX_ACCEL_DATA = 0x40;
 
-	public static final byte TX_GET_CAL_OFFSET = 0x05;
-	public static final byte RX_CAL_OFFSET = 0x50;
+	public static final byte TX_SET_CONFIG = 0x05;
+	public static final byte RX_CONFIG_DATA = 0x50;
 
 	public static final byte TX_SET_REF_VOLTAGE = 0x06;
 	public static final byte RX_REF_VOLTAGE = 0x60;
@@ -31,6 +31,10 @@ public class PFMAT
 	public static final byte TX_SET_ALL_VOLTAGE = 0x0A;
 	public static final byte RX_ALL_VOLTAGE = (byte) 0xA0;
 
+	public static final byte RX_DATA = (byte) 0xB0;
+
+	public static final byte TX_SET_ACCEL_CONFIG = 0x0C;
+	public static final byte RX_ACCEL_CONFIG = (byte) 0xC0;
 
 	public static final short MIN_SENSOR_VALUE = 0;
 	//public static final short MAX_SENSOR_VALUE = 0x3FF; // 10-bit range, 0 - 1023
@@ -56,4 +60,17 @@ public class PFMAT
 
 	public static final short SLEEP_FAILED = (short)0x00;
 
+	public static final byte SENSORS_ONLY = 0x00;
+	public static final byte ACCEL_ONLY = 0x01;
+	public static final byte SENSORS_AND_ACCEL = 0x02;
+
+	public static final int BATTERY = 1 << 0;
+	public static final int RSSI = 1 << 1;
+	public static final int SENSORS = 1 << 2;
+	public static final int ACCEL = 1 << 3;
+	public static final int GYRO = 1 << 4;
+	public static final int QUAT = 1 << 5;
+
+	public static final String V2 = "0188";
+	public static final String V3 = "0198";
 }

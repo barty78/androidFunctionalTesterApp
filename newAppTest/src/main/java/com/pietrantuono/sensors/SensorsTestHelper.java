@@ -1,6 +1,8 @@
 package com.pietrantuono.sensors;
 
 import hydrix.pfmat.generic.Force;
+import hydrix.pfmat.generic.Motion;
+import hydrix.pfmat.generic.Quaternion;
 import hydrix.pfmat.generic.SessionSamples;
 
 import java.lang.ref.WeakReference;
@@ -26,6 +28,8 @@ public class SensorsTestHelper implements OnSampleCallback {
 	TextView sensor2ref = null;
 	private NewSessionPollingThread newSessionPollingThreadref = null;
 	SessionSamples samplesref = null;
+	SessionSamples samples = null;
+
 	SessionSamples closedtestsamplesrefsensor0 = null;
 	SessionSamples closedtestsamplesrefsensor1 = null;
 	SessionSamples closedtestsamplesrefsensor2 = null;
@@ -72,6 +76,11 @@ public class SensorsTestHelper implements OnSampleCallback {
 	}
 
 	@Override
+	public synchronized void onDataSample(int sequenceNumber, final short sensor0, final short sensor1, final short sensor2, final int batteryLevel) {
+
+	}
+
+	@Override
 	public synchronized void  onSample(int requestTimestampMS, final short sensor0, final short sensor1, final short sensor2) {
 		if(!acceptdata) {
 			Log.d(TAG,"NOT accetping data offset = "+requestTimestampMS+" time = "+simpleDateFormat.format(System.currentTimeMillis()) );
@@ -100,6 +109,68 @@ public class SensorsTestHelper implements OnSampleCallback {
 				if (samplingSensor2) sensor2tv.setText(Short.toString(sensor2));
 			}
 		});
+	}
+
+	@Override
+	public void onAccelSample(int requestTimestampMS, Motion.Acceleration accel, Motion.Rotation gyro, Quaternion quat) {
+		Activity activity = activityref.get();
+		samples = samplesref;
+
+		Motion.VectorFloat v = getGravity(quat);
+		final float[] ypr = getYawPitchRoll(quat, v);
+		Motion.VectorInt16 linearAccel = getLinearAccel(new Motion.VectorInt16(accel.mAccelX, accel.mAccelY, accel.mAccelZ), v);
+		Motion.VectorInt16 worldAccel = getLinearAccelInWorld(linearAccel, quat);
+		Log.d("LINEAR ACCEL:", "X:" + linearAccel.mx + " , " + "Y:" + linearAccel.my + " , " + "Z:" + linearAccel.mz + " ");
+		Log.d("LINEAR ACCEL WORLD:", "X:" + worldAccel.mx + " , " + "Y:" + worldAccel.my + " , " + "Z:" + worldAccel.mz + " ");
+//		samples.add(requestTimestampMS, new Motion(accel, gyro, quat, ypr));
+
+		//mPollingThread.ack();
+//		activity.runOnUiThread(new Runnable() {
+//			@Override
+//			public void run() {
+//				DecimalFormat df = new DecimalFormat("#.#");
+//				yawText.setText(String.format("%.1f", ypr[0]));
+//				pitchText.setText(String.format("%.1f", ypr[1]));
+//				rollText.setText(String.format("%.1f", ypr[2]));
+//			}
+//		});
+//		Log.d(TAG, "SAMPLES SIZE - " + samplesref.getSamples().size());
+	}
+
+	private final Motion.VectorFloat getGravity(Quaternion q)
+	{
+		Motion.VectorFloat v = new Motion.VectorFloat();
+		v.mx = 2 * (q.x * q.z - q.w * q.y);
+		v.my = 2 * (q.w * q.x - q.y * q.z);
+		v.mz = q.w * q.w - q.x * q.x - q.y * q.y + q.z * q.z;
+		return v;
+	}
+
+	private final float[] getYawPitchRoll(Quaternion q, Motion.VectorFloat grav)
+	{
+		float[] ypr = new float[]{(float)0, (float)0, (float)0};
+
+		ypr[0] = (float) (Math.atan2(2 * q.x * q.y - 2 * q.w * q.z, 2 * q.w * q.w + 2 * q.x * q.x - 1) * 180 / Math.PI);
+		ypr[1] = (float) (Math.atan(grav.mx / Math.sqrt(grav.my * grav.my + grav.mz * grav.mz)) * 180 / Math.PI);
+		// roll: (tilt left/right, about X axis)
+		ypr[2] = (float) (Math.atan(grav.my / Math.sqrt(grav.mx * grav.mx + grav.mz * grav.mz)) * 180 / Math.PI);
+		return ypr;
+	}
+
+	private final Motion.VectorInt16 getLinearAccel(Motion.VectorInt16 vraw, Motion.VectorFloat grav)
+	{
+		Motion.VectorInt16 v = new Motion.VectorInt16();
+		v.mx = (int) (vraw.mx - grav.mx * 8192);
+		v.my = (int) (vraw.my - grav.my * 8192);
+		v.mz = (int) (vraw.mz - grav.mz * 8192);
+		return v;
+	}
+
+	private final Motion.VectorInt16 getLinearAccelInWorld(Motion.VectorInt16 vreal, Quaternion q)
+	{
+		Motion.VectorInt16 v = vreal;
+		v.rotate(q);
+		return v;
 	}
 
 	public void stop() {

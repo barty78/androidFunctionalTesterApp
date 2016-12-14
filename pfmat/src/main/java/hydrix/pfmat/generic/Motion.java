@@ -1,17 +1,13 @@
 package hydrix.pfmat.generic;
 
-import android.util.FloatMath;
-
-@SuppressWarnings("unused")
 public class Motion
 {
 	// Members
-	private final Acceleration mAccel;	// Acceleration
-	private final Rotation mGyro;			// Gyroscope
-	private final Quaternion mQuat;		// Quaternion
-	private final float[] mYPR;			// Yaw/Pitch/Roll
+	public Acceleration mAccel;	// Acceleration
+	public Rotation mGyro;			// Gyroscope
+	public Quaternion mQuat;		// Quaternion
+	public float[] mYPR;			// Yaw/Pitch/Roll
 	
-	@SuppressWarnings("unused")
 	static public class VectorFloat
 	{
 		public float mx;
@@ -34,7 +30,7 @@ public class Motion
 		
 		public float getMagnitude()
 		{
-			return FloatMath.sqrt(mx * mx + my * my + mz * mz);
+			return (float)Math.sqrt(mx * mx + my * my + mz * mz);
 		}
 		
 		void normalize()
@@ -74,7 +70,6 @@ public class Motion
 	        }
 	}
 	
-	@SuppressWarnings("unused")
 	static public class VectorInt16
 	{
 		public int mx;
@@ -115,7 +110,7 @@ public class Motion
 			return r;
 		}
 		
-		void rotate(Quaternion q)
+		public void rotate(Quaternion q)
 		{
 			// http://www.cprogramming.com/tutorial/3d/quaternions.html
             // http://www.euclideanspace.com/maths/algebra/realNormedAlgebra/quaternions/transforms/index.htm

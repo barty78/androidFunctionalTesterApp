@@ -4,7 +4,7 @@ import android.util.FloatMath;
 
 
 public class Quaternion {
-	private float w;
+	public float w;
 	public float x;
 	public float y;
 	public float z;

@@ -3,6 +3,7 @@ package com.pietrantuono.activities;
 import com.crashlytics.android.Crashlytics;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.pericoach.newtestapp.BuildConfig;
 import com.pietrantuono.pericoach.newtestapp.R;
 import com.pietrantuono.recordsdb.NewRecordsSQLiteOpenHelper;
@@ -14,6 +15,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
@@ -79,6 +82,17 @@ public class SettingsActivity extends PreferenceActivity {
                 OrientationUtils.setOrientation(SettingsActivity.this);
             }
         });
+
+        Preference version = findPreference("version");
+        try {
+            version.setSummary(appVersion());
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        Preference deviceID = findPreference("deviceID");
+        deviceID.setSummary(PeriCoachTestApplication.getDeviceid());
+
         Preference unprocessed = (Preference) findPreference(getResources().getString(R.string.unprocessed));
         Preference dowloadunprocessed = (Preference) findPreference(getResources().getString(R.string.download_unprocessed));
         Preference copytosd = (Preference) findPreference("copy_to_sd");
@@ -145,6 +159,12 @@ public class SettingsActivity extends PreferenceActivity {
                 return false;
             }
         });
+    }
+
+    public String appVersion() throws PackageManager.NameNotFoundException {
+        PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+        String version = pInfo.versionName;
+        return version;
     }
 
     private void copyToSD(Context context) {

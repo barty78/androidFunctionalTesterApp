@@ -138,30 +138,30 @@ public abstract class Device
 	public final boolean sendSleep(byte mode, short waitTime) {return sendPacket(new PacketTx_Sleep(mode, waitTime));}
 	
 	protected boolean sendPacket(Packet packet)
+{
+	if (mOutputStream == null)
+		return false;
+
+	// Serialize the packet to a byte stream
+	byte[] stream = packet.toStream();
+	if (stream == null)
+		return false;
+
+	// We'll write synchronously in the caller's thread context... documentation says this is generally fine (only an issue if peer falls too far behind
+	// and the intermediate buffers get full locally
+	try
 	{
-		if (mOutputStream == null)
-			return false;
-		
-		// Serialize the packet to a byte stream
-		byte[] stream = packet.toStream();
-		if (stream == null)
-			return false;
-		
-		// We'll write synchronously in the caller's thread context... documentation says this is generally fine (only an issue if peer falls too far behind
-		// and the intermediate buffers get full locally
-		try
+		synchronized(mOutputStream)
 		{
-			synchronized(mOutputStream)
-			{
-				mOutputStream.write(stream);
-			}
-			return true;
+			mOutputStream.write(stream);
 		}
-		catch (Exception e)
-		{
-			return false;
-		}
+		return true;
 	}
+	catch (Exception e)
+	{
+		return false;
+	}
+}
 	
 	private class DeviceRecvThread extends Thread
 	{

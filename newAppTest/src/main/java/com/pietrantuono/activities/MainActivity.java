@@ -176,7 +176,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         Log.e(TAG, "goAndExecuteNextTest " + newSequence.getNextTest().getDescription());
-        TimeLogger.addSplit(newSequence.getNextTest().getDescription());
+//        TimeLogger.addSplit(newSequence.getNextTest().getDescription());
         newSequence.executeCurrentTest();
         uiHelper.setCurrentAndNextTaskinUI();
     }
@@ -343,23 +343,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void onCurrentSequenceEnd() {
-        hideRestart = false;
-        if (!isDevicesListActionbar) invalidateOptionsMenu();
-        IOIOUtils.getUtils().stopUartThread();
-        PeriCoachTestApplication.setLastPos(0);
-        sequenceStarted = false;
-        newSequence.setEndtime(System.currentTimeMillis());
-        final boolean overallresult = newSequence.getOverallResultBool();
-        PeriCoachTestApplication.getApplication().forceSyncDevices();
-        if (job.getIslogging() == 1) {
-            if (job.getLogWithoutId() == 1) {
-                createRecordAndSync();
-            } else {
-                if (sequenceDevice.getBarcode() != null) { // If No barcode then don't create/upload record
-                    createRecordAndSync();
-                }
-            }
-        }
+
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -383,6 +367,24 @@ public class MainActivity extends AppCompatActivity
                 waitForPCBDisconnected();
             }
         });
+
+        hideRestart = false;
+        if (!isDevicesListActionbar) invalidateOptionsMenu();
+        IOIOUtils.getUtils().stopUartThread();
+        PeriCoachTestApplication.setLastPos(0);
+        sequenceStarted = false;
+        newSequence.setEndtime(System.currentTimeMillis());
+        final boolean overallresult = newSequence.getOverallResultBool();
+        PeriCoachTestApplication.getApplication().forceSyncDevices();
+        if (job.getIslogging() == 1) {
+            if (job.getLogWithoutId() == 1) {
+                createRecordAndSync();
+            } else {
+                if (sequenceDevice.getBarcode() != null) { // If No barcode then don't create/upload record
+                    createRecordAndSync();
+                }
+            }
+        }
 
     }
 

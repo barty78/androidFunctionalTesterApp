@@ -49,10 +49,10 @@ public class MagnetWakeDeviceTest extends Test {
 
         if (isinterrupted) return;
         if (IOIOUtils.getUtils().getEmag() != null) {
-            IOIOUtils.getUtils().setEMag((Activity) activityListener, true);
+            IOIOUtils.getUtils().setEMag((Activity) activityListener, false);
         }
-        IOIOUtils.getUtils().setServo(ioio, 1500);
         if (PeriCoachTestApplication.getCurrentJob().getTesttypeId() != 1) {
+            IOIOUtils.getUtils().setServo(ioio, 1500);
             rxBleClient = RxBleClient.create(PeriCoachTestApplication.getContext());
             /**
              * We start scanning as soon as we subscribe
@@ -127,7 +127,7 @@ public class MagnetWakeDeviceTest extends Test {
                     df.setRoundingMode(RoundingMode.DOWN);
 
                     if (IOIOUtils.getUtils().getEmag() != null) {
-                        IOIOUtils.getUtils().setEMag((Activity) activityListener, false);
+                        IOIOUtils.getUtils().setEMag((Activity) activityListener, true);
                     }
                     if (isinterrupted) return;
                     try {
@@ -152,7 +152,7 @@ public class MagnetWakeDeviceTest extends Test {
                         e.printStackTrace();
                     }
                 }
-            }, PRE_WAKE_SCAN_DURATION_MILLIS);
+            }, 5000);
         }
         return;
     }

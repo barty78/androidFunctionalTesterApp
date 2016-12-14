@@ -131,6 +131,7 @@ public class ClosedTest extends SensorTest {
                 return;
             }
         }
+
         sensorsTestHelper.getNewSessionPollingThreadref().start();
         this.sensorsTestHelper.samplesref.clear();
         if (this.sensorsTestHelper.activityref == null || this.sensorsTestHelper.activityref.get() == null)

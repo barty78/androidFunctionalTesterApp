@@ -77,10 +77,28 @@
 	<EditTextPreference
 	    android:dependency="use_default_url"
 	    android:defaultValue="@string/default_prod_url"
-	    android:key="custom_url" 
-        android:summary="Custom url" 
+	    android:key="custom_url"
+        android:summary="Custom url"
         android:title="Custom url" />
 
+    <PreferenceCategory
+        android:title="About">
+        <PreferenceScreen
+            android:title="Developer"
+            android:key="developer"
+            android:summary="Analytica Ltd">
+        </PreferenceScreen>
 
+        <PreferenceScreen
+            android:title="App Version"
+            android:key="version"
+            android:summary="1.0">
+        </PreferenceScreen>
+        <PreferenceScreen
+            android:title="Device ID"
+            android:key="deviceID"
+            android:summary="1.0">
+        </PreferenceScreen>
+    </PreferenceCategory>
 	
 </PreferenceScreen>

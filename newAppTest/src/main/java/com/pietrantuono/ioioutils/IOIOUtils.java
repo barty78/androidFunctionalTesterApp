@@ -391,7 +391,7 @@ public class IOIOUtils implements IOIOUtilsInterface {
             try {
                 TimeLogger.log("Setup AirReg PWM");
                 airReg_pwm = ioio_.openPwmOutput(Pin.airReg_pwm.getValue(), 100000);
-                airReg_pwm.setDutyCycle((float) 0.9);
+                airReg_pwm.setDutyCycle((float) 0.5);
             } catch (Exception e) {
                 report(e, ac);
                 return;
