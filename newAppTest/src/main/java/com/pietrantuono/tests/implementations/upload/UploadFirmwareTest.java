@@ -120,6 +120,11 @@ public class UploadFirmwareTest extends Test {
                     return;
                 }
 
+                if (!firmWareUploader.eraseEEPROMBytes()) {
+                    onFailure(firmWareUploader.getERRORCODE(), "ERROR: Erase EEPROM Failed");
+                    return;
+                }
+
                 if (!firmWareUploader.writeOptionBytes()) {
                     onFailure(firmWareUploader.getERRORCODE(), "ERROR: Option Bytes Write Failed");
                     return;

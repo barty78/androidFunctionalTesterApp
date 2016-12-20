@@ -335,7 +335,7 @@ public class MainActivity extends AppCompatActivity
         } catch (Exception e) {
         }
         if (btutility != null) {
-            btutility.stop();
+            btutility.stop(false);
             btutility = null;
         }
         BTUtility.unregisterIOIOAddressREceiver();
@@ -348,7 +348,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void run() {
                 if (btutility != null) { // OK
-                    btutility.stop();
+                    btutility.stop(newSequence.getOverallResultBool());
                     btutility = null;
                 }
                 uiHelper.updateStats(job, MainActivity.this);

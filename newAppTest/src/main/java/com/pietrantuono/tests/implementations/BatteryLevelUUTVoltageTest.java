@@ -58,7 +58,7 @@ public class BatteryLevelUUTVoltageTest extends Test {
             }
             if (isinterrupted) return null;
             try {
-                Thread.sleep(2 * 1000);
+                Thread.sleep(2 * 4000);
             } catch (Exception e) {
                 getListener().addFailOrPass(true, false, "ERROR", "App Fault", testToBeParsed);
 

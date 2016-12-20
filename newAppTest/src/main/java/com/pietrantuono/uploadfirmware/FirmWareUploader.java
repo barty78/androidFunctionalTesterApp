@@ -68,6 +68,7 @@ public class FirmWareUploader {
     private int fl_end;
     private int op_start;
     private int op_end;
+    private int ee_start = 0x08080000;
 
     @SuppressWarnings("ucd")
     public int mem_end;
@@ -489,6 +490,32 @@ public class FirmWareUploader {
             }
         }
         return null;
+    }
+
+    public boolean eraseEEPROMBytes() {
+
+        System.out.printf("Erasing Eeprom Bytes");
+
+        byte[] tmp = new byte[]{0,0,0,0};
+
+        if (!writeMemory(ee_start, tmp, tmp.length)) {
+            if (BuildConfig.DEBUG) {
+                System.err.printf(
+                        "Failed to erase eeprom at address 0x%08x\n",
+                        ee_start);
+            }
+            error = "Failed to erase eeprom at address " + String.format("0x%08x", ee_start);
+            ERRORCODE = ErrorCodes.FIRMWAREUPLOAD_ERASE_EEPROM_ERROR;
+            return false;
+        }
+
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        return true;
     }
 
     public boolean writeOptionBytes() {

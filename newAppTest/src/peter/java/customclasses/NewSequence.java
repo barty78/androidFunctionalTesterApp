@@ -436,7 +436,7 @@ public class NewSequence implements NewSequenceInterface {
         sequence.add(new VoltageTest(activity, ioio, 32, Units.V, false, -2f, true, -0.3f, 0.3f,
                 "Voltage Measurement(V_REF_AN)"));
         sequence.add(new SetSensorVoltagesStep(activity, (short) 0, (short) 30, "Set GAIN -> 0, ZERO -> 30"));
-        sequence.add(new VoltageTest(activity, ioio, 32, Units.V, false, -2f, true, -0.3f, 0.3f,
+        sequence.add(new VoltageTest(activity, ioio, 32, Units.V, false, -2f, true, -0.45f, 0.3f,
                 "Voltage Measurement(V_REF_AN)"));
         sequence.add(new SetSensorVoltagesStep(activity, (short) 255, (short) 0, "Set GAIN -> 255, ZERO -> 0"));
         sequence.add(new VoltageTest(activity, ioio, 32, Units.V, false, -2f, true, -3f, 0.1f,
@@ -445,20 +445,20 @@ public class NewSequence implements NewSequenceInterface {
         sequence.add(new VoltageTest(activity, ioio, 32, Units.V, false, -2f, true, -3f, 0.1f,
                 "Voltage Measurement(V_REF_AN)"));
         sequence.add(new SetSensorVoltagesStep(activity, (short) 255, (short) 255, "Set GAIN -> 255, ZERO -> 255"));
-        sequence.add(new VoltageTest(activity, ioio, 32, Units.V, false, -2f, true, -6f, 0.1f,
+        sequence.add(new VoltageTest(activity, ioio, 32, Units.V, false, -2f, true, -4.5f, 0.1f,
                 "Voltage Measurement(V_REF_AN)"));
         sequence.add(new SetSensorVoltagesStep(activity, (short) 127, (short) 0, "Set GAIN -> 127, ZERO -> 0"));
 
 
-        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 0, 10, 50,
+        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 0, 10, 10,
                 "Sensor Input TEST, NO LOAD, GAIN/ZERO @ 127/0"));
-        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 200, 300, 50,
+        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 100, 200, 10,
                 "Sensor Input TEST, LOADED, GAIN/ZERO @ 25/0"));
-        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 1250, 1400, 50,
+        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 750, 850, 10,
                 "Sensor Input TEST, LOADED, GAIN/ZERO @ 127/0"));
-        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 2150, 2300, 50,
+        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 1280, 1380, 10,
                 "Sensor Input TEST, LOADED, GAIN/ZERO @ 210/0"));
-        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 0, 50, 50,
+        sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 0, 50, 10,
                 "Sensor Input TEST, LOADED, GAIN/ZERO @ 127/50"));
 
 

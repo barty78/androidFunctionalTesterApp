@@ -620,7 +620,7 @@ public class BTUtility {
     }
 
 
-    public void stop() {
+    public void stop(Boolean sensorTestFlag) {
         isstopped = true;
         if (NewPFMATDevice.getDevice() != null) {
             try {
@@ -638,13 +638,20 @@ public class BTUtility {
 
         Handler handler = new Handler(handlerThread.getLooper());
 
+        final byte value;
+
+        if (!sensorTestFlag) {
+            value = 0;
+        } else {
+            value = 1;
+        }
         // For PCB Open test, send config packet to set sensor test mode flag for final assy sensor test to run
         if (PeriCoachTestApplication.getCurrentJob().getTesttypeId() == 1) {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     if (NewPFMATDevice.getDevice() != null) {
-                        NewPFMATDevice.getDevice().sendConfig((byte) 0, (byte)0 , (byte)1);
+                        NewPFMATDevice.getDevice().sendConfig((byte) 0, (byte)0 , value);
                     }
                 }
             },200);
