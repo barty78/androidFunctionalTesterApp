@@ -655,6 +655,16 @@ public class BTUtility {
                     }
                 }
             },200);
+        } else {
+            // Non open test, let's clear the sensor test mode flag just to be sure.
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (NewPFMATDevice.getDevice() != null) {
+                        NewPFMATDevice.getDevice().sendConfig((byte) 0, (byte)0 , (byte)0);
+                    }
+                }
+            },200);
         }
         handler.postDelayed(new Runnable() {
             @Override
