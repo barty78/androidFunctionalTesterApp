@@ -488,7 +488,7 @@ public class MainActivity extends AppCompatActivity
         newSequence = getNewSequence();
         newSequence.setStarttime(System.currentTimeMillis());
         try {
-            newSequence.setJobNo(Long.parseLong(mJobNo));
+            newSequence.setJobNo(mJobNo);
         } catch (Exception e) {
         }
         uiHelper.setSequence(newSequence);

@@ -110,7 +110,7 @@ public class RecordsProcessor {
             record.setDuration(testRecordCursor.getString(testRecordCursor.getColumnIndexOrThrow(RecordsContract.TestRecords.DURATION)));
             record.setFixtureNo(testRecordCursor.getString(testRecordCursor.getColumnIndexOrThrow(RecordsContract.TestRecords.FIXTURE_N)));
             record.setFWVer(testRecordCursor.getString(testRecordCursor.getColumnIndexOrThrow(RecordsContract.TestRecords.FMWVER)));
-            record.setJobNo(testRecordCursor.getLong(testRecordCursor.getColumnIndexOrThrow(RecordsContract.TestRecords.JOB_NO)));
+            record.setJobNo(testRecordCursor.getString(testRecordCursor.getColumnIndexOrThrow(RecordsContract.TestRecords.JOB_NO)));
             record.setModel(testRecordCursor.getLong(testRecordCursor.getColumnIndexOrThrow(RecordsContract.TestRecords.MODEL)));
             record.setResult(testRecordCursor.getLong(testRecordCursor.getColumnIndexOrThrow(RecordsContract.TestRecords.RESULT)));
             record.setSerial(testRecordCursor.getString(testRecordCursor.getColumnIndexOrThrow(RecordsContract.TestRecords.SERIAL)));

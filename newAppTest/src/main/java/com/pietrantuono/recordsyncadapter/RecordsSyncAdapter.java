@@ -94,7 +94,7 @@ class RecordsSyncAdapter extends AbstractThreadedSyncAdapter {
                 Response response = null;
                 try {
                     response = RetrofitRestServices.getRest(context).postResultsSync(PeriCoachTestApplication.getDeviceid(),
-                            Long.toString(record.getJobNo()), record);
+                            record.getJobNo(), record);
                 } catch (Exception ignored) {
                     Log.d(TAG, ignored.toString());
                 }

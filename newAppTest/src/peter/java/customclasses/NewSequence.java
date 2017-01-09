@@ -46,7 +46,7 @@ public class NewSequence implements NewSequenceInterface {
     private volatile Test currentStep = null;
     private long starttime = 0;
     private long endtime = 0;
-    private long jobNo = 0;
+    private String jobNo = null;
     private static boolean log = true;
     private Job job;
 
@@ -229,12 +229,12 @@ public class NewSequence implements NewSequenceInterface {
     }
 
     @Override
-    public long getJobNo() {
+    public String getJobNo() {
         return jobNo;
     }
 
     @Override
-    public void setJobNo(long jobNo) {
+    public void setJobNo(String jobNo) {
         this.jobNo = jobNo;
     }
 

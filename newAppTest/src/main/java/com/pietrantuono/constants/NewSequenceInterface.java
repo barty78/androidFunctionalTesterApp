@@ -41,9 +41,9 @@ public interface NewSequenceInterface {
 
 	void setEndtime(long endtime);
 
-	long getJobNo();
+	String getJobNo();
 
-	void setJobNo(long jobNo);
+	void setJobNo(String jobNo);
 
 	String getStartTime();
 

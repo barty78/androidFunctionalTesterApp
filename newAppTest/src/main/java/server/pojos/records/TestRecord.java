@@ -20,7 +20,7 @@ public class TestRecord {
 
     //@Column(name = "JobNo")
 	//@Expose NB: not needed anymore
-    private long JobNo;
+    private String JobNo;
     
     //@Expose not needed anymore
     //@Column(name = "FixtureNo")
@@ -62,11 +62,11 @@ public class TestRecord {
     @Expose
     private String BT_Addr;
 
-    public long getJobNo() {
+    public String getJobNo() {
         return JobNo;
     }
 
-    public void setJobNo(long JobNo) {
+    public void setJobNo(String JobNo) {
         this.JobNo = JobNo;
     }
 
@@ -150,17 +150,19 @@ public class TestRecord {
         this.BT_Addr = BT_Addr;
     }
 
+    
     @Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+
 		result = prime * result + (int) (Barcode ^ (Barcode >>> 32));
 		result = prime * result
 				+ ((Duration == null) ? 0 : Duration.hashCode());
 		result = prime * result + ((FWVer == null) ? 0 : FWVer.hashCode());
 		result = prime * result
 				+ ((FixtureNo == null) ? 0 : FixtureNo.hashCode());
-		result = prime * result + (int) (JobNo ^ (JobNo >>> 32));
+        result = prime * result + ((JobNo == null) ? 0 : JobNo.hashCode());
 		result = prime * result + (int) (Model ^ (Model >>> 32));
 		result = prime * result
 				+ ((Readings == null) ? 0 : Readings.hashCode());
