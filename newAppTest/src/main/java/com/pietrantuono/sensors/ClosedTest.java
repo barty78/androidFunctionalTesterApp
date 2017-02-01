@@ -20,7 +20,7 @@ import customclasses.DebugHelper;
 import hydrix.pfmat.generic.Force;
 import hydrix.pfmat.generic.SessionSamples;
 
-public class ClosedTest extends SensorTest {
+public class ClosedTest extends SensorTest implements OnDetectCallback {
     private boolean interrupted;
     private AlertDialog dialog;
     private boolean singleSensorTest;
@@ -55,12 +55,10 @@ public class ClosedTest extends SensorTest {
             ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Test interrupted", true, testToBeParsed);
             return;
         }
+        sensorsTestHelper.setOnDetectCallback(this);
         sensorsTestHelper.closedtestsamples[SENSOR0].clear();
         sensorsTestHelper.closedtestsamples[SENSOR1].clear();
         sensorsTestHelper.closedtestsamples[SENSOR2].clear();
-//        sensorsTestHelper.closedtestsamplesrefsensor0.clear();
-//        sensorsTestHelper.closedtestsamplesrefsensor1.clear();
-//        sensorsTestHelper.closedtestsamplesrefsensor2.clear();
         Log.d("SensorTest", "execute");
 
         if (this.activity == null || activity == null) {
@@ -132,8 +130,9 @@ public class ClosedTest extends SensorTest {
             builder.setCancelable(false);
             dialog = builder.create();
             dialog.show();
-
             setSamplingSensor(NO_SENSORS);
+
+//            setupDetection(sensorToTest);   //TODO - Wrap this in an option and implement timeout
 
         } else {
             sensorsTestHelper.acceptData(true);
@@ -243,6 +242,11 @@ public class ClosedTest extends SensorTest {
         sensorsTestHelper.samplingSensor2 = sensors[SENSOR2];
     }
 
+    private void setupDetection(int sensor) {
+        sensorsTestHelper.detectWeight = true;
+        sensorsTestHelper.detectSensor = sensor;
+    }
+
     private void displayDialog(final String msg) {
         Handler h = new Handler(Looper.getMainLooper());
         h.postDelayed(new Runnable() {
@@ -261,6 +265,9 @@ public class ClosedTest extends SensorTest {
                 builder.setCancelable(false);
                 dialog = builder.create();
                 dialog.show();
+
+//                setupDetection(sensorToTest);             //TODO - Wrap this in an option and implement timeout
+
             }
         }, SensorsTestHelper.CALIBRATION_TIME_MS * 1);
     }
@@ -314,6 +321,7 @@ public class ClosedTest extends SensorTest {
         return mSensorResult;
     }
 
+
     @Override
     public void interrupt() {
         interrupted = true;
@@ -324,5 +332,10 @@ public class ClosedTest extends SensorTest {
             } catch (Exception ignored) {
             }
         }
+    }
+
+    @Override
+    public void onWeightDetected() {
+
     }
 }

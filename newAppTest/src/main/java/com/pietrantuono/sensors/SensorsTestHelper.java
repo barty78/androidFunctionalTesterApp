@@ -42,11 +42,15 @@ public class SensorsTestHelper implements OnSampleCallback {
 	final static int SENSOR0 = 0;
 	final static int SENSOR1 = 1;
 	final static int SENSOR2 = 2;
+	boolean detectWeight = false;
+	int detectSensor = -1;
 	boolean samplingSensor0=true;
 	boolean samplingSensor1=true;
 	boolean samplingSensor2=true;
 	private boolean acceptdata;
 	private final SimpleDateFormat simpleDateFormat= new SimpleDateFormat(" HH:mm:ss.SSS");
+
+	private OnDetectCallback onDetectCallback;
 
 	public SensorsTestHelper(Activity activity) {
 		Log.d(TAG, "Constructor");
@@ -82,9 +86,13 @@ public class SensorsTestHelper implements OnSampleCallback {
 	@Override
 	public synchronized void  onSample(int requestTimestampMS, final short sensor0, final short sensor1, final short sensor2) {
 		if(!acceptdata) {
-			Log.d(TAG,"NOT accetping data offset = "+requestTimestampMS+" time = "+simpleDateFormat.format(System.currentTimeMillis()) );
+			if (detectWeight) {
+				onDetectCallback.onWeightDetected();
+			}
+			Log.d(TAG,"NOT accepting data offset = "+requestTimestampMS+" time = "+simpleDateFormat.format(System.currentTimeMillis()) );
 			return;}
-		Log.d(TAG,"YES accepting datta offset = "+requestTimestampMS+" time = "+simpleDateFormat.format(System.currentTimeMillis()));
+
+		Log.d(TAG,"YES accepting data offset = "+requestTimestampMS+" time = "+simpleDateFormat.format(System.currentTimeMillis()));
 		Activity activity = activityref.get();
 		SessionSamples samples = samplesref;
 		final TextView sensor0tv = sensor0ref;
@@ -93,12 +101,12 @@ public class SensorsTestHelper implements OnSampleCallback {
 		if (activity == null || sensor0tv == null || sensor1tv == null || sensor2tv == null || samples == null)
 			return;
 		samples.add(requestTimestampMS, new Force(sensor0, sensor1, sensor2));
-		if (closedtestsamples[0] != null &&samplingSensor0)
-			closedtestsamples[0].add(requestTimestampMS, new Force(sensor0, sensor1, sensor2));
-		if (closedtestsamples[1] != null &&samplingSensor0)
-			closedtestsamples[1].add(requestTimestampMS, new Force(sensor0, sensor1, sensor2));
-		if (closedtestsamples[2] != null &&samplingSensor0)
-			closedtestsamples[2].add(requestTimestampMS, new Force(sensor0, sensor1, sensor2));
+		if (closedtestsamples[SENSOR0] != null &&samplingSensor0)
+			closedtestsamples[SENSOR0].add(requestTimestampMS, new Force(sensor0, sensor1, sensor2));
+		if (closedtestsamples[SENSOR1] != null &&samplingSensor0)
+			closedtestsamples[SENSOR1].add(requestTimestampMS, new Force(sensor0, sensor1, sensor2));
+		if (closedtestsamples[SENSOR2] != null &&samplingSensor0)
+			closedtestsamples[SENSOR2].add(requestTimestampMS, new Force(sensor0, sensor1, sensor2));
 
 		activity.runOnUiThread(new Runnable() {
 			@Override
@@ -213,6 +221,10 @@ public class SensorsTestHelper implements OnSampleCallback {
             throw new Exception("Setting Failed.");
         }
     }
+
+	public void setOnDetectCallback(OnDetectCallback callback) {
+		this.onDetectCallback = callback;
+	}
 
     public void acceptData(boolean accept) {
         this.acceptdata = accept;
