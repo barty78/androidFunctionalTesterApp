@@ -3,144 +3,163 @@ package com.pietrantuono.constants;
 import com.pietrantuono.tests.superclass.Test;
 
 public class NewMSensorResult extends NewMResult {
-	private short sensor0min=0;
-	private short sensor0max=0;
-	private short sensor0avg=0;
-	private Boolean sensor0avgpass=false;
-	private Boolean sensor0stabilitypass=false;
-	private short sensor1min=0;
-	private short sensor1max=0;
-	private short sensor1avg=0;
-	private Boolean sensor1avgpass=false;
-	private Boolean sensor1stabilitypass=false;
-	private short sensor2min=0;
-	private short sensor2max=0;
-	private short sensor2avg=0;
-	private Boolean sensor2avgpass=false;
-	private Boolean sensor2stabilitypass=false;
-	
-	public boolean getSensor0stabilitypass() {
+	private Boolean singleSensorTest = false;
 
-		return sensor0stabilitypass.booleanValue();
+	public static int min = 0;
+	public static int max = 1;
+	public static int avg = 2;
+
+	public static int avgresult = 0;
+	public static int varresult = 1;
+
+	private Boolean[][] Result = {{false, false}, {false, false}, {false, false}};
+
+	private short[][] sensor = {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
+
+	public boolean isSingleSensorTest() { return singleSensorTest.booleanValue(); }
+
+	public void singleSensorTest() {
+		this.singleSensorTest = true;
+	}
+
+	public Boolean getSensor0stabilitypass() { return Result[0][varresult].booleanValue();
 	}
 
 	public void setSensor0stabilitypass(boolean sensor0stabilitypass) {
-		this.sensor0stabilitypass = sensor0stabilitypass;
+		this.Result[0][varresult] = sensor0stabilitypass;
 	}
 
-	public boolean getSensor1stabilitypass() {
-		return sensor1stabilitypass.booleanValue();
+	public Boolean getSensor1stabilitypass() {
+		return Result[1][varresult].booleanValue();
 	}
 
 	public void setSensor1stabilitypass(boolean sensor1stabilitypass) {
-		this.sensor1stabilitypass = sensor1stabilitypass;
+		this.Result[1][varresult] = sensor1stabilitypass;
 	}
 
-	public boolean getSensor2stabilitypass() {
-		return sensor2stabilitypass.booleanValue();
+	public Boolean getSensor2stabilitypass() {
+		return Result[2][varresult].booleanValue();
 	}
 
 	public void setSensor2stabilitypass(boolean sensor2stabilitypass) {
-		this.sensor2stabilitypass = sensor2stabilitypass;
+		this.Result[2][varresult] = sensor2stabilitypass;
 	}
 
-	public short getSensor0min() {
-		return sensor0min;
+	public boolean getSensorAvgPass(int sensor) { return Result[sensor][avgresult]; }
+
+	public void setSensorAvgPass(int sensor, boolean sensoravgpass) {
+		this.Result[sensor][avgresult] = sensoravgpass;
 	}
+
+	public boolean getSensorStabilityPass(int sensor) { return Result[sensor][varresult]; }
+
+	public void setSensorStabilityPass(int sensor, boolean sensorstabilitypass) {
+		this.Result[sensor][varresult] = sensorstabilitypass;
+	}
+
+	public void setSensor(int sensor, short min, short max, short avg) {
+		this.sensor[sensor] = new short[]{min, max, avg};
+	}
+
+	public short[] getSensor(int sensor) {
+		return this.sensor[sensor];
+	}
+
+	public short getSensorAvg(int sensor) { return this.sensor[sensor][avg]; }
+	public short getSensorVar(int sensor) { return (short) (this.sensor[sensor][max] - this.sensor[sensor][min]); }
+	public short getSensorMax(int sensor) { return this.sensor[sensor][max]; }
+	public short getSensorMin(int sensor) { return this.sensor[sensor][min]; }
+
+	public void setSensor0(short min, short max, short avg) {
+		this.sensor[0] = new short[]{min, max, avg};
+	}
+
+	public void setSensor1(short min, short max, short avg) {
+		this.sensor[1] = new short[]{min, max, avg};
+	}
+
+	public void setSensor2(short min, short max, short avg) {
+		this.sensor[2] = new short[]{min, max, avg};
+	}
+
+	public short getSensor0min() { return sensor[0][min]; }
 
 	public void setSensor0min(short sensor0min) {
-		this.sensor0min = sensor0min;
+		this.sensor[0][min] = sensor0min;
 	}
 
-	public short getSensor0max() {
-		return sensor0max;
+	public short getSensor1min() { return sensor[1][min]; }
+
+	public void setSensor1min(short sensor1min) {
+		this.sensor[1][min] = sensor1min;
 	}
+
+	public short getSensor2min() { return sensor[2][min]; }
+
+	public void setSensor2min(short sensor2min) {
+		this.sensor[2][min] = sensor2min;
+	}
+
+	public short getSensor0max() { return sensor[0][max]; }
 
 	public void setSensor0max(short sensor0max) {
-		this.sensor0max = sensor0max;
+		this.sensor[0][max] = sensor0max;
 	}
 
-	public short getSensor0avg() {
-		return sensor0avg;
+	public short getSensor1max() { return sensor[1][max]; }
+
+	public void setSensor1max(short sensor1max) {
+		this.sensor[1][max] = sensor1max;
 	}
+
+	public short getSensor2max() { return sensor[2][max]; }
+
+	public void setSensor2max(short sensor2max) {
+		this.sensor[2][max] = sensor2max;
+	}
+
+	public short getSensor0avg() { return sensor[0][avg]; }
 
 	public void setSensor0avg(short sensor0avg) {
-		this.sensor0avg = sensor0avg;
+		this.sensor[0][avg] = sensor0avg;
+	}
+
+	public short getSensor1avg() { return sensor[1][avg]; }
+
+	public void setSensor1avg(short sensor1avg) {
+		this.sensor[1][avg] = sensor1avg;
+	}
+
+	public short getSensor2avg() { return sensor[2][avg]; }
+
+	public void setSensor2avg(short sensor2avg) {
+		this.sensor[2][avg] = sensor2avg;
 	}
 
 	public Boolean getSensor0AvgPass() {
-		return sensor0avgpass;
+		return Result[0][avgresult].booleanValue();
 	}
 
 	public void setSensor0AvgPass(Boolean sensor0pass) {
-		this.sensor0avgpass = sensor0pass;
-	}
-
-	public short getSensor1min() {
-		return sensor1min;
-	}
-
-	public void setSensor1min(short sensor1min) {
-		this.sensor1min = sensor1min;
-	}
-
-	public short getSensor1max() {
-		return sensor1max;
-	}
-
-	public void setSensor1max(short sensor1max) {
-		this.sensor1max = sensor1max;
-	}
-
-	public short getSensor1avg() {
-		return sensor1avg;
-	}
-
-	public void setSensor1avg(short sensor1avg) {
-		this.sensor1avg = sensor1avg;
+		this.Result[0][avgresult] = sensor0pass;
 	}
 
 	public Boolean getSensor1AvgPass() {
-		return sensor1avgpass;
+		return Result[1][avgresult].booleanValue();
 	}
 
 	public void setSensor1AvgPass(Boolean sensor1pass) {
-		this.sensor1avgpass = sensor1pass;
-	}
-
-	public short getSensor2min() {
-		return sensor2min;
-	}
-
-	public void setSensor2min(short sensor2min) {
-		this.sensor2min = sensor2min;
-	}
-
-	public short getSensor2max() {
-		return sensor2max;
-	}
-
-	public void setSensor2max(short sensor2max) {
-		this.sensor2max = sensor2max;
-	}
-
-	public short getSensor2avg() {
-		return sensor2avg;
-	}
-
-	public void setSensor2avg(short sensor2avg) {
-		this.sensor2avg = sensor2avg;
+		this.Result[1][avgresult] = sensor1pass;
 	}
 
 	public Boolean getSensor2AvgPass() {
-		return sensor2avgpass;
+		return Result[2][avgresult].booleanValue();
 	}
 
 	public void setSensor2AvgPass(Boolean sensor2pass) {
-		this.sensor2avgpass = sensor2pass;
+		this.Result[2][avgresult] = sensor2pass;
 	}
 
-	
 	
 	public NewMSensorResult(Test test) {
 		super(test);
@@ -150,21 +169,21 @@ public class NewMSensorResult extends NewMResult {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + sensor0avg;
-		result = prime * result + ((sensor0avgpass == null) ? 0 : sensor0avgpass.hashCode());
-		result = prime * result + sensor0max;
-		result = prime * result + sensor0min;
-		result = prime * result + ((sensor0stabilitypass == null) ? 0 : sensor0stabilitypass.hashCode());
-		result = prime * result + sensor1avg;
-		result = prime * result + ((sensor1avgpass == null) ? 0 : sensor1avgpass.hashCode());
-		result = prime * result + sensor1max;
-		result = prime * result + sensor1min;
-		result = prime * result + ((sensor1stabilitypass == null) ? 0 : sensor1stabilitypass.hashCode());
-		result = prime * result + sensor2avg;
-		result = prime * result + ((sensor2avgpass == null) ? 0 : sensor2avgpass.hashCode());
-		result = prime * result + sensor2max;
-		result = prime * result + sensor2min;
-		result = prime * result + ((sensor2stabilitypass == null) ? 0 : sensor2stabilitypass.hashCode());
+		result = prime * result + getSensor0avg();
+		result = prime * result + ((getSensor0AvgPass() == null) ? 0 : getSensor0AvgPass().hashCode());
+		result = prime * result + getSensor0max();
+		result = prime * result + getSensor0min();
+		result = prime * result + ((getSensor0stabilitypass() == null) ? 0 : getSensor0stabilitypass().hashCode());
+		result = prime * result + getSensor1avg();
+		result = prime * result + ((getSensor1AvgPass() == null) ? 0 : getSensor1AvgPass().hashCode());
+		result = prime * result + getSensor1max();
+		result = prime * result + getSensor1min();
+		result = prime * result + ((getSensor1stabilitypass() == null) ? 0 : getSensor1stabilitypass().hashCode());
+		result = prime * result + getSensor2avg();
+		result = prime * result + ((getSensor2AvgPass() == null) ? 0 : getSensor2AvgPass().hashCode());
+		result = prime * result + getSensor2max();
+		result = prime * result + getSensor2min();
+		result = prime * result + ((getSensor2stabilitypass() == null) ? 0 : getSensor2stabilitypass().hashCode());
 		return result;
 	}
 
@@ -177,58 +196,54 @@ public class NewMSensorResult extends NewMResult {
 		if (getClass() != obj.getClass())
 			return false;
 		NewMSensorResult other = (NewMSensorResult) obj;
-		if (sensor0avg != other.sensor0avg)
+		if (getSensor0avg() != other.getSensor0avg())
 			return false;
-		if (sensor0avgpass == null) {
-			if (other.sensor0avgpass != null)
+		if (getSensor0AvgPass() == null) {
+			if (other.getSensor0AvgPass() != null)
 				return false;
-		} else if (!sensor0avgpass.equals(other.sensor0avgpass))
+		} else if (!getSensor0AvgPass().equals(other.getSensor0AvgPass()))
 			return false;
-		if (sensor0max != other.sensor0max)
+		if (getSensor0max() != other.getSensor0max())
 			return false;
-		if (sensor0min != other.sensor0min)
+		if (getSensor0min() != other.getSensor0min())
 			return false;
-		if (sensor0stabilitypass == null) {
-			if (other.sensor0stabilitypass != null)
+		if (getSensor0stabilitypass() == null) {
+			if (other.getSensor0stabilitypass() != null)
 				return false;
-		} else if (!sensor0stabilitypass.equals(other.sensor0stabilitypass))
+		} else if (!getSensor0stabilitypass().equals(other.getSensor0stabilitypass()))
 			return false;
-		if (sensor1avg != other.sensor1avg)
+		if (getSensor1avg() != other.getSensor1avg())
 			return false;
-		if (sensor1avgpass == null) {
-			if (other.sensor1avgpass != null)
+		if (getSensor1AvgPass() == null) {
+			if (other.getSensor1AvgPass() != null)
 				return false;
-		} else if (!sensor1avgpass.equals(other.sensor1avgpass))
+		} else if (!getSensor1AvgPass().equals(other.getSensor1AvgPass()))
 			return false;
-		if (sensor1max != other.sensor1max)
+		if (getSensor1max() != other.getSensor1max())
 			return false;
-		if (sensor1min != other.sensor1min)
+		if (getSensor1min() != other.getSensor1min())
 			return false;
-		if (sensor1stabilitypass == null) {
-			if (other.sensor1stabilitypass != null)
+		if (getSensor1stabilitypass() == null) {
+			if (other.getSensor1stabilitypass() != null)
 				return false;
-		} else if (!sensor1stabilitypass.equals(other.sensor1stabilitypass))
+		} else if (!getSensor1stabilitypass().equals(other.getSensor1stabilitypass()))
 			return false;
-		if (sensor2avg != other.sensor2avg)
+		if (getSensor2avg() != other.getSensor2avg())
 			return false;
-		if (sensor2avgpass == null) {
-			if (other.sensor2avgpass != null)
+		if (getSensor2AvgPass() == null) {
+			if (other.getSensor2AvgPass() != null)
 				return false;
-		} else if (!sensor2avgpass.equals(other.sensor2avgpass))
+		} else if (!getSensor2AvgPass().equals(other.getSensor2AvgPass()))
 			return false;
-		if (sensor2max != other.sensor2max)
+		if (getSensor2max() != other.getSensor2max())
 			return false;
-		if (sensor2min != other.sensor2min)
+		if (getSensor2min() != other.getSensor2min())
 			return false;
-		if (sensor2stabilitypass == null) {
-			if (other.sensor2stabilitypass != null)
+		if (getSensor2stabilitypass() == null) {
+			if (other.getSensor2stabilitypass() != null)
 				return false;
-		} else if (!sensor2stabilitypass.equals(other.sensor2stabilitypass))
+		} else if (!getSensor2stabilitypass().equals(other.getSensor2stabilitypass()))
 			return false;
 		return true;
 	}
-	
-
-
-
 }

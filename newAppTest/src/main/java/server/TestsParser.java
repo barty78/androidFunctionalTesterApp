@@ -140,12 +140,13 @@ public class TestsParser {
                     testToBeParsed.getScaling());
             test.setTestToBeParsed(testToBeParsed);
         } else if (classID == activity.getResources().getInteger(R.integer.SensorTestWrapper)) {
+            boolean hasPrompt = testToBeParsed.getIoiopinnum() == 1;        //Using IOIOPin number to indicate to single sensor closed test if prompt is needed.
             Long limitParam1 = testToBeParsed.getLimitParam1().longValue();
             Long limitParam2 = testToBeParsed.getLimitParam2().longValue();
             Long limitParam3 = testToBeParsed.getLimitParam3().longValue();
             Log.d(TAG, getDescription(testToBeParsed) + " - LIMITS: (" + limitParam1 + "|" + limitParam2 + "-" + limitParam3 + ")");
             test = new SensorTestWrapper(job.getTesttypeId() == 2, activity, ioio, (int) ((long) testToBeParsed.getLimitId()),
-                    limitParam2, limitParam1, limitParam3, getDescription(testToBeParsed));
+                    limitParam2, limitParam1, limitParam3, hasPrompt, getDescription(testToBeParsed));
             test.setTestToBeParsed(testToBeParsed);
         } else if (classID == activity.getResources().getInteger(R.integer.DummyTest)) {
             test = new DummyTest(activity, getDescription(testToBeParsed) + " " + testToBeParsed.getNumber(), false, true);

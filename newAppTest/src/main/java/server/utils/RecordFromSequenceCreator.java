@@ -5,9 +5,7 @@ import java.util.List;
 
 import server.pojos.Device;
 import server.pojos.records.Readings;
-import server.pojos.records.S0;
-import server.pojos.records.S1;
-import server.pojos.records.S2;
+import server.pojos.records.Sensor;
 import server.pojos.records.Sensors;
 import server.pojos.records.Test;
 import server.pojos.records.TestRecord;
@@ -16,7 +14,12 @@ import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.constants.NewSequenceInterface;
 import com.pietrantuono.tests.implementations.SensorTestWrapper;
 
+
 public class RecordFromSequenceCreator {
+
+    private final static int ZERO = 0;
+    private final static int ONE = 1;
+    private final static int TWO = 2;
 
     public static TestRecord createRecordFromSequence(NewSequenceInterface sequence, Device device) {
         if (sequence == null)
@@ -53,223 +56,74 @@ public class RecordFromSequenceCreator {
         if (!containsSensorsTests(sequence)) return null;
         if (!sensorsTestsWereExecuted(sequence)) return null;
         Sensors sensors = new Sensors();
-        sensors.setS0(createS0(sequence));
-        sensors.setS1(createS1(sequence));
-        sensors.setS2(createS2(sequence));
+        for (int i = 0; i < 3; i++) {
+            sensors.setSensor(i, createSensor(i, sequence));
+        }
         return sensors;
     }
 
-
-    private static S0 createS0(NewSequenceInterface sequence) {
+    private static Sensor createSensor(int sensorNumber, NewSequenceInterface sequence) {
+        Sensor sensor = new Sensor();
         if (!containsSensorsTests(sequence)) return null;
-        S0 s0 = new S0();
-        s0.setIDTest(getIdsOfSensorsTests(sequence));
-        s0.setAvg(getAverage(sequence, SensorNumber.ZERO));
-        s0.setMax(getMax(sequence, SensorNumber.ZERO));
-        s0.setMin(getMin(sequence, SensorNumber.ZERO));
-        s0.setResult(getResultOfSensorsTest(sequence, SensorNumber.ZERO));
-        s0.setErrorCodes(getErrorCodes(sequence));
-        return s0;
-    }
-
-    private static S1 createS1(NewSequenceInterface sequence) {
-        if (!containsSensorsTests(sequence)) return null;
-        S1 s1 = new S1();
-        s1.setIDTest(getIdsOfSensorsTests(sequence));
-        s1.setAvg(getAverage(sequence, SensorNumber.ONE));
-        s1.setMax(getMax(sequence, SensorNumber.ONE));
-        s1.setMin(getMin(sequence, SensorNumber.ONE));
-        s1.setResult(getResultOfSensorsTest(sequence, SensorNumber.ONE));
-        s1.setErrorCodes(getErrorCodes(sequence));
-        return s1;
-    }
-
-    private static S2 createS2(NewSequenceInterface sequence) {
-        if (!containsSensorsTests(sequence)) return null;
-        S2 s2 = new S2();
-        s2.setIDTest(getIdsOfSensorsTests(sequence));
-        s2.setAvg(getAverage(sequence, SensorNumber.TWO));
-        s2.setMax(getMax(sequence, SensorNumber.TWO));
-        s2.setMin(getMin(sequence, SensorNumber.TWO));
-        s2.setResult(getResultOfSensorsTest(sequence, SensorNumber.TWO));
-        s2.setErrorCodes(getErrorCodes(sequence));
-        return s2;
-    }
-
-    static enum SensorNumber {
-        ZERO, ONE, TWO
-    }
-
-    private static List<Long> getErrorCodes(NewSequenceInterface sequence) {
-        List<Long> result = new ArrayList<Long>();
+        List<Long> ids = new ArrayList<Long>();
+        List<Long> avgs = new ArrayList<Long>();
+        List<Long> maxs = new ArrayList<Long>();
+        List<Long> mins = new ArrayList<Long>();
+        List<Long> results = new ArrayList<Long>();
+        List<Long> ecs = new ArrayList<Long>();
         for (int i = 0; i < sequence.getSequence().size(); i++) {
             if (sequence.getSequence().get(i) instanceof SensorTestWrapper) {
                 SensorTestWrapper sensorTestWrapper = (SensorTestWrapper) sequence
                         .getSequence().get(i);
-                result.add(sensorTestWrapper.getErrorCode());
-            }
-        }
-        return result;
-    }
-
-    private static List<Long> getAverage(NewSequenceInterface sequence,
-                                         SensorNumber sensorNumber) {
-        List<Long> result = new ArrayList<Long>();
-        for (int i = 0; i < sequence.getSequence().size(); i++) {
-            if (sequence.getSequence().get(i) instanceof SensorTestWrapper) {
-                SensorTestWrapper sensorTestWrapper = (SensorTestWrapper) sequence
-                        .getSequence().get(i);
-                switch (sensorNumber) {
-                    case ZERO:
-                        result.add((long) sensorTestWrapper.getSensorTest()
-                                .getSensorResult().getSensor0avg());
-                        break;
-                    case ONE:
-                        result.add((long) sensorTestWrapper.getSensorTest()
-                                .getSensorResult().getSensor1avg());
-                        break;
-                    case TWO:
-                        result.add((long) sensorTestWrapper.getSensorTest()
-                                .getSensorResult().getSensor2avg());
-                        break;
-                    default:
-                        break;
+                String[] parts = sensorTestWrapper.getDescription().split(",");
+                if (parts[0].length() != 19 || Character.digit(parts[0].charAt(7), 10) == sensorNumber) {
+                    ids.add(getIDTest(sensorTestWrapper));
+                    avgs.add(getAverage(sensorTestWrapper, sensorNumber));
+                    maxs.add(getMax(sensorTestWrapper, sensorNumber));
+                    mins.add(getMin(sensorTestWrapper, sensorNumber));
+                    ecs.add(getErrorCode(sensorTestWrapper));
+                    results.add(getResult(sensorTestWrapper, sensorNumber));
                 }
-
             }
-
         }
-        return result;
+        sensor.setIDTest(ids);
+        sensor.setAvg(avgs);
+        sensor.setMax(maxs);
+        sensor.setMin(mins);
+        sensor.setResult(results);
+        sensor.setErrorCodes(ecs);
+        return sensor;
     }
 
-    private static List<Long> getMin(NewSequenceInterface sequence,
-                                     SensorNumber number) {
-        List<Long> result = new ArrayList<Long>();
-        for (int i = 0; i < sequence.getSequence().size(); i++) {
-            if (sequence.getSequence().get(i) instanceof SensorTestWrapper) {
-                SensorTestWrapper sensorTestWrapper = (SensorTestWrapper) sequence
-                        .getSequence().get(i);
-                switch (number) {
-                    case ZERO:
-                        result.add((long) sensorTestWrapper.getSensorTest()
-                                .getSensorResult().getSensor0min());
-                        break;
-
-                    case ONE:
-                        result.add((long) sensorTestWrapper.getSensorTest()
-                                .getSensorResult().getSensor1min());
-                        break;
-
-                    case TWO:
-                        result.add((long) sensorTestWrapper.getSensorTest()
-                                .getSensorResult().getSensor2min());
-                        break;
-
-                    default:
-                        break;
-                }
-
-            }
-
-        }
-        return result;
+    private static Long getIDTest(SensorTestWrapper sensorTestWrapper) {
+        return sensorTestWrapper.getIdTest();
     }
 
-    private static List<Long> getMax(NewSequenceInterface sequence,
-                                     SensorNumber sensorNumber) {
-        List<Long> result = new ArrayList<Long>();
-        for (int i = 0; i < sequence.getSequence().size(); i++) {
-            if (sequence.getSequence().get(i) instanceof SensorTestWrapper) {
-                SensorTestWrapper sensorTestWrapper = (SensorTestWrapper) sequence
-                        .getSequence().get(i);
-                switch (sensorNumber) {
-                    case ZERO:
-                        result.add((long) sensorTestWrapper.getSensorTest()
-                                .getSensorResult().getSensor0max());
-                        break;
-
-                    case ONE:
-                        result.add((long) sensorTestWrapper.getSensorTest()
-                                .getSensorResult().getSensor1max());
-                        break;
-
-                    case TWO:
-                        result.add((long) sensorTestWrapper.getSensorTest()
-                                .getSensorResult().getSensor2max());
-                        break;
-
-                    default:
-                        break;
-                }
-
-            }
-
-        }
-        return result;
+    private static Long getAverage(SensorTestWrapper sensorTestWrapper, int sensorNumber) {
+        return (long)(sensorTestWrapper.getSensorTest().getSensorResult().getSensorAvg(sensorNumber));
     }
 
-    private static List<Long> getResultOfSensorsTest(NewSequenceInterface sequence,
-                                                     SensorNumber sensorNumber) {
-        List<Long> result = new ArrayList<Long>();
-        for (int i = 0; i < sequence.getSequence().size(); i++) {
-            if (sequence.getSequence().get(i) instanceof SensorTestWrapper) {
-                SensorTestWrapper sensorTestWrapper = (SensorTestWrapper) sequence
-                        .getSequence().get(i);
-                switch (sensorNumber) {
-                    case ZERO:
-                        Boolean pass = sensorTestWrapper.getSensorTest()
-                                .getSensorResult().getSensor0AvgPass();
-                        Boolean pass2 = sensorTestWrapper.getSensorTest()
-                                .getSensorResult().getSensor0stabilitypass();
-                        if (pass && pass2)
-                            result.add((long) 1);
-                        else
-                            result.add((long) 0);
-                        break;
-
-                    case ONE:
-                        pass = sensorTestWrapper.getSensorTest().getSensorResult()
-                                .getSensor1AvgPass();
-                        pass2 = sensorTestWrapper.getSensorTest().getSensorResult()
-                                .getSensor1stabilitypass();
-                        if (pass && pass2)
-                            result.add((long) 1);
-                        else
-                            result.add((long) 0);
-                        break;
-
-                    case TWO:
-                        pass = sensorTestWrapper.getSensorTest().getSensorResult()
-                                .getSensor2AvgPass();
-                        pass2 = sensorTestWrapper.getSensorTest().getSensorResult()
-                                .getSensor2stabilitypass();
-                        if (pass && pass2)
-                            result.add((long) 1);
-                        else
-                            result.add((long) 0);
-                        break;
-
-                    default:
-                        break;
-                }
-
-            }
-
-        }
-        return result;
+    private static Long getMin(SensorTestWrapper sensorTestWrapper, int sensorNumber) {
+        return (long)(sensorTestWrapper.getSensorTest().getSensorResult().getSensorMin(sensorNumber));
     }
 
-    private static List<Long> getIdsOfSensorsTests(NewSequenceInterface sequence) {
-        List<Long> result = new ArrayList<Long>();
-        for (int i = 0; i < sequence.getSequence().size(); i++) {
-            if (sequence.getSequence().get(i) instanceof SensorTestWrapper) {
-                SensorTestWrapper sensorTestWrapper = (SensorTestWrapper) sequence
-                        .getSequence().get(i);
-                result.add(sensorTestWrapper.getIdTest());
-            }
+    private static Long getMax(SensorTestWrapper sensorTestWrapper, int sensorNumber) {
+        return (long)(sensorTestWrapper.getSensorTest().getSensorResult().getSensorMax(sensorNumber));
+    }
 
-        }
-        return result;
+    private static Long getResult(SensorTestWrapper sensorTestWrapper, int sensorNumber) {
+        Boolean pass = sensorTestWrapper.getSensorTest()
+                .getSensorResult().getSensorAvgPass(sensorNumber);
+        Boolean pass2 = sensorTestWrapper.getSensorTest()
+                .getSensorResult().getSensorStabilityPass(sensorNumber);
+        if (pass && pass2)
+            return (long) 1;
+        else
+            return (long) 0;
+    }
+
+    private static Long getErrorCode(SensorTestWrapper sensorTestWrapper) {
+        return sensorTestWrapper.getErrorCode();
     }
 
     private static Test createTest(NewSequenceInterface sequence) {

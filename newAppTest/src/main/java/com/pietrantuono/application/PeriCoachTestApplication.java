@@ -11,6 +11,8 @@ import android.accounts.AccountManager;
 import android.app.Application;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -38,6 +40,7 @@ public class PeriCoachTestApplication extends Application {
 	private static int testType=0;
 	private static int testCount=0;
 	private static float jobAvgTestTime;
+	private static String appVersion=null;
 
 	private static boolean isretestallowed;
 	private static PeriCoachTestApplication application;
@@ -53,6 +56,8 @@ public class PeriCoachTestApplication extends Application {
 	}
 
 	public static File getFirmware() { return firmware;	}
+
+	public static String getVersion() { return appVersion; }
 
 	public static void setFirmware(String filename) {
 		PeriCoachTestApplication.firmware = new File(context.getFilesDir(),filename);
@@ -75,6 +80,11 @@ public class PeriCoachTestApplication extends Application {
 		//forceSync();
 		addDevicesSyncAccount();
 		application=this;
+		try {
+			appVersion=getAppVersion();
+		} catch (PackageManager.NameNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public static PeriCoachTestApplication getApplication(){
@@ -227,6 +237,12 @@ public class PeriCoachTestApplication extends Application {
 						Context.ACCOUNT_SERVICE);
 
 		if (accountManager.addAccountExplicitly(newAccount, null, null)) {} else {  }
+	}
+
+	public String getAppVersion() throws PackageManager.NameNotFoundException {
+		PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+		String version = pInfo.versionName;
+		return version;
 	}
 	
 }

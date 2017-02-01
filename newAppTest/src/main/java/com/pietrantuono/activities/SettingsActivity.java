@@ -84,11 +84,7 @@ public class SettingsActivity extends PreferenceActivity {
         });
 
         Preference version = findPreference("version");
-        try {
-            version.setSummary(appVersion());
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
+        version.setSummary(PeriCoachTestApplication.getVersion());
 
         Preference deviceID = findPreference("deviceID");
         deviceID.setSummary(PeriCoachTestApplication.getDeviceid());

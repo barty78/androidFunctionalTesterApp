@@ -14,55 +14,71 @@ public class Sensors {
 
     //@Column(name = "S0")
     @Expose
-    private S0 S0;
+    private Sensor S0;
 
     //@Column(name = "S1")
     @Expose
-    private S1 S1;
+    private Sensor S1;
 
     //@Column(name = "S2")
     @Expose
-    private S2 S2;
+    private Sensor S2;
+
+    public void setSensor(int sensorNumber, Sensor sensor) {
+        switch(sensorNumber) {
+            case 0:
+                this.S0 = sensor;
+                break;
+            case 1:
+                this.S1 = sensor;
+                break;
+            case 2:
+                this.S2 = sensor;
+                break;
+            default:
+                break;
+        }
+    }
 
     /**
      * @return The S0
      */
-    public S0 getS0() {
+    public Sensor getS0() {
         return S0;
     }
 
     /**
      * @param S0 The S0
      */
-    public void setS0(S0 S0) {
+    public void setS0(Sensor S0) {
         this.S0 = S0;
     }
 
     /**
      * @return The S1
      */
-    public S1 getS1() {
+    public Sensor getS1() {
         return S1;
     }
 
     /**
      * @param S1 The S1
      */
-    public void setS1(S1 S1) {
+    public void setS1(Sensor S1) {
         this.S1 = S1;
     }
 
     /**
      * @return The S2
      */
-    public S2 getS2() {
+    public Sensor getS2() {
         return S2;
     }
 
     /**
      * @param S2 The S2
      */
-    public void setS2(S2 S2) {
+    public void setS2(Sensor S2) {
         this.S2 = S2;
     }
 

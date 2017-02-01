@@ -15,105 +15,133 @@ import com.pietrantuono.fragments.sequence.SequenceRowElement;
 import com.pietrantuono.pericoach.newtestapp.R;
 import com.pietrantuono.sequencedb.SequenceContracts;
 
+import java.lang.reflect.Array;
+
 /**
  * Created by Maurizio Pietrantuono, maurizio.pietrantuono@gmail.com.
  */
 public class SensorItemHolder extends SequenceItemHolder {
-    private final TextView avg1;
-    private final TextView avg2;
+    private final TextView[] avgs;
     private final TextView testSeqNum;
     private final TextView testName;
-    private final IconicsImageView result1_avg;
+    private final IconicsImageView result_avg;
     private final IconicsImageView result_stability;
-    private final TextView avg0;
-    private final TextView stability0;
-    private final TextView stability1;
-    private final TextView stability2;
+    private final TextView[] vars;
+    private final TextView[] headers;
+    private int sensorToTest = -1;
 
     public SensorItemHolder(View itemView, Context context) {
         super(itemView, context);
         testSeqNum = (TextView) itemView.findViewById(R.id.testSeqNum);
         testName = (TextView) itemView.findViewById(R.id.testName);
-        result1_avg = (IconicsImageView) itemView.findViewById(R.id.result1_avg);
+        result_avg = (IconicsImageView) itemView.findViewById(R.id.result1_avg);
         result_stability = (IconicsImageView) itemView.findViewById(R.id.result_stability);
-        avg0= (TextView) itemView.findViewById(R.id.avg0);
-        avg1 = (TextView) itemView.findViewById(R.id.avg1);
-        avg2 = (TextView) itemView.findViewById(R.id.avg2);
-        stability0 = (TextView) itemView.findViewById(R.id.stability0);
-        stability1 = (TextView) itemView.findViewById(R.id.stability1);
-        stability2 = (TextView) itemView.findViewById(R.id.stability2);
+        headers = new TextView[]{(TextView) itemView.findViewById(R.id.headerSensor0),
+                                (TextView) itemView.findViewById(R.id.headerSensor1),
+                                (TextView) itemView.findViewById(R.id.headerSensor2)};
+        avgs = new TextView[]{(TextView) itemView.findViewById(R.id.avg0),
+                            (TextView) itemView.findViewById(R.id.avg1),
+                            (TextView) itemView.findViewById(R.id.avg2)};
+        vars = new TextView[]{(TextView) itemView.findViewById(R.id.stability0),
+                (TextView) itemView.findViewById(R.id.stability1),
+                (TextView) itemView.findViewById(R.id.stability2)};
     }
 
     private void setData(SequenceRowElement.RowElement sensorRowElement, int position) {
         if (!(sensorRowElement instanceof SequenceRowElement.SensorTestRowElement))
-            throw new RuntimeException("Wrong adata " + Log.getStackTraceString(new Exception()));
+            throw new RuntimeException("Wrong data " + Log.getStackTraceString(new Exception()));
         SequenceRowElement.SensorTestRowElement rowElement = (SequenceRowElement.SensorTestRowElement) sensorRowElement;
         if(rowElement.getmSensorResult()==null)return;
-        
-        testName.setText(rowElement.getmSensorResult().getDescription() != null ? rowElement.getmSensorResult().getDescription() : context.getString(R.string.no_description));
-        testSeqNum.setText("" +  (position+ 1));
-         
-        if (rowElement.getmSensorResult().getSensor0AvgPass())
-            avg0.setTextColor(Color.GREEN);
-        else
-            avg0.setTextColor(Color.RED);
-        avg0.setText(Short.toString(rowElement.getmSensorResult().getSensor0avg()));
 
-        
-        if (rowElement.getmSensorResult().getSensor1AvgPass())
-            avg1.setTextColor(Color.GREEN);
-        else
-            avg1.setTextColor(Color.RED);
-        avg1.setText(Short.toString(rowElement.getmSensorResult().getSensor1avg()));
+        final String[] parts = rowElement.getmSensorResult().getDescription().split(",");
 
-
-        if (rowElement.getmSensorResult().getSensor2AvgPass())
-            avg2.setTextColor(Color.GREEN);
-        else
-            avg2.setTextColor(Color.RED);
-        avg2.setText(Short.toString(rowElement.getmSensorResult().getSensor2avg()));
-
-        if (rowElement.getmSensorResult().getSensor0AvgPass() && rowElement.getmSensorResult().getSensor1AvgPass()
-                && rowElement.getmSensorResult().getSensor2AvgPass()) {
-            //PASS
-            result1_avg.setIcon(GoogleMaterial.Icon.gmd_check_circle);
-            result1_avg.setColor(Color.GREEN);
-        } else {
-            //FAIL
-            result1_avg.setIcon(GoogleMaterial.Icon.gmd_cancel);
-            result1_avg.setColor(Color.RED);
+        if (parts[0].length() == 19) {
+            sensorToTest = Character.digit(parts[0].charAt(7), 10);
         }
 
-        if (rowElement.getmSensorResult().getSensor0stabilitypass())
-            stability0.setTextColor(Color.GREEN);
-        else
-            stability0.setTextColor(Color.RED);
-        stability0.setText("" + (rowElement.getmSensorResult().getSensor0max() - rowElement.getmSensorResult().getSensor0min() > 0
-                ? rowElement.getmSensorResult().getSensor0max() - rowElement.getmSensorResult().getSensor0min() : (short) 0));
+        testName.setText(rowElement.getmSensorResult().getDescription() != null ? rowElement.getmSensorResult().getDescription() : context.getString(R.string.no_description));
+        testSeqNum.setText("" +  (position+ 1));
 
-        if (rowElement.getmSensorResult().getSensor1stabilitypass())
-            stability1.setTextColor(Color.GREEN);
-        else
-            stability1.setTextColor(Color.RED);
-        stability1.setText("" + (rowElement.getmSensorResult().getSensor1max() - rowElement.getmSensorResult().getSensor1min() > 0
-                ? rowElement.getmSensorResult().getSensor1max() - rowElement.getmSensorResult().getSensor1min() : (short) 0));
+        if (sensorToTest != -1) {
+            for (int i = 0; i < Array.getLength(avgs); i++){
+                avgs[i].setVisibility(View.INVISIBLE);
+                vars[i].setVisibility(View.INVISIBLE);
+                headers[i].setVisibility(View.INVISIBLE);
+            }
+            avgs[sensorToTest].setVisibility(View.VISIBLE);
+            vars[sensorToTest].setVisibility(View.VISIBLE);
+            headers[sensorToTest].setVisibility(View.VISIBLE);
 
-        if (rowElement.getmSensorResult().getSensor2stabilitypass())
-            stability2.setTextColor(Color.GREEN);
-        else
-            stability2.setTextColor(Color.RED);
-        stability2.setText("" + (rowElement.getmSensorResult().getSensor2max() - rowElement.getmSensorResult().getSensor2min() > 0
-                ? rowElement.getmSensorResult().getSensor2max() - rowElement.getmSensorResult().getSensor2min() : (short) 0));
+            if (rowElement.getmSensorResult().getSensorAvgPass(sensorToTest))
+                avgs[sensorToTest].setTextColor(Color.GREEN);
+            else
+                avgs[sensorToTest].setTextColor(Color.RED);
+            avgs[sensorToTest].setText(Short.toString(rowElement.getmSensorResult().getSensorAvg(sensorToTest)));
 
-        if (rowElement.getmSensorResult().getSensor0stabilitypass() && rowElement.getmSensorResult().getSensor1stabilitypass()
-                && rowElement.getmSensorResult().getSensor2stabilitypass()) {
-            //PASS
-            result_stability.setIcon(GoogleMaterial.Icon.gmd_check_circle);
-            result_stability.setColor(Color.GREEN);
+            if (rowElement.getmSensorResult().getSensorStabilityPass(sensorToTest))
+                vars[sensorToTest].setTextColor(Color.GREEN);
+            else
+                vars[sensorToTest].setTextColor(Color.RED);
+            vars[sensorToTest].setText("" + (rowElement.getmSensorResult().getSensorVar(sensorToTest) > 0
+                    ? rowElement.getmSensorResult().getSensorVar(sensorToTest) : (short) 0));
+
+            if (rowElement.getmSensorResult().getSensorAvgPass(sensorToTest)) {
+                //PASS
+                result_avg.setIcon(GoogleMaterial.Icon.gmd_check_circle);
+                result_avg.setColor(Color.GREEN);
+            } else {
+                //FAIL
+                result_avg.setIcon(GoogleMaterial.Icon.gmd_cancel);
+                result_avg.setColor(Color.RED);
+            }
+
+            if (rowElement.getmSensorResult().getSensorStabilityPass(sensorToTest)) {
+                //PASS
+                result_stability.setIcon(GoogleMaterial.Icon.gmd_check_circle);
+                result_stability.setColor(Color.GREEN);
+            } else {
+                //FAIL
+                result_stability.setIcon(GoogleMaterial.Icon.gmd_cancel);
+                result_stability.setColor(Color.RED);
+            }
+
         } else {
-            //FAIL
-            result_stability.setIcon(GoogleMaterial.Icon.gmd_cancel);
-            result_stability.setColor(Color.RED);
+
+            for (int i = 0; i < Array.getLength(avgs); i++) {
+                if (rowElement.getmSensorResult().getSensorAvgPass(i))
+                    avgs[i].setTextColor(Color.GREEN);
+                else
+                    avgs[i].setTextColor(Color.RED);
+                avgs[i].setText(Short.toString(rowElement.getmSensorResult().getSensorAvg(i)));
+
+                if (rowElement.getmSensorResult().getSensorStabilityPass(i))
+                    vars[i].setTextColor(Color.GREEN);
+                else
+                    vars[i].setTextColor(Color.RED);
+                vars[i].setText(Short.toString(rowElement.getmSensorResult().getSensorVar(i)));
+            }
+
+            if (rowElement.getmSensorResult().getSensor0AvgPass() && rowElement.getmSensorResult().getSensor1AvgPass()
+                    && rowElement.getmSensorResult().getSensor2AvgPass()) {
+                //PASS
+                result_avg.setIcon(GoogleMaterial.Icon.gmd_check_circle);
+                result_avg.setColor(Color.GREEN);
+            } else {
+                //FAIL
+                result_avg.setIcon(GoogleMaterial.Icon.gmd_cancel);
+                result_avg.setColor(Color.RED);
+            }
+
+            if (rowElement.getmSensorResult().getSensor0stabilitypass() && rowElement.getmSensorResult().getSensor1stabilitypass()
+                    && rowElement.getmSensorResult().getSensor2stabilitypass()) {
+                //PASS
+                result_stability.setIcon(GoogleMaterial.Icon.gmd_check_circle);
+                result_stability.setColor(Color.GREEN);
+            } else {
+                //FAIL
+                result_stability.setIcon(GoogleMaterial.Icon.gmd_cancel);
+                result_stability.setColor(Color.RED);
+            }
         }
         itemView.setOnClickListener((new SensorItemClickListener((AppCompatActivity) context,rowElement.getTestToBeParsed())));
     }
@@ -147,15 +175,16 @@ public class SensorItemHolder extends SequenceItemHolder {
 
     @Override
     public int hashCode() {
-        int result = avg1 != null ? avg1.hashCode() : 0;
-        result = 31 * result + (avg2 != null ? avg2.hashCode() : 0);
+        int result = avgs[0] != null ? avgs[0].hashCode() : 0;
+        result = 31 * result + (avgs[1] != null ? avgs[1].hashCode() : 0);
+        result = 31 * result + (avgs[2] != null ? avgs[2].hashCode() : 0);
         result = 31 * result + (testSeqNum != null ? testSeqNum.hashCode() : 0);
         result = 31 * result + (testName != null ? testName.hashCode() : 0);
-        result = 31 * result + (result1_avg != null ? result1_avg.hashCode() : 0);
+        result = 31 * result + (result_avg != null ? result_avg.hashCode() : 0);
         result = 31 * result + (result_stability != null ? result_stability.hashCode() : 0);
-        result = 31 * result + (avg0 != null ? avg0.hashCode() : 0);
-        result = 31 * result + (stability0 != null ? stability0.hashCode() : 0);
-        result = 31 * result + (stability2 != null ? stability2.hashCode() : 0);
+        result = 31 * result + (vars[0] != null ? vars[0].hashCode() : 0);
+        result = 31 * result + (vars[1] != null ? vars[1].hashCode() : 0);
+        result = 31 * result + (vars[2] != null ? vars[2].hashCode() : 0);
         return result;
     }
 }

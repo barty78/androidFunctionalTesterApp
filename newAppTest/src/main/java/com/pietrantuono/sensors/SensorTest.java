@@ -43,6 +43,15 @@ public class SensorTest {
     public boolean isTest = false;
     Test testToBeParsed;
     private boolean interrupted;
+    int items[];
+
+    public static final int NO_SENSORS = -1;
+    public static final int SENSOR0 = 0;
+    public static final int SENSOR1 = 1;
+    public static final int SENSOR2 = 2;
+
+    public static final int AVG_TEST = 0;
+    public static final int VAR_TEST = 1;
 
     public void setSensorsTestHelper(SensorsTestHelper sensorsTestHelper) {
         this.sensorsTestHelper = sensorsTestHelper;
@@ -60,7 +69,6 @@ public class SensorTest {
         this.zeroVoltage = wrapper.getZeroVoltage();
         this.load = wrapper.getLoad();
         this.wrapper = wrapper;
-
     }
 
     public void stop() {
@@ -98,6 +106,16 @@ public class SensorTest {
         return this;
     }
 
+    public boolean[] checkResult(short[] sensor) {
+        boolean[] result = {false, false};
+        if (sensor[NewMSensorResult.avg] <= upperLimit && sensor[NewMSensorResult.avg] >= lowerLimit) {
+            result[AVG_TEST] = true;
+        }
+        if (Math.abs(sensor[NewMSensorResult.max] - sensor[NewMSensorResult.min]) < varLimit) {
+            result[VAR_TEST] = true;
+        }
+        return result;
+    }
 
     public void execute() {
         if (stopped) return;
@@ -110,16 +128,9 @@ public class SensorTest {
         sensorsTestHelper.samplingSensor0 = true;
         sensorsTestHelper.samplingSensor1 = true;
         sensorsTestHelper.samplingSensor2 = true;
-        final CardView layout = (CardView) this.sensorsTestHelper.activityref.get().findViewById(R.id.sensors);
-        this.sensorsTestHelper.activityref.get().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                layout.setVisibility(View.VISIBLE);
-                SensorTest.this.sensorsTestHelper.sensor1ref.setVisibility(View.VISIBLE);
-                SensorTest.this.sensorsTestHelper.sensor2ref.setVisibility(View.VISIBLE);
-                SensorTest.this.sensorsTestHelper.sensor0ref.setVisibility(View.VISIBLE);
-            }
-        });
+
+        setSensorCardViewProperties(NO_SENSORS);
+
         Log.d("SensorTest", "execute");
         if (this.activity == null || activity == null) {
             Log.e(SensorsTestHelper.TAG, "You must set the activity");
@@ -199,7 +210,7 @@ public class SensorTest {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                sensorsTestHelper.accetpData(true);
+                sensorsTestHelper.acceptData(true);
                 SensorTest.this.sensorsTestHelper.samplesref.clear();
                 Log.d("execute", "executin first runnable");
             }
@@ -213,39 +224,13 @@ public class SensorTest {
         }, (SensorsTestHelper.CALIBRATION_TIME_MS * 1) + DELAY);
     }
 
-    public NewMSensorResult endTest() {
-        if (stopped) return mSensorResult;
-        if (interrupted) {
-            wrapper.setErrorcode((long) ErrorCodes.SENSOR_TEST_BT_CONNECTION_LOST);
-            ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - BT connection lost", true, testToBeParsed);
-            return mSensorResult;
-        }
-        sensorsTestHelper.accetpData(false);
-        sensorsTestHelper.stop();
-
-        final CardView layout = (CardView) this.sensorsTestHelper.activityref.get().findViewById(R.id.sensors);
-        this.sensorsTestHelper.activityref.get().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                layout.setVisibility(View.VISIBLE);
-            }
-        });
-
-        if (stopped)
-            return mSensorResult;
-        Log.d("SensorTest", "endTest");
+    public NewMSensorResult checkSampleSize() {
         if (this.sensorsTestHelper.samplesref == null) {
             Log.d(SensorsTestHelper.TAG, "samplesref == null " + (this.sensorsTestHelper.samplesref == null));
             wrapper.setErrorcode((long) ErrorCodes.SENSORTEST_INSUFFICIENT_SAMPLES);
             ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - No Samples", true, testToBeParsed);
             return mSensorResult;
         }
-
-//		if (this.sensorsTestHelper.samplesref.mSamples == null) {
-//			Log.d(SensorsTestHelper.TAG, "samplesref.mSamples == null " + (this.sensorsTestHelper.samplesref.mSamples == null));
-//			((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test");
-//			return mSensorResult;
-//		}
 
         if (this.sensorsTestHelper.samplesref.mSamples == null) {
             Log.d(SensorsTestHelper.TAG, "Samples size = " + this.sensorsTestHelper.samplesref.mSamples.size());
@@ -269,6 +254,32 @@ public class SensorTest {
             ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test", true, testToBeParsed);
             return mSensorResult;
         }
+        return mSensorResult;
+    }
+
+    public NewMSensorResult endTest() {
+        if (stopped) return mSensorResult;
+        if (interrupted) {
+            wrapper.setErrorcode((long) ErrorCodes.SENSOR_TEST_BT_CONNECTION_LOST);
+            ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - BT connection lost", true, testToBeParsed);
+            return mSensorResult;
+        }
+        sensorsTestHelper.acceptData(false);
+        sensorsTestHelper.stop();
+
+        final CardView layout = (CardView) this.sensorsTestHelper.activityref.get().findViewById(R.id.sensors);
+        this.sensorsTestHelper.activityref.get().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                layout.setVisibility(View.VISIBLE);
+            }
+        });
+
+        if (stopped)
+            return mSensorResult;
+        Log.d("SensorTest", "endTest");
+
+        checkSampleSize();  // Check we received sufficient samples
 
         SessionSamples tempSamples = new SessionSamples(this.sensorsTestHelper.INITIAL_FREEMODE_SAMPLE_CAPACITY);
         int numberOfSamplesTocopy = this.sensorsTestHelper.samplesref.mSamples.size() < this.sensorsTestHelper.INITIAL_FREEMODE_SAMPLE_CAPACITY
@@ -296,63 +307,30 @@ public class SensorTest {
         Force mUserBaseline = new Force((short) (sensor0 / numSamples), (short) (sensor1 / numSamples),
                 (short) (sensor2 / numSamples));
         mSensorResult.setTestsuccessful(true);
-        Short max = mUserMaxForce.getLiteralSensor(0);
-        Short min = mUserMinForce.getLiteralSensor(0);
-        Short avrg = mUserBaseline.getLiteralSensor(0);
-        mSensorResult.setSensor0avg(avrg);
-        mSensorResult.setSensor0max(max);
-        mSensorResult.setSensor0min(min);
-        if (avrg <= upperLimit
-                && avrg >= lowerLimit) {
-            mSensorResult.setSensor0AvgPass(true);
-        } else {
-            mSensorResult.setSensor0AvgPass(false);
-            mSensorResult.setTestsuccessful(false);
-        }
-        if (Math.abs(max - min) < varLimit) {
-            mSensorResult.setSensor0stabilitypass(true);
-        } else {
-            mSensorResult.setSensor0stabilitypass(false);
-            mSensorResult.setTestsuccessful(false);
-        }
-        max = mUserMaxForce.getLiteralSensor(1);
-        min = mUserMinForce.getLiteralSensor(1);
-        avrg = mUserBaseline.getLiteralSensor(1);
-        mSensorResult.setSensor1avg(avrg);
-        mSensorResult.setSensor1max(max);
-        mSensorResult.setSensor1min(min);
-        if (avrg <= upperLimit
-                && avrg >= lowerLimit) {
-            mSensorResult.setSensor1AvgPass(true);
-        } else {
-            mSensorResult.setSensor1AvgPass(false);
-            mSensorResult.setTestsuccessful(false);
-        }
-        if (Math.abs(max - min) < varLimit) {
-            mSensorResult.setSensor1stabilitypass(true);
-        } else {
-            mSensorResult.setSensor1stabilitypass(false);
-            mSensorResult.setTestsuccessful(false);
-        }
-        max = mUserMaxForce.getLiteralSensor(2);
-        min = mUserMinForce.getLiteralSensor(2);
-        avrg = mUserBaseline.getLiteralSensor(2);
-        mSensorResult.setSensor2avg(avrg);
-        mSensorResult.setSensor2max(max);
-        mSensorResult.setSensor2min(min);
-        if (avrg <= upperLimit
-                && avrg >= lowerLimit) {
-            mSensorResult.setSensor2AvgPass(true);
-        } else {
-            mSensorResult.setSensor2AvgPass(false);
-            mSensorResult.setTestsuccessful(false);
-        }
-        if (Math.abs(max - min) < varLimit) {
-            mSensorResult.setSensor2stabilitypass(true);
-        } else {
-            mSensorResult.setSensor2stabilitypass(false);
-            mSensorResult.setTestsuccessful(false);
-        }
+        // Parse Sensor 0
+        mSensorResult.setSensor(SENSOR0, mUserMinForce.getLiteralSensor(SENSOR0), mUserMaxForce.getLiteralSensor(SENSOR0),
+                mUserBaseline.getLiteralSensor(SENSOR0));
+
+        boolean[] result = checkResult(mSensorResult.getSensor(SENSOR0));
+        mSensorResult.setSensor0AvgPass(result[AVG_TEST]);
+        mSensorResult.setSensor0stabilitypass(result[VAR_TEST]);
+        if (!result[AVG_TEST] || !result[VAR_TEST]) mSensorResult.setTestsuccessful(false);
+        // Parse Sensor 1
+        mSensorResult.setSensor(SENSOR1, mUserMinForce.getLiteralSensor(SENSOR1), mUserMaxForce.getLiteralSensor(SENSOR1),
+                mUserBaseline.getLiteralSensor(SENSOR1));
+
+        result = checkResult(mSensorResult.getSensor(SENSOR1));
+        mSensorResult.setSensor1AvgPass(result[AVG_TEST]);
+        mSensorResult.setSensor1stabilitypass(result[VAR_TEST]);
+        if (!result[AVG_TEST] || !result[VAR_TEST]) mSensorResult.setTestsuccessful(false);
+        // Parse Sensor 2
+        mSensorResult.setSensor(SENSOR2, mUserMinForce.getLiteralSensor(SENSOR2), mUserMaxForce.getLiteralSensor(SENSOR2),
+                mUserBaseline.getLiteralSensor(SENSOR2));
+
+        result = checkResult(mSensorResult.getSensor(SENSOR2));
+        mSensorResult.setSensor2AvgPass(result[AVG_TEST]);
+        mSensorResult.setSensor2stabilitypass(result[VAR_TEST]);
+        if (!result[AVG_TEST] || !result[VAR_TEST]) mSensorResult.setTestsuccessful(false);
         if (activity != null && activity != null) {
             activity.get().runOnUiThread(new Runnable() {
                 @Override
@@ -360,18 +338,28 @@ public class SensorTest {
                     ((SensorTestCallback) (activity.get())).onSensorTestCompleted(mSensorResult, testToBeParsed);
                 }
             });
-
         }
 
-//		if(!isTest)this.sensorsTestHelper.sendVoltage(this.sensorsTestHelper.NORMAL_VOLTAGE);
         if (!isTest) stop();
-//		try {
-//			Thread.sleep(200);
-//		} catch (InterruptedException e) {
-//			e.printStackTrace();
-//		}
 
         return mSensorResult;
+    }
+
+    public void setSensorCardViewProperties(int sensor) {
+        items = new int[]{View.INVISIBLE, View.INVISIBLE, View.INVISIBLE};
+        if (sensor > items.length) return;
+        if (sensor != NO_SENSORS) items[sensor] = View.VISIBLE;
+        final CardView layout = (CardView) this.sensorsTestHelper.activityref.get()
+                .findViewById(R.id.sensors);
+        this.sensorsTestHelper.activityref.get().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                layout.setVisibility(View.VISIBLE);
+                sensorsTestHelper.sensor0ref.setVisibility(items[SENSOR0]);
+                sensorsTestHelper.sensor1ref.setVisibility(items[SENSOR1]);
+                sensorsTestHelper.sensor2ref.setVisibility(items[SENSOR2]);
+            }
+        });
     }
 
     public boolean getOverallResult() {

@@ -4,15 +4,15 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.pietrantuono.activities.SettingsActivity;
+import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.recordsdb.RecordsContract;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import server.pojos.records.Readings;
-import server.pojos.records.S0;
-import server.pojos.records.S1;
-import server.pojos.records.S2;
+import server.pojos.records.Sensor;
 import server.pojos.records.Sensors;
 import server.pojos.records.Test;
 import server.pojos.records.TestRecord;
@@ -128,7 +128,7 @@ public class RecordsProcessor {
             if (sensorsCursor.moveToFirst()) {
                 long sensorsId = sensorsCursor.getLong(sensorsCursor.getColumnIndexOrThrow(RecordsContract.Sensors.ID));
                 sensorsCursor.close();
-                S0 s0 = new S0();
+                Sensor s0 = new Sensor();
                 selection = RecordsContract.SingleS0.S0 + " = ?";
                 selectionArgs = new String[]{"" + sensorsId};
                 Cursor s0Cursor = helper.getWritableDatabase().query(RecordsContract.SingleS0.TABLE, null, selection, selectionArgs, null, null, null);
@@ -162,8 +162,7 @@ public class RecordsProcessor {
                 }
                 sensors.setS0(s0);
 
-                S1 s1 = new S1();
-
+                Sensor s1 = new Sensor();
                 selection = RecordsContract.SingleS1.S1 + " = ?";
                 selectionArgs = new String[]{"" + sensorsId};
                 Cursor s1Cursor = helper.getWritableDatabase().query(RecordsContract.SingleS1.TABLE, null, selection, selectionArgs, null, null, null);
@@ -198,8 +197,7 @@ public class RecordsProcessor {
 
                 sensors.setS1(s1);
 
-                S2 s2 = new S2();
-
+                Sensor s2 = new Sensor();
                 selection = RecordsContract.SingleS2.S2 + " = ?";
                 selectionArgs = new String[]{"" + sensorsId};
                 Cursor s2Cursor = helper.getWritableDatabase().query(RecordsContract.SingleS2.TABLE, null, selection, selectionArgs, null, null, null);

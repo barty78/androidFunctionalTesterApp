@@ -20,6 +20,10 @@ public class SensorTestWrapper extends Test {
     private final SensorTest sensorTest;
     private SensorsTestHelper helper;
     private Boolean load;
+    private Boolean hasPrompt;
+    private Boolean singleSensorTest = false;
+    private int sensorToTest = 0;
+    private String weight = "";
     public boolean executed =false;
 
     /**
@@ -34,17 +38,31 @@ public class SensorTestWrapper extends Test {
      * @param upperLimit
      * @param varLimit
      */
-    public SensorTestWrapper(boolean isClosedTest, Activity activity, IOIO ioio, int TestLimitIndex, float lowerLimit, float upperLimit, float varLimit, String description) {
+    public SensorTestWrapper(boolean isClosedTest, Activity activity, IOIO ioio, int TestLimitIndex, float lowerLimit, float upperLimit, float varLimit, boolean hasPrompt, String description) {
         super(activity, ioio, description, true, false, lowerLimit, upperLimit, varLimit);
         this.TestLimitIndex = TestLimitIndex;
         this.load = null;
-        if (description.contains("LOADED")) {
+        this.hasPrompt = hasPrompt;
+
+        final String[] parts = description.split(",");
+        // Check description to see if this sensor test is an individual sensor test
+        // DB Description should be "Sensor 0 Input Test, LOADED, GAIN/ZERO @ 127/0"
+        if (parts[0].length() == 19){
+            singleSensorTest = true;
+            sensorToTest = Character.digit(parts[0].charAt(7), 10);
+        }
+        if (parts[1].contains("LOADED")) {
             this.isClosedTest = isClosedTest;
             this.load = true;
-        } else if (description.contains("NO LOAD")) {
+        } else if (parts[1].contains("NO LOAD")) {
             this.isClosedTest = false;
             this.load = false;
+        } else if (parts[1].length() >= 8 && parts[1].contains(" LOAD")) {
+            this.isClosedTest = isClosedTest;
+            this.load = true;
+            weight = parts[1].substring(1, parts[1].indexOf("g") + 1) + " ";
         }
+
         Log.d(TAG, "Sensor Load is " + this.load);
         this.voltage = -1;
         this.zeroVoltage = -1;
@@ -59,11 +77,10 @@ public class SensorTestWrapper extends Test {
         Log.d(TAG, "Sensor Zero Voltage is " + this.zeroVoltage);
 
         if (this.isClosedTest) {
-            sensorTest = new ClosedTest(activity, SensorTestWrapper.this, lowerLimit, upperLimit, varLimit);
+            sensorTest = new ClosedTest(activity, SensorTestWrapper.this, singleSensorTest, sensorToTest, hasPrompt, weight, lowerLimit, upperLimit, varLimit);
         } else {
             sensorTest = new SensorTest(activity, SensorTestWrapper.this, lowerLimit, upperLimit, varLimit);
         }
-
     }
 
     @Override
@@ -83,12 +100,6 @@ public class SensorTestWrapper extends Test {
         }
     }
 
-
-    public SensorTest getSensorTest() {
-        return sensorTest;
-    }
-
-
     @Override
     public void interrupt() {
         super.interrupt();
@@ -102,12 +113,10 @@ public class SensorTestWrapper extends Test {
         }
     }
 
-
     @Override
     public boolean isSuccess() {
         return sensorTest.getOverallResult();
     }
-
 
     public short getVoltage() {
         return voltage;
@@ -119,6 +128,10 @@ public class SensorTestWrapper extends Test {
 
     public Boolean getLoad() {
         return load;
+    }
+
+    public SensorTest getSensorTest() {
+        return sensorTest;
     }
 
     @Override
@@ -133,8 +146,6 @@ public class SensorTestWrapper extends Test {
             if (isinterrupted) return null;
             helper = new SensorsTestHelper((Activity) activityListener);
             sensorTest.setSensorsTestHelper(helper);
-//		IOIOUtils.getUtils().stopUartThread();
-//		IOIOUtils.getUtils().closeUart((Activity)activityListener);
             sensorTest.execute();
             return null;
         }

@@ -27,28 +27,19 @@ import hydrix.pfmat.generic.SessionSamples;
 public class ClosedTest extends SensorTest {
     private boolean interrupted;
     private AlertDialog dialog;
-    // private final SensorsTestHelper sensorsTestHelper;
+    private boolean singleSensorTest;
+    private int sensorToTest;
+    private boolean hasPrompt;
+    private String weight;
 
-    public ClosedTest(Activity activity, SensorTestWrapper wrapper, float lowerLimit, float upperLimit, float varLimit) {
+    public static final String title = "Closed Test";
+
+    public ClosedTest(Activity activity, SensorTestWrapper wrapper, boolean singleSensorTest, int sensorToTest, boolean hasPrompt, String weight, float lowerLimit, float upperLimit, float varLimit) {
         super(activity, wrapper, lowerLimit, upperLimit, varLimit);
-    }
-
-    public void stop() {
-        stopped = true;
-        try {
-            final CardView layout = (CardView) this.sensorsTestHelper.activityref.get()
-                    .findViewById(R.id.sensors);
-            this.sensorsTestHelper.activityref.get().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    layout.setVisibility(View.INVISIBLE);
-                    ClosedTest.this.sensorsTestHelper.sensor0ref.setText("0");
-                    ClosedTest.this.sensorsTestHelper.sensor1ref.setText("0");
-                    ClosedTest.this.sensorsTestHelper.sensor2ref.setText("0");
-                }
-            });
-        } catch (Exception e) {
-        }
+        this.singleSensorTest = singleSensorTest;
+        this.sensorToTest = sensorToTest;
+        this.hasPrompt = hasPrompt;
+        this.weight = weight;
     }
 
     public ClosedTest setVoltage(short voltage) {
@@ -61,7 +52,6 @@ public class ClosedTest extends SensorTest {
         return this;
     }
 
-
     public void execute() {
         if (stopped) return;
         if (interrupted) {
@@ -69,38 +59,41 @@ public class ClosedTest extends SensorTest {
             ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Test interrupted", true, testToBeParsed);
             return;
         }
-        sensorsTestHelper.closedtestsamplesrefsensor0.clear();
-        sensorsTestHelper.closedtestsamplesrefsensor1.clear();
-        sensorsTestHelper.closedtestsamplesrefsensor2.clear();
+        sensorsTestHelper.closedtestsamples[SENSOR0].clear();
+        sensorsTestHelper.closedtestsamples[SENSOR1].clear();
+        sensorsTestHelper.closedtestsamples[SENSOR2].clear();
+//        sensorsTestHelper.closedtestsamplesrefsensor0.clear();
+//        sensorsTestHelper.closedtestsamplesrefsensor1.clear();
+//        sensorsTestHelper.closedtestsamplesrefsensor2.clear();
         Log.d("SensorTest", "execute");
 
         if (this.activity == null || activity == null) {
             Log.e(SensorsTestHelper.TAG, "You must set the activity");
+            wrapper.setErrorcode((long) ErrorCodes.SENSOR_TEST_NO_ACTIVITY_SET);
             ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Closed Sensor test", true, testToBeParsed);
             return;
         }
         if (this.voltage == -1) {
             Log.e(SensorsTestHelper.TAG, "You must set the voltage");
+            wrapper.setErrorcode((long) ErrorCodes.SENSOR_TEST_NO_VOLTAGE_SET);
             ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Closed ensor test", true, testToBeParsed);
             return;
         }
         if (this.sensorsTestHelper.samplesref == null) {
             Log.e(SensorsTestHelper.TAG, "samplesref null?!");
-            ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Closed Sensor test", true, testToBeParsed);
-            return;
-        }
-        if (this.sensorsTestHelper.samplesref == null) {
-            Log.e(SensorsTestHelper.TAG, "samplesref null?!");
+            wrapper.setErrorcode((long) ErrorCodes.SENSOR_TEST_SAMPLES_REF_NULL);
             ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Closed Sensor test", true, testToBeParsed);
             return;
         }
         if (load == null) {
             Log.e(SensorsTestHelper.TAG, "load null?!");
+            wrapper.setErrorcode((long) ErrorCodes.SENSOR_TEST_LOAD_NULL);
             ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Closed Sensor test", true, testToBeParsed);
             return;
         }
         if (mSensorResult == null) {
             Log.e(SensorsTestHelper.TAG, "mSensorResult null?!");
+            wrapper.setErrorcode((long) ErrorCodes.SENSOR_TEST_SENSOR_RESULT_NULL);
             ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Closed Sensor test", true, testToBeParsed);
             return;
         }
@@ -109,18 +102,7 @@ public class ClosedTest extends SensorTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        if (load)
-            try {
-                IOIOUtils.getUtils().getSensor_High().write(false);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        else
-            try {
-                IOIOUtils.getUtils().getSensor_High().write(true);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+
         if (!DebugHelper.isMaurizioDebug()) {
             try {
                 this.sensorsTestHelper.sendAllVoltages(voltage, zeroVoltage);
@@ -136,22 +118,31 @@ public class ClosedTest extends SensorTest {
         this.sensorsTestHelper.samplesref.clear();
         if (this.sensorsTestHelper.activityref == null || this.sensorsTestHelper.activityref.get() == null)
             return;
-        AlertDialog.Builder builder = new Builder(this.sensorsTestHelper.activityref.get());
-        builder.setTitle("Closed test");
-        builder.setMessage("Place Test Weight on Sensor 0 and press OK");
-        builder.setPositiveButton("OK", new OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                sensorsTestHelper.accetpData(true);
-                executeSensor0();
-            }
-        });
-        builder.setCancelable(false);
-        dialog = builder.create();
-        dialog.show();
-        sensorsTestHelper.samplingSensor0 = false;
-        sensorsTestHelper.samplingSensor1 = false;
-        sensorsTestHelper.samplingSensor2 = false;
+        if (singleSensorTest) mSensorResult.singleSensorTest();
+        if (!singleSensorTest || hasPrompt) {
+
+            AlertDialog.Builder builder = new Builder(this.sensorsTestHelper.activityref.get());
+            builder.setTitle("Closed test");
+
+            builder.setMessage("Place " + weight + "Test Weight on Sensor " + sensorToTest + " and press OK");
+            builder.setPositiveButton("OK", new OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    sensorsTestHelper.acceptData(true);
+                    executeSensor();
+                }
+            });
+
+            builder.setCancelable(false);
+            dialog = builder.create();
+            dialog.show();
+
+            setSamplingSensor(NO_SENSORS);
+
+        } else {
+            sensorsTestHelper.acceptData(true);
+            executeSensor();
+        }
     }
 
     public NewMSensorResult endTest() {
@@ -161,10 +152,7 @@ public class ClosedTest extends SensorTest {
             ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Test interrupted", true, testToBeParsed);
             return mSensorResult;
         }
-        sensorsTestHelper.accetpData(false);
-        sensorsTestHelper.samplingSensor0 = false;
-        sensorsTestHelper.samplingSensor1 = false;
-        sensorsTestHelper.samplingSensor2 = false;
+        setSamplingSensor(NO_SENSORS);
         final CardView layout = (CardView) this.sensorsTestHelper.activityref.get()
                 .findViewById(R.id.sensors);
         this.sensorsTestHelper.activityref.get().runOnUiThread(new Runnable() {
@@ -177,157 +165,36 @@ public class ClosedTest extends SensorTest {
             return mSensorResult;
         Log.d("SensorTest", "endTest");
 
-        if (this.sensorsTestHelper.closedtestsamplesrefsensor0 == null
-                || this.sensorsTestHelper.closedtestsamplesrefsensor0.mSamples == null
-                || this.sensorsTestHelper.closedtestsamplesrefsensor0.mSamples
-                .size() < this.sensorsTestHelper.CALIBRATION_MIN_SAMPLES
-                || this.sensorsTestHelper.closedtestsamplesrefsensor1 == null
-                || this.sensorsTestHelper.closedtestsamplesrefsensor1.mSamples == null
-                || this.sensorsTestHelper.closedtestsamplesrefsensor1.mSamples
-                .size() < this.sensorsTestHelper.CALIBRATION_MIN_SAMPLES
-                || this.sensorsTestHelper.closedtestsamplesrefsensor2 == null
-                || this.sensorsTestHelper.closedtestsamplesrefsensor2.mSamples == null
-                || this.sensorsTestHelper.closedtestsamplesrefsensor2.mSamples
-                .size() < this.sensorsTestHelper.CALIBRATION_MIN_SAMPLES) {
-            if (activity.get() != null && !activity.get().isFinishing()
-                    && !((MainActivity) (activity.get())).isMainActivityBeingDestroyed())
-                return mSensorResult;
-            Toast.makeText(activity.get(),
-                    "Error taking measure, please check Bluetooth and PeriCoach device and restart test",
-                    Toast.LENGTH_LONG).show();
-            ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test", true, testToBeParsed);
-            return mSensorResult;
-        }
-        // Results sensor 0
-        SessionSamples tempSamples = new SessionSamples(this.sensorsTestHelper.INITIAL_FREEMODE_SAMPLE_CAPACITY);
-        int numberOfSamplesTocopy = this.sensorsTestHelper.closedtestsamplesrefsensor0.mSamples
-                .size() < this.sensorsTestHelper.INITIAL_FREEMODE_SAMPLE_CAPACITY
-                ? this.sensorsTestHelper.closedtestsamplesrefsensor0.mSamples.size()
-                : this.sensorsTestHelper.INITIAL_FREEMODE_SAMPLE_CAPACITY;
-        for (int i = 0; i < numberOfSamplesTocopy; i++) {
-            tempSamples.add(this.sensorsTestHelper.closedtestsamplesrefsensor0.mSamples.get(i).mTimeOffsetMS,
-                    this.sensorsTestHelper.closedtestsamplesrefsensor0.mSamples.get(i).mForce);
-        }
-        float sensor0 = 0.0f;
-        float sensor1 = 0.0f;
-        float sensor2 = 0.0f;
-        int numSamples = tempSamples.mSamples.size();
-        for (int i = 0; i < numSamples; i++) {
-            Force force = tempSamples.mSamples.get(i).mForce;
-            sensor0 += force.mSensor0;
-            sensor1 += force.mSensor1;
-            sensor2 += force.mSensor2;
-        }
-        Force mUserMaxForce = tempSamples.getMaxSampleSeen();
-        Force mUserMinForce = tempSamples.getMinSampleSeen();
-        Force mUserBaseline = new Force((short) (sensor0 / numSamples), (short) (sensor1 / numSamples),
-                (short) (sensor2 / numSamples));
-        mSensorResult.setTestsuccessful(true);
-        Short max = mUserMaxForce.getLiteralSensor(0);
-        Short min = mUserMinForce.getLiteralSensor(0);
-        Short avrg = mUserBaseline.getLiteralSensor(0);
-        mSensorResult.setSensor0avg(avrg);
-        mSensorResult.setSensor0max(max);
-        mSensorResult.setSensor0min(min);
-        if (avrg <= upperLimit
-                && avrg >= lowerLimit) {
-            mSensorResult.setSensor0AvgPass(true);
-        } else {
-            mSensorResult.setSensor0AvgPass(false);
-            mSensorResult.setTestsuccessful(false);
-        }
-        if (Math.abs(max - min) < varLimit) {
-            mSensorResult.setSensor0stabilitypass(true);
-        } else {
-            mSensorResult.setSensor0stabilitypass(false);
-            mSensorResult.setTestsuccessful(false);
-        }
-        // Result sensor 1
-        tempSamples = new SessionSamples(this.sensorsTestHelper.INITIAL_FREEMODE_SAMPLE_CAPACITY);
-        numberOfSamplesTocopy = this.sensorsTestHelper.closedtestsamplesrefsensor1.mSamples
-                .size() < this.sensorsTestHelper.INITIAL_FREEMODE_SAMPLE_CAPACITY
-                ? this.sensorsTestHelper.closedtestsamplesrefsensor1.mSamples.size()
-                : this.sensorsTestHelper.INITIAL_FREEMODE_SAMPLE_CAPACITY;
-        for (int i = 0; i < numberOfSamplesTocopy; i++) {
-            tempSamples.add(this.sensorsTestHelper.closedtestsamplesrefsensor1.mSamples.get(i).mTimeOffsetMS,
-                    this.sensorsTestHelper.closedtestsamplesrefsensor1.mSamples.get(i).mForce);
-        }
-        sensor0 = 0.0f;
-        sensor1 = 0.0f;
-        sensor2 = 0.0f;
-        numSamples = tempSamples.mSamples.size();
-        for (int i = 0; i < numSamples; i++) {
-            Force force = tempSamples.mSamples.get(i).mForce;
-            sensor0 += force.mSensor0;
-            sensor1 += force.mSensor1;
-            sensor2 += force.mSensor2;
-        }
-        mUserMaxForce = tempSamples.getMaxSampleSeen();
-        mUserMinForce = tempSamples.getMinSampleSeen();
-        mUserBaseline = new Force((short) (sensor0 / numSamples), (short) (sensor1 / numSamples),
-                (short) (sensor2 / numSamples));
-        max = mUserMaxForce.getLiteralSensor(1);
-        min = mUserMinForce.getLiteralSensor(1);
-        avrg = mUserBaseline.getLiteralSensor(1);
-        mSensorResult.setSensor1avg(avrg);
-        mSensorResult.setSensor1max(max);
-        mSensorResult.setSensor1min(min);
-        if (avrg <= upperLimit
-                && avrg >= lowerLimit) {
-            mSensorResult.setSensor1AvgPass(true);
-        } else {
-            mSensorResult.setSensor1AvgPass(false);
-            mSensorResult.setTestsuccessful(false);
-        }
-        if (Math.abs(max - min) < varLimit) {
-            mSensorResult.setSensor1stabilitypass(true);
-        } else {
-            mSensorResult.setSensor1stabilitypass(false);
-            mSensorResult.setTestsuccessful(false);
-        }
-        // Result sensor 2
-        tempSamples = new SessionSamples(this.sensorsTestHelper.INITIAL_FREEMODE_SAMPLE_CAPACITY);
-        numberOfSamplesTocopy = this.sensorsTestHelper.closedtestsamplesrefsensor2.mSamples
-                .size() < this.sensorsTestHelper.INITIAL_FREEMODE_SAMPLE_CAPACITY
-                ? this.sensorsTestHelper.closedtestsamplesrefsensor2.mSamples.size()
-                : this.sensorsTestHelper.INITIAL_FREEMODE_SAMPLE_CAPACITY;
-        for (int i = 0; i < numberOfSamplesTocopy; i++) {
-            tempSamples.add(this.sensorsTestHelper.closedtestsamplesrefsensor2.mSamples.get(i).mTimeOffsetMS,
-                    this.sensorsTestHelper.closedtestsamplesrefsensor2.mSamples.get(i).mForce);
-        }
-        sensor0 = 0.0f;
-        sensor1 = 0.0f;
-        sensor2 = 0.0f;
-        numSamples = tempSamples.mSamples.size();
-        for (int i = 0; i < numSamples; i++) {
-            Force force = tempSamples.mSamples.get(i).mForce;
-            sensor0 += force.mSensor0;
-            sensor1 += force.mSensor1;
-            sensor2 += force.mSensor2;
-        }
-        mUserMaxForce = tempSamples.getMaxSampleSeen();
-        mUserMinForce = tempSamples.getMinSampleSeen();
-        mUserBaseline = new Force((short) (sensor0 / numSamples), (short) (sensor1 / numSamples),
-                (short) (sensor2 / numSamples));
+        checkSampleSize();
 
-        max = mUserMaxForce.getLiteralSensor(2);
-        min = mUserMinForce.getLiteralSensor(2);
-        avrg = mUserBaseline.getLiteralSensor(2);
-        mSensorResult.setSensor2avg(avrg);
-        mSensorResult.setSensor2max(max);
-        mSensorResult.setSensor2min(min);
-        if (avrg <= upperLimit
-                && avrg >= lowerLimit) {
-            mSensorResult.setSensor2AvgPass(true);
+        if (singleSensorTest){
+            evaluateSensorSamples(sensorToTest, this.sensorsTestHelper.closedtestsamples[sensorToTest]);
+            boolean[] result = checkResult(mSensorResult.getSensor(sensorToTest));
+            mSensorResult.setSensorAvgPass(sensorToTest, result[AVG_TEST]);
+            mSensorResult.setSensorStabilityPass(sensorToTest, result[VAR_TEST]);
+            if (!result[AVG_TEST] || !result[VAR_TEST]) mSensorResult.setTestsuccessful(false);
+
         } else {
-            mSensorResult.setSensor2AvgPass(false);
-            mSensorResult.setTestsuccessful(false);
-        }
-        if (Math.abs(max - min) < varLimit) {
-            mSensorResult.setSensor2stabilitypass(true);
-        } else {
-            mSensorResult.setSensor2stabilitypass(false);
-            mSensorResult.setTestsuccessful(false);
+            // Parse Sensor 0 Results
+            evaluateSensorSamples(SENSOR0, this.sensorsTestHelper.closedtestsamples[SENSOR0]);
+            boolean[] result = checkResult(mSensorResult.getSensor(SENSOR0));
+            mSensorResult.setSensorAvgPass(SENSOR0, result[AVG_TEST]);
+            mSensorResult.setSensorStabilityPass(SENSOR0, result[VAR_TEST]);
+            if (!result[AVG_TEST] || !result[VAR_TEST]) mSensorResult.setTestsuccessful(false);
+
+            // Parse Sensor 1 Results
+            evaluateSensorSamples(SENSOR1, this.sensorsTestHelper.closedtestsamples[SENSOR1]);
+            result = checkResult(mSensorResult.getSensor(SENSOR1));
+            mSensorResult.setSensorAvgPass(SENSOR1, result[AVG_TEST]);
+            mSensorResult.setSensorStabilityPass(SENSOR1, result[VAR_TEST]);
+            if (!result[AVG_TEST] || !result[VAR_TEST]) mSensorResult.setTestsuccessful(false);
+
+            // Parse Sensor 2 Results
+            evaluateSensorSamples(SENSOR2, this.sensorsTestHelper.closedtestsamples[SENSOR2]);
+            result = checkResult(mSensorResult.getSensor(SENSOR2));
+            mSensorResult.setSensorAvgPass(SENSOR2, result[AVG_TEST]);
+            mSensorResult.setSensorStabilityPass(SENSOR2, result[VAR_TEST]);
+            if (!result[AVG_TEST] || !result[VAR_TEST]) mSensorResult.setTestsuccessful(false);
         }
         if (activity != null && activity != null && !isTest)
             ((SensorTestCallback) (activity.get())).onSensorTestCompleted(mSensorResult, testToBeParsed);
@@ -347,204 +214,100 @@ public class ClosedTest extends SensorTest {
         return mSensorResult;
     }
 
-    private void executeSensor0() {
+    private void evaluateSensorSamples(int sensor, SessionSamples sessionsamples) {
+
+        SessionSamples tempSamples = new SessionSamples(this.sensorsTestHelper.INITIAL_FREEMODE_SAMPLE_CAPACITY);
+        int numberOfSamplesTocopy = sessionsamples.mSamples.size() < this.sensorsTestHelper.INITIAL_FREEMODE_SAMPLE_CAPACITY
+                ? sessionsamples.mSamples.size()
+                : this.sensorsTestHelper.INITIAL_FREEMODE_SAMPLE_CAPACITY;
+        for (int i = 0; i < numberOfSamplesTocopy; i++) {
+            tempSamples.add(sessionsamples.mSamples.get(i).mTimeOffsetMS,
+                    sessionsamples.mSamples.get(i).mForce);
+        }
+        float[] sensors = {0.0f, 0.0f, 0.0f};
+
+        int numSamples = tempSamples.mSamples.size();
+        for (int i = 0; i < numSamples; i++) {
+            Force force = tempSamples.mSamples.get(i).mForce;
+            sensors[sensor] += force.getLiteralSensor(sensor);
+        }
+
+        mSensorResult.setTestsuccessful(true);
+        mSensorResult.setSensor(sensor, tempSamples.getMinSampleSeen().getLiteralSensor(sensor),
+                                                tempSamples.getMaxSampleSeen().getLiteralSensor(sensor),
+                                                (short) (sensors[sensor] / numSamples));
+    }
+
+    private void setSamplingSensor(int sensor) {
+        boolean sensors[] = {false, false, false};
+        if (sensor != -1) sensors[sensor] = true;
+        sensorsTestHelper.acceptData(sensors[SENSOR0] || sensors[SENSOR1] || sensors[SENSOR2]);
+        sensorsTestHelper.samplingSensor0 = sensors[SENSOR0];
+        sensorsTestHelper.samplingSensor1 = sensors[SENSOR1];
+        sensorsTestHelper.samplingSensor2 = sensors[SENSOR2];
+    }
+
+    private void displayDialog(final String msg) {
+        Handler h = new Handler(Looper.getMainLooper());
+        h.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                setSamplingSensor(-1);
+                AlertDialog.Builder builder = new Builder(ClosedTest.this.sensorsTestHelper.activityref.get());
+                builder.setTitle(title);
+                builder.setMessage(msg);
+                builder.setPositiveButton("OK", new OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        executeSensor();
+                    }
+                });
+                builder.setCancelable(false);
+                dialog = builder.create();
+                dialog.show();
+            }
+        }, SensorsTestHelper.CALIBRATION_TIME_MS * 1);
+    }
+
+    private void executeSensor() {
         if (stopped) return;
         if (interrupted) {
             wrapper.setErrorcode((long) ErrorCodes.SENSOR_TEST_BT_CONNECTION_LOST);
             ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Test interrupted", true, testToBeParsed);
             return;
         }
-        sensorsTestHelper.accetpData(true);
-        sensorsTestHelper.samplingSensor0 = true;
-        sensorsTestHelper.samplingSensor1 = false;
-        sensorsTestHelper.samplingSensor2 = false;
-        final CardView layout = (CardView) this.sensorsTestHelper.activityref.get()
-                .findViewById(R.id.sensors);
-        this.sensorsTestHelper.activityref.get().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                layout.setVisibility(View.VISIBLE);
-                ClosedTest.this.sensorsTestHelper.sensor1ref.setVisibility(View.INVISIBLE);
-                ClosedTest.this.sensorsTestHelper.sensor2ref.setVisibility(View.INVISIBLE);
-                ClosedTest.this.sensorsTestHelper.sensor0ref.setVisibility(View.VISIBLE);
-            }
-        });
+        setSamplingSensor(sensorToTest);
+        setSensorCardViewProperties(sensorToTest);
         try {
             Thread.sleep(200);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        if (load)
-            try {
-                IOIOUtils.getUtils().getSensor_High().write(false);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        else
-            try {
-                IOIOUtils.getUtils().getSensor_High().write(true);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        //this.sensorsTestHelper.sendVoltage(voltage);
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        this.sensorsTestHelper.closedtestsamplesrefsensor0.clear();
-        Handler h = new Handler(Looper.getMainLooper());
-        h.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                sensorsTestHelper.accetpData(false);
-                sensorsTestHelper.samplingSensor0 = false;
-                sensorsTestHelper.samplingSensor1 = false;
-                sensorsTestHelper.samplingSensor2 = false;
-                AlertDialog.Builder builder = new Builder(ClosedTest.this.sensorsTestHelper.activityref.get());
-                builder.setTitle("Closed test");
-                builder.setMessage("Place Test Weight on Sensor 1 and press OK");
-                builder.setPositiveButton("OK", new OnClickListener() {
+        this.sensorsTestHelper.closedtestsamples[sensorToTest].clear();
+        if (!singleSensorTest) {
+            if (sensorToTest < 2) {
+                sensorToTest++;
+                displayDialog("Place " + weight + "Test Weight on Sensor " + sensorToTest + " and press OK");
+            } else {
+                Handler h = new Handler(Looper.getMainLooper());
+                h.postDelayed(new Runnable() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        executeSensor1();
+                    public void run() {
+                        setSamplingSensor(NO_SENSORS);
+                        endTest();
                     }
-                });
-                builder.setCancelable(false);
-                dialog = builder.create();
-                dialog.show();
+                }, SensorsTestHelper.CALIBRATION_TIME_MS * 1);
             }
-        }, SensorsTestHelper.CALIBRATION_TIME_MS * 1);
-
-    }
-
-    private void executeSensor1() {
-        if (interrupted) {
-            wrapper.setErrorcode((long) ErrorCodes.SENSOR_TEST_BT_CONNECTION_LOST);
-            ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Test interrupted", true, testToBeParsed);
-            return;
+        } else {
+            Handler h = new Handler(Looper.getMainLooper());
+            h.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    setSamplingSensor(NO_SENSORS);
+                    endTest();
+                }
+            }, SensorsTestHelper.CALIBRATION_TIME_MS * 1);
         }
-        sensorsTestHelper.accetpData(true);
-        sensorsTestHelper.samplingSensor0 = false;
-        sensorsTestHelper.samplingSensor1 = true;
-        sensorsTestHelper.samplingSensor2 = false;
-        final CardView layout = (CardView) this.sensorsTestHelper.activityref.get()
-                .findViewById(R.id.sensors);
-        this.sensorsTestHelper.activityref.get().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                layout.setVisibility(View.VISIBLE);
-                ClosedTest.this.sensorsTestHelper.sensor1ref.setVisibility(View.VISIBLE);
-                ClosedTest.this.sensorsTestHelper.sensor2ref.setVisibility(View.INVISIBLE);
-                ClosedTest.this.sensorsTestHelper.sensor0ref.setVisibility(View.INVISIBLE);
-            }
-        });
-        try {
-            Thread.sleep(200);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        if (load)
-            try {
-                IOIOUtils.getUtils().getSensor_High().write(false);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        else
-            try {
-                IOIOUtils.getUtils().getSensor_High().write(true);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        //this.sensorsTestHelper.sendVoltage(voltage);
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        this.sensorsTestHelper.closedtestsamplesrefsensor1.clear();
-        Handler h = new Handler(Looper.getMainLooper());
-        h.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                sensorsTestHelper.accetpData(false);
-                sensorsTestHelper.samplingSensor0 = false;
-                sensorsTestHelper.samplingSensor1 = false;
-                sensorsTestHelper.samplingSensor2 = false;
-                AlertDialog.Builder builder = new Builder(ClosedTest.this.sensorsTestHelper.activityref.get());
-                builder.setTitle("Closed test");
-                builder.setMessage("Place Test Weight on Sensor 2 and press OK");
-                builder.setPositiveButton("OK", new OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        executeSensor2();
-                    }
-                });
-                builder.setCancelable(false);
-                dialog = builder.create();
-                dialog.show();
-            }
-        }, SensorsTestHelper.CALIBRATION_TIME_MS * 1);
-
-    }
-
-    private void executeSensor2() {
-        if (interrupted) {
-            wrapper.setErrorcode((long) ErrorCodes.SENSOR_TEST_BT_CONNECTION_LOST);
-            ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Test interrupted", true, testToBeParsed);
-            return;
-        }
-        sensorsTestHelper.accetpData(true);
-        sensorsTestHelper.samplingSensor0 = false;
-        sensorsTestHelper.samplingSensor1 = false;
-        sensorsTestHelper.samplingSensor2 = true;
-        final CardView layout = (CardView) this.sensorsTestHelper.activityref.get()
-                .findViewById(R.id.sensors);
-        this.sensorsTestHelper.activityref.get().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                layout.setVisibility(View.VISIBLE);
-                ClosedTest.this.sensorsTestHelper.sensor1ref.setVisibility(View.INVISIBLE);
-                ClosedTest.this.sensorsTestHelper.sensor2ref.setVisibility(View.VISIBLE);
-                ClosedTest.this.sensorsTestHelper.sensor0ref.setVisibility(View.INVISIBLE);
-            }
-        });
-        try {
-            Thread.sleep(200);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        if (load)
-            try {
-                IOIOUtils.getUtils().getSensor_High().write(false);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        else
-            try {
-                IOIOUtils.getUtils().getSensor_High().write(true);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        //this.sensorsTestHelper.sendVoltage(voltage);
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        this.sensorsTestHelper.closedtestsamplesrefsensor2.clear();
-        Handler h = new Handler(Looper.getMainLooper());
-        h.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                sensorsTestHelper.accetpData(false);
-                sensorsTestHelper.samplingSensor0 = false;
-                sensorsTestHelper.samplingSensor1 = false;
-                sensorsTestHelper.samplingSensor2 = false;
-                endTest();
-            }
-        }, SensorsTestHelper.CALIBRATION_TIME_MS * 1);
-
     }
 
     public boolean getOverallResult() {

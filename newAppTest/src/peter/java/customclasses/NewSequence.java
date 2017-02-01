@@ -451,15 +451,15 @@ public class NewSequence implements NewSequenceInterface {
 
 
         sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 0, 10, 10,
-                "Sensor Input TEST, NO LOAD, GAIN/ZERO @ 127/0"));
+                false, "Sensor Input TEST, NO LOAD, GAIN/ZERO @ 127/0"));
         sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 100, 200, 10,
-                "Sensor Input TEST, LOADED, GAIN/ZERO @ 25/0"));
+                false, "Sensor Input TEST, LOADED, GAIN/ZERO @ 25/0"));
         sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 750, 850, 10,
-                "Sensor Input TEST, LOADED, GAIN/ZERO @ 127/0"));
+                false, "Sensor Input TEST, LOADED, GAIN/ZERO @ 127/0"));
         sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 1280, 1380, 10,
-                "Sensor Input TEST, LOADED, GAIN/ZERO @ 210/0"));
+                false, "Sensor Input TEST, LOADED, GAIN/ZERO @ 210/0"));
         sequence.add(new SensorTestWrapper(false, activity, ioio, 3, 0, 50, 10,
-                "Sensor Input TEST, LOADED, GAIN/ZERO @ 127/50"));
+                false, "Sensor Input TEST, LOADED, GAIN/ZERO @ 127/50"));
 
 
 //		MyDummyTest test = new MyDummyTest.Builder().setActivity(activity).setDescription("first").setIoio(ioio).setIsBlockingTest(false).createMyDummyTest();

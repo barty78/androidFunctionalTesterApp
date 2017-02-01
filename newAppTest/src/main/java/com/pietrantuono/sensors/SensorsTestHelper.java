@@ -28,11 +28,10 @@ public class SensorsTestHelper implements OnSampleCallback {
 	TextView sensor2ref = null;
 	private NewSessionPollingThread newSessionPollingThreadref = null;
 	SessionSamples samplesref = null;
-	SessionSamples samples = null;
+	private SessionSamples samples = null;
 
-	SessionSamples closedtestsamplesrefsensor0 = null;
-	SessionSamples closedtestsamplesrefsensor1 = null;
-	SessionSamples closedtestsamplesrefsensor2 = null;
+	SessionSamples[] closedtestsamples = {null,null,null};
+
 	private final int SAMPLING_HZ = 10;
 	static final String TAG = "SensorsTestHelper";
 	final static int INITIAL_FREEMODE_SAMPLE_CAPACITY = 512;
@@ -42,6 +41,9 @@ public class SensorsTestHelper implements OnSampleCallback {
 	final short NORMAL_VOLTAGE = 127;
 	@SuppressWarnings("ucd")
 	final int CALIBRATION_MIN_SAMPLES = 10;
+	final static int SENSOR0 = 0;
+	final static int SENSOR1 = 1;
+	final static int SENSOR2 = 2;
 	boolean samplingSensor0=true;
 	boolean samplingSensor1=true;
 	boolean samplingSensor2=true;
@@ -63,9 +65,8 @@ public class SensorsTestHelper implements OnSampleCallback {
 		this.sensor1ref = (TextView) activity.findViewById(R.id.sensor1);
 		this.sensor2ref = (TextView) activity.findViewById(R.id.sensor2);
 		this.samplesref = new SessionSamples(INITIAL_FREEMODE_SAMPLE_CAPACITY);
-		this.closedtestsamplesrefsensor0= new SessionSamples(INITIAL_FREEMODE_SAMPLE_CAPACITY);
-		this.closedtestsamplesrefsensor1= new SessionSamples(INITIAL_FREEMODE_SAMPLE_CAPACITY);
-		this.closedtestsamplesrefsensor2= new SessionSamples(INITIAL_FREEMODE_SAMPLE_CAPACITY);
+		this.closedtestsamples = new SessionSamples[]{this.samplesref, this.samplesref, this.samplesref};
+
 		NewPFMATDevice.getDevice().setCallback(this);
 		this.newSessionPollingThreadref = new NewSessionPollingThread(NewPFMATDevice.getDevice(),
 				System.currentTimeMillis(), 1000 / SAMPLING_HZ);
@@ -94,12 +95,12 @@ public class SensorsTestHelper implements OnSampleCallback {
 		if (activity == null || sensor0tv == null || sensor1tv == null || sensor2tv == null || samples == null)
 			return;
 		samples.add(requestTimestampMS, new Force(sensor0, sensor1, sensor2));
-		if (closedtestsamplesrefsensor0 != null &&samplingSensor0)
-			closedtestsamplesrefsensor0.add(requestTimestampMS, new Force(sensor0, sensor1, sensor2));
-		if (closedtestsamplesrefsensor1 != null && samplingSensor1)
-			closedtestsamplesrefsensor1.add(requestTimestampMS, new Force(sensor0, sensor1, sensor2));
-		if (closedtestsamplesrefsensor2 != null && samplingSensor2)
-			closedtestsamplesrefsensor2.add(requestTimestampMS, new Force(sensor0, sensor1, sensor2));
+		if (closedtestsamples[0] != null &&samplingSensor0)
+			closedtestsamples[0].add(requestTimestampMS, new Force(sensor0, sensor1, sensor2));
+		if (closedtestsamples[1] != null &&samplingSensor0)
+			closedtestsamples[1].add(requestTimestampMS, new Force(sensor0, sensor1, sensor2));
+		if (closedtestsamples[2] != null &&samplingSensor0)
+			closedtestsamples[2].add(requestTimestampMS, new Force(sensor0, sensor1, sensor2));
 
 		activity.runOnUiThread(new Runnable() {
 			@Override
@@ -215,7 +216,7 @@ public class SensorsTestHelper implements OnSampleCallback {
         }
     }
 
-    public void accetpData(boolean accept) {
+    public void acceptData(boolean accept) {
         this.acceptdata = accept;
     }
 

@@ -84,6 +84,4 @@ public class SequenceCursorRecyclerAdapter extends CursorRecyclerAdapter<Sequenc
         }
         return TEST;
     }
-
-
 }
