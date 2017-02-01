@@ -5,7 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.pietrantuono.fragments.devices.DevicesListFragment;
-import com.pietrantuono.fragments.sequence.NewSequenceFragment;
+import com.pietrantuono.fragments.sequence.SequenceFragment;
 
 public class PagerAdapter extends FragmentPagerAdapter {
 
@@ -20,11 +20,11 @@ public class PagerAdapter extends FragmentPagerAdapter {
             case 0:
                 return DevicesListFragment.newInstance();
             case 1:
-                return NewSequenceFragment.newInstance();
+                return SequenceFragment.newInstance();
             case 2:
                 return SerialConsoleFragment.newInstance();
             default:
-                return NewSequenceFragment.newInstance();
+                return SequenceFragment.newInstance();
         }
     }
 

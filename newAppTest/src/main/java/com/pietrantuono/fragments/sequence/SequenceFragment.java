@@ -23,9 +23,9 @@ import com.pietrantuono.sequencedb.SequenceContracts;
 import com.pietrantuono.sequencedb.SequenceProvider;
 
 
-public class NewSequenceFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
+public class SequenceFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
     @SuppressWarnings("unused")
-    private static final String TAG = "NewSequenceFragment";
+    private static final String TAG = "SequenceFragment";
     private static final int SEQUENCE_LOADER_MANAGER = 1;
     private SequenceFragmentCallback mListener;
     private RecyclerView recyclerView;
@@ -35,11 +35,11 @@ public class NewSequenceFragment extends Fragment implements LoaderManager.Loade
     private final String RECORD_ID = "record_id";
     private SequenceCursorRecyclerAdapter mAdapter;
 
-    public NewSequenceFragment() {
+    public SequenceFragment() {
     }
 
-    public static NewSequenceFragment newInstance() {
-        return new NewSequenceFragment();
+    public static SequenceFragment newInstance() {
+        return new SequenceFragment();
     }
 
     @Override
@@ -59,7 +59,7 @@ public class NewSequenceFragment extends Fragment implements LoaderManager.Loade
     private void initLoader(long recordId) {
         Bundle bundle = new Bundle();
         bundle.putLong(RECORD_ID, recordId);
-        getLoaderManager().initLoader(SEQUENCE_LOADER_MANAGER, bundle, NewSequenceFragment.this);
+        getLoaderManager().initLoader(SEQUENCE_LOADER_MANAGER, bundle, SequenceFragment.this);
     }
 
 
@@ -67,7 +67,7 @@ public class NewSequenceFragment extends Fragment implements LoaderManager.Loade
         this.recordId=recordId;
         Bundle bundle = new Bundle();
         bundle.putLong(RECORD_ID, recordId);
-        getLoaderManager().restartLoader(SEQUENCE_LOADER_MANAGER, bundle, NewSequenceFragment.this);
+        getLoaderManager().restartLoader(SEQUENCE_LOADER_MANAGER, bundle, SequenceFragment.this);
     }
 
     @Override
@@ -89,7 +89,7 @@ public class NewSequenceFragment extends Fragment implements LoaderManager.Loade
         super.onAttach(context);
         if (context instanceof SequenceFragmentCallback) {
             mListener = (SequenceFragmentCallback) context;
-            mListener.registerSequenceFragment(NewSequenceFragment.this);
+            mListener.registerSequenceFragment(SequenceFragment.this);
         } else {
             throw new RuntimeException(context.toString() + " must implement OnFragmentInteractionListener");
         }
@@ -174,7 +174,7 @@ public class NewSequenceFragment extends Fragment implements LoaderManager.Loade
     }
 
     public interface SequenceFragmentCallback {
-        void registerSequenceFragment(NewSequenceFragment sequenceFragment);
+        void registerSequenceFragment(SequenceFragment sequenceFragment);
         void unregisterSequenceFragment();
     }
 

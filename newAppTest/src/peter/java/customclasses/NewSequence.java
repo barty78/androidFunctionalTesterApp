@@ -9,9 +9,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 import android.app.Activity;
 
 import com.pietrantuono.activities.MainActivity;
-import com.pietrantuono.constants.NewMResult;
-import com.pietrantuono.constants.NewMSensorResult;
-import com.pietrantuono.constants.NewSequenceInterface;
+import com.pietrantuono.constants.Result;
+import com.pietrantuono.constants.SensorResult;
+import com.pietrantuono.constants.SequenceInterface;
 import com.pietrantuono.ioioutils.Units;
 import com.pietrantuono.tests.implementations.AccelerometerSelfTest;
 import com.pietrantuono.tests.implementations.BluetoothConnectTestForTesting;
@@ -24,7 +24,6 @@ import com.pietrantuono.tests.implementations.ReadFirmwareversionTest;
 import com.pietrantuono.tests.implementations.ReadModelNumberTest;
 import com.pietrantuono.tests.implementations.SensorTestWrapper;
 import com.pietrantuono.tests.implementations.VoltageTest;
-import com.pietrantuono.tests.implementations.steps.SetDigitalOutputStep;
 import com.pietrantuono.tests.implementations.steps.SetSensorVoltagesStep;
 import com.pietrantuono.tests.implementations.steps.Step;
 import com.pietrantuono.tests.implementations.upload.UploadFirmwareTest;
@@ -40,7 +39,7 @@ import server.pojos.Job;
 import ioio.lib.api.IOIO;
 import server.pojos.Sequence;
 
-public class NewSequence implements NewSequenceInterface {
+public class NewSequence implements SequenceInterface {
     private List<Test> sequence = null;
     private volatile AtomicInteger currentStepNumber = new AtomicInteger(-1);
     private volatile Test currentStep = null;
@@ -51,7 +50,7 @@ public class NewSequence implements NewSequenceInterface {
     private Job job;
 
 	/* (non-Javadoc)
-     * @see com.pietrantuono.constants.NewSequenceInterface#Next()
+     * @see com.pietrantuono.constants.SequenceInterface#Next()
 	 */
 
     @Override
@@ -141,16 +140,16 @@ public class NewSequence implements NewSequenceInterface {
             return ("" + 1);
     }
 
-    public ArrayList<NewMResult> getEmptyResultsList() {
-        ArrayList<NewMResult> results = new ArrayList<NewMResult>();
+    public ArrayList<Result> getEmptyResultsList() {
+        ArrayList<Result> results = new ArrayList<Result>();
         for (int i = 0; i < sequence.size(); i++) {
             if (!sequence.get(i).isSensorTest())
-                results.add(new NewMResult(sequence.get(i)));
+                results.add(new Result(sequence.get(i)));
                 // else if(sequence.get(i) instanceof
                 // ClosedTestWrapper)results.add(new
                 // ClosedTestResult(sequence.get(i)));
             else
-                results.add(new NewMSensorResult(sequence.get(i)));
+                results.add(new SensorResult(sequence.get(i)));
         }
         return results;
     }

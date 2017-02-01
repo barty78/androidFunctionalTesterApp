@@ -1,8 +1,6 @@
 package com.pietrantuono.sensors;
 
-import com.pietrantuono.activities.MainActivity;
-import com.pietrantuono.constants.NewMSensorResult;
-import com.pietrantuono.ioioutils.IOIOUtils;
+import com.pietrantuono.constants.SensorResult;
 import com.pietrantuono.pericoach.newtestapp.R;
 import com.pietrantuono.tests.ErrorCodes;
 import com.pietrantuono.tests.implementations.SensorTestWrapper;
@@ -17,8 +15,6 @@ import android.os.Looper;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import customclasses.DebugHelper;
 import hydrix.pfmat.generic.Force;
@@ -145,7 +141,7 @@ public class ClosedTest extends SensorTest {
         }
     }
 
-    public NewMSensorResult endTest() {
+    public SensorResult endTest() {
         if (stopped) return mSensorResult;
         if (interrupted) {
             wrapper.setErrorcode((long) ErrorCodes.SENSOR_TEST_BT_CONNECTION_LOST);
@@ -314,7 +310,7 @@ public class ClosedTest extends SensorTest {
         return mSensorResult.isTestsuccessful();
     }
 
-    public NewMSensorResult getSensorResult() {
+    public SensorResult getSensorResult() {
         return mSensorResult;
     }
 

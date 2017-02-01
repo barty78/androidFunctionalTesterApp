@@ -19,7 +19,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.parser.BinaryParser;
-import com.pietrantuono.activities.NewIOIOActivityListener;
+import com.pietrantuono.activities.IOIOActivityListener;
 import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.pericoach.newtestapp.BuildConfig;
 import com.pietrantuono.tests.ErrorCodes;
@@ -91,7 +91,7 @@ public class FirmWareUploader {
 
     public FirmWareUploader(OutputStream TX, InputStream RX, Activity activity,
                             UploadDialog uploadDialog,
-                            NewIOIOActivityListener listner, IOIO ioio_) {
+                            IOIOActivityListener listner, IOIO ioio_) {
         this.TX = TX;
         this.activity = activity;
         this.RX = RX;

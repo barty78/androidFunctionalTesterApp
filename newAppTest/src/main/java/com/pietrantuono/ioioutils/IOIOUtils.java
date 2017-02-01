@@ -27,7 +27,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
-import com.pietrantuono.activities.NewIOIOActivityListener;
+import com.pietrantuono.activities.IOIOActivityListener;
 import com.pietrantuono.fragments.SerialConsoleFragmentCallback;
 import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.timelogger.TimeLogger;
@@ -236,10 +236,10 @@ public class IOIOUtils implements IOIOUtilsInterface {
     }
 
     /* (non-Javadoc)
-     * @see com.pietrantuono.ioioutils.IOIOUtilsInterface#appcloseall(com.pietrantuono.activities.NewIOIOActivityListener, android.app.Activity)
+     * @see com.pietrantuono.ioioutils.IOIOUtilsInterface#appcloseall(com.pietrantuono.activities.IOIOActivityListener, android.app.Activity)
      */
     @Override
-    public void appcloseall(final NewIOIOActivityListener listener,
+    public void appcloseall(final IOIOActivityListener listener,
                             final Activity ac) {
 
         try {
@@ -251,10 +251,10 @@ public class IOIOUtils implements IOIOUtilsInterface {
     }
 
     /* (non-Javadoc)
-     * @see com.pietrantuono.ioioutils.IOIOUtilsInterface#seqcloseall(com.pietrantuono.activities.NewIOIOActivityListener, android.app.Activity)
+     * @see com.pietrantuono.ioioutils.IOIOUtilsInterface#seqcloseall(com.pietrantuono.activities.IOIOActivityListener, android.app.Activity)
      */
     @Override
-    public void seqcloseall(final NewIOIOActivityListener listener,
+    public void seqcloseall(final IOIOActivityListener listener,
                          final Activity ac) {
 
         stopUartThread();
@@ -379,11 +379,11 @@ public class IOIOUtils implements IOIOUtilsInterface {
     }
 
     /* (non-Javadoc)
-     * @see com.pietrantuono.ioioutils.IOIOUtilsInterface#configure(com.pietrantuono.activities.NewIOIOActivityListener, ioio.lib.api.IOIO, android.app.Activity)
+     * @see com.pietrantuono.ioioutils.IOIOUtilsInterface#configure(com.pietrantuono.activities.IOIOActivityListener, ioio.lib.api.IOIO, android.app.Activity)
      * Configure is called when IOIO is connected, only setup IOIO pins here that a relevant to application context.
      */
     @Override
-    public void configure(final NewIOIOActivityListener listner,
+    public void configure(final IOIOActivityListener listner,
                            final IOIO ioio_, final Activity ac) {
 
         if (PeriCoachTestApplication.getCurrentJob().getTesttypeId() != 1) {
@@ -401,11 +401,11 @@ public class IOIOUtils implements IOIOUtilsInterface {
     }
 
     /* (non-Javadoc)
-     * @see com.pietrantuono.ioioutils.IOIOUtilsInterface#initialize(com.pietrantuono.activities.NewIOIOActivityListener, ioio.lib.api.IOIO, android.app.Activity)
+     * @see com.pietrantuono.ioioutils.IOIOUtilsInterface#initialize(com.pietrantuono.activities.IOIOActivityListener, ioio.lib.api.IOIO, android.app.Activity)
      * Initialize is called at the start of each sequence, only setup IOIO pins here that a relevant to each sequence
      */
     @Override
-    public void initialize(final NewIOIOActivityListener listner,
+    public void initialize(final IOIOActivityListener listner,
                            final IOIO ioio_, final Activity ac) {
 
         isinterrupted = false;

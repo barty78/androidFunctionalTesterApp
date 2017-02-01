@@ -3,7 +3,7 @@ package com.pietrantuono.ioioutils;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import com.pietrantuono.activities.NewIOIOActivityListener;
+import com.pietrantuono.activities.IOIOActivityListener;
 
 import android.app.Activity;
 
@@ -17,15 +17,15 @@ import ioio.lib.api.Uart;
 
 public interface IOIOUtilsInterface {
 
-	//String getBarcode(NewIOIOActivityListener listner, IOIO ioio_, Activity activity);
+	//String getBarcode(IOIOActivityListener listner, IOIO ioio_, Activity activity);
 
-	void seqcloseall(NewIOIOActivityListener listener, Activity ac);
+	void seqcloseall(IOIOActivityListener listener, Activity ac);
 
-	void appcloseall(NewIOIOActivityListener listener, Activity ac);
+	void appcloseall(IOIOActivityListener listener, Activity ac);
 
-	void configure(NewIOIOActivityListener listner, IOIO ioio_, Activity ac);
+	void configure(IOIOActivityListener listner, IOIO ioio_, Activity ac);
 
-	void initialize(NewIOIOActivityListener listner, IOIO ioio_, Activity ac);
+	void initialize(IOIOActivityListener listner, IOIO ioio_, Activity ac);
 
 	void ioioSync(IOIO ioio_);
 

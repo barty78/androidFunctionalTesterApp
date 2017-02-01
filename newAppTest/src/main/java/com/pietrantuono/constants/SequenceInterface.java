@@ -7,7 +7,7 @@ import com.pietrantuono.activities.MainActivity;
 import com.pietrantuono.tests.superclass.Test;
 
 @SuppressWarnings("unused")
-public interface NewSequenceInterface {
+public interface SequenceInterface {
 
 	void executeCurrentTest();
 
@@ -57,7 +57,7 @@ public interface NewSequenceInterface {
 
 	void addTest(Test testt);
 
-	ArrayList<NewMResult> getEmptyResultsList();
+	ArrayList<Result> getEmptyResultsList();
 
 	void deleteUnusedTests();
 

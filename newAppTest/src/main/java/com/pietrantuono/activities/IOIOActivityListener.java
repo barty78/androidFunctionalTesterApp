@@ -4,7 +4,7 @@ import com.pietrantuono.btutility.BTUtility;
 
 import server.pojos.Device;
 
-public interface NewIOIOActivityListener {
+public interface IOIOActivityListener {
 
 
     void goAndExecuteNextTest();

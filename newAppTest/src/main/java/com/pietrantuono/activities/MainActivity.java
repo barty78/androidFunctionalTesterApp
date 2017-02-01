@@ -7,9 +7,10 @@ import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.core.CrashlyticsCore;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.pietrantuono.constants.SequenceInterface;
 import com.pietrantuono.fragments.SerialConsoleFragmentCallback;
 import com.pietrantuono.fragments.devices.DevicesListFragment;
-import com.pietrantuono.fragments.sequence.NewSequenceFragment;
+import com.pietrantuono.fragments.sequence.SequenceFragment;
 import com.pietrantuono.activities.uihelper.ActivityCallback;
 import com.pietrantuono.activities.uihelper.MyDialogInterface;
 import com.pietrantuono.activities.uihelper.MyDialogs;
@@ -17,12 +18,11 @@ import com.pietrantuono.activities.uihelper.UIHelper;
 import com.pietrantuono.activities.uihelper.UIHelper.ActivityUIHelperCallback;
 import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.btutility.BTUtility;
-import com.pietrantuono.constants.NewMResult;
-import com.pietrantuono.constants.NewMSensorResult;
+import com.pietrantuono.constants.Result;
+import com.pietrantuono.constants.SensorResult;
 
 import customclasses.NewSequence;
 
-import com.pietrantuono.constants.NewSequenceInterface;
 import com.pietrantuono.ioioutils.IOIOUtils;
 import com.pietrantuono.ioioutils.PCBConnectedCallback;
 import com.pietrantuono.ioioutils.PCBDetectHelper;
@@ -74,9 +74,9 @@ import server.utils.RecordFromSequenceCreator;
 
 @SuppressWarnings("unused")
 public class MainActivity extends AppCompatActivity
-        implements ActivtyWrapper, IOIOLooperProvider, NewIOIOActivityListener,
+        implements ActivtyWrapper, IOIOLooperProvider, IOIOActivityListener,
         PCBConnectedCallback, SensorTestCallback, ActivityUIHelperCallback,
-        MyOnCancelListener.Callback, ActivityCallback, NewSequenceFragment.SequenceFragmentCallback, SerialConsoleFragmentCallback,
+        MyOnCancelListener.Callback, ActivityCallback, SequenceFragment.SequenceFragmentCallback, SerialConsoleFragmentCallback,
         DevicesListFragment.CallBack {
 
     private static IOIO myIOIO;
@@ -89,11 +89,11 @@ public class MainActivity extends AppCompatActivity
 //    private String mac = "";
     private Boolean destroying = false;
     private PCBDetectHelperInterface detectHelper = null;
-    private final ArrayList<ArrayList<NewMResult>> results = new ArrayList<ArrayList<NewMResult>>();
+    private final ArrayList<ArrayList<Result>> results = new ArrayList<ArrayList<Result>>();
     private int CURRENT_ITERATION_NUMBER = -1;
     private UIHelper uiHelper;
-    private static NewSequenceInterface newSequence;
-    private static NewSequenceInterface sequenceForTests = null;
+    private static SequenceInterface newSequence;
+    private static SequenceInterface sequenceForTests = null;
     private BTUtility btutility;
     static final String JOB = "job";
     private Job job = null;
@@ -495,7 +495,7 @@ public class MainActivity extends AppCompatActivity
         recordId = SequenceProviderHelper.createNewRecord(MainActivity.this);
         uiHelper.setRecordId(recordId);
         uiHelper.setStatusMSG("TEST \nSTARTED", null);
-        results.add(((NewSequenceInterface) newSequence).getEmptyResultsList());
+        results.add(((SequenceInterface) newSequence).getEmptyResultsList());
         uiHelper.startChronometer(MainActivity.this);
 
         increaseIterationNumber();// NA
@@ -546,7 +546,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onSensorTestCompleted(NewMSensorResult mSensorResult, server.pojos.Test testToBeParsed) {
+    public void onSensorTestCompleted(SensorResult mSensorResult, server.pojos.Test testToBeParsed) {
         try {
             results.get(getIterationNumber()).set(newSequence.getCurrentTestNumber(), mSensorResult);
         } catch (Exception e) {
@@ -592,7 +592,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public ArrayList<ArrayList<NewMResult>> getResults() {
+    public ArrayList<ArrayList<Result>> getResults() {
         return results;
     }
 
@@ -734,8 +734,8 @@ public class MainActivity extends AppCompatActivity
         this.looper = looper;
     }
 
-    public NewSequenceInterface getNewSequence() {
-        NewSequenceInterface newSequenceInterface;
+    public SequenceInterface getNewSequence() {
+        SequenceInterface newSequenceInterface;
         if (job.getTestId() == 999) {
             newSequenceInterface = new NewSequence(MainActivity.this, myIOIO, job);
         } else {
@@ -757,7 +757,7 @@ public class MainActivity extends AppCompatActivity
         return newSequenceInterface;
     }
 
-    public void setNewSequence(NewSequenceInterface newSequence) {
+    public void setNewSequence(SequenceInterface newSequence) {
         MainActivity.sequenceForTests = newSequence;
     }
 
@@ -766,7 +766,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void registerSequenceFragment(NewSequenceFragment sequenceFragment) {
+    public void registerSequenceFragment(SequenceFragment sequenceFragment) {
         if (uiHelper != null && sequenceFragment != null)
             uiHelper.registerSequenceFragment(sequenceFragment);
     }

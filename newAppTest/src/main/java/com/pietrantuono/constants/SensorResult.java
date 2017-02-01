@@ -2,7 +2,7 @@ package com.pietrantuono.constants;
 
 import com.pietrantuono.tests.superclass.Test;
 
-public class NewMSensorResult extends NewMResult {
+public class SensorResult extends com.pietrantuono.constants.Result {
 	private Boolean singleSensorTest = false;
 
 	public static int min = 0;
@@ -161,7 +161,7 @@ public class NewMSensorResult extends NewMResult {
 	}
 
 	
-	public NewMSensorResult(Test test) {
+	public SensorResult(Test test) {
 		super(test);
 	}
 
@@ -195,7 +195,7 @@ public class NewMSensorResult extends NewMResult {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		NewMSensorResult other = (NewMSensorResult) obj;
+		SensorResult other = (SensorResult) obj;
 		if (getSensor0avg() != other.getSensor0avg())
 			return false;
 		if (getSensor0AvgPass() == null) {

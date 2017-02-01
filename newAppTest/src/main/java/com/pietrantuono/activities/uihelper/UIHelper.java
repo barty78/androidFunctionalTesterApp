@@ -1,19 +1,18 @@
 package com.pietrantuono.activities.uihelper;
 
-import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 import com.github.lzyzsd.circleprogress.DonutProgress;
+import com.pietrantuono.constants.SequenceInterface;
 import com.pietrantuono.devicesprovider.DevicesContentProvider;
 import com.pietrantuono.fragments.PagerAdapter;
-import com.pietrantuono.fragments.sequence.NewSequenceFragment;
+import com.pietrantuono.fragments.sequence.SequenceFragment;
 import com.pietrantuono.application.PeriCoachTestApplication;
-import com.pietrantuono.constants.NewMResult;
-import com.pietrantuono.constants.NewMSensorResult;
-import com.pietrantuono.constants.NewSequenceInterface;
+import com.pietrantuono.constants.Result;
+import com.pietrantuono.constants.SensorResult;
 import com.pietrantuono.pericoach.newtestapp.R;
 import com.pietrantuono.recordsdb.NewRecordsSQLiteOpenHelper;
 import com.pietrantuono.recordsdb.RecordsContract;
@@ -40,7 +39,6 @@ import android.view.ViewTreeObserver;
 import android.view.ViewTreeObserver.OnPreDrawListener;
 import android.widget.Chronometer;
 import android.widget.Chronometer.OnChronometerTickListener;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -50,11 +48,11 @@ import server.pojos.Job;
 public class UIHelper {
 
     private final Activity activity;
-    private NewSequenceInterface sequence;
+    private SequenceInterface sequence;
     private static final String TAG = "UIHelper";
-    private static NewSequenceFragment sequenceFragment;
+    private static SequenceFragment sequenceFragment;
 
-    public UIHelper(Activity activity, NewSequenceInterface sequence) {
+    public UIHelper(Activity activity, SequenceInterface sequence) {
         this.activity = activity;
         this.sequence = sequence;
         setOverallFailOrPass(false, "");
@@ -100,7 +98,7 @@ public class UIHelper {
         Log.d(TAG, "Chronometer stopped");
     }
 
-    public void registerSequenceFragment(NewSequenceFragment sequenceFragment) {
+    public void registerSequenceFragment(SequenceFragment sequenceFragment) {
         this.sequenceFragment = sequenceFragment;
     }
 
@@ -189,7 +187,7 @@ public class UIHelper {
     }
 
     public interface ActivityUIHelperCallback {
-        ArrayList<ArrayList<NewMResult>> getResults();
+        ArrayList<ArrayList<Result>> getResults();
 
         int getIterationNumber();
 
@@ -309,12 +307,12 @@ public class UIHelper {
             for (int i = 0; i <= sequence.getNumberOfSteps() - 1; i++) {
                 if (!sequence.getSequence().get(i).isTest()) continue;
                 if (sequence.getSequence().get(i).isSensorTest()) {
-                    ArrayList<NewMResult> currentResults = callback.getResults().get(callback.getIterationNumber());
+                    ArrayList<Result> currentResults = callback.getResults().get(callback.getIterationNumber());
                     if (currentResults == null || currentResults.size() <= 0) {
                         success = false;
                         continue;
                     }
-                    NewMResult currentResult = currentResults.get(i);
+                    Result currentResult = currentResults.get(i);
                     if (currentResult == null) {
                         success = false;
                         continue;
@@ -386,7 +384,7 @@ public class UIHelper {
         });
     }
 
-    public void addSensorTestCompletedRow(NewMSensorResult mSensorResult, long recordId) {
+    public void addSensorTestCompletedRow(SensorResult mSensorResult, long recordId) {
         if(mSensorResult==null)return;
         ContentValues contentValues = new ContentValues();
         contentValues.put(SequenceContracts.Tests.TABLE_TESTS_IS_NORMAL_TEST, 0);
@@ -419,7 +417,7 @@ public class UIHelper {
     /**
      * Does nothing
      */
-    public void setSequence(NewSequenceInterface sequence) {
+    public void setSequence(SequenceInterface sequence) {
         this.sequence = sequence;
 
     }

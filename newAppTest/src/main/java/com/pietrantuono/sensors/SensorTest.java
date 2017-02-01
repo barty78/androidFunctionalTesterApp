@@ -1,11 +1,10 @@
 package com.pietrantuono.sensors;
 
-import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.util.concurrent.TimeoutException;
 
 import com.pietrantuono.activities.MainActivity;
-import com.pietrantuono.constants.NewMSensorResult;
+import com.pietrantuono.constants.SensorResult;
 import com.pietrantuono.ioioutils.IOIOUtils;
 import com.pietrantuono.pericoach.newtestapp.R;
 import com.pietrantuono.tests.ErrorCodes;
@@ -17,7 +16,6 @@ import android.os.HandlerThread;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import customclasses.DebugHelper;
@@ -38,7 +36,7 @@ public class SensorTest {
     protected short voltage = -1;
     protected short zeroVoltage = -1;
     protected Boolean load = null;
-    protected NewMSensorResult mSensorResult = null;
+    protected SensorResult mSensorResult = null;
     protected Boolean stopped = false;
     public boolean isTest = false;
     Test testToBeParsed;
@@ -60,7 +58,7 @@ public class SensorTest {
     public SensorTest(Activity activity, SensorTestWrapper wrapper, float lowerLimit, float upperLimit, float varLimit) {
         Log.d("SensorTest", "constucor");
         this.activity = new WeakReference<Activity>(activity);
-        this.mSensorResult = new NewMSensorResult(wrapper);
+        this.mSensorResult = new SensorResult(wrapper);
         this.mSensorResult.setDescription(wrapper.getDescription());
         this.lowerLimit = lowerLimit;
         this.upperLimit = upperLimit;
@@ -108,10 +106,10 @@ public class SensorTest {
 
     public boolean[] checkResult(short[] sensor) {
         boolean[] result = {false, false};
-        if (sensor[NewMSensorResult.avg] <= upperLimit && sensor[NewMSensorResult.avg] >= lowerLimit) {
+        if (sensor[SensorResult.avg] <= upperLimit && sensor[SensorResult.avg] >= lowerLimit) {
             result[AVG_TEST] = true;
         }
-        if (Math.abs(sensor[NewMSensorResult.max] - sensor[NewMSensorResult.min]) < varLimit) {
+        if (Math.abs(sensor[SensorResult.max] - sensor[SensorResult.min]) < varLimit) {
             result[VAR_TEST] = true;
         }
         return result;
@@ -224,7 +222,7 @@ public class SensorTest {
         }, (SensorsTestHelper.CALIBRATION_TIME_MS * 1) + DELAY);
     }
 
-    public NewMSensorResult checkSampleSize() {
+    public SensorResult checkSampleSize() {
         if (this.sensorsTestHelper.samplesref == null) {
             Log.d(SensorsTestHelper.TAG, "samplesref == null " + (this.sensorsTestHelper.samplesref == null));
             wrapper.setErrorcode((long) ErrorCodes.SENSORTEST_INSUFFICIENT_SAMPLES);
@@ -257,7 +255,7 @@ public class SensorTest {
         return mSensorResult;
     }
 
-    public NewMSensorResult endTest() {
+    public SensorResult endTest() {
         if (stopped) return mSensorResult;
         if (interrupted) {
             wrapper.setErrorcode((long) ErrorCodes.SENSOR_TEST_BT_CONNECTION_LOST);
@@ -366,12 +364,12 @@ public class SensorTest {
         return mSensorResult.isTestsuccessful();
     }
 
-    public NewMSensorResult getSensorResult() {
+    public SensorResult getSensorResult() {
         return mSensorResult;
     }
 
     @SuppressWarnings("unused")
-    public void setmSensorResult(NewMSensorResult mSensorResult) {
+    public void setmSensorResult(SensorResult mSensorResult) {
         this.mSensorResult = mSensorResult;
     }
 

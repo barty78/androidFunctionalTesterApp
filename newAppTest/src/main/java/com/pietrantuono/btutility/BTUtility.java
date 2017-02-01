@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 import com.pietrantuono.activities.ActivtyWrapper;
-import com.pietrantuono.activities.NewIOIOActivityListener;
+import com.pietrantuono.activities.IOIOActivityListener;
 import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.ioioutils.IOIOUtils;
 import com.pietrantuono.pericoach.newtestapp.BuildConfig;
@@ -157,7 +157,7 @@ public class BTUtility {
             return connectUsingMac();
 
         }
-        ((NewIOIOActivityListener) activityRef.get()).addFailOrPass(
+        ((IOIOActivityListener) activityRef.get()).addFailOrPass(
                 false, false, "CONNECT FAILED", bluetoothConnectTest.getDescription(), bluetoothConnectTest.testToBeParsed);
         return true;
     }
@@ -367,16 +367,16 @@ public class BTUtility {
             return;
         if (bluetoothConnectTest != null) bluetoothConnectTest.setSuccess(true);
 
-        if ((NewIOIOActivityListener) activityRef.get() == null)
+        if ((IOIOActivityListener) activityRef.get() == null)
             return;
         Handler handler = new Handler();
         handler.post(new Runnable() {
             @Override
             public void run() {
                 insertDeviceAndScancode(mDeviceId, scancode);
-                ((NewIOIOActivityListener) activityRef.get()).addFailOrPass(
+                ((IOIOActivityListener) activityRef.get()).addFailOrPass(
                         true, true, "Connected", bluetoothConnectTest.getDescription(), bluetoothConnectTest.testToBeParsed);
-                //((NewIOIOActivityListener) activityRef.get()).goAndExecuteNextTest();
+                //((IOIOActivityListener) activityRef.get()).goAndExecuteNextTest();
             }
         });
     }

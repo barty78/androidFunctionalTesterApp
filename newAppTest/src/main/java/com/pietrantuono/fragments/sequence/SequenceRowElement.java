@@ -1,7 +1,7 @@
 package com.pietrantuono.fragments.sequence;
 
-import com.pietrantuono.constants.NewMSensorResult;
-import com.pietrantuono.constants.NewSequenceInterface;
+import com.pietrantuono.constants.SensorResult;
+import com.pietrantuono.constants.SequenceInterface;
 
 import server.pojos.Test;
 
@@ -12,14 +12,14 @@ import server.pojos.Test;
 public class SequenceRowElement {
 
     public static abstract class RowElement{
-        final NewSequenceInterface sequence;
+        final SequenceInterface sequence;
 
-        public RowElement(NewSequenceInterface sequence) {
+        public RowElement(SequenceInterface sequence) {
             this.sequence = sequence;
         }
 
         @SuppressWarnings("unused")
-        public NewSequenceInterface getSequence(){
+        public SequenceInterface getSequence(){
             return sequence;
         }
     }
@@ -33,7 +33,7 @@ public class SequenceRowElement {
         private final boolean isSensorTest;
         private final Test testToBeParsed;
 
-        public TestRowElement(Boolean istest, Boolean success, String reading, String otherreading, String description, boolean isSensorTest, Test testToBeParsed, NewSequenceInterface sequence) {
+        public TestRowElement(Boolean istest, Boolean success, String reading, String otherreading, String description, boolean isSensorTest, Test testToBeParsed, SequenceInterface sequence) {
             super(sequence);
             this.description = description;
             this.isSensorTest = isSensorTest;
@@ -74,31 +74,31 @@ public class SequenceRowElement {
         }
 
         @Override
-        public NewSequenceInterface getSequence() {
+        public SequenceInterface getSequence() {
             return sequence;
         }
     }
 
     public static class SensorTestRowElement extends RowElement{
-        private NewMSensorResult mSensorResult;
+        private SensorResult mSensorResult;
         private Test testToBeParsed;
 
-        public SensorTestRowElement(NewMSensorResult mSensorResult, Test testToBeParsed,NewSequenceInterface sequence) {
+        public SensorTestRowElement(SensorResult mSensorResult, Test testToBeParsed, SequenceInterface sequence) {
             super(sequence);
             this.mSensorResult = mSensorResult;
             this.testToBeParsed = testToBeParsed;
 
         }
 
-        public SensorTestRowElement(NewSequenceInterface sequence) {
+        public SensorTestRowElement(SequenceInterface sequence) {
             super(sequence);
         }
 
-        public NewMSensorResult getmSensorResult() {
+        public SensorResult getmSensorResult() {
             return mSensorResult;
         }
 
-        public void setmSensorResult(NewMSensorResult mSensorResult) {
+        public void setmSensorResult(SensorResult mSensorResult) {
             this.mSensorResult = mSensorResult;
         }
 
@@ -107,7 +107,7 @@ public class SequenceRowElement {
         }
 
         @Override
-        public NewSequenceInterface getSequence() {
+        public SequenceInterface getSequence() {
             return sequence;
         }
     }
@@ -117,7 +117,7 @@ public class SequenceRowElement {
         private final boolean success;
         private String failReason;
 
-        public UploadRowElement(String description, boolean istest, boolean success,NewSequenceInterface sequence, String failReason) {
+        public UploadRowElement(String description, boolean istest, boolean success, SequenceInterface sequence, String failReason) {
             super(sequence);
             this.description = description;
             this.istest = istest;
@@ -142,7 +142,7 @@ public class SequenceRowElement {
         private final String description;
 
         @Override
-        public NewSequenceInterface getSequence() {
+        public SequenceInterface getSequence() {
             return sequence;
         }
 

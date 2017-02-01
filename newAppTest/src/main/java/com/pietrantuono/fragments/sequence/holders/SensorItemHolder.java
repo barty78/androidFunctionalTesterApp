@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.iconics.view.IconicsImageView;
-import com.pietrantuono.constants.NewMSensorResult;
+import com.pietrantuono.constants.SensorResult;
 import com.pietrantuono.fragments.sequence.SequenceRowElement;
 import com.pietrantuono.pericoach.newtestapp.R;
 import com.pietrantuono.sequencedb.SequenceContracts;
@@ -149,7 +149,7 @@ public class SensorItemHolder extends SequenceItemHolder {
     @Override
     public void setData(Cursor c) {
         SequenceRowElement.SensorTestRowElement rowElement = new SequenceRowElement.SensorTestRowElement(null);
-        NewMSensorResult result = new NewMSensorResult(null);
+        SensorResult result = new SensorResult(null);
         result.setSensor0avg((short) c.getLong(c.getColumnIndexOrThrow(SequenceContracts.Tests.TABLE_TESTS_S0_AVG)));
         result.setSensor0min((short) c.getLong(c.getColumnIndexOrThrow(SequenceContracts.Tests.TABLE_TESTS_S0_MIN)));
         result.setSensor0max((short) c.getLong(c.getColumnIndexOrThrow(SequenceContracts.Tests.TABLE_TESTS_S0_MAX)));

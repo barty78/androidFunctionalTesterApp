@@ -6,7 +6,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.parser.BinaryParser;
-import com.pietrantuono.activities.NewIOIOActivityListener;
+import com.pietrantuono.activities.IOIOActivityListener;
 import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.ioioutils.IOIOUtils;
 import com.pietrantuono.tests.implementations.upload.UploadDialog;
@@ -64,7 +64,7 @@ public class DummyFirmWareUploader {
     }
 
     public DummyFirmWareUploader(OutputStream TX, InputStream RX, Activity c,
-                                 NewIOIOActivityListener listner, IOIO ioio_, Boolean loopback, UploadDialog uploadDialog) {
+                                 IOIOActivityListener listner, IOIO ioio_, Boolean loopback, UploadDialog uploadDialog) {
         this.TX = TX;
         this.c = c;
         this.uploadDialog = uploadDialog;

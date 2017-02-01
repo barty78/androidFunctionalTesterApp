@@ -3,7 +3,7 @@ package com.pietrantuono.constants;
 import com.pietrantuono.tests.superclass.Test;
 
 @SuppressWarnings("unused")
-public class NewMResult {
+public class Result {
 	private Test test = null;
 	private Boolean issuccesfull=false;
 	private String description;
@@ -12,7 +12,7 @@ public class NewMResult {
 		return test;
 	}
 
-	public NewMResult(Test test)  {
+	public Result(Test test)  {
 		this.test = test;
 	}
 

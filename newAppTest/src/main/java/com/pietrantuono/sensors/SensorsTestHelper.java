@@ -11,13 +11,11 @@ import java.util.concurrent.TimeoutException;
 
 import android.app.Activity;
 import android.support.v7.widget.CardView;
-import android.text.style.TtsSpan;
 import android.util.Log;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.pietrantuono.activities.NewIOIOActivityListener;
+import com.pietrantuono.activities.IOIOActivityListener;
 import com.pietrantuono.pericoach.newtestapp.R;
 
 public class SensorsTestHelper implements OnSampleCallback {
@@ -199,18 +197,18 @@ public class SensorsTestHelper implements OnSampleCallback {
     void sendAllVoltages(final Short voltage, final Short zerovoltage) throws TimeoutException, NewDevice.InvalidVoltageException {
         short[] ref = new short[]{voltage, voltage, voltage};
         short[] zero = new short[]{zerovoltage, zerovoltage, zerovoltage};
-        ((NewIOIOActivityListener) (activityref.get())).getBtutility().sendAllVoltages(ref, zero, 500);
+        ((IOIOActivityListener) (activityref.get())).getBtutility().sendAllVoltages(ref, zero, 500);
 
     }
 
     void sendVoltages(final Short voltage, final Short zerovoltage) throws Exception {
         try {
-            ((NewIOIOActivityListener) (activityref.get())).getBtutility().setVoltage(voltage);
+            ((IOIOActivityListener) (activityref.get())).getBtutility().setVoltage(voltage);
         } catch (Exception e) {
             throw new Exception("Setting Failed.");
         }
         try {
-            ((NewIOIOActivityListener) (activityref.get())).getBtutility().setZeroVoltage(zerovoltage);
+            ((IOIOActivityListener) (activityref.get())).getBtutility().setZeroVoltage(zerovoltage);
         } catch (Exception e) {
             throw new Exception("Setting Failed.");
         }
@@ -225,7 +223,7 @@ public class SensorsTestHelper implements OnSampleCallback {
      * but that should not be the case
      */
     public void sendAllVoltages(final short[] refVoltages, final short[] zeroVoltages, int timeOutInMills) throws Exception {
-        ((NewIOIOActivityListener) (activityref.get())).getBtutility().sendAllVoltages(refVoltages, zeroVoltages, timeOutInMills);
+        ((IOIOActivityListener) (activityref.get())).getBtutility().sendAllVoltages(refVoltages, zeroVoltages, timeOutInMills);
     }
 
 

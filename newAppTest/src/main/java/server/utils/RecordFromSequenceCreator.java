@@ -11,7 +11,7 @@ import server.pojos.records.Test;
 import server.pojos.records.TestRecord;
 
 import com.pietrantuono.application.PeriCoachTestApplication;
-import com.pietrantuono.constants.NewSequenceInterface;
+import com.pietrantuono.constants.SequenceInterface;
 import com.pietrantuono.tests.implementations.SensorTestWrapper;
 
 
@@ -21,7 +21,7 @@ public class RecordFromSequenceCreator {
     private final static int ONE = 1;
     private final static int TWO = 2;
 
-    public static TestRecord createRecordFromSequence(NewSequenceInterface sequence, Device device) {
+    public static TestRecord createRecordFromSequence(SequenceInterface sequence, Device device) {
         if (sequence == null)
             return null;
         if (sequence.getSequence() == null
@@ -43,7 +43,7 @@ public class RecordFromSequenceCreator {
         return record;
     }
 
-    private static Readings createReadings(NewSequenceInterface sequence) {
+    private static Readings createReadings(SequenceInterface sequence) {
         Readings readings = new Readings();
         Sensors sensors = createSensors(sequence);
         readings.setSensors(sensors);
@@ -52,7 +52,7 @@ public class RecordFromSequenceCreator {
         return readings;
     }
 
-    private static Sensors createSensors(NewSequenceInterface sequence) {
+    private static Sensors createSensors(SequenceInterface sequence) {
         if (!containsSensorsTests(sequence)) return null;
         if (!sensorsTestsWereExecuted(sequence)) return null;
         Sensors sensors = new Sensors();
@@ -62,7 +62,7 @@ public class RecordFromSequenceCreator {
         return sensors;
     }
 
-    private static Sensor createSensor(int sensorNumber, NewSequenceInterface sequence) {
+    private static Sensor createSensor(int sensorNumber, SequenceInterface sequence) {
         Sensor sensor = new Sensor();
         if (!containsSensorsTests(sequence)) return null;
         List<Long> ids = new ArrayList<Long>();
@@ -126,7 +126,7 @@ public class RecordFromSequenceCreator {
         return sensorTestWrapper.getErrorCode();
     }
 
-    private static Test createTest(NewSequenceInterface sequence) {
+    private static Test createTest(SequenceInterface sequence) {
         Test test = new Test();
         test.setIDTest(getTestIdsOfTests(sequence));
         test.setResult(getResultOfTests(sequence));
@@ -135,7 +135,7 @@ public class RecordFromSequenceCreator {
         return test;
     }
 
-    private static List<Double> getValueOfTests(NewSequenceInterface sequence) {
+    private static List<Double> getValueOfTests(SequenceInterface sequence) {
         List<Double> result = new ArrayList<Double>();
         for (int i = 0; i < sequence.getSequence().size(); i++) {
             if (!(sequence.getSequence().get(i) instanceof SensorTestWrapper))
@@ -144,7 +144,7 @@ public class RecordFromSequenceCreator {
         return result;
     }
 
-    private static List<Long> getResultOfTests(NewSequenceInterface sequence) {
+    private static List<Long> getResultOfTests(SequenceInterface sequence) {
         List<Long> result = new ArrayList<Long>();
         for (int i = 0; i < sequence.getSequence().size(); i++) {
             if ((sequence.getSequence().get(i) instanceof SensorTestWrapper)) continue;
@@ -156,7 +156,7 @@ public class RecordFromSequenceCreator {
         return result;
     }
 
-    private static List<Long> getTestIdsOfTests(NewSequenceInterface sequence) {
+    private static List<Long> getTestIdsOfTests(SequenceInterface sequence) {
         List<Long> result = new ArrayList<Long>();
         for (int i = 0; i < sequence.getSequence().size(); i++) {
             if (!(sequence.getSequence().get(i) instanceof SensorTestWrapper))
@@ -165,7 +165,7 @@ public class RecordFromSequenceCreator {
         return result;
     }
 
-    private static List<Long> getErrorCodeOfTests(NewSequenceInterface sequence) {
+    private static List<Long> getErrorCodeOfTests(SequenceInterface sequence) {
         List<Long> result = new ArrayList<Long>();
         for (int i = 0; i < sequence.getSequence().size(); i++) {
             if ((sequence.getSequence().get(i) instanceof SensorTestWrapper)) continue;
@@ -176,7 +176,7 @@ public class RecordFromSequenceCreator {
         return result;
     }
 
-    private static boolean containsSensorsTests(NewSequenceInterface sequence) {
+    private static boolean containsSensorsTests(SequenceInterface sequence) {
         boolean result = false;
         for (int i = 0; i < sequence.getSequence().size(); i++) {
             if (sequence.getSequence().get(i) instanceof SensorTestWrapper) return true;
@@ -184,7 +184,7 @@ public class RecordFromSequenceCreator {
         return result;
     }
 
-    private static boolean sensorsTestsWereExecuted(NewSequenceInterface sequence) {
+    private static boolean sensorsTestsWereExecuted(SequenceInterface sequence) {
         boolean result = false;
         for (int i = 0; i < sequence.getSequence().size(); i++) {
             if (sequence.getSequence().get(i) instanceof SensorTestWrapper) {

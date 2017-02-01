@@ -3,7 +3,7 @@ package com.pietrantuono.tests.implementations;
 import android.app.Activity;
 import android.os.AsyncTask;
 
-import com.pietrantuono.activities.NewIOIOActivityListener;
+import com.pietrantuono.activities.IOIOActivityListener;
 import com.pietrantuono.btutility.BTUtility;
 import com.pietrantuono.tests.superclass.Test;
 
@@ -43,7 +43,7 @@ public class BluetoothConnectTest extends Test {
                     activityListener.getMac());
             activityListener.setBtutility(btUtility);
             if (!btUtility.connectProbeViaBT(BluetoothConnectTest.this)) {
-                ((NewIOIOActivityListener) getActivity()).addFailOrPass(
+                ((IOIOActivityListener) getActivity()).addFailOrPass(
                         false, false, "CONNECT FAILED", getDescription(), testToBeParsed);
             }
 

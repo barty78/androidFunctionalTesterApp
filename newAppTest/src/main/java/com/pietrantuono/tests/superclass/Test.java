@@ -5,7 +5,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
-import com.pietrantuono.activities.NewIOIOActivityListener;
+import com.pietrantuono.activities.IOIOActivityListener;
 
 import customclasses.DebugHelper;
 import ioio.lib.api.IOIO;
@@ -16,7 +16,7 @@ public abstract class Test {
 	protected boolean istest=true;
 	private boolean isBlockingTest=false;
 	protected boolean isinterrupted=false;
-	protected final NewIOIOActivityListener activityListener;
+	protected final IOIOActivityListener activityListener;
 	protected final IOIO ioio;
 	protected final String TAG=getClass().getSimpleName();
 	private boolean active=true;
@@ -61,7 +61,7 @@ public abstract class Test {
 		this.description = description;
 		this.isSensorTest = isSensorTest;
 		this.isBlockingTest = isBlockingTest;
-		this.activityListener=(NewIOIOActivityListener)activity;
+		this.activityListener=(IOIOActivityListener)activity;
 		this.ioio=ioio;
 		this.limitParam1=limitParam1;
 		this.limitParam2=limitParam2;
@@ -100,7 +100,7 @@ public abstract class Test {
 	}
 	protected Activity getActivity(){return ((Activity)this.activityListener);}
 	
-	protected NewIOIOActivityListener getListener(){return this.activityListener;}
+	protected IOIOActivityListener getListener(){return this.activityListener;}
 	
 	public boolean isSuccess() {
 		return success;
