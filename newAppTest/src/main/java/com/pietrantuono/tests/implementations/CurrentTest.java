@@ -89,7 +89,6 @@ public class CurrentTest extends Test {
 			} catch (Exception e) {
 				report(e);
 			}
-			setValue(result.getReadingValue());
 			if (activityListener == null
 					|| ((Activity) activityListener).isFinishing())
 				return null;
@@ -97,6 +96,7 @@ public class CurrentTest extends Test {
 				activityListener.addFailOrPass(true, false, "ERROR", description,testToBeParsed);
 				return null;
 			}
+			setValue(result.getReadingValue());
 			if (result.isSuccess()) {
 				Success();
 				activityListener.addFailOrPass(true, true, result.getReading(),description,testToBeParsed);

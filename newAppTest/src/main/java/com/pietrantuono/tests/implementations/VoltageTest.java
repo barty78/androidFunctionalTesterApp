@@ -88,7 +88,6 @@ public 	class VoltageTest extends Test {
 			} catch (Exception e) {
 				report(e);
 			}
-			setValue(result.getReadingValue());
 			if (activityListener == null
 					|| ((Activity) activityListener).isFinishing())
 				return null;
@@ -96,6 +95,7 @@ public 	class VoltageTest extends Test {
 				activityListener.addFailOrPass(true, false, "ERROR", description, testToBeParsed);
 				return null;
 			}
+			setValue(result.getReadingValue());
 			if (pinNumber == 32) {
 				String string = "V_REF_AN Measurement: " + result.getReadingValue() + "V\n";
 				IOIOUtils.getUtils().appendUartLog((Activity) activityListener, string.getBytes(), string.getBytes().length);
