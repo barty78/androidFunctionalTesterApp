@@ -661,7 +661,7 @@ public class BTUtility {
                 @Override
                 public void run() {
                     if (NewPFMATDevice.getDevice() != null) {
-                        NewPFMATDevice.getDevice().sendConfig((byte) 0, (byte)0 , (byte)0);
+                        NewPFMATDevice.getDevice().sendConfig((byte) 0, (byte)0 , (byte)1);
                     }
                 }
             },200);

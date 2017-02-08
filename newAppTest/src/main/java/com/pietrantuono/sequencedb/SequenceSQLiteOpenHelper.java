@@ -3,13 +3,14 @@ package com.pietrantuono.sequencedb;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 /**
  * Created by Maurizio Pietrantuono, maurizio.pietrantuono@gmail.com.
  */
 public class SequenceSQLiteOpenHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "sequence_database";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     @SuppressWarnings("unused")
     private final String TAG = getClass().getSimpleName();
     private static SequenceSQLiteOpenHelper instance;
@@ -34,7 +35,8 @@ public class SequenceSQLiteOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        Log.d(TAG, "Upgrading Sequence DB to version " + DATABASE_VERSION);
+        db.execSQL(SequenceContracts.Records.UPGRADE_ADD_APPVERSION);
     }
 
 

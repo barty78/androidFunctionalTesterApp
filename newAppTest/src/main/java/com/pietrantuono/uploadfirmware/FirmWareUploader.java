@@ -492,6 +492,37 @@ public class FirmWareUploader {
         return null;
     }
 
+//    public byte[] readEEPROM() {
+//        System.out.printf("Reading Eeprom Bytes");
+//
+//        byte[] tmp = new byte[]{};
+//
+//    }
+
+    public boolean setEEPROMBytes() {
+        System.out.printf("Setting Eeprom Bytes");
+
+        byte[] tmp = new byte[]{0,1,0,1};
+        if (!writeMemory(ee_start, tmp, tmp.length)) {
+            if (BuildConfig.DEBUG) {
+                System.err.printf(
+                        "Failed to erase eeprom at address 0x%08x\n",
+                        ee_start);
+            }
+            error = "Failed to erase eeprom at address " + String.format("0x%08x", ee_start);
+            ERRORCODE = ErrorCodes.FIRMWAREUPLOAD_ERASE_EEPROM_ERROR;
+            return false;
+        }
+
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        return true;
+    }
+
     public boolean eraseEEPROMBytes() {
 
         System.out.printf("Erasing Eeprom Bytes");
@@ -650,6 +681,40 @@ public class FirmWareUploader {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public boolean readMemory(int address, byte[] data, int len) {
+
+        byte cs;
+
+        /* must be 32bit aligned */
+        Log.e(TAG, "address% 4 == 0 " + (address % 4 == 0));
+        if (!(address % 4 == 0)) {
+            showToast("Address not 32bit aligned");
+            ERRORCODE = ErrorCodes.FIRMWAREUPLOAD_ADDR_ALIGN_ERROR;
+            return false;
+        }
+
+        cs = (byte) stm32_gen_cs(address);
+
+        /* send the address and checksum */
+        if (!sendCommand(_CMDList.get("rm").byteValue())) {
+            showToast("Unable to send read command");
+            System.err.println("Unable to send read command \n");
+            ERRORCODE = ErrorCodes.FIRMWAREUPLOAD_WRITE_MEMORY_ERROR;
+            return false;
+        }
+
+        write(address, 4);
+        write(cs);
+
+        if (readWithTimerTimeout(1000) != STM32_ACK) {
+            showToast("Unable to write addressing");
+            System.err.println("Unable to write adressing \n");
+            ERRORCODE = ErrorCodes.FIRMWAREUPLOAD_WRITE_MEMORY_ERROR;
+            return false;
+        }
+        return true;
     }
 
     public boolean writeMemory(int address, byte[] data, int len) {

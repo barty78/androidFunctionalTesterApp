@@ -23,6 +23,7 @@ public class GetDeviceSerialTest extends Test {
     private static final ExecutorService executor = Executors.newFixedThreadPool(1);
     private int retries = 0;
     private String serial = "";
+    private static final String SERIAL_PATTERN = "^[\\p{Alnum}]+$";
 
     public GetDeviceSerialTest(Activity activity, IOIO ioio) {
         super(activity, ioio, "Read UUT Serial Number", false, true, 0, 0, 0);
@@ -65,7 +66,7 @@ public class GetDeviceSerialTest extends Test {
                                 .toString();
                         retries = 0;
 
-                        Pattern pattern = Pattern.compile("^[\\p{Alnum}]+$");
+                        Pattern pattern = Pattern.compile(SERIAL_PATTERN);
                         Matcher matcher = pattern.matcher(strFileContents);
                         if (matcher.matches()) {
                             Log.d("SERIAL: ", "MATCH!.");

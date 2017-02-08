@@ -18,6 +18,7 @@ public class RecordsContract {
         public static final String BARCODE = "Barcode";
         public static final String DURATION = "Duration";
         public static final String FIXTURE_N = "FixtureNo";
+        public static final String APP_VER = "AppVersion";
         public static final String FMWVER = "FWVer";
         public static final String JOB_NO = "JobNo";
         public static final String MODEL = "Model";
@@ -36,6 +37,7 @@ public class RecordsContract {
                 + DURATION + TEXT_TYPE + COMMA_SEP
                 + FMWVER + TEXT_TYPE + COMMA_SEP
                 + FIXTURE_N + TEXT_TYPE + COMMA_SEP
+                + APP_VER + TEXT_TYPE + COMMA_SEP
                 + JOB_NO + INTEGER_TYPE + COMMA_SEP
                 + MODEL + INTEGER_TYPE + COMMA_SEP
                 //Redings column is not used
@@ -44,6 +46,8 @@ public class RecordsContract {
                 + STARTED + TEXT_TYPE + COMMA_SEP
                 + UPLOADED + INTEGER_TYPE
                 + ")";
+        public static final String UPDATE_ADD_APPVERSION = "ALTER TABLE " + TABLE +
+                " ADD " + APP_VER + TEXT_TYPE;
     }
 
     public class Readings implements BaseColumns {

@@ -28,9 +28,10 @@ public class RecordFromSequenceCreator {
                 || sequence.getSequence().size() <= 0)
             return null;
         TestRecord record = new TestRecord();
-        record.setBarcode(device.getBarcode() != null ? Long.parseLong(device.getBarcode()) : 0);
+        record.setBarcode(device.getBarcode() != null ? device.getBarcode() : "");
         record.setDuration("" + sequence.getDuration());
         record.setFixtureNo(PeriCoachTestApplication.getFixtureIdintification());
+        record.setAppVersion(PeriCoachTestApplication.getVersion());
         record.setFWVer(device.getFwver() != null ? device.getFwver() : "");
         record.setJobNo(sequence.getJobNo());
         record.setModel(device.getModel() != null ? Long.parseLong(device.getModel()) : 0);

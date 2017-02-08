@@ -84,10 +84,17 @@ public class SettingsActivity extends PreferenceActivity {
         });
 
         Preference version = findPreference("version");
-        version.setSummary(PeriCoachTestApplication.getVersion());
+        if (version != null) version.setSummary(PeriCoachTestApplication.getVersion());
 
         Preference deviceID = findPreference("deviceID");
-        deviceID.setSummary(PeriCoachTestApplication.getDeviceid());
+        if (deviceID != null) deviceID.setSummary(PeriCoachTestApplication.getDeviceid());
+
+        Preference ioioFirmwareVersion = findPreference("ioioFirmwareVer");
+        if (ioioFirmwareVersion != null) ioioFirmwareVersion.setSummary(PeriCoachTestApplication.getIOIOFirmwareVersion());
+        Preference ioioHardwareVersion = findPreference("ioioHardwareVer");
+        if (ioioHardwareVersion != null) ioioHardwareVersion.setSummary(PeriCoachTestApplication.getIOIOHardwareVersion());
+        Preference ioioLibraryVersion = findPreference("ioioLibraryVer");
+        if (ioioLibraryVersion != null) ioioLibraryVersion.setSummary(PeriCoachTestApplication.getIOIOLibraryVersion());
 
         Preference unprocessed = (Preference) findPreference(getResources().getString(R.string.unprocessed));
         Preference dowloadunprocessed = (Preference) findPreference(getResources().getString(R.string.download_unprocessed));

@@ -41,10 +41,13 @@ public class UploadFirmwareTest extends Test {
     boolean fileMD5Passed = false;
     private int retries = 0;
     private UploadDialog uploadDialog;
+    private boolean eraseEEPROM = false;
 
-    public UploadFirmwareTest(Activity activity, IOIO ioio) {
-        super(activity, ioio, "Upload Firmware", false, true, 0, 0, 0);            // Blocking TEST, if fails - STOP
+    public UploadFirmwareTest(Activity activity, IOIO ioio, boolean eraseEEPROM, String description) {
+        super(activity, ioio, description, false, true, 0, 0, 0);            // Blocking TEST, if fails - STOP
         this.activity = (AppCompatActivity) activity;
+        this.eraseEEPROM = eraseEEPROM;
+        this.description = description;
     }
 
     @Override
@@ -120,21 +123,24 @@ public class UploadFirmwareTest extends Test {
                     return;
                 }
 
-                if (!firmWareUploader.eraseEEPROMBytes()) {
-                    onFailure(firmWareUploader.getERRORCODE(), "ERROR: Erase EEPROM Failed");
-                    return;
+                if (eraseEEPROM) {
+                    Log.d(TAG, "Erasing EEPROM");
+                    if (!firmWareUploader.eraseEEPROMBytes()) {
+                        onFailure(firmWareUploader.getERRORCODE(), "ERROR: Erase EEPROM Failed");
+                        return;
+                    }
+                } else {
+                    Log.d(TAG, "Setting EEPROM");
+                    if (!firmWareUploader.setEEPROMBytes()) {
+                        onFailure(firmWareUploader.getERRORCODE(), "ERROR: Set EEPROM Failed");
+                        return;
+                    }
                 }
 
                 if (!firmWareUploader.writeOptionBytes()) {
                     onFailure(firmWareUploader.getERRORCODE(), "ERROR: Option Bytes Write Failed");
                     return;
                 }
-
-
-//                    if (!firmWareUploader.deviceInit()) {
-//                    onFailure(firmWareUploader.getERRORCODE(), "ERROR: Device Init Failed");
-//                    return;
-//                }
 
                 firmWareUploader.upload(new UploaderListener() {
                     @Override
@@ -189,12 +195,9 @@ public class UploadFirmwareTest extends Test {
                                     uploadDialog.setFail(description + "\nERROR: " + error);
                                     uploadDialog.dismiss();
                                     activityListener.onUploadTestFinished(true, success, description,error);
-
-
                                 }
                             }
                         });
-
                     }
                 });
             }
@@ -223,7 +226,6 @@ public class UploadFirmwareTest extends Test {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
     }
 
     private void onFailure(final long error, final String msg) {
@@ -242,7 +244,6 @@ public class UploadFirmwareTest extends Test {
                 String string = "ERROR CODE: " + error + "\n";
                 IOIOUtils.getUtils().appendUartLog((Activity) activityListener, string.getBytes(), string.getBytes().length);
                 activityListener.onUploadTestFinished(true, success, description,msg);
-
             }
         });
     }

@@ -25,10 +25,14 @@ public class TestRecord {
     //@Expose not needed anymore
     //@Column(name = "FixtureNo")
     private String FixtureNo;
-    
+
+    @Expose
+    //@Column(name = "AppVersion")
+    private String AppVersion;
+
     @Expose
     //@Column(name = "Barcode")
-    private long Barcode;
+    private String Barcode;
     
     @Expose
     //@Column(name = "Serial")
@@ -78,11 +82,15 @@ public class TestRecord {
         this.FixtureNo = FixtureNo;
     }
 
-    public long getBarcode() {
+    public String getAppVersion() { return AppVersion; }
+
+    public void setAppVersion(String AppVersion) { this.AppVersion = AppVersion; }
+
+    public String getBarcode() {
         return Barcode;
     }
 
-    public void setBarcode(long Barcode) {
+    public void setBarcode(String Barcode) {
         this.Barcode = Barcode;
     }
 
@@ -156,8 +164,9 @@ public class TestRecord {
 		final int prime = 31;
 		int result = 1;
 
-		result = prime * result + (int) (Barcode ^ (Barcode >>> 32));
-		result = prime * result
+//		result = prime * result + (int) (Barcode ^ (Barcode >>> 32));
+		result = prime * result + ((Barcode == null) ? 0 : Barcode.hashCode());
+        result = prime * result
 				+ ((Duration == null) ? 0 : Duration.hashCode());
 		result = prime * result + ((FWVer == null) ? 0 : FWVer.hashCode());
 		result = prime * result

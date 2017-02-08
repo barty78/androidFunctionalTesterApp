@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -20,8 +21,9 @@ import server.pojos.records.TestRecord;
 public class NewRecordsSQLiteOpenHelper extends SQLiteOpenHelper {
     private final Context context;
     private static final String DB_NAME = "records";
-    private static final int DB_VERSION = 1;
+    private static final int DB_VERSION = 2;
     private static NewRecordsSQLiteOpenHelper newRecordsSQLiteOpenHelper;
+    private static final String TAG = NewRecordsSQLiteOpenHelper.class.getSimpleName();
 
     private NewRecordsSQLiteOpenHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -50,6 +52,8 @@ public class NewRecordsSQLiteOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        Log.d(TAG, "Upgrading Database to version " + DB_VERSION);
+        db.execSQL(RecordsContract.TestRecords.UPDATE_ADD_APPVERSION);
     }
 
     private void migrateOldData(SQLiteDatabase db) {
@@ -69,6 +73,7 @@ public class NewRecordsSQLiteOpenHelper extends SQLiteOpenHelper {
         values.put(RecordsContract.TestRecords.BARCODE, testRecord.getBarcode());
         values.put(RecordsContract.TestRecords.DURATION, testRecord.getDuration());
         values.put(RecordsContract.TestRecords.FIXTURE_N, testRecord.getFixtureNo());
+        values.put(RecordsContract.TestRecords.APP_VER, testRecord.getAppVersion());
         values.put(RecordsContract.TestRecords.FMWVER, testRecord.getFWVer());
         values.put(RecordsContract.TestRecords.JOB_NO, testRecord.getJobNo());
         values.put(RecordsContract.TestRecords.MODEL, testRecord.getModel());
@@ -143,11 +148,8 @@ public class NewRecordsSQLiteOpenHelper extends SQLiteOpenHelper {
                         db.insert(RecordsContract.SingleTest.TABLE, RecordsContract.SingleTest.ERRORCODE, values);
                     }
                 }
-
             }
         }
-
-
         return recordId;
     }
 }

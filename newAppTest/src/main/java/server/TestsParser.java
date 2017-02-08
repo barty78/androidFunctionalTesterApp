@@ -24,6 +24,7 @@ import com.pietrantuono.tests.implementations.ChargingTest;
 import com.pietrantuono.tests.implementations.ChargingTerminationTest;
 import com.pietrantuono.tests.implementations.CurrentTest;
 import com.pietrantuono.tests.implementations.DummyTest;
+import com.pietrantuono.tests.implementations.GetFirmwareVersionUARTTest;
 import com.pietrantuono.tests.implementations.upload.DummyUploadFirmwareTest;
 import com.pietrantuono.tests.implementations.GetBarcodeTest;
 import com.pietrantuono.tests.implementations.GetDeviceSerialTest;
@@ -105,7 +106,9 @@ public class TestsParser {
                     getDescription(testToBeParsed));
 
         } else if (classID == activity.getResources().getInteger(R.integer.UploadFirmwareTest)) {
-            test = new UploadFirmwareTest(activity, ioio);
+            boolean eraseEEPROM = testToBeParsed.getIoiopinnum() == 1;
+            Log.d(TAG, "Firmware Upload Erase EEPROM - " + eraseEEPROM);
+            test = new UploadFirmwareTest(activity, ioio, eraseEEPROM, getDescription(testToBeParsed));
         } else if (classID == activity.getResources().getInteger(R.integer.GetDeviceSerialTest)) {
             test = new GetDeviceSerialTest(activity, ioio);
         } else if (classID == activity.getResources().getInteger(R.integer.WakeDeviceTest)) {
@@ -178,6 +181,8 @@ public class TestsParser {
         } else if (classID == activity.getResources().getInteger(R.integer.BluetoothRFLevelTest)) {
             Integer limit = testToBeParsed.getLimitParam1().intValue();
             test = new BluetoothRFLevelTest(activity, ioio, limit);
+        } else if (classID == activity.getResources().getInteger(R.integer.GetFirmwareVersionUARTTest)) {
+            test = new GetFirmwareVersionUARTTest(activity, ioio);
         } else if (classID == activity.getResources().getInteger(R.integer.PauseStep)) {
             test = new PauseStep(activity, "Pause Step");
         } else if (classID == activity.getResources().getInteger(R.integer.PromptStep)) {
@@ -192,7 +197,7 @@ public class TestsParser {
             //);
         }
         if (test == null) {
-            Log.e(TAG, "Unable to parse test n " + testToBeParsed.getId() + " !!!");
+            Log.e(TAG, "Unable to parse test #" + testToBeParsed.getId() + " !!!");
             activity.runOnUiThread(new Runnable() {
 
                 @Override

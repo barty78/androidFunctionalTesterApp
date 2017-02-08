@@ -41,6 +41,10 @@ public class PeriCoachTestApplication extends Application {
 	private static int testCount=0;
 	private static float jobAvgTestTime;
 	private static String appVersion=null;
+	private static String appCode=null;
+	private static String ioioFirmwareVersion=null;
+	private static String ioioHardwareVersion=null;
+	private static String ioioLibVersion=null;
 
 	private static boolean isretestallowed;
 	private static PeriCoachTestApplication application;
@@ -85,6 +89,7 @@ public class PeriCoachTestApplication extends Application {
 		} catch (PackageManager.NameNotFoundException e) {
 			e.printStackTrace();
 		}
+
 	}
 
 	public static PeriCoachTestApplication getApplication(){
@@ -210,9 +215,32 @@ public class PeriCoachTestApplication extends Application {
 		return newAccount;
 	}
 
+	public static void setIOIOFirmwareVersion(String version) {
+		PeriCoachTestApplication.ioioFirmwareVersion=version;
+	}
+
+	public static String getIOIOFirmwareVersion() {
+		return PeriCoachTestApplication.ioioFirmwareVersion;
+	}
+
+	public static void setIOIOHardwareVersion(String version) {
+		PeriCoachTestApplication.ioioHardwareVersion=version;
+	}
+
+	public static String getIOIOHardwareVersion() {
+		return PeriCoachTestApplication.ioioHardwareVersion;
+	}
+
+	public static void setIOIOLibraryVersion(String version) {
+		PeriCoachTestApplication.ioioLibVersion=version;
+	}
+
+	public static String getIOIOLibraryVersion() {
+		return PeriCoachTestApplication.ioioLibVersion;
+	}
+
 	public static void setIOIOAddress(String address) {
 		PeriCoachTestApplication.IOIOAddress=address;
-		
 	}
 
 	private static String getIOIOAddress() {
@@ -243,6 +271,12 @@ public class PeriCoachTestApplication extends Application {
 		PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
 		String version = pInfo.versionName;
 		return version;
+	}
+
+	public int getAppCode() throws PackageManager.NameNotFoundException {
+		PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+		int code = pInfo.versionCode;
+		return code;
 	}
 	
 }

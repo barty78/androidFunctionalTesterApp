@@ -878,13 +878,13 @@ public class IOIOUtils implements IOIOUtilsInterface {
         if (CHGPinIn != null) {
             CHGPinIn.close();
         }
-
         try {
             CHGPinOut = ioio_.openDigitalOutput(27, DigitalOutput.Spec.Mode.NORMAL, false);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
 
 
     @Override

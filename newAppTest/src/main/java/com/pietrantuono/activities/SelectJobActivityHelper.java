@@ -21,10 +21,10 @@ import server.pojos.records.response.Response;
 /**
  * Created by mauriziopietrantuono on 06/01/16.
  */
-public class OtherSelectJobActivityHelper {
+public class SelectJobActivityHelper {
     private static final String TAG = "OtherSelectJobActivityr";
 
-    public static void postTestsAndSepsXML(OtherSelectJobActivity context) {
+    public static void postTestsAndSepsXML(SelectJobActivity context) {
         //int[] registerSequenceFragment = context.getResources().get
         Field[] ID_Fields = R.integer.class.getFields();
         int[] resourcesIdsArray = new int[ID_Fields.length];

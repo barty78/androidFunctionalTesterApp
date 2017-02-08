@@ -385,7 +385,6 @@ public class MainActivity extends AppCompatActivity
                 }
             }
         }
-
     }
 
     private void createRecordAndSync() {
@@ -697,6 +696,9 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onIOIOLooperSetup(final IOIO ioio) {
         myIOIO = ioio;
+        PeriCoachTestApplication.setIOIOFirmwareVersion(myIOIO.getImplVersion(IOIO.VersionType.APP_FIRMWARE_VER));
+        PeriCoachTestApplication.setIOIOHardwareVersion(myIOIO.getImplVersion(IOIO.VersionType.HARDWARE_VER));
+        PeriCoachTestApplication.setIOIOLibraryVersion(myIOIO.getImplVersion(IOIO.VersionType.IOIOLIB_VER));
         try {
             _PCB_Detect = ioio.openDigitalInput(22, DigitalInput.Spec.Mode.PULL_UP);
         } catch (ConnectionLostException e) {
@@ -724,6 +726,14 @@ public class MainActivity extends AppCompatActivity
                 if (!destroying) toast("CONNECTION LOST !!!", Toast.LENGTH_LONG);
             }
         });
+//        // Let's attempt a reconnection.
+//        try {
+//            looper.setup(myIOIO);
+//        } catch (ConnectionLostException e) {
+//            e.printStackTrace();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
     }
     //**
     //Methods used by tests

@@ -99,6 +99,21 @@
             android:key="deviceID"
             android:summary="1.0">
         </PreferenceScreen>
+        <PreferenceScreen
+            android:title="IOIO Firmware Version"
+            android:key="ioioFirmwareVer"
+            android:summary="N/A">
+        </PreferenceScreen>
+        <PreferenceScreen
+            android:title="IOIO Hardware Version"
+            android:key="ioioHardwareVer"
+            android:summary="N/A">
+        </PreferenceScreen>
+        <PreferenceScreen
+            android:title="IOIO Library Version"
+            android:key="ioioLibraryVer"
+            android:summary="N/A">
+        </PreferenceScreen>
     </PreferenceCategory>
 	
 </PreferenceScreen>

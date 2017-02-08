@@ -23,10 +23,15 @@ import server.pojos.records.TestRecord;
 public class RecordsProcessor {
 
     public static long saveRecord(TestRecord testRecord, SQLiteOpenHelper helper) {
+        long recordId = -1;
+        //Check that testRecord & barcode is not null
+        if (testRecord == null) return recordId;
+        if (testRecord.getBarcode() == null) return recordId;
         ContentValues values = new ContentValues();
         values.put(RecordsContract.TestRecords.BARCODE, testRecord.getBarcode());
         values.put(RecordsContract.TestRecords.DURATION, testRecord.getDuration());
         values.put(RecordsContract.TestRecords.FIXTURE_N, testRecord.getFixtureNo());
+        values.put(RecordsContract.TestRecords.APP_VER, testRecord.getAppVersion());
         values.put(RecordsContract.TestRecords.FMWVER, testRecord.getFWVer());
         values.put(RecordsContract.TestRecords.JOB_NO, testRecord.getJobNo());
         values.put(RecordsContract.TestRecords.MODEL, testRecord.getModel());
@@ -36,7 +41,6 @@ public class RecordsProcessor {
         values.put(RecordsContract.TestRecords.BT_ADDR, testRecord.getBT_Addr());
         values.put(RecordsContract.TestRecords.UPLOADED, 0);
 
-        long recordId = -1;
         recordId = helper.getWritableDatabase().insert(RecordsContract.TestRecords.TABLE, RecordsContract.TestRecords.BT_ADDR, values);
 
         Readings readings = testRecord.getReadings();
@@ -106,9 +110,10 @@ public class RecordsProcessor {
         List<TestRecord> records = new ArrayList<>();
         while (testRecordCursor.moveToNext()) {
             TestRecord record = new TestRecord();
-            record.setBarcode(testRecordCursor.getLong(testRecordCursor.getColumnIndexOrThrow(RecordsContract.TestRecords.BARCODE)));
+            record.setBarcode(testRecordCursor.getString(testRecordCursor.getColumnIndexOrThrow(RecordsContract.TestRecords.BARCODE)));
             record.setDuration(testRecordCursor.getString(testRecordCursor.getColumnIndexOrThrow(RecordsContract.TestRecords.DURATION)));
             record.setFixtureNo(testRecordCursor.getString(testRecordCursor.getColumnIndexOrThrow(RecordsContract.TestRecords.FIXTURE_N)));
+            record.setAppVersion(testRecordCursor.getString(testRecordCursor.getColumnIndexOrThrow(RecordsContract.TestRecords.APP_VER)));
             record.setFWVer(testRecordCursor.getString(testRecordCursor.getColumnIndexOrThrow(RecordsContract.TestRecords.FMWVER)));
             record.setJobNo(testRecordCursor.getString(testRecordCursor.getColumnIndexOrThrow(RecordsContract.TestRecords.JOB_NO)));
             record.setModel(testRecordCursor.getLong(testRecordCursor.getColumnIndexOrThrow(RecordsContract.TestRecords.MODEL)));

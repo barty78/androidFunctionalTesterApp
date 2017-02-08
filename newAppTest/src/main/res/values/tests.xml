@@ -38,6 +38,7 @@
     <item name="UartLoopbackTest" type="integer">30</item>
     <item name="GetNFCTest" type="integer">31</item>
     <item name="BluetoothRFLevelTest" type="integer">32</item>
+    <item name="GetFirmwareVersionUARTTest" type="integer">33</item>
 
     <!-- Step Implementation Classes -->
     <item name="PauseStep" type="integer">1001</item>

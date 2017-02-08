@@ -49,7 +49,6 @@ class RecordsSyncAdapter extends AbstractThreadedSyncAdapter {
     public RecordsSyncAdapter(Context context, boolean autoInitialize, boolean allowParallelSyncs) {
         super(context, autoInitialize, allowParallelSyncs);
         this.context = context;
-
     }
 
     @Override
@@ -70,7 +69,6 @@ class RecordsSyncAdapter extends AbstractThreadedSyncAdapter {
 //					.getSystemService(Context.NOTIFICATION_SERVICE);
 //			mNotifyMgr.notify(mPositiveNotificationId, mBuilder.build());
             Log.d(TAG, "onPostExecute");
-
         }
 
         @Override
@@ -103,12 +101,9 @@ class RecordsSyncAdapter extends AbstractThreadedSyncAdapter {
                     issuePositiveNotification(record);
                 }
             }
-
             return null;
         }
     }
-
-
 
     private void issuePositiveNotification(TestRecord record) {
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(PeriCoachTestApplication.getContext())
@@ -120,8 +115,6 @@ class RecordsSyncAdapter extends AbstractThreadedSyncAdapter {
         } catch (Exception e) {
         }
     }
-
-
 
     private static void updateRecordUploaded(long id, SQLiteOpenHelper helper) {
         ContentValues values = new ContentValues();

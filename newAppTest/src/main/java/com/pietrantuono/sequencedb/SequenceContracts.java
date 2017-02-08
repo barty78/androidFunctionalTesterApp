@@ -20,6 +20,7 @@ public class SequenceContracts {
         public static final String RECORDS_BARCODE = "barcode";
         public static final String RECORDS_DURATION = "duration";
         public static final String RECORDS_FIXTURE_NUMBER = "fixture number";
+        public static final String RECORDS_APP_VERSION = "app_version";
         public static final String RECORDS_FW_VERSION = "fw_version";
         public static final String RECORDS_JOB_NUMBER = "job_number";
         public static final String RECORDS_MODEL = "model";
@@ -33,6 +34,7 @@ public class SequenceContracts {
                 Records.RECORDS_BARCODE + TEXT_TYPE + COMMA_SEP +
                 Records.RECORDS_DURATION + TEXT_TYPE + COMMA_SEP +
                 Records.RECORDS_FIXTURE_NUMBER + TEXT_TYPE + COMMA_SEP +
+                Records.RECORDS_APP_VERSION + TEXT_TYPE + COMMA_SEP +
                 Records.RECORDS_FW_VERSION + TEXT_TYPE + COMMA_SEP +
                 Records.RECORDS_JOB_NUMBER + INTEGER_TYPE + COMMA_SEP +
                 Records.RECORDS_MODEL + INTEGER_TYPE + COMMA_SEP +
@@ -42,6 +44,8 @@ public class SequenceContracts {
                 Records.RECORDS_BT_MAC + TEXT_TYPE +
                 " )";
 
+        public static final String UPGRADE_ADD_APPVERSION = "ALTER TABLE " + Records.TABLE_RECORDS +
+                " ADD " + Records.RECORDS_APP_VERSION + TEXT_TYPE;
     }
 
     public static class Tests implements BaseColumns {

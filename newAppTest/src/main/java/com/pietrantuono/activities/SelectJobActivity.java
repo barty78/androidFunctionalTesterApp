@@ -46,7 +46,7 @@ import utils.MyDialogs;
 import utils.DownloadTask.MyCallback;
 
 @SuppressWarnings("ucd")
-public class OtherSelectJobActivity extends AppCompatActivity implements MyCallback, JobHolder.Callback {
+public class SelectJobActivity extends AppCompatActivity implements MyCallback, JobHolder.Callback {
 	private RecyclerView recyclerView;
 	private ArrayList<server.pojos.Job> allJobsFromServer;
 	private ArrayList<server.pojos.Job> jobsFromServer;
@@ -68,7 +68,7 @@ public class OtherSelectJobActivity extends AppCompatActivity implements MyCallb
 		try {
 		getJobsFromServer();}
 		catch (Exception e){}
-		OtherSelectJobActivityHelper.postTestsAndSepsXML(OtherSelectJobActivity.this);
+		SelectJobActivityHelper.postTestsAndSepsXML(SelectJobActivity.this);
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
 
@@ -86,7 +86,7 @@ public class OtherSelectJobActivity extends AppCompatActivity implements MyCallb
 		// Handle item selection
 		switch (item.getItemId()) {
 			case R.id.settings:
-				Intent in = new Intent(OtherSelectJobActivity.this, SettingsActivity.class);
+				Intent in = new Intent(SelectJobActivity.this, SettingsActivity.class);
 				startActivity(in);
 				return true;
 			default:
@@ -96,7 +96,7 @@ public class OtherSelectJobActivity extends AppCompatActivity implements MyCallb
 	@Override
 	protected void onResume() {
 		super.onResume();
-		OrientationUtils.setOrientation(OtherSelectJobActivity.this);
+		OrientationUtils.setOrientation(SelectJobActivity.this);
 	}
 
 	private void populateList() {
@@ -105,11 +105,11 @@ public class OtherSelectJobActivity extends AppCompatActivity implements MyCallb
 		recyclerView = (RecyclerView) findViewById(R.id.recycler);
 		if (jobsFromServer != null && jobsFromServer.size()>0)
 			adapter = new JobAdapter(jobsFromServer,
-					OtherSelectJobActivity.this);
+					SelectJobActivity.this);
 		else if (jobsFromdb != null && jobsFromdb.size()>0)
 			adapter = new JobAdapter(jobsFromdb,
-					OtherSelectJobActivity.this);
-		recyclerView.setLayoutManager(new LinearLayoutManager(OtherSelectJobActivity.this));
+					SelectJobActivity.this);
+		recyclerView.setLayoutManager(new LinearLayoutManager(SelectJobActivity.this));
 		recyclerView.setAdapter(adapter);
 		registerForContextMenu(recyclerView);
 
@@ -123,7 +123,7 @@ public class OtherSelectJobActivity extends AppCompatActivity implements MyCallb
 	}
 
 	private void getJobsFromServer() {
-		MyDialogs.showIndeterminateProgress(OtherSelectJobActivity.this,
+		MyDialogs.showIndeterminateProgress(SelectJobActivity.this,
 				"Downloading jobs list", "Please wait...");
 //		getRest().getJobListActiveJobs( PeriCoachTestApplication.getDeviceid(), new Callback<List<Job>>() {
 		getRest().getJobListAllActiveJobs( PeriCoachTestApplication.getDeviceid(), new Callback<List<Job>>() {
@@ -218,7 +218,7 @@ public class OtherSelectJobActivity extends AppCompatActivity implements MyCallb
 		if (dataProvider != null)
 			return dataProvider;
 		else {
-			dataProvider = new DataProvider(OtherSelectJobActivity.this);
+			dataProvider = new DataProvider(SelectJobActivity.this);
 			return dataProvider;
 		}
 	}
@@ -227,7 +227,7 @@ public class OtherSelectJobActivity extends AppCompatActivity implements MyCallb
 		if (rest != null)
 			return rest;
 		else {
-			rest = RetrofitRestServices.getRest(OtherSelectJobActivity.this);
+			rest = RetrofitRestServices.getRest(SelectJobActivity.this);
 			return rest;
 
 		}
@@ -246,7 +246,7 @@ public class OtherSelectJobActivity extends AppCompatActivity implements MyCallb
 	}
 
 	public void getFirmwareListFromServer(long firmwareid) {
-		MyDialogs.showIndeterminateProgress(OtherSelectJobActivity.this,
+		MyDialogs.showIndeterminateProgress(SelectJobActivity.this,
 				"Downloading firmware list", "Please wait...");
 		getRest().getFirmware(PeriCoachTestApplication.getDeviceid(),
 				String.valueOf(firmwareid), new Callback<Firmware>() {
@@ -254,7 +254,7 @@ public class OtherSelectJobActivity extends AppCompatActivity implements MyCallb
 			public void success(Firmware arg0, Response arg1) {
 				MyDialogs.dismissProgress();
 				if (arg0 == null ) {
-					MyDialogs.showAlert(OtherSelectJobActivity.this,
+					MyDialogs.showAlert(SelectJobActivity.this,
 							"Error Downloading", "Empty list");
 				} else {
 					PeriCoachTestApplication.setGetFirmware(arg0);
@@ -267,7 +267,7 @@ public class OtherSelectJobActivity extends AppCompatActivity implements MyCallb
 				MyDialogs.dismissProgress();
 				String message = arg0.getMessage() == null ? "" : arg0
 						.getMessage();
-				MyDialogs.showAlert(OtherSelectJobActivity.this,
+				MyDialogs.showAlert(SelectJobActivity.this,
 						"Error Downloading", message);
 
 			}
@@ -277,7 +277,7 @@ public class OtherSelectJobActivity extends AppCompatActivity implements MyCallb
 	private void downloadFirmware() {
 		String url = PeriCoachTestApplication.getGetFirmware().getUrl();
 		String filename = url.substring(url.lastIndexOf("/") + 1, url.length());
-		task = new DownloadTask(OtherSelectJobActivity.this, url, filename);
+		task = new DownloadTask(SelectJobActivity.this, url, filename);
 		task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 	}
 
@@ -295,14 +295,14 @@ public class OtherSelectJobActivity extends AppCompatActivity implements MyCallb
 
 	@Override
 	public void onDownloadFileFailure() {
-		Toast.makeText(OtherSelectJobActivity.this,
+		Toast.makeText(SelectJobActivity.this,
 				"Firmware file not present", Toast.LENGTH_LONG)
 				.show();
 //		firmwarefilepresent = false;
 	}
 
 	private void downloadSequence(final server.pojos.Job job) {
-		MyDialogs.showIndeterminateProgress(OtherSelectJobActivity.this,
+		MyDialogs.showIndeterminateProgress(SelectJobActivity.this,
 				"Downloading sequence", "Please wait...");
 		getRest().getSequence(PeriCoachTestApplication.getDeviceid(),job.getJobno(), new Callback<List<Test>>() {
 
@@ -310,7 +310,7 @@ public class OtherSelectJobActivity extends AppCompatActivity implements MyCallb
 			public void success(List<Test> arg0, Response arg1) {
 				MyDialogs.dismissProgress();
 				if (arg0 == null || arg0.size() <= 0) {
-					MyDialogs.showAlert(OtherSelectJobActivity.this,
+					MyDialogs.showAlert(SelectJobActivity.this,
 							"Error Downloading", "Empty TEST Sequence List");
 				} else {
 					Sequence sequence= new Sequence();
@@ -327,7 +327,7 @@ public class OtherSelectJobActivity extends AppCompatActivity implements MyCallb
 				MyDialogs.dismissProgress();
 				String message = arg0.getMessage() == null ? "" : arg0
 						.getMessage();
-				MyDialogs.showAlert(OtherSelectJobActivity.this,
+				MyDialogs.showAlert(SelectJobActivity.this,
 						"Error Downloading", message);
 			}
 		});
@@ -335,7 +335,7 @@ public class OtherSelectJobActivity extends AppCompatActivity implements MyCallb
 	}
 
 	private void startMainActivity(Job job) {
-		Intent intent = new Intent(OtherSelectJobActivity.this,
+		Intent intent = new Intent(SelectJobActivity.this,
 				MainActivity.class);
 		intent.putExtra(MainActivity.JOB,job);
 		startActivity(intent);
@@ -345,7 +345,7 @@ public class OtherSelectJobActivity extends AppCompatActivity implements MyCallb
 	@Override
 	public void onBackPressed() {
 		super.onBackPressed();
-		OtherSelectJobActivity.this.finish();
+		SelectJobActivity.this.finish();
 	}
 
 	@Override
@@ -363,7 +363,7 @@ public class OtherSelectJobActivity extends AppCompatActivity implements MyCallb
 			showAlertWrongFixture();
 			return;
 		}
-		AlertDialog.Builder builder= new Builder(OtherSelectJobActivity.this);
+		AlertDialog.Builder builder= new Builder(SelectJobActivity.this);
 		builder.setTitle("Error downloading jobs list");
 		builder.setMessage(message);
 		builder.setPositiveButton("OK", new OnClickListener() {	
@@ -377,7 +377,7 @@ public class OtherSelectJobActivity extends AppCompatActivity implements MyCallb
 
 	private void showAlertWrongFixture() {
 		String message ="Your fixture ID is: "+PeriCoachTestApplication.getDeviceid();
-		AlertDialog.Builder builder= new Builder(OtherSelectJobActivity.this);
+		AlertDialog.Builder builder= new Builder(SelectJobActivity.this);
 		builder.setTitle("Fixture Not Valid");
 		builder.setMessage(message);
 		builder.setPositiveButton("Send fixture ID to support", new OnClickListener() {	
@@ -400,14 +400,14 @@ public class OtherSelectJobActivity extends AppCompatActivity implements MyCallb
 		try {
 		    startActivity(Intent.createChooser(i, "Send mail..."));
 		} catch (android.content.ActivityNotFoundException ex) {
-		    Toast.makeText(OtherSelectJobActivity.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+		    Toast.makeText(SelectJobActivity.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
 		}		
 	}
 
 
 	@Override
 	public void setJob(Job job) {
-		OtherSelectJobActivity.job=job;
-//		OtherSelectJobActivity.primaryJob =
+		SelectJobActivity.job=job;
+//		SelectJobActivity.primaryJob =
 	}
 }
