@@ -13,6 +13,7 @@ import server.pojos.records.TestRecord;
 import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.constants.SequenceInterface;
 import com.pietrantuono.tests.implementations.SensorTestWrapper;
+import com.pietrantuono.tests.implementations.upload.UploadFirmwareTest;
 
 
 public class RecordFromSequenceCreator {
@@ -32,7 +33,11 @@ public class RecordFromSequenceCreator {
         record.setDuration("" + sequence.getDuration());
         record.setFixtureNo(PeriCoachTestApplication.getFixtureIdintification());
         record.setAppVersion(PeriCoachTestApplication.getVersion());
-        record.setFWVer(device.getFwver() != null ? device.getFwver() : "");
+        if (firmwareUploadWasExecutedSuccessfully(sequence)) {
+            record.setFWVer(PeriCoachTestApplication.getGetFirmware().getVersion());
+        } else {
+            record.setFWVer(device.getFwver() != null ? device.getFwver() : "");
+        }
         record.setJobNo(sequence.getJobNo());
         record.setModel(device.getModel() != null ? Long.parseLong(device.getModel()) : 0);
         record.setResult(sequence.getOverallResult());
@@ -189,7 +194,17 @@ public class RecordFromSequenceCreator {
         boolean result = false;
         for (int i = 0; i < sequence.getSequence().size(); i++) {
             if (sequence.getSequence().get(i) instanceof SensorTestWrapper) {
-                if (((SensorTestWrapper) sequence.getSequence().get(i)).executed) result = true;
+                if (((SensorTestWrapper) sequence.getSequence().get(i)).isExecuted()) result = true;
+            }
+        }
+        return result;
+    }
+
+    private static boolean firmwareUploadWasExecutedSuccessfully(SequenceInterface sequence) {
+        boolean result = false;
+        for (int i = 0; i < sequence.getSequence().size(); i++) {
+            if (sequence.getSequence().get(i) instanceof UploadFirmwareTest) {
+                if (((UploadFirmwareTest) sequence.getSequence().get(i)).isSuccess()) result = true;
             }
         }
         return result;

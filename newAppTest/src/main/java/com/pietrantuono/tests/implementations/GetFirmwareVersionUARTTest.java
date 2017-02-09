@@ -34,8 +34,8 @@ public class GetFirmwareVersionUARTTest extends Test {
 
     @Override
     public void execute() {
+        Executed();
         new GetFirmwareVersionUARTTestAsyncTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-
     }
 
     public String getVersion() {

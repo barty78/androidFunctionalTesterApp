@@ -18,6 +18,7 @@ public class AccelerometerSelfTest extends Test {
 	}
 	@Override
 	public void execute() {
+		Executed();
 		new AccelerometerSelfTestAsyncTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 	}
 

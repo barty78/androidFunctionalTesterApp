@@ -25,6 +25,7 @@ public class ReadModelNumberTest extends Test {
 
     @Override
     public void execute() {
+        Executed();
         new ReadModelNumberTestAsyncTask().executeParallel();
     }
 

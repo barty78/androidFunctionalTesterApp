@@ -29,11 +29,8 @@ public class DevicesContentProvider extends ContentProvider {
     private static final String CONTENT_TYPE ="vnd.android.cursor.dir/vnd.analytica.devices";
     private static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.analytica.devices";
 
-
     private static final String AUTHORITY = "com.analytica.devicesprovider";
     public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/devices");
-
-
 
     @Override
     public boolean onCreate() {

@@ -39,6 +39,7 @@ public class BLEWakeTest extends Test implements BluetoothAdapter.LeScanCallback
 
     @Override
     public void execute() {
+        Executed();
         final BluetoothManager bluetoothManager =
                 (BluetoothManager) getActivity().getSystemService(Context.BLUETOOTH_SERVICE);
         progressDialog = new ProgressDialog(getActivity());

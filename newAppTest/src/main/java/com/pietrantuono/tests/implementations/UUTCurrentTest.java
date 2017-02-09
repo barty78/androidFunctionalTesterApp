@@ -24,6 +24,7 @@ public class UUTCurrentTest extends Test {
 
     @Override
     public void execute() {
+        Executed();
         new UUTCurrentTestAsyncTask().executeParallel();
     }
 

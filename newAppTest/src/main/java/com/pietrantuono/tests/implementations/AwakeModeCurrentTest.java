@@ -62,6 +62,7 @@ public class AwakeModeCurrentTest extends Test {
 
 	@Override
 	public void execute() {
+		Executed();
 		new AwakeModeCurrentTestAsyncTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 	}
 

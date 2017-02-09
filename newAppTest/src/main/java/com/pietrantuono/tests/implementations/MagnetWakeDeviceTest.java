@@ -54,6 +54,7 @@ public class MagnetWakeDeviceTest extends Test {
                 IOIOUtils.getUtils().setEMag((Activity) activityListener, true);
             }
             IOIOUtils.getUtils().setServo(ioio, 1500);
+            Executed();
             rxBleClient = RxBleClient.create(PeriCoachTestApplication.getContext());
             /**
              * We start scanning as soon as we subscribe

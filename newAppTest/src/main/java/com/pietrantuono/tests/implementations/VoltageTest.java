@@ -61,6 +61,7 @@ public 	class VoltageTest extends Test {
 	@Override
 	public void interrupt() {
 		super.interrupt();
+		Executed();
 		try {Voltage.interrupt();}catch (Exception e){
 		}
 	}

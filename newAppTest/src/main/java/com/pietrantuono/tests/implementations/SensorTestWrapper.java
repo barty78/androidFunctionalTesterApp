@@ -24,7 +24,6 @@ public class SensorTestWrapper extends Test {
     private Boolean singleSensorTest = false;
     private int sensorToTest = 0;
     private String weight = "";
-    public boolean executed =false;
 
     /**
      * Creates a sensor test.
@@ -85,7 +84,7 @@ public class SensorTestWrapper extends Test {
 
     @Override
     public void execute() {
-        executed=true;
+        Executed();
         if (!isClosedTest) {
             new SensorTestWrapperAsyncTask().executeParallel();
         } else {

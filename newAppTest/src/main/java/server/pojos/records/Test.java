@@ -31,15 +31,15 @@ public class Test  {
 	private List<Long> ErrorCode = new ArrayList<Long>();
 
     //@Column(name = "Readings")
-    private Readings foreginkey;
+    private Readings foreignkey;
     
     @SuppressWarnings("unused")
-	public Readings getForeginkey() {
-		return foreginkey;
+	public Readings getForeignkey() {
+		return foreignkey;
 	}
 
-	public void setForeginkey(Readings foreginkey) {
-		this.foreginkey = foreginkey;
+	public void setForeignkey(Readings foreignkey) {
+		this.foreignkey = foreignkey;
 	}
 
 	/**

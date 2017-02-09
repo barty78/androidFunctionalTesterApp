@@ -53,6 +53,7 @@ public class UploadFirmwareTest extends Test {
     @Override
     public void execute() {
         if (isinterrupted) return;
+        Executed();
         String version = PeriCoachTestApplication.getGetFirmware().getVersion();
         uploadDialog = (UploadDialog) activity.getSupportFragmentManager().findFragmentByTag(UploadDialog.TAG);
         if (uploadDialog == null) {
@@ -146,6 +147,7 @@ public class UploadFirmwareTest extends Test {
                     @Override
                     public void onUploadSuccess() {
                         setSuccess(true);
+                        executed = true;
                         Log.d(TAG, "FW Upload Result is " + success);
                         try {
                             RX.close();

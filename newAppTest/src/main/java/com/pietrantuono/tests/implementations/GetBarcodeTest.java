@@ -53,6 +53,7 @@ public class GetBarcodeTest extends Test {
 
     @Override
     public void execute() {
+        Executed();
         new GetBarcodeTestAsyncTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 

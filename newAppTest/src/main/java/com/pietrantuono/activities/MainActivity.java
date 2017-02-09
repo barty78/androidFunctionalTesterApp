@@ -391,10 +391,8 @@ public class MainActivity extends AppCompatActivity
         newSequence.deleteUnusedTests();
         NewRecordsSQLiteOpenHelper newRecordsHelper = NewRecordsSQLiteOpenHelper.getInstance(MainActivity.this);
         TestRecord record = RecordFromSequenceCreator.createRecordFromSequence(newSequence, sequenceDevice);
-        //MyDatabaseUtils.RecontructRecord(record);
         long id = RecordsProcessor.saveRecord(record, newRecordsHelper);
         if (id > 0) {
-
             String selection = "Id = ?";
             String[] selectionArgs = new String[]{"" + id};
             Cursor c = newRecordsHelper.getWritableDatabase().query(RecordsContract.TestRecords.TABLE, null, selection, selectionArgs, null, null, null);
@@ -675,6 +673,9 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onUploadTestFinished(boolean istest, boolean success, String description, String failReason) {
         uiHelper.onUploadTestFinished(success, description, recordId, failReason);
+//        if (success) {
+//            sequenceDevice.setFwver(PeriCoachTestApplication.getGetFirmware().getVersion());
+//        }
         Handler handler = new Handler(getMainLooper());
         handler.postDelayed(new Runnable() {
             @Override

@@ -30,6 +30,7 @@ public class ReadDeviceInfoSerialNumberTest extends Test {
 
     @Override
     public void execute() {
+        Executed();
         new ReadDeviceInfoSerialNumberTestAsyncTask().executeParallel();
     }
 

@@ -21,6 +21,7 @@ public abstract class Test {
 	protected final String TAG=getClass().getSimpleName();
 	private boolean active=true;
 	protected boolean success=false;
+	protected boolean executed=false;
 	private long IdTest=0;
 	private double value;
 	private Long errorcode=0l;//Defalt value
@@ -111,6 +112,9 @@ public abstract class Test {
 	protected void Success() {
 		this.success = true;
 	}
+	public boolean isExecuted() { return executed; }
+	public void setExecuted(boolean executed) { this.executed = executed; }
+	protected void Executed() { this.executed = true; }
 	public long getIdTest() {
 		return IdTest;
 	}

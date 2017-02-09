@@ -35,6 +35,7 @@ public class GetMacAddressTest extends Test {
 //        if(activityListener.getBarcode()==null){
 //            activityListener.addFailOrPass(true, true, "", description);
 //        }
+        Executed();
         new GetMacAddressTestAsyncTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
     }

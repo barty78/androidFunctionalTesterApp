@@ -20,6 +20,7 @@ public class BluetoothConnectTestForTesting extends Test {
 
     @Override
     public void execute() {
+        Executed();
         new BluetoothConnectTestForTestingAsyncTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 

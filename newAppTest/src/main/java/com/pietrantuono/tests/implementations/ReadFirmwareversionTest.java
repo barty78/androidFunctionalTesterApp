@@ -22,6 +22,7 @@ public class ReadFirmwareversionTest extends Test {
 
     @Override
     public void execute() {
+        Executed();
         new ReadFirmwareversionTestAsyncTask().executeParallel();
     }
 

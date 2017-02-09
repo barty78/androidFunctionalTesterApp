@@ -41,6 +41,7 @@ public class CurrentTest extends Test {
 	}
 	@Override
 	public void execute() {
+		Executed();
 		new CurrentTestAsyncTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 	}
 	@Override

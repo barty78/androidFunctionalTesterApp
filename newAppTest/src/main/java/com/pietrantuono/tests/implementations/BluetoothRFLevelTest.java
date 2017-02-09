@@ -41,6 +41,7 @@ public class BluetoothRFLevelTest extends Test {
             activityListener.addFailOrPass(true, false, "No Address", description);
             return;
         }
+        Executed();
         rxBleClient = RxBleClient.create(PeriCoachTestApplication.getContext());
         /**
          * We start scanning as soon as we subscribe

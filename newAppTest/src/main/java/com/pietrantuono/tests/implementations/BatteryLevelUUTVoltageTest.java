@@ -37,6 +37,7 @@ public class BatteryLevelUUTVoltageTest extends Test {
 
     @Override
     public void execute() {
+        Executed();
         new BatteryLevelUUTVoltageTestAsyncTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 

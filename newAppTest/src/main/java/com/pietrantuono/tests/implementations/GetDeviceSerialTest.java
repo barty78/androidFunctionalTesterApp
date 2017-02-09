@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import analytica.pericoach.android.Contract;
 import ioio.lib.api.IOIO;
+import server.pojos.Device;
 
 public class GetDeviceSerialTest extends Test {
     private static final ExecutorService executor = Executors.newFixedThreadPool(1);
@@ -33,6 +34,7 @@ public class GetDeviceSerialTest extends Test {
     public void execute() {
         if (isinterrupted)
             return;
+        Executed();
         Log.d(TAG, "Get Device Serial TEST Starting");
         if (IOIOUtils.getUtils().getUutMode(getActivity()) == IOIOUtils.Mode.bootloader) {
             IOIOUtils.getUtils().modeApplication((Activity) activityListener);
@@ -76,10 +78,12 @@ public class GetDeviceSerialTest extends Test {
                                 Log.d(TAG, "Retest is " + PeriCoachTestApplication.getIsRetestAllowed());
                                 String selection= Contract.DevicesColumns.DEVICES_SERIAL+" = ?";
 
-                                String[] seclectionargs= new String[]{};
-                                Cursor c=((Activity)activityListener).getContentResolver().query(DevicesContentProvider.CONTENT_URI,null,selection,seclectionargs,null);
+                                String[] selectionargs= new String[]{};
+                                Cursor c=((Activity)activityListener).getContentResolver().query(DevicesContentProvider.CONTENT_URI,
+                                        null, selection, selectionargs, null);
                                 if (c.getCount()>0) {
                                     Success();
+                                    Device device = DevicesContentProvider.reconstructDevice(c);
 //                                    activityListener.addView("Serial (HW reading):", strFileContents, false);
                                     activityListener.setSerial(strFileContents);
                                     activityListener.setSequenceDevice(activityListener.getSequenceDevice().setSerial(strFileContents));

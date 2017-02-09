@@ -57,6 +57,7 @@ public class BluetoothDiscoverableModeTest extends Test {
 		adapter.startDiscovery();
 		asyncTask = new DiscoveryAsyncTask();
 		asyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+		Executed();
 	}
 	@Override
 	public void interrupt() {
