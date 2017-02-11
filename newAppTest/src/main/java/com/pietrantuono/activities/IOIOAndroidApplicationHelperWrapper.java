@@ -41,9 +41,8 @@ class IOIOAndroidApplicationHelperWrapper {
 		return isStarted;
 	}
 
-	
 
-	
-	
-
+	public void restart() {
+		applicationHelper.restart();
+	}
 }

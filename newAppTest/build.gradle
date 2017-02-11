@@ -45,7 +45,7 @@ android {
 //            storePassword 'barty78'
 //            storeFile file('C:/Users/Peter/Keystore/android.jks')
             keyPassword 'barty78'
-            storeFile file('C:/Users/Peter/Keystore/android.jks')
+//            storeFile file('C:/Users/Peter/Keystore/android.jks')
             storePassword 'barty78'
         }
     }

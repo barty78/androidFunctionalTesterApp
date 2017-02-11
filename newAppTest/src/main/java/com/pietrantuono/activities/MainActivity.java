@@ -724,7 +724,10 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void run() {
                 uiHelper.setConnected(false);
-                if (!destroying) toast("CONNECTION LOST !!!", Toast.LENGTH_LONG);
+                if (!destroying) {
+                    ioioAndroidApplicationHelperWrapper.restart();
+                    toast("CONNECTION LOST !!!", Toast.LENGTH_LONG);
+                }
             }
         });
 //        // Let's attempt a reconnection.
@@ -761,9 +764,11 @@ public class MainActivity extends AppCompatActivity
         if (BuildConfig.DEBUG && PeriCoachTestApplication.getCurrentJob().getTesttypeId() == 1) {
             boolean mockBarcode = true;
             for (int i = 0; i < newSequenceInterface.getSequence().size(); i++) {
-                if (newSequenceInterface.getSequence().get(i) instanceof GetBarcodeTest) mockBarcode = false;
+                if (newSequenceInterface.getSequence().get(i) instanceof GetBarcodeTest)
+                    mockBarcode = false;
             }
-            if (mockBarcode) setSequenceDevice(getSequenceDevice().setBarcode(getResources().getString(R.string.barcode_for_test)));
+            if (mockBarcode)
+                setSequenceDevice(getSequenceDevice().setBarcode(getResources().getString(R.string.barcode_for_test)));
         }
         return newSequenceInterface;
     }
