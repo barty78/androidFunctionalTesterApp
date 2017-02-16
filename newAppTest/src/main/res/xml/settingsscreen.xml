@@ -40,15 +40,6 @@
         android:showAsAction="always">
     </Preference>
 
-    <SwitchPreference
-        android:defaultValue="false"
-        android:key="@string/use_mac"
-        android:title="Use mac to connect"
-        android:summary="Use mac to connect"
-        android:visible="true"
-        android:showAsAction="always"
-        />
-
     <Preference android:title="Select IOIO" >
         <intent android:action="MY_ACTION" />
     </Preference>

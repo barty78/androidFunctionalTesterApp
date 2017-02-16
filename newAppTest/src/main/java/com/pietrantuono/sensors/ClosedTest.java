@@ -1,5 +1,6 @@
 package com.pietrantuono.sensors;
 
+import com.pietrantuono.btutility.BTUtility;
 import com.pietrantuono.constants.SensorResult;
 import com.pietrantuono.pericoach.newtestapp.R;
 import com.pietrantuono.tests.ErrorCodes;
@@ -17,6 +18,7 @@ import android.util.Log;
 import android.view.View;
 
 import customclasses.DebugHelper;
+import hydrix.pfmat.generic.Device;
 import hydrix.pfmat.generic.Force;
 import hydrix.pfmat.generic.SessionSamples;
 
@@ -98,13 +100,32 @@ public class ClosedTest extends SensorTest implements OnDetectCallback {
         }
 
         if (!DebugHelper.isMaurizioDebug()) {
-            try {
-                this.sensorsTestHelper.sendAllVoltages(voltage, zeroVoltage);
-            } catch (Exception e) {
-                e.printStackTrace();
-                ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - Setting Voltages Failed", true, testToBeParsed
-                );
-                return;
+//            BTUtility btUtility = activityListener.getBtutility();
+//            if (btUtility == null) {
+//                report("BTUtility is null");
+//                ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "BTUtility Null", true, testToBeParsed);
+//                return;
+//            }
+
+            Log.d(SensorsTestHelper.TAG, "Model Check - " + sensorsTestHelper.getModel() + " : " + NewDevice.V2);
+            if (sensorsTestHelper.getModel().equals(NewDevice.V2)) {
+                Log.d(SensorsTestHelper.TAG, "V2 Voltage Setting");
+                try {
+                    this.sensorsTestHelper.sendV2Voltage(voltage);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - Setting Voltages Failed", true, testToBeParsed);
+                    return;
+                }
+            } else {
+                Log.d(SensorsTestHelper.TAG, "V3 Voltage Setting");
+                try {
+                    this.sensorsTestHelper.sendAllVoltages(voltage, zeroVoltage);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - Setting Voltages Failed", true, testToBeParsed);
+                    return;
+                }
             }
         }
 
@@ -115,7 +136,7 @@ public class ClosedTest extends SensorTest implements OnDetectCallback {
         if (singleSensorTest) mSensorResult.singleSensorTest();
         if (!singleSensorTest || hasPrompt) {
 
-            AlertDialog.Builder builder = new Builder(this.sensorsTestHelper.activityref.get());
+            Builder builder = new Builder(this.sensorsTestHelper.activityref.get());
             builder.setTitle("Closed test");
 
             builder.setMessage("Place " + weight + "Test Weight on Sensor " + sensorToTest + " and press OK");

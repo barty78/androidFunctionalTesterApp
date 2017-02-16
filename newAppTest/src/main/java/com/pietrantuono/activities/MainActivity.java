@@ -730,14 +730,7 @@ public class MainActivity extends AppCompatActivity
                 }
             }
         });
-//        // Let's attempt a reconnection.
-//        try {
-//            looper.setup(myIOIO);
-//        } catch (ConnectionLostException e) {
-//            e.printStackTrace();
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
+
     }
     //**
     //Methods used by tests

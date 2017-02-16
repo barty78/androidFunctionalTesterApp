@@ -15,6 +15,8 @@ public abstract class Device
 	private final static int DEVICE_INFORMATION_TIMEOUT = 10000; // We need to see a Device Information packet within 10 seconds of connection or we disconnect
 	private final static int DEVICE_INFORMATION_REQUEST_FREQ_MS = 2000; // Try every 2 seconds
 	private final static int BATTERY_POLL_FREQ_MS = 60000; // Per minute
+	public final static String V2 = "0188";
+	public final static String V3 = "0198";
 
 	// Members
 	private Information mInfo = new Information();

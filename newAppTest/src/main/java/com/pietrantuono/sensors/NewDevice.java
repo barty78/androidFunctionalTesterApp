@@ -50,6 +50,9 @@ public abstract class NewDevice {
     private final static int BATTERY_POLL_FREQ_MS = 60000; // Per minute
     private final String TAG = getClass().getSimpleName();
 
+    public final static String V2 = "0188";
+    public final static String V3 = "0198";
+
     // Members
     private final Information mInfo = new Information();
     private InputStream mInputStream = null;

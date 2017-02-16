@@ -3,6 +3,8 @@ package com.pietrantuono.sensors;
 import java.lang.ref.WeakReference;
 import java.util.concurrent.TimeoutException;
 
+import com.crashlytics.android.Crashlytics;
+import com.pietrantuono.activities.IOIOActivityListener;
 import com.pietrantuono.activities.MainActivity;
 import com.pietrantuono.constants.SensorResult;
 import com.pietrantuono.ioioutils.IOIOUtils;
@@ -32,6 +34,7 @@ public class SensorTest {
     public final float varLimit;
     public final SensorTestWrapper wrapper;
     protected SensorsTestHelper sensorsTestHelper;
+    protected final IOIOActivityListener activityListener;
     protected WeakReference<Activity> activity = null;
     protected short voltage = -1;
     protected short zeroVoltage = -1;
@@ -42,6 +45,7 @@ public class SensorTest {
     Test testToBeParsed;
     private boolean interrupted;
     int items[];
+    protected final String TAG=getClass().getSimpleName();
 
     public static final int NO_SENSORS = -1;
     public static final int SENSOR0 = 0;
@@ -56,10 +60,11 @@ public class SensorTest {
     }
 
     public SensorTest(Activity activity, SensorTestWrapper wrapper, float lowerLimit, float upperLimit, float varLimit) {
-        Log.d("SensorTest", "constucor");
+        Log.d("SensorTest", "constructor");
         this.activity = new WeakReference<Activity>(activity);
         this.mSensorResult = new SensorResult(wrapper);
         this.mSensorResult.setDescription(wrapper.getDescription());
+        this.activityListener=(IOIOActivityListener)activity;
         this.lowerLimit = lowerLimit;
         this.upperLimit = upperLimit;
         this.varLimit = varLimit;
@@ -67,6 +72,30 @@ public class SensorTest {
         this.zeroVoltage = wrapper.getZeroVoltage();
         this.load = wrapper.getLoad();
         this.wrapper = wrapper;
+    }
+
+    protected void report(final Exception e){
+        final Activity activity=(Activity)activityListener;
+        if(activity==null || activity.isFinishing())return;
+        ((Activity)activityListener).runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Crashlytics.logException(e);
+                Log.d(TAG, e.toString());
+                if (activityListener == null) return;
+                Toast.makeText(activity, e.toString(), Toast.LENGTH_LONG).show();
+            }
+        });
+
+    }
+    protected void report(String msg){
+        Crashlytics.log(msg);
+        Log.d(TAG,msg);
+        if (activityListener==null) return;
+        Activity activity=(Activity)activityListener;
+        if(activity==null || activity.isFinishing())return;
+        Toast.makeText(activity, msg, Toast.LENGTH_LONG).show();
+
     }
 
     public void stop() {
@@ -183,14 +212,28 @@ public class SensorTest {
                 e.printStackTrace();
             }
         if (!DebugHelper.isMaurizioDebug()) {
-            try {
+            Log.d(SensorsTestHelper.TAG, "Model Check - " + sensorsTestHelper.getModel() + " : " + NewDevice.V2);
+            if (sensorsTestHelper.getModel().equals(NewDevice.V2)) {
+                Log.d(SensorsTestHelper.TAG, "V2 Voltage Setting");
+                try {
+                    this.sensorsTestHelper.sendV2Voltage(voltage);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Log.e(TAG, e.toString());
+                    ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - Setting Voltages Failed", true, testToBeParsed);
+                    return;
+                }
+            } else {
+                Log.d(SensorsTestHelper.TAG, "V3 Voltage Setting");
+                try {
 //                this.sensorsTestHelper.sendVoltages(voltage, zeroVoltage);
-                this.sensorsTestHelper.sendAllVoltages(voltage, zeroVoltage);
-            } catch (TimeoutException | NewDevice.InvalidVoltageException e) {
-                e.printStackTrace();
-                wrapper.setErrorcode((long) ErrorCodes.SENSORTEST_VOLTAGE_SETTING_FAILED);
-                ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - Setting Voltages Failed", true, testToBeParsed);
-                return;
+                    this.sensorsTestHelper.sendAllVoltages(voltage, zeroVoltage);
+                } catch (TimeoutException | NewDevice.InvalidVoltageException e) {
+                    e.printStackTrace();
+                    wrapper.setErrorcode((long) ErrorCodes.SENSORTEST_VOLTAGE_SETTING_FAILED);
+                    ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - Setting Voltages Failed", true, testToBeParsed);
+                    return;
+                }
             }
         }
         sensorsTestHelper.getNewSessionPollingThreadref().start();

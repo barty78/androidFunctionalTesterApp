@@ -414,7 +414,7 @@ public class NewSequence implements SequenceInterface {
 //        //
 //        //		sequence.add(new ChargeLedCheckTest(activity, ioio, "Pink", "Pink LED Check"));
 
-        sequence.add(new BluetoothConnectTestForTesting(activity));
+        sequence.add(new BluetoothConnectTestForTesting(activity, true));
 
         sequence.add(new ReadDeviceInfoSerialNumberTest(activity));
         sequence.add(new ReadModelNumberTest(activity));

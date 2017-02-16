@@ -122,10 +122,11 @@ public class TestsParser {
             test = new BluetoothDiscoverableModeTestForTesting(activity);//TODO
 
         } else if (classID == activity.getResources().getInteger(R.integer.BluetoothConnectTest)) {
-
-            test = new BluetoothConnectTest(activity);
+            boolean connectViaMac = testToBeParsed.getIoiopinnum() == 1;
+            test = new BluetoothConnectTest(activity, connectViaMac);
         } else if (classID == activity.getResources().getInteger(R.integer.BluetoothConnectTestForTesting)) {
-            test = new BluetoothConnectTestForTesting(activity);//TODO
+            boolean connectViaMac = testToBeParsed.getIoiopinnum() == 1;
+            test = new BluetoothConnectTestForTesting(activity, connectViaMac);//TODO
         } else if (classID == activity.getResources().getInteger(R.integer.BTConnectCurrent)) {
             test = new BTConnectCurrent(activity, ioio);
         } else if (classID == activity.getResources().getInteger(R.integer.ReadDeviceInfoSerialNumberTest)) {

@@ -72,6 +72,7 @@ public class BTUtility {
     private static Activity activity;
     private ExecutorService executor;
     private boolean interrupt = false;
+    private boolean connectUsingMac = false;
 
 
     private class ConnectReceiver extends BroadcastReceiver {
@@ -119,14 +120,15 @@ public class BTUtility {
         }
     }
 
-    public BTUtility(Activity activity1, String scancode,
+    public BTUtility(Activity activity1, boolean connectUsingMac, String scancode,
                      String macaddress) {
         if (isstopped)
             return;
         this.activityRef = new WeakReference<Activity>(activity1);
 //        if (PeriCoachTestApplication.getCurrentJob().getTesttypeId() == 1) {
-            this.scancode = scancode;
-            this.macaddress = macaddress;
+        this.connectUsingMac = connectUsingMac;
+        this.scancode = scancode;
+        this.macaddress = macaddress;
 //        }
         final Activity activity = activityRef.get();
         if (activity == null)
@@ -167,11 +169,16 @@ public class BTUtility {
         if (isstopped)
             return false;
         this.bluetoothConnectTest = bluetoothConnectTest;
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(activityRef.get());
-        boolean usemac = sharedPref.getBoolean(activityRef.get().getResources().getString(R.string.use_mac), false);
-        if (usemac) {
+//        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(activityRef.get());
+//        boolean usemac = sharedPref.getBoolean(activityRef.get().getResources().getString(R.string.use_mac), false);
+//        if (usemac) {
+//            return connectUsingMac();
+//        }
+        if (connectUsingMac) {
+            Log.d(TAG, "Connection Method: MAC");
             return connectUsingMac();
         }
+        Log.d(TAG, "Connection Method: Discovery");
         mListItems = new ArrayList<ConnectDeviceItem>();
         // Register for BT device discovery broadcast events
         IntentFilter eventFilter = new IntentFilter();
@@ -488,6 +495,7 @@ public class BTUtility {
 
     public void setVoltage(final Short voltage) throws Exception {
         if (DebugHelper.isMaurizioDebug()) return;
+
         // If job testtype is open, we can use the uart for ACK of packets
         if (PeriCoachTestApplication.getCurrentJob().getTesttypeId() == 1) {
             Byte sensor = (byte) (0 & 0xFF);
@@ -500,7 +508,7 @@ public class BTUtility {
             sensor = (byte) (1 & 0xFF);
             Log.d("SENSOR", "Setting sensor " + sensor + " to " + voltage);
             curPos = IOIOUtils.getUtils().getUartLog().length();
-            NewPFMATDevice.getDevice().sendRefVoltage(sensor, voltage);
+            NewPFMATDevice.getDevice().sendRefVoltage((byte) (1 & 0xFF), voltage);
             if (!getAckOrTimeout(200, "S1 VOLTAGE SET to", curPos))
                 throw new Exception("Setting failed.");
 
@@ -511,44 +519,68 @@ public class BTUtility {
             if (!getAckOrTimeout(200, "S2 VOLTAGE SET to", curPos))
                 throw new Exception("Setting failed.");
         } else {
+
+            Log.d(TAG, "S0 VOLTAGE SET to " + voltage);
+            NewPFMATDevice.getDevice().sendRefVoltage((byte) (0 & 0xFF), voltage);
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Log.d(TAG, "S1 VOLTAGE SET to " + voltage);
+                    NewPFMATDevice.getDevice().sendRefVoltage((byte) (1 & 0xFF), voltage);
+                }
+            }, 200);
+
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Log.d(TAG, "S2 VOLTAGE SET to " + voltage);
+                    NewPFMATDevice.getDevice().sendRefVoltage((byte) (2 & 0xFF), voltage);
+                }
+            }, 400);
+
             // We need to use another method of ACK for packets..  Perhaps we need a new packet type in probe which does send back ACK
         }
     }
 
 
     public void sendAllVoltages(final short[] refVoltages, final short[] zeroVoltages, int timeOutInMills) throws TimeoutException, NewDevice.InvalidVoltageException {
-        final CountDownLatch countDownLatch = new CountDownLatch(1);
-        try {
-            NewPFMATDevice.getDevice().sendAllVoltages(refVoltages, zeroVoltages, new AllSensorsCallback() {
-                @Override
-                public void onAllVoltageResponseReceived() {
-                    countDownLatch.countDown();
-                    Log.d(TAG, "onAllVoltage , ACK");
-                }
 
-                @Override
-                public void onError() {
-                    countDownLatch.countDown();
-                    Log.d(TAG, "onAllVoltage , ERROR ");
-                }
-            });
-        } catch (NewDevice.InvalidVoltageException e) {
-            e.printStackTrace();
-            countDownLatch.countDown();
-            Log.d(TAG, "Exception in  sendAllVoltages = " + e.toString());
-            throw e;
-        }
-        try {
-            boolean notTimedout = countDownLatch.await(timeOutInMills, TimeUnit.MILLISECONDS);
-            Log.d(TAG, "Timed out = " + notTimedout);
-            if (!notTimedout) throw new TimeoutException("Set all voltages timed out");
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        if (NewPFMATDevice.getDevice().getInformation().mModel == "0188") {
+
+        } else {
+
+            final CountDownLatch countDownLatch = new CountDownLatch(1);
+            try {
+                NewPFMATDevice.getDevice().sendAllVoltages(refVoltages, zeroVoltages, new AllSensorsCallback() {
+                    @Override
+                    public void onAllVoltageResponseReceived() {
+                        countDownLatch.countDown();
+                        Log.d(TAG, "onAllVoltage , ACK");
+                    }
+
+                    @Override
+                    public void onError() {
+                        countDownLatch.countDown();
+                        Log.d(TAG, "onAllVoltage , ERROR ");
+                    }
+                });
+            } catch (NewDevice.InvalidVoltageException e) {
+                e.printStackTrace();
+                countDownLatch.countDown();
+                Log.d(TAG, "Exception in  sendAllVoltages = " + e.toString());
+                throw e;
+            }
+            try {
+                boolean notTimedout = countDownLatch.await(timeOutInMills, TimeUnit.MILLISECONDS);
+                Log.d(TAG, "Timed out = " + notTimedout);
+                if (!notTimedout) throw new TimeoutException("Set all voltages timed out");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+                return;
+            }
             return;
         }
-        return;
-
-
     }
 
     private boolean getAckOrTimeout(int timeout, final String msg, final int curPos) {

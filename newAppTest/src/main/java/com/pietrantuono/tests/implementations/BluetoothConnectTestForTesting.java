@@ -13,9 +13,11 @@ public class BluetoothConnectTestForTesting extends Test {
     private BTUtility btUtility;
     private String mac = "";
     private String serial = "";
+    private boolean connectUsingMac = false;
 
-    public BluetoothConnectTestForTesting(Activity activity) {
+    public BluetoothConnectTestForTesting(Activity activity, boolean connectUsingMac) {
         super(activity, null, "Bluetooth Connect", false, true, 0, 0, 0);
+        this.connectUsingMac = connectUsingMac;
     }
 
     @Override
@@ -51,12 +53,13 @@ public class BluetoothConnectTestForTesting extends Test {
                         mac = "00:17:E9:C0:82:EE";
                         break;
                 }
-                btUtility = new BTUtility((Activity) activityListener,
+                btUtility = new BTUtility((Activity) activityListener, connectUsingMac,
                         serial,
                         mac);
 
             } else {
                 btUtility = new BTUtility((Activity) activityListener,
+                        connectUsingMac,
                         activityListener.getSerial(),
                         activityListener.getMac());
 

@@ -209,6 +209,22 @@ public class SensorsTestHelper implements OnSampleCallback {
 
     }
 
+	public String getModel() {
+		return ((IOIOActivityListener) (activityref.get())).getBtutility().getModelNumber();
+	}
+
+	public String getSerial() {
+		return ((IOIOActivityListener) (activityref.get())).getBtutility().getSerial();
+	}
+
+	void sendV2Voltage(final Short voltage) throws Exception {
+		try {
+			((IOIOActivityListener) (activityref.get())).getBtutility().setVoltage(voltage);
+		} catch (Exception e) {
+			throw new Exception("Setting Failed.");
+		}
+	}
+
     void sendVoltages(final Short voltage, final Short zerovoltage) throws Exception {
         try {
             ((IOIOActivityListener) (activityref.get())).getBtutility().setVoltage(voltage);

@@ -47,6 +47,7 @@ android {
             keyPassword 'barty78'
 //            storeFile file('C:/Users/Peter/Keystore/android.jks')
             storePassword 'barty78'
+            storeFile file('C:/Users/Peter/Keystore/android.jks')
         }
     }
     compileSdkVersion 23
@@ -110,6 +111,7 @@ dependencies {
     }
     compile project(':pfmat')
     // RX Android
+
     // Because RxAndroid releases are few and far between, it is recommended you also
 
     // explicitly depend on RxJava's latest version for bug fixes and new features.

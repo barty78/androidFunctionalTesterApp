@@ -9,9 +9,11 @@ import com.pietrantuono.tests.superclass.Test;
 
 public class BluetoothConnectTest extends Test {
     private BTUtility btUtility;
+    private boolean connectUsingMac = false;
 
-    public BluetoothConnectTest(Activity activity) {
+    public BluetoothConnectTest(Activity activity, boolean connectUsingMac) {
         super(activity, null, "Bluetooth Connect", false, false, 0, 0, 0);
+        this.connectUsingMac = connectUsingMac;
     }
 
     @Override
@@ -33,7 +35,8 @@ public class BluetoothConnectTest extends Test {
         @Override
         protected Void doInBackground(Void... params) {
             if (isinterrupted) return null;
-            btUtility = new BTUtility((Activity) activityListener, activityListener.getSerial(), // TODO
+            btUtility = new BTUtility((Activity) activityListener, connectUsingMac,
+                    activityListener.getSerial(), // TODO
                     // change
                     // serial
                     // goes activityListener.getSerial()
@@ -47,9 +50,7 @@ public class BluetoothConnectTest extends Test {
                 ((IOIOActivityListener) getActivity()).addFailOrPass(
                         false, false, "CONNECT FAILED", getDescription(), testToBeParsed);
             }
-
             return null;
         }
     }
-
 }
