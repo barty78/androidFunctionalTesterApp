@@ -6,6 +6,7 @@ import java.util.concurrent.TimeoutException;
 import com.crashlytics.android.Crashlytics;
 import com.pietrantuono.activities.IOIOActivityListener;
 import com.pietrantuono.activities.MainActivity;
+import com.pietrantuono.application.PeriCoachTestApplication;
 import com.pietrantuono.constants.SensorResult;
 import com.pietrantuono.ioioutils.IOIOUtils;
 import com.pietrantuono.pericoach.newtestapp.R;
@@ -194,23 +195,26 @@ public class SensorTest {
             ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - No Sensor Result Object", true, testToBeParsed);
             return;
         }
-//		try {
-//			Thread.sleep(200);
-//		} catch (InterruptedException e) {
-//			e.printStackTrace();
-//		}
-        if (load)
-            try {
-                IOIOUtils.getUtils().getSensor_High().write(false);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        else
-            try {
-                IOIOUtils.getUtils().getSensor_High().write(true);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+		try {
+			Thread.sleep(200);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
+        if (PeriCoachTestApplication.getCurrentJob().getTesttypeId() == 1) {
+            if (load)
+                try {
+                    IOIOUtils.getUtils().getSensor_High().write(false);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            else
+                try {
+                    IOIOUtils.getUtils().getSensor_High().write(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+        }
         if (!DebugHelper.isMaurizioDebug()) {
             Log.d(SensorsTestHelper.TAG, "Model Check - " + sensorsTestHelper.getModel() + " : " + NewDevice.V2);
             if (sensorsTestHelper.getModel().equals(NewDevice.V2)) {
@@ -220,6 +224,7 @@ public class SensorTest {
                 } catch (Exception e) {
                     e.printStackTrace();
                     Log.e(TAG, e.toString());
+                    wrapper.setErrorcode((long) ErrorCodes.SENSORTEST_VOLTAGE_SETTING_FAILED);
                     ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - Setting Voltages Failed", true, testToBeParsed);
                     return;
                 }
@@ -253,13 +258,13 @@ public class SensorTest {
                 }
                 sensorsTestHelper.acceptData(true);
                 SensorTest.this.sensorsTestHelper.samplesref.clear();
-                Log.d("execute", "executin first runnable");
+                Log.d("execute", "executing first runnable");
             }
         }, DELAY);
         h.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Log.d("execute", "executin first runnable");
+                Log.d("execute", "executing second runnable");
                 endTest();
             }
         }, (SensorsTestHelper.CALIBRATION_TIME_MS * 1) + DELAY);

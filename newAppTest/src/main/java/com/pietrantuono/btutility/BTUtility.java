@@ -495,39 +495,40 @@ public class BTUtility {
 
     public void setVoltage(final Short voltage) throws Exception {
         if (DebugHelper.isMaurizioDebug()) return;
-
+        final NewDevice device = NewPFMATDevice.getDevice();
         // If job testtype is open, we can use the uart for ACK of packets
         if (PeriCoachTestApplication.getCurrentJob().getTesttypeId() == 1) {
             Byte sensor = (byte) (0 & 0xFF);
             Log.d("SENSOR", "Setting sensor " + sensor + " to " + voltage);
             int curPos = IOIOUtils.getUtils().getUartLog().length();
-            NewPFMATDevice.getDevice().sendRefVoltage(sensor, voltage);
+            device.sendRefVoltage(sensor, voltage);
             if (!getAckOrTimeout(200, "S0 VOLTAGE SET to", curPos))
                 throw new Exception("Setting failed.");
 
             sensor = (byte) (1 & 0xFF);
             Log.d("SENSOR", "Setting sensor " + sensor + " to " + voltage);
             curPos = IOIOUtils.getUtils().getUartLog().length();
-            NewPFMATDevice.getDevice().sendRefVoltage((byte) (1 & 0xFF), voltage);
+            device.sendRefVoltage((byte) (1 & 0xFF), voltage);
             if (!getAckOrTimeout(200, "S1 VOLTAGE SET to", curPos))
                 throw new Exception("Setting failed.");
 
             sensor = (byte) (2 & 0xFF);
             Log.d("SENSOR", "Setting sensor " + sensor + " to " + voltage);
             curPos = IOIOUtils.getUtils().getUartLog().length();
-            NewPFMATDevice.getDevice().sendRefVoltage(sensor, voltage);
+            device.sendRefVoltage(sensor, voltage);
             if (!getAckOrTimeout(200, "S2 VOLTAGE SET to", curPos))
                 throw new Exception("Setting failed.");
         } else {
-
+            HandlerThread handlerThread = new HandlerThread("Sensor test handler thread");
+            handlerThread.start();
             Log.d(TAG, "S0 VOLTAGE SET to " + voltage);
-            NewPFMATDevice.getDevice().sendRefVoltage((byte) (0 & 0xFF), voltage);
-            Handler handler = new Handler();
+            device.sendRefVoltage((byte) (0 & 0xFF), voltage);
+            Handler handler = new Handler(handlerThread.getLooper());
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     Log.d(TAG, "S1 VOLTAGE SET to " + voltage);
-                    NewPFMATDevice.getDevice().sendRefVoltage((byte) (1 & 0xFF), voltage);
+                    device.sendRefVoltage((byte) (1 & 0xFF), voltage);
                 }
             }, 200);
 
@@ -535,7 +536,7 @@ public class BTUtility {
                 @Override
                 public void run() {
                     Log.d(TAG, "S2 VOLTAGE SET to " + voltage);
-                    NewPFMATDevice.getDevice().sendRefVoltage((byte) (2 & 0xFF), voltage);
+                    device.sendRefVoltage((byte) (2 & 0xFF), voltage);
                 }
             }, 400);
 

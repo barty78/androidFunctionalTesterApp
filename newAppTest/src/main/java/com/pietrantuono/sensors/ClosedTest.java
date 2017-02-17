@@ -94,19 +94,12 @@ public class ClosedTest extends SensorTest implements OnDetectCallback {
             return;
         }
         try {
-            Thread.sleep(200);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
         if (!DebugHelper.isMaurizioDebug()) {
-//            BTUtility btUtility = activityListener.getBtutility();
-//            if (btUtility == null) {
-//                report("BTUtility is null");
-//                ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "BTUtility Null", true, testToBeParsed);
-//                return;
-//            }
-
             Log.d(SensorsTestHelper.TAG, "Model Check - " + sensorsTestHelper.getModel() + " : " + NewDevice.V2);
             if (sensorsTestHelper.getModel().equals(NewDevice.V2)) {
                 Log.d(SensorsTestHelper.TAG, "V2 Voltage Setting");
@@ -114,6 +107,7 @@ public class ClosedTest extends SensorTest implements OnDetectCallback {
                     this.sensorsTestHelper.sendV2Voltage(voltage);
                 } catch (Exception e) {
                     e.printStackTrace();
+                    wrapper.setErrorcode((long) ErrorCodes.SENSORTEST_VOLTAGE_SETTING_FAILED);
                     ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - Setting Voltages Failed", true, testToBeParsed);
                     return;
                 }
@@ -123,6 +117,7 @@ public class ClosedTest extends SensorTest implements OnDetectCallback {
                     this.sensorsTestHelper.sendAllVoltages(voltage, zeroVoltage);
                 } catch (Exception e) {
                     e.printStackTrace();
+                    wrapper.setErrorcode((long) ErrorCodes.SENSORTEST_VOLTAGE_SETTING_FAILED);
                     ((SensorTestCallback) (activity.get())).addFailOrPass(true, false, "", "Sensor test - Setting Voltages Failed", true, testToBeParsed);
                     return;
                 }
