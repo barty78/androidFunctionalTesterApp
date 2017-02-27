@@ -1,10 +1,12 @@
 package server.pojos;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import android.os.Parcel;
-import android.os.Parcelable;
+import java.util.Comparator;
 
 @SuppressWarnings("unused")
 public class Job implements Parcelable {
@@ -73,6 +75,13 @@ public class Job implements Parcelable {
     @SerializedName("stage_dep")
     private int stage_dep;
 
+    @Expose
+    @SerializedName("setSensorTestFlag")
+    private int setSensorTestFlag;
+
+    @Expose
+    @SerializedName("disconnectPowerState")
+    private int disconnectPowerState;
 
 
     public Job() {}
@@ -324,6 +333,14 @@ public class Job implements Parcelable {
         this.stage_dep = stage_dep;
     }
 
+    public int getSetSensorTestFlag() { return setSensorTestFlag;}
+
+    public void setSetSensorTestFlag(int setSensorTestFlag) { this.setSensorTestFlag = setSensorTestFlag;}
+
+    public int getDisconnectPowerState() { return disconnectPowerState;}
+
+    public void setDisconnectPowerState(int disconnectPowerState) { this.disconnectPowerState = disconnectPowerState;}
+
 
     protected Job(Parcel in) {
         id = in.readLong();
@@ -342,11 +359,37 @@ public class Job implements Parcelable {
         active = in.readLong();
         description = in.readString();
         stage_dep = in.readInt();
+        setSensorTestFlag = in.readInt();
+        disconnectPowerState = in.readInt();
     }
 
     @Override
     public int describeContents() {
         return 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Job{" +
+                "id=" + id +
+                ", primaryJobId=" + primaryJobId +
+                ", testtypeId=" + testtypeId +
+                ", testId=" + testId +
+                ", firmwareId=" + firmwareId +
+                ", jobno='" + jobno + '\'' +
+                ", quantity=" + quantity +
+                ", barcodeprefix='" + barcodeprefix + '\'' +
+                ", createdAt='" + createdAt + '\'' +
+                ", updatedAt='" + updatedAt + '\'' +
+                ", islogging=" + islogging +
+                ", logwithoutid=" + logwithoutid +
+                ", isretestallowed=" + isretestallowed +
+                ", active=" + active +
+                ", description='" + description + '\'' +
+                ", stage_dep=" + stage_dep +
+                ", setSensorTestFlag=" + setSensorTestFlag +
+                ", disconnectPowerState=" + disconnectPowerState +
+                '}';
     }
 
     @Override
@@ -367,6 +410,8 @@ public class Job implements Parcelable {
         dest.writeLong(active);
         dest.writeString(description);
         dest.writeInt(stage_dep);
+        dest.writeInt(setSensorTestFlag);
+        dest.writeInt(disconnectPowerState);
     }
 
     @SuppressWarnings("unused")
@@ -381,4 +426,61 @@ public class Job implements Parcelable {
             return new Job[size];
         }
     };
+
+    public static Comparator COMPARE_BY_JOBNO = new Comparator<Job>() {
+        public int compare(Job one, Job other) {
+            return one.getJobno().compareTo(other.getJobno());
+        }
+    };
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Job job = (Job) o;
+
+        if (id != job.id) return false;
+        if (!jobno.equals(job.jobno)) return false;
+        if (primaryJobId != job.primaryJobId) return false;
+        if (testtypeId != job.testtypeId) return false;
+        if (testId != job.testId) return false;
+        if (firmwareId != job.firmwareId) return false;
+        if (quantity != job.quantity) return false;
+        if (islogging != job.islogging) return false;
+        if (logwithoutid != job.logwithoutid) return false;
+        if (isretestallowed != job.isretestallowed) return false;
+        if (active != job.active) return false;
+        if (stage_dep != job.stage_dep) return false;
+//        if (setSensorTestFlag != job.setSensorTestFlag) return false;
+//        if (disconnectPowerState != job.disconnectPowerState) return false;
+        if (!barcodeprefix.equals(job.barcodeprefix)) return false;
+        if (!createdAt.equals(job.createdAt)) return false;
+        if (!updatedAt.equals(job.updatedAt)) return false;
+        return description.equals(job.description);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + (int) (primaryJobId ^ (primaryJobId >>> 32));
+        result = 31 * result + (int) (testtypeId ^ (testtypeId >>> 32));
+        result = 31 * result + (int) (testId ^ (testId >>> 32));
+        result = 31 * result + (int) (firmwareId ^ (firmwareId >>> 32));
+        result = 31 * result + jobno.hashCode();
+        result = 31 * result + (int) (quantity ^ (quantity >>> 32));
+        result = 31 * result + barcodeprefix.hashCode();
+        result = 31 * result + createdAt.hashCode();
+        result = 31 * result + updatedAt.hashCode();
+        result = 31 * result + (int) (islogging ^ (islogging >>> 32));
+        result = 31 * result + (int) (logwithoutid ^ (logwithoutid >>> 32));
+        result = 31 * result + (int) (isretestallowed ^ (isretestallowed >>> 32));
+        result = 31 * result + (int) (active ^ (active >>> 32));
+        result = 31 * result + description.hashCode();
+        result = 31 * result + stage_dep;
+//        result = 31 * result + setSensorTestFlag;
+//        result = 31 * result + disconnectPowerState;
+        return result;
+    }
 }

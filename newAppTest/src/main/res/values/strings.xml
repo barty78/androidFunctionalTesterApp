@@ -121,7 +121,7 @@
     <string name="menuitem_integrated_oper_test_test">Integrated Open Test</string>
     <string name="default_prod_url">http://peritest.hopto.org/periprod/v1</string>
     <string name="default_dev_url">http://peritest.hopto.org/peridev/v1</string>
-
+    <string name="default_productiontest_url">http://productiontest.pericoach.com/production/v1</string>
     <string name="reverse_orientation">reverse_orientation</string>
     <string name="unprocessed">unporcessed</string>
     <string name="download_all">download_all</string>

@@ -19,6 +19,7 @@ import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -47,6 +48,7 @@ import utils.DownloadTask.MyCallback;
 
 @SuppressWarnings("ucd")
 public class SelectJobActivity extends AppCompatActivity implements MyCallback, JobHolder.Callback {
+	private final String TAG = getClass().getSimpleName();
 	private RecyclerView recyclerView;
 	private ArrayList<server.pojos.Job> allJobsFromServer;
 	private ArrayList<server.pojos.Job> jobsFromServer;
@@ -154,13 +156,13 @@ public class SelectJobActivity extends AppCompatActivity implements MyCallback, 
 
 					for (Job job : allJobsFromServer) {
 						if (job.getTesttypeId() == PeriCoachTestApplication.getTestType()) jobsFromServer.add(job);
-						Log.d("JOB", job.getId() + " | " + job.getJobno());
+						Log.d("SERVER_JOB", job.toString());
 
 					}
 //					jobsFromServer.addAll(arg0);
-					for (int i = 0; i < jobsFromServer.size(); i++) {
-						Log.d("JOB", jobsFromServer.get(i).getId() + " | " + jobsFromServer.get(i).getJobno());
-					}
+//					for (int i = 0; i < jobsFromServer.size(); i++) {
+//						Log.d("JOB", jobsFromServer.get(i).getId() + " | " + jobsFromServer.get(i).getJobno());
+//					}
 					populateList();
 //					getFirmwareListFromServer();
 					compareJobLists();
@@ -187,22 +189,49 @@ public class SelectJobActivity extends AppCompatActivity implements MyCallback, 
 	}
 
 	private void compareJobLists() {
-
-		if (jobsFromServer != null && jobsFromdb != null)
-			for (int i = 0; i < jobsFromServer.size(); i++) {
-				if (!jobsFromdb.contains(jobsFromServer.get(i)))
-					addJobToDB(jobsFromServer.get(i));
-			}
+		Log.d(TAG, "Comparing Jobs Lists");
 		if (jobsFromdb == null || jobsFromdb.size() <= 0) {
+			Log.d(TAG, "NO JOBS LOCALLY, ADDING ALL");
 			for (int i = 0; i < jobsFromServer.size(); i++) {
 				addJobToDB(jobsFromServer.get(i));
 			}
 		}
-		if (jobsFromdb != null)
-			for (int i = 0; i < jobsFromdb.size(); i++) {
-				if (!jobsFromServer.contains(jobsFromdb.get(i)))
-					removeJobFromDB(jobsFromdb.get(i));
+		if (jobsFromServer != null && jobsFromdb != null)
+//			for (int i = 0; i < jobsFromServer.size(); i++) {
+			for (Job serverjob : jobsFromServer) {
+				boolean found = false;
+				for (Job dbjob : jobsFromdb) {
+					Log.d(TAG, "Server: " + serverjob + " | DB: " + dbjob);
+					if (dbjob.getJobno().equals(serverjob.getJobno())) {
+						Log.d(TAG, "JOB FOUND, DON'T ADD");
+						found = true;
+						//TODO - Check
+						if (dbjob.equals(serverjob)) {
+							Log.d("COMPARING", "Jobs Equal : " + dbjob.getJobno() + " | " + serverjob.getJobno());
+						} else {
+							Log.d("COMPARING", "Jobs Not Equal : " + dbjob.getJobno() + " | " + serverjob.getJobno());
+						}
+					}
+				}
+				if (!found) addJobToDB(serverjob);
+//				if (!jobsFromdb.contains(jobsFromServer.get(i)))
+//					addJobToDB(jobsFromServer.get(i));
 			}
+
+		if (jobsFromdb != null) {
+//			for (int i = 0; i < jobsFromdb.size(); i++) {
+			for (Job dbjob : jobsFromdb) {
+				boolean remove = true;
+				for (Job serverjob : jobsFromServer) {
+					if (serverjob.getJobno().equals(dbjob.getJobno())) {
+						Log.d(TAG, "JOB FOUND, DON'T REMOVE");
+						remove = false;
+//						removeJobFromDB(dbjob);
+					}
+				}
+				if (remove) removeJobFromDB(dbjob);
+			}
+		}
 	}
 
 	private void removeJobFromDB(Job job) {
@@ -211,7 +240,14 @@ public class SelectJobActivity extends AppCompatActivity implements MyCallback, 
 
 	private void addJobToDB(Job job) {
 		getDataProvider().addJobToDB(job);
+	}
 
+	private void updateJobOnDB(Job job) {
+		getDataProvider().updateJobOnDB(job);
+	}
+
+	private analytica.pericoach.android.Job getJobFromDB(analytica.pericoach.android.Job job) {
+		return getDataProvider().getJobFromDB(job.getJobNo());
 	}
 
 	private DataProvider getDataProvider() {

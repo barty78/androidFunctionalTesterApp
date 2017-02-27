@@ -94,7 +94,7 @@ public class ClosedTest extends SensorTest implements OnDetectCallback {
             return;
         }
         try {
-            Thread.sleep(1000);
+            Thread.sleep(200);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

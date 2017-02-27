@@ -1,9 +1,11 @@
 package analytica.pericoach.android;
 
+import java.sql.PreparedStatement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -13,8 +15,7 @@ import android.util.Log;
 public class DBManager {
     private final Context context;
     private SQLiteDatabase db;
-
-
+    private final String TAG = getClass().getSimpleName();
 
     public DBManager(Context context) {
         this.context = context;
@@ -49,9 +50,11 @@ public class DBManager {
                 + Contract.SEPARATOR + Contract.JOBS_TESTTYPE_ID_COLUMN
                 + Contract.SEPARATOR + Contract.JOBS_ACTIVE_COLUMN
                 + Contract.SEPARATOR + Contract.JOBS_STAGE_DEP
+                + Contract.SEPARATOR + Contract.JOBS_SET_SENSOR_TEST_FLAG
+                + Contract.SEPARATOR + Contract.JOBS_DISCONNECT_POWER_STATE
                 +
         ") "
-                + "VALUES(?,?,?,?,?);";
+                + "VALUES(?,?,?,?,?,?,?,?,?);";
 
         Object[] values = new Object[]{
                 entity.getJobNo(),
@@ -60,7 +63,9 @@ public class DBManager {
                 entity.getJob_id(),
                 entity.getTesttype_id(),
                 entity.isActive()?0:1,
-                entity.getStage_dep()
+                entity.getStage_dep(),
+                entity.getSetSensorTestFlag(),
+                entity.getDisconnectPowerState()
         };
 
         Log.d("SQL: ", strSQL);
@@ -89,6 +94,53 @@ public class DBManager {
         db.close();
     }
 
+    public Job getJob(String jobNo) {
+        CustomSQLiteOpenHelper helper = new CustomSQLiteOpenHelper(context);
+        this.db = helper.getWritableDatabase();
+
+        Cursor c = db.rawQuery("SELECT * FROM jobs "
+        + "WHERE jobNo = ", new String[]{jobNo});
+        Job entity = new Job();
+
+        while (c.moveToNext()) {
+            entity.setJobNo(c.getString(0));
+            entity.setTestID(c.getInt(1));
+            entity.setTotalQty(c.getInt(2));
+            entity.setTestedQty(c.getInt(3));
+            entity.setPassedQty(c.getInt(4));
+            entity.setDate(c.getString(5));
+            entity.setLastUpdated(c.getString(6));
+            entity.setLastReportedRecord(c.getInt(7));
+            entity.setLastReportNumber(c.getInt(8));
+            entity.setActive(c.getInt(9));
+            entity.setJob_id(c.getInt(c.getColumnIndexOrThrow(Contract.JOBS_JOB_ID_COLUMN)));
+            entity.setTesttype_id(c.getInt(c.getColumnIndexOrThrow(Contract.JOBS_TESTTYPE_ID_COLUMN)));
+            entity.setStage_dep(c.getColumnIndexOrThrow(Contract.JOBS_STAGE_DEP));
+            entity.setSetSensorTestFlag(c.getColumnIndexOrThrow(Contract.JOBS_SET_SENSOR_TEST_FLAG));
+            entity.setDisconnectPowerState(c.getColumnIndexOrThrow(Contract.JOBS_DISCONNECT_POWER_STATE));
+        }
+        db.close();
+        return entity;
+    }
+
+    public void updateJob(server.pojos.Job job) {
+        CustomSQLiteOpenHelper helper = new CustomSQLiteOpenHelper(context);
+        this.db = helper.getWritableDatabase();
+        Job oldJob = getJob(job.getJobno());
+
+        ContentValues values = new ContentValues();
+        values.put(Contract.JOBS_JOB_ID_COLUMN, job.getId());
+        values.put(Contract.JOBS_TESTTYPE_ID_COLUMN, job.getTesttypeId());
+        values.put(Contract.JOBS_TOTALQUANTITY_COLUMN, job.getQuantity());
+        values.put(Contract.JOBS_SET_SENSOR_TEST_FLAG, job.getSetSensorTestFlag());
+        values.put(Contract.JOBS_DISCONNECT_POWER_STATE, job.getDisconnectPowerState());
+        String selection = Contract.JOBS_JOB_NUMBER_COLUMN + " = ?";
+        String[] selectionArgs = new String[]{job.getJobno()};
+        db.update(Contract.JOBS_TABLE_NAME, values, selection, selectionArgs);
+
+        db.close();
+    }
+
 
     public ArrayList<Job> getAllActiveJobsForTest() {
 
@@ -109,8 +161,6 @@ public class DBManager {
             while (c.moveToNext()) {
                 Job entity = new Job();
 
-                entity.setJobNo(c.getString(0));
-                entity.setTestID(c.getInt(1));
                 entity.setTotalQty(c.getInt(2));
                 entity.setTestedQty(c.getInt(3));
                 entity.setPassedQty(c.getInt(4));
@@ -122,11 +172,16 @@ public class DBManager {
                 entity.setJob_id(c.getInt(c.getColumnIndexOrThrow(Contract.JOBS_JOB_ID_COLUMN)));
                 entity.setTesttype_id(c.getInt(c.getColumnIndexOrThrow(Contract.JOBS_TESTTYPE_ID_COLUMN)));
                 entity.setStage_dep(c.getColumnIndexOrThrow(Contract.JOBS_STAGE_DEP));
+                entity.setSetSensorTestFlag(c.getColumnIndexOrThrow(Contract.JOBS_SET_SENSOR_TEST_FLAG));
+                entity.setDisconnectPowerState(c.getColumnIndexOrThrow(Contract.JOBS_DISCONNECT_POWER_STATE));
 
                 entityList.add(entity);
             }
             c.close();
             db.close();
+            for (Job job : entityList) {
+                Log.d(TAG, job.toString());
+            }
             return entityList;
 
         } catch (SQLException e) {

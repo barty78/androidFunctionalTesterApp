@@ -27,6 +27,8 @@ public class Contract {
     static final String JOBS_REPORT_NUMBER_COLUMN = "ReportNumber";
     static final String JOBS_ACTIVE_COLUMN = "active";
     static final String JOBS_STAGE_DEP = "stage_dep";
+    static final String JOBS_SET_SENSOR_TEST_FLAG = "setSensorTestFlag";
+    static final String JOBS_DISCONNECT_POWER_STATE = "disconnectPowerState";
     static final String JOBS_LAST_UPDATED = "LastUpdated";
 
 

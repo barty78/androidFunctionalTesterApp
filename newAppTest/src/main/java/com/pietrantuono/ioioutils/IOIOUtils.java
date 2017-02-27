@@ -2,6 +2,7 @@ package com.pietrantuono.ioioutils;
 
 import customclasses.DebugHelper;
 import hugo.weaving.DebugLog;
+import hydrix.pfmat.generic.Device;
 import ioio.lib.api.DigitalInput;
 import ioio.lib.api.DigitalOutput;
 import ioio.lib.api.IOIO;
@@ -611,7 +612,9 @@ public class IOIOUtils implements IOIOUtilsInterface {
             outputStream = uart2.getOutputStream();
         }
 
-        toggle5VDC(ac);
+        if (PeriCoachTestApplication.getGetFirmware().getModel().equals(Device.V3)) {
+            toggle5VDC(ac);
+        }
 
         if (PeriCoachTestApplication.getCurrentJob().getTesttypeId() == 1) {
             try {

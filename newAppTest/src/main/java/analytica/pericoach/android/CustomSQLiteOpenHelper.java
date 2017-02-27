@@ -33,20 +33,20 @@ public class CustomSQLiteOpenHelper extends SQLiteOpenHelper {
     private static CustomSQLiteOpenHelper customSQLiteOpenHelper;
     private final Context context;
     private static final String DB_NAME = "PeriCoachTest";
-    private static final int DB_VERSION = 4;
-
-    private final String TAG = getClass().getSimpleName();
-
+    private static final int DB_VERSION = 6;
+    private static String TAG;
 
     public CustomSQLiteOpenHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
         this.context = context;
+        TAG = getClass().getSimpleName();
     }
 
     public static CustomSQLiteOpenHelper getCustomSQLiteOpenHelper(Context context) {
         if (CustomSQLiteOpenHelper.customSQLiteOpenHelper == null) {
             CustomSQLiteOpenHelper.customSQLiteOpenHelper = new CustomSQLiteOpenHelper(context);
         }
+        Log.d(TAG, "Database Version: " + DB_VERSION);
         return customSQLiteOpenHelper;
     }
 
@@ -71,7 +71,6 @@ public class CustomSQLiteOpenHelper extends SQLiteOpenHelper {
             Toast.makeText(context, t.toString(), Toast.LENGTH_LONG).show();
         }
         db.execSQL(Contract.DevicesColumns.CREATE_DEVICES_TABLE);
-
     }
 
     @Override
@@ -93,7 +92,17 @@ public class CustomSQLiteOpenHelper extends SQLiteOpenHelper {
             Log.d(TAG, "Upgrading database");
             db.execSQL(Contract.DevicesColumns.CREATE_DEVICES_TABLE);
         }
-
+        if (oldVersion < 5) {
+            Log.d(TAG, "Upgrading Database");
+            String ADD_SENSOR_TEST_FLAG = "ALTER TABLE " + Contract.JOBS_TABLE_NAME + " ADD COLUMN " + Contract.JOBS_SET_SENSOR_TEST_FLAG + " NUMERIC";
+            db.execSQL(ADD_SENSOR_TEST_FLAG);
+//            getAndUpdateJobs(context);
+        }
+        if (oldVersion < 6) {
+            String ADD_DISCONNECT_POWER_STATE = "ALTER TABLE " + Contract.JOBS_TABLE_NAME + " ADD COLUMN " + Contract.JOBS_DISCONNECT_POWER_STATE + " NUMERIC";
+            db.execSQL(ADD_DISCONNECT_POWER_STATE);
+            getAndUpdateJobs(context);
+        }
     }
 
     private void getAndUpdateJobs(final Context context) {

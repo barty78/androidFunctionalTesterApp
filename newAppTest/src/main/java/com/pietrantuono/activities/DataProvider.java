@@ -3,11 +3,15 @@ package com.pietrantuono.activities;
 import java.util.ArrayList;
 
 import analytica.pericoach.android.DBManager;
+import server.pojos.Job;
+
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 
 class DataProvider {
 	private final Context context;
+	private final String TAG = getClass().getSimpleName();
 
 	DataProvider(Activity activity) {
 		this.context=(Context)activity;
@@ -21,6 +25,9 @@ class DataProvider {
 		job.setTotalQty((int) (jobToBeInserted.getQuantity()));
 		job.setId(jobToBeInserted.getId());
 		job.setActive((int) jobToBeInserted.getActive());
+		job.setDisconnectPowerState(jobToBeInserted.getDisconnectPowerState());
+		job.setSetSensorTestFlag(jobToBeInserted.getSetSensorTestFlag());
+		job.setStage_dep(jobToBeInserted.getStage_dep());
 		//job.setJobNo("11");
 		//job.setTestID(1);
 		//job.setTotalQty(3);
@@ -31,22 +38,32 @@ class DataProvider {
 		DBManager dbManager = new DBManager(context); 
 		dbManager.closeJob(jobToBeClosed.getJobno());
 	}
+
+	void updateJobOnDB(server.pojos.Job jobToBeUpdated) {
+		DBManager dbManager = new DBManager(context);
+		dbManager.updateJob(jobToBeUpdated);
+	}
+
+	public analytica.pericoach.android.Job getJobFromDB(String jobNo) {
+		DBManager dbManager = new DBManager(context);
+		return dbManager.getJob(jobNo);
+	}
 	
-	public ArrayList<server.pojos.Job> getJobsFromDB() {	
-		ArrayList<server.pojos.Job> jobsFromdb;
+	public ArrayList<Job> getJobsFromDB() {
+		ArrayList<Job> jobsFromdb;
 		DBManager db = (new DBManager(context));
 		ArrayList<analytica.pericoach.android.Job> jobs= new ArrayList<analytica.pericoach.android.Job>();
 		jobs.addAll(db.getAllActiveJobsForTest());
 		if(jobs!=null && jobs.size()>0){
-			jobsFromdb= new ArrayList<server.pojos.Job>();
-			for(int i=0;i<jobs.size();i++){
-				server.pojos.Job job= new server.pojos.Job();
-				if(jobs.get(i).getJobNo()==null)continue;
-				else {job.setJobno(jobs.get(i).getJobNo());}
-				job.setId(jobs.get(i).getId());
-				
-				job.setQuantity(jobs.get(i).getTotalQty());
-				jobsFromdb.add(job);
+			jobsFromdb= new ArrayList<Job>();
+			for (analytica.pericoach.android.Job job : jobs) {
+				Log.d(TAG + " DB_JOB", job.toString());
+				server.pojos.Job tmpjob = new server.pojos.Job();
+				if(job.getJobNo()==null)continue;
+				else {tmpjob.setJobno(job.getJobNo());}
+				tmpjob.setId(job.getId());
+				job.setTotalQty(job.getTotalQty());
+				jobsFromdb.add(tmpjob);
 			}
 		}
 		else {jobsFromdb=null;}

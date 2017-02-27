@@ -66,7 +66,8 @@ public class SettingsActivity extends PreferenceActivity {
         if (BuildConfig.DEBUG) {
             switsh.setSummary(getResources().getString(R.string.default_dev_url));
         } else {
-            switsh.setSummary(getResources().getString(R.string.default_prod_url));
+//            switsh.setSummary(getResources().getString(R.string.default_prod_url));
+            switsh.setSummary(getResources().getString(R.string.default_productiontest_url));
         }
         EditTextPreference editTextPreference = (EditTextPreference) findPreference("custom_url");
         if (BuildConfig.DEBUG) {
@@ -375,7 +376,7 @@ public class SettingsActivity extends PreferenceActivity {
         Uri uri = Uri.fromFile(outFile);
         Intent emailIntent = new Intent(Intent.ACTION_SEND);
         emailIntent.setType("vnd.android.cursor.dir/email");
-        String to[] = {"pbartlett@analyticamedical.com", "maurizio.pietrantuono@gmail.com"};
+        String to[] = {"pbartlett@analyticamedical.com"};
         emailIntent.putExtra(Intent.EXTRA_EMAIL, to);
         emailIntent.putExtra(Intent.EXTRA_STREAM, uri);
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm dd MMMM yyyy");

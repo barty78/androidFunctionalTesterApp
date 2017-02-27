@@ -69,6 +69,8 @@ public class JobHolder extends RecyclerView.ViewHolder{
                 Log.d("Firmware ID:", String.valueOf(job.getFirmwareId()));
                 Log.d("Logging", String.valueOf(job.getIslogging() != 0));
                 Log.d("Job ID: ", String.valueOf(job.getId()));
+                Log.d("SensorTestFlag", String.valueOf(job.getSetSensorTestFlag()));
+                Log.d("DisconnectPowerState", String.valueOf(job.getDisconnectPowerState()));
                 PeriCoachTestApplication.setCurrentJob(job);
                 PeriCoachTestApplication.setIsRetestAllowed(job.getIsretestallowed() != 0);
                 callback.getPrimaryJobForSelectedJob(job.getPrimaryJobId());

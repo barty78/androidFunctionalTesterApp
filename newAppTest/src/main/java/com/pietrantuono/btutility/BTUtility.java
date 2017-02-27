@@ -547,7 +547,7 @@ public class BTUtility {
 
     public void sendAllVoltages(final short[] refVoltages, final short[] zeroVoltages, int timeOutInMills) throws TimeoutException, NewDevice.InvalidVoltageException {
 
-        if (NewPFMATDevice.getDevice().getInformation().mModel == "0188") {
+        if (NewPFMATDevice.getDevice().getInformation().mModel.equals(Device.V2)) {
 
         } else {
 
@@ -672,7 +672,22 @@ public class BTUtility {
         Handler handler = new Handler(handlerThread.getLooper());
 
         final byte value;
+//        byte value = 0;
 
+//        Log.d(TAG, "Defined Sensor Test Mode Flag: " + PeriCoachTestApplication.getCurrentJob().getSetSensorTestFlag());
+//        if (PeriCoachTestApplication.getCurrentJob().getSetSensorTestFlag() == 1) {
+//            value = 1;
+//        }
+//        final byte finalValue = value;
+//        Log.d(TAG, "Sensor Test Mode byte to send: " + finalValue);
+//        handler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                if (NewPFMATDevice.getDevice() != null) {
+//                    NewPFMATDevice.getDevice().sendConfig((byte) 0, (byte)0 , finalValue);
+//                }
+//            }
+//        },200);
         if (!sensorTestFlag) {
             value = 0;
         } else {
@@ -699,11 +714,28 @@ public class BTUtility {
                 }
             },200);
         }
+//        Log.d(TAG, "Defined Disconnect Power State: " + PeriCoachTestApplication.getCurrentJob().getDisconnectPowerState());
+//        if (PeriCoachTestApplication.getCurrentJob().getDisconnectPowerState() != 0) {
+//            byte mode = 0;
+//            if (PeriCoachTestApplication.getCurrentJob().getDisconnectPowerState() == 2) {
+//                mode = 1;
+//            }
+//            final byte finalMode = mode;
+//            Log.d(TAG, "Mode byte to send: " + finalMode);
+//            handler.postDelayed(new Runnable() {
+//                @Override
+//                public void run() {
+//                    if (NewPFMATDevice.getDevice() != null) {
+//                        NewPFMATDevice.getDevice().sendSleep(finalMode, (short) 100);
+//                    }
+//                }
+//            }, 300);
+//        }
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 if (NewPFMATDevice.getDevice() != null) {
-                    NewPFMATDevice.getDevice().sendSleep((byte) 1, (short) 100);
+                    NewPFMATDevice.getDevice().sendSleep((byte)0, (short) 100);
                 }
             }
         }, 300);

@@ -18,6 +18,8 @@ public class Job {
 	private Integer lastReportNumber;
 	private Integer active;
 	private Integer stage_dep;
+	private Integer setSensorTestFlag;
+	private Integer disconnectPowerState;
 	
 	public long getId() {
 		return id;
@@ -137,4 +139,12 @@ public class Job {
 	public void setStage_dep(Integer stage_dep) {
 		this.stage_dep = stage_dep;
 	}
+
+	public Integer getSetSensorTestFlag() { return setSensorTestFlag; }
+
+	public void setSetSensorTestFlag(int setSensorTestFlag) { this.setSensorTestFlag = setSensorTestFlag;}
+
+	public Integer getDisconnectPowerState() { return disconnectPowerState;}
+
+	public void setDisconnectPowerState(int disconnectPowerState) { this.disconnectPowerState = disconnectPowerState;}
 }
